@@ -16,7 +16,7 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/livecss.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/livecss.min.js"></script>
 <link href="<?php echo base_url()?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -51,14 +51,13 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
-<!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
-<link href="<?php echo base_url()?>assets/global/css/components-md.css" rel="stylesheet" type="text/css"/ id="style_components">
-<link href="<?php echo base_url()?>assets/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components.min.css' in the below style tag -->
+<link href="<?php echo base_url()?>assets/global/css/components-md.min.css" rel="stylesheet" type="text/css"/ id="style_components">
+<link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/admin/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="<?php echo base_url()?>assets/admin/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
-<link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

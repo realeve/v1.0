@@ -16,7 +16,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <meta content="" name="description"/>
 <meta content="" name="author"/>
-<script src="<?php echo base_url()?>assets/admin/pages/controller/livecss.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/admin/pages/controller/livecss.min.js" type="text/javascript"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="<?php echo base_url()?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
@@ -26,11 +26,11 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
-<link href="<?php echo base_url()?>assets/global/css/components-md.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link id="style_color" href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/admin/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/admin/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <!-- END THEME STYLES -->
 </head>
