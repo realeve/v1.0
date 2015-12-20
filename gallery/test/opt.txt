@@ -1,0 +1,95 @@
+option = {
+   title : {
+                text: '核查好品率随时间变化情况',
+                subtext: '数据来源：质量综合管理系统数据库\n统计时间：2015年1月至7月15日',
+				x:'center',
+            },
+        tooltip : {
+            trigger: 'axis'
+        },		
+        legend: {
+            data:['胶印好品率','胶印产量','凹印好品率','凹印产量'],
+			x:'center',
+			y:70,
+			itemGap:20,
+			selected:{
+				'胶印产量':false,
+				'凹印产量':false,
+			}
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+				//dataZoom : {show: true},
+                dataView : {show: true, readOnly: false}, dataZoom : {show: true},
+                magicType: {show: true, type : ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+				name:'领用时间',
+				axisTick : {show: false},//隐藏标记线,
+                type : 'category',
+                boundaryGap : false,
+                data : ['9:30','10:00','10:30','11:00','11:30','12:00','12:30'],
+			}
+        ],
+        yAxis : [
+            {
+				name:'平均好品率',
+                type : 'value',
+				position: 'left',
+				min:85,
+				max:89,
+				scale: true,//自动缩放最大最小值
+				axisLabel : {
+					show:true,
+					interval: 'auto',    // {number}
+					//rotate: -45,
+					margin: 8,
+					formatter: '{value} %',    // Template formatter!               
+				},	
+				axisLine:{
+				    
+				    show:false
+				}
+            },
+			{
+                type : 'value',
+				min:500,
+				axisLabel : {
+					show:true,
+					interval: 'auto',    // {number}
+					//rotate: -45,
+					margin: 18,
+					formatter: '{value} 车',    // Template formatter!               
+				},
+            }
+        ],
+        series : [
+            {
+                name:'胶印好品率',
+                type:'line',
+                smooth:true,
+				//symbolSize:0,
+		        // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data:[86.04,86.52,85.69,85.88,86.67,86.74,86.08],
+			//	markPoint : MPtStyle,
+			//	markLine : MLnStyle,
+			},
+            {
+                name:'凹印好品率',
+                type:'line',
+                smooth:true,
+				//symbolSize:0,
+               // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data:[87.68,85.83,86.48,86.29,87.09,86.93,86.59],
+			//	markPoint : MPtStyle,
+			//	markLine : MLnStyle,
+			}
+        ]
+};

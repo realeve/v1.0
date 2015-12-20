@@ -1,0 +1,126 @@
+var lineStyleJ = {
+    normal: {
+        width: 8,
+        //opacity: 0.5
+    }
+};
+var lineStyleW = {
+    normal: {
+        width: 8,
+        //opacity: 0.5
+        color:'rgb(209,153,7)'
+    }
+};
+option = {
+   backgroundColor: '#404a59',
+   title : {
+                text: 'XX随时间变化情况',
+                subtext: '数据来源：XX系统数据库\n统计时间：2015年1月至7月15日',
+				x:'right',
+				y:'bottom',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        polar: {},
+        legend: {
+            //orient: 'vertical',
+            data:['J 好品率','W 好品率'],
+			x:'right',
+			y:'5%',
+			itemGap:20,
+			selected:{
+				'J 好品率':false,
+			},
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+				//dataZoom : {show: true},
+                dataView : {show: true, readOnly: false}, dataZoom : {show: true},
+                magicType: {show: true, type : ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        angleAxis : [
+            {
+				name:'领用时间',
+				axisTick : {show: false},//隐藏标记线,
+                type : 'category',
+                boundaryGap : false,
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#ddd',
+                        type: 'dashed'
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisLabel: {
+                textStyle: {
+                    color: '#fff',
+                    rotate: 45
+                }
+                },
+                data : ['0:00','0:30','1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30']
+            }
+        ],
+        radiusAxis : [
+            {
+				//name:'平均好品率',
+                type : 'value',
+				position: 'left',
+				scale: true,//自动缩放最大最小值
+				axisLabel : {
+					show:false,
+					interval: 'auto',    // {number}
+					//rotate: -45,
+					margin: 8,
+					formatter: '{value} %',    // Template formatter!     
+                    textStyle: {
+                        color: '#fafaaa',
+                        rotate: 45
+                    }
+				},	
+				axisLine:{
+				    show:false
+				}
+            }
+        ],
+        series : [
+             {
+                name:'J 好品率',
+                type:'line',
+                smooth:true,
+				symbolSize:12,
+				lineStyle: lineStyleJ,
+		        //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data:['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',86.89,87.44,87.26,87.33,86.56,86.84,86.66,86.22,87.1,87.07,86.98,86.94,86.79,86.47,86.67,87.51,87.35,87.32,87.36,87.14,87.7,87.56,86.67,87.01,87.48,87.1,87.34,86.59,88.35,86.83,86.37,'-','-','-'],
+                coordinateSystem: 'polar',
+             },
+            {
+                name:'W 好品率',
+                type:'line',
+                smooth:true,
+				symbolSize:12,
+				lineStyle: lineStyleW,
+                //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data:['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',87.05,87.22,87.75,87.89,87.49,87.31,87.31,86.85,87.26,87.12,87.45,87.1,87.19,86.67,86.94,87.11,87.32,87.83,87.42,86.85,87.04,87.76,87.6,87.1,87.22,87.3,87.78,87.46,87.59,87.01,84.9,'-','-','-'],
+				coordinateSystem: 'polar',
+			}
+        ]
+};

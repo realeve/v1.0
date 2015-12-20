@@ -1,0 +1,32 @@
+﻿<IfModule mod_rewrite.c>
+<Files ~ "^.(htaccess|htpasswd)$">
+deny from all
+</Files>
+
+Options -Indexes
+Options +FollowSymLinks
+
+#允许解析文件中的SSI指令
+Options +Includes
+
+#定义404，500错误页面
+#ErrorDocument 404 /404.html
+#ErrorDocument 500 /404.html
+
+#定义目录索引页面
+DirectoryIndex index.php index.html index.htm
+order deny,allow
+
+RewriteEngine on
+
+#设置根目录
+RewriteBase /www/
+
+#去掉链接地址中index.php字符串
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index.php|images|robots\.txt)
+
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+</IfModule>

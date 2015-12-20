@@ -1,0 +1,336 @@
+* {
+	margin: 0px; padding: 0px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+body {
+	color: rgb(51, 51, 51); background-color: rgb(243, 243, 243);
+}
+.page {
+	padding: 20px 0px;
+}
+.btn-primary {
+	border-color: rgb(48, 149, 198); background-color: rgb(59, 167, 220);
+}
+.btn-primary:hover {
+	border-color: rgb(48, 149, 198); background-color: rgb(48, 149, 198);
+}
+.navbar-default {
+	border-width: medium medium 1px; border-style: none none solid; border-color: currentColor currentColor rgb(14, 21, 31); border-image: none; background-color: rgb(41, 60, 85);
+}
+.navbar-default#index-nav {
+	margin-bottom: 0px;
+}
+.navbar-default .navbar-brand {
+	color: rgb(239, 239, 239);
+}
+.navbar-default .navbar-brand:hover {
+	color: rgb(243, 243, 243);
+}
+.navbar-default .navbar-brand:focus {
+	color: rgb(243, 243, 243);
+}
+.navbar-default .navbar-nav li a {
+	color: rgb(239, 239, 239);
+}
+.navbar-default .navbar-nav li a:hover {
+	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
+}
+.navbar-default .navbar-nav li a:focus {
+	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
+}
+.navbar-default .navbar-nav li.active a {
+	color: rgb(239, 239, 239); background-color: rgb(22, 36, 54);
+}
+.navbar-default .navbar-nav li.active a:hover {
+	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
+}
+.navbar-default .navbar-nav li.active a:focus {
+	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
+}
+.navbar-default .navbar-nav li.highlight a {
+	background-color: rgb(228, 60, 89);
+}
+.navbar-default .navbar-nav li.highlight a:hover {
+	background-color: rgb(191, 70, 91);
+}
+.navbar-default .navbar-nav li.highlight a:focus {
+	background-color: rgb(191, 70, 91);
+}
+#nav-avatar {
+	width: 50px; height: 50px; float: right; display: none;
+}
+#nav-avatar img {
+	width: 50px; height: 50px;
+}
+.nav-dropdown-panel {
+	right: 0px; display: none; position: absolute; z-index: 99999;
+}
+.nav-dropdown-panel#login-dropdown-panel {
+	width: 350px;
+}
+.nav-dropdown-panel#login-dropdown-panel form {
+	padding: 20px 30px 0px;
+}
+.nav-dropdown-panel#user-dropdown-panel {
+	width: 150px;
+}
+.nav-dropdown-panel#user-dropdown-panel .panel-body {
+	padding: 0px;
+}
+#main-container {
+	left: 0px; top: 50px; right: 0px; bottom: 0px; position: absolute;
+}
+#main-container .handler {
+	left: 50%; top: 0px; width: 5px; bottom: 0px; border-left-color: rgb(204, 204, 204); border-left-width: 1px; border-left-style: solid; position: absolute; z-index: 100; cursor: col-resize; background-color: transparent;
+}
+#code-container {
+	left: 0px; top: 0px; width: 50%; bottom: 0px; position: absolute;
+}
+#control-panel {
+	padding: 0px; left: 0px; top: 0px; height: 30px; right: 0px; position: absolute; z-index: 20; box-shadow: 0px 2px 10px rgba(0,0,0,0.2); -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+#control-panel .setting-panel {
+	display: inline-block;
+}
+#control-panel .setting-panel .btn-group + .btn-group {
+	margin-left: 10px;
+}
+#control-panel .control-btn-panel {
+	float: right;
+}
+#control-panel .control-btn-panel .btn {
+	border-radius: 0px; border: currentColor; border-image: none; width: 50px; height: 30px; color: rgb(255, 255, 255); margin-left: 10px; background-color: rgb(63, 167, 220); -webkit-border-radius: 0;
+}
+#control-panel .control-btn-panel .btn:hover {
+	background-color: rgb(39, 126, 171);
+}
+#code-panel {
+	padding: 10px; left: 0px; top: 30px; right: 0px; bottom: 0px; position: absolute;
+}
+#code-info {
+	padding: 0px 10px; height: 30px; bottom: 0px; line-height: 30px; overflow: hidden; font-size: 0.9rem; position: absolute;
+}
+#code-info .code-info-time {
+	color: rgb(51, 51, 51); margin-right: 10px; display: inline-block;
+}
+#code-info .code-info-type-info {
+	color: rgb(51, 51, 51);
+}
+#code-info .code-info-type-warn {
+	color: rgb(255, 153, 51);
+}
+#code-info .code-info-type-error {
+	color: rgb(228, 60, 89);
+}
+#left-chart-nav {
+	left: 0px; top: 0px; width: 155px; bottom: 0px; padding-top: 50px; position: fixed; -ms-overflow-y: hidden; background-color: rgb(41, 60, 85);
+}
+#left-chart-nav:hover {
+	-ms-overflow-y: auto;
+}
+#left-chart-nav li {
+	padding: 10px 20px; transition:0.5s; height: 54px; -webkit-transition: 0.5s;
+}
+#left-chart-nav li a {
+	transition:0.5s; color: rgb(204, 204, 204); display: block; position: relative; -webkit-transition: 0.5s;
+}
+#left-chart-nav li a .chart-name {
+	top: -12px; margin-left: 10px; display: inline-block; position: relative;
+}
+#left-chart-nav li a .chart-icon {
+	border-radius: 50%; border: 1px solid rgb(153, 153, 153); border-image: none; width: 32px; height: 32px; display: inline-block; content: ""; background-image: url("../images/chart-icon.png"); background-repeat: no-repeat; background-size: 32px; -webkit-border-radius: 50%;
+}
+#left-chart-nav li.active {
+	background-color: rgb(228, 60, 89);
+}
+#left-chart-nav li.active a {
+	color: rgb(243, 243, 243);
+}
+#left-chart-nav li.active .chart-icon {
+	border-color: rgb(243, 243, 243);
+}
+#left-chart-nav li:hover {
+	background-color: rgb(22, 36, 54);
+}
+@media all and (max-width:768px)
+{
+#left-chart-nav {
+	display: none;
+}
+}
+#left-chart-nav-line .chart-icon {
+	background-position: -1px -1px;
+}
+#left-chart-nav-bar .chart-icon {
+	background-position: -1px -33px;
+}
+#left-chart-nav-scatter .chart-icon {
+	background-position: -1px -65px;
+}
+#left-chart-nav-pie .chart-icon {
+	background-position: -1px -129px;
+}
+#left-chart-nav-funnel .chart-icon {
+	background-position: -1px -321px;
+}
+#left-chart-nav-gauge .chart-icon {
+	background-position: -1px -289px;
+}
+#left-chart-nav-map .chart-icon {
+	background-position: -1px -257px;
+}
+#left-chart-nav-graph .chart-icon {
+	background-position: -1px -225px;
+}
+#left-chart-nav-treemap .chart-icon {
+	background-position: -1px -449px;
+}
+#left-chart-nav-parallel .chart-icon {
+	background-position: -1px -513px;
+}
+#left-chart-nav-sankey .chart-icon {
+	background-position: -1px -545px;
+}
+.chart-list-panel {
+	margin: 30px 15px;
+}
+.chart-list-panel h3 {
+	margin-bottom: 20px;
+}
+.chart-list-panel .chart {
+	margin: 0px auto 30px; border-radius: 2px; border: 1px solid rgb(243, 243, 243); border-image: none; width: 100%; max-width: 350px; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); background-color: rgb(255, 255, 255); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); -webkit-border-radius: 2px;
+}
+.chart-list-panel .chart .chart-link {
+	display: block; position: relative;
+}
+.chart-list-panel .chart .chart-link .chart-area {
+	padding: 15px; width: 100%; height: 100%;
+}
+.chart-list-panel .chart .chart-link .chart-hover-bg {
+	border-radius: 2px; left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; z-index: 10; opacity: 0; background-color: rgb(41, 60, 85); -webkit-border-radius: 2px;
+}
+.chart-list-panel .chart .chart-link:hover .chart-hover-bg {
+	transition:0.1s ease-in-out; opacity: 0.8; -webkit-transition: 0.1s all ease-in-out;
+}
+.chart-list-panel .chart .chart-link .chart-hover {
+	padding: 0px 20px; border-radius: 2px; transition:0.5s ease-in-out; left: 0px; top: 50%; height: 90px; text-align: center; right: 0px; bottom: 0px; color: rgb(239, 239, 239); margin-top: -45px; position: absolute; z-index: 20; opacity: 0; -webkit-transition: 0.5s all ease-in-out; -webkit-border-radius: 2px;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-title {
+	color: rgb(243, 243, 243); overflow: hidden; white-space: nowrap; -ms-text-overflow: ellipsis;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-title::before {
+	transition:0.5s ease-in-out; width: 10%; height: 1px; margin-bottom: 10px; display: block; content: ""; background-color: rgb(228, 60, 89); -webkit-transition: 0.5s all ease-in-out;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle {
+	overflow: hidden; padding-bottom: 10px; white-space: nowrap; position: relative; -ms-text-overflow: ellipsis;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle::after {
+	transition:0.5s ease-in-out; width: 10%; height: 1px; right: 0px; bottom: 0px; position: absolute; content: ""; background-color: rgb(228, 60, 89); -webkit-transition: 0.5s all ease-in-out;
+}
+.chart-list-panel .chart .chart-link:hover .chart-hover {
+	opacity: 1;
+}
+.chart-list-panel .chart .chart-link:hover .chart-hover .chart-title::before {
+	transition:0.5s ease-in-out; width: 100%; -webkit-transition: 0.5s all ease-in-out;
+}
+.chart-list-panel .chart .chart-link:hover .chart-hover .chart-subtitle::after {
+	transition:0.5s ease-in-out; width: 100%; -webkit-transition: 0.5s all ease-in-out;
+}
+.chart-list-panel .chart .chart-info {
+	padding: 5px 0px; font-weight: bold;
+}
+.chart-list-panel .chart .chart-info .chart-icon {
+	float: right;
+}
+.chart-list-panel .chart .chart-info .chart-icon .chart-delete {
+	transition:1s; display: none; -webkit-transition: 1s;
+}
+.chart-list-panel .chart:hover .chart-info .chart-icon .chart-delete {
+	text-decoration: none; display: block;
+}
+@media all and (max-width:768px)
+{
+.chart-list-panel .chart .chart-link .chart-hover {
+	height: auto; color: rgb(153, 153, 153); margin-top: 0px; position: static; opacity: 1;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-title {
+	color: rgb(228, 60, 89); margin-top: 20px; margin-bottom: 0px; border-top-color: currentColor; border-top-width: medium; border-top-style: none;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle {
+	display: none;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-title::before {
+	display: none;
+}
+.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle::after {
+	display: none;
+}
+.chart-list-panel .chart .chart-link:hover .chart-hover-bg {
+	display: none;
+}
+}
+.right-container {
+	background: rgb(243, 243, 243); padding: 0px 0px 0px 5px; border: currentColor; border-image: none; width: 50%; height: 100%; right: 0px; position: absolute; z-index: 30;
+}
+.right-container .right-panel {
+	padding: 10px 10px 10px 15px;
+}
+#fork-btn {
+	display: none;
+}
+#reset-btn {
+	display: none;
+}
+#chart-panel {
+	padding: 10px; left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.icon-bar {
+	margin: 0px 0.4rem; color: rgb(204, 204, 204); display: inline-block;
+}
+.icon-bar span::before {
+	top: 0.2rem; color: rgb(204, 204, 204); margin-right: 0.25rem; position: relative;
+}
+.icon-bar:hover {
+	color: rgb(153, 153, 153);
+}
+.icon-bar:hover span::before {
+	color: rgb(153, 153, 153);
+}
+.profile .user-info {
+	text-align: center;
+}
+.profile .user-info .user-info-avatar {
+	border-radius: 50px; width: 100px; height: 100px; -webkit-border-radius: 50px;
+}
+.profile .user-info .user-info-name {
+	margin: 0.5rem 0px 0.25rem; font-size: 2rem; font-weight: bold;
+}
+.profile .user-info .user-info-data {
+	font-size: 1.5rem;
+}
+.profile .user-info .user-info-data ul {
+	list-style-type: none;
+}
+#view-main {
+	left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute;
+}
+#view-main .control-panel {
+	background: rgb(243, 243, 243); width: 100%; height: 30px; bottom: 0px; padding-right: 10px; position: absolute; z-index: 1001; box-shadow: 0px 0px 10px rgba(0,0,0,0.2); -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#view-main .control-panel .btn {
+	background: rgb(51, 122, 183); margin: 3px 5px; padding: 3px 5px; border: currentColor; border-image: none; color: white; float: right;
+}
+#view-main .chart {
+	padding: 2px; left: 0px; top: 0px; right: 0px; bottom: 30px; position: absolute;
+}
+#view-mask {
+	left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; z-index: 1000;
+}
+#explore-container {
+	padding: 50px 20px; margin-left: 155px;
+}
+@media all and (max-width:768px)
+{
+#explore-container {
+	margin-left: 0px;
+}
+}
