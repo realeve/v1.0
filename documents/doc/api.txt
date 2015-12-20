@@ -1,3 +1,0 @@
-select machine_id,machine_name from paper_machine_info
-select productid  as ID,productname as Ãû³Æ from Paper_productdata order by 2
-select rec_id,name from Paper_Para_People where Proc_ID = ?
