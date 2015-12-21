@@ -58,14 +58,13 @@ class LoginModel extends CI_Model {
 			$LOGINDB->update('tblUser', $data); 
 			$Returndata['message'] = 8;//密码已重置
 			$LOGINDB->close();//关闭连接
-			return $Returndata;
 		}
 		else
 		{
 			$Returndata['message'] = 7;//验证错误
 			$LOGINDB->close();//关闭连接
-			return $Returndata;
 		}
+			return $Returndata['message'];
 	}
 
 	public function UserRegistry($RegisterData)
@@ -81,7 +80,7 @@ class LoginModel extends CI_Model {
 		{			
 			$data['message'] = 3;//已存在用户了
 			$LOGINDB->close();//关闭连接
-			return $data;
+			return $data['message'];
 		}
 		$LOGINDB->insert('tblUser', $data);
 
@@ -96,7 +95,7 @@ class LoginModel extends CI_Model {
 		}
 	  	
 	  	$LOGINDB->close();//关闭连接
-		return $data;
+		return $data['message'];
 	}
 
 }

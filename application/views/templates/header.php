@@ -52,9 +52,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/select2/select2.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
@@ -431,11 +428,11 @@
 						<li class="divider">
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/lockscreen">
+							<a href="<?php echo base_url()?>welcome/lockscreen">
 							<i class="icon-lock"></i> 注销 </a>
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/logout">
+							<a href="<?php echo base_url()?>welcome/logout">
 							<i class="icon-key"></i> 退出 </a>
 						</li>
 					</ul>

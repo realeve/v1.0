@@ -38,7 +38,10 @@ class Welcome extends CI_Controller {
 			$this->load->view('framework/lockscreen');
 		}
 		else{
-			$this->load->view('login');
+			//$logindata['type'] = 0;
+			//$logindata['message'] = $this->loginMessage(0);
+			//$this->output->set_output(json_encode($logindata));
+			$this->load->view('login');	
 		}
 		
 	}
@@ -48,8 +51,11 @@ class Welcome extends CI_Controller {
 	$UserName = $this->input->post('username');
 	$Password = md5($this->input->post('password'));
 
-	if($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')//如果注销
+	if($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true)//如果注销
 	{
+		//$logindata['type'] = 6;
+		//$logindata['message'] = $this->loginMessage(6);//未激活
+		//$this->output->set_output(json_encode($logindata));
 		$this->load->view('framework/lockscreen');
 	}
 
@@ -57,24 +63,23 @@ class Welcome extends CI_Controller {
 	if ($logindata['logged_in'] == true) {
 		if ($logindata['userrole'] >0) {//帐号激活
 			$this->session->set_userdata($logindata);
-
-			$this->load->view('templates/header', $logindata);  
-			$this->load->view('templates/sidebar');
-			$this->load->view('welcome',$logindata);
-			$this->load->view('templates/footer');
+			$logindata['type'] = 9;
+			$this->output->set_output(json_encode($logindata));
 		}
 		else//未激活
 		{
+			$logindata['type'] = 6;
 			$logindata['message'] = $this->loginMessage(6);//未激活
-			$this->load->view('login', $logindata);
+			$this->output->set_output(json_encode($logindata));
 		}
 		
 	}
 	else
 	{
 		//$this->output->set_output(json_encode($logindata));
-		$logindata['message'] = $this->loginMessage($logindata['message']);
-		$this->load->view('login', $logindata);
+		$logindata['type'] = $logindata['message'];
+		$logindata['message'] = $this->loginMessage($logindata['type']);
+		$this->output->set_output(json_encode($logindata));
 	}
 
   }
@@ -93,9 +98,9 @@ class Welcome extends CI_Controller {
 		'regTime' =>  date("Y-m-d H:i:s")
 	  );
 	 //$this->output->set_output(json_encode($RegisterData));
-	 $RegisterOutput = $this->LoginModel->UserRegistry($RegisterData);
-	 $RegisterOutput['message'] = $this->loginMessage($RegisterOutput['message']);
-	 $this->load->view('login', $RegisterOutput);//注册完毕
+	 $logindata['type'] = $this->LoginModel->UserRegistry($RegisterData);
+	 $logindata['message'] = $this->loginMessage($logindata['type']);
+	 $this->output->set_output(json_encode($logindata));
   }
 
 	public function resetpassword()
@@ -105,9 +110,9 @@ class Welcome extends CI_Controller {
 			'UserPassword' => md5($this->input->post('password')),		
 			'Email' => $this->input->post('email')
 		);
-		$ResetOutput = $this->LoginModel->ResetPassword($ResetData);
-		$ResetOutput['message'] = $this->loginMessage($ResetOutput['message']);
-	 	$this->load->view('login', $ResetOutput);//注册完毕
+		$logindata['type'] = $this->LoginModel->ResetPassword($ResetData);
+		$logindata['message'] = $this->loginMessage($logindata['type']);
+	 	$this->output->set_output(json_encode($logindata));
 	}
 
 	public function lockscreen()
@@ -119,7 +124,6 @@ class Welcome extends CI_Controller {
 			$this->load->view('login', $logindata);
 			return;
 		}
-		//$this->output->set_output(json_encode($this->session->userdata));
 		$this->load->view('framework/lockscreen');
 	}
 
@@ -128,7 +132,7 @@ class Welcome extends CI_Controller {
 		$array_items = array('username' => '', 'password'=>'','email' => '','userrole' => '','logged_in'=>'');
 		$this->session->unset_userdata($array_items);//清除数据
 		$this->session->sess_destroy();//注销
-		$logindata['message'] = '';
+		$logindata['type'] = -1;
 		$this->load->view('login', $logindata);
 	}
 
@@ -139,21 +143,23 @@ class Welcome extends CI_Controller {
 	$logindata = $this->LoginModel->logincheck($UserName,$Password);
 	if ($logindata['logged_in'] == true) {
 		if ($logindata['userrole'] >0) {//帐号激活
-			$this->session->set_userdata($logindata);
-			$this->load->view('templates/header', $logindata);  
-			$this->load->view('templates/sidebar');
-			$this->load->view('welcome',$logindata);
-			$this->load->view('templates/footer');
+			$this->session->set_userdata($logindata);			
+			$logindata['type'] = 9;
+			$this->output->set_output(json_encode($logindata));
 		}
 		else//未激活
 		{
+			$logindata['type'] = 6;
 			$logindata['message'] = $this->loginMessage(6);//未激活
-			$this->load->view('login', $logindata);
+			$this->output->set_output(json_encode($logindata));
 		}
 	}
 	else
 	{
-		$this->load->view('framework/lockscreen');
+		$logindata['type'] = 2;
+		$logindata['message'] = $this->loginMessage(2);//未激活
+		$this->output->set_output(json_encode($logindata));
+		//$this->load->view('framework/lockscreen');
 	}
 
   }
@@ -163,53 +169,25 @@ class Welcome extends CI_Controller {
   		$strMes='';
   		switch($message){
 		case 2:
-			$strMes="<div class=\"alert alert-danger\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						用户名或密码错误. </span>
-					</div>";
+			$strMes="用户名或密码错误";
 			break;
 		case 3:
-			$strMes="<div class=\"alert alert-danger\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						该用户已存在. </span>
-					</div>";
+			$strMes="该用户已存在";
 			break;
 		case 4:
-			$strMes="<div class=\"alert alert-danger\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						注册信息写入失败，请稍后重试. </span>
-					</div>";
+			$strMes="注册信息写入失败，请稍后重试";
 			break;
 		case 5:
-			$strMes="<div class=\"alert alert-success\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						注册成功，请联系管理员激活该帐号. </span>
-					</div>";
+			$strMes="注册成功，请联系管理员激活该帐号";
 			break;
 		case 6:
-			$strMes="<div class=\"alert alert-info\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						帐号未激活，请联系管理员激该帐号. </span>
-					</div>";
+			$strMes="帐号未激活，请联系管理员激该帐号";
 			break;
 		case 7:
-			$strMes="<div class=\"alert alert-danger\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						用户名或邮件地址错误，请重新输入. </span>
-					</div>";
+			$strMes="用户名或邮件地址错误，请重新输入";
 			break;
 		case 8:
-			$strMes="<div class=\"alert alert-success\">
-						<button class=\"close\" data-close=\"alert\"></button>
-						<span>
-						密码重置成功，请重新登录. </span>
-					</div>";
+			$strMes="密码重置成功，请重新登录";
 			break;
 		default:
 			$strMes="";

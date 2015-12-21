@@ -72,34 +72,36 @@ var PaperParam = function() {
 		var DataPsc = ReadData(str);
 		str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataSur = ReadData(str);
-		$('.grey-cascade').html('物理指标得分：' + DataPsc.data[0][0] + '，外观指标得分：' + DataSur.data[0][0]);
+		$('.grey-cascade').html('物理指标得分：' + xround(DataPsc.data[0][0], 2) + '，外观指标得分：' + xround(DataSur.data[0][0], 2));
 	}
 
-	return {
-		init: function() {
-			$('.portlet.light').hide();
-			handleDatePickers();
-			initDOM();
-			initChecked();
-			$('form[name=theForm]').submit(function() {
-				var options = {
+	var handleValidate = function() {
+		
+        $('form[name=theForm]').validate({
+			errorElement: 'span', //default input error message container
+            errorClass: 'help-block', // default input error message class
+            focusInvalid: true, // do not focus the last invalid input
+            rules:getValidateRule('theForm'),
+            messages: {
+                Reel_Code: {
+                    required: "轴号不能为空."
+                }
+            },
+            highlight: function(element) { // hightlight error inputs
+                $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+            success: function(label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+            }
+        });
+
+        function insertData() {
+            if ($('form[name=theForm]').validate().form()) {
+                var options = {
 					url: getRootUrl('PaperPara') + 'insert',
 					type: 'post',
 					resetForm: true,
-					beforeSubmit: function(arr, $form, options) {
-						var ireturn = true;
-						var txt = '以下检测项相关信息:</br>';
-						arr.map(function(elem) {
-							if (elem.value === '' && elem.name !== 'remark') {
-								txt += $('input[name="' + elem.name + '"]').parent().find('label').text() + "、";
-								ireturn = false;
-							}
-						});
-						if (!ireturn) {
-							infoTips('请输入' + txt, 2);
-						}
-						return ireturn;
-					},
 					data: {
 						'tbl': '0',
 						'class_ID': GetRadioChecked('class_ID')
@@ -116,7 +118,26 @@ var PaperParam = function() {
 				};
 				$(this).ajaxSubmit(options);
 				return false;
-			});
+            }else{
+				infoTips('请确保所有必要信息均正确输入');
+            }
+        }
+
+		$('form[name=theForm]').submit(function() {
+			insertData();
+		});
+		$('button[type="reset"]').on('click',function(){
+			$('.portlet.light').hide();
+		});
+    };
+
+	return {
+		init: function() {
+			$('.portlet.light').hide();
+			handleDatePickers();
+			initDOM();
+			initChecked();
+			handleValidate();
 		}
 	};
 

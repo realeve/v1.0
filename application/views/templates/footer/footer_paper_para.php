@@ -38,6 +38,10 @@
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL PLUGINS  -->
+<script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
 <!--BEGIN MY LEVEL SCRIPT-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/global/plugins/jquery.form.js" ></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.min.js"></script>

@@ -49,15 +49,17 @@
 			<div class="pull-left lock-avatar-block">
 				<img src="<?php echo base_url()?>assets/admin/pages/media/profile/photo4.jpg" class="lock-avatar">
 			</div>
-			<form class="lock-form pull-left" action="<?php echo base_url()?>welcome/relogin" method="post">
+			<div class="lock-form pull-left">
 				<h4>你好,<?php echo $this->session->userdata('username')?>!</h4>
+				<div id="bootstrap_alerts">
+				</div>
 				<div class="form-group">
 					<input class="form-control placeholder-no-fix" id="password" type="password" autocomplete="off" placeholder="密码" name="password"/>
 				</div>
 				<div class="form-actions">
-					<button type="submit" class="btn btn-success uppercase">登录</button>
+					<button class="btn btn-success uppercase">登录</button>
 				</div>
-			</form>
+			</div>
 		</div>
 		<div class="lock-bottom">
 			<a href="<?php echo base_url()?>welcome/logout">不是 <?php echo $this->session->userdata('username')?>?</a>
@@ -86,11 +88,14 @@
 <script src="<?php echo base_url()?>assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/admin/pages/controller/lock.min.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function() {    
 	Metronic.init(); // init metronic core components
 	Layout.init(); // init current layout
 	Demo.init();
+	Login.init();
 });
 </script>
 <!-- END JAVASCRIPTS -->

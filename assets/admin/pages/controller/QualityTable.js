@@ -120,7 +120,7 @@ var dataTable = function() {
 			//"bDestroy":true,
 			"bRetrieve": true,
 			"language": {
-				"url": getRootPath() + "/assets/admin/pages/controller/DataTableLanguage.json"
+				"url": getRootPath() + "/assets/admin/pages/controller/DataTableLanguage.min.json"
 			},
 			"order": [
 				[1, 'asc']

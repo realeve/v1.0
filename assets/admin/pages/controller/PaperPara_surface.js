@@ -9,7 +9,6 @@ var PaperParam = function() {
 		}
 	};
 
-	var detailScore = [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 1, 1];
 
 	function initDOM() {
 		var str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=24&M=3&t=1";
@@ -29,6 +28,8 @@ var PaperParam = function() {
 		var pscScore = parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('物理指标:', ''));
 		var id = parseInt($(this).attr('ID').replace('checkbox', ''), 10) - 1;
 		var curScore, totalScore;
+		//分数表
+		var detailScore = [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 1, 1];
 		//分数动态更新
 		if ($(this).attr('checked') == 'checked') {
 			curScore = surScore - detailScore[id];

@@ -83,7 +83,6 @@
      return re;
    }
     //获取URL参数
-
    function GetRequestParam(url) {
      var theRequest = {}; //new Object();
      if (url.indexOf("?") != -1) {
@@ -96,10 +95,10 @@
      return theRequest;
    }
 
-
-    //格式化图表用数据(曲线图，柱形图)
-    //数据要求:3列 legend/X轴/主轴，2列：X轴/Y轴,1列：Y轴
-
+  /**
+   * [GetChartData 格式化图表用数据(曲线图，柱形图)]
+   * @param {[strUrl]} strUrl [数据接口地址.数据要求:3列 legend/X轴/主轴，2列：X轴/Y轴,1列：Y轴]
+   */
    function GetChartData(strUrl) {
      var Data, arrTem;
      var iTemp, i, j;
@@ -255,8 +254,6 @@
              curTheme = tarTheme;
              initDom();
              showChart(curTheme);
-             initTheme();
-             //console.log(myChart[0].getDataURL());
            });
          }
        );
@@ -284,7 +281,6 @@
          if (typeof str === 'undefined') {
            str = GetJsonUrl(i + 18);
          }
-
          option = getOption(str);
          if (option !== false) {
            myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
@@ -403,29 +399,27 @@
        }
      }
 
+     function selectChange(value) {
+       var theme = value;
+       myChart[0].showLoading();
+        require(['theme/' + theme], function(tarTheme) {
+         curTheme = tarTheme;
+         setTimeout(refreshTheme(), 500);
+       });
+     }
+
+     function refreshTheme() {
+       for (i = 0; i < iChart; i++) {
+         myChart[i].hideLoading();
+         myChart[i].setTheme(curTheme);
+       }
+     }
+
      function initTheme() //初始化主题模块
      {
-       var themeSelector;
-       themeSelector = $(".bs-select");
-
-       function selectChange(value) {
-         var theme = value;
-         myChart[0].showLoading();
-         require(['theme/' + theme], function(tarTheme) {
-           curTheme = tarTheme;
-           setTimeout(refreshTheme(), 500);
-         });
-       }
-
-       function refreshTheme() {
-         for (i = 0; i < iChart; i++) {
-           myChart[i].hideLoading();
-           myChart[i].setTheme(curTheme);
-         }
-       }
-       
+       var themeSelector = $(".bs-select");
        if (themeSelector) {
-         $(themeSelector).on('change', function() {
+         $(themeSelector).change(function() {
            selectChange($(this).val()); //更新图表主题
          });
        }
@@ -455,6 +449,7 @@
        init: function() {
          initThemeOption();
          launchChart();
+         initTheme();
        }
      };
    }();

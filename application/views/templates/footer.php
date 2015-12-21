@@ -46,7 +46,7 @@
 <script src="<?php echo base_url()?>assets/admin/pages/scripts/index.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
-<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.min.js"></script>
 
 <!-- END PAGE LEVEL PLUGINS -->
 <script>

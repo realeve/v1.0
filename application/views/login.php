@@ -49,14 +49,15 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
 	<!-- BEGIN LOGIN FORM -->
-	<form class="login-form" action="<?php echo base_url()?>welcome/trylogin" method="post">
+	<form class="login-form">
 		<h3 class="form-title">登录</h3>
-		<?php if(isset($message)) echo $message;?>
-		<div class="alert alert-danger display-hide">
+		<div id="bootstrap_alerts_demo">
+		</div>
+		<!--div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
 			用户名与密码不能为空. </span>
-		</div>
+		</div-->
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 			<label class="control-label visible-ie8 visible-ie9">用户名</label>
@@ -69,7 +70,7 @@
 		<div class="form-actions">
 			<button type="submit" class="btn btn-success uppercase">登录</button>
 			<label class="rememberme check">
-			<input type="checkbox" name="remember" checked="true"/>记住密码 </label>
+			<input type="checkbox" name="remember" checked="true" name="tnc"/>记住密码 </label>
 			<a href="javascript:;" id="forget-password" class="forget-password">忘记密码?</a>
 		</div>
 		<div class="create-account">
@@ -80,8 +81,10 @@
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form class="forget-form" action="<?php echo base_url()?>welcome/resetpassword" method="post">
+	<form class="forget-form">
 		<h3 class="form-title">忘记密码 ?</h3>
+		<div id="bootstrap_alerts_demo3">
+		</div>
 		<p>
 			 请输入您的用户名及电子邮件以重置密码.
 		</p>
@@ -103,8 +106,10 @@
 	</form>
 	<!-- END FORGOT PASSWORD FORM -->
 	<!-- BEGIN REGISTRATION FORM -->
-	<form class="register-form" action="<?php echo base_url()?>welcome/register" method="post">
+	<form class="register-form">
 		<h3 class="form-title">注册帐户</h3>
+		<div id="bootstrap_alerts_demo2">
+		</div>
 		<p class="hint">
 			 请在下方输入您的个人真实信息以待管理员验证:
 		</p>
@@ -151,7 +156,7 @@
 			<label class="control-label visible-ie8 visible-ie9">请再次输入密码</label>
 			<input class="form-control placeholder-no-fix" type="password" autocomplete="off" minLength=5 maxLength=16 placeholder="请再次输入密码" name="rpassword"/>
 		</div>
-		<!--<div class="form-group margin-top-20 margin-bottom-20">
+		<div class="form-group margin-top-20 margin-bottom-20 hide">
 			<label class="check">
 			<input type="checkbox" name="tnc"/> I agree to the <a href="#">
 			Terms of Service </a>
@@ -160,7 +165,7 @@
 			</label>
 			<div id="register_tnc_error">
 			</div>
-		</div>-->
+		</div>
 		<div class="form-actions">
 			<button type="button" id="register-back-btn" class="btn btn-default">返回</button>
 			<button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">提交</button>
@@ -187,12 +192,14 @@
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS  -->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?php echo base_url()?>assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/pages/scripts/login.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/admin/pages/controller/login.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 jQuery(document).ready(function() {     
