@@ -172,7 +172,7 @@
 						</div>
 						<div class="portlet-body">
 							<div id="site_statistics_loading">
-								<img src="<?php echo base_url()?>assets/admin/layout/img/loading.gif" alt="loading"/>
+								<img src="<?php echo base_url()?>assets/layouts/layout/img/loading.gif" alt="loading"/>
 							</div>
 							<div id="site_statistics_content" class="display-none">
 								<div id="site_statistics" class="chart">
@@ -226,7 +226,7 @@
 						</div>
 						<div class="portlet-body">
 							<div id="site_activities_loading">
-								<img src="<?php echo base_url()?>assets/admin/layout/img/loading.gif" alt="loading"/>
+								<img src="<?php echo base_url()?>assets/layouts/layout/img/loading.gif" alt="loading"/>
 							</div>
 							<div id="site_activities_content" class="display-none">
 								<div id="site_activities" style="height: 228px;">
@@ -1762,7 +1762,7 @@
 										<div class="scroller" style="height: 290px;" data-always-visible="1" data-rail-visible1="1">
 											<div class="row">
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1776,7 +1776,7 @@
 													</div>
 												</div>
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1792,7 +1792,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1806,7 +1806,7 @@
 													</div>
 												</div>
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1822,7 +1822,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1836,7 +1836,7 @@
 													</div>
 												</div>
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1852,7 +1852,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1866,7 +1866,7 @@
 													</div>
 												</div>
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1882,7 +1882,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1896,7 +1896,7 @@
 													</div>
 												</div>
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1912,7 +1912,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1926,7 +1926,7 @@
 													</div>
 												</div>
 												<div class="col-md-6 user-info">
-													<img alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar.png" class="img-responsive"/>
+													<img alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar.png" class="img-responsive"/>
 													<div class="details">
 														<div>
 															<a href="#">
@@ -1992,7 +1992,7 @@
 							<div class="scroller" style="height: 352px;" data-always-visible="1" data-rail-visible1="1">
 								<ul class="chats">
 									<li class="in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2005,7 +2005,7 @@
 										</div>
 									</li>
 									<li class="out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2018,7 +2018,7 @@
 										</div>
 									</li>
 									<li class="in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2031,7 +2031,7 @@
 										</div>
 									</li>
 									<li class="out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2044,7 +2044,7 @@
 										</div>
 									</li>
 									<li class="in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2057,7 +2057,7 @@
 										</div>
 									</li>
 									<li class="out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2070,7 +2070,7 @@
 										</div>
 									</li>
 									<li class="in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>
@@ -2083,7 +2083,7 @@
 										</div>
 									</li>
 									<li class="out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg"/>
 										<div class="message">
 											<span class="arrow">
 											</span>

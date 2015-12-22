@@ -55,7 +55,7 @@
 					<div class="timeline-badge">
 						<div class="timeline-icon">
 							<i class="icon-emoticon-smile font-green-haze"></i>
-							<img class="timeline-badge-userpic" src="<?php echo base_url()?>assets/admin/pages/media/users/avatar80_2.jpg">
+							<img class="timeline-badge-userpic" src="<?php echo base_url()?>assets/pages/media/users/avatar80_2.jpg">
 						</div>
 					</div>
 					<div class="timeline-body">

@@ -17,14 +17,14 @@
 <script src="<?php echo base_url()?>assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
@@ -36,10 +36,10 @@
 <script src="<?php echo base_url()?>assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="<?php echo base_url()?>assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/scripts/App.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-pwstrength/pwstrength-bootstrap.min.js" type="text/javascript"></script>
@@ -83,38 +83,12 @@
 <script src="<?php echo base_url()?>assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/idletimeout.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/idletimeout.min.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!--BEGIN MY LEVEL SCRIPT-->
-<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/QualityTable.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/QualityTable.min.js"></script>
 <!--END MY LEVEL SCRIPT-->
-<script>
-  //记录选择状态  
-   jQuery(document).ready(function() {    
-       Metronic.init(); // init metronic core componets
-       Layout.init(); // init layout
-       QuickSidebar.init(); // init quick sidebar
-       Demo.init(); // init demo features 
-       UIIdleTimeout.init();
-       initDashboardDaterange('YYYYMMDD');     
-       $("#today").text(today(0));
-       HeadFix();
-       //修复顶部style="margin-top:-43px;"
-       //系统主题设置       
-       ReadSettings();       
-       dataTable.init();
-       //初始化表格
-
-       //ChangeMainTheme(1);
-       //RoundedTheme(0);
-
-    });
-    jQuery(window).resize(function(){
-         HeadFix();
-      });
-    //插入工作日志       
-</script>
 <!-- END JAVASCRIPTS -->
 </body>
 

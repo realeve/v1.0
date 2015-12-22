@@ -6,12 +6,12 @@
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
 <link href="http://localhost/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="http://localhost/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="http://localhost/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="http://localhost/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="http://localhost/assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="http://localhost/assets/layouts/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
 
 <!-- END THEME STYLES -->
-  <link href="http://localhost/assets/admin/pages/css/common404.css" media="all" rel="stylesheet" type="text/css">
-  <link href="http://localhost/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+  <link href="http://localhost/assets/pages/css/common404.css" media="all" rel="stylesheet" type="text/css">
+  <link href="http://localhost/assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
   <!-- Replace by loading from stylesheet -->
   <style type="text/css">
     .text-ginormous {
@@ -45,7 +45,7 @@
   <div id="header" class="navbar navbar-top">
     <div class="navbar-inner">
       <div class="fixed-height container container-full-width page-container page-container-responsive navbar-container">
-        <a href="http://localhost/" class="brand airbnb center" style="width:150px;margin-top:10px;background:url(http://localhost/assets/admin/layout/img/logo-large-red.png) 0 0 no-repeat;">质量控制中心</a>
+        <a href="http://localhost/" class="brand airbnb center" style="width:150px;margin-top:10px;background:url(http://localhost/assets/layouts/layout/img/logo-large-red.png) 0 0 no-repeat;">质量控制中心</a>
       </div>
     </div>
   </div>

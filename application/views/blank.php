@@ -25,15 +25,15 @@
 <!-- BEGIN THEME STYLES -->
 <link href="<?php echo base_url()?>assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link id="style_color" href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
 	<!-- BEGIN HEADER INNER -->
@@ -41,7 +41,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="index-2.html">
-			<img src="<?php echo base_url()?>assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+			<img src="<?php echo base_url()?>assets/layouts/layout/img/logo.png" alt="logo" class="logo-default"/>
 			</a>
 			<div class="menu-toggler sidebar-toggler">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -193,7 +193,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout3/img/avatar2.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -207,7 +207,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout3/img/avatar3.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -221,7 +221,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout3/img/avatar1.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -235,7 +235,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout3/img/avatar2.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -249,7 +249,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout3/img/avatar3.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -366,7 +366,7 @@
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/admin/layout/img/avatar3_small.jpg"/>
+					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3_small.jpg"/>
 					<span class="username username-hide-on-mobile">
 					Nick </span>
 					<i class="fa fa-angle-down"></i>
@@ -1368,7 +1368,7 @@
 									<div class="media-status">
 										<span class="badge badge-success">8</span>
 									</div>
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Bob Nilson</h4>
 										<div class="media-heading-sub">
@@ -1377,7 +1377,7 @@
 									</div>
 								</li>
 								<li class="media">
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Nick Larson</h4>
 										<div class="media-heading-sub">
@@ -1389,7 +1389,7 @@
 									<div class="media-status">
 										<span class="badge badge-danger">3</span>
 									</div>
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar4.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar4.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Deon Hubert</h4>
 										<div class="media-heading-sub">
@@ -1398,7 +1398,7 @@
 									</div>
 								</li>
 								<li class="media">
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Ella Wong</h4>
 										<div class="media-heading-sub">
@@ -1413,7 +1413,7 @@
 									<div class="media-status">
 										<span class="badge badge-warning">2</span>
 									</div>
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar6.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar6.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Lara Kunis</h4>
 										<div class="media-heading-sub">
@@ -1428,7 +1428,7 @@
 									<div class="media-status">
 										<span class="label label-sm label-success">new</span>
 									</div>
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar7.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar7.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Ernie Kyllonen</h4>
 										<div class="media-heading-sub">
@@ -1438,7 +1438,7 @@
 									</div>
 								</li>
 								<li class="media">
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar8.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar8.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Lisa Stone</h4>
 										<div class="media-heading-sub">
@@ -1453,7 +1453,7 @@
 									<div class="media-status">
 										<span class="badge badge-success">7</span>
 									</div>
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar9.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar9.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Deon Portalatin</h4>
 										<div class="media-heading-sub">
@@ -1462,7 +1462,7 @@
 									</div>
 								</li>
 								<li class="media">
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar10.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar10.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Irina Savikova</h4>
 										<div class="media-heading-sub">
@@ -1474,7 +1474,7 @@
 									<div class="media-status">
 										<span class="badge badge-danger">4</span>
 									</div>
-									<img class="media-object" src="<?php echo base_url()?>assets/admin/layout/img/avatar11.jpg" alt="...">
+									<img class="media-object" src="<?php echo base_url()?>assets/layouts/layout/img/avatar11.jpg" alt="...">
 									<div class="media-body">
 										<h4 class="media-heading">Maria Gomez</h4>
 										<div class="media-heading-sub">
@@ -1494,7 +1494,7 @@
 								</div>
 								<div class="page-quick-sidebar-chat-user-messages">
 									<div class="post out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Bob Nilson</a>
@@ -1504,7 +1504,7 @@
 										</div>
 									</div>
 									<div class="post in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Ella Wong</a>
@@ -1514,7 +1514,7 @@
 										</div>
 									</div>
 									<div class="post out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Bob Nilson</a>
@@ -1524,7 +1524,7 @@
 										</div>
 									</div>
 									<div class="post in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Ella Wong</a>
@@ -1534,7 +1534,7 @@
 										</div>
 									</div>
 									<div class="post out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Bob Nilson</a>
@@ -1544,7 +1544,7 @@
 										</div>
 									</div>
 									<div class="post in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Ella Wong</a>
@@ -1554,7 +1554,7 @@
 										</div>
 									</div>
 									<div class="post out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Bob Nilson</a>
@@ -1564,7 +1564,7 @@
 										</div>
 									</div>
 									<div class="post in">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Ella Wong</a>
@@ -1574,7 +1574,7 @@
 										</div>
 									</div>
 									<div class="post out">
-										<img class="avatar" alt="" src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg"/>
+										<img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
 										<div class="message">
 											<span class="arrow"></span>
 											<a href="#" class="name">Bob Nilson</a>
@@ -1987,29 +1987,21 @@
 <script src="<?php echo base_url()?>assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script>
-jQuery(document).ready(function() {    
-	Metronic.init(); // init metronic core components
-	Layout.init(); // init current layout
-	QuickSidebar.init(); // init quick sidebar
-	Demo.init(); // init demo features
-});
-</script>
+<script src="<?php echo base_url()?>assets/layouts/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/layouts/layout/scripts/demo.js" type="text/javascript"></script>
 <script type="text/javascript">
  jQuery(document).ready(function() {   
         //Hide the overview when click

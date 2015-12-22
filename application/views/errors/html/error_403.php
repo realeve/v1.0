@@ -16,13 +16,13 @@
 <link href="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link href="<?php echo base_url()?>assets/admin/pages/css/error.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/pages/css/error.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL STYLES -->
 	<link href="<?php echo base_url()?>assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
 	<link href="<?php echo base_url()?>assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo base_url()?>assets/admin/layout2/css/layout.css" rel="stylesheet" type="text/css"/>
-	<link id="style_color" href="<?php echo base_url()?>assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css"/>
-	<link href="<?php echo base_url()?>assets/admin/layout2/css/custom.css" rel="stylesheet" type="text/css"/>
+	<link href="<?php echo base_url()?>assets/layouts/layout2/css/layout.css" rel="stylesheet" type="text/css"/>
+	<link id="style_color" href="<?php echo base_url()?>assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css"/>
+	<link href="<?php echo base_url()?>assets/layouts/layout2/css/custom.css" rel="stylesheet" type="text/css"/>
 	<!-- END THEME STYLES -->
     <style>
       .error__illustration__bubble {

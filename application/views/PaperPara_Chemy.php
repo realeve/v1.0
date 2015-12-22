@@ -1,7 +1,4 @@
 <!-- BEGIN PAGE HEADER-->
-			<h3 class="page-title">
-			浆料质量检验记录 <small id="today"></small>
-			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
@@ -25,6 +22,9 @@
 					</div>
 				</div>
 			</div>
+			<h3 class="page-title">
+			浆料质量检验记录 <small id="today"></small>
+			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">

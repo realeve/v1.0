@@ -1,7 +1,4 @@
 			<!-- BEGIN PAGE HEADER-->
-			<h3 class="page-title">
-			钞纸质量控制水平评价(外观) <small id="today"></small>
-			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
@@ -24,6 +21,9 @@
 					</div>
 				</div>
 			</div>
+			<h3 class="page-title">
+			钞纸质量控制水平评价(外观) <small id="today"></small>
+			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 			

@@ -21,14 +21,14 @@
 <link href="<?php echo base_url()?>assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link href="<?php echo base_url()?>assets/admin/pages/css/lock.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/pages/css/lock.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="<?php echo base_url()?>assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -38,7 +38,7 @@
 <div class="page-lock">
 	<div class="page-logo">
 		<a class="brand" href="index-2.html">
-		<img src="<?php echo base_url()?>assets/admin/layout/img/logo-big.png" alt="logo"/>
+		<img src="<?php echo base_url()?>assets/layouts/layout/img/logo-big.png" alt="logo"/>
 		</a>
 	</div>
 	<div class="page-body">
@@ -47,7 +47,7 @@
 		</div>
 		<div class="lock-body">
 			<div class="pull-left lock-avatar-block">
-				<img src="<?php echo base_url()?>assets/admin/pages/media/profile/photo4.jpg" class="lock-avatar">
+				<img src="<?php echo base_url()?>assets/pages/media/profile/photo4.jpg" class="lock-avatar">
 			</div>
 			<div class="lock-form pull-left">
 				<h4>你好,<?php echo $this->session->userdata('username')?>!</h4>
@@ -76,28 +76,20 @@
 <script src="<?php echo base_url()?>assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/pages/controller/CommonFunctions.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/admin/pages/controller/lock.min.js" type="text/javascript"></script>
-<script>
-jQuery(document).ready(function() {    
-	Metronic.init(); // init metronic core components
-	Layout.init(); // init current layout
-	Demo.init();
-	Login.init();
-});
-</script>
+<script src="<?php echo base_url()?>assets/layouts/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/layouts/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/pages/controller/lock.min.js" type="text/javascript"></script>
 <!-- END JAVASCRIPTS -->
 </body>
 </html>

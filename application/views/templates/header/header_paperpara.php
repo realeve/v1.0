@@ -16,7 +16,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <meta content="" name="description"/>
 <meta content="" name="author"/>
-<script src="<?php echo base_url()?>assets/admin/pages/controller/livecss.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/pages/controller/livecss.min.js" type="text/javascript"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="<?php echo base_url()?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
@@ -26,18 +26,18 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
-<link href="<?php echo base_url()?>assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
-<link id="style_color" href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/components.min.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <!-- END THEME STYLES -->
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <!--body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo"-->
-<body class="page-md page-header-fixed page-sidebar-closed-hide-logo page-quick-sidebar-push-content ">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
 <!-- BEGIN HEADER -->
 <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
 	<!-- BEGIN HEADER INNER -->
@@ -45,7 +45,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="<?php echo base_url()?>">
-			<img src="<?php echo base_url()?>assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+			<img src="<?php echo base_url()?>assets/layouts/layout/img/logo.png" alt="logo" class="logo-default"/>
 			</a>
 			<div class="menu-toggler sidebar-toggler">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -197,7 +197,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -211,7 +211,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -225,7 +225,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -239,7 +239,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -253,7 +253,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -370,7 +370,7 @@
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/admin/layout/img/avatar12_small.jpg"/>
+					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/layouts/layout/img/avatar12_small.jpg"/>
 					<span class="username username-hide-on-mobile">
 					<?php echo $username?> </span>
 					<i class="fa fa-angle-down"></i>

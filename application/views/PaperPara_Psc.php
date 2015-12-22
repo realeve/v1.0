@@ -1,7 +1,4 @@
 			<!-- BEGIN PAGE HEADER-->
-			<h3 class="page-title">
-			物理指标检验原始记录（常规） <small id="today"></small>
-			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
@@ -24,6 +21,9 @@
 					</div>
 				</div>
 			</div>
+			<h3 class="page-title">
+			物理指标检验原始记录（常规） <small id="today"></small>
+			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">
@@ -36,10 +36,10 @@
 									<i class="icon-settings"></i>
 									<span class="caption-subject bold uppercase">概述</span></br>
 								</div>
-								<div class="actions hidden-print">
-									<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
-									</a>
-								</div>
+								<div class="tools">
+                                    <a href="javascript:;" class="collapse"> </a>
+                                    <a href="" class="fullscreen"> </a>
+                                </div>
 							</div>
 							<div class="portlet-body form">							
 								<div class="form-body row">
@@ -47,7 +47,7 @@
 										<div class="form-group form-md-line-input">
 											<label class="col-md-2 control-label">轴号</label>
 											<div class="col-md-10">
-												<input type="text" class="form-control" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
+												<input type="text" class="form-control" maxlength="6" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
 												<div class="form-control-focus">
 												</div>
 												<label class="hide">轴号</label>
@@ -351,6 +351,29 @@
 									</div>
 								</div>
 								<hr class="hidden-print">
+								<h3>非一类指标<small> 钞纸物理指标评价</small></h3>
+								<div class="row">
+									<div class="col-md-6 form-group form-md-line-input form-md-floating-label">
+										<input type="text" class="form-control" name="water_imbibition">
+										<label>吸水性 </label>
+										<span class="help-block">40~70 g/m^2</span>
+									</div>
+									<div class="col-md-6 form-group form-md-line-input form-md-floating-label has-success">
+										<input type="text" class="form-control" name="PH_val">
+										<label>PH值</label>
+										<span class="help-block">7~8.5</span>
+									</div>
+									<div class="col-md-6 form-group form-md-line-input form-md-floating-label">
+										<input type="text" class="form-control" name="sur_Strength">
+										<label>表面强度</label>
+										<span class="help-block">>=2.5m/s</span>
+									</div>
+									<div class="col-md-6 form-group form-md-line-input form-md-floating-label">
+										<input type="text" class="form-control" name="sur_oil_imbibition">
+										<label>表面吸油性</label>
+										<span class="help-block">40~50$</span>
+									</div>
+								</div>
 								<div>
 									<ul class="list-unstyled amounts">
 										<li>

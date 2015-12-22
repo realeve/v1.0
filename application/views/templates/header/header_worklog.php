@@ -16,7 +16,7 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/controller/livecss.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/livecss.min.js"></script>
 <link href="<?php echo base_url()?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -29,8 +29,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-summernote/summernote.css">
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN PAGE STYLES -->
-<link href="<?php echo base_url()?>assets/admin/pages/css/timeline.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/pages/css/timeline.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css"/>
@@ -52,17 +52,17 @@
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components.min.css' in the below style tag -->
-<link href="<?php echo base_url()?>assets/global/css/components-md.min.css" rel="stylesheet" type="text/css"/ id="style_components">
-<link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="<?php echo base_url()?>assets/admin/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/components.min.css" rel="stylesheet" type="text/css"/ id="style_components">
+<link href="<?php echo base_url()?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="<?php echo base_url()?>assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <!--body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo"-->
-<body class="page-md page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo page-quick-sidebar-push-content ">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
 <!-- BEGIN HEADER -->
 <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
 	<!-- BEGIN HEADER INNER -->
@@ -70,7 +70,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="<?php echo base_url()?>">
-			<img src="<?php echo base_url()?>assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+			<img src="<?php echo base_url()?>assets/layouts/layout/img/logo.png" alt="logo" class="logo-default"/>
 			</a>
 			<div class="menu-toggler sidebar-toggler">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -222,7 +222,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -236,7 +236,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -250,7 +250,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar1.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar1.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -264,7 +264,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar2.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -278,7 +278,7 @@
 								<li>
 									<a href="inbox14c8.html?a=view">
 									<span class="photo">
-									<img src="<?php echo base_url()?>assets/admin/layout/img/avatar3.jpg" class="img-circle" alt="">
+									<img src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg" class="img-circle" alt="">
 									</span>
 									<span class="subject">
 									<span class="from">
@@ -395,7 +395,7 @@
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/admin/layout/img/avatar12_small.jpg"/>
+					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/layouts/layout/img/avatar12_small.jpg"/>
 					<span class="username username-hide-on-mobile">
 					<?php echo $username?> </span>
 					<i class="fa fa-angle-down"></i>
