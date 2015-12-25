@@ -1,4 +1,4 @@
-/**
+﻿/**
 Core script to handle the entire theme and core functions
 **/
 var Metronic = function() {

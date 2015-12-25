@@ -147,7 +147,7 @@
            exportOptions: {
              columns: ':visible'
            }
-           //Author:'成都印钞有限公司 技术质量部',
+           //Token:'成都印钞有限公司 技术质量部',
            /* customize: function ( doc ) {
                         doc.content.unshift( {
 							text: ' ©成都印钞有限公司 技术质量部',
@@ -183,7 +183,7 @@
          //"data" : Data.data,
          "processing": true,
          //"serverSide": true,
-         "ajax": "http://localhost/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=22&M=3&tstart=20130101&tend=20151102",
+         "ajax": "http://localhost/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=22&M=3&tstart=20130101&tend=20151102",
          //任意字段
          "bScrollInfinite": true,
          //"borderMulti": true,
@@ -367,7 +367,7 @@
          title: '请输入接口名称'
        });
 
-       $('#Author').editable({
+       $('#Token').editable({
          validate: function(value) {
            if ($.trim(value) === '') return '该字段不能为空';
          }

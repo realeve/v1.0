@@ -123,6 +123,14 @@ var EXAMPLES = [{
 	title: "雨量流量关系图",
 	type: "line"
 }, {
+	id: "heatmap-cartesian",
+	title: "heatmap-cartesian",
+	type: "heatmap"
+}, {
+	id: "heatmap-map",
+	title: "全国主要城市空气质量",
+	type: "heatmap"
+}, {
 	id: "line-log",
 	title: "对数轴示例",
 	type: "line"
@@ -267,6 +275,7 @@ var EXAMPLES = [{
 		pie: "饼图",
 		candlestick: "k线图",
 		boxplot: "箱线图",
+		heatmap: "热力图",
 		graph: "关系图",
 		treemap: "矩形树图",
 		parallel: "平行坐标",

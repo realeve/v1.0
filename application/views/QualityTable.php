@@ -1,18 +1,17 @@
+			<?php include("templates/themesetting.php");?>
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<i class="fa fa-home"></i>
 						<a href="<?php echo base_url()?>">首页</a>
-						<i class="fa fa-angle-right"></i>
+						<i class="fa fa-circle"></i>
 					</li>
 					<li>
 						<a href="<?php echo base_url()?>QualityTable">印码质量报表</a>
-						<i class="fa fa-angle-right"></i>
+						<i class="fa fa-circle"></i>
 					</li>
 					<li>
 						<a href="<?php echo base_url()?>QualityTable">各品种质量汇总</a>
-						<i class="fa fa-angle-right"></i>
 					</li>
 				</ul>
 				
@@ -24,20 +23,9 @@
 					</div>
 				</div>
 			</div>	
-			<div class="content row">
-				<div class="col-md-6">
-					<h3 class="page-title font-yahei">
-						印码质量报表  <small id="today"></small>
-					</h3>
-				
-				</div>
-				<!-- END PAGE HEADER-->
-				<div class="col-md-6">
-					<!-- BEGIN STYLE CUSTOMIZER -->
-					<?php include("templates/themesetting.php");?>
-					<!-- END STYLE CUSTOMIZER -->
-				</div>
-			</div>	
+			<h3 class="page-title font-yahei">
+				印码质量报表  <small id="today"></small>
+			</h3>
 			<div class="note note-success">
 				<a href="javascript:;" id="HideTips"><i class="glyphicon glyphicon-remove pull-right"></i></a>
 				<h4 class="block"><i class="icon-info"></i> 小提示：</h4>
@@ -61,6 +49,22 @@
 			<!-- END PAGE CONTENT-->
 			<!-- BEGIN PAGE CONTENT-->
 
+			<div class="row" id="Preview">
+				<div class="col-md-12">
+					<h3>预览地址:</h3>
+						<div class="input-group" style="text-align:left">
+							<input type="text" class="form-control" value="<?php echo base_url()?>DataInterface/Api?Author=<?php echo sha1($username)?>&ID=ID&M=3&tstart=参数1&tend=参数2">
+							<span class="input-group-btn">
+							<a href="javascript:;" class="btn green">
+							<i class="fa fa-eye"></i> 预览接口 </a>
+							</span>
+						</div>
+						<div class="help-block">
+							 将此处的参数(例如: 参数1, 参数2)更换为你所需测试的数据并点击预览按钮测试接口有效性.
+						</div>
+					<hr>
+				</div>
+			</div>
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">
@@ -69,18 +73,15 @@
 						<span class="caption-subject bold uppercase" id="TableTitle"> 表单名称</span>
 						<span class="caption-helper" id="datasource">(数据来源:质量综合管理系统)...</span>
 					</div>
-					<div class="row col-md-6 tools"></div>
+					<div class="tools"></div>
 				</div>
 				<div class="portlet-body form">	
-					<div class="container-fluid">
-						<!-- BEGIN PAGE CONTENT-->
-						<div class="flip-scroll">							
+					<table class="table table-striped table-bordered table-hover table-header-fixed" id="sample">
+						<!-- BEGIN PAGE CONTENT-->						
 							<!-- END PAGE CONTENT-->
-							<table class="table table-striped table-bordered table-advance table-hover table-striped table-condensed flip-content" id="sample" width="100%">
-								<thead class="flip-content hidden-sm"></thead>						
-							</table>	
-						</div>
-					</div>				
+							<!--table class="table table-striped table-bordered table-advance table-hover table-striped table-condensed flip-content" id="sample" width="100%"-->
+						<thead class="hidden-sm"></thead>						
+					</table>			
 				</div>
 			</div>
 			<!-- END Portlet PORTLET-->

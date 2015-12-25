@@ -10,12 +10,12 @@ var PaperParam = function() {
 	};
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=23&M=3&t=1";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=23&M=3&t=1";
 		var Data = ReadData(str);
 		InitSelect("machine_ID", Data);
 
 		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=25&M=3&t=2";
+		str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(5));
@@ -54,7 +54,7 @@ var PaperParam = function() {
 	function setRecordNum() {
 		var startDate = $("input[name='rec_date']").val();
 		startDate = startDate.substr(6, 4) + startDate.substr(0, 2) + startDate.substr(3, 2);
-		var str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=26&M=3&tstart=" + startDate + "&tend=" + startDate;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=26&M=3&tstart=" + startDate + "&tend=" + startDate;
 		var Data = ReadData(str);
 		$('.grey-cascade').html('当天已录入数据：' + Data.data[0][0] + '条');
 	}
@@ -70,8 +70,10 @@ var PaperParam = function() {
 			//	infoTips('数据重置成功，请重新填写',1);
 			//});
 			$('form[name=theForm]').submit(function() {
+				//var strUrl = getRootUrl('PaperPara') + 'insert';
+				var strUrl = getRootPath()+"/PaperPara/insert";
 				var options = {
-					url: getRootUrl('PaperPara') + 'insert',
+					url: strUrl,
 					type: 'post',
 					resetForm: true,
 					data: {

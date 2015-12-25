@@ -16,7 +16,7 @@ var UIIdleTimeout = function() {
                 keepAliveURL: '/demo/idletimeout_keepalive.php',
                 serverResponseEquals: 'OK',
                 onTimeout: function() {
-                    window.location = "http://localhost/login/lockscreen";
+                    window.location = getRootPath(1)+"/welcome/lockscreen";
                 },
                 onIdle: function() {
                     $('#idle-timeout-dialog').modal('show');

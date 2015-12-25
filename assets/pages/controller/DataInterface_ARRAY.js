@@ -148,7 +148,7 @@
                    exportOptions: {
                        columns: ':visible'
                    }
-                   //Author:'成都印钞有限公司 技术质量部',
+                   //Token:'成都印钞有限公司 技术质量部',
                    /* customize: function ( doc ) {
                         doc.content.unshift( {
 							text: ' ©成都印钞有限公司 技术质量部',
@@ -393,7 +393,7 @@
                title: '请输入接口名称'
            });
 
-           $('#Author').editable({
+           $('#Token').editable({
                validate: function(value) {
                    if ($.trim(value) === '') return '该字段不能为空';
                }

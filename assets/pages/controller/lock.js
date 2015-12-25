@@ -4,7 +4,10 @@ var Login = function() {
 		$('.lock-form button').on('click', function() {
 			lock();
 		});
-
+		$('.lock-form button').bind("copy cut paste",function(e){
+           return false;
+        });
+		$('.lock-form input[name="password"]').val('');
 		function lock() {
 			var strUrl = getRootPath(1) + '/welcome/relogin';
 			var loginData = {
@@ -42,3 +45,6 @@ var Login = function() {
 	};
 
 }();
+jQuery(document).ready(function() {
+  	Login.init();
+});

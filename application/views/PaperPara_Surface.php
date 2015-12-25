@@ -1,14 +1,16 @@
+			<!-- BEGIN STYLE CUSTOMIZER -->
+			<?php include("templates/themesetting.php");?>
+			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<i class="fa fa-home"></i>
 						<a href="<?php echo base_url()?>">首页</a>
-						<i class="fa fa-angle-right"></i>
+						<i class="fa fa-circle"></i>
 					</li>
 					<li>
 						<a href="#">指标检验</a>
-						<i class="fa fa-angle-right"></i>
+						<i class="fa fa-circle"></i>
 					</li>
 					<li>
 						<a href="#">钞纸质量控制水平评价</a>

@@ -1,14 +1,15 @@
+			<!-- BEGIN STYLE CUSTOMIZER -->
+			<?php include("templates/themesetting.php");?>
+			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<i class="fa fa-home"></i>
 						<a href="<?php echo base_url()?>">首页</a>
-						<i class="fa fa-angle-right"></i>
+						<i class="fa fa-circle"></i>
 					</li>
 					<li>
 						<a href="<?php echo base_url()?>MicroBlog">工作笔记</a>
-						<i class="fa fa-angle-right"></i>
 					</li>
 				</ul>
 				
@@ -20,19 +21,9 @@
 					</div>
 				</div>
 			</div>	
-			<div class="content row">
-				<div class="col-md-6">
-					<h3 class="page-title font-yahei">
-						我的工作笔记 <small id="today"></small>
-					</h3>
-				</div>
-				<!-- END PAGE HEADER-->
-				<div class="col-md-6" style="margin-top:-40px;">
-					<!-- BEGIN STYLE CUSTOMIZER -->
-					<?php include("templates/themesetting.php");?>
-					<!-- END STYLE CUSTOMIZER -->
-				</div>
-			</div>	
+			<h3 class="page-title font-yahei">
+				我的工作笔记 <small id="today"></small>
+			</h3>
 
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="chat-form" style="background-color:#f1f3fa;">

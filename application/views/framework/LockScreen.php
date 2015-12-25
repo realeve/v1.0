@@ -85,9 +85,7 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
-<script src="<?php echo base_url()?>assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/layouts/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/layouts/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/scripts/app.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/pages/controller/lock.min.js" type="text/javascript"></script>
 <!-- END JAVASCRIPTS -->

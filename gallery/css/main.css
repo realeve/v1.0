@@ -1,336 +1,686 @@
 * {
-	margin: 0px; padding: 0px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
+
 body {
-	color: rgb(51, 51, 51); background-color: rgb(243, 243, 243);
+    background-color: #f3f3f3;
+    color: #333
 }
+
 .page {
-	padding: 20px 0px;
+    padding: 20px 0
 }
+
 .btn-primary {
-	border-color: rgb(48, 149, 198); background-color: rgb(59, 167, 220);
+    background-color: #3ba7dc;
+    border-color: #3095c6
 }
+
 .btn-primary:hover {
-	border-color: rgb(48, 149, 198); background-color: rgb(48, 149, 198);
+    background-color: #3095c6;
+    border-color: #3095c6
 }
+
 .navbar-default {
-	border-width: medium medium 1px; border-style: none none solid; border-color: currentColor currentColor rgb(14, 21, 31); border-image: none; background-color: rgb(41, 60, 85);
+    border: none;
+    border-bottom: 1px solid #0e151f;
+    background-color: #293c55
 }
+
 .navbar-default#index-nav {
-	margin-bottom: 0px;
+    margin-bottom: 0
 }
+
 .navbar-default .navbar-brand {
-	color: rgb(239, 239, 239);
+    color: #efefef
 }
-.navbar-default .navbar-brand:hover {
-	color: rgb(243, 243, 243);
-}
+
+.navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-	color: rgb(243, 243, 243);
+    color: #f3f3f3
 }
+
 .navbar-default .navbar-nav li a {
-	color: rgb(239, 239, 239);
+    color: #efefef
 }
-.navbar-default .navbar-nav li a:hover {
-	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
-}
+
+.navbar-default .navbar-nav li a:hover,
 .navbar-default .navbar-nav li a:focus {
-	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
+    color: #f3f3f3;
+    background-color: #0e151f
 }
+
 .navbar-default .navbar-nav li.active a {
-	color: rgb(239, 239, 239); background-color: rgb(22, 36, 54);
+    color: #efefef;
+    background-color: #162436
 }
-.navbar-default .navbar-nav li.active a:hover {
-	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
-}
+
+.navbar-default .navbar-nav li.active a:hover,
 .navbar-default .navbar-nav li.active a:focus {
-	color: rgb(243, 243, 243); background-color: rgb(14, 21, 31);
+    color: #f3f3f3;
+    background-color: #0e151f
 }
+
 .navbar-default .navbar-nav li.highlight a {
-	background-color: rgb(228, 60, 89);
+    background-color: #e43c59
 }
-.navbar-default .navbar-nav li.highlight a:hover {
-	background-color: rgb(191, 70, 91);
-}
+
+.navbar-default .navbar-nav li.highlight a:hover,
 .navbar-default .navbar-nav li.highlight a:focus {
-	background-color: rgb(191, 70, 91);
+    background-color: #bf465b
 }
+
 #nav-avatar {
-	width: 50px; height: 50px; float: right; display: none;
+    width: 50px;
+    height: 50px;
+    float: right;
+    display: none
 }
+
 #nav-avatar img {
-	width: 50px; height: 50px;
+    width: 50px;
+    height: 50px
 }
+
 .nav-dropdown-panel {
-	right: 0px; display: none; position: absolute; z-index: 99999;
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 99999
 }
+
 .nav-dropdown-panel#login-dropdown-panel {
-	width: 350px;
+    width: 350px
 }
+
 .nav-dropdown-panel#login-dropdown-panel form {
-	padding: 20px 30px 0px;
+    padding: 20px 30px 0 30px
 }
+
 .nav-dropdown-panel#user-dropdown-panel {
-	width: 150px;
+    width: 150px
 }
+
 .nav-dropdown-panel#user-dropdown-panel .panel-body {
-	padding: 0px;
+    padding: 0
 }
+
 #main-container {
-	left: 0px; top: 50px; right: 0px; bottom: 0px; position: absolute;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 50px
 }
+
 #main-container .handler {
-	left: 50%; top: 0px; width: 5px; bottom: 0px; border-left-color: rgb(204, 204, 204); border-left-width: 1px; border-left-style: solid; position: absolute; z-index: 100; cursor: col-resize; background-color: transparent;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: col-resize;
+    z-index: 100;
+    background-color: transparent;
+    border-left: 1px solid #ccc
 }
+
 #code-container {
-	left: 0px; top: 0px; width: 50%; bottom: 0px; position: absolute;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 50%
 }
+
 #control-panel {
-	padding: 0px; left: 0px; top: 0px; height: 30px; right: 0px; position: absolute; z-index: 20; box-shadow: 0px 2px 10px rgba(0,0,0,0.2); -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    height: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 20;
+    padding: 0;
+    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
 }
+
 #control-panel .setting-panel {
-	display: inline-block;
+    display: inline-block
 }
-#control-panel .setting-panel .btn-group + .btn-group {
-	margin-left: 10px;
+
+#control-panel .setting-panel .btn-group+.btn-group {
+    margin-left: 10px
 }
+
 #control-panel .control-btn-panel {
-	float: right;
+    float: right
 }
+
 #control-panel .control-btn-panel .btn {
-	border-radius: 0px; border: currentColor; border-image: none; width: 50px; height: 30px; color: rgb(255, 255, 255); margin-left: 10px; background-color: rgb(63, 167, 220); -webkit-border-radius: 0;
+    color: #FFF;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: #3FA7DC;
+    margin-left: 10px;
+    border: none;
+    height: 30px;
+    width: 50px
 }
+
 #control-panel .control-btn-panel .btn:hover {
-	background-color: rgb(39, 126, 171);
+    background-color: #277EAB
 }
+
 #code-panel {
-	padding: 10px; left: 0px; top: 30px; right: 0px; bottom: 0px; position: absolute;
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px
 }
+
+#code-panel::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-border-radius: 2px;
+    border-radius: 2px
+}
+
+#code-panel::-webkit-scrollbar-button {
+    display: none
+}
+
+#code-panel::-webkit-scrollbar-thumb {
+    width: 8px;
+    min-height: 15px;
+    background: rgba(50, 50, 50, 0.6) !important;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-border-radius: 2px;
+    border-radius: 2px
+}
+
+#code-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5) !important
+}
+
 #code-info {
-	padding: 0px 10px; height: 30px; bottom: 0px; line-height: 30px; overflow: hidden; font-size: 0.9rem; position: absolute;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+    font-size: 0.9rem
 }
+
 #code-info .code-info-time {
-	color: rgb(51, 51, 51); margin-right: 10px; display: inline-block;
+    color: #333;
+    display: inline-block;
+    margin-right: 10px
 }
+
 #code-info .code-info-type-info {
-	color: rgb(51, 51, 51);
+    color: #333
 }
+
 #code-info .code-info-type-warn {
-	color: rgb(255, 153, 51);
+    color: #f93
 }
+
 #code-info .code-info-type-error {
-	color: rgb(228, 60, 89);
+    color: #e43c59
 }
+
 #left-chart-nav {
-	left: 0px; top: 0px; width: 155px; bottom: 0px; padding-top: 50px; position: fixed; -ms-overflow-y: hidden; background-color: rgb(41, 60, 85);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 50px;
+    width: 155px;
+    background-color: #293c55;
+    overflow-y: hidden
 }
+
 #left-chart-nav:hover {
-	-ms-overflow-y: auto;
+    overflow-y: auto
 }
+
 #left-chart-nav li {
-	padding: 10px 20px; transition:0.5s; height: 54px; -webkit-transition: 0.5s;
+    height: 54px;
+    padding: 10px 20px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s
 }
+
 #left-chart-nav li a {
-	transition:0.5s; color: rgb(204, 204, 204); display: block; position: relative; -webkit-transition: 0.5s;
+    color: #ccc;
+    position: relative;
+    display: block;
+    -webkit-transition: 0.5s;
+    transition: 0.5s
 }
+
 #left-chart-nav li a .chart-name {
-	top: -12px; margin-left: 10px; display: inline-block; position: relative;
+    display: inline-block;
+    position: relative;
+    top: -12px;
+    margin-left: 10px
 }
+
 #left-chart-nav li a .chart-icon {
-	border-radius: 50%; border: 1px solid rgb(153, 153, 153); border-image: none; width: 32px; height: 32px; display: inline-block; content: ""; background-image: url("../images/chart-icon.png"); background-repeat: no-repeat; background-size: 32px; -webkit-border-radius: 50%;
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("../images/chart-icon.png");
+    background-size: 32px;
+    background-repeat: no-repeat;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #999
 }
+
 #left-chart-nav li.active {
-	background-color: rgb(228, 60, 89);
+    background-color: #e43c59
 }
+
 #left-chart-nav li.active a {
-	color: rgb(243, 243, 243);
+    color: #f3f3f3
 }
+
 #left-chart-nav li.active .chart-icon {
-	border-color: rgb(243, 243, 243);
+    border-color: #f3f3f3
 }
+
 #left-chart-nav li:hover {
-	background-color: rgb(22, 36, 54);
+    background-color: #162436
 }
-@media all and (max-width:768px)
-{
-#left-chart-nav {
-	display: none;
+
+@media (max-width: 768px) {
+    #left-chart-nav {
+        display: none
+    }
 }
-}
+
 #left-chart-nav-line .chart-icon {
-	background-position: -1px -1px;
+    background-position-x: -1px;
+    background-position-y: -1px
 }
+
 #left-chart-nav-bar .chart-icon {
-	background-position: -1px -33px;
+    background-position-x: -1px;
+    background-position-y: -33px
 }
+
 #left-chart-nav-scatter .chart-icon {
-	background-position: -1px -65px;
+    background-position-x: -1px;
+    background-position-y: -65px
 }
+
 #left-chart-nav-pie .chart-icon {
-	background-position: -1px -129px;
+    background-position-x: -1px;
+    background-position-y: -129px
 }
+
 #left-chart-nav-funnel .chart-icon {
-	background-position: -1px -321px;
+    background-position-x: -1px;
+    background-position-y: -321px
 }
+
 #left-chart-nav-gauge .chart-icon {
-	background-position: -1px -289px;
+    background-position-x: -1px;
+    background-position-y: -289px
 }
+
 #left-chart-nav-map .chart-icon {
-	background-position: -1px -257px;
+    background-position-x: -1px;
+    background-position-y: -257px
 }
+
 #left-chart-nav-graph .chart-icon {
-	background-position: -1px -225px;
+    background-position-x: -1px;
+    background-position-y: -225px
 }
+
 #left-chart-nav-treemap .chart-icon {
-	background-position: -1px -449px;
+    background-position-x: -1px;
+    background-position-y: -449px
 }
+
 #left-chart-nav-parallel .chart-icon {
-	background-position: -1px -513px;
+    background-position-x: -1px;
+    background-position-y: -513px
 }
+
 #left-chart-nav-sankey .chart-icon {
-	background-position: -1px -545px;
+    background-position-x: -1px;
+    background-position-y: -545px
 }
+
+#left-chart-nav-candlestick .chart-icon {
+    background-position-x: -1px;
+    background-position-y: -97px
+}
+
+#left-chart-nav-boxplot .chart-icon {
+    background-position-x: -1px;
+    background-position-y: -577px
+}
+
+#left-chart-nav-heatmap .chart-icon {
+    background-position-x: -1px;
+    background-position-y: -353px
+}
+
 .chart-list-panel {
-	margin: 30px 15px;
+    margin: 30px 15px
 }
+
 .chart-list-panel h3 {
-	margin-bottom: 20px;
+    margin-bottom: 20px
 }
+
 .chart-list-panel .chart {
-	margin: 0px auto 30px; border-radius: 2px; border: 1px solid rgb(243, 243, 243); border-image: none; width: 100%; max-width: 350px; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); background-color: rgb(255, 255, 255); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); -webkit-border-radius: 2px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border: 1px solid #f3f3f3;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
 }
+
 .chart-list-panel .chart .chart-link {
-	display: block; position: relative;
+    position: relative;
+    display: block
 }
+
 .chart-list-panel .chart .chart-link .chart-area {
-	padding: 15px; width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
+    padding: 15px
 }
+
 .chart-list-panel .chart .chart-link .chart-hover-bg {
-	border-radius: 2px; left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; z-index: 10; opacity: 0; background-color: rgb(41, 60, 85); -webkit-border-radius: 2px;
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #293c55;
+    -webkit-border-radius: 2px;
+    border-radius: 2px
 }
+
 .chart-list-panel .chart .chart-link:hover .chart-hover-bg {
-	transition:0.1s ease-in-out; opacity: 0.8; -webkit-transition: 0.1s all ease-in-out;
+    -webkit-transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out;
+    opacity: 0.8
 }
+
 .chart-list-panel .chart .chart-link .chart-hover {
-	padding: 0px 20px; border-radius: 2px; transition:0.5s ease-in-out; left: 0px; top: 50%; height: 90px; text-align: center; right: 0px; bottom: 0px; color: rgb(239, 239, 239); margin-top: -45px; position: absolute; z-index: 20; opacity: 0; -webkit-transition: 0.5s all ease-in-out; -webkit-border-radius: 2px;
+    opacity: 0;
+    -webkit-transition: 0.5s all ease-in-out;
+    transition: 0.5s all ease-in-out;
+    position: absolute;
+    z-index: 20;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
+    height: 90px;
+    margin-top: -45px;
+    color: #efefef;
+    text-align: center;
+    -webkit-border-radius: 2px;
+    border-radius: 2px
 }
+
 .chart-list-panel .chart .chart-link .chart-hover .chart-title {
-	color: rgb(243, 243, 243); overflow: hidden; white-space: nowrap; -ms-text-overflow: ellipsis;
+    color: #f3f3f3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
-.chart-list-panel .chart .chart-link .chart-hover .chart-title::before {
-	transition:0.5s ease-in-out; width: 10%; height: 1px; margin-bottom: 10px; display: block; content: ""; background-color: rgb(228, 60, 89); -webkit-transition: 0.5s all ease-in-out;
+
+.chart-list-panel .chart .chart-link .chart-hover .chart-title:before {
+    content: '';
+    display: block;
+    width: 10%;
+    height: 1px;
+    margin-bottom: 10px;
+    background-color: #e43c59;
+    -webkit-transition: 0.5s all ease-in-out;
+    transition: 0.5s all ease-in-out
 }
+
 .chart-list-panel .chart .chart-link .chart-hover .chart-subtitle {
-	overflow: hidden; padding-bottom: 10px; white-space: nowrap; position: relative; -ms-text-overflow: ellipsis;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 10px
 }
-.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle::after {
-	transition:0.5s ease-in-out; width: 10%; height: 1px; right: 0px; bottom: 0px; position: absolute; content: ""; background-color: rgb(228, 60, 89); -webkit-transition: 0.5s all ease-in-out;
+
+.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 10%;
+    height: 1px;
+    background-color: #e43c59;
+    -webkit-transition: 0.5s all ease-in-out;
+    transition: 0.5s all ease-in-out
 }
+
 .chart-list-panel .chart .chart-link:hover .chart-hover {
-	opacity: 1;
+    opacity: 1
 }
-.chart-list-panel .chart .chart-link:hover .chart-hover .chart-title::before {
-	transition:0.5s ease-in-out; width: 100%; -webkit-transition: 0.5s all ease-in-out;
+
+.chart-list-panel .chart .chart-link:hover .chart-hover .chart-title:before,
+.chart-list-panel .chart .chart-link:hover .chart-hover .chart-subtitle:after {
+    width: 100%;
+    -webkit-transition: 0.5s all ease-in-out;
+    transition: 0.5s all ease-in-out
 }
-.chart-list-panel .chart .chart-link:hover .chart-hover .chart-subtitle::after {
-	transition:0.5s ease-in-out; width: 100%; -webkit-transition: 0.5s all ease-in-out;
-}
+
 .chart-list-panel .chart .chart-info {
-	padding: 5px 0px; font-weight: bold;
+    padding: 5px 0;
+    font-weight: bold
 }
+
 .chart-list-panel .chart .chart-info .chart-icon {
-	float: right;
+    float: right
 }
+
 .chart-list-panel .chart .chart-info .chart-icon .chart-delete {
-	transition:1s; display: none; -webkit-transition: 1s;
+    display: none;
+    -webkit-transition: 1s;
+    transition: 1s
 }
+
 .chart-list-panel .chart:hover .chart-info .chart-icon .chart-delete {
-	text-decoration: none; display: block;
+    display: block;
+    text-decoration: none
 }
-@media all and (max-width:768px)
-{
-.chart-list-panel .chart .chart-link .chart-hover {
-	height: auto; color: rgb(153, 153, 153); margin-top: 0px; position: static; opacity: 1;
+
+@media (max-width: 768px) {
+    .chart-list-panel .chart .chart-link .chart-hover {
+        opacity: 1;
+        position: static;
+        color: #999;
+        margin-top: 0;
+        height: auto
+    }
+    .chart-list-panel .chart .chart-link .chart-hover .chart-title {
+        border-top: none;
+        color: #e43c59;
+        margin-top: 20px;
+        margin-bottom: 0
+    }
+    .chart-list-panel .chart .chart-link .chart-hover .chart-subtitle {
+        display: none
+    }
+    .chart-list-panel .chart .chart-link .chart-hover .chart-title:before,
+    .chart-list-panel .chart .chart-link .chart-hover .chart-subtitle:after {
+        display: none
+    }
+    .chart-list-panel .chart .chart-link:hover .chart-hover-bg {
+        display: none
+    }
 }
-.chart-list-panel .chart .chart-link .chart-hover .chart-title {
-	color: rgb(228, 60, 89); margin-top: 20px; margin-bottom: 0px; border-top-color: currentColor; border-top-width: medium; border-top-style: none;
-}
-.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle {
-	display: none;
-}
-.chart-list-panel .chart .chart-link .chart-hover .chart-title::before {
-	display: none;
-}
-.chart-list-panel .chart .chart-link .chart-hover .chart-subtitle::after {
-	display: none;
-}
-.chart-list-panel .chart .chart-link:hover .chart-hover-bg {
-	display: none;
-}
-}
+
 .right-container {
-	background: rgb(243, 243, 243); padding: 0px 0px 0px 5px; border: currentColor; border-image: none; width: 50%; height: 100%; right: 0px; position: absolute; z-index: 30;
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    padding-left: 5px;
+    border: none;
+    z-index: 30;
+    background: #f3f3f3
 }
+
 .right-container .right-panel {
-	padding: 10px 10px 10px 15px;
+    padding: 10px;
+    padding-left: 15px
 }
-#fork-btn {
-	display: none;
-}
+
+#fork-btn,
 #reset-btn {
-	display: none;
+    display: none
 }
+
 #chart-panel {
-	padding: 10px; left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
+
 .icon-bar {
-	margin: 0px 0.4rem; color: rgb(204, 204, 204); display: inline-block;
+    display: inline-block;
+    margin: 0 0.4rem;
+    color: #ccc
 }
+
 .icon-bar span::before {
-	top: 0.2rem; color: rgb(204, 204, 204); margin-right: 0.25rem; position: relative;
+    position: relative;
+    top: 0.2rem;
+    margin-right: 0.25rem;
+    color: #ccc
 }
+
 .icon-bar:hover {
-	color: rgb(153, 153, 153);
+    color: #999
 }
+
 .icon-bar:hover span::before {
-	color: rgb(153, 153, 153);
+    color: #999
 }
+
 .profile .user-info {
-	text-align: center;
+    text-align: center
 }
+
 .profile .user-info .user-info-avatar {
-	border-radius: 50px; width: 100px; height: 100px; -webkit-border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px
 }
+
 .profile .user-info .user-info-name {
-	margin: 0.5rem 0px 0.25rem; font-size: 2rem; font-weight: bold;
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 2rem;
+    font-weight: bold
 }
+
 .profile .user-info .user-info-data {
-	font-size: 1.5rem;
+    font-size: 1.5rem
 }
+
 .profile .user-info .user-info-data ul {
-	list-style-type: none;
+    list-style-type: none
 }
+
 #view-main {
-	left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
 }
+
 #view-main .control-panel {
-	background: rgb(243, 243, 243); width: 100%; height: 30px; bottom: 0px; padding-right: 10px; position: absolute; z-index: 1001; box-shadow: 0px 0px 10px rgba(0,0,0,0.2); -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    padding-right: 10px;
+    width: 100%;
+    background: #F3F3F3;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001
 }
+
 #view-main .control-panel .btn {
-	background: rgb(51, 122, 183); margin: 3px 5px; padding: 3px 5px; border: currentColor; border-image: none; color: white; float: right;
+    float: right;
+    margin: 3px 5px;
+    padding: 3px 5px;
+    background: #337ab7;
+    border: none;
+    color: white
 }
+
 #view-main .chart {
-	padding: 2px; left: 0px; top: 0px; right: 0px; bottom: 30px; position: absolute;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 30px;
+    padding: 2px
 }
+
 #view-mask {
-	left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; z-index: 1000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000
 }
+
 #explore-container {
-	padding: 50px 20px; margin-left: 155px;
+    margin-left: 155px;
+    padding: 50px 20px
 }
-@media all and (max-width:768px)
-{
-#explore-container {
-	margin-left: 0px;
-}
+
+@media (max-width: 768px) {
+    #explore-container {
+        margin-left: 0
+    }
 }

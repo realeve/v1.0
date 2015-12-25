@@ -1,6 +1,6 @@
 $("#HideTips").on('click',
 	function() {
-		$(".note.note-success").addClass('hide');
+		$(".note.note-success").hide();
 	});
 $("#SaveSettings").on('click',
 	function() {
@@ -65,15 +65,21 @@ function GetJsonUrl() {
 	var TimeRange = $("#dashboard-report-range span").html();
 	var TimeStart = TimeRange.split(' ~ ')[0];
 	var TimeEnd = TimeRange.split(' ~ ')[1];
-	var strUrl = getRootPath() + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=16&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&tstart2=" + TimeStart + "&tend2=" + TimeEnd + "&t=" + Math.random();
+	var strUrl = getRootPath() + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=16&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&tstart2=" + TimeStart + "&tend2=" + TimeEnd + "&t=" + Math.random();
 	return strUrl;
 }
 
 
-
 var dataTable = function() {
 	function InitTable() {
-		RefreshTable('#sample', GetJsonUrl());
+		var url;
+		if (App.getURLParameter('debug') == 1) {
+			$('#Preview').show();
+			url = $('#Preview input').val();
+		} else {
+			url = GetJsonUrl();
+		}
+		RefreshTable('#sample', url);
 	}
 	var oTable;
 	//生成表格头 
@@ -120,7 +126,7 @@ var dataTable = function() {
 			//"bDestroy":true,
 			"bRetrieve": true,
 			"language": {
-				"url": getRootPath() + "/assets/admin/pages/controller/DataTableLanguage.min.json"
+				"url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
 			},
 			"order": [
 				[1, 'asc']
@@ -140,13 +146,16 @@ var dataTable = function() {
 					columns: ':visible'
 				},
 				text: '复制',
+				className: "btn red btn-outline"
 			}, {
 				extend: 'excelHtml5',
+				className: "btn yellow btn-outline ",
 				exportOptions: {
 					columns: ':visible'
 				}
 			}, {
 				extend: 'csvHtml5',
+				className: "btn purple btn-outline ",
 				exportOptions: {
 					columns: ':visible'
 				}
@@ -155,12 +164,13 @@ var dataTable = function() {
 				orientation: Data.cols > 10 ? 'landscape' : 'portrit',
 				pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
 				message: Data.source + '\n©成都印钞有限公司 技术质量部',
-				//download: 'open',
+				download: 'open',
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
-				}
-				//Author:'成都印钞有限公司 技术质量部',
+				},
+				className: "btn dark btn-outline"
+				//Token:'成都印钞有限公司 技术质量部',
 				/* customize: function ( doc ) {
 					doc.content.unshift( {
 						text: ' ©成都印钞有限公司 技术质量部',
@@ -179,11 +189,13 @@ var dataTable = function() {
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
-				}
+				},
+				className: "btn green btn-outline"
 			}, {
 				extend: 'colvis',
 				text: '隐藏数据列<i class="fa fa-angle-down"></i>',
-				className: 'btn-fit-height green-haze dropdown-toggle'
+				className: "btn dark btn-outline",
+				//className: 'btn-fit-height green-haze dropdown-toggle'
 			}],
 			"bDeferRender": true,
 			"bProcessing": true,
@@ -200,23 +212,31 @@ var dataTable = function() {
 			colReorder: {
 				realtime: true,
 			},
+			fixedHeader: {
+				header: true,
+				footer: true,
+				headerOffset: Data.fixedHeaderOffset,
+			},
 			//scrollY:        '70vh',
 			scroolY: '70v',
 			scrollCollapse: true,
 			"initComplete": function() {
 				var api = this.api();
-				api.$('td').click(function() {
+				api.$('td').on('click', function() {
 					api.search(this.innerText).draw();
 				});
+			$('.tools').append($('.tabletools-btn-group').clone(true));
+			$('.tbTools').remove();
+			infoTips(JSON.stringify(Data), 2);
 
 				//添加 footer search
 				/* var footerHTML = '<tfoot class="hidden-sm hidden-xs"><tr>';
         for (var i = 0; i < Data.cols; i++) {
           footerHTML +='<th>'+Data.header[i].title+'</th>'};
         $('TABLE').append(footerHTML + '</tr></tfoot>');*/
-				$('.tools').append($('.tabletools-btn-group').clone(true));
-				$('.tbTools').remove();
-				infoTips(JSON.stringify(Data), 2);
+				//$('.tools').append($('.tabletools-btn-group').clone(true));
+				//$('.tbTools').remove();
+				//infoTips(JSON.stringify(Data), 2);
 				/*
         api.columns().eq( 0 ).each( function ( colIdx ) {
             $( 'input', api.column( colIdx ).footer() ).on( 'keyup change', function () {
@@ -258,6 +278,15 @@ var dataTable = function() {
 
 	function CreateTable(tableID, Data) {
 		var table = $(tableID);
+		var fixedHeaderOffset = 0;
+		if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
+			if ($('.page-header').hasClass('page-header-fixed-mobile')) {
+				fixedHeaderOffset = $('.page-header').outerHeight(true);
+			}
+		} else if ($('.page-header').hasClass('navbar-fixed-top')) {
+			fixedHeaderOffset = $('.page-header').outerHeight(true);
+		}
+		Data.fixedHeaderOffset = fixedHeaderOffset;
 		var initData = initSettings(Data);
 		//初始化表格
 		oTable = table.dataTable(initData);
@@ -302,16 +331,19 @@ var dataTable = function() {
 	return {
 		//main function to initiate the module
 		init: function() {
-			$("button.applyBtn").live("click", function() {
+			$("button.applyBtn").on("click", function() {
 				InitTable();
 			});
-			$("#Preview").on('click',
-				function() {
-					var strUrl = $('#PreviewUrl').val();
-					//重新读取数据
-					//Data = ReadData(strUrl);
-					RefreshTable('#sample', strUrl);
-				});
+
+			$("#Preview a").on('click', function() {
+				RefreshTable('#sample', $('#Preview input').val());
+			});
+
+			if (App.getURLParameter('debug') == 1) {
+				$('#Preview').show();
+			} else {
+				$('#Preview').hide();
+			}
 		}
 
 	};

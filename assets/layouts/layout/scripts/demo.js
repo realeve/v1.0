@@ -184,7 +184,7 @@ var Demo = function() {
         // handle theme colors
         var setColor = function(color) {
             var color_ = (App.isRTL() ? color + '-rtl' : color);
-            $('#style_color').attr("href", Layout.getLayoutCssPath() + 'themes/' + color_ + ".css");
+            $('#style_color').attr("href", Layout.getLayoutCssPath() + 'themes/' + color_ + ".min.css");
             if (color == 'light2') {
                 $('.page-logo img').attr('src', Layout.getLayoutImgPath() + 'logo-invert.png');
             } else {
@@ -256,10 +256,10 @@ var Demo = function() {
         var file = (style === 'rounded' ? 'components-rounded' : 'components');
         file = (App.isRTL() ? file + '-rtl' : file);
 
-        $('#style_components').attr("href", App.getGlobalCssPath() + file + ".css");
+        $('#style_components').attr("href", App.getGlobalCssPath() + file + ".min.css");
 
-        if ($.cookie) {
-            $.cookie('layout-style-option', style);
+        if (typeof Cookies !== "undefined") {
+            Cookies.set('layout-style-option', style);
         }
     };
 
@@ -276,11 +276,17 @@ var Demo = function() {
             });
 
             // set layout style from cookie
-            if ($.cookie && $.cookie('layout-style-option') === 'rounded') {
-                setThemeStyle($.cookie('layout-style-option'));
-                $('.theme-panel .layout-style-option').val($.cookie('layout-style-option'));
+            if (typeof Cookies !== "undefined" && Cookies.get('layout-style-option') === 'rounded') {
+                setThemeStyle(Cookies.get('layout-style-option'));
+                $('.theme-panel .layout-style-option').val(Cookies.get('layout-style-option'));
             }            
         }
     };
 
 }();
+
+if (App.isAngularJsApp() === false) {
+    jQuery(document).ready(function() {    
+       Demo.init(); // init metronic core componets
+    });
+}

@@ -64,7 +64,7 @@ Change Quick Sidebar Width
 
 /******
 Page Footer 
-******/
+*****
 .page-prefooter {
   background: #48525e;
   color: #a2abb7;
@@ -123,6 +123,7 @@ Page Footer
   background: #3b434c;
   color: #a2abb7;
 }
+*/
 
 /***
 Notes
@@ -254,3 +255,9 @@ Notes
 .datatables-full-width{
 	width:100%;
 }
+
+.page-content-wrapper .page-content {
+      margin-left: 235px;
+      margin-top: 0px;
+      min-height: 600px;
+      padding: 5px 20px 10px 20px; }

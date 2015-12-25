@@ -1,13 +1,12 @@
 <!-- BEGIN FOOTER -->
 <!-- END PAGE CONTAINER -->
-
-<div class="page-footer">
-    <div class="page-footer-inner">
-         2015 &copy; CBPM All Rights Reserved.
-    </div>
-    <div class="scroll-to-top">
-        <i class="icon-arrow-up"></i>
-    </div>
+<div class="page-footer" style="margin-top:-36px;">
+	<div class="page-footer-inner">
+		 2015 &copy; CBPC All Rights Reserved.
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
 </div>
 <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -29,7 +28,7 @@
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <!-- END CORE PLUGINS -->
-<script src="<?php echo base_url()?>assets/global/scripts/App.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/scripts/app.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>

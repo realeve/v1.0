@@ -1,6 +1,6 @@
 <?php
 class DataInterfaceModel extends CI_Model {
-
+	const PRE_STR 	= 'QCCenter';//字符前缀
 	public function __construct()
 	{
 		$this->load->database();
@@ -16,7 +16,7 @@ class DataInterfaceModel extends CI_Model {
 	public function GetNewApiID($UserName)
 	{
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);	
-		$StrSQL = "SELECT ISNULL(MAX(ApiID),0)+1 as NewID  FROM  tblDataInterface  where Author=?";
+		$StrSQL = "SELECT ISNULL(MAX(ApiID),0)+1 as NewID  FROM  tblDataInterface  where Token=?";
 		$query = $LOGINDB->query($StrSQL,array(sha1($UserName)));
 		$strJson = $query->result_json();	
 		$strReturn = json_decode($strJson)->data[0]->NewID;
@@ -32,11 +32,13 @@ class DataInterfaceModel extends CI_Model {
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 		//先获取当前用户ID		
 		$data['ApiName'] = $this->TransToGBK($data['ApiName']);
-		$data['Author'] = sha1($data['Author']);
+		//$data['Author'] = sha1($data['Author']);
+		$data['Author'] = $this->TransToGBK($data['Author']);
+		$data['Token'] = sha1(self::PRE_STR.$data['Author']);		
 		$data['ApiDesc'] = $this->TransToGBK($data['ApiDesc']);
 		$data['strSQL'] = $this->TransToGBK($data['strSQL']);
 
-		$SQLStr="SELECT top 1 ID from tblDataInterface WHERE Author= '". $data['Author'] ."' and ApiID = ".$data['ApiID'];
+		$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['Author'] ."' and ApiID = ".$data['ApiID'];
 		$query=$LOGINDB->query($SQLStr);
 		if($query->num_rows()>0)
 		{
@@ -75,8 +77,8 @@ class DataInterfaceModel extends CI_Model {
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 		//先获取当前用户ID
-		$SQLStr = "SELECT a.ApiID,a.ApiName,a.Author,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Author = ? and ApiID=".$data['ID'];
-		$query=$LOGINDB->query($SQLStr,array($data['Author']));
+		$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
+		$query=$LOGINDB->query($SQLStr,array($data['Token']));
 		$strJson = $query->result_json();
 		//return $strJson;
 		$ApiInfo = json_decode($strJson);

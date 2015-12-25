@@ -108,7 +108,7 @@
          //"bDestroy":true,
          "bRetrieve": true,
          "language": {
-           "url": getRootPath() + "/assets/admin/pages/controller/DataTableLanguage.min.json"
+           "url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
          },
          "order": [
            [1, 'asc']
@@ -148,7 +148,7 @@
            exportOptions: {
              columns: ':visible'
            }
-           //Author:'成都印钞有限公司 技术质量部',
+           //Token:'成都印钞有限公司 技术质量部',
            /* customize: function ( doc ) {
                         doc.content.unshift( {
 							text: ' ©成都印钞有限公司 技术质量部',
@@ -188,7 +188,12 @@
          searchHighlight: true, //高亮
          colReorder: {
            realtime: true,
-         },
+			},
+			fixedHeader: {
+				header: true,
+				footer: true,
+				headerOffset: Data.fixedHeaderOffset,
+			},
          //scrollY:        '70vh',
          scroolY: '70v',
          scrollCollapse: true,
@@ -248,8 +253,16 @@
 
      function CreateTable(tableID, Data) {
        var table = $(tableID);
-       var initData = initSettings(Data);
-       console.log(initData);
+		var fixedHeaderOffset = 0;
+		if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
+			if ($('.page-header').hasClass('page-header-fixed-mobile')) {
+				fixedHeaderOffset = $('.page-header').outerHeight(true);
+			}
+		} else if ($('.page-header').hasClass('navbar-fixed-top')) {
+			fixedHeaderOffset = $('.page-header').outerHeight(true);
+		}
+		Data.fixedHeaderOffset = fixedHeaderOffset;
+		var initData = initSettings(Data);
        //初始化表格
        oTable = table.dataTable(initData);
      }
@@ -397,7 +410,7 @@
          title: '请输入接口名称'
        });
 
-       $('#Author').editable({
+       $('#Token').editable({
          validate: function(value) {
            if ($.trim(value) === '') return '该字段不能为空';
          }

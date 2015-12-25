@@ -11,12 +11,12 @@ var PaperParam = function() {
 
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=24&M=3&t=1";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=24&M=3&t=1";
 		var Data = ReadData(str);
 		InitSelect("prod_ID", Data);
 
 		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=25&M=3&t=3";
+		str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=25&M=3&t=3";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(5));
@@ -102,9 +102,9 @@ var PaperParam = function() {
 		var startMonth = $("input[name='rec_date']").val();
 		startMonth = startMonth.substr(6, 4) + startMonth.substr(0, 2);
 		var prod = $('select[name="prod_ID"]').val();
-		var str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataPsc = ReadData(str);
-		str = getRootPath(1) + "/DataInterface/Api?Author=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataSur = ReadData(str);
 		$('.grey-cascade').html('物理指标得分：' + xround(DataPsc.data[0][0], 2) + '，外观指标得分：' + xround(DataSur.data[0][0], 2));
 		var curScore = (parseInt(DataSur.data[0][0], 10) + parseInt(DataPsc.data[0][0], 10)) / 2;
@@ -174,9 +174,10 @@ var PaperParam = function() {
 	});
 
 	function addData() {
-		var url = getRootUrl('PaperPara') + 'insert';
+		//var strUrl = getRootUrl('PaperPara') + 'insert';
+		var strUrl = getRootPath()+"/PaperPara/insert";
 		var options = {
-			url: url,
+			url: strUrl,
 			type: 'post',
 			resetForm: true,
 			data: getFormData(),

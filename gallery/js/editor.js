@@ -145,7 +145,7 @@ function initEventHandler() {
 
 // set splitter position by percentage, left should be between 0 to 1
 function setSplitPosition(percentage) {
-    percentage = Math.min(0.9, Math.max(0.1, percentage));
+    percentage = Math.min(0.99, Math.max(0.01, percentage));
 
     var left = percentage * 100;
     $('#code-container').css('width', left + '%');
