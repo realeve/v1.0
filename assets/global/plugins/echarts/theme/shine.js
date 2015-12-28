@@ -11,13 +11,14 @@ var theme = {
     title: {
         textStyle: {
             fontWeight: 'normal'
-        }
+        },
+		subtextStyle: { color:'#666'  },
 		copyright:{
 			text:'©成都印钞有限公司 技术质量部',
 			textStyle: {
 				fontSize: 12,
 				color: '#333'
-			},
+			}
 		}
     },
     

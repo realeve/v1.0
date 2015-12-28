@@ -23,7 +23,7 @@
 <link href="<?php echo base_url()?>assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-<link href="<?php echo base_url()?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-summernote/summernote.css">
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 
@@ -42,6 +42,9 @@
 <!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/select2/css/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/select2/css/select2-bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css"/>
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/datatables/media/css/jquery.dataTables.css"/>
@@ -61,8 +64,8 @@
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components-rounded.min.css' in the below style tag -->
-<link href="<?php echo base_url()?>assets/global/css/components-rounded.min.css" rel="stylesheet" type="text/css"/ id="style_components">
-<link href="<?php echo base_url()?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/components-md.min.css" rel="stylesheet" type="text/css" id="style_components"/>
+<link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>

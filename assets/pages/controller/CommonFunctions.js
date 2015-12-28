@@ -180,33 +180,40 @@ function Json2Head(strJson) {
 }
 
 //读取指定URL的JSON数据
-
 function ReadData(strUrl, Type) {
   var Data;
-  if (Type) {
-    $.ajax({
-      type: 'GET',
-      async: false, //同步
-      //async: true,
-      url: strUrl,
-      success: function(data, status) {
-        var obj = jQuery.parseJSON(data);
-        Data = obj;
-      }
-    });
-  } else {
-    $.ajax({
-      type: 'POST',
-      async: false, //同步
-      //async: true,
-      url: strUrl,
-      success: function(data, status) {
-        var obj = jQuery.parseJSON(data);
-        Data = obj;
-      }
-    });
-  }
+  Type = (Type)?'GET':'POST';
+  $.ajax({
+    type: Type,
+    async: false, //同步
+    //async: true,
+    url: strUrl,
+    success: function(data, status) {
+      var obj = jQuery.parseJSON(data);
+      Data = obj;
+    }
+  });
   return Data;
+}
+
+/**
+ * [UpdateData 更新/删除指定URL的数据]
+ * @param {[type]} strUrl [更新地址/删除地址]
+ * @param {[type]} Data   [更新或删除的内容（要求where条件为ID）]
+ * @param {[type]} Type   [1:GET/0:POST（默认）]
+ */
+function UpdateData(strUrl, Data,Type) {
+  Type = (Type)?'GET':'POST';
+  $.ajax({
+    type: Type,
+    async: false, //同步
+    //async: true,
+    url: strUrl,
+    success: function(data, status) {
+      var obj = $.parseJSON(data);
+      infoTips(obj.message, obj.type);
+    }
+  });
 }
 
 function GetSelectStr(Data) {
@@ -263,10 +270,10 @@ function initDashboardDaterange(YearType) {
 
   $('#dashboard-report-range').daterangepicker({
       opens: (App.isRTL() ? 'right' : 'left'),
-      startDate: moment().subtract(2, 'days'),
+      startDate: moment().subtract(29,'days'),
       endDate: moment(),
-      minDate: '01/01/2009',
-      maxDate: '12/31/2050',
+      minDate: '01/01/2000',
+      maxDate: '12/31/2099',
       //dateLimit: {days: 3650},
       showDropdowns: true,
       showWeekNumbers: true,
@@ -302,7 +309,7 @@ function initDashboardDaterange(YearType) {
       $('#dashboard-report-range span').html(start.format(YearType) + ' ~ ' + end.format(YearType));
     }
   );
-  $('#dashboard-report-range span').html(moment().subtract(2, 'days').format(YearType) + ' ~ ' + moment().format(YearType));
+  $('#dashboard-report-range span').html(moment().subtract(29, 'days').format(YearType) + ' ~ ' + moment().format(YearType));
   $('#dashboard-report-range').show();
 }
 
@@ -405,6 +412,102 @@ function sideBarHack() {
   $('ul.page-sidebar-menu a').addClass('nav-link nav-toggle');
 }
 
+function ChangeMainTheme(MainTheme)
+{
+  switch(MainTheme)
+    {
+      case 1:
+         color_ ='default';
+         break;
+      case 2:
+         color_ ='grey';
+         break;
+      case 3:
+         color_ ='light';
+         break;
+      case 4:
+         color_ ='light2';
+         break;
+      case 5:
+         color_ ='blue';
+         break;
+  /*case 6:
+         color_ ='blue-steel';
+         break;
+  case 7:
+         color_ ='red-intense';
+         break;
+  case 8:
+         color_ ='red-sunglo';
+         break;
+  case 9:
+         color_ ='yellow-crusta';
+         break;
+  case 10:
+         color_ ='blue-hoki';
+         break;
+  case 11:
+         color_ ='green-haze';
+         break;
+  case 12:
+         color_ ='purple-plum';
+         break;
+      case 13:
+         color_ ='purple-studio';
+         break;   
+  case 14:
+         color_ ='yellow-orange';
+         break;  */
+      default:
+         color_ ='darkblue';
+         break;
+    }
+   //切换系统主题
+   $('#style_color').attr("href", Layout.getLayoutCssPath() + 'themes/' + color_ + ".css");
+}
+
+function DarkInfoTheme(iStyle)
+{
+   if (iStyle ===1)
+    {
+      $(".dropdown").addClass("dropdown-dark");
+    }else
+    {
+      $(".dropdown").removeClass("dropdown-dark");
+    }
+}
+function RoundedTheme(iStyle)
+{
+   components_  = iStyle ? 'components-rounded' : 'components';
+   $('#style_components').attr("href", App.getGlobalCssPath() + components_ + ".css");
+}
+
+function resetLayout() {
+    $("body").
+    removeClass("page-boxed").
+    removeClass("page-footer-fixed").
+    removeClass("page-sidebar-fixed").
+    removeClass("page-header-fixed").
+    removeClass("page-sidebar-reversed");
+
+    $('.page-header > .page-header-inner').removeClass("container");
+
+    if ($('.page-container').parent(".container").size() === 1) {
+        $('.page-container').insertAfter('body > .clearfix');
+    }
+
+    if ($('.page-footer > .container').size() === 1) {
+        $('.page-footer').html($('.page-footer > .container').html());
+    } else if ($('.page-footer').parent(".container").size() === 1) {
+        $('.page-footer').insertAfter('.page-container');
+        $('.scroll-to-top').insertAfter('.page-footer');
+    }
+
+     $(".top-menu > .navbar-nav > li.dropdown").removeClass("dropdown-dark");
+
+    $('body > .container').remove();
+}
+
 function HeadFix() {
   if ($(document.body).outerWidth(true) > 480) {
     $(".page-sidebar-wrapper").css("margin-top", "-18px");
@@ -420,3 +523,47 @@ function initDom() {
     $("#today").text(today(0));
   }
 }
+ /**
+  * [CreateTableHead 创建表格头_要求]
+  * @param {[type]} Data     [表格数据/数据接口定义]
+  * @param {[type]} editMode [是否增加编辑/删除]
+  */
+ function CreateTableHead(Data,editMode) {
+   var strRow = '',strTD='',str='';
+   var i=0;
+   Data.header.map(function(elem){
+      if(i){
+        strTD += '<th>' + elem.title + '</th>';
+      }
+      i++;
+    });
+   if(editMode){
+      str='<th>编辑 </th>';
+      str+='<th>删除 </th>';
+   }
+   strRow += '<tr>' + strTD + str + '</tr>';
+   return strRow;
+ }
+
+ //生成表格体 
+ function CreateTableBody(Data,editMode) {
+   var strRow = '',strTD='',str='';
+   var ID,i;
+   Data.data.map(function(elem){
+      i = 0;
+      ID = elem[0];
+      if(editMode){
+         str='<td><a class="edit" href="javascript:;" data-sn="'+ ID +'">编辑</a></td>';
+         str+='<td><a class="delete" href="javascript:;" data-sn="'+ ID +'">删除</a></td>';
+       }
+      strTD='';
+      elem.map(function(elem){
+        if(i){
+          strTD += '<td>' + elem + '</td>';
+        }
+        i++;
+      });
+      strRow += '<tr>' + strTD + str+'</tr>';
+    });
+   return strRow;
+ }

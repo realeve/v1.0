@@ -49,7 +49,7 @@
 							 <i class="icon-cloud-download"></i>数据编辑.
 						</p>
 						<p>
-							 <i class="icon-heart"></i> 图片导出.
+							 <i class="icon-heart"></i> 图片导出.<i class="fa fa-angle-right"></i>
 						</p>
 						<p>
 							 <i class="icon-link"></i> 更多信息请访问:.
@@ -69,11 +69,11 @@
 						<span class="caption-subject bold uppercase" id="TableTitle"> 质量曲线图</span>
 						<span class="caption-helper" id="datasource">(数据来源:质量综合管理系统)...</span>
 					</div>						
-					<div class="actions">  	
-						<a class="btn btn-circle btn-icon-only btn-default fullscreen pull-right" href="#">
+					<div class="actions"> 						
+						<select class="bs-select form-control" data-style="blue" data-width="125px">
+						</select>		 		
+						<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
 						</a>
-						<select class="bs-select form-control input-small" data-style="green">
-						</select>	
 					</div>
 				</div>				
 				<div class="row">

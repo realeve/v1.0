@@ -52,8 +52,8 @@
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components-rounded.min.css' in the below style tag -->
-<link href="<?php echo base_url()?>assets/global/css/components-rounded.min.css" rel="stylesheet" type="text/css"/ id="style_components">
-<link href="<?php echo base_url()?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/global/css/components-md.min.css" rel="stylesheet" type="text/css" id="style_components"/>
+<link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>

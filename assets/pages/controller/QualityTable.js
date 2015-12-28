@@ -194,7 +194,7 @@ var dataTable = function() {
 			}, {
 				extend: 'colvis',
 				text: '隐藏数据列<i class="fa fa-angle-down"></i>',
-				className: "btn dark btn-outline",
+				className: "btn green-haze btn-outline",
 				//className: 'btn-fit-height green-haze dropdown-toggle'
 			}],
 			"bDeferRender": true,
@@ -222,12 +222,12 @@ var dataTable = function() {
 			scrollCollapse: true,
 			"initComplete": function() {
 				var api = this.api();
-				api.$('td').on('click', function() {
+				api.$(document).on("click",'td', function() {
 					api.search(this.innerText).draw();
 				});
 			$('.tools').append($('.tabletools-btn-group').clone(true));
 			$('.tbTools').remove();
-			infoTips(JSON.stringify(Data), 2);
+			//infoTips(JSON.stringify(Data), 2);
 
 				//添加 footer search
 				/* var footerHTML = '<tfoot class="hidden-sm hidden-xs"><tr>';
@@ -331,7 +331,7 @@ var dataTable = function() {
 	return {
 		//main function to initiate the module
 		init: function() {
-			$("button.applyBtn").on("click", function() {
+			$(document).on("click",".ranges li:not(:last),button.applyBtn", function() {
 				InitTable();
 			});
 
@@ -350,6 +350,7 @@ var dataTable = function() {
 }();
 //记录选择状态  
 jQuery(document).ready(function() {
+	RoundedTheme(0);
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');
 	initDom();
@@ -360,7 +361,6 @@ jQuery(document).ready(function() {
 	//初始化表格
 
 	//ChangeMainTheme(1);
-	//RoundedTheme(0);
 });
 jQuery(window).resize(function() {
 	HeadFix();

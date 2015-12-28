@@ -7,7 +7,7 @@ var QuickSidebar = function () {
     var handleQuickSidebarToggler = function () {
         // quick sidebar toggler
         $('.dropdown-quick-sidebar-toggler a, .page-quick-sidebar-toggler, .quick-sidebar-toggler').click(function (e) {
-            $('body').toggleClass('page-quick-sidebar-open'); 
+            $('body').toggleClass('page-quick-sidebar-open');
         });
     };
 
@@ -165,8 +165,8 @@ var QuickSidebar = function () {
 
 }();
 
-if (App.isAngularJsApp() === false) { 
-    jQuery(document).ready(function() {    
+if (App.isAngularJsApp() === false) {
+    jQuery(document).ready(function() {
        QuickSidebar.init(); // init metronic core componets
     });
 }

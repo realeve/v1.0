@@ -82,29 +82,42 @@
 
 				<div class="portlet-body form">
 					<div class="tab-content">
-						<div class="tab-pane" id="portlet_tab1">
-							<div class="scroller form-body" style="height: 700px;">
-								<!--/row-->
-								<h4 class="form-section font-blue-hoki">1.通用设置</h4>
-
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">i.统计方式</label>									
-											<select name="QueryWay" id="QueryWay" class="select2_category bs-select form-control select2me"  data-placeholder="请选择统计方式...">
-												<option value=""></option>												
-												<option value="1">逐月统计</option>
-												<option value="2" selected>汇总统计</option>																					
-											</select>
-											<span class="help-block">
-											(您是想逐月统计还是汇总统计)</span>
-										</div>
+						<div class="tab-pane" id="portlet_tab1">							
+							<div class="portlet light bordered">
+								<div class="portlet-title">
+									<div class="caption font-green-sharp">
+										<i class="icon-speech font-green-sharp"></i>
+										<span class="caption-subject bold uppercase" id="apiList_TableTitle"> 表单名称</span>
+										<span class="caption-helper" id="sample_datasource">(数据来源:质量综合管理系统)...</span>
 									</div>
+									<div class="tools" id="apiList_tools"></div>
 								</div>
-								<div class="form-actions right">
-									<button id="QueryData2" class="btn btn-success btn-circle green"><i class="icon-magnifier"></i>查询数据</button>
-								</div>
-							</div>
+                                <div class="portlet-body">
+                                    <!--div class="table-toolbar pull-right">
+		                                    <div class="btn-group">
+		                                        <button id="apiList_new" class="btn green">
+		                                            添加接口 <i class="fa fa-plus"></i>
+		                                        </button>
+		                                    </div>
+                                    </div-->
+                                    <table class="table table-striped table-bordered table-hover table-header-fixed" id="apiList">
+                                        <thead class="hidden-sm">
+	                                        <tr>
+	                                            <th>序号</th>
+	                                            <th>所有者</th>
+	                                            <th>数据库</th>
+	                                            <th>接口名称</th>
+	                                            <th>查询语句</th>
+	                                            <th>参数列表</th>
+	                                            <th>编辑</th>
+	                                            <th>删除</th>
+	                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 						</div>
 						<div class="tab-pane active container-fluid" id="portlet_tab2">
 							<!-- BEGIN PAGE CONTENT-->							
@@ -175,7 +188,7 @@
 											 所属数据库
 										</td>
 										<td>
-											<a href="#" id="DataBaseID" data-type="select" data-pk="1" data-value="0" data-original-title="请选择数据库">
+											<a href="#" id="DataBaseID" data-type="select2" data-pk="1" data-value="0" data-original-title="请选择数据库">
 											 </a>
 										</td>
 										<td>
@@ -204,8 +217,13 @@
 											 接口参数
 										</td>
 										<td>
-											<a href="#" id="params" data-type="select2" data-pk="1" data-original-title="参数说明">
-											tstart,tend </a>
+											<!--a href="#" id="params" data-type="select2" data-pk="1" data-original-title="参数说明">
+											tstart,tend </a-->
+											<input type="text" id="params" value="tstart,tend" data-role="tagsinput">
+											 <!--select multiple id="params" data-role="tagsinput">
+                                                <option value="tstart">tstart</option>
+                                                <option value="tend">tend</option>
+                                            </select-->
 										</td>
 										<td>
 											<span class="text-muted">
@@ -290,14 +308,14 @@
 				</div>
 			</div>
 			
-			<div class="portlet light bordered">
+			<div class="portlet light bordered" name="api_View">
 				<div class="portlet-title">
 					<div class="caption font-green-sharp">
 						<i class="icon-speech font-green-sharp"></i>
-						<span class="caption-subject bold uppercase" id="TableTitle"> 表单名称</span>
-						<span class="caption-helper" id="datasource">(数据来源:质量综合管理系统)...</span>
+						<span class="caption-subject bold uppercase" id="sample_TableTitle"> 表单名称</span>
+						<span class="caption-helper" id="sample_datasource">(数据来源:质量综合管理系统)...</span>
 					</div>
-					<div class="tools"></div>
+					<div class="tools" id="sample_tools"></div>
 				</div>
 				<div class="portlet-body form">	
 					<table class="table table-striped table-bordered table-hover table-header-fixed" id="sample">

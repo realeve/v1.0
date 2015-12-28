@@ -92,7 +92,7 @@ $.extend( DataTable.ext.buttons, {
 		text: function ( dt, button, conf ) {
 			return conf._columnText( dt, conf.columns );
 		},
-		className: 'buttons-columnVisibility grey-steel datatables-full-width',
+		className: 'buttons-columnVisibility grey-mint datatables-full-width',
 		action: function ( e, dt, button, conf ) {
 			var col = dt.columns( conf.columns );
 			var curr = col.visible();

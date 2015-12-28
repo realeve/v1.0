@@ -54,6 +54,7 @@
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>

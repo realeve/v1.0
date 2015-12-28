@@ -30,10 +30,7 @@
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-<script src="<?php echo base_url()?>assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?php echo base_url()?>assets/global/scripts/app.min.js" type="text/javascript"></script>
@@ -45,7 +42,6 @@
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/fuelux/js/spinner.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>
@@ -55,7 +51,6 @@
 
 <script src="<?php echo base_url()?>assets/global/plugins/echarts/js/echarts.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/echarts/js/ThemeStyle.js" type="text/javascript"></script>
-
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?php echo base_url()?>assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>

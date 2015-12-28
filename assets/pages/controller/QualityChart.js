@@ -66,7 +66,7 @@
      var TimeRange = $("#dashboard-report-range span").html();
      var TimeStart = TimeRange.split(' ~ ')[0];
      var TimeEnd = TimeRange.split(' ~ ')[1];
-     var strUrl = getRootPath() + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&chartType=line&ID=" + iID + "&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&t=" + Math.random();
+     var strUrl = getRootPath() + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&chartType=bar&ID=" + iID + "&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&t=" + Math.random();
      return strUrl;
    }
 
@@ -277,7 +277,7 @@
        for (i = 0; i < iChart; i++) {
          chartID = "eChart-main" + i;
          if (typeof str === 'undefined') {
-           str = GetJsonUrl(i + 18);
+           str = GetJsonUrl(i + 17);
          }
          option = getOption(str);
          if (option !== false) {
@@ -375,13 +375,20 @@
      }
 
      function initThemeOption() {
-       if ($(".bs-select option").length) {
+       if ($('.actions select opotion').length) {
          return false;
        }
-       var themeSelector = $(".bs-select");
+       var themeSelector = $(".actions select");
        themeSelector.html(
          '<option name="default">default</option>' + '<option name="real2" selected="true" >real2</option>' + '<option name="real">real</option>' + '<option name="macarons">macarons</option>' + '<option name="helianthus">helianthus</option>' + '<option name="infographic">infographic</option>' + '<option name="shine">shine</option>' + '<option name="dark">dark</option>' + '<option name="blue">blue</option>' + '<option name="green">green</option>' + '<option name="red">red</option>' + '<option name="gray">gray</option>' + '<option name="roma">roma</option>' + '<option name="macarons2">macarons2</option>' + '<option name="sakura">sakura</option>'
        );
+
+        $('.bs-select').selectpicker({
+            iconBase: 'fa',
+            tickIcon: 'fa-check'
+        });
+        $('select.bs-select').hide()
+        //$('div.bs-select').css({'margin-top':'-40px','margin-right':'20px'});
      }
 
      function blindChart() {
@@ -415,7 +422,7 @@
 
      function initTheme() //初始化主题模块
      {
-       var themeSelector = $(".bs-select");
+       var themeSelector = $(".actions select");
        if (themeSelector) {
          $(themeSelector).change(function() {
            selectChange($(this).val()); //更新图表主题
@@ -423,9 +430,9 @@
        }
      }
 
-     $("button.applyBtn").on("click", function() {
+     $(document).on("click",".ranges li:not(:last),button.applyBtn", function() {
        var themeSelector;
-       themeSelector = $(".bs-select");
+       themeSelector = $(".actions select");
        require(['theme/' + themeSelector.val()], function(tarTheme) {
          curTheme = tarTheme;
          setTimeout(showChart(curTheme), 500);
@@ -436,7 +443,7 @@
      $("#Preview").on('click',
        function() {
          var strUrl = $('#PreviewUrl').val();
-         var themeSelector = $(".bs-select");
+         var themeSelector = $(".actions select");
          require(['theme/' + themeSelector.val()], function(tarTheme) {
            curTheme = tarTheme;
            setTimeout(showChart(curTheme, strUrl + '&chartType=line'), 500);
@@ -462,7 +469,7 @@
      ReadSettings();
      mECharts.init();
      //初始化表格
-
+     $.fn.select2.defaults.set("theme", "bootstrap");
      //ChangeMainTheme(1);
      //RoundedTheme(0);
 

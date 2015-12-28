@@ -1110,7 +1110,8 @@ $.extend( _dtButtons, {
 		action: function ( e, dt, button, config ) {
 			var background;
 			var host = button;
-			host = $('.buttons-colvis');
+			var tblID = e.currentTarget.attributes['aria-controls'].nodeValue;
+			host = $('.buttons-colvis[aria-controls="'+ tblID +'"]');
 			var hostOffset = host.offset();
 			var tableContainer = $( dt.table().container() );
 			var multiLevel = false;
@@ -1137,12 +1138,13 @@ $.extend( _dtButtons, {
 			else if ( position === 'absolute' ) {
 				config._collection.css( {
 					top: hostOffset.top + host.outerHeight(),
-					left: hostOffset.left -49
+					left: hostOffset.left//-49
 				} );
 				var listRight = hostOffset.left + config._collection.outerWidth();
 				var tableRight = tableContainer.offset().left + tableContainer.width();
 				if ( listRight > tableRight ) {
 					config._collection.css( 'left', hostOffset.left - ( listRight - tableRight ) +17 );
+					
 					//console.log( hostOffset.left -  listRight + tableRight+37 );
 					//console.log(listRight);
 					//console.log(tableRight);

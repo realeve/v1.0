@@ -26,8 +26,8 @@
                   <span>
                   样式 </span>
                   <select class="layout-style-option form-control input-sm">
-                     <option value="square" selected="selected">方角</option>
-                     <option value="rounded">圆角</option>
+                     <option value="square">方角</option>
+                     <option value="rounded" selected="selected">圆角</option>
                   </select>
                </div>
                <div class="theme-option">

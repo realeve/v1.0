@@ -1,41 +1,42 @@
 ﻿<!-- BEGIN QUICK SIDEBAR -->
-   <a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>
-   <div class="page-quick-sidebar-wrapper">
+   <a href="javascript:;" class="page-quick-sidebar-toggler">
+      <i class="icon-login"></i></a>
+   <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
       <div class="page-quick-sidebar">
          <div class="nav-justified">
             <ul class="nav nav-tabs nav-justified">
                <li class="active">
-                  <a href="#quick_sidebar_tab_4" data-toggle="tab">
+                  <a href="javascript:;" data-target="#quick_sidebar_tab_4" data-toggle="tab">
                   查询 <span class="badge badge-info">2</span>
                   </a>
                </li>
                <li>
-                  <a href="#quick_sidebar_tab_1" data-toggle="tab">
+                  <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab">
                   好友 <span class="badge badge-danger">2</span>
                   </a>
                </li>
                <li>
-                  <a href="#quick_sidebar_tab_2" data-toggle="tab">
+                  <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
                   系统 <span class="badge badge-success">7</span>
                   </a>
                </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                   更多<i class="fa fa-angle-down"></i>
                   </a>
                   <ul class="dropdown-menu pull-right" role="menu">
                      <li>
-                        <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
                         <i class="icon-bell"></i> 提醒 </a>
                      </li>
                      <li>
-                        <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
                         <i class="icon-info"></i> 消息 </a>
                      </li>
                      <li class="divider">
                      </li>
                      <li>
-                        <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
                         <i class="icon-settings"></i> 系统设置 </a>
                      </li>
                   </ul>
@@ -218,7 +219,7 @@
                            <div class="media-body">
                               <h4 class="media-heading">Deon Portalatin</h4>
                               <div class="media-heading-sub">
-                                  CFO, H&D LTD
+                                  CFO, H D LTD
                               </div>
                            </div>
                         </li>
@@ -249,7 +250,7 @@
                      </ul>
                   </div>
                   <div class="page-quick-sidebar-item">
-                     <div class="page-quick-sidebar-chat-user">
+                     <div class="page-quick-sidebar-chat-user" style="height:100%;">
                         <div class="page-quick-sidebar-nav">
                            <a href="javascript:;" class="page-quick-sidebar-back-to-list"><i class="icon-arrow-left"></i>Back</a>
                         </div>
@@ -258,7 +259,7 @@
                               <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
                               <div class="message">
                                  <span class="arrow"></span>
-                                 <a href="#" class="name">Bob Nilson</a>
+                                 <a href="javascript:;" class="name">Bob Nilson</a>
                                  <span class="datetime">20:15</span>
                                  <span class="body">
                                  When could you send me the report ? </span>
@@ -268,7 +269,7 @@
                               <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
                               <div class="message">
                                  <span class="arrow"></span>
-                                 <a href="#" class="name">Ella Wong</a>
+                                 <a href="javascript:;" class="name">Ella Wong</a>
                                  <span class="datetime">20:15</span>
                                  <span class="body">
                                  Its almost done. I will be sending it shortly </span>
@@ -278,7 +279,7 @@
                               <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
                               <div class="message">
                                  <span class="arrow"></span>
-                                 <a href="#" class="name">Bob Nilson</a>
+                                 <a href="javascript:;" class="name">Bob Nilson</a>
                                  <span class="datetime">20:15</span>
                                  <span class="body">
                                  Alright. Thanks! :) </span>
@@ -288,7 +289,7 @@
                               <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
                               <div class="message">
                                  <span class="arrow"></span>
-                                 <a href="#" class="name">Ella Wong</a>
+                                 <a href="javascript:;" class="name">Ella Wong</a>
                                  <span class="datetime">20:16</span>
                                  <span class="body">
                                  You are most welcome. Sorry for the delay. </span>
@@ -298,60 +299,22 @@
                               <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
                               <div class="message">
                                  <span class="arrow"></span>
-                                 <a href="#" class="name">Bob Nilson</a>
+                                 <a href="javascript:;" class="name">Bob Nilson</a>
                                  <span class="datetime">20:17</span>
                                  <span class="body">
                                  No probs. Just take your time :) </span>
                               </div>
-                           </div>
-                           <div class="post in">
-                              <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
-                              <div class="message">
-                                 <span class="arrow"></span>
-                                 <a href="#" class="name">Ella Wong</a>
-                                 <span class="datetime">20:40</span>
-                                 <span class="body">
-                                 Alright. I just emailed it to you. </span>
-                              </div>
-                           </div>
-                           <div class="post out">
-                              <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
-                              <div class="message">
-                                 <span class="arrow"></span>
-                                 <a href="#" class="name">Bob Nilson</a>
-                                 <span class="datetime">20:17</span>
-                                 <span class="body">
-                                 Great! Thanks. Will check it right away. </span>
-                              </div>
-                           </div>
-                           <div class="post in">
-                              <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar2.jpg"/>
-                              <div class="message">
-                                 <span class="arrow"></span>
-                                 <a href="#" class="name">Ella Wong</a>
-                                 <span class="datetime">20:40</span>
-                                 <span class="body">
-                                 Please let me know if you have any comment. </span>
-                              </div>
-                           </div>
-                           <div class="post out">
-                              <img class="avatar" alt="" src="<?php echo base_url()?>assets/layouts/layout/img/avatar3.jpg"/>
-                              <div class="message">
-                                 <span class="arrow"></span>
-                                 <a href="#" class="name">Bob Nilson</a>
-                                 <span class="datetime">20:17</span>
-                                 <span class="body">
-                                 Sure. I will check and buzz you if anything needs to be corrected. </span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="page-quick-sidebar-chat-user-form">
-                           <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Type a message here...">
-                              <div class="input-group-btn">
-                                 <button type="button" class="btn blue"><i class="icon-paper-clip"></i></button>
-                              </div>
-                           </div>
+                           </div> 
+                           <div class="page-quick-sidebar-chat-user-form">
+                               <div class="input-group">
+                                   <input type="text" class="form-control" placeholder="Type a message here...">
+                                   <div class="input-group-btn">
+                                       <button type="button" class="btn green">
+                                           <i class="icon-paper-clip"></i>
+                                       </button>
+                                   </div>
+                               </div>
+                           </div>                        
                         </div>
                      </div>
                   </div>
