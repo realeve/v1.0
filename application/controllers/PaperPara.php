@@ -2,10 +2,6 @@
 
 class PaperPara extends CI_Controller {
 
-	const TBL_PHYSIC 	= 'Paper_Para_PscData';
-	const TBL_CHEM		= 'Paper_Para_ChemData';
-	const TBL_SURFACE 	= 'Paper_Para_SurfaceData';
-
 	public function __construct()
 	{
 	  	parent::__construct();
@@ -126,44 +122,6 @@ class PaperPara extends CI_Controller {
 		);
 		$LogData = $this->QualityChartModel->ReadSettings($Settings);
 		$this->output->set_output($LogData);
-	}
-
-	public function insert()
-	{
-		$data = $this->input->post(NULL);
-        $this->output->set_output(json_encode($data)); 
-		if (!isset($data['tbl'])) {
-        	$data['message'] = '请指定插入的表单名称';
-            $data['type'] = 0;        
-        	$this->output->set_output(json_encode($data));  
-        	return;
-        };
-		$data['record_time'] = $this->DataInterfaceModel->getCurDate();
-		switch ($data['tbl']) {
-			case 0:
-				$tblName = self::TBL_PHYSIC;
-				break;
-			case 1:
-				$tblName = self::TBL_CHEM;
-				break;
-			case 2:
-				$tblName = self::TBL_SURFACE;
-				break;
-		}  ;
-		unset($data['tbl']);
-        //将备注信息单独处理(中文编码问题)
-        $returnData['data'] = $data;
-        $data['remark'] = $this->DataInterfaceModel->TransToGBK($data['remark']);
-		if ($this->DataInterfaceModel->addData($data,$tblName)) {
-            #插入数据成功
-            $returnData['message'] = '添加数据成功';
-            $returnData['type'] = 1;
-        } else {
-            #插入数据失败
-            $returnData['message'] = '添加数据失败';
-            $returnData['type'] = 0;
-        };
-        $this->output->set_output(json_encode($returnData));
 	}
 
 }

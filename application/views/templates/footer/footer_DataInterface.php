@@ -87,6 +87,7 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <!--BEGIN MY LEVEL SCRIPT-->
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.min.js"></script>
+<script src="<?php echo base_url();?>assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/pages/controller/DataInterface.min.js"></script>
 <!--END MY LEVEL SCRIPT-->
 <!-- END JAVASCRIPTS -->

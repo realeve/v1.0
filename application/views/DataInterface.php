@@ -148,7 +148,7 @@
 											 创建者
 										</td>
 										<td>
-											<a href="#" id="Author" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-original-title="接口建立人员">
+											<a href="#" id="AuthorName" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-original-title="接口建立人员">
 											<?php echo $username?></a>
 										</td>
 										<td>

@@ -41,7 +41,7 @@ function SaveSettings() {
 }
 
 function ReadSettings() {
-  var strUrl = getRootUrl('QualityTable') + "/ReadSettings";
+  var strUrl = getRootPath() + "/QualityTable/ReadSettings";
   $.ajax({
     type: 'POST',
     async: false, //同步
@@ -222,7 +222,7 @@ DataType:Array/Json.
 
   //初始化接口列表
   var initApiList = function() {
-    var strUrl = getRootPath(0) + '/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=0&M=3&t=' + Math.random();
+    var strUrl = getRootPath(1) + '/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=0&M=3&t=' + Math.random();
     var Data = ReadData(strUrl);
     var str = CreateTableBody(Data, true);
     $('#apiList tbody').html(str);
@@ -318,7 +318,8 @@ DataType:Array/Json.
         $('#apiList').parent().find('.tabletools-btn-group').remove();
       }
     };
-    var oTable = $('#apiList').dataTable(initData);
+    var table = $('#apiList');
+    var oTable = table.dataTable(initData);
     var nEditing = null;
     var ID;
 
@@ -336,42 +337,54 @@ DataType:Array/Json.
     function editRow(oTable, nRow) {
       var aData = oTable.fnGetData(nRow);
       var jqTds = $('>td', nRow);
-      jqTds[3].innerHTML = '<textarea type="text" class="form-control">';
-      $('textarea').last().text(aData[3]);
-      jqTds[4].innerHTML = '<textarea type="text" class="form-control">';
-      $('textarea').last().text(aData[4]);
-      jqTds[5].innerHTML = '<textarea type="text" class="form-control">';
-      $('textarea').last().text(aData[5]);
-      $('textarea').height('240px');
+      jqTds[3].innerHTML = '<input type="text" class="form-control" value="' + aData[3] + '">';
+      jqTds[4].innerHTML = '<input type="text" class="form-control input-large" value="' + aData[4] + '">';
+      jqTds[5].innerHTML = '<input type="text" class="form-control" value="' + aData[5] + '">';
+      jqTds[6].innerHTML = '<a class="edit" href="javascript:;" data-sn="'+ ID +'">保存</a>';
+      jqTds[7].innerHTML = '<a class="cancel" href="javascript:;" data-sn="'+ ID +'">取消</a>';
     }
 
     function saveRow(oTable, nRow) {
+      var jqInputs = $('input', nRow);
       var data = {
-        'ApiName': $('textarea:nth(0)').text(),
-        'strSQL': $('textarea:nth(1)').text(),
-        'Params': $('textarea:nth(2)').text(),
-        'id': ID
+        "ApiName": jqInputs[0].value,
+        "strSQL": jqInputs[1].value,
+        "Params": jqInputs[2].value,
+        "utf2gbk": [
+            {
+                "title": "ApiName"
+            },
+            {
+                "title": "strSQL"
+            },
+            {
+                "title": "Params"
+            }
+        ],
+        "id": ID,
+        "tbl":30
       };
-      //种类、商品、数量不能为空
-      if (0 !== data.ApiName && 0 !== data.strSQL && 0 !== data.params) {
-        oTable.fnUpdate(data.ApiName, nRow, 3, false);
-        oTable.fnUpdate(data.strSQL, nRow, 4, false);
-        oTable.fnUpdate(data.params, nRow, 5, false);
+      if ('' !== data.ApiName && '' !== data.strSQL && '' !== data.Params) {
+        oTable.fnUpdate(jqInputs[0].value, nRow, 3, false);
+        oTable.fnUpdate(jqInputs[1].value, nRow, 4, false);
+        oTable.fnUpdate(jqInputs[2].value, nRow, 5, false);
+        oTable.fnUpdate('<a class="edit" href="javascript:;" data-sn="'+ ID +'">编辑</a>', nRow, 6, false);
+        oTable.fnUpdate('<a class="delete"href="javascript:;" data-sn="'+ ID +'">删除</a>', nRow, 7, false);
+        oTable.fnDraw();
 
         var url = getRootPath() + '/DataInterface/update';
-        UpdateData(url, data);
+        $.post(url,data,function(data){
+            var obj = $.parseJSON(data);
+            infoTips(obj.message, obj.type);
+        });
 
-        $('a[data-sn=' + ID + ']:eq(0)').text('编辑');
-        $('a[data-sn=' + ID + ']:eq(1)').text('删除');
-        $('a[data-sn=' + ID + ']:eq(1)').removeClass('cancel');
-        $('a[data-sn=' + ID + ']:eq(1)').addClass('delete');
-        //oTable.fnDraw();
       } else {
         infoTips('相应单元格内容不能为空');
       }
+      //相应保存代码
     }
 
-    $('#apiList').on('click', '.edit', function(e) {
+    table.on('click', '.edit', function(e) {
       ID = $(this).attr('data-sn');
       e.preventDefault();
       /* Get the row as a parent of the link that was clicked on */
@@ -397,6 +410,43 @@ DataType:Array/Json.
         $(this).parent().parent().find('a:eq(1)').addClass('cancel');
       }
     });
+    table.on('click', '.delete', function (e) {
+        e.preventDefault();
+        var obj = $(this);
+        bootbox.dialog({
+            message: "确定删除这条信息?",
+            title: "删除信息",
+            buttons: {
+              success: {
+                label: "删除",
+                className: "green",
+                callback: function() {
+                  var url = getRootPath() + '/DataInterface/delete';
+                  $.post(url,{id:obj.attr('data-sn'),tbl:30},function(data){
+                      var nRow = obj.parents('tr')[0];
+                      oTable.fnDeleteRow(nRow);
+                      infoTips("数据成功删除",1);
+                  });
+                }
+              },
+              main: {
+                label: "取消",
+                className: "red",
+                callback: function() {
+                  return;
+                }
+              }
+            }
+        });
+        
+    });
+
+    table.on('click', '.cancel', function (e) {
+        e.preventDefault();
+        restoreRow(oTable, nEditing);
+        nEditing = null;
+    });
+
   };
 
   return {
@@ -539,32 +589,6 @@ showbuttons: false
 $(this).html('<pre>' + value + '</pre>');
 }*/
     });
-    $('#params').editable({
-      inputclass: 'form-control input-medium',
-      select2: {
-        tags: ['tstart', 'tend', 'tstart2', 'tend2', 'tstart3', 'tend3', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10'],
-        tokenSeparators: [",", " "]
-      },
-      validate: function(value) {
-        if ($.trim(value) === '') return '该字段不能为空，无参数时可设置任意字段';
-      },
-      success: function(response, value) {
-        var strUrl = $('#url').text();
-        if ($.trim(value) !== '') {
-          var i = 0,
-            strTemp = '';
-          for (; i < value.length; i++) {
-            var j = i + 1;
-            strTemp += "&" + value[i] + "=参数" + j;
-          }
-          strUrl += strTemp;
-          $("#PreviewUrl").val($.trim(strUrl));
-          return value;
-        } else {
-          $("#PreviewUrl").val($.trim(strUrl));
-        }
-      }
-    });
 
     $('#note').editable({
       showbuttons: (App.isRTL() ? 'left' : 'right'),
@@ -629,6 +653,7 @@ $(this).html('<pre>' + value + '</pre>');
           infoTips("接口名、查询语句以及接口参数不允许为空,请检查后重新提交", 1);
           return;
         }
+         APIData.params = $('#params').val().split(",");
         $.post(strUrl, APIData,
           function(data) {
             var obj = jQuery.parseJSON(data);

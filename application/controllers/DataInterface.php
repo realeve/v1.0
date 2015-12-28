@@ -53,21 +53,12 @@ class DataInterface extends CI_Controller {
 	//保存接口
 	public function SaveAPI()
 	{
-		/*$APIData = array(
-			'ApiID' 	=> 	$this->input->post('ApiID'),
-			'ApiName' 	=>	$this->input->post('ApiName'),
-			'Author' 	=> 	md5($this->input->post('Author')),
-			'ApiDesc' 	=>	$this->input->post('ApiDesc'),
-			'strSQL' 	=> 	$this->input->post('strSQL'),
-			'DBID' 		=> 	$this->input->post('DBID'),
-			'URL' 		=>	$this->input->post('URL')
-		);*/
 		$APIData = $this->input->post(NULL);
 		//转换Params
 		$string1 = "";
 		foreach ($APIData['params'] as $str) $string1 .= $str . ",";
 		$APIData['params'] = rtrim($string1, ",");
-
+		$APIData['AuthorName'] = $this->session->userdata('username');
 		$ReturnData = $this->DataInterfaceModel->SaveAPI($APIData);
 		$this->output->set_output(json_encode($ReturnData));
 	}
@@ -89,5 +80,56 @@ class DataInterface extends CI_Controller {
 	 	$this->output->set_output($Data);
 	}
 
+	public function insert()
+	{
+		$data = $this->input->post(NULL);
+		if (!isset($data['tbl'])) {
+        	$data['message'] = '请指定插入的表单名称';
+            $data['type'] = 0;        
+        	$this->output->set_output(json_encode($data));  
+        	return;
+        };
+		$data['record_time'] = $this->DataInterfaceModel->getCurDate();
+
+        //将备注信息单独处理(中文编码问题)
+        $data['remark'] = $this->DataInterfaceModel->TransToGBK($data['remark']);
+		if ($this->DataInterfaceModel->insert($data)) {
+            #插入数据成功
+            $returnData['message'] = '添加数据成功';
+            $returnData['type'] = 1;
+        } else {
+            #插入数据失败
+            $returnData['message'] = '添加数据失败';
+            $returnData['type'] = 0;
+        };
+        $this->output->set_output(json_encode($returnData));
+	}
+
+
+	public function delete()//读取接口数据
+	{
+		$data = $this->input->post(NULL);	
+		if ($this->DataInterfaceModel->delete($data)) {
+            $returnData['message'] = '删除数据成功';
+            $returnData['type'] = 1;
+        } else {
+            $returnData['message'] = '删除数据失败';
+            $returnData['type'] = 0;
+        };
+        $this->output->set_output(json_encode($returnData));
+	}
+
+	public function update()//读取接口数据
+	{
+		$data = $this->input->post(NULL);
+		if ($this->DataInterfaceModel->update($data)) {
+            $returnData['message'] = '更新数据成功';
+            $returnData['type'] = 1;
+        } else {
+            $returnData['message'] = '更新数据失败';
+            $returnData['type'] = 0;
+        };
+        $this->output->set_output(json_encode($returnData));
+	}
 }
 

@@ -175,7 +175,7 @@ var PaperParam = function() {
 
 	function addData() {
 		//var strUrl = getRootUrl('PaperPara') + 'insert';
-		var strUrl = getRootPath()+"/PaperPara/insert";
+		var strUrl = getRootPath()+"/DataInterface/insert";
 		var options = {
 			url: strUrl,
 			type: 'post',

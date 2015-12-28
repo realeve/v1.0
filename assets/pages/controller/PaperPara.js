@@ -162,7 +162,7 @@ var PaperParam = function() {
 
 		function insertData() {
 			//var strUrl = getRootUrl('PaperPara') + 'insert';
-			var strUrl = getRootPath()+"/PaperPara/insert";
+			var strUrl = getRootPath()+"/DataInterface/insert";
 			var iData = getFormData('theForm');
 			iData.tbl = 0;
 			iData.class_ID = GetRadioChecked('class_ID');

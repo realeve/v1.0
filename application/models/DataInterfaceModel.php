@@ -1,9 +1,72 @@
 <?php
 class DataInterfaceModel extends CI_Model {
 	const PRE_STR 	= 'QCCenter';//字符前缀
+
+	/**
+	 * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
+	 */
+	//0-10 质量中心数据库
+	const TBL_PHYSIC 	= 'Paper_Para_PscData';      //0 物理站
+	const TBL_CHEM		= 'Paper_Para_ChemData';	 //1 化验站
+	const TBL_SURFACE 	= 'Paper_Para_SurfaceData';	 //2 物理外观指标
+	const TBL_PPR_OPR	= 'Paper_Para_Operator';	 //3 操作员
+	const TBL_PPR_PROD	= 'Paper_ProductData';		 //4 钞纸品种
+	const TBL_PPR_MCH	= 'Paper_Machine_Info';		 //5 钞纸机台
+	const TBL_PRT_PROD	= 'ProductData';			 //6 印钞品种
+	const TBL_PRT_MCH	= 'MachineData';			 //7 印钞机台
+
+	const TBL_USR		= 'tblUser';				 //20 用户信息
+	const TBL_DPMT		= 'tblDepartMent';			 //21 用户所在部门/分组
+	const TBL_WORK_LOG_PROC	= 'tblWorkProc';			 //22 工作日志_工序
+	const TBL_WORK_LOG_MCH = 'tblMachine';			 //23 工作日志_机台信息
+	const TBL_WORK_PROD	= 'tblProduct';				 //24 工作日志_品种
+	const TBL_WORK_LOG 	= 'tblWorkLog_Record';		 //25 工作日志
+	const TBL_WORK_LOG_STUS = 'tblWorkProStatus';	 //26 工作日志_故障处理状态
+	const TBL_WORK_ERR_LIST = 'tblWorkErrDesc';		 //27 工作日志_故障类型
+	const TBL_MIC_BLOG	= 'tblMicroBlog_Record';	 //28 个人记事本
+	const TBL_DB		= 'tblDataBaseInfo';		 //29 数据库列表
+	const TBL_API		= 'tblDataInterface';		 //30 API列表
+
 	public function __construct()
 	{
 		$this->load->database();
+	}
+	
+	public function getCurDate()
+	{
+		$a=date("Y");
+	    $b=date("m");
+	    $c=date("d");
+	    $d=date("G");
+	    $e=date("i");
+	    $f=date("s");
+	    return $a.'-'.$b.'-'.$c.' '.$d.':'.$e.':'.$f;
+	}
+
+	public function getDBName($id)
+	{
+		$tblName = array(
+			0 =>self::TBL_PHYSIC,
+			1 =>self::TBL_CHEM,
+			2 =>self::TBL_SURFACE,
+			3 =>self::TBL_PPR_OPR,
+			4 =>self::TBL_PPR_PROD,
+			5 =>self::TBL_PPR_MCH,
+			6 =>self::TBL_PRT_PROD,
+			7 =>self::TBL_PRT_MCH,
+			20=>self::TBL_USR,
+			21=>self::TBL_DPMT,
+			22=>self::TBL_WORK_LOG_PROC,
+			23=>self::TBL_WORK_LOG_MCH,
+			24=>self::TBL_WORK_PROD,
+			25=>self::TBL_WORK_LOG,
+			26=>self::TBL_WORK_LOG_STUS,
+			27=>self::TBL_WORK_ERR_LIST,
+			28=>self::TBL_MIC_BLOG,
+			29=>self::TBL_DB,
+			30=>self::TBL_API,
+		);
+		return $tblName[$id];
 	}
 
 	public function TransToUTF($data){
@@ -17,7 +80,7 @@ class DataInterfaceModel extends CI_Model {
 	{
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);	
 		$StrSQL = "SELECT ISNULL(MAX(ApiID),0)+1 as NewID  FROM  tblDataInterface  where Token=?";
-		$query = $LOGINDB->query($StrSQL,array(sha1($UserName)));
+		$query = $LOGINDB->query($StrSQL,array(sha1(self::PRE_STR.$UserName)));
 		$strJson = $query->result_json();	
 		$strReturn = json_decode($strJson)->data[0]->NewID;
 		$query->free_result(); //清理内存
@@ -32,18 +95,18 @@ class DataInterfaceModel extends CI_Model {
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 		//先获取当前用户ID		
 		$data['ApiName'] = $this->TransToGBK($data['ApiName']);
-		//$data['Author'] = sha1($data['Author']);
-		$data['Author'] = $this->TransToGBK($data['Author']);
-		$data['Token'] = sha1(self::PRE_STR.$data['Author']);		
+		//$data['AuthorName'] = sha1($data['AuthorName']);
+		$data['AuthorName'] = $this->TransToGBK($data['AuthorName']);
+		$data['Token'] = sha1(self::PRE_STR.$data['AuthorName']);		
 		$data['ApiDesc'] = $this->TransToGBK($data['ApiDesc']);
 		$data['strSQL'] = $this->TransToGBK($data['strSQL']);
 
-		$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['Author'] ."' and ApiID = ".$data['ApiID'];
+		$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['AuthorName'] ."' and ApiID = ".$data['ApiID'];
 		$query=$LOGINDB->query($SQLStr);
 		if($query->num_rows()>0)
 		{
 			//更新
-			$LOGINDB->where('Author', $data['Author']);
+			$LOGINDB->where('AuthorName', $data['AuthorName']);
 			$LOGINDB->where('ApiID', $data['ApiID']);
 			$LOGINDB->update('tblDataInterface', $data); 
 		}else
@@ -175,20 +238,47 @@ class DataInterfaceModel extends CI_Model {
 		return $strJson;	
 	}
 
-	public function addData($data,$tblName)
+	public function insert($data,$tblName)
 	{
-		$LOGINDB=$this->load->database('Quality',TRUE);		
+		if ($data['tbl'] >= 20) {
+			$LOGINDB=$this->load->database('sqlsvr',TRUE);	
+		}else{
+			$LOGINDB=$this->load->database('Quality',TRUE);	
+		}
+		$tblName = $this->getDBName($data['tbl']);
+		unset($data['tbl']);
 		return $LOGINDB->insert($tblName, $data);
 	}
 
-	public function getCurDate()
-	{
-		$a=date("Y");
-	    $b=date("m");
-	    $c=date("d");
-	    $d=date("G");
-	    $e=date("i");
-	    $f=date("s");
-	    return $a.'-'.$b.'-'.$c.' '.$d.':'.$e.':'.$f;
+	public function delete($data)
+	{	
+		if ($data['tbl'] >= 20) {
+			$LOGINDB=$this->load->database('sqlsvr',TRUE);	
+		}else{
+			$LOGINDB=$this->load->database('Quality',TRUE);	
+		}
+		$condition['id'] = $data['id'];		
+		$tblName = $this->getDBName($data['tbl']);
+        return $LOGINDB->where($condition)->delete($tblName);
+	}
+
+	public function update($data)
+	{	
+		if ($data['tbl'] >= 20) {
+			$LOGINDB=$this->load->database('sqlsvr',TRUE);	
+		}else{
+			$LOGINDB=$this->load->database('Quality',TRUE);	
+		}	
+		foreach ($data['utf2gbk'] as $str) 
+		{
+			$data[$str['title']] = $this->TransToGBK($data[$str['title']]);
+		}
+		$tblName = $this->getDBName($data['tbl']);
+		$where = '[id] = '.$data['id'];
+		unset($data['tbl']);
+		unset($data['id']);
+		unset($data['utf2gbk']);
+        //$data['is_del'] = 1;
+        return $LOGINDB->update($tblName, $data,$where);
 	}
 }
