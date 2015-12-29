@@ -24,22 +24,15 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-summernote/summernote.css">
-<!-- END PAGE LEVEL PLUGIN STYLES -->
-
 <!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/jquery-tags-input/jquery.tagsinput.css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/typeahead/typeahead.css">
+
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/clockface/css/clockface.css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css"/>
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-<!-- END PAGE LEVEL STYLES -->
-<!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/select2/css/select2.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/select2/css/select2-bootstrap.min.css"/>
@@ -57,6 +50,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/datatables/extensions/Buttons/css/buttons.dataTables.css"/>
 
 <!-- BEGIN PLUGINS USED BY X-EDITABLE -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css"/>
 <!-- END PLUGINS USED BY X-EDITABLE -->
@@ -437,11 +431,11 @@
 						<li class="divider">
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/lockscreen">
+							<a href="<?php echo base_url()?>welcome/lockscreen">
 							<i class="icon-lock"></i> 注销 </a>
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/logout">
+							<a href="<?php echo base_url()?>welcome/logout">
 							<i class="icon-key"></i> 退出 </a>
 						</li>
 					</ul>

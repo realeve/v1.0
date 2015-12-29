@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class DataInterface extends CI_Controller {
-
+	const PRE_STR 	= 'QCCenter';//字符前缀
 	public function __construct()
 	{
 	  	parent::__construct();
@@ -28,6 +28,7 @@ class DataInterface extends CI_Controller {
 				$logindata['FullName'] = $this->session->userdata('FuleName');	
 				$logindata['GroupID'] = $this->session->userdata('GroupID');	
 				$logindata['CreateID'] = $this->GetNewApiID();
+				$logindata['token'] = sha1(self::PRE_STR.$this->DataInterfaceModel->TransToGBK($logindata['username']));
 				$this->load->view('templates/header/header_DataInterface', $logindata);  
 				$this->load->view('templates/sidebar');
 				$this->load->view('DataInterface',$logindata);
@@ -89,6 +90,7 @@ class DataInterface extends CI_Controller {
         	$this->output->set_output(json_encode($data));  
         	return;
         };
+
 		$data['record_time'] = $this->DataInterfaceModel->getCurDate();
 
         //将备注信息单独处理(中文编码问题)
@@ -105,10 +107,20 @@ class DataInterface extends CI_Controller {
         $this->output->set_output(json_encode($returnData));
 	}
 
-
+	/**删、改操作保留字段：
+		"utf2gbk": ["ApiName","strSQL","Params"],//字段以数组形式保存
+        "id": ID,//对ID操作
+        "tbl":30 //表单名
+    */
 	public function delete()//读取接口数据
 	{
-		$data = $this->input->post(NULL);	
+		$data = $this->input->post(NULL);
+		if (!isset($data['tbl'])) {
+        	$data['message'] = '请指定插入的表单名称';
+            $data['type'] = 0;        
+        	$this->output->set_output(json_encode($data));  
+        	return;
+        };
 		if ($this->DataInterfaceModel->delete($data)) {
             $returnData['message'] = '删除数据成功';
             $returnData['type'] = 1;
@@ -122,6 +134,12 @@ class DataInterface extends CI_Controller {
 	public function update()//读取接口数据
 	{
 		$data = $this->input->post(NULL);
+		if (!isset($data['tbl'])) {
+        	$data['message'] = '请指定插入的表单名称';
+            $data['type'] = 0;        
+        	$this->output->set_output(json_encode($data));  
+        	return;
+        };
 		if ($this->DataInterfaceModel->update($data)) {
             $returnData['message'] = '更新数据成功';
             $returnData['type'] = 1;

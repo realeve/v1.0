@@ -10,15 +10,15 @@ var PaperParam = function() {
 	};
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=24&M=3&t=1";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=24&M=3&t=1";
 		var Data = ReadData(str);
 		InitSelect("prod_ID", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=23&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=1";
 		Data = ReadData(str);
 		InitSelect("machine_ID", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=25&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=1";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(5));
@@ -73,9 +73,9 @@ var PaperParam = function() {
 		var startMonth = $("input[name='rec_date']").val();
 		startMonth = startMonth.substr(6, 4) + startMonth.substr(0, 2);
 		var prod = $('select[name="prod_ID"]').val();
-		var str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataPsc = ReadData(str);
-		str = getRootPath(1) + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataSur = ReadData(str);
 		$('.grey-cascade').html('物理指标得分：' + xround(DataPsc.data[0][0], 2) + '，外观指标得分：' + xround(DataSur.data[0][0], 2));
 	}

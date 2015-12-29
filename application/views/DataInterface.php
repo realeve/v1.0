@@ -25,7 +25,7 @@
 			<h3 class="page-title font-yahei">
 				质量数据接口  <small id="today"></small>
 			</h3>
-			<div class="alert alert-block alert-info fade in">
+			<!--div class="alert alert-block alert-info fade in">
                 <button type="button" class="close" data-dismiss="alert"></button>
                    <h4 class="alert-heading"><i class="icon-info"></i> 小提示：</h4>
 				<p>
@@ -37,9 +37,9 @@
 				<p>
 					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
 				</p>	
-            </div>
+            </div-->
 			<div class="note note-warning">
-				<a href="javascript:;" id="HideTips"><i class="glyphicon glyphicon-remove pull-right"></i></a>
+				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
 				<h4 class="block"><i class="icon-info"></i> 小提示：</h4>
 				<p>
 					 <i class="icon-size-actual"></i> 本部分提供各质量数据查询接口定制功能，设置后请牢记接口链接.
@@ -93,13 +93,13 @@
 									<div class="tools" id="apiList_tools"></div>
 								</div>
                                 <div class="portlet-body">
-                                    <!--div class="table-toolbar pull-right">
+                                    <div class="table-toolbar pull-right">
 		                                    <div class="btn-group">
-		                                        <button id="apiList_new" class="btn green">
+		                                        <button id="newAPI" class="btn green">
 		                                            添加接口 <i class="fa fa-plus"></i>
 		                                        </button>
 		                                    </div>
-                                    </div-->
+                                    </div>
                                     <table class="table table-striped table-bordered table-hover table-header-fixed" id="apiList">
                                         <thead class="hidden-sm">
 	                                        <tr>
@@ -269,7 +269,7 @@
 										</td>
 										<td>
 											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址">
-												<?php echo base_url()?>DataInterface/Api?Token=<?php echo sha1($username)?>&ID=<?php echo $CreateID?>&M=3</a>
+												<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3</a>
 										</td>
 										<td>
 											<span class="text-muted">
@@ -290,7 +290,7 @@
 								<div class="col-md-12">
 									<h3>预览地址:</h3>
 										<div class="input-group" style="text-align:left">
-											<input type="text" class="form-control" id="PreviewUrl" value="<?php echo base_url()?>DataInterface/Api?Token=<?php echo sha1($username)?>&ID=<?php echo $CreateID?>&M=3&tstart=参数1&tend=参数2">
+											<input type="text" class="form-control" id="PreviewUrl" value="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3&tstart=参数1&tend=参数2">
 											<span class="input-group-btn">
 											<a href="javascript:;" class="btn green" id="Preview">
 											<i class="fa fa-eye"></i> 预览接口 </a>

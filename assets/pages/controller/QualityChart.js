@@ -66,7 +66,7 @@
      var TimeRange = $("#dashboard-report-range span").html();
      var TimeStart = TimeRange.split(' ~ ')[0];
      var TimeEnd = TimeRange.split(' ~ ')[1];
-     var strUrl = getRootPath() + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&chartType=bar&ID=" + iID + "&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&t=" + Math.random();
+     var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&chartType=bar&ID=" + iID + "&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&t=" + Math.random();
      return strUrl;
    }
 

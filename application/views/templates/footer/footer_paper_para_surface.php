@@ -38,6 +38,7 @@
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!--BEGIN MY LEVEL SCRIPT-->
+<script src="<?php echo base_url();?>assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/global/plugins/jquery.form.js" ></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/idletimeout.min.js"></script>

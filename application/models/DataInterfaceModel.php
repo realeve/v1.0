@@ -31,17 +31,6 @@ class DataInterfaceModel extends CI_Model {
 	{
 		$this->load->database();
 	}
-	
-	public function getCurDate()
-	{
-		$a=date("Y");
-	    $b=date("m");
-	    $c=date("d");
-	    $d=date("G");
-	    $e=date("i");
-	    $f=date("s");
-	    return $a.'-'.$b.'-'.$c.' '.$d.':'.$e.':'.$f;
-	}
 
 	public function getDBName($id)
 	{
@@ -79,8 +68,8 @@ class DataInterfaceModel extends CI_Model {
 	public function GetNewApiID($UserName)
 	{
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);	
-		$StrSQL = "SELECT ISNULL(MAX(ApiID),0)+1 as NewID  FROM  tblDataInterface  where Token=?";
-		$query = $LOGINDB->query($StrSQL,array(sha1(self::PRE_STR.$UserName)));
+		$StrSQL = "SELECT ISNULL(MAX(ApiID),0)+1 as NewID  FROM  tblDataInterface  where AuthorName=?";
+		$query = $LOGINDB->query($StrSQL,array($UserName));
 		$strJson = $query->result_json();	
 		$strReturn = json_decode($strJson)->data[0]->NewID;
 		$query->free_result(); //清理内存
@@ -101,22 +90,21 @@ class DataInterfaceModel extends CI_Model {
 		$data['ApiDesc'] = $this->TransToGBK($data['ApiDesc']);
 		$data['strSQL'] = $this->TransToGBK($data['strSQL']);
 
-		$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['AuthorName'] ."' and ApiID = ".$data['ApiID'];
-		$query=$LOGINDB->query($SQLStr);
-		if($query->num_rows()>0)
-		{
+		//$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['AuthorName'] ."' and ApiID = ".$data['ApiID'];
+		//$query=$LOGINDB->query($SQLStr);
+		//if($query->num_rows()>0)
+		//{
 			//更新
-			$LOGINDB->where('AuthorName', $data['AuthorName']);
-			$LOGINDB->where('ApiID', $data['ApiID']);
-			$LOGINDB->update('tblDataInterface', $data); 
-		}else
-		{
+		//	$LOGINDB->where('AuthorName', $data['AuthorName']);
+		//	$LOGINDB->where('ApiID', $data['ApiID']);
+		//	$LOGINDB->update('tblDataInterface', $data); 
+		//}else
+		//{
 			//添加
 			$LOGINDB->insert('tblDataInterface', $data); 
-		}
-
-		$query=$LOGINDB->query($SQLStr);
-		if($query->num_rows()>0)
+		//}
+		$Logout['ID'] = $LOGINDB->insert_id();
+		if($Logout['ID'])
 		{			
 			$Logout['message'] = '操作成功';//注册成功
 			$Logout['status'] = '1';
@@ -271,7 +259,7 @@ class DataInterfaceModel extends CI_Model {
 		}	
 		foreach ($data['utf2gbk'] as $str) 
 		{
-			$data[$str['title']] = $this->TransToGBK($data[$str['title']]);
+			$data[$str] = $this->TransToGBK($data[$str]);
 		}
 		$tblName = $this->getDBName($data['tbl']);
 		$where = '[id] = '.$data['id'];

@@ -1,0 +1,3 @@
+use quacenter 
+update tblDataInterface set token ='79d84495ca776ccb523114a2120e273ca80b315b'
+update tblDataInterface set url='http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3'

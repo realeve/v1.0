@@ -23,6 +23,7 @@
 <link href="<?php echo base_url()?>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
@@ -399,11 +400,11 @@
 						<li class="divider">
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/lockscreen">
+							<a href="<?php echo base_url()?>welcome/lockscreen">
 							<i class="icon-lock"></i> 注销 </a>
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/logout">
+							<a href="<?php echo base_url()?>welcome/logout">
 							<i class="icon-key"></i> 退出 </a>
 						</li>
 					</ul>

@@ -43,6 +43,7 @@
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!--BEGIN MY LEVEL SCRIPT-->
+<script src="<?php echo base_url();?>assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/idletimeout.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/PaperPara.min.js"></script>

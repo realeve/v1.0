@@ -55,7 +55,7 @@ function QueryMicroblog(ReadTime) {
   if (!ReadTime) {
     TimeStart = '2015-01-01';
   }
-  //http://localhost/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=15&M=3&tstart=20150331&tend=20150521&u=libin
+  //http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=15&M=3&tstart=20150331&tend=20150521&u=libin
   var Nums;
   var strUrl = getRootUrl('MicroBlog') + "QueryLogInfo";
   switch (NumsID) {

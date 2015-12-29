@@ -183,7 +183,7 @@
          //"data" : Data.data,
          "processing": true,
          //"serverSide": true,
-         "ajax": "http://localhost/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=22&M=3&tstart=20130101&tend=20151102",
+         "ajax": "http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=22&M=3&tstart=20130101&tend=20151102",
          //任意字段
          "bScrollInfinite": true,
          //"borderMulti": true,

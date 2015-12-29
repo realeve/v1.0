@@ -65,7 +65,7 @@ function GetJsonUrl() {
 	var TimeRange = $("#dashboard-report-range span").html();
 	var TimeStart = TimeRange.split(' ~ ')[0];
 	var TimeEnd = TimeRange.split(' ~ ')[1];
-	var strUrl = getRootPath() + "/DataInterface/Api?Token=0cf7187bf9fa92a76e26aaa380aa532b72247fd5&ID=16&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&tstart2=" + TimeStart + "&tend2=" + TimeEnd + "&t=" + Math.random();
+	var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=16&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&tstart2=" + TimeStart + "&tend2=" + TimeEnd + "&t=" + Math.random();
 	return strUrl;
 }
 

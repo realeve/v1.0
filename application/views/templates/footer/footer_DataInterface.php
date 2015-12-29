@@ -41,15 +41,10 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-pwstrength/pwstrength-bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-summernote/summernote.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/fuelux/js/spinner.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
@@ -88,6 +83,7 @@
 <!--BEGIN MY LEVEL SCRIPT-->
 <script type="text/javascript" src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.min.js"></script>
 <script src="<?php echo base_url();?>assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/pages/controller/DataInterface.min.js"></script>
 <!--END MY LEVEL SCRIPT-->
 <!-- END JAVASCRIPTS -->

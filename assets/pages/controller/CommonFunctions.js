@@ -10,60 +10,43 @@ function infoTips(strMes, Type, iContainer) {
   if (typeof iContainer === 'undefined') {
     iContainer = "";
   }
-  switch (Type) {
-    case 3:
-      App.alert({
-        container: iContainer, // alerts parent container(by default placed after the page breadcrumbs)
-        place: "append", // append or prepent in container 
-        type: "warning", // alert's type
-        message: strMes, // alert's message
-        close: true, // make alert closable
-        reset: false, // close all previouse alerts first
-        focus: true, // auto scroll to the alert after shown
-        closeInSeconds: 5, // auto close after defined seconds
-        icon: "check" // put icon before the message
-      });
-      break;
-    case 2:
-      App.alert({
-        container: iContainer, // alerts parent container(by default placed after the page breadcrumbs)
-        place: "append", // append or prepent in container 
-        type: "info", // alert's type
-        message: strMes, // alert's message
-        close: true, // make alert closable
-        reset: false, // close all previouse alerts first
-        focus: true, // auto scroll to the alert after shown
-        closeInSeconds: 5, // auto close after defined seconds
-        icon: "check" // put icon before the message
-      });
-      break;
-    case 1:
-      App.alert({
-        container: iContainer, // alerts parent container(by default placed after the page breadcrumbs)
-        place: "append", // append or prepent in container 
-        type: "success", // alert's type
-        message: strMes, // alert's message
-        close: true, // make alert closable
-        reset: false, // close all previouse alerts first
-        focus: true, // auto scroll to the alert after shown
-        closeInSeconds: 5, // auto close after defined seconds
-        icon: "check" // put icon before the message
-      });
-      break;
-    default:
-      App.alert({
-        container: iContainer, // alerts parent container(by default placed after the page breadcrumbs)  #bootstrap_alerts_demo
-        place: "append", // append or prepent in container 
-        type: "danger", // alert's type
-        message: strMes, // alert's message
-        close: true, // make alert closable
-        reset: false, // close all previouse alerts first
-        focus: true, // auto scroll to the alert after shown
-        closeInSeconds: 0, // auto close after defined seconds
-        icon: "warning" // put icon before the message
-      });
-      break;
+  if (typeof Type === 'undefined') {
+    type = 0;
   }
+  infoType = ['danger','success','info','warning'];
+  App.alert({
+    container: iContainer, // alerts parent container(by default placed after the page breadcrumbs)
+    place: "append", // append or prepent in container 
+    type: infoType[Type], // alert's type
+    message: strMes, // alert's message
+    close: true, // make alert closable
+    reset: false, // close all previouse alerts first
+    focus: true, // auto scroll to the alert after shown
+    closeInSeconds: 5, // auto close after defined seconds
+    icon: "check" // put icon before the message
+  });
+}
+
+function bsTips(strMes, Type) {
+  if (typeof Type === 'undefined') {
+    Type = 0;
+  }
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "positionClass": "toast-top-right",
+    "onclick": null,
+    "showDuration": "1000",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+  infoType = ['error','success','info','warning'];
+  toastr[infoType[Type]](strMes);
 }
 
 //获取当前域名，t=0时返回顶级域名,t=1时返回当前

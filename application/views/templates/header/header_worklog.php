@@ -49,6 +49,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/select2/css/select2.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components-rounded.min.css' in the below style tag -->
@@ -424,11 +425,11 @@
 						<li class="divider">
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/lockscreen">
+							<a href="<?php echo base_url()?>welcome/lockscreen">
 							<i class="icon-lock"></i> 注销 </a>
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>login/logout">
+							<a href="<?php echo base_url()?>welcome/logout">
 							<i class="icon-key"></i> 退出 </a>
 						</li>
 					</ul>
