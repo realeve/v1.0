@@ -167,6 +167,8 @@ var PaperParam = function() {
 			iData.tbl = 0;
 			iData.class_ID = GetRadioChecked('class_ID');
 			iData.score = $('.amounts h4').text().replace('评价总分:','');
+			iData.utf2gbk = ['remark'];
+			iData.record_Time = today(1);
 			$.post(strUrl, iData,
 				function(data, status) {
 					if (status == "success") {

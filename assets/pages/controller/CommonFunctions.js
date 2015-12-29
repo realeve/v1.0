@@ -86,13 +86,13 @@ function today(type) {
       output = a + '年' + b + '月' + c + '日';
       break;
     case 1:
-      output = a + '-' + b + '-' + c + '- ' + d + ':' + e + ':' + f;
+      output = a + '-' + b + '-' + c + ' ' + d + ':' + e + ':' + f;
       break;
     case 2:
       output = a + '年' + b + '月' + c + '日' + d + '时' + e + '分' + f + '秒';
       break;
     case 3:
-      output = a + '-' + b + '-' + c + '- ' + d + ':' + e;
+      output = a + '-' + b + '-' + c + ' ' + d + ':' + e;
       break;
     case 4:
       output = a + '年' + b + '月' + c + '日  ' + d + '时' + e + '分';

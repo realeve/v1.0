@@ -21,6 +21,10 @@ var PaperParam = function() {
 		$("input[name='rec_date']").val(today(5));
 		$("input[name='remark']").val('无');
 		$("input[name='rec_date']").val(today(5));
+
+		//浆池号
+		var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
+		$('input[name="pulp_code"]').val(pulpCode.data[0]);
 	}
 
 	function initChecked() {
@@ -59,6 +63,10 @@ var PaperParam = function() {
 		$('.grey-cascade').html('当天已录入数据：' + Data.data[0][0] + '条');
 	}
 
+	function loadPulpInfo(){
+		//http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=32&M=3&p=3
+	}
+
 	return {
 		init: function() {
 			$('.portlet.light').hide();
@@ -66,9 +74,6 @@ var PaperParam = function() {
 			initDOM();
 			initChecked();
 			setRecordNum();
-			//$('#reset').click(function(){
-			//	infoTips('数据重置成功，请重新填写',1);
-			//});
 			$('form[name=theForm]').submit(function() {
 				//var strUrl = getRootUrl('PaperPara') + 'insert';
 				var strUrl = getRootPath()+"/DataInterface/insert";
@@ -78,7 +83,9 @@ var PaperParam = function() {
 					resetForm: true,
 					data: {
 						'tbl': '1',
-						'class_ID': GetRadioChecked('class_ID')
+						'class_ID': GetRadioChecked('class_ID'),
+						'utf2gbk' : ['remark'],
+						'record_Time' : today(1)
 					},
 					success: function(data) {
 						var obj = $.parseJSON(data);
@@ -86,7 +93,10 @@ var PaperParam = function() {
 						//重置数据
 						$('button[type="reset"]').click();
 						$('.portlet.light').hide();
-						$('.grey-cascade').text('当天已录入数据:' + (parseInt($('.grey-cascade').text().replace('当天已录入数据:', '').replace('条', ''), 10) + 1) + '条');
+						$('.grey-cascade').text('当天已录入数据：' + (parseInt($('.grey-cascade').text().replace('当天已录入数据：', '').replace('条', ''), 10) + 1) + '条');
+						//浆池号
+						var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
+						$('input[name="pulp_code"]').val(pulpCode.data[0]);
 					},
 					error: function(data) {
 						infoTips(JSON.stringify(data));

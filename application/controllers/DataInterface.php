@@ -90,11 +90,6 @@ class DataInterface extends CI_Controller {
         	$this->output->set_output(json_encode($data));  
         	return;
         };
-
-		$data['record_time'] = $this->DataInterfaceModel->getCurDate();
-
-        //将备注信息单独处理(中文编码问题)
-        $data['remark'] = $this->DataInterfaceModel->TransToGBK($data['remark']);
 		if ($this->DataInterfaceModel->insert($data)) {
             #插入数据成功
             $returnData['message'] = '添加数据成功';

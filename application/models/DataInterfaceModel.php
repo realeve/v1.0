@@ -140,9 +140,16 @@ class DataInterfaceModel extends CI_Model {
 		}
 		//解析params,用于SQL查询参数
 		$aParTemp = explode(',',$ApiInfo->data[0]->Params);
-		for($i=0;$i<count($aParTemp);$i++){ 
-			$aParams[$i] = $data[$aParTemp[$i]];
-		} 
+		if($aParTemp[0]==''){//当参数为空时
+			$aParams[0] = 1;
+		}
+		else
+		{
+
+			for($i=0;$i<count($aParTemp);$i++){ 
+				$aParams[$i] = $data[$aParTemp[$i]];
+			} 
+		}
 
 		switch ($data['M']) {
 			case 'edit':
@@ -226,13 +233,18 @@ class DataInterfaceModel extends CI_Model {
 		return $strJson;	
 	}
 
-	public function insert($data,$tblName)
+	public function insert($data)
 	{
 		if ($data['tbl'] >= 20) {
 			$LOGINDB=$this->load->database('sqlsvr',TRUE);	
 		}else{
 			$LOGINDB=$this->load->database('Quality',TRUE);	
 		}
+		foreach ($data['utf2gbk'] as $str) 
+		{
+			$data[$str] = $this->TransToGBK($data[$str]);
+		}
+		unset($data['utf2gbk']);		
 		$tblName = $this->getDBName($data['tbl']);
 		unset($data['tbl']);
 		return $LOGINDB->insert($tblName, $data);

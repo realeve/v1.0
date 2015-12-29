@@ -31,7 +31,8 @@ var PaperParam = function() {
 		//分数表
 		var detailScore = [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 1, 1];
 		//分数动态更新
-		if ($(this).attr('checked') == 'checked') {
+		//if ($(this).attr('checked') == 'checked') {
+		if ($(this).parent().find('.inc').length) {
 			curScore = surScore - detailScore[id];
 
 		} else {
@@ -128,7 +129,9 @@ var PaperParam = function() {
 			'prod_ID': $('select[name="prod_ID"]').val(),
 			'oper_ID': $('select[name="oper_ID"]').val(),
 			'rec_date': $("input[name='rec_date']").val(),
-			'remark': $("input[name='remark']").val()
+			'remark': $("input[name='remark']").val(),
+			'utf2gbk' : ['remark'],
+			'record_Time' : today(1)
 		};
 		//surData.remark = UTF2GBK(surData.remark);
 		var keyList = [
@@ -156,7 +159,8 @@ var PaperParam = function() {
 		var checkStr = JSON.stringify(surData);
 		checkStr = checkStr.replace('}', '');
 		$('.md-check').map(function(elem) {
-			if ($(this).attr('checked') == 'checked') {
+			//if ($(this).attr('checked') == 'checked') {
+			if ($(this).parent().find('.inc').length) {
 				checkStr = checkStr + ',"' + keyList[elem] + '":1';
 			} else {
 				checkStr = checkStr + ',"' + keyList[elem] + '":0';
@@ -173,7 +177,7 @@ var PaperParam = function() {
 		$("input[name='rec_date']").val(today(5));
 	});
 
-	function addData() {
+	function insertData() {
 		//var strUrl = getRootUrl('PaperPara') + 'insert';
 		var strUrl = getRootPath()+"/DataInterface/insert";
 		var options = {
@@ -201,13 +205,16 @@ var PaperParam = function() {
 			initDOM();
 			setRecordNum();
 			$('.modal-footer .green').on('click',function() {
-				addData();
+				insertData();
 			});
 
 			$('a[name="submit"]').on('click',function() {
 				var score = parseFloat($('.list-unstyled.amounts li:nth(3)').text().replace('当月评价总分:', ''));
 				if (score >= 95) {
-					addData();
+					insertData();
+				}
+				else{
+					bsInfo('当月评价总分将低于95分，请检查后重试');
 				}
 			});
 		}

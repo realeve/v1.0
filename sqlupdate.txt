@@ -1,3 +1,16 @@
 use quacenter 
 update tblDataInterface set token ='79d84495ca776ccb523114a2120e273ca80b315b'
 update tblDataInterface set url='http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3'
+
+
+
+#属性去重
+$('link').map(function(){console.log($(this).attr('href'))})
+
+$('script').map(function(){console.log($(this).attr('src'))})
+
+
+select max(isnull(pulp_code,0)) as Count from Paper_Para_ChemData
+
+#表单测试填写数据
+$('.portlet.light input').val(10);

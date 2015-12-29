@@ -196,7 +196,7 @@ function ReadSettings() {
         "id": ID,
         "tbl":30
       };
-      if ('' !== data.ApiName && '' !== data.strSQL && '' !== data.Params) {
+      if ('' !== data.ApiName && '' !== data.strSQL) {
         oTable.fnUpdate(jqInputs[0].value, nRow, 3, false);
         oTable.fnUpdate(jqInputs[1].value, nRow, 4, false);
         oTable.fnUpdate(jqInputs[2].value, nRow, 5, false);
@@ -211,7 +211,7 @@ function ReadSettings() {
         });
 
       } else {
-        infoTips('相应单元格内容不能为空');
+        bsTips('接口名及查询语句不能为空');
       }
       //相应保存代码
     }
