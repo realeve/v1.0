@@ -50,7 +50,7 @@
 											<div class="form-group form-md-line-input">
 												<label class="col-md-2 control-label">浆池号</label>
 												<div class="col-md-10">
-													<input type="text" class="form-control" placeholder="请在此输入浆池号" name="pulp_code">
+													<input type="text" class="form-control" disabled placeholder="请在此输入浆池号" name="pulp_code">
 													<div class="form-control-focus">
 													</div>
 													<label class="hide">浆池号</label>

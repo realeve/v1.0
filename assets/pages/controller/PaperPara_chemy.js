@@ -64,7 +64,25 @@ var PaperParam = function() {
 	}
 
 	function loadPulpInfo(){
-		//http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=32&M=3&p=3
+		var pulpID;
+		var r = window.location.hash.substr(1).match(RegExp("(^|&)p=([^&]*)(&|$)"));
+		if (r !== null) {
+			pulpID = unescape(r[2]);
+		}else{
+			return;
+		}
+		$('input[name="pulp_code"]').val(pulpID);
+		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=32&M=2&p=" + pulpID;
+		var Data = ReadData(strUrl);
+		Data.header.map(function(elem) {
+			var keys = elem.title;
+			$('form .form-control[name="'+ keys +'"]').val(Data.data[0][keys]);
+		});
+		SetRadioChecked('class_ID', Data.data[0]['class_ID']);
+		$('.portlet button[type="submit"]').attr('data-sn',Data.data[0]['ID']);
+		//移动浮动效果
+		$('.portlet.light div').removeClass('form-md-floating-label');
+		$('.portlet.light').show();
 	}
 
 	return {
@@ -75,36 +93,68 @@ var PaperParam = function() {
 			initChecked();
 			setRecordNum();
 			$('form[name=theForm]').submit(function() {
-				//var strUrl = getRootUrl('PaperPara') + 'insert';
-				var strUrl = getRootPath()+"/DataInterface/insert";
-				var options = {
-					url: strUrl,
-					type: 'post',
-					resetForm: true,
-					data: {
-						'tbl': '1',
-						'class_ID': GetRadioChecked('class_ID'),
-						'utf2gbk' : ['remark'],
-						'record_Time' : today(1)
-					},
-					success: function(data) {
-						var obj = $.parseJSON(data);
-						infoTips(obj.message, obj.type);
-						//重置数据
-						$('button[type="reset"]').click();
-						$('.portlet.light').hide();
-						$('.grey-cascade').text('当天已录入数据：' + (parseInt($('.grey-cascade').text().replace('当天已录入数据：', '').replace('条', ''), 10) + 1) + '条');
-						//浆池号
-						var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
-						$('input[name="pulp_code"]').val(pulpCode.data[0]);
-					},
-					error: function(data) {
-						infoTips(JSON.stringify(data));
-					}
-				};
+				//更新数据
+				var strUrl,options
+				if(window.location.href.indexOf('#p=') >-1)
+				{					
+					strUrl = getRootPath()+"/DataInterface/update";
+					options = {
+						url: strUrl,
+						type: 'post',
+						resetForm: true,
+						data: {
+							'tbl': '1',
+							'class_ID': GetRadioChecked('class_ID'),
+							'utf2gbk' : ['remark'],
+							'id' : $('.portlet button[type="submit"]').attr('data-sn')
+						},
+						success: function(data) {
+							var obj = $.parseJSON(data);
+							infoTips(obj.message, obj.type);
+							//重置数据
+							$('button[type="reset"]').click();
+							$('.portlet.light').hide();
+							//浆池号
+							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
+							$('input[name="pulp_code"]').val(pulpCode.data[0]);
+						},
+						error: function(data) {
+							infoTips(JSON.stringify(data));
+						}
+					};
+				}else{//插入数据
+					strUrl = getRootPath()+"/DataInterface/insert";
+					options = {
+						url: strUrl,
+						type: 'post',
+						resetForm: true,
+						data: {
+							'tbl': '1',
+							'class_ID': GetRadioChecked('class_ID'),
+							'utf2gbk' : ['remark'],
+							'record_Time' : today(1)
+						},
+						success: function(data) {
+							var obj = $.parseJSON(data);
+							infoTips(obj.message, obj.type);
+							//重置数据
+							$('button[type="reset"]').click();
+							$('.portlet.light').hide();
+							$('.grey-cascade').text('当天已录入数据：' + (parseInt($('.grey-cascade').text().replace('当天已录入数据：', '').replace('条', ''), 10) + 1) + '条');
+							//浆池号
+							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
+							$('input[name="pulp_code"]').val(pulpCode.data[0]);
+						},
+						error: function(data) {
+							infoTips(JSON.stringify(data));
+						}
+					};
+				}
 				$(this).ajaxSubmit(options);
 				return false;
 			});
+		
+			loadPulpInfo();
 		}
 	};
 
