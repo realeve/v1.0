@@ -1,7 +1,6 @@
-$("#HideTips").on('click',
-	function() {
-		$(".note.note-success").hide();
-	});
+$("#HideTips").on('click', function() {
+  $(this).parent().hide();
+});
 $("#SaveSettings").on('click',
 	function() {
 		SaveSettings();

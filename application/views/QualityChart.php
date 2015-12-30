@@ -28,7 +28,7 @@
 			<h3 class="page-title font-yahei">
 				质量曲线图  <small id="today"></small>
 			</h3>
-			<div class="note note-success">
+			<!--div class="note note-success">
 				<a href="javascript:;" id="HideTips"><i class="glyphicon glyphicon-remove pull-right"></i></a>
 				<h4 class="block"><i class="icon-info"></i> 小提示：</h4>
 				<div class="row"> 
@@ -56,7 +56,40 @@
 						</p>
 					</div>
 				</div>
-			</div>
+			</div-->
+
+			<div class="mt-element-ribbon bg-white">
+				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
+                <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-success uppercase">
+                    <div class="ribbon-sub ribbon-clip"></div> 小提示: </div>
+                <p class="ribbon-content">
+                	<div class="row"> 
+						<div class="col-md-6">
+							<p>
+							 	<i class="icon-size-actual"></i> 数据拖拽.
+							</p>
+							<p>
+								 <i class="icon-settings"></i> 数据序列切换.
+							</p>
+							<p>
+								 <i class="icon-magnifier"></i> 曲线类型切换.
+							</p>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<p>
+								 <i class="icon-cloud-download"></i>数据编辑.
+							</p>
+							<p>
+								 <i class="icon-heart"></i> 图片导出.<i class="fa fa-angle-right"></i>
+							</p>
+							<p>
+								 <i class="icon-link"></i> 更多信息请访问:.
+							</p>
+						</div>
+					</div>
+				</p>
+            </div>
 
 			<!-- END PAGE CONTENT-->
 			<!-- BEGIN PAGE CONTENT-->

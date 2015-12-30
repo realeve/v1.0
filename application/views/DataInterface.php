@@ -37,7 +37,7 @@
 				<p>
 					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
 				</p>	
-            </div-->
+            </div>
 			<div class="note note-warning">
 				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
 				<h4 class="block"><i class="icon-info"></i> 小提示：</h4>
@@ -66,9 +66,9 @@
 						 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
 					</p>	
 				</p>
-            </div>
+            </div-->
 			<div class="portlet mt-element-ribbon light portlet-fit bordered">
-                <div class="ribbon ribbon-right ribbon-clip ribbon-shadow ribbon-border-dash-hor ribbon-color-success uppercase">
+                <div class="ribbon ribbon-right ribbon-clip ribbon-shadow ribbon-border-dash-hor ribbon-color-danger uppercase">
                     <div class="ribbon-sub ribbon-clip ribbon-right"></div> 小提示 </div>
                 <div class="portlet-title">
                     <div class="caption">
