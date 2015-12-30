@@ -183,7 +183,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="bar" class="progress progress-striped margin-top-10" role="progressbar">
-                                                        <div class="progress-bar progress-bar-success" style="width: 33%;"> </div>
+                                                        <div class="progress-bar progress-bar-info" style="width: 33%;"> </div>
                                                     </div>
                                                     <div class="tab-content">
                                                         <div class="tab-pane" id="tab1">

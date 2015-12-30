@@ -350,7 +350,8 @@ class CI_DB_result {
 		$strCols = $this->Array2Head($strFields);
 		//构造JSON语句
 		if (!$nums) {			
-			return $strCols;//为空时直接返回
+			return '{"rows":"0",'. $strCols . '}';//为空时直接返回
+			//2015-12-31 需要加套接字符
 		}	
 		$strHead .= $strCols.',"data":[';			
 		//$this->_data_seek(0);		

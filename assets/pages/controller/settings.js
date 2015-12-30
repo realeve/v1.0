@@ -175,7 +175,7 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                bsTips('Finished! Hope you like it :)');
+                bsTips('Finished! Hope you like it :)',1);
             }).hide();
 
             //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.

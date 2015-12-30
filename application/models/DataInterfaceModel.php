@@ -131,11 +131,11 @@ class DataInterfaceModel extends CI_Model {
 		$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
 		$query=$LOGINDB->query($SQLStr,array($data['Token']));
 		$strJson = $query->result_json();
-		//return $strJson;
+		//return $strJson ;//调试语句 
 		$ApiInfo = json_decode($strJson);
 		$query->free_result(); //清理内存
 		$LOGINDB->close();//关闭连接
-		if(!$ApiInfo->rows){
+		if(!isset($ApiInfo->rows) || !$ApiInfo->rows){
 			return $strJson;
 		}
 		//解析params,用于SQL查询参数
