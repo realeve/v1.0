@@ -402,7 +402,7 @@
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/layouts/layout/img/avatar12_small.jpg"/>
+					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/pages/media/profile/profile_user.jpg"/>
 					<span class="username username-hide-on-mobile">
 					<?php echo $username?> </span>
 					<i class="fa fa-angle-down"></i>

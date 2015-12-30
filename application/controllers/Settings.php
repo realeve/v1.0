@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class PaperPara extends CI_Controller {
+class settings extends CI_Controller {
 
 	public function __construct()
 	{
@@ -14,7 +14,7 @@ class PaperPara extends CI_Controller {
 		$this->load->model('DataInterfaceModel');
 	}
 
-	//物理指标
+	//概览
 	public function index()
 	{
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
@@ -25,12 +25,12 @@ class PaperPara extends CI_Controller {
 				$logindata['logged_in'] = true;		
 				$logindata['username'] = $this->session->userdata('username');
 				$logindata['userrole'] = $this->session->userdata('userrole');	
-				$logindata['FullName'] = $this->session->userdata('FuleName');	
+				$logindata['FullName'] = $this->session->userdata('FullName');	
 				$logindata['GroupID'] = $this->session->userdata('GroupID');	
-				$this->load->view('templates/header/header_paperpara', $logindata);  
+				$this->load->view('templates/header/header_settings', $logindata);  
 				$this->load->view('templates/sidebar');
-				$this->load->view('PaperPara_Psc',$logindata);
-				$this->load->view('templates/footer/footer_paper_para');				
+				$this->load->view('settings',$logindata);
+				$this->load->view('templates/footer/footer_settings');				
 			}	
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
@@ -43,9 +43,10 @@ class PaperPara extends CI_Controller {
 		
 	}
 
-	//外观指标
-	public function surface()
+	//帐户设置
+	public function account()
 	{
+		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -53,12 +54,12 @@ class PaperPara extends CI_Controller {
 				$logindata['logged_in'] = true;		
 				$logindata['username'] = $this->session->userdata('username');
 				$logindata['userrole'] = $this->session->userdata('userrole');	
-				$logindata['FullName'] = $this->session->userdata('FuleName');	
+				$logindata['FullName'] = $this->session->userdata('FullName');	
 				$logindata['GroupID'] = $this->session->userdata('GroupID');	
-				$this->load->view('templates/header/header_paperpara', $logindata);  
+				$this->load->view('templates/header/header_settings', $logindata);  
 				$this->load->view('templates/sidebar');
-				$this->load->view('PaperPara_surface',$logindata);
-				$this->load->view('templates/footer/footer_paper_para_surface');				
+				$this->load->view('settings_account',$logindata);
+				$this->load->view('templates/footer/footer_settings');				
 			}	
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
@@ -71,9 +72,10 @@ class PaperPara extends CI_Controller {
 		
 	}
 
-	//化验站
-	public function chemy()
+	//下拉选项卡管理
+	public function select()
 	{
+		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -81,12 +83,12 @@ class PaperPara extends CI_Controller {
 				$logindata['logged_in'] = true;		
 				$logindata['username'] = $this->session->userdata('username');
 				$logindata['userrole'] = $this->session->userdata('userrole');	
-				$logindata['FullName'] = $this->session->userdata('FuleName');	
+				$logindata['FullName'] = $this->session->userdata('FullName');	
 				$logindata['GroupID'] = $this->session->userdata('GroupID');	
-				$this->load->view('templates/header/header_paperpara', $logindata);  
+				$this->load->view('templates/header/header_settings', $logindata);  
 				$this->load->view('templates/sidebar');
-				$this->load->view('PaperPara_Chemy',$logindata);
-				$this->load->view('templates/footer/footer_paper_para_chemy');				
+				$this->load->view('settings_select',$logindata);
+				$this->load->view('templates/footer/footer_settings');				
 			}	
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
@@ -98,6 +100,7 @@ class PaperPara extends CI_Controller {
 		}
 		
 	}
+
 	//保存日志设置
 	public function SaveSettings()
 	{

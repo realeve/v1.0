@@ -10,7 +10,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 <meta charset="utf-8"/>
-<title>质量控制中心 | 物理指标检验原始记录</title>
+<title>质量控制中心 | 下拉菜单管理</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -26,9 +26,13 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+<link href="<?php echo base_url()?>assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url()?>assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="<?php echo base_url()?>assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url()?>assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
 <link id="style_color" href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url()?>assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
@@ -371,7 +375,7 @@
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/layouts/layout/img/avatar12_small.jpg"/>
+					<img alt="" class="img-circle" src="<?php echo base_url()?>assets/pages/media/profile/profile_user.jpg"/>
 					<span class="username username-hide-on-mobile">
 					<?php echo $username?> </span>
 					<i class="fa fa-angle-down"></i>
