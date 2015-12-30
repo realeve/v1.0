@@ -4,7 +4,8 @@ var PaperParam = function() {
 			$('.date-picker').datepicker({
 				rtl: App.isRTL(),
 				orientation: "left",
-				autoclose: true
+				autoclose: true,
+				format:'yyyy-mm-dd'
 			});
 		}
 	};
@@ -18,9 +19,9 @@ var PaperParam = function() {
 		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
-		$("input[name='rec_date']").val(today(5));
+		$("input[name='rec_date']").val(today(6));
 		$("input[name='remark']").val('无');
-		$("input[name='rec_date']").val(today(5));
+		$("input[name='rec_date']").val(today(6));
 
 		//浆池号
 		var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
@@ -57,19 +58,26 @@ var PaperParam = function() {
 
 	function setRecordNum() {
 		var startDate = $("input[name='rec_date']").val();
-		startDate = startDate.substr(6, 4) + startDate.substr(0, 2) + startDate.substr(3, 2);
+		startDate = startDate.replace(/-/g,'');
 		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=26&M=3&tstart=" + startDate + "&tend=" + startDate;
 		var Data = ReadData(str);
-		$('.grey-cascade').html('当天已录入数据：' + Data.data[0][0] + '条');
+		$('.page-toolbar button').html('当天已录入数据：' + Data.rows + '条');
+		for (var i = 0; i<Data.rows ;i++) {
+			$('.page-toolbar ul').append('<li><a href="'+getRootPath(1)+'/PaperPara/chemy#p='+ Data.data[i][1] +'">'+ Data.data[i][1] +'</a></li>');
+			if(i && i%3 === 0){
+				$('.page-toolbar ul').append('<li class="divider"></li>');
+			}
+		}
 	}
 
-	function loadPulpInfo(){
-		var pulpID;
-		var r = window.location.hash.substr(1).match(RegExp("(^|&)p=([^&]*)(&|$)"));
-		if (r !== null) {
-			pulpID = unescape(r[2]);
-		}else{
-			return;
+	function loadHisData(pulpID){
+		if(typeof pulpID ==="undefined"){			
+			var r = window.location.hash.substr(1).match(RegExp("(^|&)p=([^&]*)(&|$)"));
+			if (r !== null) {
+				pulpID = unescape(r[2]);
+			}else{
+				return;
+			}
 		}
 		$('input[name="pulp_code"]').val(pulpID);
 		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=32&M=2&p=" + pulpID;
@@ -80,6 +88,7 @@ var PaperParam = function() {
 		});
 		SetRadioChecked('class_ID', Data.data[0]['class_ID']);
 		$('.portlet button[type="submit"]').attr('data-sn',Data.data[0]['ID']);
+		$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('提交','更新'));
 		//移动浮动效果
 		$('.portlet.light div').removeClass('form-md-floating-label');
 		$('.portlet.light').show();
@@ -94,9 +103,9 @@ var PaperParam = function() {
 			setRecordNum();
 			$('form[name=theForm]').submit(function() {
 				//更新数据
-				var strUrl,options
-				if(window.location.href.indexOf('#p=') >-1)
-				{					
+				var strUrl,options;
+				if($('.portlet button[type="submit"]').text().trim()!=='提交')
+				{
 					strUrl = getRootPath()+"/DataInterface/update";
 					options = {
 						url: strUrl,
@@ -106,7 +115,8 @@ var PaperParam = function() {
 							'tbl': '1',
 							'class_ID': GetRadioChecked('class_ID'),
 							'utf2gbk' : ['remark'],
-							'id' : $('.portlet button[type="submit"]').attr('data-sn')
+							'id' : $('.portlet button[type="submit"]').attr('data-sn'),
+							'record_Time': today(1)
 						},
 						success: function(data) {
 							var obj = $.parseJSON(data);
@@ -117,6 +127,8 @@ var PaperParam = function() {
 							//浆池号
 							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
 							$('input[name="pulp_code"]').val(pulpCode.data[0]);
+							$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新','提交'));
+							$('.portlet.light div').addClass('form-md-floating-label');
 						},
 						error: function(data) {
 							infoTips(JSON.stringify(data));
@@ -132,7 +144,8 @@ var PaperParam = function() {
 							'tbl': '1',
 							'class_ID': GetRadioChecked('class_ID'),
 							'utf2gbk' : ['remark'],
-							'record_Time' : today(1)
+							'record_Time' : today(1),
+							'pulp_code':$('input[name="pulp_code"]').val()
 						},
 						success: function(data) {
 							var obj = $.parseJSON(data);
@@ -140,7 +153,7 @@ var PaperParam = function() {
 							//重置数据
 							$('button[type="reset"]').click();
 							$('.portlet.light').hide();
-							$('.grey-cascade').text('当天已录入数据：' + (parseInt($('.grey-cascade').text().replace('当天已录入数据：', '').replace('条', ''), 10) + 1) + '条');
+							$('.page-toolbar button').text('当天已录入数据：' + (parseInt($('.page-toolbar button').text().replace('当天已录入数据：', '').replace('条', ''), 10) + 1) + '条');
 							//浆池号
 							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
 							$('input[name="pulp_code"]').val(pulpCode.data[0]);
@@ -153,8 +166,12 @@ var PaperParam = function() {
 				$(this).ajaxSubmit(options);
 				return false;
 			});
-		
-			loadPulpInfo();
+			$(document).on('click', '.page-toolbar a', function() {
+				var pulp_code = $(this).attr('href').split('#p=')[1];
+				loadHisData(pulp_code);
+				//bsTips(pulp_code);
+			});
+			loadHisData();
 		}
 	};
 

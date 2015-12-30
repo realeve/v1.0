@@ -51,7 +51,43 @@
 					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
 				</p>				
 			</div>
-
+			<div class="mt-element-ribbon bg-white">
+				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
+                <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
+                    <div class="ribbon-sub ribbon-clip"></div> 小提示: </div>
+                <p class="ribbon-content">
+                	<p>
+					 <i class="icon-size-actual"></i> 本部分提供各质量数据查询接口定制功能，设置后请牢记接口链接.
+					</p>
+					<p>
+						 <i class="icon-settings"></i> 数据格式为标准Json格式，请按相关标准解析.
+					</p>
+					<p>
+						 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
+					</p>	
+				</p>
+            </div>
+			<div class="portlet mt-element-ribbon light portlet-fit bordered">
+                <div class="ribbon ribbon-right ribbon-clip ribbon-shadow ribbon-border-dash-hor ribbon-color-success uppercase">
+                    <div class="ribbon-sub ribbon-clip ribbon-right"></div> 小提示 </div>
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class=" icon-layers font-green"></i>
+                        <span class="caption-subject font-green bold uppercase">小提示</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                	<p>
+					 <i class="icon-size-actual"></i> 本部分提供各质量数据查询接口定制功能，设置后请牢记接口链接.
+					</p>
+					<p>
+						 <i class="icon-settings"></i> 数据格式为标准Json格式，请按相关标准解析.
+					</p>
+					<p>
+						 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
+					</p>
+                </div>
+            </div>
 			<!-- END PAGE CONTENT-->
 			<!-- BEGIN PAGE CONTENT-->
 

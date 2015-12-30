@@ -1,6 +1,6 @@
 <!-- BEGIN FOOTER -->
 <!-- END PAGE CONTAINER -->
-<div class="page-footer" style="margin-top:-36px;">
+<div class="page-footer">
 	<div class="page-footer-inner">
 		 2015 &copy; CBPC All Rights Reserved.
 	</div>

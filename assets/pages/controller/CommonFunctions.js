@@ -502,6 +502,7 @@ function HeadFix() {
 function initDom() {
   //sideBarHack();
   HeadFix();
+  DarkInfoTheme(1);
   if ($("#today") !== 'undefined') {
     $("#today").text(today(0));
   }

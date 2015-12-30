@@ -18,9 +18,11 @@
 				</ul>
 				<div class="page-toolbar">
 					<div class="btn-group pull-right">
-						<a class="btn btn-fit-height grey-cascade">
-						当天已录入数据：0条
-						</a>
+						<button type="button" class="btn btn-fit-height green dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+						当天已录入数据：0条 <i class="fa fa-angle-down"></i>
+						</button>
+						<ul class="dropdown dropdown-dark dropdown-menu pull-right" role="menu">							
+						</ul>
 					</div>
 				</div>
 			</div>

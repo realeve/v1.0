@@ -379,8 +379,8 @@ var dataTable = function() {
         realtime: true,
       },
       fixedHeader: {
-        header: Data.cols > 10 ? false :true,
-        footer: Data.cols > 10 ? false :true,
+        header: Data.cols > 20 ? false :true,
+        footer: Data.cols > 20 ? false :true,
         headerOffset: Data.fixedHeaderOffset,
       },
       //scrollY:        '70vh',

@@ -49,7 +49,7 @@
 										<div class="form-group form-md-line-input">
 											<label class="col-md-2 control-label">轴号</label>
 											<div class="col-md-10">
-												<input type="text" class="form-control" maxlength="6" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
+												<input type="text" class="form-control uppercase" maxlength="6" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
 												<div class="form-control-focus">
 												</div>
 												<label class="hide">轴号</label>
@@ -58,7 +58,7 @@
 										<div class="form-group form-md-line-input">
 											<label class="col-md-2 control-label">品种</label>
 											<div class="col-md-10">
-												<select class="form-control" name="prod_ID">
+												<select class="form-control" name="Prod_id">
 												</select>
 												<div class="form-control-focus">
 												</div>
@@ -67,7 +67,7 @@
 										<div class="form-group form-md-line-input">
 											<label class="col-md-2 control-label">机台</label>
 											<div class="col-md-10">
-												<select class="form-control" name="machine_ID">
+												<select class="form-control" name="machine_id">
 												</select>
 												<div class="form-control-focus">
 												</div>
@@ -77,7 +77,7 @@
 											<label class="col-md-2 control-label">班次</label>
 											<div class="md-radio-inline">
 												<div class="md-radio">
-													<input type="radio" id="radio6" name="class_ID" class="md-radiobtn">
+													<input type="radio" id="radio6" name="class_id" class="md-radiobtn">
 													<label for="radio6">
 													<span></span>
 													<span class="check"></span>
@@ -85,7 +85,7 @@
 													白班 </label>
 												</div>
 												<div class="md-radio">
-													<input type="radio" id="radio7" name="class_ID" class="md-radiobtn">
+													<input type="radio" id="radio7" name="class_id" class="md-radiobtn">
 													<label for="radio7">
 													<span></span>
 													<span class="check"></span>
@@ -93,7 +93,7 @@
 													中班 </label>
 												</div>
 												<div class="md-radio">
-													<input type="radio" id="radio8" name="class_ID" class="md-radiobtn">
+													<input type="radio" id="radio8" name="class_id" class="md-radiobtn">
 													<label for="radio8">
 													<span></span>
 													<span class="check"></span>
@@ -134,7 +134,7 @@
 										<div class="form-group form-md-line-input">
 											<label class="col-md-2 control-label">检验员</label>
 											<div class="col-md-10">
-												<select class="form-control" name="oper_ID">
+												<select class="form-control" name="oper_id">
 												</select>
 												<div class="form-control-focus">
 												</div>
@@ -169,7 +169,7 @@
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<div class="form-body row ">									
+								<div class="form-body row normalPara">									
 									<div class="col-md-6">
 										<div class="form-group form-md-line-input form-md-floating-label">
 											<input type="text" class="form-control" name="basis_weight_prod">
@@ -375,6 +375,19 @@
 										<label>表面吸油性</label>
 										<span class="help-block">40~50$</span>
 									</div>
+									<div class="form-group form-md-checkboxes">
+										<label>允许修改常规指标</label>
+										<div class="md-checkbox-list">
+											<div class="md-checkbox">
+												<input type="checkbox" id="checkbox2" class="md-check">
+												<label for="checkbox2">
+												<span></span>
+												<span class="check"></span>
+												<span class="box"></span>
+												允许修改常规指标 </label>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div>
 									<ul class="list-unstyled amounts">
@@ -383,7 +396,7 @@
 										</li>
 									</ul>
 								</div>
-								<div class="form-actions noborder right">									
+								<div class="form-actions noborder row right">	
 									<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
 									<button type="reset" class="btn default"> 重置 <i class="icon-refresh"></i></button>
 								</div>
