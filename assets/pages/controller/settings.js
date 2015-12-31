@@ -127,21 +127,44 @@ var FormWizard = function () {
                         $('.mt-step-col:nth(1)').removeClass('active');
                         $('.mt-step-col:nth(1)').addClass('done');
                         $('.mt-step-col').last().addClass('active');
+
+                        //列表编辑数据预览
+                        var curVal = parseInt($("select[name='select_name'] option").last().val(),10)+1;
+                        var len = $('#tab2 input[name="addInfo"]').length;
+                        var text,j,strHTML='',strOption='';
+                        for (i = 0; i < len; i++) {
+                            text = $('#tab2 input[name="addInfo"]:nth('+ i +')').val();
+                            val = i+curVal;
+                            j = i+1;
+                            strHTML +='<div class="form-group">';
+                            strHTML +='    <label class="control-label col-md-3">'+j+'</label>';
+                            strHTML +='           <div class="col-md-2">';
+                            strHTML +='              <p class="form-control-static">'+val+'</p>';
+                            strHTML +='           </div>';
+                            strHTML +='           <div class="col-md-3">';
+                            strHTML +='              <p class="form-control-static">'+text+'</p>';
+                            strHTML +='            </div>';
+                            strHTML +='</div>';
+                            strOption +=  '<option value="' + val + '">' + text + '</option>';
+                        }
+                        if (len) {                            
+                            $("select[name='preview']").append(strOption);
+                            $('#tab3').last().append(strHTML);
+                        }
                         break;
                 }
                 App.scrollTo($('.page-title'));
-            }
+            };
 
             // default form wizard
             $('#form_wizard_1').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
-                    return false;
-                    
+                   
                     success.hide();
                     error.hide();
-                    if (form.valid() == false) {
+                    if (form.valid() === false) {
                         return false;
                     }
                     
@@ -151,7 +174,7 @@ var FormWizard = function () {
                     success.hide();
                     error.hide();
 
-                    if (form.valid() == false) {
+                    if (form.valid() === false) {
                         return false;
                     }
 
@@ -187,6 +210,60 @@ var FormWizard = function () {
     };
 
 }();
+
+var handleSelect2 = function(){
+    function initDOM() {
+        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=34&M=3";
+        var Data = ReadData(str);
+        InitSelect("select_cat", Data);
+        var i = 1;
+        Data.data.map(function(elem) {
+            $("select[name='select_cat'] option:nth("+ i +")").attr('data-apiUrl',elem[2]);
+            $("select[name='select_cat'] option:nth("+ i +")").attr('data-tblID',elem[3]);
+            i++;
+        });
+    }
+
+    $(document).on('change','select[name="select_cat"]', function() {
+        var str = getRootPath(1)+"/"+$(this).find("option:selected").attr('data-apiUrl');
+        var tblID = getRootPath(1)+"/"+$(this).find("option:selected").attr('data-tblID');
+        var Data = ReadData(str);
+        var selText = $(this).find("option:selected").text();
+        InitSelect("select_name",Data);
+        InitSelect("preview", Data);
+        $("select[name='select_name']").attr('data-tblID',tblID);
+        $('span[name="selectName"]').text(selText);
+        $('#tab3 p[data-display="select_cat"]').text(selText);
+        $('a.button-next').click();
+    });
+
+    $('#tab2 a.btn-circle:nth(0)').on('click',function() {
+        var strHTML = '<div class="form-group">';
+            strHTML +='    <label class="control-label col-md-3">待增加项';
+            strHTML +='         <span class="required"> * </span>';
+            strHTML +='     </label>';
+            strHTML +='     <div class="col-md-4">';
+            strHTML +='         <input type="text" class="form-control" name="addInfo"/>';
+            strHTML +='         <span class="help-block"> 输入待增加项信息 </span>';
+            strHTML +='     </div>';
+            strHTML +='     <a href="javascript:;" class="btn btn-circle btn-icon-only red">';
+            strHTML +='         <i class="fa fa-minus"></i>';
+            strHTML +='     </a>';
+            strHTML +=' </div>';
+        $('#tab2').append(strHTML);
+    });
+    
+    $(document).on('click', '#tab2 a.btn-circle:gt(0)', function() {
+        $(this).parent().remove();
+    });
+
+    return{
+        init: function(){
+            initDOM();
+        }
+    };
+}();
+
 var Profile = function() {
 
     var dashboardMainChart = null;
@@ -223,7 +300,7 @@ var Profile = function() {
                     return fBound;
                 };
             }
-
+            /*
             $("#sparkline_bar").sparkline([8, 9, 10, 11, 10, 10, 12, 10, 10, 11, 9, 12, 11], {
                 type: 'bar',
                 width: '100',
@@ -240,7 +317,7 @@ var Profile = function() {
                 height: '45',
                 barColor: '#5C9BD1',
                 negBarColor: '#e02222'
-            });
+            });*/
         }
 
     };
@@ -251,6 +328,7 @@ jQuery(document).ready(function() {
 	initDom();
 	FormWizard.init();
     Profile.init();
+    handleSelect2.init();
 });
 
 jQuery(window).resize(function() {

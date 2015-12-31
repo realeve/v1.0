@@ -200,7 +200,7 @@ function UpdateData(strUrl, Data,Type) {
 }
 
 function GetSelectStr(Data) {
-  var i, str = '<option value=""></option>';
+  var i, str = '<option value="-1"></option>';
   for (i = 0; i < Data.rows; i++) {
     str += '<option value="' + Data.data[i][0] + '">' + Data.data[i][1] + '</option>';
   }

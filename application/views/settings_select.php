@@ -189,174 +189,54 @@
                                                         <div class="tab-pane" id="tab1">
                                                             <h3 class="block">选择需要调整的下拉框</h3>
                                                             <div class="form-group">
-                                                                <label class="col-md-3 control-label" for="form_control_1">下拉框类型</label>
-                                                                <div class="col-md-6">
-                                                                    <select name="select_cat" class="form-control select2">
-                                                                        <option></option>
-                                                                        <option value="0">人员分组调整</option>
-                                                                        <option value="1">产品品种</option>
-                                                                        <option value="2">机台</option>
-                                                                        <option value="3">其它</option>                                                                        
+                                                                <label class="col-md-3 control-label" for="select_cat">下拉框类型</label>
+                                                                <div class="col-md-4">
+                                                                    <select name="select_cat" class="form-control select2">                                                                    
                                                                     </select>
                                                                     <div class="form-control-focus"> </div>
                                                                     <span class="help-block">所需调整的下拉框所属类型...</span>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab2">
+                                                            <h3 class="block"><span name="selectName" class="bold font-green"></span> 下拉框列表项调整</h3>                                                            
                                                             <div class="form-group">
-                                                                <label class="col-md-3 control-label" for="form_control_1">下拉框名称</label>
-                                                                <div class="col-md-6">
-                                                                    <select name="select_name" class="form-control select2">
-                                                                        <option></option>
-                                                                        <option value="0">人员分组调整</option>
-                                                                        <option value="1">产品品种</option>
-                                                                        <option value="2">机台</option>
-                                                                        <option value="3">其它</option>                                                                         
+                                                                <label class="col-md-3 control-label" for="select_name">当前列表项</label>
+                                                                <div class="col-md-4">
+                                                                    <select name="select_name" class="form-control select2">                                                                      
                                                                     </select>
                                                                     <div class="form-control-focus"> </div>
                                                                     <span class="help-block">所需调整的下拉框...</span>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="tab2">
-                                                            <h3 class="block">Provide your billing and credit card details</h3>
-                                                            <div class="form-group has-success">
-                                                                <label class="control-label col-md-3">Card Holder Name
-                                                                    <span class="required" aria-required="true"> * </span>
-                                                                </label>
-                                                                <div class="col-md-4">
-                                                                    <input type="text" class="form-control" name="card_name" aria-required="true" aria-describedby="card_name-error"><span id="card_name-error" class="help-block help-block-error valid" style="display: block;"></span>
-                                                                    <span class="help-block"> </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group has-success">
-                                                                <label class="control-label col-md-3">Card Number
-                                                                    <span class="required" aria-required="true"> * </span>
-                                                                </label>
-                                                                <div class="col-md-4">
-                                                                    <input type="text" class="form-control" name="card_number" aria-required="true" aria-describedby="card_number-error"><span id="card_number-error" class="help-block help-block-error valid" style="display: block;"></span>
-                                                                    <span class="help-block"> </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group has-success">
-                                                                <label class="control-label col-md-3">CVC
-                                                                    <span class="required" aria-required="true"> * </span>
-                                                                </label>
-                                                                <div class="col-md-4">
-                                                                    <input type="text" placeholder="" class="form-control" name="card_cvc" aria-required="true" aria-describedby="card_cvc-error"><span id="card_cvc-error" class="help-block help-block-error valid" style="display: block;"></span>
-                                                                    <span class="help-block"> </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group has-success">
-                                                                <label class="control-label col-md-3">Expiration(MM/YYYY)
-                                                                    <span class="required" aria-required="true"> * </span>
-                                                                </label>
-                                                                <div class="col-md-4">
-                                                                    <input type="text" placeholder="MM/YYYY" maxlength="7" class="form-control" name="card_expiry_date" aria-required="true" aria-describedby="card_expiry_date-error"><span id="card_expiry_date-error" class="help-block help-block-error valid" style="display: block;"></span>
-                                                                    <span class="help-block"> e.g 11/2020 </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group has-success">
-                                                                <label class="control-label col-md-3">Payment Options
-                                                                    <span class="required" aria-required="true"> * </span>
-                                                                </label>
-                                                                <div class="col-md-4">
-                                                                    <div class="checkbox-list">
-                                                                        <label>
-                                                                            <div class="checker"><span class="checked"><input type="checkbox" name="payment[]" value="1" data-title="Auto-Pay with this Credit Card." aria-required="true" aria-describedby="payment\[\]-error"></span></div> Auto-Pay with this Credit Card </label>
-                                                                        <label>
-                                                                            <div class="checker"><span><input type="checkbox" name="payment[]" value="2" data-title="Email me monthly billing."></span></div> Email me monthly billing </label>
-                                                                    </div>
-                                                                    <div id="form_payment_error"> </div><span id="payment[]-error" class="help-block help-block-error valid" style="display: block;"></span>
-                                                                </div>
+                                                                <a href="javascript:;" class="btn btn-circle btn-icon-only green">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab3">
-                                                            <h3 class="block">Confirm your account</h3>
-                                                            <h4 class="form-section">Account</h4>
+                                                            <h3 class="block">您本次修改的内容如下</h3>
+                                                            <h4 class="form-section">概述</h4>
                                                             <div class="form-group">
-                                                                <label class="control-label col-md-3">Username:</label>
+                                                                <label class="control-label col-md-3">下拉选择框名称:</label>
                                                                 <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="username">11111</p>
+                                                                    <p class="form-control-static" data-display="select_cat"></p>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="control-label col-md-3">Email:</label>
+                                                                <label class="control-label col-md-3">列表框预览</label>
                                                                 <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="email">12@sf.com</p>
+                                                                    <select name="preview" class="form-control select2">                                                                      
+                                                                    </select>
                                                                 </div>
                                                             </div>
-                                                            <h4 class="form-section">Profile</h4>
+                                                            <h4 class="form-section">添加项</h4>
                                                             <div class="form-group">
-                                                                <label class="control-label col-md-3">Fullname:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="fullname">21</p>
+                                                                <label class="control-label col-md-3 blue bold">序号</label>
+                                                                <div class="col-md-2">
+                                                                    <p class="form-control-static blue bold">值</p>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Gender:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="gender">Male</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Phone:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="phone">12</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Address:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="address">123123</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">City/Town:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="city">12323</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Country:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="country">American Samoa</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Remarks:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="remarks">123123</p>
-                                                                </div>
-                                                            </div>
-                                                            <h4 class="form-section">Billing</h4>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Card Holder Name:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="card_name">12212</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Card Number:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="card_number">1111111111111111</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">CVC:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="card_cvc">1121</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Expiration:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="card_expiry_date">23</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3">Payment Options:</label>
-                                                                <div class="col-md-4">
-                                                                    <p class="form-control-static" data-display="payment[]">Auto-Pay with this Credit Card.</p>
+                                                                <div class="col-md-3">
+                                                                    <p class="form-control-static blue bold">列表项</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -366,11 +246,11 @@
                                                     <div class="row">
                                                         <div class="col-md-offset-3 col-md-9">
                                                             <a href="javascript:;" class="btn default button-previous" style="display: inline-block;">
-                                                                <i class="fa fa-angle-left"></i> Back </a>
-                                                            <a href="javascript:;" class="btn btn-outline green button-next" style="display: inline-block;"> Continue
+                                                                <i class="fa fa-angle-left"></i> 返回 </a>
+                                                            <a href="javascript:;" class="btn btn-outline green button-next" style="display: inline-block;"> 继续
                                                                 <i class="fa fa-angle-right"></i>
                                                             </a>
-                                                            <a href="javascript:;" class="btn green button-submit" style="display: none;"> Submit
+                                                            <a href="javascript:;" class="btn green button-submit" style="display: none;"> 提交
                                                                 <i class="fa fa-check"></i>
                                                             </a>
                                                         </div>
