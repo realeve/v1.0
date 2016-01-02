@@ -78,6 +78,12 @@ class DataInterface extends CI_Controller {
 	{
 		$APIData = $this->input->get(NULL);
 		$Data = $this->DataInterfaceModel->Api($APIData);
+
+		//增加跨域请求权限_2015_12_31
+		if (isset($APIData['callback'])) {
+			$Data = $APIData['callback'] . "(" . $Data . ")";
+		}
+		//输出数据
 	 	$this->output->set_output($Data);
 	}
 
