@@ -3,7 +3,7 @@ var gb = {
 	chart2: null,
 	chart3: null,
 	chart4: null,
-	chart5:null,
+	chart5: null,
 	PM25: null,
 	AQI: null,
 	PM10: null,
@@ -48,18 +48,18 @@ var convertData = function(data) {
 };
 
 
-var convertScatterData = function (data) {
-    var res = [];
-    for (var i = 0; i < data.length; i++) {
-        var geoCoord = geoCoordMap[data[i].name];
-        if (geoCoord) {
-            res.push({
-                name: data[i].name,
-                value: geoCoord.concat(data[i].value)
-            });
-        }
-    }
-    return res;
+var convertScatterData = function(data) {
+	var res = [];
+	for (var i = 0; i < data.length; i++) {
+		var geoCoord = geoCoordMap[data[i].name];
+		if (geoCoord) {
+			res.push({
+				name: data[i].name,
+				value: geoCoord.concat(data[i].value)
+			});
+		}
+	}
+	return res;
 };
 
 var handleAQIData = function() {
@@ -120,7 +120,7 @@ var handleAQIData = function() {
 					gb.PM25[i].value = parseFloat(aqi[i].PM25_1H, 10);
 					gb.AQI[i].value = parseFloat(aqi[i].AQI_1H, 10);
 					gb.PM10[i].value = parseFloat(aqi[i].PM10_1H, 10);
-					gb.CO[i].value = parseFloat(aqi[i].CO_1H, 10)*10;
+					gb.CO[i].value = parseFloat(aqi[i].CO_1H, 10) * 10;
 					gb.NO2[i].value = parseFloat(aqi[i].NO2_1H, 10);
 					gb.O3[i].value = parseFloat(aqi[i].O3_1H, 10);
 					gb.SO2[i].value = parseFloat(aqi[i].SO2_1H, 10);
@@ -149,8 +149,13 @@ var handleAQIData = function() {
 					subtext: '数据来源: 成都市环境保护局\n更新时间:' + gb.rec_time.substring(0, 16),
 					sublink: 'http://www.cdepb.gov.cn',
 					textStyle: {
-						color: '#fff',
+						color: '#445',
 						fontSize: 30
+					},
+					subtextStyle: {
+						color: '#445',
+						fontSize: 15,
+						bold: true
 					},
 					x: 'center'
 				},
@@ -160,16 +165,16 @@ var handleAQIData = function() {
 				},
 				legend: {
 					x: 'left',
-					data: ['AQI', 'PM2.5', 'PM10', 'CO', 'NO2', 'O3', 'SO2'],
+					data: ['AQI', 'PM2.5', 'PM10'],
 					textStyle: {
-						color: '#ccc'
+						color: '#445'
 					},
 					orient: 'vertical',
 					selectedMode: 'single',
 					selected: {
-						'AQI': true,
+						'AQI': false,
 						'PM10': false,
-						'PM2.5':false
+						'PM2.5': true
 					}
 				},
 				toolbox: {
@@ -201,7 +206,7 @@ var handleAQIData = function() {
 					calculable: true,
 					color: ['orangered', 'yellow', 'lightskyblue'],
 					textStyle: {
-						color: '#fff'
+						color: '#445'
 					},
 					x: 'right',
 					y: 50
@@ -212,7 +217,7 @@ var handleAQIData = function() {
 						emphasis: {
 							show: true,
 							textStyle: {
-								color: '#fff',
+								color: '#445',
 								fontSize: 15
 							},
 						}
@@ -229,97 +234,101 @@ var handleAQIData = function() {
 					}
 				},
 				series: [{
-						name: 'AQI',
-						type: 'heatmap',
-						coordinateSystem: 'geo',
-						mapType: 'CD',
-						roam: true,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
+					name: 'AQI',
+					type: 'heatmap',
+					coordinateSystem: 'geo',
+					mapType: 'CD',
+					roam: true,
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
 							}
 						},
-						data: convertData(gb.AQI),
-						nameMap: {
-							'都江堰市': '都江堰'
-						}
-					}, {
-						name: 'PM2.5',
-						type: 'heatmap',
-						coordinateSystem: 'geo',
-						mapType: 'CD',
-						roam: true,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
+						emphasis: {
+							label: {
+								show: true
 							}
-						},
-						data: convertData(gb.PM25),
-						nameMap: {
-							'都江堰市': '都江堰'
-						}
-					}, {
-						name: 'PM10',
-						type: 'heatmap',
-						coordinateSystem: 'geo',
-						mapType: 'CD',
-						roam: true,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: convertData(gb.PM10),
-						nameMap: {
-							'都江堰市': '都江堰'
 						}
 					},
-			        {
-			            name: 'PM2.5 Top 5',
-			            type: 'effectScatter',
-			            coordinateSystem: 'geo',
-			            data: convertData(gb.PM25.sort(function (a, b) {
-			                return b.value - a.value;
-			            }).slice(0, 6)),
-			            symbol:'pin',
-			            symbolSize: function (val) {
-			                return val[2]/4 ;
-			            },
-			            showEffectOn: 'render',
-			            hoverAnimation: true,
-			            zlevel: 1
-			        }]
+					data: convertData(gb.AQI),
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM2.5',
+					type: 'heatmap',
+					coordinateSystem: 'geo',
+					mapType: 'CD',
+					roam: true,
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
+							}
+						},
+						emphasis: {
+							label: {
+								show: true
+							}
+						}
+					},
+					data: convertData(gb.PM25),
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM10',
+					type: 'heatmap',
+					coordinateSystem: 'geo',
+					mapType: 'CD',
+					roam: true,
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
+							}
+						},
+						emphasis: {
+							label: {
+								show: true
+							}
+						}
+					},
+					data: convertData(gb.PM10),
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM2.5 Top 5',
+					type: 'effectScatter',
+					coordinateSystem: 'geo',
+					data: convertData(gb.PM25.sort(function(a, b) {
+						return b.value - a.value;
+					}).slice(0, 6)),
+					symbol: 'pin',
+					symbolSize: function(val) {
+						return val[2] / 4;
+					},
+					showEffectOn: 'render',
+					hoverAnimation: true,
+					zlevel: 1
+				}]
 			});
-			
+
 			gb.chart3.setOption(option = {
 				title: {
 					text: '成都市环境空气质量热力图',
 					subtext: '数据来源: 成都市环境保护局\n更新时间:' + gb.rec_time.substring(0, 16),
 					sublink: 'http://www.cdepb.gov.cn',
 					textStyle: {
-						color: '#fff',
+						color: '#445',
 						fontSize: 30
+					},
+					subtextStyle: {
+						color: '#445',
+						fontSize: 15,
+						bold: true
 					},
 					x: 'center'
 				},
@@ -331,7 +340,7 @@ var handleAQIData = function() {
 					x: 'left',
 					data: ['CO', 'NO2', 'O3', 'SO2'],
 					textStyle: {
-						color: '#ccc'
+						color: '#445'
 					},
 					orient: 'vertical',
 					selectedMode: 'single',
@@ -371,7 +380,7 @@ var handleAQIData = function() {
 					calculable: true,
 					color: ['orangered', 'yellow', 'lightskyblue'],
 					textStyle: {
-						color: '#fff'
+						color: '#445'
 					},
 					x: 'right',
 					y: 50
@@ -382,7 +391,7 @@ var handleAQIData = function() {
 						emphasis: {
 							show: true,
 							textStyle: {
-								color: '#fff',
+								color: '#445',
 								fontSize: 15
 							},
 						}
@@ -511,8 +520,13 @@ var handleAQIData = function() {
 					subtext: '数据来源: 成都市环境保护局\n更新时间:' + gb.rec_time.substring(0, 16),
 					sublink: 'http://www.cdepb.gov.cn',
 					textStyle: {
-						color: '#fff',
+						color: '#445',
 						fontSize: 30
+					},
+					subtextStyle: {
+						color: '#445',
+						fontSize: 15,
+						bold: true
 					},
 					x: 'center'
 				},
@@ -522,16 +536,16 @@ var handleAQIData = function() {
 				},
 				legend: {
 					x: 'left',
-					data: ['AQI', 'PM2.5', 'PM10', 'CO', 'NO2', 'O3', 'SO2'],
+					data: ['AQI', 'PM2.5', 'PM10'],
 					textStyle: {
-						color: '#ccc'
+						color: '#445'
 					},
 					orient: 'vertical',
 					selectedMode: 'single',
 					selected: {
-						'AQI': true,
+						'AQI': false,
 						'PM10': false,
-						'PM2.5':false
+						'PM2.5': true
 					}
 				},
 				toolbox: {
@@ -563,75 +577,75 @@ var handleAQIData = function() {
 					calculable: true,
 					color: ['orangered', 'yellow', 'lightskyblue'],
 					textStyle: {
-						color: '#fff'
+						color: '#445'
 					},
 					x: 'right',
 					y: 50
 				},
 				series: [{
-						name: 'AQI',
-						type: 'map',
-						mapType: 'CD',
-						roam: true,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
+					name: 'AQI',
+					type: 'map',
+					mapType: 'CD',
+					roam: true,
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
 							}
 						},
-						data: gb.AQI,
-						nameMap: {
-							'都江堰市': '都江堰'
+						emphasis: {
+							label: {
+								show: true
+							}
 						}
-					}, {
-						name: 'PM2.5',
-						type: 'map',
-						mapType: 'CD',
-						roam: true,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
+					},
+					data: gb.AQI,
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM2.5',
+					type: 'map',
+					mapType: 'CD',
+					roam: true,
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
 							}
 						},
-						data: gb.PM25,
-						nameMap: {
-							'都江堰市': '都江堰'
+						emphasis: {
+							label: {
+								show: true
+							}
 						}
-					}, {
-						name: 'PM10',
-						type: 'map',
-						mapType: 'CD',
-						roam: true,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
+					},
+					data: gb.PM25,
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM10',
+					type: 'map',
+					mapType: 'CD',
+					roam: true,
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
 							}
 						},
-						data: gb.PM10,
-						nameMap: {
-							'都江堰市': '都江堰'
+						emphasis: {
+							label: {
+								show: true
+							}
 						}
-					}]
+					},
+					data: gb.PM10,
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}]
 			});
 			gb.chart5.setOption(option = {
 				title: {
@@ -639,8 +653,13 @@ var handleAQIData = function() {
 					subtext: '数据来源: 成都市环境保护局\n更新时间:' + gb.rec_time.substring(0, 16),
 					sublink: 'http://www.cdepb.gov.cn',
 					textStyle: {
-						color: '#fff',
+						color: '#445',
 						fontSize: 30
+					},
+					subtextStyle: {
+						color: '#445',
+						fontSize: 15,
+						bold: true
 					},
 					x: 'center'
 				},
@@ -650,16 +669,16 @@ var handleAQIData = function() {
 				},
 				legend: {
 					x: 'left',
-					data: ['AQI', 'PM2.5', 'PM10', 'CO', 'NO2', 'O3', 'SO2'],
+					data: ['AQI', 'PM2.5', 'PM10', ],
 					textStyle: {
-						color: '#ccc'
+						color: '#445'
 					},
 					orient: 'vertical',
 					selectedMode: 'single',
 					selected: {
-						'AQI': true,
+						'AQI': false,
 						'PM10': false,
-						'PM2.5':false
+						'PM2.5': true
 					}
 				},
 				toolbox: {
@@ -683,24 +702,24 @@ var handleAQIData = function() {
 						}
 					}
 				},
-			    geo: {
-			        map: 'CD',
-			        label: {
-			            emphasis: {
-			                show: false
-			            }
-			        },
-			        roam: true,
-			        itemStyle: {
-			            normal: {
-			                areaColor: '#323c48',
-			                borderColor: '#111'
-			            },
-			            emphasis: {
-			                areaColor: '#2a333d'
-			            }
-			        }
-			    },
+				geo: {
+					map: 'CD',
+					label: {
+						emphasis: {
+							show: false
+						}
+					},
+					roam: true,
+					itemStyle: {
+						normal: {
+							areaColor: '#323c48',
+							borderColor: '#111'
+						},
+						emphasis: {
+							areaColor: '#2a333d'
+						}
+					}
+				},
 				dataRange: {
 					min: 50,
 					max: 300,
@@ -709,96 +728,95 @@ var handleAQIData = function() {
 					calculable: true,
 					color: ['orangered', 'yellow', 'lightskyblue'],
 					textStyle: {
-						color: '#fff'
+						color: '#445'
 					},
 					x: 'right',
 					y: 50
 				},
 				series: [{
-						name: 'AQI',
-						type: 'scatter',
-			            coordinateSystem: 'geo',
-			            data: convertScatterData(gb.AQI),
-			            symbolSize: function (val) {
-			                return val[2] / 6;
-			            },
-						mapType: 'CD',
-						roam: true,
-						label: {
-			                normal: {
-			                    formatter: '{b}',
-			                    position: 'right',
-			                    show: true
-			                },
-			                emphasis: {
-			                    show: true
-			                }
-			            },
-						nameMap: {
-							'都江堰市': '都江堰'
+					name: 'AQI',
+					type: 'scatter',
+					coordinateSystem: 'geo',
+					data: convertScatterData(gb.AQI),
+					symbolSize: function(val) {
+						return val[2] / 6;
+					},
+					mapType: 'CD',
+					roam: true,
+					label: {
+						normal: {
+							formatter: '{b}',
+							position: 'right',
+							show: true
+						},
+						emphasis: {
+							show: true
 						}
 					},
-			        {
-			            name: 'PM2.5 Top 5',
-			            type: 'effectScatter',
-			            coordinateSystem: 'geo',
-			            data: convertData(gb.PM25.sort(function (a, b) {
-			                return b.value - a.value;
-			            }).slice(0, 6)),
-			            symbolSize: function (val) {
-			                return val[2] / 6;
-			            },
-			            showEffectOn: 'render',
-			            hoverAnimation: true,
-			            zlevel: 1
-			        }, {
-						name: 'PM2.5',
-						type: 'scatter',
-			            coordinateSystem: 'geo',
-			            data: convertScatterData(gb.PM25),
-			            symbolSize: function (val) {
-			                return val[2] / 6;
-			            },
-						mapType: 'CD',
-						roam: true,
-						label: {
-			                normal: {
-			                    formatter: '{b}',
-			                    position: 'right',
-			                    show: true
-			                },
-			                emphasis: {
-			                    show: true
-			                }
-			            },
-						nameMap: {
-							'都江堰市': '都江堰'
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM2.5 Top 5',
+					type: 'effectScatter',
+					coordinateSystem: 'geo',
+					data: convertData(gb.PM25.sort(function(a, b) {
+						return b.value - a.value;
+					}).slice(0, 6)),
+					symbolSize: function(val) {
+						return val[2] / 6;
+					},
+					showEffectOn: 'render',
+					hoverAnimation: true,
+					zlevel: 1
+				}, {
+					name: 'PM2.5',
+					type: 'scatter',
+					coordinateSystem: 'geo',
+					data: convertScatterData(gb.PM25),
+					symbolSize: function(val) {
+						return val[2] / 6;
+					},
+					mapType: 'CD',
+					roam: true,
+					label: {
+						normal: {
+							formatter: '{b}',
+							position: 'right',
+							show: true
+						},
+						emphasis: {
+							show: true
 						}
-					}, {
-						name: 'PM10',
-						type: 'scatter',
-			            coordinateSystem: 'geo',
-			            data: convertScatterData(gb.PM10),
-			            symbolSize: function (val) {
-			                return val[2] / 6;
-			            },
-						type: 'map',
-						mapType: 'CD',
-						roam: true,
-						label: {
-			                normal: {
-			                    formatter: '{b}',
-			                    position: 'right',
-			                    show: true
-			                },
-			                emphasis: {
-			                    show: true
-			                }
-			            },
-						nameMap: {
-							'都江堰市': '都江堰'
+					},
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}, {
+					name: 'PM10',
+					type: 'scatter',
+					coordinateSystem: 'geo',
+					data: convertScatterData(gb.PM10),
+					symbolSize: function(val) {
+						return val[2] / 6;
+					},
+					type: 'map',
+					mapType: 'CD',
+					roam: true,
+					label: {
+						normal: {
+							formatter: '{b}',
+							position: 'right',
+							show: true
+						},
+						emphasis: {
+							show: true
 						}
-					}]
+					},
+					nameMap: {
+						'都江堰市': '都江堰'
+					}
+				}]
 			});
 			gb.chart4.setOption(option = {
 				title: {
@@ -806,8 +824,13 @@ var handleAQIData = function() {
 					subtext: '数据来源: 成都市环境保护局\n更新时间:' + gb.rec_time.substring(0, 16),
 					sublink: 'http://www.cdepb.gov.cn',
 					textStyle: {
-						color: '#fff',
+						color: '#445',
 						fontSize: 30
+					},
+					subtextStyle: {
+						color: '#445',
+						fontSize: 15,
+						bold: true
 					},
 					x: 'center'
 				},
@@ -817,13 +840,13 @@ var handleAQIData = function() {
 				},
 				legend: {
 					x: 'left',
-					data: ['AQI', 'PM2.5', 'PM10', 'CO', 'NO2', 'O3', 'SO2'],
+					data: ['CO', 'NO2', 'O3', 'SO2'],
 					textStyle: {
-						color: '#ccc'
+						color: '#445'
 					},
 					orient: 'vertical',
 					selectedMode: 'single',
-					selected: {						
+					selected: {
 						'CO': true,
 						'NO2': false,
 						'O3': false,
@@ -859,7 +882,7 @@ var handleAQIData = function() {
 					calculable: true,
 					color: ['orangered', 'yellow', 'lightskyblue'],
 					textStyle: {
-						color: '#fff'
+						color: '#445'
 					},
 					x: 'right',
 					y: 50
@@ -1108,7 +1131,7 @@ var handleAQIData = function() {
 				x: '80',
 				y: 'bottom',
 				textStyle: {
-					color: '#fff',
+					color: '#445',
 					fontSize: 20
 				}
 			},
@@ -1117,7 +1140,7 @@ var handleAQIData = function() {
 				data: ['北京', '上海', '广州'],
 				itemGap: 20,
 				textStyle: {
-					color: '#fff',
+					color: '#445',
 					fontSize: 14
 				}
 			},
@@ -1176,7 +1199,7 @@ var handleAQIData = function() {
 					nameLocation: 'end',
 					nameGap: 20,
 					nameTextStyle: {
-						color: '#fff',
+						color: '#445',
 						fontSize: 12
 					},
 					axisLine: {
@@ -1194,7 +1217,7 @@ var handleAQIData = function() {
 					},
 					axisLabel: {
 						textStyle: {
-							color: '#fff'
+							color: '#445'
 						}
 					}
 				}
@@ -1233,6 +1256,20 @@ $(window).resize(function() {
 	gb.chart2.resize();
 });
 $(document).ready(function() {
-	$('div.col-md-12').height($(window).height());
+
+	$('#fullpage').fullpage({
+		'verticalCentered': false,
+		'css3': true,
+		'sectionsColor': ['#fff', '#f9fafc', '#fff', '#f9fafc', '#fff'],
+		'navigation': true,
+		'navigationPosition': 'right',
+		//'navigationTooltips': ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
+		//'continuousVertical': true,
+		'anchors': ['firstPage', 'secondPage', '3rdPage', '4thPage', 'lastPage'],
+		'menu': '.menu',
+		'loopTop': true,
+		'loopBottom': true
+	});
 	handleAQIData.init();
+
 });
