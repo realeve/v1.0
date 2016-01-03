@@ -23,6 +23,9 @@ var FormWizard = function () {
                     },
                     select_name: {
                         required: true
+                    },
+                    addInfo: {
+                        required: true
                     }
                 },
                 errorPlacement: function (error, element) { // render error placement for each input type
@@ -113,12 +116,17 @@ var FormWizard = function () {
                         $('.mt-step-col:nth(1)').removeClass('active').removeClass('done');
                         break;
                     case 2:
+                        if($('#tab2 a.btn-circle:gt(0)').length>0){
+                            $('#form_wizard_1').find('.button-next').show();
+                        }else
+                        {
+                            $('#form_wizard_1').find('.button-next').hide();
+                        }
                         $('.mt-step-col:nth(1)').addClass('active');
                         $('.mt-step-col').first().removeClass('active');
                         $('.mt-step-col').first().addClass('done');
                         $('#form_wizard_1').find('.button-submit').hide();
                         $('#form_wizard_1').find('.button-previous').show();
-                        $('#form_wizard_1').find('.button-next').show();
                         $('.mt-step-col:nth(2)').removeClass('active').removeClass('done');
                         break;
                     case 3:
@@ -238,6 +246,7 @@ var handleSelect2 = function(){
     });
 
     $('#tab2 a.btn-circle:nth(0)').on('click',function() {
+        $('#form_wizard_1').find('.button-next').show();
         var strHTML = '<div class="form-group">';
             strHTML +='    <label class="control-label col-md-3">待增加项';
             strHTML +='         <span class="required"> * </span>';
@@ -264,6 +273,7 @@ var handleSelect2 = function(){
     };
 }();
 
+/*
 var Profile = function() {
 
     var dashboardMainChart = null;
@@ -275,7 +285,7 @@ var Profile = function() {
         
             Profile.initMiniCharts();
         },
-
+        
         initMiniCharts: function() {
 
             // IE8 Fix: function.bind polyfill
@@ -300,7 +310,7 @@ var Profile = function() {
                     return fBound;
                 };
             }
-            /*
+           
             $("#sparkline_bar").sparkline([8, 9, 10, 11, 10, 10, 12, 10, 10, 11, 9, 12, 11], {
                 type: 'bar',
                 width: '100',
@@ -317,17 +327,17 @@ var Profile = function() {
                 height: '45',
                 barColor: '#5C9BD1',
                 negBarColor: '#e02222'
-            });*/
+            });
         }
 
     };
 
-}();
+}();*/
 
 jQuery(document).ready(function() {
 	initDom();
 	FormWizard.init();
-    Profile.init();
+    //Profile.init();
     handleSelect2.init();
 });
 
