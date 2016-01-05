@@ -38,6 +38,8 @@
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL PLUGINS  -->
+<script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/icheck/icheck.min.js"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>

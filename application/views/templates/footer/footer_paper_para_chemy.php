@@ -33,6 +33,8 @@
 <script src="<?php echo base_url()?>assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script type="text/javascript" src="<?php echo base_url()?>assets/global/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/icheck/icheck.min.js"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js" type="text/javascript"></script>

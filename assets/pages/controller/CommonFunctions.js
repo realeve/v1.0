@@ -49,6 +49,16 @@ function bsTips(strMes, Type) {
   toastr[infoType[Type]](strMes);
 }
 
+function PromotAlert(title,succes) {
+  bootbox.prompt(title, function(result) {
+    if (result === null) {
+      
+    } else {
+      success;
+    }
+  });
+}
+
 //获取当前域名，t=0时返回顶级域名,t=1时返回当前
 
 function getRootPath(t) {
@@ -75,8 +85,8 @@ function getRootUrl(str) {
 function today(type) {
   var date = new Date();
   var a = date.getFullYear();
-  var b = date.getMonth() + 1;
-  var c = date.getDate();
+  var b = jsRight(('0'+ date.getMonth() + 1),2);
+  var c = jsRight(('0'+date.getDate()),2);
   var d = date.getHours();
   var e = date.getMinutes();
   var f = date.getSeconds();
@@ -225,22 +235,6 @@ function GetSwitchValue(Name, Num) {
     v = $('input:radio[name=' + Name + ']:nth(' + i + ')').bootstrapSwitch('state');
   }
   return i;
-}
-
-//设置Radio
-
-function SetRadioChecked(Name, nID) {
-  $("input[name='" + Name + "']:nth(" + nID + ")").attr('checked', 1);
-}
-//获取Radio值
-
-function GetRadioChecked(Name) {
-  var i = 0;
-  for (i = 0; i < $("input[name='" + Name + "']").length; i++) {
-    if ($("input[name='" + Name + "']:nth(" + i + ")").attr('checked') == "checked") {
-      return i;
-    }
-  }
 }
 
 //初始化标题栏时间选择器
@@ -551,3 +545,45 @@ function initDom() {
     });
    return strRow;
  }
+//iCheck控件初始化及设置值
+ function iChechBoxInit(){
+    var obj = $('.icheck');
+    obj.iCheck({
+      checkboxClass: 'icheckbox_square-green',//'icheckbox_square-red'
+      radioClass: 'iradio_square-green',
+      increaseArea: '10' // optional
+    });
+ }
+function SetiCheckChecked(Name, nID) {
+  $(".icheck[name='" + Name + "']:nth(" + nID + ")").iCheck('toggle');
+}
+function GetiCheckChecked(Name) {
+  for (var i = $(".icheck[name='" + Name + "']").length - 1; i >= 0; i--) {
+    if($(".icheck[name='" + Name + "']:nth(" + i + ")").prop("checked")){
+      return i;
+    }
+  }
+  return -1;
+}
+//设置Radio
+
+function SetRadioChecked(Name, nID) {
+  $("input[name='" + Name + "']:nth(" + nID + ")").attr('checked', 'true');
+}
+//获取Radio值
+
+function GetRadioChecked(Name) {
+  return $("input[name='" + Name + "']:checked").val();
+}
+
+//select2 初始化
+function initSelect2(){
+    $.fn.select2.defaults.set("theme", "bootstrap");
+    $(".select2, .select2-multiple").select2({
+      width: null
+    });
+}
+
+function SetSelect2Val(Name, val) {
+  $("select[name='" + Name + "']").select2('val', val);
+}

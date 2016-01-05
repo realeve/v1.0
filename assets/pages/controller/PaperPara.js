@@ -27,16 +27,17 @@ var PaperParam = function() {
 			limitReachedClass: "label label-danger",
 			threshold: 3
 		});
+		initSelect2();
 	}
 
 	function initChecked() {
 		var iHours = new Date().getHours();
 		if (iHours >= 0 && iHours < 8) { //夜班
-			SetRadioChecked('class_id', 2);
+			SetiCheckChecked('class_id', 2);
 		} else if (iHours >= 8 && iHours < 16) { //白班
-			SetRadioChecked('class_id', 0);
+			SetiCheckChecked('class_id', 0);
 		} else { //中班
-			SetRadioChecked('class_id', 1);
+			SetiCheckChecked('class_id', 1);
 		}
 	}
 
@@ -84,30 +85,24 @@ var PaperParam = function() {
 			//$('form input.form-control[name="'+ keys +'"], form select.form-control[name="'+ keys +'"]').val(Data.data[0][keys]);
 			$('form .form-control[name="'+ keys +'"]').val(Data.data[0][keys]);
 		});
-		SetRadioChecked('class_id', Data.data[0]['class_id']);
+		SetSelect2Val('oper_id',Data.data[0]['oper_id']);
+		SetSelect2Val('Prod_id',Data.data[0]['Prod_id']);
+		SetSelect2Val('machine_id',Data.data[0]['machine_id']);
+
+		SetiCheckChecked('class_id', Data.data[0]['class_id']);
 		$('.portlet button[type="submit"]').attr('data-sn',Data.data[0]['ID']);
 		$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('提交','更新'));
 		//移动浮动效果
-		$('.portlet.light div').removeClass('form-md-floating-label');
 		$('.portlet.light').show();
 		refreshData();
 		//更新评价总分
 		$('.amounts h4').html("<strong>评价总分:</strong> "+Data.data[0]['score']);
 
 		//日常指标禁止修改
+		$('#checkbox2').iCheck('uncheck');
 		$('.normalPara input').attr('disabled','true');
 		$('.normalParaEdit').show();
 	}
-
-	$('#checkbox2').on('click',function(){
-		if($(this).val()==1){
-			$(this).val(0);
-			$('.normalPara input').attr('disabled','true');
-		}else{//允许
-			$(this).val(1);
-			$('.normalPara input').removeAttr('disabled');
-		}
-	});
 
 	function refreshData() {
 		var startMonth = $("input[name='rec_date']").val();
@@ -209,6 +204,7 @@ var PaperParam = function() {
 			iData.score = $('.amounts h4').text().replace('评价总分:','');
 			iData.utf2gbk = ['remark'];
 			iData.record_Time = today(1);
+			iData.class_id = GetiCheckChecked('class_id');
 			$.post(strUrl, iData,
 				function(data, status) {
 					if (status == "success") {
@@ -233,6 +229,7 @@ var PaperParam = function() {
 			iData.score = $('.amounts h4').text().replace('评价总分:','');
 			iData.utf2gbk = ['remark'];
 			iData.record_Time = today(1);
+			iData.class_id = GetiCheckChecked('class_id');
 			iData.id = $('.portlet button[type="submit"]').attr('data-sn');
 			$.post(strUrl, iData,
 				function(data, status) {
@@ -243,7 +240,6 @@ var PaperParam = function() {
 						$('.portlet.light').hide();
 						//状态还原
 						$('.normalPara input').removeAttr('disabled');
-						$('.portlet.light div').addClass('form-md-floating-label');
 						$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新','提交'));
 					} else {
 						infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
@@ -266,8 +262,24 @@ var PaperParam = function() {
 		});
 
 		$('button[type="reset"]').on('click', function() {
-			$('.portlet.light').hide();
+			initChecked();
 			$('.amounts h4').html("<strong>评价总分:</strong> "+100);
+			$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新','提交'));
+			$('#checkbox2').iCheck('check');
+			$('.normalPara input').removeAttr('disabled');
+			SetSelect2Val('oper_id',-1);
+			SetSelect2Val('Prod_id',-1);
+			SetSelect2Val('machine_id',-1);
+			$('.portlet.light').hide();
+		});
+
+		$('#checkbox2').on('ifChanged', function(){
+			var iStat = ($(this).prop("checked")) ? 1 : 0;
+			if (!iStat) {
+				$('.normalPara input').attr('disabled', 'true');
+			} else { //允许
+				$('.normalPara input').removeAttr('disabled');
+			}
 		});
 	};
 
@@ -287,7 +299,10 @@ var PaperParam = function() {
 
 jQuery(document).ready(function() {
 	initDom();
+	iChechBoxInit();
+	$('#checkbox2').iCheck('check');
 	PaperParam.init();
+	RoundedTheme(0);
 });
 jQuery(window).resize(function() {
 	HeadFix();

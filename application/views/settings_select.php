@@ -167,18 +167,18 @@
                                                         <div class="row step-default">
                                                             <div class="col-md-4 bg-grey mt-step-col active">
                                                                 <div class="mt-step-number bg-white font-grey">1</div>
-                                                                <div class="mt-step-title uppercase font-grey-cascade">选择待调整下拉框</div>
-                                                                <div class="mt-step-content font-grey-cascade">请不要调整您个人业务范围之外的下拉框</div>
+                                                                <div class="mt-step-title uppercase font-grey-cascade">选择下拉框</div>
+                                                                <div class="mt-step-content font-grey-cascade">请勿调整您个人业务范围之外的下拉框</div>
                                                             </div>
                                                             <div class="col-md-4 bg-grey mt-step-col">
                                                                 <div class="mt-step-number bg-white font-grey">2</div>
-                                                                <div class="mt-step-title uppercase font-grey-cascade">调整选项卡内容</div>
-                                                                <div class="mt-step-content font-grey-cascade">此处仅允许增加条目或删除已确认的无效项</div>
+                                                                <div class="mt-step-title uppercase font-grey-cascade">调整下拉框</div>
+                                                                <div class="mt-step-content font-grey-cascade">仅允许增加条目或删除无效项</div>
                                                             </div>
                                                             <div class="col-md-4 bg-grey mt-step-col ">
                                                                 <div class="mt-step-number bg-white font-grey">3</div>
                                                                 <div class="mt-step-title uppercase font-grey-cascade">预览及提交</div>
-                                                                <div class="mt-step-content font-grey-cascade">Preview</div>
+                                                                <div class="mt-step-content font-grey-cascade">再次确认修改</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -231,13 +231,6 @@
                                                             </div>
                                                             <h4 class="form-section">添加项</h4>
                                                             <div class="form-group">
-                                                                <label class="control-label col-md-3 blue bold">序号</label>
-                                                                <div class="col-md-2">
-                                                                    <p class="form-control-static blue bold">值</p>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <p class="form-control-static blue bold">列表项</p>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

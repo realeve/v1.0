@@ -4,7 +4,8 @@ var PaperParam = function() {
 			$('.date-picker').datepicker({
 				rtl: App.isRTL(),
 				orientation: "left",
-				autoclose: true
+				autoclose: true,
+				format:'yyyy-mm-dd'
 			});
 		}
 	};
@@ -19,43 +20,10 @@ var PaperParam = function() {
 		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=3";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
-		$("input[name='rec_date']").val(today(5));
+		$("input[name='rec_date']").val(today(6));
 		$("input[name='remark']").val('无');
+		initSelect2();
 	}
-
-	$('.md-check').on('click',function() {
-		var surScore = parseFloat($('.list-unstyled.amounts li:nth(1)').text().replace('外观指标:', ''));
-		var pscScore = parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('物理指标:', ''));
-		var id = parseInt($(this).attr('ID').replace('checkbox', ''), 10) - 1;
-		var curScore, totalScore;
-		//分数表
-		var detailScore = [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 1, 1];
-		//分数动态更新
-		//if ($(this).attr('checked') == 'checked') {
-		if ($(this).parent().find('.inc').length) {
-			curScore = surScore - detailScore[id];
-
-		} else {
-			curScore = surScore + detailScore[id];
-		}
-		//获取当月数据条数
-		var num = $('input[name="chk_ID"]').val() - 1;
-		if (num === 0) {
-			surScore = curScore;
-		} else {
-			var HisSurScore = surScore * num;
-			surScore = (curScore + HisSurScore) / (num + 1);
-		}
-		totalScore = (pscScore + surScore) / 2;
-		$('.list-unstyled.amounts li:nth(1)').html('<strong>外观指标:</strong> ' + xround(surScore, 2));
-		$('.list-unstyled.amounts li:nth(2) h4').html('<strong>当前得分:</strong> ' + xround(curScore, 2));
-		$('.list-unstyled.amounts li:nth(3)').html('<h4 class="font-green"><strong>当月评价总分:</strong> ' + xround(totalScore, 2) + '</h4>');
-		if (totalScore < 95) {
-			$('a[name="submit"]').attr('href', '#info');
-		} else {
-			$('a[name="submit"]').attr('href', '');
-		}
-	});
 
 	function vialidate() {
 		if ($('select[name="oper_ID"]').val() === '' || $('select[name="prod_ID"]').val() === '') {
@@ -71,15 +39,16 @@ var PaperParam = function() {
 		var hideID = [3, 6, 7, 9, 10, 13, 14, 15, 16, 17];
 		if ($('select[name="prod_ID"]').find("option:selected").text() === '103-G-2A') {
 			hideID.map(function(val) {
-				$('.form-md-checkboxes:nth(' + val + ')').hide();
+				$('.form-checkbox-listes:nth(' + val + ')').hide();
 			});
 		} else {
 			hideID.map(function(val) {
-				$('.form-md-checkboxes:nth(' + val + ')').show();
+				$('.form-checkbox-listes:nth(' + val + ')').show();
 			});
 		}
 		$("input[name='remark']").val('无');
-		$("input[name='rec_date']").val(today(5));
+		$("input[name='rec_date']").val(today(6));
+		$(".icheck").iCheck('uncheck');
 		//刷新右上角数据
 		setRecordNum();
 	}
@@ -101,7 +70,7 @@ var PaperParam = function() {
 
 	function setRecordNum() {
 		var startMonth = $("input[name='rec_date']").val();
-		startMonth = startMonth.substr(6, 4) + startMonth.substr(0, 2);
+		startMonth = startMonth.substr(0, 4) + startMonth.substr(5, 2);
 		var prod = $('select[name="prod_ID"]').val();
 		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataPsc = ReadData(str);
@@ -158,9 +127,9 @@ var PaperParam = function() {
 		];
 		var checkStr = JSON.stringify(surData);
 		checkStr = checkStr.replace('}', '');
-		$('.md-check').map(function(elem) {
+		$('.icheck').map(function(elem) {
 			//if ($(this).attr('checked') == 'checked') {
-			if ($(this).parent().find('.inc').length) {
+			if ($(this).prop("checked")) {
 				checkStr = checkStr + ',"' + keyList[elem] + '":1';
 			} else {
 				checkStr = checkStr + ',"' + keyList[elem] + '":0';
@@ -171,10 +140,13 @@ var PaperParam = function() {
 	}
 
 	$('button[type="reset"]').on('click',function() {
-		$('form[name=theForm]').resetForm();
+		$(".icheck").iCheck('uncheck');
+		SetSelect2Val('oper_ID',-1);
+		SetSelect2Val('prod_ID',-1);
 		$('.portlet.light').hide();
 		$("input[name='remark']").val('无');
-		$("input[name='rec_date']").val(today(5));
+		setRecordNum();
+		$("input[name='rec_date']").val(today(6));
 	});
 
 	function insertData() {
@@ -203,6 +175,7 @@ var PaperParam = function() {
 			$('.portlet.light').hide();
 			handleDatePickers();
 			initDOM();
+			iChechBoxInit();
 			setRecordNum();
 			$('.modal-footer .green').on('click',function() {
 				insertData();
@@ -217,6 +190,40 @@ var PaperParam = function() {
 					bsInfo('当月评价总分将低于95分，请检查后重试');
 				}
 			});
+
+			$('.icheck').on('ifChanged',function() {
+				var surScore = parseFloat($('.list-unstyled.amounts li:nth(1)').text().replace('外观指标:', ''));
+				var pscScore = parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('物理指标:', ''));
+				var id = parseInt($(this).attr('ID').replace('checkbox', ''), 10) - 1;
+				var curScore, totalScore;
+				//分数表
+				var detailScore = [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 1, 1];
+				//分数动态更新
+				//if ($(this).attr('checked') == 'checked') {
+				if ($(this).prop("checked")) {
+					curScore = surScore - detailScore[id];
+
+				} else {
+					curScore = surScore + detailScore[id];
+				}
+				//获取当月数据条数
+				var num = $('input[name="chk_ID"]').val() - 1;
+				if (num === 0) {
+					surScore = curScore;
+				} else {
+					var HisSurScore = surScore * num;
+					surScore = (curScore + HisSurScore) / (num + 1);
+				}
+				totalScore = (pscScore + surScore) / 2;
+				$('.list-unstyled.amounts li:nth(1)').html('<strong>外观指标:</strong> ' + xround(surScore, 2));
+				$('.list-unstyled.amounts li:nth(2) h4').html('<strong>当前得分:</strong> ' + xround(curScore, 2));
+				$('.list-unstyled.amounts li:nth(3)').html('<h4 class="font-green"><strong>当月评价总分:</strong> ' + xround(totalScore, 2) + '</h4>');
+				if (totalScore < 95) {
+					$('a[name="submit"]').attr('href', '#info');
+				} else {
+					$('a[name="submit"]').attr('href', '');
+				}
+			});
 		}
 	};
 
@@ -225,6 +232,7 @@ var PaperParam = function() {
 jQuery(document).ready(function() {
 	initDom();
 	PaperParam.init();
+	RoundedTheme(0);
 });
 jQuery(window).resize(function() {
 	HeadFix();

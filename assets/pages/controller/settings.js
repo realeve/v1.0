@@ -19,12 +19,19 @@ var FormWizard = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
                     select_cat: {
-                        required: true
+                        required: true,
+                        min:0
                     },
                     select_name: {
                         required: true
                     },
                     addInfo: {
+                        required: true
+                    },
+                    apiURL:{
+                        required: true
+                    },
+                    tblID:{
                         required: true
                     }
                 },
@@ -71,30 +78,6 @@ var FormWizard = function () {
 
             });
 
-            var displayConfirm = function() {
-                $('#tab3 .form-control-static', form).each(function(){
-                    var input = $('[name="'+$(this).attr("data-display")+'"]', form);
-                    if (input.is(":radio")) {
-                        input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
-                    }
-                    if (input.is(":text") || input.is("textarea")) {
-                        $(this).html(input.val());
-                    } else if (input.is("select")) {
-                        $(this).html(input.find('option:selected').text());
-                    } else if (input.is(":radio") && input.is(":checked")) {
-                        $(this).html(input.attr("data-title"));
-                    } else if ($(this).attr("data-display") == 'payment[]') {
-                        var payment = [];
-                        $('[name="payment[]"]:checked', form).each(function(){ 
-                            payment.push($(this).attr('data-title'));
-                        });
-                        $(this).html(payment.join("<br>"));
-                    }
-                });
-
-                 $.fn.select2.defaults.set("theme", "bootstrap");
-            }
-
             var handleTitle = function(tab, navigation, index) {
                 var total = navigation.find('li').length;
                 var current = index + 1;
@@ -111,9 +94,13 @@ var FormWizard = function () {
                         $('#form_wizard_1').find('.button-previous').hide();
                         $('#form_wizard_1').find('.button-next').show();
 
-
                         $('.mt-step-col:nth(0)').removeClass('done').addClass('active');
                         $('.mt-step-col:nth(1)').removeClass('active').removeClass('done');
+
+                        //返回至第1页时，第二页信息重置
+                        if($('#tab2 a.btn-circle:gt(0)').length>0){
+                            $('.fa-minus').parent().parent().remove();
+                        }
                         break;
                     case 2:
                         if($('#tab2 a.btn-circle:gt(0)').length>0){
@@ -128,6 +115,10 @@ var FormWizard = function () {
                         $('#form_wizard_1').find('.button-submit').hide();
                         $('#form_wizard_1').find('.button-previous').show();
                         $('.mt-step-col:nth(2)').removeClass('active').removeClass('done');
+
+                        //按返回时需要重置第3页信息
+                        $("select[name='preview']").html($("select[name='select_name']").html());
+                        $('div[name="addList"]').remove();
                         break;
                     case 3:
                         $('#form_wizard_1').find('.button-next').hide();
@@ -140,22 +131,55 @@ var FormWizard = function () {
                         var curVal = parseInt($("select[name='select_name'] option").last().val(),10)+1;
                         var len = $('#tab2 input[name="addInfo"]').length;
                         var text,j,strHTML='',strOption='';
+                        strHTML +='     <label class="control-label col-md-2 font-blue bold">序号</label>';
+                        strHTML +='     <div class="col-md-2">';
+                        strHTML +='         <p class="form-control-static font-blue bold">值</p>';
+                        strHTML +='     </div>';
+                        strHTML +='     <div class="col-md-2">';
+                        strHTML +='         <p class="form-control-static font-blue bold">列表项</p>';
+                        strHTML +='     </div>';
+                        $('#tab3 .form-group').last().html(strHTML);
+                        strHTML='';
+                        //下拉列表需要对URL处理
+                        if($("select[name='select_cat']").val() === '0'){
+
+                            strHTML +='     <div class="col-md-3">';
+                            strHTML +='         <p class="form-control-static font-blue bold">接口地址</p>';
+                            strHTML +='     </div>';
+                            strHTML +='     <div class="col-md-2">';
+                            strHTML +='         <p class="form-control-static font-blue bold">表单ID</p>';
+                            strHTML +='     </div>';
+                            $('#tab3 .form-group').last().append(strHTML);
+                            strHTML='';
+                        }
+
                         for (i = 0; i < len; i++) {
                             text = $('#tab2 input[name="addInfo"]:nth('+ i +')').val();
                             val = i+curVal;
                             j = i+1;
-                            strHTML +='<div class="form-group">';
-                            strHTML +='    <label class="control-label col-md-3">'+j+'</label>';
+                            strHTML +='<div class="form-group" name="addList">';
+                            strHTML +='    <label class="control-label col-md-2">'+j+'</label>';
                             strHTML +='           <div class="col-md-2">';
                             strHTML +='              <p class="form-control-static">'+val+'</p>';
                             strHTML +='           </div>';
-                            strHTML +='           <div class="col-md-3">';
+                            strHTML +='           <div class="col-md-2">';
                             strHTML +='              <p class="form-control-static">'+text+'</p>';
                             strHTML +='            </div>';
+                            if($("select[name='select_cat']").val() === '0'){
+                                url = $('#tab2 input[name="apiURL"]:nth('+ i +')').val();
+                                tblID = $('#tab2 input[name="tblID"]:nth('+ i +')').val();
+                                strHTML +='           <div class="col-md-3">';
+                                strHTML +='              <p class="form-control-static">'+url+'</p>';
+                                strHTML +='           </div>';
+                                strHTML +='           <div class="col-md-2">';
+                                strHTML +='              <p class="form-control-static">'+tblID+'</p>';
+                                strHTML +='            </div>';
+                            }
+
                             strHTML +='</div>';
                             strOption +=  '<option value="' + val + '">' + text + '</option>';
                         }
-                        if (len) {                            
+                        if (len) {
                             $("select[name='preview']").append(strOption);
                             $('#tab3').last().append(strHTML);
                         }
@@ -206,13 +230,51 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                bsTips('Finished! Hope you like it :)',1);
+                //为兼容SQL2000此处不采用批量插入的方式，单条插入信息
+                var strUrl = getRootPath()+"/DataInterface/insert";
+                var obj,dataID,dataName,iData={};
+                var iLen = $('div[name="addList"]').length;
+                if($("select[name='select_cat']").val() === '0'){
+                    dataID = 'Value';
+                    dataName = 'Name';
+                    iData.tbl = 31;
+                }else{
+                    obj = $('select[name="preview"]');
+                    dataID = obj.attr("data-ID");
+                    dataName = obj.attr("data-Name");
+                    iData.tbl = $('select[name="select_cat"]').find("option:selected").attr('data-tblID');
+                }
+                iData.utf2gbk = [dataName];
+                var iFlag = 0;
+                //循环取数据
+                for (var i = 0; i < iLen; i++) {
+                    obj = $('div[name="addList"]:nth('+ i +')');
+                    iData[dataID] = obj.find('p:nth(0)').text();
+                    iData[dataName] = obj.find('p:nth(1)').text();
+                    if($("select[name='select_cat']").val() === '0'){
+                        iData.apiURL = obj.find('p:nth(2)').text();
+                        iData.tblID = obj.find('p:nth(3)').text();
+                    }
+                    //插入数据
+                    $.post(strUrl, iData,
+                        function(data, status) {
+                            if (status == "success") {
+                                var obj = $.parseJSON(data);
+                                bsTips(obj.message, obj.type);
+
+                            } else {
+                                infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
+                                infoTips(JSON.stringify(data));
+                            }
+                        }
+                    );
+                }
+                $('.button-previous').click();
+                $('.button-previous').click();
+                handleSelect2.init();
+
             }).hide();
 
-            //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.
-            $('#country_list', form).change(function () {
-                form.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
-            });
         }
 
     };
@@ -233,28 +295,49 @@ var handleSelect2 = function(){
     }
 
     $(document).on('change','select[name="select_cat"]', function() {
+        if($(this).val()<0){
+            return;
+        }
         var str = getRootPath(1)+"/"+$(this).find("option:selected").attr('data-apiUrl');
         var tblID = getRootPath(1)+"/"+$(this).find("option:selected").attr('data-tblID');
         var Data = ReadData(str);
         var selText = $(this).find("option:selected").text();
         InitSelect("select_name",Data);
         InitSelect("preview", Data);
+        //记录列名
+        if($(this).val()>0){
+            var obj = $('select[name="preview"]');
+            obj.attr("data-ID",Data.header[0].title);
+            obj.attr("data-Name",Data.header[1].title);
+        }
         $("select[name='select_name']").attr('data-tblID',tblID);
         $('span[name="selectName"]').text(selText);
         $('#tab3 p[data-display="select_cat"]').text(selText);
         $('a.button-next').click();
     });
 
+    //添加
     $('#tab2 a.btn-circle:nth(0)').on('click',function() {
         $('#form_wizard_1').find('.button-next').show();
         var strHTML = '<div class="form-group">';
             strHTML +='    <label class="control-label col-md-3">待增加项';
             strHTML +='         <span class="required"> * </span>';
             strHTML +='     </label>';
-            strHTML +='     <div class="col-md-4">';
+            strHTML +='     <div class="col-md-2">';
             strHTML +='         <input type="text" class="form-control" name="addInfo"/>';
-            strHTML +='         <span class="help-block"> 输入待增加项信息 </span>';
+            strHTML +='         <span class="help-block"> 输入待增加项描述 </span>';
             strHTML +='     </div>';
+            if($("select[name='select_cat']").val() === '0'){
+                strHTML +='     <div class="col-md-3">';
+                strHTML +='         <input type="text" class="form-control" name="apiURL"/>';
+                strHTML +='         <span class="help-block"> 输入接口地址 </span>';
+                strHTML +='     </div>';
+                strHTML +='     <div class="col-md-2">';
+                strHTML +='         <input type="text" class="form-control" name="tblID"/>';
+                strHTML +='         <span class="help-block"> 表单ID </span>';
+                strHTML +='     </div>';
+            }
+
             strHTML +='     <a href="javascript:;" class="btn btn-circle btn-icon-only red">';
             strHTML +='         <i class="fa fa-minus"></i>';
             strHTML +='     </a>';

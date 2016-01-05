@@ -21,21 +21,21 @@ var PaperParam = function() {
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(6));
 		$("input[name='remark']").val('无');
-		$("input[name='rec_date']").val(today(6));
 
 		//浆池号
 		var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
 		$('input[name="pulp_code"]').val(pulpCode.data[0]);
+		initSelect2();
 	}
 
 	function initChecked() {
 		var iHours = new Date().getHours();
 		if (iHours >= 0 && iHours < 8) { //夜班
-			SetRadioChecked('class_ID', 2);
+			SetiCheckChecked('class_id', 2);
 		} else if (iHours >= 8 && iHours < 16) { //白班
-			SetRadioChecked('class_ID', 0);
+			SetiCheckChecked('class_id', 0);
 		} else { //中班
-			SetRadioChecked('class_ID', 1);
+			SetiCheckChecked('class_id', 1);
 		}
 	}
 
@@ -62,6 +62,7 @@ var PaperParam = function() {
 		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=26&M=3&tstart=" + startDate + "&tend=" + startDate;
 		var Data = ReadData(str);
 		$('.page-toolbar button').html('当天已录入数据：' + Data.rows + '条');
+		$('.page-toolbar ul').html('');
 		for (var i = 0; i<Data.rows ;i++) {
 			$('.page-toolbar ul').append('<li><a href="'+getRootPath(1)+'/PaperPara/chemy#p='+ Data.data[i][1] +'">'+ Data.data[i][1] +'</a></li>');
 			if(i && i%3 === 0){
@@ -86,11 +87,12 @@ var PaperParam = function() {
 			var keys = elem.title;
 			$('form .form-control[name="'+ keys +'"]').val(Data.data[0][keys]);
 		});
-		SetRadioChecked('class_ID', Data.data[0]['class_ID']);
+		SetSelect2Val('oper_ID',Data.data[0]['oper_ID']);
+		SetSelect2Val('machine_ID',Data.data[0]['machine_ID']);
+		SetiCheckChecked('class_id', Data.data[0]['class_id']);
 		$('.portlet button[type="submit"]').attr('data-sn',Data.data[0]['ID']);
 		$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('提交','更新'));
 		//移动浮动效果
-		$('.portlet.light div').removeClass('form-md-floating-label');
 		$('.portlet.light').show();
 	}
 
@@ -99,8 +101,18 @@ var PaperParam = function() {
 			$('.portlet.light').hide();
 			handleDatePickers();
 			initDOM();
+			iChechBoxInit();
 			initChecked();
 			setRecordNum();
+			RoundedTheme(0);
+			$('button[type="reset"]').on('click', function() {
+				SetSelect2Val('oper_ID',-1);
+				SetSelect2Val('machine_ID',-1);
+				$('.portlet.light').hide();
+				initChecked();
+				$('.amounts h4').html("<strong>评价总分:</strong> "+100);
+				$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新','提交'));
+			});
 			$('form[name=theForm]').submit(function() {
 				//更新数据
 				var strUrl,options;
@@ -113,7 +125,7 @@ var PaperParam = function() {
 						resetForm: true,
 						data: {
 							'tbl': '1',
-							'class_ID': GetRadioChecked('class_ID'),
+							'class_id': GetiCheckChecked('class_id'),
 							'utf2gbk' : ['remark'],
 							'id' : $('.portlet button[type="submit"]').attr('data-sn'),
 							'record_Time': today(1)
@@ -128,7 +140,6 @@ var PaperParam = function() {
 							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
 							$('input[name="pulp_code"]').val(pulpCode.data[0]);
 							$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新','提交'));
-							$('.portlet.light div').addClass('form-md-floating-label');
 						},
 						error: function(data) {
 							infoTips(JSON.stringify(data));
@@ -142,7 +153,7 @@ var PaperParam = function() {
 						resetForm: true,
 						data: {
 							'tbl': '1',
-							'class_ID': GetRadioChecked('class_ID'),
+							'class_id': GetiCheckChecked('class_id'),
 							'utf2gbk' : ['remark'],
 							'record_Time' : today(1),
 							'pulp_code':$('input[name="pulp_code"]').val()
@@ -154,6 +165,11 @@ var PaperParam = function() {
 							$('button[type="reset"]').click();
 							$('.portlet.light').hide();
 							$('.page-toolbar button').text('当天已录入数据：' + (parseInt($('.page-toolbar button').text().replace('当天已录入数据：', '').replace('条', ''), 10) + 1) + '条');
+							//浆池号
+							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
+							$('input[name="pulp_code"]').val(pulpCode.data[0]);
+							$("input[name='rec_date']").val(today(6));
+							setRecordNum();
 							//浆池号
 							var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
 							$('input[name="pulp_code"]').val(pulpCode.data[0]);

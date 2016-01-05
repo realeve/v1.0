@@ -43,7 +43,7 @@
 					</div>
 					<div class="portlet-body form">
 						<div class="form-body row">		
-							<div class="col-md-6 form-group form-md-line-input">
+							<div class="col-md-6 form-group">
 								<label class="col-md-2 control-label" for="form_control_1">序号</label>
 								<div class="col-md-10">
 									<input type="text" class="form-control" name="chk_ID" placeholder="" disabled>
@@ -51,16 +51,16 @@
 									</div>
 								</div>
 							</div>						
-							<div class="col-md-6 form-group form-md-line-input">
+							<div class="col-md-6 form-group">
 								<label class="col-md-2 control-label">品种</label>
 								<div class="col-md-10">
-									<select class="form-control" name="prod_ID">
+									<select class="form-control select2" name="prod_ID">
 									</select>
 									<div class="form-control-focus">
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6 form-group form-md-line-input">
+							<div class="col-md-6 form-group">
 								<label class="col-md-2 control-label" for="form_control_1">取样日期</label>
 								<div class="col-md-10">
 									<input class="form-control form-control-inline date-picker" name="rec_date" size="16" type="text"/>
@@ -68,16 +68,16 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6 form-group form-md-line-input">
+							<div class="col-md-6 form-group">
 								<label class="col-md-2 control-label">检验员</label>
 								<div class="col-md-10">
-									<select class="form-control" name="oper_ID">
+									<select class="form-control select2" name="oper_ID">
 									</select>
 									<div class="form-control-focus">
 									</div>
 								</div>
 							</div>										
-							<div class="col-md-12 form-group form-md-line-input">
+							<div class="col-md-12 form-group">
 								<label class="col-md-1 control-label">备注</label>
 								<div class="col-md-11">
 									<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
@@ -103,270 +103,150 @@
 					<div class="portlet-body form">
 						<div class="form-body row ">
 							<div class="col-md-3">
-								<div class="form-group form-md-checkboxes">
-									<label>1.纸张尺寸</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox1" class="md-check">
-											<label for="checkbox1">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>1.纸张尺寸</label>									
+										<div class="checkbox-list">
+											<label for="checkbox1"><input type="checkbox" id="checkbox1" class="icheck">
 											纵/横向尺寸偏差≤±1mm </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>2.方正度偏差</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox2" class="md-check">
-											<label for="checkbox2">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>2.方正度偏差</label>									
+										<div class="checkbox-list">
+											<label for="checkbox2"><input type="checkbox" id="checkbox2" class="icheck">
 											方正度偏差≤1mm </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>3.水印</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox3" class="md-check">
-											<label for="checkbox3">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>3.水印</label>									
+										<div class="checkbox-list">
+											<label for="checkbox3"><input type="checkbox" id="checkbox3" class="icheck">
 											水印无残缺 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>4.白水印</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox4" class="md-check">
-											<label for="checkbox4">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>4.白水印</label>									
+										<div class="checkbox-list">
+											<label for="checkbox4"><input type="checkbox" id="checkbox4" class="icheck">
 											白水印无残缺 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>5.水印位置偏差</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox5" class="md-check">
-											<label for="checkbox5">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>5.水印位置偏差</label>									
+										<div class="checkbox-list">
+											<label for="checkbox5"><input type="checkbox" id="checkbox5" class="icheck">
 											水印位置偏差≤2mm </label>
 										</div>
-									</div>
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="form-group form-md-checkboxes">
-									<label>6.白水印位置偏差</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox6" class="md-check">
-											<label for="checkbox6">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>6.白水印位置偏差</label>									
+										<div class="checkbox-list">
+											<label for="checkbox6"><input type="checkbox" id="checkbox6" class="icheck">
 											白水印位置偏差≤2mm </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>7.水印清晰度</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox7" class="md-check">
-											<label for="checkbox7">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>7.水印清晰度</label>									
+										<div class="checkbox-list">
+											<label for="checkbox7"><input type="checkbox" id="checkbox7" class="icheck">
 											水印清晰 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
+								<div class="form-group form-checkbox-listes">
 									<label>8.白水印清晰度</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox8" class="md-check">
-											<label for="checkbox8">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+										<div class="checkbox-list">
+											<label for="checkbox8"><input type="checkbox" id="checkbox8" class="icheck">
 											白水印清晰度好 </label>
 										</div>
-									</div>
-								</div><div class="form-group form-md-checkboxes">
-									<label>9.水印一致性</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox9" class="md-check">
-											<label for="checkbox9">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								</div><div class="form-group form-checkbox-listes">
+									<label>9.水印一致性</label>									
+										<div class="checkbox-list">
+											<label for="checkbox9"><input type="checkbox" id="checkbox9" class="icheck">
 											水印一致性好 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>10.白水印一致性</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox10" class="md-check">
-											<label for="checkbox10">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>10.白水印一致性</label>									
+										<div class="checkbox-list">
+											<label for="checkbox10"><input type="checkbox" id="checkbox10" class="icheck">
 											白水印一致性好 </label>
 										</div>
-									</div>
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="form-group form-md-checkboxes">
-									<label>11.白水印偏斜</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox11" class="md-check">
-											<label for="checkbox11">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>11.白水印偏斜</label>									
+										<div class="checkbox-list">
+											<label for="checkbox11"><input type="checkbox" id="checkbox11" class="icheck">
 											白水印偏斜≤6°</label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>12.纸张匀度</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox12" class="md-check">
-											<label for="checkbox12">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>12.纸张匀度</label>									
+										<div class="checkbox-list">
+											<label for="checkbox12"><input type="checkbox" id="checkbox12" class="icheck">
 											纸张匀度不得低于精品样张 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>13.纸面整洁度</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox13" class="md-check">
-											<label for="checkbox13">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>13.纸面整洁度</label>									
+										<div class="checkbox-list">
+											<label for="checkbox13"><input type="checkbox" id="checkbox13" class="icheck">
 											纸面洁净，无明显杂质和尘埃 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>14.开窗尺寸偏差</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox14" class="md-check">
-											<label for="checkbox14">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>14.开窗尺寸偏差</label>									
+										<div class="checkbox-list">
+											<label for="checkbox14"><input type="checkbox" id="checkbox14" class="icheck">
 											不得超过标准窗口尺寸的1/3 </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>15.露线</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox15" class="md-check">
-											<label for="checkbox15">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>15.露线</label>									
+										<div class="checkbox-list">
+											<label for="checkbox15"><input type="checkbox" id="checkbox15" class="icheck">
 											≤0.7mm2 </label>
 										</div>
-									</div>
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="form-group form-md-checkboxes">
-									<label>16.细线</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox16" class="md-check">
-											<label for="checkbox16">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>16.细线</label>									
+										<div class="checkbox-list">
+											<label for="checkbox16"><input type="checkbox" id="checkbox16" class="icheck">
 											各品种安全线不得低于：宽线≥1.7mm，窄线≥1.2mm </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>17.断缺</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox17" class="md-check">
-											<label for="checkbox17">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>17.断缺</label>									
+										<div class="checkbox-list">
+											<label for="checkbox17"><input type="checkbox" id="checkbox17" class="icheck">
 											≤1mm </label>
 										</div>
-									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>18.防伪层脱落</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox18" class="md-check">
-											<label for="checkbox18">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
+								<div class="form-group form-checkbox-listes">
+									<label>18.防伪层脱落</label>									
+										<div class="checkbox-list">
+											<label for="checkbox18"><input type="checkbox" id="checkbox18" class="icheck">
 											≤2mm </label>
 										</div>
+								</div>
+								<div class="form-group form-checkbox-listes">
+									<label>19.纸张完好度</label>									
+									<div class="checkbox-list">
+										<label for="checkbox19"><input type="checkbox" id="checkbox19" class="icheck">
+										纸张无破洞、破损 </label>
 									</div>
 								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>19.纸张完好度</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox19" class="md-check">
-											<label for="checkbox19">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
-											纸张无破洞、破损 </label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group form-md-checkboxes">
-									<label>20.其它</label>
-									<div class="md-checkbox-list">
-										<div class="md-checkbox">
-											<input type="checkbox" id="checkbox20" class="md-check">
-											<label for="checkbox20">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
-											纸无明显硌手的硬质块、浆块纸张 </label>
-										</div>
-									</div>
+								<div class="form-group form-checkbox-listes">
+									<label>20.其它</label>									
+									<div class="checkbox-list">
+										<label for="checkbox20"><input type="checkbox" id="checkbox20" class="icheck">
+										纸无明显硌手的硬质块、浆块纸张 </label>
+									</div>									
 								</div>
 							</div>
 						</div>

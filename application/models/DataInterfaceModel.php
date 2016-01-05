@@ -27,6 +27,7 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_DB		= 'tblDataBaseInfo';		 //29 数据库列表
 	const TBL_API		= 'tblDataInterface';		 //30 API列表
 	const TBL_SELECT	= 'tblSettings_Select_List'; //31 下拉框列表
+	const TBL_WORK_LOG_OPR = 'tblWorklog_Operator';	 //32 机检日志人员名单
 	public function __construct()
 	{
 		$this->load->database();
@@ -54,7 +55,8 @@ class DataInterfaceModel extends CI_Model {
 			28=>self::TBL_MIC_BLOG,
 			29=>self::TBL_DB,
 			30=>self::TBL_API,
-			31=>self::TBL_SELECT
+			31=>self::TBL_SELECT,
+			32=>self::TBL_WORK_LOG_OPR
 		);
 		return $tblName[$id];
 	}

@@ -58,10 +58,10 @@ class Worklog extends CI_Controller {
 				$logindata['FullName'] = $this->session->userdata('FullName');
 				$logindata['GroupID'] = $this->session->userdata('GroupID');	
 				$logindata['curDate'] = date("Y-m-d G:i:s");
-				$this->load->view('templates/header/header_worklog', $logindata);  
+				$this->load->view('templates/header/header_worklog_edit', $logindata);  
 				$this->load->view('templates/sidebar');
 				$this->load->view('worklog_edit',$logindata);
-				$this->load->view('templates/footer/footer_worklog');
+				$this->load->view('templates/footer/footer_worklog_edit');
 				
 			}	
 		}
