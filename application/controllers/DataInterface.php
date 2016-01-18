@@ -135,6 +135,9 @@ class DataInterface extends CI_Controller {
 	public function update()//读取接口数据
 	{
 		$data = $this->input->post(NULL);
+		if (!isset($data['utf2gbk'])) {
+        	$data['utf2gbk']=[];
+        };
 		if (!isset($data['tbl'])) {
         	$data['message'] = '请指定插入的表单名称';
             $data['type'] = 0;        

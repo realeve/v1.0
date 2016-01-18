@@ -1,4 +1,30 @@
-﻿//信息提示框
+﻿  /**
+   * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
+   */
+  //0-10 质量中心数据库
+ /* const TBL_PHYSIC  = 'Paper_Para_PscData';      //0 物理站
+  const TBL_CHEM    = 'Paper_Para_ChemData';   //1 化验站
+  const TBL_SURFACE   = 'Paper_Para_SurfaceData';  //2 物理外观指标
+  const TBL_PPR_OPR = 'Paper_Para_Operator';   //3 操作员
+  const TBL_PPR_PROD  = 'Paper_ProductData';     //4 钞纸品种
+  const TBL_PPR_MCH = 'Paper_Machine_Info';    //5 钞纸机台
+  const TBL_PRT_PROD  = 'ProductData';       //6 印钞品种
+  const TBL_PRT_MCH = 'MachineData';       //7 印钞机台
+
+  const TBL_USR   = 'tblUser';         //20 用户信息
+  const TBL_DPMT    = 'tblDepartMent';       //21 用户所在部门/分组
+  const TBL_WORK_LOG_PROC = 'tblWorkProc';       //22 工作日志_工序
+
+  const TBL_WORK_LOG  = 'tblWorkLog_Record';     //25 工作日志
+  const TBL_WORK_LOG_STUS = 'tblWorkProStatus';  //26 工作日志_故障处理状态
+  const TBL_WORK_ERR_LIST = 'tblWorkErrDesc';    //27 工作日志_故障类型
+  const TBL_MIC_BLOG  = 'tblMicroBlog_Record';   //28 个人记事本
+  const TBL_DB    = 'tblDataBaseInfo';     //29 数据库列表
+  const TBL_API   = 'tblDataInterface';    //30 API列表
+  const TBL_SELECT  = 'tblSettings_Select_List'; //31 下拉框列表
+  const TBL_WORK_LOG_OPR = 'tblWorklog_Operator';  //32 机检日志人员名单
+*/
+//信息提示框
 /**
  * [infoTips 弹出信息提示框]
  * @param  {[type]} strMes [信息内容]
@@ -11,7 +37,7 @@ function infoTips(strMes, Type, iContainer) {
     iContainer = "";
   }
   if (typeof Type === 'undefined') {
-    type = 0;
+    Type = 0;
   }
   infoType = ['danger','success','info','warning'];
   App.alert({
@@ -22,13 +48,13 @@ function infoTips(strMes, Type, iContainer) {
     close: true, // make alert closable
     reset: false, // close all previouse alerts first
     focus: true, // auto scroll to the alert after shown
-    closeInSeconds: 5, // auto close after defined seconds
+    closeInSeconds: Type?5:0, // auto close after defined seconds
     icon: "check" // put icon before the message
   });
 }
 
 function bsTips(strMes, Type) {
-  if (typeof Type === 'undefined') {
+  if (typeof Type == 'undefined') {
     Type = 0;
   }
   toastr.options = {
@@ -38,7 +64,7 @@ function bsTips(strMes, Type) {
     "onclick": null,
     "showDuration": "1000",
     "hideDuration": "1000",
-    "timeOut": "5000",
+    "timeOut": Type?"5000":"0",
     "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",
@@ -51,13 +77,12 @@ function bsTips(strMes, Type) {
 
 function PromotAlert(title,succes) {
   bootbox.prompt(title, function(result) {
-    if (result === null) {
-      
-    } else {
-      success;
+    if (result !== null) {
+      success();
     }
   });
 }
+//调用示例：var success = function(){alert($('input.bootbox-input').val())} ;PromotAlert('asdfasdf',success);
 
 //获取当前域名，t=0时返回顶级域名,t=1时返回当前
 
@@ -247,7 +272,7 @@ function initDashboardDaterange(YearType) {
 
   $('#dashboard-report-range').daterangepicker({
       opens: (App.isRTL() ? 'right' : 'left'),
-      startDate: moment().subtract(29,'days'),
+      startDate: moment().subtract(6,'days'),
       endDate: moment(),
       minDate: '01/01/2000',
       maxDate: '12/31/2099',
@@ -286,7 +311,7 @@ function initDashboardDaterange(YearType) {
       $('#dashboard-report-range span').html(start.format(YearType) + ' ~ ' + end.format(YearType));
     }
   );
-  $('#dashboard-report-range span').html(moment().subtract(29, 'days').format(YearType) + ' ~ ' + moment().format(YearType));
+  $('#dashboard-report-range span').html(moment().subtract(6, 'days').format(YearType) + ' ~ ' + moment().format(YearType));
   $('#dashboard-report-range').show();
 }
 
@@ -565,6 +590,13 @@ function GetiCheckChecked(Name) {
   }
   return -1;
 }
+function SetSingleiCheck(Name,status){
+  if (status) {
+    $(".icheck[name='" + Name + "']").iCheck('check');
+  }else{
+    $(".icheck[name='" + Name + "']").iCheck('unCheck');
+  }
+}
 //设置Radio
 
 function SetRadioChecked(Name, nID) {
@@ -586,4 +618,14 @@ function initSelect2(){
 
 function SetSelect2Val(Name, val) {
   $("select[name='" + Name + "']").select2('val', val);
+}
+function ResetSelect2(Name){
+  $("select[name='" + Name + "']").select2("val","");
+}
+function GetSelect2Text(Name){
+  var arr="";
+  $("select[name='" + Name + "']").find('option:selected').each(function(){
+    arr+=","+this.text;
+  });
+  return arr.substr(1);
 }

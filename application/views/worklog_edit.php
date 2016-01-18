@@ -16,7 +16,7 @@
 					</li>
 				</ul>
 				
-				<div class="page-toolbar">
+				<!--div class="page-toolbar">
 					<div class="btn-group">
 						<button type="button" class="btn btn-sm btn-circle btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
 						操作 <i class="fa fa-angle-down"></i>
@@ -38,7 +38,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div-->
 			</div>	
 						
 			<h3 class="page-title">
@@ -109,7 +109,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label">记录人</label>
 										<div class="col-md-9">
-											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" value="<?php echo $FullName?>">
+											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" disabled data-user ="<?php echo $FullName?>" value="<?php echo $FullName?>">
 										</div>
 									</div>
 								</div>
@@ -168,13 +168,12 @@
 						</div>
 					</div>
 					<div class="portlet-body">
-						<div class="form-body">						
-							<!--/row-->
+						<div class="form-body">
 							<div class="row">
 								<div class="col-md-6 form-group">
 									<label class="col-md-3">处理状态</label>
 									<div class="col-md-9">
-										<select class="form-control select2" name="ProStatus">
+										<select class="form-control select2" name="proStatus_id">
 											<option value=""></option>
 											<optgroup label="已完成">
 												<option value="1" selected>当班解决</option>
@@ -200,9 +199,9 @@
 									</div>
 								</div>
 								<div class="col-md-6 form-group">
-									<label class="col-md-3 control-label">操作人员</label>
+									<label for="oper_name" class="col-md-3 control-label">操作人员</label>
 									<div class="col-md-9">																				
-										<select name="oper_name" class="form-control select2 select2-multiple">
+										<select id="oper_name" name="oper_name" class="form-control select2-multiple" multiple>
 										</select>
 									</div>
 								</div>
@@ -238,8 +237,8 @@
 								</div>					
 
 								<div class="form form-actions pull-right">
-									<button type="button" id="Preview" class="btn btn-circle default" style="margin-right:30px;">取消</button>
-									<button type="button" id="SaveChanges" class="btn btn-circle green" style="margin-right:30px;"><i class="fa fa-check"></i> 提交</button>
+									<button type="button" id="Reset" class="btn btn-circle default" style="margin-right:30px;">重置</button>
+									<button type="button" id="Save" class="btn btn-circle green" style="margin-right:30px;"><i class="fa fa-check"></i> 提交</button>
 								</div>
 							</div>
 						</div>

@@ -24,7 +24,8 @@ var Login = function() {
 						} else if (obj.type === 6) {
 							obj.type = 2;
 						} else if (obj.type === 9) {
-							window.location.href = getRootPath(1) + '/welcome';
+							console.log('test');
+							window.location.href = (document.referrer.indexOf('lockscreen') == -1)? document.referrer: getRootPath(1) + '/welcome';
 							return;
 						} else {
 							obj.type = 3;

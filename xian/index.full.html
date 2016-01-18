@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>西安交流</title>
+        <meta name="description" container="西安交流">
+        <meta name="author" container="realeve@qq.com">
+        <meta name="apple-mobile-web-app-capable" container="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" container="black-translucent" />
+        <meta name="viewport" container="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/pages.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/jquery.fullPage.min.css" />
+    </head>
+    <body>
+	    <div class="header hidden-sm hidden-xs">
+			<ul class="menu">
+				<li data-menuanchor="firstPage" class="active"><a href="#firstPage">首页</a></li>
+				<li data-menuanchor="secondPage"><a href="#secondPage">质量信息采集</a></li>
+				<li data-menuanchor="3rdPage"><a href="#3rdPage">质量信息应用</a></li>
+				<li data-menuanchor="4thPage"><a href="#4thPage">前台开发交流</a></li>
+				<li data-menuanchor="lastPage"><a href="#lastPage">结语</a></li>
+			</ul>
+		</div>
+     	<div id="fullpage">
+            <div class="section" id="section0">
+            	<div style="background:url('assets/img/bg2.jpg') no-repeat;background-size:cover; height:80%">
+            		<div style="color:#fafafa;background:rgba(40,40,55,0.7);height:100%;padding-top:15%">
+	            		<h1>质量信息系统应用与开发交流</h1>
+	            		<h3 style="padding-top:60px;font-size:3em;">李宾</h3>
+	            		<h3>技术质量部 信息技术应用研究室</h3>
+	            		<h3>成都印钞有限公司</h3>
+	            		<h3 id="today"></h3>
+					</div>
+            	</div>
+            	<div style="padding:50 0 0 0">
+					<h2>主要内容</h2>
+					<h3>
+			      《关于机检系统的数据分析应用探讨》、《质量控制中心建设》、《Web前端开发》
+					</h3>
+				</div>
+			</div>
+            <div class="section hidden-sm hidden-xs">
+            	<div class="wrap context">
+					<img src="assets/img/qr.png" height="500" width="500">
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						<p>一、质量信息采集</p>
+						<p>二、质量信息应用</p>
+						<p>三、前台开发交流</p>
+					</h2>
+				</div>
+			</div>
+            <div class="section" id="section1">
+            	<div class="wrap context">
+					<h2 class="title">
+						一、质量信息采集
+					</h2>
+					<h3>（一）在整个工艺流程中，我们获取了哪些质量数据?应该采集哪些数据?</h3>
+				</div>
+			</div>
+            <div class="section">
+				<div class="wrap" id="main3">
+				</div>
+			</div>
+            <div class="section">
+				<div class="wrap" id="main4">
+				</div>
+			</div>
+
+			<div class="section">				
+            	<div class="wrap context">
+					<h2 class="title">
+						1.胶印/凹印
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>
+							采集数据：大张离线检测系统
+							舍弃数据：在线质量检测数据
+						</h3>
+						<h4>数据量较大、质量较低（表单、大万号的规范等）、系统误报</h4>
+						<h3>
+							待增加：在线清数系统——获取产品停机次数
+						</h3>
+						<h4>胶、凹印停机对质量的影响</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">				
+            	<div class="wrap context">
+					<h2 class="title">
+						2.印码
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>
+							采集数据：核查系统质量检测数据
+						</h3>
+						<h4>出厂质量控制、数据规范、数据质量较高</h4>
+						<h3>
+							要求：在原始质量数据的基础上尽可能详细地提取数据
+						</h3>
+					</div>
+				</div>
+			</div>
+            <div class="section">				
+            	<div class="wrap context">
+					<h2 class="title">
+						3.印码人工图像判废
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>
+							采集数据：判废实废情况
+						</h3>
+						<h4>机检实际作废情况、拆包量、判废量等数据</h4>
+						<h3>
+							要求：尽可能详细地提取数据
+						</h3>
+					</div>
+				</div>
+			</div>
+            <div class="section">				
+            	<div class="wrap context">
+					<h2 class="title">
+						4.检封
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>
+							采集数据：OCR检验数据
+							未采集数据：清分机（目前条件暂时不具备）
+						</h3>
+						<h4>最终作废情况、实际拆包量</h4>
+						<h3>
+							要求：根据需求设计数据采集方案
+						</h3>
+					</div>
+				</div>
+			</div>
+            <div class="section">				
+            	<div class="wrap context">
+					<h2 class="title">
+						5.废品分析/特抽班
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>
+							采集数据：各万产品作废情况
+						</h3>
+						<h4>各工序实际作废结果、利于各类报表生成</h4>
+						<h3>
+							采集数据：单开分析仪检测数据、防伪指标数据
+						</h3>
+						<h4>用于精品分析、报表生成</h4>
+						<h3>
+							要求：不能仅局限于报表系统，需要从信息管理的长远出发来考虑。
+						</h3>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h2 class="title">（二）信息需要被关联及整合</h2>
+						<h3>在整合质量数据后，还应关联生产信息的数据（有条件的还可读取对应的状态信息）。</h3>
+					</div>
+				</div>
+			</div>
+            <div class="section" id="section2">
+            	<div class="wrap context">
+					<h2 class="title">
+						二、质量信息应用
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>（一）质量信息用来干什么？</h3>
+						<h4>加强质量日常管理工作中的沟通，促进信息的流动。</h4>
+						<h4>1.质量管理中各类报表的基本需求；</h4>
+						<h4>2.质量管理工作的更加精细化；</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						1.胶凹印大张离线检测数据
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h4>1.过程质量控制相关报表</h4>
+						<h4>2.各机台对设备的使用情况的掌握</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context" style="margin-top:2%;">
+					<h2 class="title">
+						2.印码核查工艺质量数据
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>1.核查系统的各类质量报表</h3>
+						<h4>机检好品率、未检情况、缺陷数、主要缺陷类型、机检误废情况、二次核查剔废率、拆包量、机检实废情况、好品率劳动竞赛信息统计......</h4>
+						<h3>2.质量信息远程实时监测/机检设备状态(数据库/硬盘)远程实时监测/模型自动备份等功能</h3>
+						<h4>解决人工巡检效率低的问题</h4>
+						<h3>3.质量反馈的自动实现</h3>
+						<h4>摒弃传统中采用人工分析的方式。主要技术细节：缺陷图的自动匹配选择</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						3.印码人工图像判废
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>1.图像判废排活分配</h3>
+						<h4>数据上传情况监测、图像判废抽检量监测、判废条数提前获取、排废任务自动分配、判废人员产量统计......</h4>
+						<h3>2.机检系统实际质量数据</h3>
+						<h4>拆包量（千位/开位缺陷分布情况）、实废量</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						4.特抽班
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>1.报表系统</h3>
+						<h4>单开分析精品得分、检封裁切精品评价、特抽量监测、机台作业系统数据有效性监测、机读防伪指标采集......</h4>
+						<h3>2.主要用于裁切质量分析</h3>
+						<h4>设备、班组、机长</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						5.检封OCR
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>1.质量闭环控制</h3>
+						<h4>未取出、多取出</h4>
+						<h3>2.机检系统漏检</h3>
+						<h4>多取出信息为漏检信息（默认人工判废可靠），可精确到时间、车号、设备</h4>
+						<h3>3.实际拆包量</h3>
+						<h4>最准确信息</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						6.废品分析
+					</h2>
+					<div class="col-md-8 col-md-offset-3 text-left">
+						<h3>1.报表系统</h3>
+						<h4>质量考评主要参考数据（绕过清分机）</h4>
+						<h3>2.废品分析</h3>
+						<h4>产品作废规律分析、机检漏废规律分析等</h4>
+					</div>
+				</div>
+			</div>
+            <div class="section">
+            	<div class="wrap context">
+					<h2 class="title">
+						（二）数据应该可视化，可交互
+					</h2>
+				</div>
+			</div>
+            <!--div class="section" style="background:url('assets/img/aqi.png') no-repeat;background-size:cover;"-->
+            <div class="section">
+				<div class="wrap" id="mainMap">
+				</div>
+			</div>
+            <div class="section">
+				<div class="wrap" id="main">
+				</div>
+			</div>
+            <div class="section">
+				<div class="wrap" id="main2">
+				</div>
+			</div>
+            <div class="section" id="section3">
+            	<div class="wrap context">
+					<h2 class="title">
+						三、前台开发交流
+					</h2>
+				</div>
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0376.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0377.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0381.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0378.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0374.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0373.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0372.jpg" style="width:100%;">
+			</div>
+            <div class="section">
+            	<img src="assets/img/intro/img_0380.jpg" style="width:100%;">
+			</div>
+
+            <div class="section" id="section4">
+            	<div style="background:url('assets/img/bg3.jpg') no-repeat;background-size:cover; height:80%;margin-top:-20px;">
+	            	<h2 style="color:#fafafa;padding-top:20%;font-size:4em">谢谢观看</h2>
+            	</div>
+            	<div style="padding:50 0 0 0">
+					<h2>李宾</h2>
+					<h3>
+			      		技术质量部 信息技术应用研究室
+					</h3>
+					<p>2016 &copy; CBPC All Rights Reserved.</p>
+				</div>
+			</div>
+
+		</div>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.fullPage.min.js"></script>
+		<script src="assets/js/echarts.min.js"></script>
+		<script src="assets/js/extension/dataTool.js"></script>
+		<script src="assets/js/chengdu.min.js"></script>
+    </body>
+</html>

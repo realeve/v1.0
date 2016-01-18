@@ -75,69 +75,19 @@ class Worklog extends CI_Controller {
 		
 	}
 
-	//添加日志
-	public function AddLog()
-	{
-		$WorkLogData = array(
-			'WorkProcID'  => $this->input->post('WorkProc'),
-	        'WorkClassID'  => $this->input->post('WorkClass'),
-	        'MachineID'  => $this->input->post('MachineName'),
-	        'ProductID'  => $this->input->post('ProductName'),
-	        'ProStatusID'  => $this->input->post('ProStatus'),
-	        'ProTime'  => $this->input->post('ProTime'),
-	        'ProUserName'  => $this->input->post('ProUserName'),
-	        'TransUserName'  => $this->input->post('TransUserName'),
-	        'ProInfo'  => $this->input->post('ProInfo'),
-	        'ReportOutput'  => $this->input->post('ReportOutput'),
-	        'RecordUserName'  => $this->input->post('RecordUserName'),
-	        'RecordTime'  => $this->input->post('RecordTime'),
-	        'MainErrDescID'  => $this->input->post('MainDesc'),
-	        'SubErrDescID'  => $this->input->post('SubDesc'),
-	        'ErrDescHTML'  => $this->input->post('ErrDescHTML')
-		);
-		if ($WorkLogData['WorkProcID']) {
-			$LogOutput = $this->WorkLogModel->AddWorkLog($WorkLogData);
-			$this->output->set_output(json_encode($LogOutput));
-		}else
-		{
-			$this->output->set_output("您没有权限进行该操作");
-		}
-		
-	}
-
 	//日志主要信息查询
 	public function QueryLogInfo()
 	{
-		$ProcID = $this->input->post('ProcID');
-		$Nums = $this->input->post('Nums');
-		$Status = $this->input->post('Status');
-		$TimeStart = $this->input->post('TimeStart');
-		$TimeEnd = $this->input->post('TimeEnd');
-		$CurID = $this->input->post('CurID');
-		$LogData = $this->WorkLogModel->ShowWorkLog($ProcID,$Nums,$Status,$TimeStart,$TimeEnd,$CurID);
-		$this->output->set_output($LogData);
-	}
-
-	//读取指定Log
-	public function ReadLog()
-	{
-		$ID = $this->input->post('ID');
-		$LogData = $this->WorkLogModel->ReadLog($ID);
-		//$this->output->set_output(json_encode($LogData));
+		$qurayData = $this->input->post(NULL);
+		$LogData = $this->WorkLogModel->ShowWorkLog($qurayData);
 		$this->output->set_output($LogData);
 	}
 
 	//保存日志设置
 	public function SaveLogQuerySettings()
 	{
-		$Settings = array(
-			'UserName' => $this->session->userdata('username'),
-			'ProcID' => $this->input->post('ProcID'),
-			'NumsID' => $this->input->post('NumsID'),
-			'Status' => $this->input->post('Status'),
-			'RefreshTime' => $this->input->post('RefreshTime'),
-			'AutoRefresh' => $this->input->post('AutoRefresh'),
-		);
+		$Settings = $this->input->post(NULL);
+		$Settings['UserName'] = $this->session->userdata('username');
 		$LogData = $this->WorkLogModel->SaveLogQuerySettings($Settings);
 		$this->output->set_output(json_encode($LogData));
 	}

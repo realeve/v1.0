@@ -26,11 +26,10 @@ class Welcome extends CI_Controller {
 				$logindata['username'] = $this->session->userdata('username');
 				$logindata['userrole'] = $this->session->userdata('userrole');	
 
-				$this->load->view('templates/header', $logindata);  
+				$this->load->view('templates/header/header_welcome', $logindata);  
 				$this->load->view('templates/sidebar');
 				$this->load->view('welcome',$logindata);
-				$this->load->view('templates/footer');
-				//$this->load->view('templates/worklog/footer_worklog');
+				$this->load->view('templates/footer/footer_welcome');
 			}	
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username'))
@@ -157,7 +156,7 @@ class Welcome extends CI_Controller {
 	else
 	{
 		$logindata['type'] = 2;
-		$logindata['message'] = $this->loginMessage(2);//未激活
+		$logindata['message'] = $this->loginMessage(2);//密码错误
 		$this->output->set_output(json_encode($logindata));
 		//$this->load->view('framework/lockscreen');
 	}

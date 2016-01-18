@@ -191,7 +191,7 @@ var PaperParam = function() {
 				}
 			});
 
-			$('.icheck').on('ifChanged',function() {
+			$('.icheck').on('ifChecked',function() {
 				var surScore = parseFloat($('.list-unstyled.amounts li:nth(1)').text().replace('外观指标:', ''));
 				var pscScore = parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('物理指标:', ''));
 				var id = parseInt($(this).attr('ID').replace('checkbox', ''), 10) - 1;

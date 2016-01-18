@@ -14,8 +14,8 @@
 			<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
 			<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 			<ul class="page-sidebar-menu font-yahei" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-				<li class="start nav-link nav-toggle active open">
-					<a href="javascript:;">
+				<li class="nav-item start active open">
+					<a href="javascript:;" class="nav-link nav-toggle">
 					<i class="icon-home"></i>
 					<span class="title">质量控制中心</span>
 					<span class="selected"></span>
@@ -28,14 +28,14 @@
 							事务中心</a>
 						</li>
 						<li class="nav-item">
-							<a href="javascript:;">
-							<i class="icon-notebook"></i> 机检日志 <span class="arrow"></span><span class="badge badge-roundless badge-danger">new</span>
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-notebook"></i> 机检日志 <span class="arrow"></span>
 							</a>
 							<ul class="sub-menu">
-								<li nav-item>
+								<li class="nav-item">
 									<a href="<?php echo base_url()?>worklog"><i class="icon-book-open"></i> 查看日志</a>
 								</li>
-								<li nav-item>
+								<li class="nav-item">
 									<a href="<?php echo base_url()?>worklog/editlog"><i class="icon-pencil"></i> 填写日志</a>
 								</li>
 							</ul>

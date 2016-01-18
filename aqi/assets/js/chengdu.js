@@ -63,6 +63,80 @@ var convertScatterData = function(data) {
 };
 
 var handleAQIData = function() {
+	function initData(data) {
+		gb.PM25 = [];
+		gb.AQI = [];
+		gb.PM10 = [];
+		gb.CO = [];
+		gb.NO2 = [];
+		gb.O3 = [];
+		gb.SO2 = [];
+		var aqi = data.Head;
+		//重复数据过滤标志
+		var Flag = 0;
+		for (var k = 0, i = 0; k < aqi.length - 1; k++) {
+			Flag = 0;
+			for (var j = 0; j < i; j++) {
+				if (gb.AQI[j].name == aqi[k].PointArea) {
+					Flag = 1;
+					break;
+				}
+			}
+			if (Flag) {
+				k++;
+				continue;
+			}
+			gb.PM25[i] = {};
+			gb.AQI[i] = {};
+			gb.PM10[i] = {};
+			gb.CO[i] = {};
+			gb.NO2[i] = {};
+			gb.O3[i] = {};
+			gb.SO2[i] = {};
+
+			gb.PM25[i].name = aqi[k].PointArea;
+			gb.AQI[i].name = aqi[k].PointArea;
+			gb.PM10[i].name = aqi[k].PointArea;
+			gb.CO[i].name = aqi[k].PointArea;
+			gb.NO2[i].name = aqi[k].PointArea;
+			gb.O3[i].name = aqi[k].PointArea;
+			gb.SO2[i].name = aqi[k].PointArea;
+
+			if (aqi[i].PM25_1H === "") {
+				aqi[i].PM25_1H = '-';
+			}
+			if (aqi[i].SO2_1H === "") {
+				aqi[i].SO2_1H = '-';
+			}
+			if (aqi[i].NO2_1H === "") {
+				aqi[i].NO2_1H = '-';
+			}
+			if (aqi[i].PM10_1H === "") {
+				aqi[i].PM10_1H = '-';
+			}
+			if (aqi[i].CO_1H === "") {
+				aqi[i].CO_1H = '-';
+			}
+			if (aqi[i].O3_1H === "") {
+				aqi[i].O3_1H = '-';
+			}
+			if (aqi[i].AQI_1H === "") {
+				aqi[i].AQI_1H = '-';
+			}
+			gb.PM25[i].value = parseFloat(aqi[k].PM25_1H, 10);
+			gb.AQI[i].value = parseFloat(aqi[k].AQI_1H, 10);
+			gb.PM10[i].value = parseFloat(aqi[k].PM10_1H, 10);
+			gb.CO[i].value = parseFloat(aqi[k].CO_1H, 10) * 10;
+			gb.NO2[i].value = parseFloat(aqi[k].NO2_1H, 10);
+			gb.O3[i].value = parseFloat(aqi[k].O3_1H, 10);
+			gb.SO2[i].value = parseFloat(aqi[k].SO2_1H, 10);
+			i++;
+		}
+		gb.rec_time = aqi[0].Rec_Time;
+		chengduAQIHeatMap();
+		chengduAQIMap();
+	}
+
 	function getAQIData() {
 		var timestamp = new Date().getTime();
 		$.ajax({
@@ -71,77 +145,13 @@ var handleAQIData = function() {
 			dataType: "json",
 			async: true,
 			success: function(data) {
-				gb.PM25 = [];
-				gb.AQI = [];
-				gb.PM10 = [];
-				gb.CO = [];
-				gb.NO2 = [];
-				gb.O3 = [];
-				gb.SO2 = [];
-				var aqi = data.Head;
-				//重复数据过滤标志
-				var Flag = 0;
-				for (var k = 0, i = 0; k < aqi.length - 1; k++) {
-					Flag = 0;
-					for (var j = 0; j < i; j++) {
-						if (gb.AQI[j].name == aqi[k].PointArea) {
-							Flag = 1;
-							break;
-						}
-					}
-					if (Flag) {
-						k++;
-						continue;
-					}
-					gb.PM25[i] = {};
-					gb.AQI[i] = {};
-					gb.PM10[i] = {};
-					gb.CO[i] = {};
-					gb.NO2[i] = {};
-					gb.O3[i] = {};
-					gb.SO2[i] = {};
-
-					gb.PM25[i].name = aqi[k].PointArea;
-					gb.AQI[i].name = aqi[k].PointArea;
-					gb.PM10[i].name = aqi[k].PointArea;
-					gb.CO[i].name = aqi[k].PointArea;
-					gb.NO2[i].name = aqi[k].PointArea;
-					gb.O3[i].name = aqi[k].PointArea;
-					gb.SO2[i].name = aqi[k].PointArea;
-
-					if (aqi[i].PM25_1H === "") {
-						aqi[i].PM25_1H = '-';
-					}
-					if (aqi[i].SO2_1H === "") {
-						aqi[i].SO2_1H = '-';
-					}
-					if (aqi[i].NO2_1H === "") {
-						aqi[i].NO2_1H = '-';
-					}
-					if (aqi[i].PM10_1H === "") {
-						aqi[i].PM10_1H = '-';
-					}
-					if (aqi[i].CO_1H === "") {
-						aqi[i].CO_1H = '-';
-					}
-					if (aqi[i].O3_1H === "") {
-						aqi[i].O3_1H = '-';
-					}
-					if (aqi[i].AQI_1H === "") {
-						aqi[i].AQI_1H = '-';
-					}
-					gb.PM25[i].value = parseFloat(aqi[k].PM25_1H, 10);
-					gb.AQI[i].value = parseFloat(aqi[k].AQI_1H, 10);
-					gb.PM10[i].value = parseFloat(aqi[k].PM10_1H, 10);
-					gb.CO[i].value = parseFloat(aqi[k].CO_1H, 10) * 10;
-					gb.NO2[i].value = parseFloat(aqi[k].NO2_1H, 10);
-					gb.O3[i].value = parseFloat(aqi[k].O3_1H, 10);
-					gb.SO2[i].value = parseFloat(aqi[k].SO2_1H, 10);
-					i++;
-				}
-				gb.rec_time = aqi[0].Rec_Time;
-				chengduAQIHeatMap();
-				chengduAQIMap();
+				initData(data);
+			},
+			error:function(){
+				var url = "assets/data/ChengDuWeather.json";
+				$.get(url,function(json){
+					initData(json);
+				});
 			}
 		});
 	}
@@ -218,7 +228,7 @@ var handleAQIData = function() {
 					text: ['严重污染', '优'],
 					realtime: true,
 					calculable: true,
-					color: ['orangered', 'yellow', 'lightskyblue'],
+					color: ['#e23', 'lightskyblue'],
 					textStyle: {
 						color: '#445'
 					},
@@ -399,7 +409,7 @@ var handleAQIData = function() {
 					text: ['严重污染', '优'],
 					realtime: true,
 					calculable: true,
-					color: ['orangered', 'yellow', 'lightskyblue'],
+					color: ['#e23', 'lightskyblue'],
 					textStyle: {
 						color: '#445'
 					},
@@ -596,7 +606,7 @@ var handleAQIData = function() {
 					text: ['严重污染', '优'],
 					realtime: true,
 					calculable: true,
-					color: ['orangered', 'yellow', 'lightskyblue'],
+					color: ['#e23', 'lightskyblue'],
 					textStyle: {
 						color: '#445'
 					},
@@ -747,7 +757,7 @@ var handleAQIData = function() {
 					text: ['严重污染', '优'],
 					realtime: true,
 					calculable: true,
-					color: ['orangered', 'yellow', 'lightskyblue'],
+					color: ['#e23', 'lightskyblue'],
 					textStyle: {
 						color: '#445'
 					},
@@ -901,7 +911,7 @@ var handleAQIData = function() {
 					text: ['严重污染', '优'],
 					realtime: true,
 					calculable: true,
-					color: ['orangered', 'yellow', 'lightskyblue'],
+					color: ['#e23', 'lightskyblue'],
 					textStyle: {
 						color: '#445'
 					},

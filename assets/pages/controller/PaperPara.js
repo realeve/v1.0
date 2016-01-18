@@ -231,8 +231,7 @@ var PaperParam = function() {
 			iData.record_Time = today(1);
 			iData.class_id = GetiCheckChecked('class_id');
 			iData.id = $('.portlet button[type="submit"]').attr('data-sn');
-			$.post(strUrl, iData,
-				function(data, status) {
+			$.post(strUrl, iData,function(data, status) {
 					if (status == "success") {
 						var obj = $.parseJSON(data);
 						infoTips(obj.message, obj.type);
@@ -273,7 +272,7 @@ var PaperParam = function() {
 			$('.portlet.light').hide();
 		});
 
-		$('#checkbox2').on('ifChanged', function(){
+		$('#checkbox2').on('ifChecked', function(){
 			var iStat = ($(this).prop("checked")) ? 1 : 0;
 			if (!iStat) {
 				$('.normalPara input').attr('disabled', 'true');

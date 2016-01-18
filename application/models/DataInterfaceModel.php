@@ -18,8 +18,7 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_USR		= 'tblUser';				 //20 用户信息
 	const TBL_DPMT		= 'tblDepartMent';			 //21 用户所在部门/分组
 	const TBL_WORK_LOG_PROC	= 'tblWorkProc';			 //22 工作日志_工序
-	const TBL_WORK_LOG_MCH = 'tblMachine';			 //23 工作日志_机台信息
-	const TBL_WORK_PROD	= 'tblProduct';				 //24 工作日志_品种
+
 	const TBL_WORK_LOG 	= 'tblWorkLog_Record';		 //25 工作日志
 	const TBL_WORK_LOG_STUS = 'tblWorkProStatus';	 //26 工作日志_故障处理状态
 	const TBL_WORK_ERR_LIST = 'tblWorkErrDesc';		 //27 工作日志_故障类型
@@ -46,9 +45,6 @@ class DataInterfaceModel extends CI_Model {
 			7 =>self::TBL_PRT_MCH,
 			20=>self::TBL_USR,
 			21=>self::TBL_DPMT,
-			22=>self::TBL_WORK_LOG_PROC,
-			23=>self::TBL_WORK_LOG_MCH,
-			24=>self::TBL_WORK_PROD,
 			25=>self::TBL_WORK_LOG,
 			26=>self::TBL_WORK_LOG_STUS,
 			27=>self::TBL_WORK_ERR_LIST,

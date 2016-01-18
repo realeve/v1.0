@@ -18,59 +18,32 @@ class WorkLogModel extends CI_Model {
 		return iconv("gbk","utf-8",$data);
 	}
 
-	public function AddWorkLog($WorkLogData)
-	{
-	 	$this->load->helper('url');
-	  	$data = $this ->TransToGBK($WorkLogData); 
-		$LOGINDB=$this->load->database('sqlsvr',TRUE);	 
-		
-		$LOGINDB->insert('tblWorkLog_Record', $data);//写入信息
-
-		$istStatus = 0;
-		$istStatus = $LOGINDB->insert_id();
-	  	
-	  	$LOGINDB->close();//关闭连接
-		return $istStatus;
-	}
-
 	//工序，每页多少条，处理状态，时间范围,当前ID
-	public function ShowWorkLog($ProcID,$Nums,$Status,$TimeStart,$TimeEnd,$CurID)
+	public function ShowWorkLog($qurayData)
 	{
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 		$this->load->helper('url');
 		//,a.ErrDescHTML
-		$SQLStr="SELECT top ". $Nums ." a.ID,b.ClassName,c.ProcName,e.StatusName,f.MainErrDesc,f.SubErrDesc,convert(char(16),a.ProTime,120) as ProTime,a.ProUserName,a.ProInfo,a.RecordUserName,convert(char(20),a.RecordTime,100) as RecordTime from tblWorkLog_Record a inner join tblworkclass b on a.workclassid=b.classid inner join tblWorkProc c on a.WorkProcID=c.procid ";
-		$SQLStr.="inner join tblworkprostatus e on e.statusid=a.ProStatusID inner join tblworkerrdesc f on f.suberrid=a.SubErrDescID WHERE a.HideLog=0 and convert(varchar(10),a.RecordTime,112) between ? and ?";
-		if ($Status == 1) {
-			$SQLStr." and a.ProStatusID<4 ";
-		}elseif($Status == 2){
-			$SQLStr." and a.ProStatusID>3 ";
+		$SQLStr = "SELECT a.ID,a.proStatus_id,a.proc_id,b.ProcName,c.ClassName,a.machine_id,a.prod_id,f.StatusName,convert(char(16),a.process_time,120) as process_time,a.oper_name,a.prod_info,a.rec_user_name,convert(char(16),a.rec_time,120) as rec_time,g.MainErrDesc,g.SubErrDesc,a.ErrDesc FROM tblWorkLog_Record a INNER JOIN tblWorkProc b ON a.proc_id=b.ProcID INNER JOIN tblWorkClass c ON a.class_id=c.ClassID INNER JOIN tblWorkProStatus f ON f.StatusID = a.proStatus_id INNER JOIN tblWorkErrDesc g ON a.sub_err = g.SubErrID WHERE HideLog = 0 AND convert(varchar(10),a.rec_time,112) BETWEEN ? and ? AND a.ID> ? ";
+		
+		//工序名称
+		if($qurayData['proc_id']<4){
+			$SQLStr .=" AND a.proc_id = ".$qurayData['proc_id'];
 		}
-		//往前加载
-		//if ($CurID > 0) {
-		//	$SQLStr." and a.ID <" .$CurID;
-		//}
-		if($ProcID <5)
+		//处理状态
+		if ($qurayData['Status'] == 1) {
+			$SQLStr.=" AND a.proStatus_id<=3 ";
+		}elseif($qurayData['Status'] == 2){
+			$SQLStr.=" AND a.proStatus_id>3 ";
+		}
+		if($qurayData['KeyWord'] !="")
 		{
-			$SQLStr.=" and a.WorkProcID =" .$ProcID;
+			$SQLStr.=" AND a.ErrDesc like '%" .$qurayData['KeyWord']."%'";
 		}
-		$SQLStr .=" and a.ID>". $CurID . " order by a.ID DESC";
-//		$LOGINDB->db_debug = TRUE;
-		$query = $LOGINDB->query($SQLStr,array($TimeStart,$TimeEnd));
+		$SQLStr.=" ORDER BY ID DESC";
+		$query = $LOGINDB->query($SQLStr,array($qurayData['TimeStart'],$qurayData['TimeEnd'],$qurayData['icurID']));
 		$strJson = $query->result_json();
 
-		$query->free_result(); //清理内存
-		$LOGINDB->close();//关闭连接
-		return $strJson;		
-	}
-
-	public function ReadLog($ID)
-	{
-		$LOGINDB = $this->load->database('sqlsvr',TRUE);		
-		$SQLStr = "SELECT ErrDescHTML from tblWorkLog_Record where ID=".$ID;
-		$query = $LOGINDB->query($SQLStr);
-		$row = $query->row();
-		$strJson = $this->TransToUTF($row->ErrDescHTML);
 		$query->free_result(); //清理内存
 		$LOGINDB->close();//关闭连接
 		return $strJson;		
@@ -99,7 +72,6 @@ class WorkLogModel extends CI_Model {
 		$Settings = array(
 			'UserID' => $UserID,
 			'ProcID' => $data['ProcID'],
-			'NumsID' => $data['NumsID'],
 			'Status' => $data['Status'],
 			'RefreshTime' => $data['RefreshTime'],
 			'AutoRefresh' => $data['AutoRefresh'],
@@ -156,19 +128,3 @@ class WorkLogModel extends CI_Model {
 	}
 
 }
-
-		/*if($query->num_rows()>0)
-		{				
-			foreach ($query->result_array() as $row)
-			{
-			   $row['ClassName'] = $this ->TransToUTF($row['ClassName']);
-			   $row['ProcName'] = $this ->TransToUTF($row['ProcName']);
-			   $row['StatusName'] = $this ->TransToUTF($row['StatusName']);
-			   $row['MainErrDesc'] = $this ->TransToUTF($row['MainErrDesc']);
-			   $row['SubErrDesc'] = $this ->TransToUTF($row['SubErrDesc']);
-			   $row['ProUserName'] = $this ->TransToUTF($row['ProUserName']);
-			   $row['RecordUserName'] = $this ->TransToUTF($row['RecordUserName']);
-			  // $row['ErrDescHTML'] = $this ->TransToUTF($row['ErrDescHTML']);
-			}
-
-		}*/
