@@ -1,0 +1,96 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css"></style></head><body>{{ target: APIMain }}
+<div class="ecdoc-api-left-area">
+
+    <div class="ecdoc-api-query-box">
+        <div data-cpt="
+            type: &#39;TextInput&#39;,
+            name: &#39;queryInput&#39;,
+            viewModel: {
+                mouseEnterSelect: true,
+                confirmPoint: {blur: false, pressEnter: true}
+            }">
+        </div>
+        <div data-cpt="
+            type: &#39;CheckButton&#39;,
+            name: &#39;queryMode&#39;,
+            viewModel: {
+                css: &#39;query-mode&#39;,
+                checked: lib.ob(&#39;fuzzyPath&#39;),
+                dataList: [
+                    {
+                        value: &#39;fuzzyPath&#39;,
+                        placeholder: lang.queryBoxPlaceholderFuzzyPath,
+                        text: lang.queryBoxTextFuzzyPath
+                    },
+                    {
+                        value: &#39;anyText&#39;,
+                        placeholder: lang.queryBoxPlaceholderAnyText,
+                        text: lang.queryBoxTextAnyText
+                    }
+                ]
+            }">
+        </div>
+        <div data-cpt="
+            type: &#39;Button&#39;,
+            name: &#39;collapseAll&#39;,
+            text: lang.collapseAll,
+            css: &#39;collapse-all&#39;">
+        </div>
+        <span class="query-result-info"></span>
+    </div>
+
+    <div class="ecdoc-api-tree-area">
+        <div class="ecdoc-api-tree" data-cpt="
+            type: &#39;TreeList&#39;,
+            name: &#39;apiDocTree&#39;,
+            viewModel: {
+                selected: viewModel.apiTreeSelected,
+                highlighted: viewModel.apiTreeHighlighted,
+                hovered: viewModel.apiTreeHovered,
+                datasource: viewModel.apiTreeDatasource,
+                resizeEvent: viewModel.apiTreeResize
+            }">
+        </div>
+    </div>
+
+</div>
+
+<div class="ecdoc-api-right-area">
+    <div class="ecdoc-api-doc-group-area">
+        <div class="ecdoc-api-doc-group-content">
+        </div>
+    </div>
+</div>
+
+<div class="ecdoc-api-hover-desc" style="display:none">
+</div>
+{{ /target }}
+
+
+{{ target: descGroupTitle }}
+<div class="ecdoc-api-doc-group-title">${baseDescOptionPath|raw}</div>
+<div class="ecdoc-api-doc-group-title-desc">
+    ${descText|raw}
+</div>
+{{ /target }}
+
+
+{{ target: descGroupLine }}
+<div class="ecdoc-api-doc-group-line ${highlightCSS}" data-tree-item-id="${idAttr}">
+    <div data-tree-item-id="${idAttr}" class="ecdoc-api-doc-line-expand iconfont" {{="" if:="" !${showexpandicon}="" }}style="display:none" if="" }}="">${expandIcon|raw}</div>
+    <div class="ecdoc-api-doc-line-head">
+       <span class="ecdoc-api-doc-line-label">${descItemOptionPath|raw}</span>
+       <span class="ecdoc-api-doc-line-type">${descItemType|raw}</span>
+    </div>
+    <div class="ecdoc-api-doc-line-default">
+       ${descItemContent|raw}
+    </div>
+    ${descItemDescText|raw}
+    {{ if: ${subGroupHTML} }}
+    <div style="display:none" class="ecdoc-api-doc-sub-group">
+        ${subGroupHTML|raw}
+    </div>
+    {{ /if }}
+</div>
+{{ /target }}
+</body></html>

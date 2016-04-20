@@ -1,0 +1,20 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css"></style></head><body>{{ target: winPanel }}
+<div class="dtui-winpn">
+    <div class="dtui-close-cross">X</div>
+    <div class="dtui-winpn-con"></div>
+</div>
+{{ /target }}
+
+{{ target: dialogPanel }}
+<div class="dtui-dlg">
+    <div class="dtui-con">&nbsp;</div>
+    <div class="dtui-btns">
+        {{ for: ${viewModel.btnViewModels} as ${vm}, ${index} }}
+        <div data-cpt="
+            type: &#39;Button&#39;,
+            name: &#39;btns[${index}]&#39;,
+            viewModelGet: &#39;btnViewModels[${index}]&#39;"></div>
+        {{ /for }}
+    </div>
+</div>
+</body></html>
