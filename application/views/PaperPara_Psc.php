@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<h3 class="page-title">
-			物理指标检验原始记录（常规） <small id="today"></small>
+			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
@@ -47,21 +47,21 @@
 								<div class="form-body row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="col-md-3 control-label">轴号</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control uppercase" maxlength="6" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
-												<div class="form-control-focus">
-												</div>
-												<label class="hide">轴号</label>
-											</div>
-										</div>
-										<div class="form-group">
 											<label class="col-md-3 control-label">品种</label>
 											<div class="col-md-9">
 												<select class="form-control select2" name="Prod_id">
 												</select>
 												<div class="form-control-focus">
 												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">轴号</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control uppercase" maxlength="7" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
+												<div class="form-control-focus">
+												</div>
+												<label class="hide">轴号</label>
 											</div>
 										</div>
 										<div class="form-group">
@@ -92,17 +92,6 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">备注</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
-												<div class="form-control-focus">
-												</div>
-												<label class="hide">备注</label>
-											</div>
-										</div>	
-									</div>									
-									<div class="col-md-6">
-										<div class="form-group">
 											<label class="col-md-3 control-label">取样日期</label>
 											<div class="col-md-9">
 												<input class="form-control form-control-inline date-picker" name="rec_date" size="16" type="text"/>
@@ -111,6 +100,8 @@
 												<label class="hide">取样日期</label>
 											</div>
 										</div>
+									</div>									
+									<div class="col-md-6">
 										<div class="form-group">
 											<label class="col-md-3 control-label">温度</label>
 											<div class="col-md-9">
@@ -138,6 +129,15 @@
 												</div>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">备注</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
+												<div class="form-control-focus">
+												</div>
+												<label class="hide">备注</label>
+											</div>
+										</div>	
 									</div>
 								</div>
 							</div>
@@ -146,7 +146,7 @@
 					</div>
 					<div class="col-md-12 ">
 						<!-- BEGIN SAMPLE FORM PORTLET-->
-						<div class="portlet light bordered">
+						<div class="portlet light bordered validateData">
 							<div class="portlet-title">
 								<div class="caption font-green">
 									<i class="icon-pin font-green"></i>
@@ -161,13 +161,6 @@
 								<div class="form-body row normalPara">									
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3">下机定量 g/平方米</label>
-											<div class="col-md-9">
-											<input type="text" class="form-control" name="basis_weight_prod">
-											<span class="help-block">90±3%</span>
-											</div>
-										</div>
-										<div class="form-group">
 											<label class="control-label col-md-3">定量 g/平方米</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="basis_weight">
@@ -178,14 +171,14 @@
 											<label class="control-label col-md-3">厚度 μm</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="thickness">
-											<span class="help-block">0.102-0.113</span>
+											<span class="help-block">102-113</span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">横幅厚度差 μm</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="horz_thickness_delta">
-											<span class="help-block">≤0.006</span>
+											<span class="help-block">≤6</span>
 											</div>
 										</div>
 											<div class="form-group">
@@ -220,7 +213,7 @@
 											<span class="help-block">25-45</span>
 											</div>
 										</div>
-										<div class="form-group">
+										<!--div class="form-group">
 											<label class="control-label col-md-3">耐折度(纵)</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="fold_val_ver">
@@ -231,7 +224,7 @@
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="fold_val_horz">
 										</div>
-										</div>
+										</div-->
 										<div class="form-group">
 											<label class="control-label col-md-3">耐折度(平均)</label>
 											<div class="col-md-9">
@@ -274,27 +267,27 @@
 											<span class="help-block">0.1-0.7 m2 :100;0.7-1m2 :5;1m2以上 0 </span>
 											</div>
 										</div>
-										<div class="form-group">
+										<!--div class="form-group">
 											<label class="control-label col-md-3">平滑度(正) S</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="smoothness_front">
 											</div>
 										</div>
-									</div>
-									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3">平滑度(反) S</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="smoothness_back">
 										</div>
-										</div>
+										</div-->
 										<div class="form-group">
 											<label class="control-label col-md-3">平滑度(平均) S</label>
-										<div class="col-md-9">
-											<input type="text" class="form-control" name="smoothness_avg">
-											<span class="help-block">≥10</span>
+											<div class="col-md-9">
+												<input type="text" class="form-control" name="smoothness_avg">
+												<span class="help-block">≥10</span>
+											</div>
 										</div>
-										</div>
+									</div>
+									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3">湿变形(纵) %</label>
 										<div class="col-md-9">
@@ -340,13 +333,15 @@
 										<div class="form-group">
 											<label class="control-label col-md-3">揉后透气度(正) mN</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control" name="crumpled_porosity_front">		
+												<input type="text" class="form-control" name="crumpled_porosity_front">	
+												<span class="help-block"></span>	
 											</div>		
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">揉后透气度(反) mN</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="crumpled_porosity_back">
+												<span class="help-block"></span>
 											</div>
 										</div>
 										<div class="form-group">
@@ -436,7 +431,7 @@
 											<label class="control-label col-md-3">表面吸油性</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="sur_oil_imbibition">
-												<span class="help-block">40~50$</span>
+												<span class="help-block">40~50%</span>
 											</div>
 										</div>
 									</div>
@@ -450,7 +445,7 @@
 								</div>
 								<div class="form-actions noborder row right">	
 									<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
-									<button type="reset" class="btn default"> 重置 <i class="icon-refresh"></i></button>
+									<a name="reset" class="btn default"> 重置 <i class="icon-refresh"></i></a>
 								</div>
 							</div>
 						</div>								
@@ -463,6 +458,6 @@
 	</div>
 </div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_QualityChart.php");?>
+	<!--?php include("templates/quicksidebar/quicksidebar_QualityChart.php");?-->
 </div>
 <!-- END CONTAINER -->

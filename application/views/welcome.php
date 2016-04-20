@@ -5,11 +5,11 @@
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="index-2.html">首页</a>
+						<a>首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="#">事务中心</a>
+						<a>事务中心</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
@@ -22,25 +22,25 @@
 			</div>
 			<!-- END PAGE HEADER-->	
 			<h3 class="page-title font-yahei">
-				质量控制中心  <small id="today"></small>
+				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
 			</h3>
 			<!-- BEGIN DASHBOARD STATS -->
-			<div class="row">
+			<div class="row top-info">
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					<div class="dashboard-stat blue-madison">
 						<div class="visual">
 							<i class="fa fa-comments"></i>
 						</div>
 						<div class="details">
-							<div class="number">
-								 1349
+							<div class="number" data-counter="counterup" data-value="130">
+								 130
 							</div>
 							<div class="desc">
-								 New Feedbacks
+								 印钞机检好品率低于70%
 							</div>
 						</div>
-						<a class="more" href="#">
-						View more <i class="m-icon-swapright m-icon-white"></i>
+						<a class="more" href="javascript:;">
+						查看详情 <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
@@ -50,15 +50,15 @@
 							<i class="fa fa-bar-chart-o"></i>
 						</div>
 						<div class="details">
-							<div class="number">
-								 12,5M$
+							<div class="number" data-counter="counterup" data-value="1,400">
+								 1,400
 							</div>
 							<div class="desc">
-								 Total Profit
+								 本月已开印产品
 							</div>
 						</div>
-						<a class="more" href="#">
-						View more <i class="m-icon-swapright m-icon-white"></i>
+						<a class="more" href="javascript:;">
+						查看详情 <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
@@ -68,15 +68,15 @@
 							<i class="fa fa-shopping-cart"></i>
 						</div>
 						<div class="details">
-							<div class="number">
-								 549
+							<div class="number" data-counter="counterup" data-value="0">
+								 0
 							</div>
 							<div class="desc">
-								 New Orders
+								 异常品数量
 							</div>
 						</div>
-						<a class="more" href="#">
-						View more <i class="m-icon-swapright m-icon-white"></i>
+						<a class="more" href="javascript:;">
+						查看详情 <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
@@ -86,15 +86,15 @@
 							<i class="fa fa-globe"></i>
 						</div>
 						<div class="details">
-							<div class="number">
-								 +89%
+							<div class="number" data-counter="counterup" data-value="0">
+								 0
 							</div>
 							<div class="desc">
-								 Brand Popularity
+								 机检系统异常产品
 							</div>
 						</div>
-						<a class="more" href="#">
-						View more <i class="m-icon-swapright m-icon-white"></i>
+						<a class="more" href="javascript:;">
+						查看详情 <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
@@ -102,12 +102,218 @@
 			<!-- END DASHBOARD STATS -->
 			<div class="clearfix">
 			</div>
-			<div class="row ">
-				<div class="col-md-6 col-sm-6">
+			<div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-green hide"></i>
+                                <span class="caption-subject font-green bold uppercase">设备运行情况</span>
+                                <span class="caption-helper">数据库及硬盘可用量...</span>
+                            </div>
+                            <div class="actions">
+                            	<a href="javascript:;" class="btn btn-circle btn-icon-only grey" name="station_refresh">
+								<i class="fa fa-repeat"></i></a>
+                                <!--div class="btn-group btn-group-devided" data-toggle="buttons">
+                                    <label class="btn red btn-outline btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">New</label>
+                                    <label class="btn red btn-outline btn-circle btn-sm">
+                                        <input type="radio" name="options" class="toggle" id="option2">Returning</label>
+                                </div-->
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="site_statistics_loading">
+                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                            <div id="site_statistics_content" class="display-none">
+                                <div id="site_statistics" class="chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-share font-red-sunglo hide"></i>
+                                <span class="caption-subject font-red-sunglo bold uppercase">数据上传情况</span>
+                                <span class="caption-helper">最近印刷20车产品...</span>
+                            </div>
+                            <div class="actions">
+                            	<a href="javascript:;" class="btn btn-circle btn-icon-only grey" name="upload_refresh">
+								<i class="fa fa-repeat"></i></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="site_activities_loading">
+                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                            <div id="site_activities_content" class="display-none">
+                                <div id="site_activities" class="chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+            </div>
+			<div class="row">
+				<div class="col-md-8 col-sm-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font-color hide"></i>
+								<span class="caption-subject theme-font-color bold uppercase">机检好品率</span>
+								<span class="caption-helper">码后核查工艺...</span>
+							</div>
+							<div class="actions">
+								<div class="btn-group btn-group-devided" data-toggle="buttons">
+									<label class="btn btn-outline purple-studio btn-circle btn-sm active">
+									<input type="radio" name="options" class="toggle" id="option1">今天</label>
+									<label class="btn btn-outline purple-studio btn-circle btn-sm">
+									<input type="radio" name="options" class="toggle" id="option2">本周</label>
+									<label class="btn btn-outline purple-studio btn-circle btn-sm">
+									<input type="radio" name="options" class="toggle" id="option2">本月</label>
+								</div>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="row list-separated">
+								<div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9602A
+									</div>
+									<div class="uppercase font-hg font-red-flamingo">
+										 89 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9603A
+									</div>
+									<div class="uppercase font-hg theme-font-color">
+										 92.3 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9604A
+									</div>
+									<div class="uppercase font-hg font-blue">
+										 91.2 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9606A
+									</div>
+									<div class="uppercase font-hg font-purple">
+										 94.2 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9607T
+									</div>
+									<div class="uppercase font-hg font-blue-sharp">
+										 86.4 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div>
+							</div>
+							<ul class="list-separated list-inline-xs hide">
+								<li>
+									<div class="font-grey-mint font-sm">
+										 Total Sales
+									</div>
+									<div class="uppercase font-hg font-red-flamingo">
+										 13,760 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</li>
+								<li>
+								</li>
+								<li class="border">
+									<div class="font-grey-mint font-sm">
+										 Revenue
+									</div>
+									<div class="uppercase font-hg theme-font-color">
+										 4,760 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									<div class="font-grey-mint font-sm">
+										 Expenses
+									</div>
+									<div class="uppercase font-hg font-purple">
+										 11,760 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									<div class="font-grey-mint font-sm">
+										 Growth
+									</div>
+									<div class="uppercase font-hg font-blue-sharp">
+										 9,760 <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</li>
+							</ul>
+							<div id="sales_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<!-- BEGIN WIDGET BLOG -->
+					<div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 413px; padding-top: 50px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
+						<div class="widget-blog-heading text-uppercase">
+							<h3 class="widget-blog-title">舒粤</h3>
+							<span class="widget-blog-subtitle">印码机检组</span>
+						</div>
+						<p>近期多功能-2#机误报较多，请大家注意.
+						</p>
+						<br/>
+						<a class="btn btn-danger text-uppercase" href="#">查看详情</a>
+					</div>
+					<!-- END WIDGET BLOG -->
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-green hide"></i>
+                                <span class="caption-subject font-green bold uppercase">实时质量</span>
+                                <span class="caption-helper">印码机检...</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="real_quality_loading">
+                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                            <div id="real_quality_content" class="display-none">
+                                <div id="real_quality_statistics" class="chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+			</div>
+            <div class="clearfix">
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
 					<div class="portlet box blue-steel">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bell-o"></i>Recent Activities
+								<i class="fa fa-bell-o"></i>最近事件
 							</div>
 							<div class="actions">
 								<div class="btn-group">
@@ -137,7 +343,7 @@
 												</div>
 												<div class="cont-col2">
 													<div class="desc">
-														 You have 4 pending tasks. <span class="label label-sm label-warning ">
+														 机检模型月度验证. <span class="label label-sm label-warning ">
 														Take action <i class="fa fa-share"></i>
 														</span>
 													</div>
@@ -146,7 +352,7 @@
 										</div>
 										<div class="col2">
 											<div class="date">
-												 Just now
+												 刚才
 											</div>
 										</div>
 									</li>
@@ -161,14 +367,14 @@
 												</div>
 												<div class="cont-col2">
 													<div class="desc">
-														 Finance Report for year 2013 has been released.
+														 XX机型硬盘容易过低.
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="col2">
 											<div class="date">
-												 20 mins
+												 20分钟前
 											</div>
 										</div>
 										</a>
@@ -183,280 +389,35 @@
 												</div>
 												<div class="cont-col2">
 													<div class="desc">
-														 You have 5 pending membership that requires a quick review.
+														 XX机长近期好品率波动较大.
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="col2">
 											<div class="date">
-												 24 mins
+												 24分钟前
 											</div>
 										</div>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-info">
-														<i class="fa fa-shopping-cart"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 New order received with <span class="label label-sm label-success">
-														Reference Number: DR23923 </span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 30 mins
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-success">
-														<i class="fa fa-user"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 You have 5 pending membership that requires a quick review.
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 24 mins
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-default">
-														<i class="fa fa-bell-o"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 Web server hardware needs to be upgraded. <span class="label label-sm label-default ">
-														Overdue </span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 2 hours
-											</div>
-										</div>
-									</li>
-									<li>
-										<a href="#">
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-default">
-														<i class="fa fa-briefcase"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 IPO Report for year 2013 has been released.
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 20 mins
-											</div>
-										</div>
-										</a>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-info">
-														<i class="fa fa-check"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 You have 4 pending tasks. <span class="label label-sm label-warning ">
-														Take action <i class="fa fa-share"></i>
-														</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 Just now
-											</div>
-										</div>
-									</li>
-									<li>
-										<a href="#">
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-danger">
-														<i class="fa fa-bar-chart-o"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 Finance Report for year 2013 has been released.
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 20 mins
-											</div>
-										</div>
-										</a>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-default">
-														<i class="fa fa-user"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 You have 5 pending membership that requires a quick review.
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 24 mins
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-info">
-														<i class="fa fa-shopping-cart"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 New order received with <span class="label label-sm label-success">
-														Reference Number: DR23923 </span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 30 mins
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-success">
-														<i class="fa fa-user"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 You have 5 pending membership that requires a quick review.
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 24 mins
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-warning">
-														<i class="fa fa-bell-o"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 Web server hardware needs to be upgraded. <span class="label label-sm label-default ">
-														Overdue </span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 2 hours
-											</div>
-										</div>
-									</li>
-									<li>
-										<a href="#">
-										<div class="col1">
-											<div class="cont">
-												<div class="cont-col1">
-													<div class="label label-sm label-info">
-														<i class="fa fa-briefcase"></i>
-													</div>
-												</div>
-												<div class="cont-col2">
-													<div class="desc">
-														 IPO Report for year 2013 has been released.
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col2">
-											<div class="date">
-												 20 mins
-											</div>
-										</div>
-										</a>
 									</li>
 								</ul>
 							</div>
 							<div class="scroller-footer">
 								<div class="btn-arrow-link pull-right">
-									<a href="#">See All Records</a>
+									<a href="#">查看所有记录</a>
 									<i class="icon-arrow-right"></i>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-4 col-sm-4">
 					<div class="portlet box green-haze tasks-widget">
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-check"></i>Tasks
 							</div>
 							<div class="tools">
-								<a href="#portlet-config" data-toggle="modal" class="config">
-								</a>
 								<a href="#" class="reload">
 								</a>
 								<a href="javascript:;" class="fullscreen">
@@ -465,46 +426,30 @@
 							<div class="actions">
 								<div class="btn-group">
 									<a class="btn btn-default btn-sm dropdown-toggle" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-									More <i class="fa fa-angle-down"></i>
+									筛选 <i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="dropdown-menu pull-right">
 										<li>
 											<a href="#">
-											<i class="i"></i> All Project </a>
+											<i class="i"></i> 所有 </a>
 										</li>
 										<li class="divider">
 										</li>
 										<li>
 											<a href="#">
-											AirAsia </a>
+											会议 </a>
 										</li>
 										<li>
 											<a href="#">
-											Cruise </a>
+											待办事项 </a>
 										</li>
 										<li>
 											<a href="#">
-											HSBC </a>
-										</li>
-										<li class="divider">
+											个人事务 </a>
 										</li>
 										<li>
 											<a href="#">
-											Pending <span class="badge badge-danger">
-											4 </span>
-											</a>
-										</li>
-										<li>
-											<a href="#">
-											Completed <span class="badge badge-success">
-											12 </span>
-											</a>
-										</li>
-										<li>
-											<a href="#">
-											Overdue <span class="badge badge-warning">
-											9 </span>
-											</a>
+											其它 </a>
 										</li>
 									</ul>
 								</div>
@@ -522,11 +467,8 @@
 											</div>
 											<div class="task-title">
 												<span class="task-title-sp">
-												Present 2013 Year IPO Statistics at Board Meeting </span>
-												<span class="label label-sm label-success">Company</span>
-												<span class="task-bell">
-												<i class="fa fa-bell-o"></i>
-												</span>
+												01-28 13:30 一楼小会议室开会 </span>
+												<span class="label label-sm label-success">会议</span>
 											</div>
 											<div class="task-config">
 												<div class="task-config-btn btn-group">
@@ -534,17 +476,17 @@
 													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
 													</a>
 													<ul class="dropdown-menu pull-right">
-														<li>
+														<li class="complete">
 															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
+															<i class="fa fa-check"></i> 完成 </a>
 														</li>
-														<li>
+														<li class="edit">
 															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
+															<i class="fa fa-pencil"></i> 编辑 </a>
 														</li>
-														<li>
+														<li class="del">
 															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
+															<i class="fa fa-trash-o"></i> 删除 </a>
 														</li>
 													</ul>
 												</div>
@@ -552,12 +494,13 @@
 										</li>
 										<li>
 											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
+												<input type="hidden" value="1" name="test"/>
+												<input type="checkbox" class="liChild" value="2" name="test"/>
 											</div>
 											<div class="task-title">
 												<span class="task-title-sp">
-												Hold An Interview for Marketing Manager Position </span>
-												<span class="label label-sm label-danger">Marketing</span>
+												01-29 12:30 准备月底汇报材料 </span>
+												<span class="label label-sm label-success">个人事务</span>
 											</div>
 											<div class="task-config">
 												<div class="task-config-btn btn-group">
@@ -565,243 +508,17 @@
 													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
 													</a>
 													<ul class="dropdown-menu pull-right">
-														<li>
+														<li class="complete">
 															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
+															<i class="fa fa-check"></i> 完成 </a>
 														</li>
-														<li>
+														<li class="edit">
 															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
+															<i class="fa fa-pencil"></i> 编辑 </a>
 														</li>
-														<li>
+														<li class="del">
 															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												AirAsia Intranet System Project Internal Meeting </span>
-												<span class="label label-sm label-success">AirAsia</span>
-												<span class="task-bell">
-												<i class="fa fa-bell-o"></i>
-												</span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												Technical Management Meeting </span>
-												<span class="label label-sm label-warning">Company</span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												Kick-off Company CRM Mobile App Development </span>
-												<span class="label label-sm label-info">Internal Products</span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												Prepare Commercial Offer For SmartVision Website Rewamp </span>
-												<span class="label label-sm label-danger">SmartVision</span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												Sign-Off The Comercial Agreement With AutoSmart </span>
-												<span class="label label-sm label-default">AutoSmart</span>
-												<span class="task-bell">
-												<i class="fa fa-bell-o"></i>
-												</span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												Company Staff Meeting </span>
-												<span class="label label-sm label-success">Cruise</span>
-												<span class="task-bell">
-												<i class="fa fa-bell-o"></i>
-												</span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li>
-										<li class="last-line">
-											<div class="task-checkbox">
-												<input type="checkbox" class="liChild" value=""/>
-											</div>
-											<div class="task-title">
-												<span class="task-title-sp">
-												KeenThemes Investment Discussion </span>
-												<span class="label label-sm label-warning">KeenThemes </span>
-											</div>
-											<div class="task-config">
-												<div class="task-config-btn btn-group">
-													<a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-													<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu pull-right">
-														<li>
-															<a href="#">
-															<i class="fa fa-check"></i> Complete </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-pencil"></i> Edit </a>
-														</li>
-														<li>
-															<a href="#">
-															<i class="fa fa-trash-o"></i> Cancel </a>
+															<i class="fa fa-trash-o"></i> 删除 </a>
 														</li>
 													</ul>
 												</div>
@@ -813,18 +530,252 @@
 							</div>
 							<div class="task-footer">
 								<div class="btn-arrow-link pull-right">
-									<a href="#">See All Records</a>
+									<a href="#">查看所有记录</a>
 									<i class="icon-arrow-right"></i>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-4 col-sm-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font-color hide"></i>
+								<span class="caption-subject theme-font-color bold uppercase">本月知识库贡献量Top3</span>
+								<span class="caption-helper hide">机检日志...</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="row number-stats margin-bottom-20">
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<div class="stat-left">
+										<div class="stat-chart">
+											<!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+											<div id="sparkline_bar"></div>
+										</div>
+										<div class="stat-number">
+											<div class="title">
+												 总条数
+											</div>
+											<div class="number">
+												 2460
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<div class="stat-right">
+										<div class="stat-chart">
+											<!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+											<div id="sparkline_bar2"></div>
+										</div>
+										<div class="stat-number">
+											<div class="title">
+												 本月
+											</div>
+											<div class="number">
+												 719
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="table-scrollable table-scrollable-borderless">
+								<table class="table table-hover table-light">
+								<thead>
+								<tr class="uppercase">
+									<th colspan="2">
+										 人员
+									</th>
+									<th>
+										 机检组
+									</th>
+									<th>
+										 日志数
+									</th>
+								</tr>
+								</thead>
+								<tr>
+									<td class="fit">
+										<img class="user-pic" src="../../assets/layouts/layout/img/avatar4.jpg">
+									</td>
+									<td>
+										<span class="primary-link">张三</span>
+									</td>
+									<td>
+										印码机检组
+									</td>
+									<td>
+										<span class="bold theme-font-color">80</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="fit">
+										<img class="user-pic" src="../../assets/layouts/layout/img/avatar5.jpg">
+									</td>
+									<td>
+										<span class="primary-link">张四</span>
+									</td>
+									<td>
+										检封机检组
+									</td>
+									<td>
+										<span class="bold theme-font-color">67</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="fit">
+										<img class="user-pic" src="../../assets/layouts/layout/img/avatar6.jpg">
+									</td>
+									<td>
+										<span class="primary-link">张三</span>
+									</td>
+									<td>
+										钞纸机检组
+									</td>
+									<td>
+										<span class="bold theme-font-color">98</span>
+									</td>
+								</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>				
+			</div>
+            <div class="clearfix">
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light tasks-widget widget-comments rounded-3">
+						<div class="portlet-title margin-bottom-20">
+							<div class="caption caption-md font-red-sunglo">
+								<span class="caption-subject theme-font bold uppercase">留言板</span>
+							</div>
+						</div>
+						<div class="portlet-body overflow-h">
+							<input type="text" placeholder="联系人" class="form-control margin-bottom-20">
+							<input type="text" placeholder="主题" class="form-control margin-bottom-20">
+							<textarea placeholder="内容" class="form-control margin-bottom-20" rows="3"></textarea>
+							<button class="btn red-sunglo pull-right" type="button">提交</button>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+				<div class="col-md-8 margin-bottom-30">
+					<!-- BEGIN WIDGET TAB -->
+					<div class="widget-bg-color-white widget-tab rounded-3">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab_1_1" data-toggle="tab"> 所有日志 </a>
+							</li>
+							<li>
+								<a href="#tab_1_2" data-toggle="tab"> 钞纸组 </a>
+							</li>
+							<li>
+								<a href="#tab_1_3" data-toggle="tab"> 印码组 </a>
+							</li>
+							<li>
+								<a href="#tab_1_4" data-toggle="tab"> 检封组 </a>
+							</li>
+							<a class="more btn btn-circle pull-right margin-top-10 margin-right-10" href="javascript:;">
+							所有记录<i class="m-icon-swapright"></i>
+							</a>
+						</ul>
+						<div class="tab-content scroller" style="height: 350px;" data-always-visible="1" data-handle-color="#D7DCE2">
+							<div class="tab-pane fade active in" id="tab_1_1">
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/03.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">Wondering anyone did this
+											<span class="label label-default"> March 25 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/04.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">New Workstation
+											<span class="label label-default"> March 16 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>								
+							</div>
+							<div class="tab-pane fade" id="tab_1_2">
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/04.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">New Workstation
+											<span class="label label-default"> March 16 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/03.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">Wondering anyone did this
+											<span class="label label-default"> March 25 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="tab_1_3">
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/05.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">Most Completed theme
+											<span class="label label-default"> March 12 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/07.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">San Francisco
+											<span class="label label-default"> March 10 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="tab_1_4">
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/07.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">San Francisco
+											<span class="label label-default"> March 10 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+								<div class="widget-news margin-bottom-20">
+									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/04.jpg" alt="">
+									<div class="widget-news-right-body">
+										<h3 class="widget-news-right-body-title">New Workstation
+											<span class="label label-default"> March 16 </span>
+										</h3>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END WIDGET TAB -->
+				</div>
 			</div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar.php");?>
+	<?php include("templates/quicksidebar/quicksidebar_welcome.php");?>
 </div>
 <!-- END CONTAINER -->

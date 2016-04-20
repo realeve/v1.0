@@ -4,14 +4,14 @@
   <title>质量控制中心 | 您所查找的页面不存在</title>
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
-<link href="http://localhost/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="http://localhost/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="http://localhost/assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="http://localhost/assets/layouts/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="../assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="../assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/layouts/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
 
 <!-- END THEME STYLES -->
-  <link href="http://localhost/assets/pages/css/common404.css" media="all" rel="stylesheet" type="text/css">
-  <link href="http://localhost/assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+  <link href="../assets/pages/css/common404.css" media="all" rel="stylesheet" type="text/css">
+  <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
   <!-- Replace by loading from stylesheet -->
   <style type="text/css">
     .text-ginormous {
@@ -45,7 +45,7 @@
   <div id="header" class="navbar navbar-top">
     <div class="navbar-inner">
       <div class="fixed-height container container-full-width page-container page-container-responsive navbar-container">
-        <a href="http://localhost/" class="brand airbnb center" style="width:150px;margin-top:10px;background:url(http://localhost/assets/layouts/layout/img/logo-large-red.png) 0 0 no-repeat;">质量控制中心</a>
+        <a href="../" class="brand airbnb center" style="width:150px;margin-top:10px;background:url(../assets/layouts/layout/img/logo-large-red.png) 0 0 no-repeat;">质量控制中心</a>
       </div>
     </div>
   </div>
@@ -58,14 +58,14 @@
           <h6 class="yahei">错误代码: 404</h6>
           <ul class="list-unstyled">
             <li class="yahei">下面这些页面可能对您有用:</li>
-            <li><a href="http://localhost/">首页</a></li>
-            <li><a href="http://localhost/login">登录</a></li>
-            <li><a href="http://localhost/help">帮助</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="../login">登录</a></li>
+            <li><a href="../help">帮助</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-middle text-center">
-          <img src="http://localhost/assets/img/404-Airbnb.gif" width="313" height="428" alt="Girl has dropped her ice cream.">
+          <img src="../assets/img/404-Airbnb.gif" width="313" height="428" alt="Girl has dropped her ice cream.">
         </div>
     </div>
   </div>

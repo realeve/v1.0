@@ -6,30 +6,33 @@ class LoginModel extends CI_Model {
 		$this->load->database();
 	}
 
-	public function TransToGBK($data){//SQL SERVER字符转换
-		$data['UserName'] = iconv("utf-8","gbk",$data['UserName']);
-		$data['FullName'] = iconv("utf-8","gbk",$data['FullName']);
-		$data['Email'] = iconv("utf-8","gbk",$data['Email']);
-		$data['Phone'] = iconv("utf-8","gbk",$data['Phone']);
-		return $data;
+	public function TransToGBK($data){
+		return iconv("utf-8","gbk",$data);
+	}
+	public function TransToUTF($data){
+		return iconv("gbk","utf-8",$data);
 	}
 
+
 	public function logincheck($UserName,$Password){
-		$UserName = iconv("utf-8","gbk",$UserName);
+		$UserName = $this->TransToGBK($UserName);
 		$logindata = array(
 		'username'  => $UserName,
 		);
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
-		$SQLStr="SELECT top 1 UserName,UserRole,FullName,GroupID from tblUser WHERE UserName=? and UserPassword=?";
+		$SQLStr="SELECT top 1 b.segment_html,a.[id] as id,a.UserName,a.UserRole,a.FullName,a.GroupID from tblUser a LEFT JOIN tbl_menu_list b on ISNULL(a.default_menu_id,0) = b.id WHERE UserName=? and UserPassword=?";
 		$query=$LOGINDB->query($SQLStr,array($UserName,$Password));
 		if($query->num_rows()>0)
 		{			
 			$logindata['message'] = 1;//登录成功
 			$logindata['logged_in'] = true;			
 			$row = $query->row();
-			$logindata['FullName'] = iconv("gbk", "utf-8", $row->FullName);
-			$logindata['GroupID'] = iconv("gbk", "utf-8", $row->GroupID);//机检组
-			$logindata['userrole'] = $row->UserRole;	
+			$logindata['FullName'] = $this->TransToUTF(trim($row->FullName));
+			$logindata['username'] = $this->TransToUTF(trim($row->UserName));
+			$logindata['GroupID'] = $row->GroupID;//机检组
+			$logindata['userrole'] = $row->UserRole;
+			$logindata['uid'] = $row->id;
+			$logindata['segment_html'] = $row->segment_html;
 		}
 		else
 		{
@@ -44,7 +47,7 @@ class LoginModel extends CI_Model {
 	public function ResetPassword($ResetData)
 	{
 		$this->load->helper('url');
-		$ResetData['UserName'] = iconv("utf-8","gbk",$ResetData['UserName']);
+		$ResetData['UserName'] = $this->TransToGBK($ResetData['UserName']);
 		$data = array(
 			'UserPassword' => md5($this->input->post('password'))
 		);
@@ -70,22 +73,26 @@ class LoginModel extends CI_Model {
 	public function UserRegistry($RegisterData)
 	{
 	 	$this->load->helper('url');
-	  	$data = $this ->TransToGBK($RegisterData);
+
+		$RegisterData['UserName'] = $this->TransToGBK($RegisterData['UserName']);
+		$RegisterData['FullName'] = $this->TransToGBK($RegisterData['FullName']);
+		$RegisterData['Email'] = $this->TransToGBK($RegisterData['Email']);
+
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 
 		$SQLStr="SELECT top 1 UserName from tblUser WHERE UserName=?";
-		$query=$LOGINDB->query($SQLStr,array($data['UserName']));
+		$query=$LOGINDB->query($SQLStr,array($RegisterData['UserName']));
 		if($query->num_rows()>0)
 		{			
 			$data['message'] = 3;//已存在用户了
 			$LOGINDB->close();//关闭连接
 			return $data['message'];
 		}
-		$LOGINDB->insert('tblUser', $data);
-
-		$query=$LOGINDB->query($SQLStr,array($data['UserName']));
-		if($query->num_rows()>0)
+		$RegisterData['GroupID'] = 0;		
+		$LOGINDB->insert('tblUser', $RegisterData);
+		$data['ID'] = $LOGINDB->insert_id();
+		if($data['ID'])
 		{			
 			$data['message'] = 5;//注册成功
 		}
@@ -93,7 +100,18 @@ class LoginModel extends CI_Model {
 		{
 			$data['message'] = 4;//注册失败
 		}
-	  	
+
+		//工作日志默认数据
+		$WorkLogSettingData['UserID'] = $data['ID'];
+		$WorkLogSettingData['ProcID'] = 0;
+		$WorkLogSettingData['RefreshTime'] = 300;
+		$WorkLogSettingData['AutoRefresh'] = 1;
+	  	$LOGINDB->insert('tblWorkLog_Settings', $WorkLogSettingData);
+
+		$MicroBlogSettingData['UserID'] = $data['ID'];
+		$MicroBlogSettingData['NumsID'] = 4;
+	  	$LOGINDB->insert('tblMicroBlog_Settings', $MicroBlogSettingData);
+
 	  	$LOGINDB->close();//关闭连接
 		return $data['message'];
 	}

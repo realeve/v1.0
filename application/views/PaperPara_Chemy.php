@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<h3 class="page-title">
-			浆料质量检验记录 <small id="today"></small>
+			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
@@ -291,6 +291,6 @@
 	</div>
 </div>
 <!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_paper_para.php");?>
+	<!--?php include("templates/quicksidebar/quicksidebar_paper_para.php");?-->
 </div>
 <!-- END CONTAINER -->

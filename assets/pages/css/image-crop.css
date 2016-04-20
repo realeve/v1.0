@@ -1,6 +1,3 @@
-/*--------------------------------------------------
-    [TRANSITION]
-----------------------------------------------------*/
 /* Cubic Bezier Transition */
 /* Apply these styles only when #preview-pane has
    been placed within the Jcrop widget */
@@ -17,22 +14,19 @@
   border-radius: 6px;
   -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-}
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); }
 
 @media (max-width: 1024px) {
   #preview-pane {
-    right: 0;
-  }
-}
+    right: 0; } }
+
 /* The Javascript code will set the aspect ratio of the crop
    area based on the size of the thumbnail preview,
    specified here */
 #preview-pane .preview-container {
   width: 175px;
   height: 150px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 #demo7 {
   background-color: #eee;
@@ -40,5 +34,4 @@
   height: 330px;
   font-size: 24px;
   font-weight: 300;
-  display: block;
-}
+  display: block; }

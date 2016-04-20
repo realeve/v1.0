@@ -22,14 +22,11 @@ class DataInterface extends CI_Controller {
 			//$this->session->sess_destroy();//注销
 			if($this->session->userdata('logged_in')==true)
 			{
-				$logindata['logged_in'] = true;		
-				$logindata['username'] = $this->session->userdata('username');
-				$logindata['userrole'] = $this->session->userdata('userrole');	
-				$logindata['FullName'] = $this->session->userdata('FuleName');	
-				$logindata['GroupID'] = $this->session->userdata('GroupID');	
+				$logindata = $this->session->userdata;
 				$logindata['CreateID'] = $this->GetNewApiID();
 				$logindata['token'] = sha1(self::PRE_STR.$this->DataInterfaceModel->TransToGBK($logindata['username']));
-				$this->load->view('templates/header/header_DataInterface', $logindata);  
+				$this->load->view('templates/header/header_DataInterface', $logindata);
+				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('DataInterface',$logindata);
 				$this->load->view('templates/footer/footer_DataInterface');				
@@ -96,7 +93,9 @@ class DataInterface extends CI_Controller {
         	$this->output->set_output(json_encode($data));  
         	return;
         };
-		if ($this->DataInterfaceModel->insert($data)) {
+        $insertID = $this->DataInterfaceModel->insert($data);
+        $returnData['id'] = $insertID;
+		if ($insertID) {
             #插入数据成功
             $returnData['message'] = '添加数据成功';
             $returnData['type'] = 1;
@@ -135,9 +134,9 @@ class DataInterface extends CI_Controller {
 	public function update()//读取接口数据
 	{
 		$data = $this->input->post(NULL);
-		if (!isset($data['utf2gbk'])) {
+		/*if (!isset($data['utf2gbk'])) {
         	$data['utf2gbk']=[];
-        };
+        };*/
 		if (!isset($data['tbl'])) {
         	$data['message'] = '请指定插入的表单名称';
             $data['type'] = 0;        
@@ -152,6 +151,11 @@ class DataInterface extends CI_Controller {
             $returnData['type'] = 0;
         };
         $this->output->set_output(json_encode($returnData));
+	}
+	
+	public function convert2Base64()//读取接口数据
+	{
+		$this->DataInterfaceModel->convert2Base64();
 	}
 }
 

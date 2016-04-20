@@ -15,7 +15,7 @@
 				</ul>
 				
 				<div class="page-toolbar">
-					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height green-seagreen" data-placement="top" data-original-title="点击修改查询时间">
+					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
 						<span class="thin uppercase">&nbsp;</span>&nbsp;
 						<i class="fa fa-angle-down"></i>
@@ -23,7 +23,7 @@
 				</div>
 			</div>	
 			<h3 class="page-title font-yahei">
-				质量数据接口  <small id="today"></small>
+				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
 			</h3>
 			<!--div class="alert alert-block alert-info fade in">
                 <button type="button" class="close" data-dismiss="alert"></button>
@@ -304,7 +304,7 @@
 											 接口地址
 										</td>
 										<td>
-											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址">
+											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址" href="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3" target="_blank">
 												<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3</a>
 										</td>
 										<td>
@@ -354,7 +354,7 @@
 					<div class="tools" id="sample_tools"></div>
 				</div>
 				<div class="portlet-body form">	
-					<table class="table table-striped table-bordered table-hover table-header-fixed" id="sample">
+					<table class="table table-striped table-bordered table-hover" width="100%" id="sample">
 						<!-- BEGIN PAGE CONTENT-->						
 							<!-- END PAGE CONTENT-->
 							<!--table class="table table-striped table-bordered table-advance table-hover table-striped table-condensed flip-content" id="sample" width="100%"-->
@@ -368,6 +368,5 @@
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_DataInterface.php");?>
 </div>
 <!-- END CONTAINER -->

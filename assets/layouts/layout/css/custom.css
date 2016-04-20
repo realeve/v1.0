@@ -261,3 +261,8 @@ Notes
       margin-top: 0px;
       min-height: 600px;
       padding: 5px 20px 10px 20px; }
+
+.glyphicons-demo ul li {
+  height:70px;
+  font-size: 2em;
+}

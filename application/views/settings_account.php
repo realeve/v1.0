@@ -9,42 +9,16 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>/settings">系统管理</a>
+						<a href="<?php echo base_url()?>settings">系统管理</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
 						<a href="#">帐户设置</a>
 					</li>
 				</ul>
-				 <div class="page-toolbar">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                            <i class="fa fa-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li>
-                                <a href="#">
-                                    <i class="icon-bell"></i> Action</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-shield"></i> Another action</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-user"></i> Something else here</a>
-                            </li>
-                            <li class="divider"> </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-bag"></i> Separated link</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 			</div>
 			<h3 class="page-title">
-			帐户设置 <small id="today"></small>
+			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 	        <!-- END PAGE HEADER-->
 	        <div class="row">
@@ -67,7 +41,7 @@
                             <div class="profile-usermenu">
                                 <ul class="nav">
                                     <li>
-                                        <a href="<?php echo base_url()?>/settings">
+                                        <a href="<?php echo base_url()?>Settings">
                                             <i class="icon-home"></i> 概览 </a>
                                     </li>
                                     <li class="active">
@@ -75,8 +49,12 @@
                                             <i class="icon-settings"></i> 帐户设置 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>/select">
+                                        <a href="<?php echo base_url()?>Settings/select">
                                             <i class="icon-info"></i> 下拉菜单管理 </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url()?>Settings/accountActive">
+                                            <i class="icon-user"></i> 帐户激活 </a>
                                     </li>
                                 </ul>
                             </div>
@@ -106,11 +84,11 @@
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weixin"></i>
-                                    <a href="#">@宾不厌诈</a>
+                                    <a href="#">@</a>
                                 </div>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weibo"></i>
-                                    <a href="#">@realeve</a>
+                                    <a href="#">@</a>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +107,7 @@
                                         </div>
                                         <ul class="nav nav-tabs">
                                             <li class="active">
-                                                <a href="#tab_1_1" data-toggle="tab">帐户设置</a>
+                                                <a href="#tab_1_1" data-toggle="tab">个人信息</a>
                                             </li>
                                             <li>
                                                 <a href="#tab_1_2" data-toggle="tab">更改头像</a>
@@ -138,7 +116,7 @@
                                                 <a href="#tab_1_3" data-toggle="tab">更改密码</a>
                                             </li>
                                             <li>
-                                                <a href="#tab_1_4" data-toggle="tab">隐私设置</a>
+                                                <a href="#tab_1_4" data-toggle="tab">其它设置</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -148,20 +126,17 @@
                                             <div class="tab-pane active" id="tab_1_1">
                                                 <form role="form" action="#">
                                                     <div class="form-group">
-                                                        <label class="control-label">姓</label>
-                                                        <input type="text" placeholder="姓" class="form-control" /> </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">名</label>
-                                                        <input type="text" placeholder="名" class="form-control" /> </div>
+                                                        <label class="control-label">姓名</label>
+                                                        <input type="text" placeholder="请填写真实姓名" class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">电话</label>
-                                                        <input type="text" placeholder="6129" class="form-control" /> </div>
+                                                        <input type="text" placeholder="填写个人办公电话" class="form-control" /> </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">职务</label>
-                                                        <input type="text" placeholder="机检建模岗" class="form-control" /> </div>
+                                                        <label class="control-label">职务/岗位</label>
+                                                        <input type="text" placeholder="个人职务或岗位" class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">简介</label>
-                                                        <textarea class="form-control" rows="3" placeholder="这是开发者帐户，用于记录系统各项接口设置等信息. "></textarea>
+                                                        <textarea class="form-control" rows="3" placeholder="用于展示在左侧的个人简介信息. "></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">个人页面</label>
@@ -175,30 +150,29 @@
                                             <!-- END PERSONAL INFO TAB -->
                                             <!-- CHANGE AVATAR TAB -->
                                             <div class="tab-pane" id="tab_1_2">
-                                                <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod. </p>
+                                                <p> 点击选择个人头像. </p>
                                                 <form action="#" role="form">
                                                     <div class="form-group">
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                                                <img src="../../assets/pages/media/profile/Avatar_none.gif" alt="" /> </div>
                                                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                             <div>
                                                                 <span class="btn default btn-file">
-                                                                    <span class="fileinput-new"> Select image </span>
-                                                                    <span class="fileinput-exists"> Change </span>
+                                                                    <span class="fileinput-new"> 选择图像 </span>
+                                                                    <span class="fileinput-exists"> 重新选择 </span>
                                                                     <input type="file" name="..."> </span>
-                                                                <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 移除 </a>
                                                             </div>
                                                         </div>
                                                         <div class="clearfix margin-top-10">
-                                                            <span class="label label-danger">NOTE! </span>
-                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                            <span class="label label-danger">注意! </span>
+                                                            <span>图像缩略图只在最新版的 Firefox, Chrome, Opera, Safari 和 IE10 以上的浏览器兼容！ </span>
                                                         </div>
                                                     </div>
                                                     <div class="margin-top-10">
-                                                        <a href="javascript:;" class="btn green"> Submit </a>
-                                                        <a href="javascript:;" class="btn default"> Cancel </a>
+                                                        <a href="javascript:;" class="btn green"> 提交 </a>
+                                                        <a href="javascript:;" class="btn default"> 取消 </a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -207,17 +181,17 @@
                                             <div class="tab-pane" id="tab_1_3">
                                                 <form action="#">
                                                     <div class="form-group">
-                                                        <label class="control-label">Current Password</label>
+                                                        <label class="control-label">旧密码</label>
                                                         <input type="password" class="form-control" /> </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">New Password</label>
+                                                        <label class="control-label">新密码</label>
                                                         <input type="password" class="form-control" /> </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">Re-type New Password</label>
+                                                        <label class="control-label">请重新输入密码</label>
                                                         <input type="password" class="form-control" /> </div>
                                                     <div class="margin-top-10">
-                                                        <a href="javascript:;" class="btn green"> Change Password </a>
-                                                        <a href="javascript:;" class="btn default"> Cancel </a>
+                                                        <a href="javascript:;" class="btn green"> 更新密码 </a>
+                                                        <a href="javascript:;" class="btn default"> 取消 </a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -278,6 +252,6 @@
         <!-- END CONTENT BODY -->
     </div>
     <!-- END CONTENT -->        
-	<?php include("templates/quicksidebar/quicksidebar_QualityChart.php");?>
+	<?php include("templates/quicksidebar/quicksidebar_welcome.php");?>
 </div>
 <!-- END CONTAINER -->

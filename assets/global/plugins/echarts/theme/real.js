@@ -3,7 +3,7 @@ define(function() {
 var theme = {
 	//backgroundColor:'rgba(242,242,242,0.6)', 
     //backgroundColor:'rgb(229,239,241)', 
-	backgroundColor:'#ebebeb',
+	backgroundColor:'#ffffff',//ebebeb
     // 默认色板
     color: [
 		/*'#553366','#bb3355','#998899','#ff5555','#ffdd99',
@@ -23,7 +23,7 @@ var theme = {
 		'#FFFF66','#99CC66','#666699','#99CC33','#FFCC00','#FF0033',
 		'#FF9966','#FF9900','#CCFF00','#666699',
 		'#CC3399','#99CC33','#FF6600','#993366','#CCCC33','#666633','#66CCCC'*/
-        'rgb(38,185,139)','#998899','rgb(255,127,104)','rgb(148,205,97)','rgb(138,148,184)',		
+        'rgba(0,150,255,0.6)','rgba(00,200,100,0.5)','rgb(38,185,139)','#998899','rgb(255,127,104)','rgb(148,205,97)','rgb(138,148,184)',		
 		'rgb(45,164,168)','rgb(141,74,143)','rgb(67,87,114)','rgb(254,167,67)','rgb(106,117,141)','rgb(207,34,87)',
 		'rgb(207,97,80)','rgb(143,167,133)','rgb(71,74,83)','rgb(138,143,146)','rgb(218,61,61)',
 		'rgb(113,37,86)','rgb(228,108,96)','rgb(185,61,95)','rgb(92,151,180)',
@@ -49,9 +49,9 @@ var theme = {
     },
     
     // 值域
-    dataRange: {
+   /* dataRange: {
         color:['rgb(26,114,151)','rgb(38,185,139)','rgb(148,205,97)']//颜色 
-    },
+    },*/
 
     // 工具箱
     toolbox: {
@@ -60,8 +60,9 @@ var theme = {
 
     // 提示框
     tooltip: {
-        backgroundColor: 'rgba(61,61,61,0.8)',
-		borderColor: 'rgb(121,183,230)',
+        //backgroundColor: 'rgba(61,61,61,0.8)',
+		//borderColor: 'rgb(121,183,230)',
+		backgroundColor: '#009688',
 		borderRadius: 4,
 		borderWidth: 0,
 		padding: 10,
@@ -87,11 +88,11 @@ var theme = {
     },
 
     // 区域缩放控制器
-    dataZoom: {
+    /*dataZoom: {
         dataBackgroundColor: 'rgb(98,201,145)',            // 数据背景颜色
         fillerColor: 'rgba(98,201,145,0.4)',   // 填充颜色
         handleColor: 'rgb(38,185,139)'     // 手柄颜色
-    },
+    },*/
     
     grid: {
         borderWidth: 0,
@@ -106,7 +107,7 @@ var theme = {
 				 width: 4,
             }
         },
-		//boundaryGap : false,//此处不将产量放进图表中（设为TRUE,柱形图会溢出边界）
+		boundaryGap : true,//此处不将产量放进图表中（设为TRUE,柱形图会溢出边界）
 		splitLine: {
 			show: false,
 			lineStyle: {
@@ -179,7 +180,7 @@ var theme = {
 
     // 折线图默认参数
     line: {
-        smooth : true,
+        smooth : false,
         symbol: 'emptyCircle',  // 拐点图形类型
         symbolSize: 9,           // 拐点图形大小
 		itemStyle: {
@@ -194,6 +195,7 @@ var theme = {
 					shadowOffsetX: 5,
 					shadowOffsetY: 5
 				},
+				//areaStyle: {type: 'default'}
 			},
 			emphasis: { label: { show: false } }
 		},

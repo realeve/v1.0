@@ -7,16 +7,13 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>QualityTable">印码质量报表</a>
+						<a href="<?php echo base_url()?>QualityTable">报表查询</a>
 						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="<?php echo base_url()?>QualityTable">各品种质量汇总</a>
 					</li>
 				</ul>
 				
 				<div class="page-toolbar">
-					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height green-seagreen" data-placement="top" data-original-title="点击修改查询时间">
+					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
 						<span class="thin uppercase">&nbsp;</span>&nbsp;
 						<i class="fa fa-angle-down"></i>
@@ -24,7 +21,7 @@
 				</div>
 			</div>	
 			<h3 class="page-title font-yahei">
-				印码质量报表  <small id="today"></small>
+				<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 			<!--div class="note note-success">
 				<a href="javascript:;" id="HideTips"><i class="glyphicon glyphicon-remove pull-right"></i></a>
@@ -74,7 +71,7 @@
 				<div class="col-md-12">
 					<h3>预览地址:</h3>
 						<div class="input-group" style="text-align:left">
-							<input type="text" class="form-control" value="<?php echo base_url()?>DataInterface/Api?Author=<?php echo sha1($username)?>&ID=ID&M=3&tstart=参数1&tend=参数2">
+							<input type="text" class="form-control" value="<?php echo base_url()?>DataInterface/Api?Token=<?php echo sha1('QCCenter'.$username)?>&ID=ID&M=3&tstart=参数1&tend=参数2">
 							<span class="input-group-btn">
 							<a href="javascript:;" class="btn green">
 							<i class="fa fa-eye"></i> 预览接口 </a>
@@ -91,18 +88,15 @@
 				<div class="portlet-title">
 					<div class="caption font-green-sharp">
 						<i class="icon-speech font-green-sharp"></i>
-						<span class="caption-subject bold uppercase" id="TableTitle"> 表单名称</span>
-						<span class="caption-helper" id="datasource">(数据来源:质量综合管理系统)...</span>
+						<span class="caption-subject bold uppercase" name="TableTitle"> 表单名称</span>
+						<span class="caption-helper" name="datasource">(数据来源:质量综合管理系统)...</span>
 					</div>
 					<div class="tools"></div>
 				</div>
 				<div class="portlet-body form">	
-					<table class="table table-striped table-bordered table-hover table-header-fixed" id="sample">
-						<!-- BEGIN PAGE CONTENT-->						
-							<!-- END PAGE CONTENT-->
-							<!--table class="table table-striped table-bordered table-advance table-hover table-striped table-condensed flip-content" id="sample" width="100%"-->
+					<table class="table table-striped table-bordered table-hover table-header-fixed" width="100%" name="sampleTable">
 						<thead class="hidden-sm"></thead>						
-					</table>			
+					</table>
 				</div>
 			</div>
 			<!-- END Portlet PORTLET-->
@@ -111,6 +105,6 @@
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_QualityTable.php");?>
+	<!--?php include("templates/quicksidebar/quicksidebar_QualityTable.php");?-->
 </div>
 <!-- END CONTAINER -->

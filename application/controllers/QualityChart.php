@@ -22,12 +22,9 @@ class QualityChart extends CI_Controller {
 			//$this->session->sess_destroy();//注销
 			if($this->session->userdata('logged_in')==true)
 			{
-				$logindata['logged_in'] = true;		
-				$logindata['username'] = $this->session->userdata('username');
-				$logindata['userrole'] = $this->session->userdata('userrole');	
-				$logindata['FullName'] = $this->session->userdata('FuleName');	
-				$logindata['GroupID'] = $this->session->userdata('GroupID');	
+				$logindata = $this->session->userdata;
 				$this->load->view('templates/header/header_QualityChart', $logindata);  
+				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('QualityChart',$logindata);
 				$this->load->view('templates/footer/footer_QualityChart');				

@@ -1,5 +1,5 @@
 ﻿         <div class="theme-panel hidden-xs hidden-sm">
-            <div class="toggler">
+            <div class="toggler btn btn-circle">
             </div>
             <div class="toggler-close">
             </div>

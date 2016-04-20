@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /******************************
  3RD PARTY PLUGIN CUSTOMIZATION 
 ******************************/
@@ -37,10 +37,10 @@ Bootstrap Datepaginator
   right: 4px !important; }
 
 .datepaginator .fa-angle-right:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 .datepaginator .fa-angle-left:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 /***
 Bootstrap Datepicker
@@ -85,10 +85,10 @@ Bootstrap Datepicker
   border: 1px solid #efefef; }
 
 .datepicker .fa-angle-left:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 .datepicker .fa-angle-right:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 /***
 Bootstrap Daterangepicker
@@ -151,10 +151,10 @@ Bootstrap Daterangepicker
   margin-bottom: 0 !important; }
 
 .daterangepicker .fa-angle-right:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 .daterangepicker .fa-angle-left:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 /***
 Bootstrap  Datetimepicker
@@ -182,10 +182,10 @@ Bootstrap  Datetimepicker
   filter: none !important; }
 
 .datetimepicker .fa-angle-left:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 .datetimepicker .fa-angle-right:before {
-  content: "?"/*rtl:"?"*/; }
+  content: ""/*rtl:""*/; }
 
 /* change z-index when opened in modal */
 .modal-open .datetimepicker {
@@ -1033,7 +1033,8 @@ div.dt-button-collection {
 button.dt-button,
 div.dt-button,
 a.dt-button {
-  background-image: none !important; }
+  background-image: none !important;
+  padding: 6px 12px !important; }
   button.dt-button:last-child,
   div.dt-button:last-child,
   a.dt-button:last-child {
@@ -1164,6 +1165,18 @@ table.dataTable > tbody > tr.child ul li {
   .portlet-datatable .dataTables_wrapper .table-responsive {
     padding: 0 2px !important; } }
 
+@media (max-width: 767px) {
+  /* 767px */
+  .portlet.box .dataTables_wrapper .dt-buttons,
+  .portlet.light .dataTables_wrapper .dt-buttons {
+    margin-top: 0;
+    margin-bottom: 20px; } }
+
+.table-scrollable .dataTable th .btn-group,
+.table-scrollable .dataTable td .btn-group {
+  position: absolute;
+  margin-top: -2px; }
+
 /***
 Dropzone css changes(new in v1.1.1)
 ***/
@@ -1178,6 +1191,9 @@ Dropzone css changes(new in v1.1.1)
   padding: 20px;
   margin: 0 auto;
   text-align: center; }
+
+.dz-hidden-input {
+  left: 0; }
 
 @media (max-width: 768px) {
   /* 768px */
@@ -1864,10 +1880,10 @@ iframe[src="about:blank"] {
 .select2-container--bootstrap .select2-selection {
   font-family: "Open Sans", sans-serif; }
 
-.select2-dropdown {
+.modal-open .select2-dropdown {
   z-index: 10060; }
 
-.select2-close-mask {
+.modal-open .select2-close-mask {
   z-index: 10055; }
 
 .modal-open .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
@@ -2337,7 +2353,7 @@ pre[class*="language-"] {
   content: "^"; }
 
 .socicon-smugmug:before {
-  content: "��"; }
+  content: "¨"; }
 
 .socicon-swarm:before {
   content: "$"; }

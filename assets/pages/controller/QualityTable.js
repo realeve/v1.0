@@ -1,84 +1,61 @@
 $("#HideTips").on('click', function() {
-  $(this).parent().hide();
+	$(this).parent().hide();
 });
-$("#SaveSettings").on('click',
-	function() {
-		SaveSettings();
-	});
 
-function SaveSettings() {
+function GetJsonUrl(id) {
 	//获取各控制值
-	var RefreshTime = $("#RefreshTime").val(); //轮询时间
-	var AutoRefresh = ($("#AutoRefresh").bootstrapSwitch('state') === true) ? 1 : 0;
-	var FixTblHead = ($("#FixTblHead").bootstrapSwitch('state') === true) ? 1 : 0;
-	var FixTblCol = ($("#FixTblCol").bootstrapSwitch('state') === true) ? 1 : 0;
-	var FootSearch = ($("#FootSearch").bootstrapSwitch('state') === true) ? 1 : 0;
-	var InputToggle = ($("#InputToggle").bootstrapSwitch('state') === true) ? 1 : 0;
-	var InputInner = ($("#InputInner").bootstrapSwitch('state') === true) ? 1 : 0;
-	var strUrl = getRootUrl('QualityTable') + "/SaveSettings";
-	//infoTips(RefreshTime +AutoRefresh,0); 
-	//获取各控制值完毕
-	//向服务器请求数据
-	$.post(strUrl, {
-			RefreshTime: RefreshTime,
-			AutoRefresh: AutoRefresh,
-			FixTblHead: FixTblHead,
-			FixTblCol: FixTblCol,
-			FootSearch: FootSearch,
-			InputToggle: InputToggle,
-			InputInner: InputInner,
-		},
-		function(data, status) {
-			if (status == "success") {
-				var obj = jQuery.parseJSON(data);
-				infoTips(obj.message, 1);
-			} else {
-				infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
-			}
-		}
-	);
-}
-
-function ReadSettings() {
-	var strUrl = getRootUrl('QualityTable') + "/ReadSettings";
-	$.ajax({
-		type: 'POST',
-		async: false, //同步
-		//async: true,
-		url: strUrl,
-		success: function(data) {
-			var strJSON = jQuery.parseJSON(data);
-			var obj = strJSON.data[0];
-			//设置控件初始值
-			$("#RefreshTime").val(obj.RefreshTime); //轮询时间
-			if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState'); //如果需要关 
-			if (obj.FixTblHead === 0) $("#FixTblHead").bootstrapSwitch('toggleState'); //如果需要关   
-			if (obj.FixTblCol === 0) $("#FixTblCol").bootstrapSwitch('toggleState'); //如果需要关 
-			if (obj.FootSearch === 0) $("#FootSearch").bootstrapSwitch('toggleState'); //如果需要关  
+	var date = getDateRange();
+	var str = window.location.href.split('?')[1].split('&');
+	var strLimit = "";
+	str.map(function(index, elem) {
+		if (jsLeft(index, 4) !== "tid=") {
+			strLimit += '&' + index;
 		}
 	});
-}
-
-function GetJsonUrl() {
-	//获取各控制值
-	var TimeRange = $("#dashboard-report-range span").html();
-	var TimeStart = TimeRange.split(' ~ ')[0];
-	var TimeEnd = TimeRange.split(' ~ ')[1];
-	var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=16&M=3&tstart=" + TimeStart + "&tend=" + TimeEnd + "&tstart2=" + TimeStart + "&tend2=" + TimeEnd + "&t=" + Math.random();
+	var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + "&t=" + Math.random();
 	return strUrl;
 }
 
-
 var dataTable = function() {
-	function InitTable() {
+	/**
+	 * [InitTable 表格初始化]
+	 * @param {[整型]} initDiv [是否需要初始化Table所在DIV]
+	 */
+
+	function InitTable(initDiv) {
 		var url;
-		if (App.getURLParameter('debug') == 1) {
+		//debug参数为1 或者未设置tid参数时
+		if (App.getURLParameter('debug') == 1 || App.getURLParameter('tid') === null) {
 			$('#Preview').show();
 			url = $('#Preview input').val();
+			RefreshTable('[name="sampleTable"]', url);
 		} else {
-			url = GetJsonUrl();
+			//ID列表，以逗号分开
+			var objList = {
+				"id": getUrlParam('tid').split(','),
+				"fixheader": (getUrlParam('fixheader') === null) ? ['1'] : getUrlParam('fixheader').split(',')
+			};
+			var len = objList.id.length;
+			var i;
+			if (len > 1 && initDiv) {
+				var obj = $('[name="sampleTable"]').parents('.portlet:nth(0)');
+				for (i = 0; i < len - 1; i++) {
+					obj.parent().append(obj.clone());
+				}
+			}
+
+			for (i = 0; i < len; i++) {
+				objRequest = {
+					"url": GetJsonUrl(objList.id[i]),
+					"fixheader": (handleParam(objList.fixheader, i, "1") == "1") ? true : false
+				};
+				if (objRequest.fixheader == '0') {
+					$('[name="sampleTable"]:eq(' + i + ')').removeClass('table-header-fixed').addClass('dt-responsive');
+				}
+
+				RefreshTable('[name="sampleTable"]:eq(' + i + ')', objRequest.url, objRequest.fixheader);
+			}
 		}
-		RefreshTable('#sample', url);
 	}
 	var oTable;
 	//生成表格头 
@@ -119,25 +96,26 @@ var dataTable = function() {
 		return strRow;
 	}
 
-	function initSettings(Data) {
+	function initSettings(tableID, Data, bFixhead) {
 		var initData;
+		var date = getDateRange();
 		initData = {
 			//"bDestroy":true,
 			"bRetrieve": true,
 			"language": {
 				"url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
 			},
-			"order": [
+			/*"order": [
 				[1, 'asc']
-			],
+			],*/
 			"lengthMenu": [
 				[5, 10, 15, 20, 50, 100, -1],
 				[5, 10, 15, 20, 50, 100, "All"] // change per page values here
 			],
 			// set the initial value
 			"pageLength": 15,
-			//"dom": "<'clear'>R<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
-			"dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
+			"dom": (bFixhead) ? "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>" : "<'clear'>R<'row tbTools' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+			//"dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
 			//dom: "flBrtip",
 			buttons: [{
 				extend: 'copyHtml5',
@@ -151,24 +129,27 @@ var dataTable = function() {
 				className: "btn yellow btn-outline ",
 				exportOptions: {
 					columns: ':visible'
-				}
+				},
+				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 			}, {
 				extend: 'csvHtml5',
 				className: "btn purple btn-outline ",
 				exportOptions: {
 					columns: ':visible'
-				}
+				},
+				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 			}, {
 				extend: 'pdfHtml5',
 				orientation: Data.cols > 10 ? 'landscape' : 'portrit',
 				pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-				message: Data.source + '\n©成都印钞有限公司 技术质量部',
+				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
 				download: 'open',
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
 				},
-				className: "btn dark btn-outline"
+				className: "btn dark btn-outline",
+				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 				//Token:'成都印钞有限公司 技术质量部',
 				/* customize: function ( doc ) {
 					doc.content.unshift( {
@@ -184,7 +165,7 @@ var dataTable = function() {
 				extend: 'print',
 				autoPrint: false,
 				text: '打印',
-				message: Data.source + '<br>©成都印钞有限公司 技术质量部',
+				message: '统计时间:' + date.start + '~' + date.end + '<br>' + Data.source + '<br>©成都印钞有限公司 技术质量部',
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
@@ -211,62 +192,32 @@ var dataTable = function() {
 			colReorder: {
 				realtime: true,
 			},
-			fixedHeader: {
+			/*fixedHeader: {
 				header: true,
 				footer: true,
 				headerOffset: Data.fixedHeaderOffset,
-			},
-			//scrollY:        '70vh',
+			},*/
 			scroolY: '70v',
 			scrollCollapse: true,
 			"initComplete": function() {
 				var api = this.api();
-				api.$(document).on("click",'td', function() {
-					api.search(this.innerText).draw();
+				api.$(document).on("click", 'td', function() {
+					api.search(this.innerText.trim()).draw();
 				});
-			$('.tools').append($('.tabletools-btn-group').clone(true));
-			$('.tbTools').remove();
-			//infoTips(JSON.stringify(Data), 2);
-
-				//添加 footer search
-				/* var footerHTML = '<tfoot class="hidden-sm hidden-xs"><tr>';
-        for (var i = 0; i < Data.cols; i++) {
-          footerHTML +='<th>'+Data.header[i].title+'</th>'};
-        $('TABLE').append(footerHTML + '</tr></tfoot>');*/
-				//$('.tools').append($('.tabletools-btn-group').clone(true));
-				//$('.tbTools').remove();
+				$(tableID).parents('.portlet').find('.tools').append($(tableID).parents('.portlet').find('.tabletools-btn-group').clone(true));
+				$(tableID).parents('.portlet').find('.tbTools').remove();
 				//infoTips(JSON.stringify(Data), 2);
-				/*
-        api.columns().eq( 0 ).each( function ( colIdx ) {
-            $( 'input', api.column( colIdx ).footer() ).on( 'keyup change', function () {
-                api
-                    .column( colIdx )
-                    .search( this.value )
-                    .draw();
-            } );
-        } );
-
-        api.columns().indexes().flatten().each( function ( i ) {
-           if (i == 1 || i == 3 ) 
-           {
-              var column = api.column( i );
-              var select = $('<select class="form-control input-inline input-sm input-small"><option value=""></option></select>')
-                  .appendTo( $(column.footer()).empty() )
-                  .on( 'change', function () {
-                      var val = $.fn.dataTable.util.escapeRegex(
-                          $(this).val()
-                      );
-                      column
-                          .search( val ? '^'+val+'$' : '', true, false )
-                          .draw();
-                  } );
-              column.data().unique().sort().each( function ( d, j ) {
-                  select.append( '<option value="'+d+'">'+d+'</option>' )
-              } );
-            };              
-        } ); */
+				infoTips('数据加载完成', 2);
 			}
 		};
+		if (bFixhead) {
+			initData.fixedHeader = {
+				header: true,
+				footer: true,
+				headerOffset: Data.fixedHeaderOffset,
+			};
+		}
+
 		return initData;
 	}
 
@@ -275,7 +226,7 @@ var dataTable = function() {
 	其中Json直接将URL传入值即可，但Model中查询代码不能为中文,视图中需要定义表头
 */
 
-	function CreateTable(tableID, Data) {
+	function CreateTable(tableID, Data, bFixhead) {
 		var table = $(tableID);
 		var fixedHeaderOffset = 0;
 		if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
@@ -286,7 +237,7 @@ var dataTable = function() {
 			fixedHeaderOffset = $('.page-header').outerHeight(true);
 		}
 		Data.fixedHeaderOffset = fixedHeaderOffset;
-		var initData = initSettings(Data);
+		var initData = initSettings(tableID, Data, bFixhead);
 		//初始化表格
 		oTable = table.dataTable(initData);
 	}
@@ -295,20 +246,27 @@ var dataTable = function() {
 	 *刷新数据，Array,Json两种方式，取决于表格初始化方式
 	 */
 
-	function RefreshTable(tableID, strUrl) {
+	function RefreshTable(tableID, strUrl, bFixhead) {
 		var table = $(tableID);
+		if (typeof bFixhead == 'undefined') {
+			bFixhead = true;
+		}
 		//重新读取数据
-		Data = ReadData(strUrl);
+		Data = ReadData(strUrl,1);
 		//更新表格相关信息
-		$('#TableTitle').text(Data.title);
-		$('#datasource').text('(' + Data.source + ')');
+		table.parents('.portlet').find('[name="TableTitle"]').text(Data.title);
+		table.parents('.portlet').find('[name="datasource"]').text('(' + Data.source + ')');
+
+		//$('.page-title [name="TableTitle"]').text(Data.title);
+		$('#today').text(Data.source);
+
 		if (Data.cols < 2) {
 			infoTips("请确保数据列在2列以上，当前为：" + Data.cols);
 			return;
 		}
 		if (Data.rows > 0) {
-			if (!$('#sample tbody').length) {
-				CreateTable(tableID, Data);
+			if (!table.find('tbody').length) {
+				CreateTable(tableID, Data, bFixhead);
 				return;
 			}
 		} else {
@@ -324,25 +282,24 @@ var dataTable = function() {
 		}
 		oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
 		oTable.fnDraw();
-		infoTips(JSON.stringify(Data), 2);
+		//infoTips(JSON.stringify(Data), 2);
 	}
 
 	return {
 		//main function to initiate the module
 		init: function() {
-			$(document).on("click",".ranges li:not(:last),button.applyBtn", function() {
-				InitTable();
+			$(document).on("click", ".ranges li:not(:last),button.applyBtn", function() {
+				InitTable(0);
 			});
 
-			$("#Preview a").on('click', function() {
-				RefreshTable('#sample', $('#Preview input').val());
-			});
-
-			if (App.getURLParameter('debug') == 1) {
-				$('#Preview').show();
-			} else {
-				$('#Preview').hide();
+			//载入数据
+			if(getUrlParam('tid') !== null){
+				InitTable(1);
 			}
+
+			$("#Preview .btn").on('click', function() {
+				RefreshTable('[name="sampleTable"]', $('#Preview input').val());
+			});
 		}
 
 	};
@@ -353,11 +310,18 @@ jQuery(document).ready(function() {
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');
 	initDom();
+	hideSidebarTool();
 	//修复顶部style="margin-top:-43px;"
 	//系统主题设置       
-	ReadSettings();
+	//ReadSettings();
 	dataTable.init();
 	//初始化表格
+
+	if (App.getURLParameter('debug') == 1 || App.getURLParameter('tid') === null) {
+		$('#Preview').show();
+	} else {
+		$('#Preview').hide();
+	}
 
 	//ChangeMainTheme(1);
 });

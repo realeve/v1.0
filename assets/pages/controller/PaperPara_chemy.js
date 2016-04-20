@@ -16,7 +16,7 @@ var PaperParam = function() {
 		InitSelect("machine_ID", Data);
 
 		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=3";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(6));
@@ -26,6 +26,7 @@ var PaperParam = function() {
 		var pulpCode = ReadData(getRootPath(1)+"/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=30&M=3");
 		$('input[name="pulp_code"]').val(pulpCode.data[0]);
 		initSelect2();
+		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 	}
 
 	function initChecked() {
@@ -81,7 +82,7 @@ var PaperParam = function() {
 			}
 		}
 		$('input[name="pulp_code"]').val(pulpID);
-		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=32&M=2&p=" + pulpID;
+		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=32&M=0&p=" + pulpID;
 		var Data = ReadData(strUrl);
 		Data.header.map(function(elem) {
 			var keys = elem.title;
@@ -90,7 +91,7 @@ var PaperParam = function() {
 		SetSelect2Val('oper_ID',Data.data[0]['oper_ID']);
 		SetSelect2Val('machine_ID',Data.data[0]['machine_ID']);
 		SetiCheckChecked('class_id', Data.data[0]['class_id']);
-		$('.portlet button[type="submit"]').attr('data-sn',Data.data[0]['ID']);
+		$('.portlet button[type="submit"]').data('sn',Data.data[0]['ID']);
 		$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('提交','更新'));
 		//移动浮动效果
 		$('.portlet.light').show();
@@ -104,7 +105,6 @@ var PaperParam = function() {
 			iChechBoxInit();
 			initChecked();
 			setRecordNum();
-			RoundedTheme(0);
 			$('button[type="reset"]').on('click', function() {
 				SetSelect2Val('oper_ID',-1);
 				SetSelect2Val('machine_ID',-1);
@@ -124,10 +124,10 @@ var PaperParam = function() {
 						type: 'post',
 						resetForm: true,
 						data: {
-							'tbl': '1',
+							'tbl': TBL.CHEM,
 							'class_id': GetiCheckChecked('class_id'),
 							'utf2gbk' : ['remark'],
-							'id' : $('.portlet button[type="submit"]').attr('data-sn'),
+							'id' : $('.portlet button[type="submit"]').data('sn'),
 							'record_Time': today(1)
 						},
 						success: function(data) {
@@ -152,7 +152,7 @@ var PaperParam = function() {
 						type: 'post',
 						resetForm: true,
 						data: {
-							'tbl': '1',
+							'tbl': TBL.CHEM,
 							'class_id': GetiCheckChecked('class_id'),
 							'utf2gbk' : ['remark'],
 							'record_Time' : today(1),

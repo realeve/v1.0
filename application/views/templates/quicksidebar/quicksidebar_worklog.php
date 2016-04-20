@@ -23,8 +23,11 @@
                          <li>
                             刷新间隔
                            <select class="layout-option form-control input-sm" id="RefreshTime">
-                              <option value="1" selected="selected">30秒</option>
-                              <option value="2">1分钟</option>
+                              <option value="0"></option>
+                              <option value="60" selected="selected">1分钟</option>
+                              <option value="120">2分钟</option>
+                              <option value="300">5分钟</option>
+                              <option value="600">10分钟</option>
                            </select>
                         </li>
                         <li>

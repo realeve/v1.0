@@ -1,5 +1,5 @@
 var worklogEdit = function() {
-  function initDOM() {
+  function loadDefaultSettings() {
     //控件初始化
     iChechBoxInit();
     initSelect2();
@@ -22,23 +22,24 @@ var worklogEdit = function() {
       language: 'zh-CN'
     });
     initChecked();
-    //ReadLogSettings();
+    ReadLogSettings();
     RoundedTheme(0);
     HeadFix();
     //各控件设置初始值
     $("#today").text(today(0));
-    SetiCheckChecked('proc_id', $('div[name="proc_id"]').attr('data-proc'));
+    SetiCheckChecked('proc_id', $('div[name="proc_id"]').data('proc'));
     SetSingleiCheck('bReport', true);
     //初始化选择框数据
     resetSelectData();
     resetErrDescSelectData();
     initDashboardDaterange('YYYY-MM-DD');
+    $('input[name="process_time"]').val(today(3));
   }
 
   //载入历史信息时，接口信息的模式为2.用Data.data[0].keys取得对应的值
 
   function loadHisData(id) {
-    var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=42&M=2&id=" + id;
+    var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=42&M=0&id=" + id;
     var Data = ReadData(strUrl);
 
     //基础数据
@@ -61,10 +62,10 @@ var worklogEdit = function() {
 
     SetSelect2Val('main_err', Data.data[0].main_err);
     SetSelect2Val('sub_err', Data.data[0].sub_err);
-    var usrName = $('input[name="rec_user_name"]').attr('data-user');
-    $('#ErrDesc').code(GBK2UTF(Data.data[0].ErrDesc) + '<p><div class="note note-info"><h4 class="block">'+ usrName +'&nbsp;补充于<small>'+ today(3) +'&nbsp;:</small></h4><p><span style="font-size: 14px; line-height: 20px;">&nbsp;</span></p></div></p>');
+    var usrName = $('input[name="rec_user_name"]').data('user');
+    $('#ErrDesc').summernote('code',GBK2UTF(Data.data[0].ErrDesc) + '<p><div class="note note-info"><h4 class="block">'+ usrName +'&nbsp;<small>'+ today(3) +'&nbsp;:</small></h4><p><span style="font-size: 14px; line-height: 20px;">&nbsp;</span></p></div></p>');
 
-    $('#Save').attr('data-sn', Data.data[0]['id']);
+    $('#Save').data('sn', Data.data[0]['id']);
     $('#Save').html($('#Save').html().replace('提交', '更新'));
   }
 
@@ -123,7 +124,7 @@ var worklogEdit = function() {
   //插入工作日志
   $("#Save").on('click', function() {
     var iData = {
-      "tbl": 25,
+      "tbl": TBL.WORK_LOG,
       "rec_time": today(1),
       "utf2gbk": ['oper_name', 'rec_user_name'], //, 'ErrDesc'
       "oper_name": GetSelect2Text('oper_name'),
@@ -138,14 +139,13 @@ var worklogEdit = function() {
       "prod_info": $('input[name="prod_info"]').val(),
       "main_err": $('select[name="main_err"]').val(),
       "sub_err": $('select[name="sub_err"]').val(),
-      "ErrDesc": UTF2GBK($('#ErrDesc').code())
+      "ErrDesc": UTF2GBK($('#ErrDesc').summernote('code'))
     };
-
     var strUrl = getRootPath() + "/DataInterface/insert";
     //更新数据
-    if((typeof $('#Save').attr('data-sn'))!=='undefined'){
+    if((typeof $('#Save').data('sn'))!=='undefined'){
       strUrl = getRootPath() + "/DataInterface/update";
-      iData.id = $('#Save').attr('data-sn');
+      iData.id = $('#Save').data('sn');
     }
     //获取各控制值完毕
     //向服务器请求数据
@@ -155,7 +155,7 @@ var worklogEdit = function() {
         infoTips(obj.message, obj.type);
         $('#Reset').click();
 
-        if((typeof $('#Save').attr('data-sn'))!=='undefined'){
+        if((typeof $('#Save').data('sn'))!=='undefined'){
           $('#Save').removeAttr('data-sn');
           $('#Save').html($('#Save').html().replace('更新', '提交'));
         }
@@ -184,11 +184,11 @@ var worklogEdit = function() {
   $(document).on('click', '#Reset', function() {
     ResetSelect2('prod_id');
     ResetSelect2('machine_id');
-    ResetSelect2('proStatus_id');
+    ResetSelect2('ProStatus');
     ResetSelect2('oper_name');
     SetSelect2Val('main_err', -1);
     ResetSelect2('sub_err');
-    $('#ErrDesc').code("");
+    $('#ErrDesc').summernote('code', '');
     $('input[name="prod_info"]').val("");
     $('input[name="process_time"]').val("");
   });
@@ -197,9 +197,7 @@ var worklogEdit = function() {
   $("#SaveSettings").on('click',
     function() {
       //获取各控制值
-      var ProcID = $("#ProcID").val(); //关注工序
-      var NumsID = $("#LoadingNum").val(); //每次加载
-      var Status = $("#proStatus_id").val(); //处理状态
+      var ProcID = $("#proc_id").val(); //关注工序
       var RefreshTime = $("#RefreshTime").val(); //轮询时间
       var AutoRefresh = ($("#AutoRefresh").bootstrapSwitch('state') === true) ? 1 : 0;
       var strUrl = getRootUrl('worklog') + "SaveLogQuerySettings";
@@ -208,8 +206,6 @@ var worklogEdit = function() {
       //向服务器请求数据
       $.post(strUrl, {
           ProcID: ProcID,
-          NumsID: NumsID,
-          Status: Status,
           RefreshTime: RefreshTime,
           AutoRefresh: AutoRefresh
         },
@@ -224,17 +220,42 @@ var worklogEdit = function() {
       );
     });
 
+  //保存设置
+  function ReadLogSettings() {
+    var strUrl = getRootUrl('worklog') + "ReadLogQuerySettings";
+    $.ajax({
+      type: 'POST',
+      async: false,
+      url: strUrl,
+      success: function(data) {
+        var strJSON = jQuery.parseJSON(data);
+        var obj = strJSON.data[0];
+        //设置控件初始值
+        $("#proc_id").val(obj.ProcID); //关注工序
+        $('div[name="proc_id"]').data('proc',obj.ProcID);
+        $("#RefreshTime").val(obj.RefreshTime); //轮询时间
+        if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState'); //如果需要关
+      }
+    });
+  }
+
   return {
     init: function() {
-      initDOM();
+      initDom();
+      loadDefaultSettings();
       $('input[name="proc_id"]').on('ifChecked', function() {
-        $('div[name="proc_id"]').attr('data-proc', GetiCheckChecked('proc_id'));
+        $('div[name="proc_id"]').data('proc', GetiCheckChecked('proc_id'));
         resetSelectData();
       });
 
       if (getUrlParam('ID')) {
         loadHisData(getUrlParam('ID'));
       }
+      /*
+      $("#RefreshTime").parents('li').hide();
+      $("#AutoRefresh").parents('li').hide();
+      $("#QueryData").parent().hide();*/
+
     }
   };
 

@@ -44,7 +44,7 @@
                 </div>
 			</div>
 			<h3 class="page-title">
-			下拉菜单设置 <small id="today"></small>
+			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 	        <!-- END PAGE HEADER-->
 	        <div class="row">
@@ -67,16 +67,20 @@
                             <div class="profile-usermenu">
                                 <ul class="nav">
                                     <li>
-                                        <a href="<?php echo base_url()?>/settings">
+                                        <a href="<?php echo base_url()?>Settings">
                                             <i class="icon-home"></i> 概览 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>/account">
+                                        <a href="<?php echo base_url()?>Settings/account">
                                             <i class="icon-settings"></i> 帐户设置 </a>
                                     </li>
                                     <li class="active">
                                         <a href="#">
                                             <i class="icon-info"></i> 下拉菜单管理 </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url()?>Settings/accountActive">
+                                            <i class="icon-user"></i> 帐户激活 </a>
                                     </li>
                                 </ul>
                             </div>
@@ -106,11 +110,11 @@
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weixin"></i>
-                                    <a href="#">@宾不厌诈</a>
+                                    <a href="#">@</a>
                                 </div>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weibo"></i>
-                                    <a href="#">@realeve</a>
+                                    <a href="#">@</a>
                                 </div>
                             </div>
                         </div>
@@ -167,12 +171,12 @@
                                                         <div class="row step-default">
                                                             <div class="col-md-4 bg-grey mt-step-col active">
                                                                 <div class="mt-step-number bg-white font-grey">1</div>
-                                                                <div class="mt-step-title uppercase font-grey-cascade">选择下拉框</div>
-                                                                <div class="mt-step-content font-grey-cascade">请勿调整您个人业务范围之外的下拉框</div>
+                                                                <div class="mt-step-title uppercase font-grey-cascade">确定选择框</div>
+                                                                <div class="mt-step-content font-grey-cascade">选择需要调整的选择框</div>
                                                             </div>
                                                             <div class="col-md-4 bg-grey mt-step-col">
                                                                 <div class="mt-step-number bg-white font-grey">2</div>
-                                                                <div class="mt-step-title uppercase font-grey-cascade">调整下拉框</div>
+                                                                <div class="mt-step-title uppercase font-grey-cascade">调整选择框</div>
                                                                 <div class="mt-step-content font-grey-cascade">仅允许增加条目或删除无效项</div>
                                                             </div>
                                                             <div class="col-md-4 bg-grey mt-step-col ">
@@ -187,26 +191,26 @@
                                                     </div>
                                                     <div class="tab-content">
                                                         <div class="tab-pane" id="tab1">
-                                                            <h3 class="block">选择需要调整的下拉框</h3>
+                                                            <h3 class="block">选择需要调整的选择框</h3>
                                                             <div class="form-group">
-                                                                <label class="col-md-3 control-label" for="select_cat">下拉框类型</label>
+                                                                <label class="col-md-3 control-label" for="select_cat">选择框类型</label>
                                                                 <div class="col-md-4">
                                                                     <select name="select_cat" class="form-control select2">                                                                    
                                                                     </select>
                                                                     <div class="form-control-focus"> </div>
-                                                                    <span class="help-block">所需调整的下拉框所属类型...</span>
+                                                                    <span class="help-block">所需调整的选择框所属类型...</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab2">
-                                                            <h3 class="block"><span name="selectName" class="bold font-green"></span> 下拉框列表项调整</h3>                                                            
+                                                            <h3 class="block"><span name="selectName" class="bold font-green"></span> 选择框列表项调整</h3>                                                            
                                                             <div class="form-group">
                                                                 <label class="col-md-3 control-label" for="select_name">当前列表项</label>
                                                                 <div class="col-md-4">
                                                                     <select name="select_name" class="form-control select2">                                                                      
                                                                     </select>
                                                                     <div class="form-control-focus"> </div>
-                                                                    <span class="help-block">所需调整的下拉框...</span>
+                                                                    <span class="help-block">所需调整的选择框...</span>
                                                                 </div>
                                                                 <a href="javascript:;" class="btn btn-circle btn-icon-only green">
                                                                     <i class="fa fa-plus"></i>

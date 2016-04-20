@@ -4,10 +4,11 @@ var Login = function() {
 		$('.lock-form button').on('click', function() {
 			lock();
 		});
-		$('.lock-form button').bind("copy cut paste",function(e){
-           return false;
-        });
+		$('.lock-form button').bind("copy cut paste", function(e) {
+			return false;
+		});
 		$('.lock-form input[name="password"]').val('');
+
 		function lock() {
 			var strUrl = getRootPath(1) + '/welcome/relogin';
 			var loginData = {
@@ -24,8 +25,7 @@ var Login = function() {
 						} else if (obj.type === 6) {
 							obj.type = 2;
 						} else if (obj.type === 9) {
-							console.log('test');
-							window.location.href = (document.referrer.indexOf('lockscreen') == -1)? document.referrer: getRootPath(1) + '/welcome';
+							window.location.href = (typeof localStorage.lastUrl == 'undefined') ? (getRootPath(1) + '/welcome') : localStorage.lastUrl;
 							return;
 						} else {
 							obj.type = 3;
@@ -47,5 +47,5 @@ var Login = function() {
 
 }();
 jQuery(document).ready(function() {
-  	Login.init();
+	Login.init();
 });

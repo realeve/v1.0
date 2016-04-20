@@ -17,16 +17,17 @@ var PaperParam = function() {
 		InitSelect("prod_ID", Data);
 
 		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=3";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(6));
 		$("input[name='remark']").val('无');
 		initSelect2();
+		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 	}
 
 	function vialidate() {
-		if ($('select[name="oper_ID"]').val() === '' || $('select[name="prod_ID"]').val() === '') {
+		if ($("input[name='Reel_Code']").val()==='' || $('select[name="oper_ID"]').val() == -1 || $('select[name="prod_ID"]').val() == -1) {
 			$('.portlet.light').hide();
 			return true;
 		}
@@ -37,23 +38,45 @@ var PaperParam = function() {
 	function refreshData() {
 		//02A，隐藏部分选项
 		var hideID = [3, 6, 7, 9, 10, 13, 14, 15, 16, 17];
-		if ($('select[name="prod_ID"]').find("option:selected").text() === '103-G-2A') {
-			hideID.map(function(val) {
-				$('.form-checkbox-listes:nth(' + val + ')').hide();
+		var hide07TID = [19,20,21];
+		var prodType = $('select[name="prod_ID"]').find("option:selected").text();
+		if (prodType === '103-G-7T' ) {
+			hide07TID.map(function(val) {
+				$('.normalPara input:nth(' + val + ')').parents('.form-group').show();
 			});
-		} else {
-			hideID.map(function(val) {
-				$('.form-checkbox-listes:nth(' + val + ')').show();
+			//help-block提示信息
+			$('.normalPara input:nth(15)').parent().find('.help-block').text('安全线：开窗线≥3.6mm，全埋线≥1.3mm ');
+			$('.normalPara input:nth(17)').parent().find('.help-block').text('≤3mm ');
+		}else{
+			$('.normalPara input:nth(15)').parent().find('.help-block').text('不得低于：宽线≥1.7mm，窄线≥1.2mm ');
+			$('.normalPara input:nth(17)').parent().find('.help-block').text('≤2mm ');
+
+			hide07TID.map(function(val) {
+				$('.normalPara input:nth(' + val + ')').parents('.form-group').hide();
 			});
+			if ( prodType === '103-G-2A') {
+				hideID.map(function(val) {
+					$('.normalPara input:nth(' + val + ')').parents('.form-group').hide();
+				});
+			} else {
+				hideID.map(function(val) {
+					$('.normalPara input:nth(' + val + ')').parents('.form-group').show();
+				});
+			}
 		}
 		$("input[name='remark']").val('无');
 		$("input[name='rec_date']").val(today(6));
-		$(".icheck").iCheck('uncheck');
 		//刷新右上角数据
 		setRecordNum();
 	}
 
 	$('select[name="oper_ID"]').change(function() {
+		if (!vialidate()) {
+			refreshData();
+		}
+	});
+
+	$('input[name="Reel_Code"]').change(function() {
 		if (!vialidate()) {
 			refreshData();
 		}
@@ -77,14 +100,14 @@ var PaperParam = function() {
 		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataSur = ReadData(str);
 		$('.grey-cascade').html('物理指标得分：' + xround(DataPsc.data[0][0], 2) + '，外观指标得分：' + xround(DataSur.data[0][0], 2));
-		var curScore = (parseInt(DataSur.data[0][0], 10) + parseInt(DataPsc.data[0][0], 10)) / 2;
+		var curScore = parseInt(DataSur.data[0][0], 10) + parseInt(DataPsc.data[0][0], 10) - 100;
 		//刷新序号
 		$('input[name="chk_ID"]').val(parseInt(DataSur.data[0][1], 10) + 1);
 		//刷新得分
-		$('.list-unstyled.amounts li:nth(0)').html('<strong>物理指标:</strong> ' + xround(DataPsc.data[0][0], 2));
-		$('.list-unstyled.amounts li:nth(1)').html('<strong>外观指标:</strong> ' + xround(DataSur.data[0][0], 2));
-		$('.list-unstyled.amounts li:nth(2)').html('<h4><strong>当前得分:</strong> 100</h4>');
-		$('.list-unstyled.amounts li:nth(3)').html('<h4 class="font-green"><strong>当月评价总分:</strong> ' + xround(curScore, 2) + '</h4>');
+		$('.list-unstyled.amounts li:nth(0)').html('<h4><strong>当前得分:</strong> 100</h4>');
+		$('.list-unstyled.amounts li:nth(1)').html('<strong>物理指标:</strong> ' + xround(DataPsc.data[0][0], 2));
+		$('.list-unstyled.amounts li:nth(2)').html('<strong>外观指标:</strong> ' + xround(DataSur.data[0][0], 2));
+		$('.list-unstyled.amounts li:nth(3)').html('<h4 class="font-grey-mint"><strong>当月总分:</strong> ' + xround(curScore, 2) + '</h4>');
 	}
 
 	//JS端  UTF-8  需要做2GBK操作
@@ -92,9 +115,10 @@ var PaperParam = function() {
 
 	function getFormData() {
 		var surData = {
-			'tbl': '2',
-			'score': parseFloat($('.list-unstyled.amounts li:nth(2)').text().replace('当前得分:', '')),
+			'tbl': TBL.SURFACE,
+			'score': parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('当前得分:', '')),
 			'chk_ID': $('input[name="chk_ID"]').val(),
+			'reel_code':$("input[name='Reel_Code']").val(),
 			'prod_ID': $('select[name="prod_ID"]').val(),
 			'oper_ID': $('select[name="oper_ID"]').val(),
 			'rec_date': $("input[name='rec_date']").val(),
@@ -122,25 +146,28 @@ var PaperParam = function() {
 			'line_thick',
 			'line_break',
 			'anti_fake',
+			'thick_line_stretch',
+			'wide_line_pos',
+			'k_format',
 			'commence',
 			'other'
 		];
 		var checkStr = JSON.stringify(surData);
 		checkStr = checkStr.replace('}', '');
-		$('.icheck').map(function(elem) {
-			//if ($(this).attr('checked') == 'checked') {
-			if ($(this).prop("checked")) {
-				checkStr = checkStr + ',"' + keyList[elem] + '":1';
-			} else {
-				checkStr = checkStr + ',"' + keyList[elem] + '":0';
+		var curVal;
+		$('.normalPara input').map(function(elem) {
+			curVal = $(this).val();
+			if(curVal===''){
+				curVal = 0;
 			}
+			checkStr = checkStr + ',"' + keyList[elem] + '":'+curVal;
 		});
 		checkStr += '}';
 		return $.parseJSON(checkStr);
 	}
 
 	$('button[type="reset"]').on('click',function() {
-		$(".icheck").iCheck('uncheck');
+		$('.normalPara input').val('');
 		SetSelect2Val('oper_ID',-1);
 		SetSelect2Val('prod_ID',-1);
 		$('.portlet.light').hide();
@@ -182,30 +209,28 @@ var PaperParam = function() {
 			});
 
 			$('a[name="submit"]').on('click',function() {
-				var score = parseFloat($('.list-unstyled.amounts li:nth(3)').text().replace('当月评价总分:', ''));
+				var score = parseFloat($('.list-unstyled.amounts li:nth(3)').text().replace('当月总分:', ''));
 				if (score >= 95) {
 					insertData();
 				}
 				else{
-					bsInfo('当月评价总分将低于95分，请检查后重试');
+					bsTips('当月评价总分将低于95分，请检查后重试');
 				}
 			});
 
-			$('.icheck').on('ifChecked',function() {
-				var surScore = parseFloat($('.list-unstyled.amounts li:nth(1)').text().replace('外观指标:', ''));
-				var pscScore = parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('物理指标:', ''));
-				var id = parseInt($(this).attr('ID').replace('checkbox', ''), 10) - 1;
-				var curScore, totalScore;
+			$('.normalPara input').on('change',function() {
+				var surScore = parseFloat($('.list-unstyled.amounts li:nth(2)').text().replace('外观指标:', ''));
+				var pscScore = parseFloat($('.list-unstyled.amounts li:nth(1)').text().replace('物理指标:', ''));
+				var curScore = 100, totalScore,id;
+				var prodType = $('select[name="prod_ID"]').find("option:selected").text();
 				//分数表
-				var detailScore = [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 1, 1];
+				var detailScore = (prodType ==='103-G-7T')?[0.5,0.5,3,3,0.75,0.75,1,1,0.75,0.75,0.75,0.5,0.5,0.5,0.5,3,3,1,3,2,2,0.5,0.75]:[0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5,0,0,0, 1, 1];
 				//分数动态更新
-				//if ($(this).attr('checked') == 'checked') {
-				if ($(this).prop("checked")) {
-					curScore = surScore - detailScore[id];
+				$('.normalPara input').map(function(index,elem) {
+					id = parseInt($(this).attr('name').replace('checkbox',''),10)-1;
+					curScore -= $(this).val()*detailScore[id];
+				});
 
-				} else {
-					curScore = surScore + detailScore[id];
-				}
 				//获取当月数据条数
 				var num = $('input[name="chk_ID"]').val() - 1;
 				if (num === 0) {
@@ -214,10 +239,10 @@ var PaperParam = function() {
 					var HisSurScore = surScore * num;
 					surScore = (curScore + HisSurScore) / (num + 1);
 				}
-				totalScore = (pscScore + surScore) / 2;
-				$('.list-unstyled.amounts li:nth(1)').html('<strong>外观指标:</strong> ' + xround(surScore, 2));
-				$('.list-unstyled.amounts li:nth(2) h4').html('<strong>当前得分:</strong> ' + xround(curScore, 2));
-				$('.list-unstyled.amounts li:nth(3)').html('<h4 class="font-green"><strong>当月评价总分:</strong> ' + xround(totalScore, 2) + '</h4>');
+				totalScore = pscScore + surScore - 100;
+				$('.list-unstyled.amounts li:nth(2)').html('<strong>外观指标:</strong> ' + xround(surScore, 2));
+				$('.list-unstyled.amounts li:nth(0) h4').html('<strong>当前得分:</strong> ' + xround(curScore, 2));
+				$('.list-unstyled.amounts li:nth(3)').html('<h4 class="font-green"><strong>当月总分:</strong> ' + xround(totalScore, 2) + '</h4>');
 				if (totalScore < 95) {
 					$('a[name="submit"]').attr('href', '#info');
 				} else {
@@ -232,7 +257,6 @@ var PaperParam = function() {
 jQuery(document).ready(function() {
 	initDom();
 	PaperParam.init();
-	RoundedTheme(0);
 });
 jQuery(window).resize(function() {
 	HeadFix();

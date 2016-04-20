@@ -6,5 +6,5 @@
  *
  */
 define(function() {
-    return {};
+	return {};
 });

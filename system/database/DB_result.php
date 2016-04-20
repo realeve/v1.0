@@ -313,12 +313,25 @@ class CI_DB_result {
 	**/
 	function Conv($str)
 	{
-		return iconv("utf-8","gbk",$str);
+		//$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
+		//if($encode == "UTF-8")
+		//{
+			$str = iconv("UTF-8","GBK",$str);
+		//}
+		return $str;
 	}
 	
 	function reConv($str)
-	{
-		return iconv("gbk","utf-8",$str);
+	{	
+		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
+		if($encode == "GBK")
+		{
+			$str = iconv($encode,"UTF-8",$str);
+		}elseif($encode="EUC-CN")
+		{
+			$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
+		}
+		return $str;
 	} 
 	  
 	/**
@@ -357,8 +370,8 @@ class CI_DB_result {
 		//$this->_data_seek(0);		
 		$strJSON = $strHead;
 		$iCols = $this->num_fields();	   //获取列数
-		while ($row = $this->_fetch_assoc())
-		{
+		//while ($row = $this->_fetch_assoc())
+		foreach ($this->result_array() as $row){
 			if ($strJSON != $strHead) {$strJSON .= ",";}	
 			for ($i=0; $i < $iCols; $i++) { 
 				//return $strFields[$i];
@@ -424,7 +437,15 @@ class CI_DB_result {
 			if ($strJSON != $strHead) {
 				$strJSON .= ",";
 			}	
-			$iValue = trim($this->reConv($arr[$i]));
+			//$iValue = trim($this->reConv($arr[$i]));
+			$encode = mb_detect_encoding($arr[$i],array('ASCII','EUC-CN','GBK','UTF-8'));
+			if($encode == "CP936")
+			{
+				$iValue = trim($arr[$i]);
+			}else
+			{
+				$iValue = trim($this->reConv($arr[$i]));
+			}
 			$strName = 'title';
 			$strJSON .= '{"' .$strName.'":"' . $iValue . '"';
 			if ($i == $nums-1) $strJSON .= '}';
@@ -467,19 +488,27 @@ class CI_DB_result {
 		$strJSON = $strHead;
 
 		$iCols = $this->num_fields();	   //获取列数
-		while ($row = $this->_fetch_assoc())
+		
+		//2016更新，兼容orcal数据库
+		/*$curRow = 0;
+		$result = $this->result_array();
+		while ($curRow < $nums)
 		{
+			$row = $result[$curRow];*/
+		foreach ($this->result_array() as $row){
 			if ($strJSON != $strHead) {$strJSON .= ",";}	
-			for ($i=0; $i < $iCols; $i++) { 
-				//return $strFields[$i];
+			for ($i=0; $i < $iCols; $i++) {
 				$str = $strFields[$i];
 				$iValue = trim($this->reConv($row[$str]));
 				$strName = trim($this->reConv($str));
 				if ($i == 0 ) $strJSON .= '[';
 				$strJSON .= '"' . $iValue . '"';
-				if ($i == $iCols-1) $strJSON .= ']';
-				else $strJSON .= ',';
+				if ($i == $iCols-1)
+					$strJSON .= ']';
+				else 
+					$strJSON .= ',';
 			}
+			//$curRow ++;
 		}
 		$strJSON.= "]}";
 		return $strJSON;

@@ -2,70 +2,14 @@ $("#HideTips").on('click', function() {
   $(this).parent().hide();
 });
 
-$("#SaveSettings").on('click',
-  function() {
-    SaveSettings();
-  });
-
-function SaveSettings() {
-  //获取各控制值
-  var RefreshTime = $("#RefreshTime").val(); //轮询时间
-  var AutoRefresh = ($("#AutoRefresh").bootstrapSwitch('state') === true) ? 1 : 0;
-  var FixTblHead = ($("#FixTblHead").bootstrapSwitch('state') === true) ? 1 : 0;
-  var FixTblCol = ($("#FixTblCol").bootstrapSwitch('state') === true) ? 1 : 0;
-  var FootSearch = ($("#FootSearch").bootstrapSwitch('state') === true) ? 1 : 0;
-  var InputToggle = ($("#InputToggle").bootstrapSwitch('state') === true) ? 1 : 0;
-  var InputInner = ($("#InputInner").bootstrapSwitch('state') === true) ? 1 : 0;
-  var strUrl = getRootUrl('QualityTable') + "/SaveSettings";
-  //infoTips(RefreshTime +AutoRefresh,0); 
-  //获取各控制值完毕
-  //向服务器请求数据
-  $.post(strUrl, {
-      RefreshTime: RefreshTime,
-      AutoRefresh: AutoRefresh,
-      FixTblHead: FixTblHead,
-      FixTblCol: FixTblCol,
-      FootSearch: FootSearch,
-      InputToggle: InputToggle,
-      InputInner: InputInner,
-    },
-    function(data, status) {
-      if (status == "success") {
-        var obj = jQuery.parseJSON(data);
-        infoTips(obj.message, 1);
-      } else {
-        infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
-      }
-    }
-  );
-}
-
-function ReadSettings() {
-  var strUrl = getRootPath() + "/QualityTable/ReadSettings";
-  $.ajax({
-    type: 'POST',
-    async: false, //同步
-    //async: true,
-    url: strUrl,
-    success: function(data) {
-      var strJSON = jQuery.parseJSON(data);
-      var obj = strJSON.data[0];
-      //设置控件初始值
-      $("#RefreshTime").val(obj.RefreshTime); //轮询时间
-      if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState');
-      if (obj.FixTblHead === 0) $("#FixTblHead").bootstrapSwitch('toggleState');
-      if (obj.FixTblCol === 0) $("#FixTblCol").bootstrapSwitch('toggleState');
-      if (obj.FootSearch === 0) $("#FootSearch").bootstrapSwitch('toggleState');
-      if (obj.InputToggle === 0) $("#InputToggle").bootstrapSwitch('toggleState');
-      if (obj.InputInner === 0) $("#InputInner").bootstrapSwitch('toggleState');
-    }
-  });
-}
-
  //初始化接口列表
   var initApiList = function() {
-    var strUrl = getRootPath(1) + '/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=0&M=3&t=' + Math.random();
-    var Data = ReadData(strUrl);
+    var username = $('.top-menu .username').text().trim();
+    var strUrl = getRootPath(1) + '/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=0&M=3&t=' + Math.random() + '&author=' + username;
+    var Data = ReadData(strUrl);  
+  Data.data.map(function(elem,index){
+    Data.data[index][5]= $.base64.decode(elem[5]);
+  }); 
     var str = CreateTableBody(Data, true);
     $('#apiList tbody').html(str);
 
@@ -94,8 +38,8 @@ function ReadSettings() {
       ],
       // set the initial value
       "pageLength": 15,
-      //"dom": "<'clear'>R<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
-      "dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
+      "dom": "<'clear'>R<'row tbTools' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+      //"dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
       //dom: "flBrtip",
       buttons: [{
         extend: 'copyHtml5',
@@ -148,11 +92,11 @@ function ReadSettings() {
       "bScrollInfinite": true,
       //"borderMulti": true,
       searchHighlight: true, //高亮
-      fixedHeader: {
+      /*fixedHeader: {
         header: true,
         footer: true,
         headerOffset: fixedHeaderOffset
-      },
+      },*/
       scroolY: '70v',
       scrollCollapse: true,
       "initComplete": function() {
@@ -180,7 +124,7 @@ function ReadSettings() {
       var aData = oTable.fnGetData(nRow);
       var jqTds = $('>td', nRow);
       jqTds[3].innerHTML = '<input type="text" class="form-control" value="' + aData[3] + '">';
-      jqTds[4].innerHTML = '<input type="text" class="form-control input-large" value="' + aData[4] + '">';
+      jqTds[4].innerHTML = '<input type="text" class="form-control input-md" value="' + aData[4] + '">';
       jqTds[5].innerHTML = '<input type="text" class="form-control" value="' + aData[5] + '">';
       jqTds[6].innerHTML = '<a class="edit" href="javascript:;" data-sn="'+ ID +'">保存</a>';
       jqTds[7].innerHTML = '<a class="cancel" href="javascript:;" data-sn="'+ ID +'">取消</a>';
@@ -190,15 +134,15 @@ function ReadSettings() {
       var jqInputs = $('input', nRow);
       var data = {
         "ApiName": jqInputs[0].value,
-        "strSQL": jqInputs[1].value,
+        "strSQL": $.base64.encode(jqInputs[1].value),//.replace(/\uff1f/g,'?'),
         "Params": jqInputs[2].value,
-        "utf2gbk": ["ApiName","strSQL","Params"],
+        "utf2gbk": ["ApiName","Params"],
         "id": ID,
         "tbl":30
       };
       if ('' !== data.ApiName && '' !== data.strSQL) {
         oTable.fnUpdate(jqInputs[0].value, nRow, 3, false);
-        oTable.fnUpdate(jqInputs[1].value, nRow, 4, false);
+        oTable.fnUpdate(jqInputs[1].value/*.replace(/\uff1f/g,'?')*/, nRow, 4, false);
         oTable.fnUpdate(jqInputs[2].value, nRow, 5, false);
         oTable.fnUpdate('<a class="edit" href="javascript:;" data-sn="'+ ID +'">编辑</a>', nRow, 6, false);
         oTable.fnUpdate('<a class="delete"href="javascript:;" data-sn="'+ ID +'">删除</a>', nRow, 7, false);
@@ -225,7 +169,7 @@ function ReadSettings() {
     //main function to initiate the module
     init: function() {
       table.on('click', '.edit', function(e) {
-        ID = $(this).attr('data-sn');
+        ID = $(this).data('sn');
         e.preventDefault();
         /* Get the row as a parent of the link that was clicked on */
         var nRow = $(this).parents('tr')[0];
@@ -263,13 +207,13 @@ function ReadSettings() {
                   className: "green",
                   callback: function() {
                     var url = getRootPath() + '/DataInterface/delete';
-                    $.post(url,{id:obj.attr('data-sn'),tbl:30},function(data){
+                    $.post(url,{id:obj.data('sn'),tbl:30},function(data){
                         var nRow = obj.parents('tr')[0];
                         oTable.fnDeleteRow(nRow);
                         infoTips("数据成功删除",1);
-
+                        var userName = $('.top-menu .username').text().trim();
                         //更新数据添加接口状态信息
-                        var nID = ReadData('http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=29&M=3&author=develop');
+                        var nID = ReadData(getRootPath() + '/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=29&M=3&author=' + userName );
                         $('#ApiID').text(nID.data[0]);
                     });
                   }
@@ -481,7 +425,34 @@ return {
 var FormEditable = function() {
 
   $.mockjaxSettings.responseTime = 100;
-
+  var DBSourse = [{
+        value: 0,
+        text: '质量综合管理系统'
+      }, {
+        value: 1,
+        text: '小张核查'
+      }, {
+        value: 2,
+        text: '码后核查'
+      }, {
+        value: 3,
+        text: '机台作业'
+      }, {
+        value: 4,
+        text: '库管系统'
+      }, {
+        value: 5,
+        text: '质量控制中心'
+      }, {
+        value: 6,
+        text: '号码三合一系统'
+      }, {
+        value: 7,
+        text: '在线清数'
+      }, {
+        value: 8,
+        text: '办公小助手'
+      }];
   var initAjaxMock = function() {
     //ajax mocks
 
@@ -492,29 +463,13 @@ var FormEditable = function() {
     $.mockjax({
       url: '/DBGroups',
       response: function(settings) {
-        this.responseText = [{
-          value: 0,
-          text: '质量综合管理系统'
-        }, {
-          value: 1,
-          text: '小张核查'
-        }, {
-          value: 2,
-          text: '码后核查'
-        }, {
-          value: 3,
-          text: '机台作业'
-        }, {
-          value: 4,
-          text: '库管系统'
-        }];
+        this.responseText = DBSourse;
       }
     });
   };
 
   var initEditables = function() {
 
-    var InputToggle = ($("#InputToggle").bootstrapSwitch('state') === true) ? 1 : 0;
     var InputInner = ($("#InputInner").bootstrapSwitch('state') === true) ? 1 : 0;
 
     //set editable mode based on URL parameter
@@ -548,25 +503,7 @@ var FormEditable = function() {
       //prepend: "not selected",
       name: 'DBID',
       inputclass: 'form-control',
-      source: [{
-        value: 0,
-        text: '质量综合管理系统'
-      }, {
-        value: 1,
-        text: '小张核查'
-      }, {
-        value: 2,
-        text: '码后核查'
-      }, {
-        value: 3,
-        text: '机台作业'
-      }, {
-        value: 4,
-        text: '库管系统'
-      }, {
-        value: 5,
-        text: '质量控制中心'
-      }]
+      source: DBSourse
     });
 
     /*$('#DataBaseID').editable({
@@ -645,6 +582,8 @@ $(this).html('<pre>' + value + '</pre>');
       $('#user .editable').on('hidden', function(e, reason) {
         if (reason === 'save' || reason === 'nochange') {
           var $next = $(this).closest('tr').next().find('.editable');
+          var InputToggle = ($("#InputToggle").bootstrapSwitch('state') === true) ? 1 : 0;
+
           if (InputToggle) {
             setTimeout(function() {
               $next.editable('show');
@@ -658,10 +597,12 @@ $(this).html('<pre>' + value + '</pre>');
       $("#SaveAPI,#saves").on('click', function() {
         var strUrl = getRootUrl('DataInterface') + "SaveAPI";
         var APIData = $('#user .editable').editable('getValue');
-        if (APIData.ApiName === '' || APIData.SQL === '' || APIData.params === '') {
+        if (APIData.ApiName === '' || APIData.strSQL === '' || APIData.params === '') {
           infoTips("接口名、查询语句以及接口参数不允许为空,请检查后重新提交", 1);
           return;
         }
+
+        //APIData.strSQL = APIData.strSQL.replace(/\uff1f/g,'?');//全角/半角通配符替换
         APIData.params = $('#params').val().split(",");
         var DBName = $('#DataBaseID').text().trim();
         $.post(strUrl, APIData,
@@ -747,7 +688,7 @@ jQuery(document).ready(function() {
   initDashboardDaterange('YYYYMMDD');
   $("#CreateDate").text(today(3));
   initDom();
-  ReadSettings();
+  $('.page-header .dropdown-quick-sidebar-toggler').hide();
   dataTable.init();
   //initColStat('#sample');       
   FormEditable.init();

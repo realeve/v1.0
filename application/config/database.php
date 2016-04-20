@@ -62,57 +62,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$active_group = 'default';
 $active_group = 'sqlsvr';
 $query_builder = TRUE;
-/*
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
+
+//DBID = 0
+$db['sqlsvr'] = array(
+	//'dsn'	=> '',
+	'hostname' => '127.0.0.1',
+	'username' => 'sa',
+	'password' => '123',
+	'database' => 'QuaCenter',
+	'dbdriver' => 'mssql',
 	'dbprefix' => '',
-	'pconnect' => FALSE,
+	'pconnect' => TRUE,
 	'db_debug' => TRUE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
+	//'encrypt' => FALSE,
+	//'compress' => FALSE,
+	'autoinit'=>TRUE,
 	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);*/
+	//'failover' => array(),
+	//'save_queries' => TRUE
+);
 
-$db['sqlsvr']['hostname'] = 'localhost';
-$db['sqlsvr']['username'] = 'sa';
-$db['sqlsvr']['password'] = '123';
-$db['sqlsvr']['database'] = 'QuaCenter';
-$db['sqlsvr']['dbdriver'] = 'mssql';
-$db['sqlsvr']['dbprefix'] = '';
-$db['sqlsvr']['pconnect'] = TRUE;
-$db['sqlsvr']['db_debug'] = TRUE;
-$db['sqlsvr']['cache_on'] = FALSE;
-$db['sqlsvr']['cachedir'] = '';
-$db['sqlsvr']['char_set'] = 'utf8';
-$db['sqlsvr']['dbcollat'] = 'utf8_general_ci';
-$db['sqlsvr']['swap_pre'] = '';
-$db['sqlsvr']['autoinit'] = TRUE;
-$db['sqlsvr']['stricton'] = FALSE;
-
-$db['Quality']['hostname'] = 'localhost';
-$db['Quality']['username'] = 'sa';
-$db['Quality']['password'] = '123';
+//DBID=1
+/*
+$db['XZHC'] = array(
+	'hostname' =>'(DESCRIPTION =    (ADDRESS_LIST =      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.3.21)(PORT = 1521))    )    (CONNECT_DATA =      (SERVICE_NAME = SJJC)    )  )',
+	'username' => 'xzhc',
+	'password' => 'xzhc',
+	'dbdriver' => 'oci8',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'db_debug' => FALSE
+);
+//DBID=2
+$db['QFM'] = $db['XZHC'];
+//DBID=3
+$db['JTZY'] = $db['XZHC'];
+$db['JTZY'] ['hostname'] =	'(DESCRIPTION =    (ADDRESS_LIST =      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.5.40)(PORT = 1521))    )    (CONNECT_DATA =      (SID = orcl)    )  )';
+$db['JTZY']['username']='czuser';
+$db['JTZY']['password'] ='sky123';
+//DBID=4
+$db['KG'] = $db['XZHC'];
+$db['KG'] ['hostname'] =	'(DESCRIPTION =    (ADDRESS_LIST =	(ADDRESS = (PROTOCOL = TCP)(HOST = 10.8.2.38)(PORT = 1521))     )     (CONNECT_DATA =     	(SID = BPAUTO)     )	';
+$db['KG']['username']='jitai';
+$db['KG']['password'] ='jitai';*/
+//DBID = 5
+$db['Quality'] = $db['sqlsvr'];
 $db['Quality']['database'] = 'NotaCheck_DB';
-$db['Quality']['dbdriver'] = 'mssql';
-$db['Quality']['dbprefix'] = '';
-$db['Quality']['pconnect'] = TRUE;
-$db['Quality']['db_debug'] = TRUE;
-$db['Quality']['cache_on'] = FALSE;
-$db['Quality']['cachedir'] = '';
-$db['Quality']['char_set'] = 'utf8';
-$db['Quality']['dbcollat'] = 'utf8_general_ci';
-$db['Quality']['swap_pre'] = '';
-$db['Quality']['autoinit'] = TRUE;
-$db['Quality']['stricton'] = FALSE;
+/*
+//DBID=6
+$db['SHY'] = $db['XZHC'];
+$db['SHY'] ['hostname'] =	'(DESCRIPTION =   (ADDRESS_LIST =   (ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.3.24)(PORT = 1521))    )    (CONNECT_DATA =    (SERVICE_NAME = dcdb)   )  )';
+$db['SHY']['username']='hmzx';
+$db['SHY']['password'] ='hmzx';
+//DBID=7
+$db['ZXQS'] = $db['XZHC'];
+$db['ZXQS'] ['hostname'] =	'(DESCRIPTION =  (ADDRESS_LIST =   (ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.5.51)(PORT = 1521))    )    (CONNECT_DATA =      (SID = zxqs)    )  )';
+$db['ZXQS']['username']='zxqs';
+$db['ZXQS']['password'] ='zxqs';
+
+*/

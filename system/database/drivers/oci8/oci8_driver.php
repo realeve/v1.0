@@ -267,7 +267,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		 */
 		$this->stmt_id = FALSE;
 		$this->_set_stmt_id($sql);
-		oci_set_prefetch($this->stmt_id, 1000);
+		oci_set_prefetch($this->stmt_id, 1000);		
 		return oci_execute($this->stmt_id, $this->commit_mode);
 	}
 

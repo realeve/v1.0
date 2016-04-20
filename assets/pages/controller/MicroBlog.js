@@ -1,217 +1,237 @@
-//插入工作日志
-$("#PostMicriBlog").on('click',
-  function() {
+var MicroBlog = function() {
+  //读取设置
+  function ReadLogSettings() {
+    var strUrl = getRootUrl('MicroBlog') + "ReadSettings";
+    $.ajax({
+      type: 'POST',
+      async: false,
+      url: strUrl,
+      success: function(data) {
+        var strJSON = jQuery.parseJSON(data);
+        var obj = strJSON.data[0];
+        //设置控件初始值
+        $("#LoadingNum").val(obj.NumsID); //每次加载
+        $("#RefreshTime").val(obj.RefreshTime); //轮询时间
+        if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState'); //如果需要关 
+      }
+    });
+  }
+  //保存设置
+  $("#SaveSettings").on('click',
+    function() {
+      //获取各控制值
+      var NumsID = $("#LoadingNum").val(); //每次加载
+      var RefreshTime = $("#RefreshTime").val(); //轮询时间
+      var AutoRefresh = ($("#AutoRefresh").bootstrapSwitch('state') === true) ? 1 : 0;
+      var strUrl = getRootUrl('MicroBlog') + "SaveSettings";
+      $.post(strUrl, {
+          NumsID: NumsID,
+          RefreshTime: RefreshTime,
+          AutoRefresh: AutoRefresh
+        },
+        function(data, status) {
+          if (status == "success") {
+            var obj = jQuery.parseJSON(data);
+            infoTips(obj.message, 1);
+          } else {
+            infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
+          }
+        }
+      );
+    });
+
+  //插入工作日志
+  $("#PostMicriBlog").on('click', function() {
     //获取各控制值
     var strBlogHTML = $("#BlogContent").val();
     if (strBlogHTML.length <= 140 && strBlogHTML.length) {
-      var strUrl = getRootUrl('MicroBlog') + "AddLog";
-      //var strUrl = "http://localhost/AddLog";
-      //获取各控制值完毕
-      //向服务器请求数据
+      var strUrl = getRootPath() + "/DataInterface/insert";
+      var iData = {
+        "tbl": TBL.MICRO_BLOG,
+        "RecordTime": today(1),
+        'BlogHTML': UTF2GBK(strBlogHTML),
+        "utf2gbk": ['BlogHTML','UserName'],
+        'UserName': UTF2GBK($("#PostMicriBlog").data('username')),
+        'HideBlog': 0, //默认每条记录均显示
+      };
       $.ajax({
         type: 'POST',
         async: false,
         url: strUrl,
-        data: {
-          BlogHTML: strBlogHTML
-        },
+        data: iData,
         success: function(data) {
-          $("#QueryData").click();
+          var obj = $.parseJSON(data);
           $("#BlogContent").val('');
           $('#WordNum').html('还可以输入140字');
-        }
+          $('#PostMicriBlog').data('sn', obj.id);
+          //追加信息
+          var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\">";
+          TimeHead += "<div class=\"timeline-icon\"><i class=\"icon-user font-green-haze\"></i></div></div>"; //"<div class=\"timeline-badge\"><img class=\"timeline-badge-userpic\" src=\"" + getRootPath(0)+ "/assets/pages/media/users/realeve.jpg\"></div></div>";
+          TimeHead += "<div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
+          var TimeTitle = "</a><span class=\"timeline-body-time font-grey-cascade\">发表于";
+          var TimeEnd = "</h4></span></div></div></div>";
+
+          var TimeButton = "</small></span></div><div class=\"timeline-body-head-actions\">";
+          TimeButton += "<a data-sn=" + obj.id + " class=\"btn btn-circle red btn-outline btn-block del\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定删除该条日志?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-trash\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-trash\"></i>&nbsp;&nbsp;删除 </a>";
+          TimeButton += "</div></div><div class=\"timeline-body-content\"><span class=\"font-grey-mint\"><h4>";
+
+          $(".timeline:first").prepend(TimeHead + GBK2UTF(iData.UserName) + TimeTitle + iData.RecordTime + TimeButton + GBK2UTF(iData.BlogHTML) + TimeEnd);
+          $('.del').first().confirmation();
+        },
+        error: (function(data) {
+          infoTips('插入数据失败，错误信息:\n' + data);
+        })
       });
+    } else {
+      bsTips('请确认输入字符数在0到140字之间');
     }
-
   });
 
-$("#BlogContent").bind('input propertychange', function() {
-  var len = 140 - $('#BlogContent').val().length;
-  if (len >= 0) {
-    $('#WordNum').html('还可以输入' + len + '字');
-  } else {
-    $('#WordNum').html('已超出' + -len + '字');
-  }
-
-});
-
-$('#dashboard-report-range').on('apply.daterangepicker', function() {
-  QueryMicroblog(1);
-});
-
-//查询工作日志
-$("#QueryData").on('click',
-  function() {
-    QueryMicroblog(1);
+  $("#BlogContent").bind('input propertychange', function() {
+    var len = 140 - $('#BlogContent').val().length;
+    if (len >= 0) {
+      $('#WordNum').html('还可以输入' + len + '字');
+    } else {
+      $('#WordNum').html('已超出<span class="font-red-mint bold">' + -len + '</span>字');
+    }
   });
 
-function QueryMicroblog(ReadTime) {
-  //获取各控制值
-  var NumsID = $("#LoadingNum").val();
-  var CurID = $("#LogID").val();
-  var TimeRange = $("#dashboard-report-range span").html();
-  var TimeStart = TimeRange.split(' ~ ')[0];
-  var TimeEnd = TimeRange.split(' ~ ')[1];
-  if (!ReadTime) {
-    TimeStart = '2015-01-01';
-  }
-  //http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=15&M=3&tstart=20150331&tend=20150521&u=libin
-  var Nums;
-  var strUrl = getRootUrl('MicroBlog') + "QueryLogInfo";
-  switch (NumsID) {
-    case '1':
-      Nums = 20;
-      break;
-    case '2':
-      Nums = 30;
-      break;
-    case '3':
-      Nums = 40;
-      break;
-    case '4':
-      Nums = 50;
-      break;
-  }
-  //infoTips(Nums +"</br>"+TimeStart+"</br>"+TimeEnd,0);
-  //获取各控制值完毕
-  //向服务器请求数据
-  $.post(strUrl, {
-      Nums: Nums,
-      CurID: CurID,
-      TimeStart: TimeStart,
-      TimeEnd: TimeEnd
-    },
-    function(data, status) {
-      var obj = jQuery.parseJSON(data);
-      if (obj.rows > 0) {
-        //infoTips(data,0);
-        obj = jQuery.parseJSON(data);
-        //var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\"><div class=\"timeline-icon\"><i class=\"icon-emoticon-smile font-green-haze\"></i></div></div><div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
-        var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\"><div class=\"timeline-badge\"><img class=\"timeline-badge-userpic\" src=\"http://localhost/assets/admin/pages/media/users/realeve.jpg\"></div></div><div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
-        var TimeTitle = "</a><span class=\"timeline-body-time font-grey-cascade\">发表于";
-        var TimeEnd = "</span></div></div></div>";
-
-        for (var i = obj.rows - 1; i >= 0; i--) {
-          var TimeButton = "</small></span></div><div class=\"timeline-body-head-actions\"><div class=\"btn-group\"><button class=\"btn btn-circle green-haze btn-sm dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" data-hover=\"dropdown\" data-close-others=\"true\">操作 <i class=\"fa fa-angle-down\"></i></button><ul class=\"dropdown-menu pull-right\" role=\"menu\"><li><a href=\"http://localhost/comment?ID=" + obj.data[i].ID + "\" id=\"UpdateLog" + i + "\" ><i class=\"icon-pencil\"></i>&nbsp;&nbsp;评论 </a></li>";
-          TimeButton += "<li><a href=\"http://localhost/Del?ID=" + obj.data[i].ID + "\" id=\"Del" + i + "\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定删除该条日志?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-trash\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-trash\"></i>&nbsp;&nbsp;删除 </a></li>";
-          TimeButton += "<li><a href=\"http://localhost/Marky?ID=" + obj.data[i].ID + "\" id=\"Mark\"><i class=\"icon-star\"></i>&nbsp;&nbsp;收藏 </a></li>";
-          TimeButton += "</ul></div></div></div><div class=\"timeline-body-content\"><span class=\"font-grey-cascade\">";
-          var TimeContent = ReadLog(obj.data[i].ID);
-          $(".timeline:first").prepend(TimeHead + obj.data[i].UserName + TimeTitle + obj.data[i].RecordTime + TimeButton + TimeContent + TimeEnd);
-        }
-        $("#LogID").val(obj.data[0].ID);
-
-        //infoTips(obj,0);
-      } else {
-        infoTips("该时间范围内无日志，请重新设置!</br>错误信息：" + status + "</br>返回值:" + data, 0);
-      }
+  function QueryMicroBlog(keyWord) {
+    if (typeof keyWord == "undefined") {
+      keyWord = $("#KeyWord").val();
     }
-  );
-}
-
-//保存设置
-//查询工作日志
-$("#SaveSettings").on('click',
-  function() {
-    //获取各控制值
-    var NumsID = $("#LoadingNum").val(); //每次加载
-    var RefreshTime = $("#RefreshTime").val(); //轮询时间
-    var AutoRefresh = ($("#AutoRefresh").bootstrapSwitch('state') === true) ? 1 : 0;
-    var strUrl = getRootUrl('MicroBlog') + "SaveLogQuerySettings";
-    //infoTips(NumsID + RefreshTime +AutoRefresh,0); 
-    //获取各控制值完毕
-    //向服务器请求数据
-    $.post(strUrl, {
-        NumsID: NumsID,
-        RefreshTime: RefreshTime,
-        AutoRefresh: AutoRefresh
-      },
-      function(data, status) {
+    var iNums = [10, 20, 30, 40, 50];
+    var date = getDateRange();
+    var iData = {
+      Nums: iNums[$("#LoadingNum").val()],
+      TimeStart: date.start,
+      TimeEnd: date.end,
+      KeyWord: keyWord,
+      CurID: (KeyWord !== "") ? 0 : parseInt($('#PostMicriBlog').data('sn'), 10),
+      UserName:UTF2GBK($("#PostMicriBlog").data('username'))
+    };
+    if (0 === iData.CurID) {
+      $('.timeline').html('');
+    }
+    var strUrl = getRootPath() + "/MicroBlog/ReadMicroBlog";
+    var rows = 0;
+    $.ajax({
+      type: 'POST',
+      async: false,
+      url: strUrl,
+      data: iData,
+      success: function(data) {
         var obj = jQuery.parseJSON(data);
         if (obj.rows > 0) {
-          infoTips(obj.message, 1);
+          //obj = jQuery.parseJSON(data);
+          var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\">";
+          TimeHead += "<div class=\"timeline-icon\"><i class=\"icon-user font-green-haze\"></i></div></div>"; //"<div class=\"timeline-badge\"><img class=\"timeline-badge-userpic\" src=\"" + getRootPath(0)+ "/assets/pages/media/users/realeve.jpg\"></div></div>";
+          TimeHead += "<div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
+          var TimeTitle = "</a><span class=\"timeline-body-time font-grey-cascade\">发表于";
+          var TimeEnd = "</h4></span></div></div></div>";
+          var strContent, TimeButton;
+          for (var i = obj.rows - 1; i >= 0; i--) {
+            TimeButton = "</small></span></div><div class=\"timeline-body-head-actions\">";
+            TimeButton += "<a data-sn=" + obj.data[i].ID + " class=\"btn btn-circle red btn-outline btn-block del\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定删除该条日志?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-trash\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-trash\"></i>&nbsp;&nbsp;删除 </a>";
+
+            TimeButton += "</div></div><div class=\"timeline-body-content\"><span class=\"font-grey-mint\"><h4>";
+            strContent = GBK2UTF(obj.data[i].BlogHTML);
+            if (iData.KeyWord !== "") {
+              strContent = strContent.replace(new RegExp(iData.KeyWord, 'g'), "<span class=\"caption-subject bold font-yellow-casablanca\" style=\"font-size: 16px; line-height: 18px;\">" + iData.KeyWord + "</span>");
+            }
+            $(".timeline:first").prepend(TimeHead + GBK2UTF(obj.data[i].UserName) + TimeTitle + obj.data[i].RecordTime + TimeButton + strContent + TimeEnd);
+            $('.del').first().confirmation();
+          }
+          $('#PostMicriBlog').data('sn', (KeyWord !== "") ? 0 : obj.data[0].ID);
+          rows = obj.rows;
+          //bsTips('数据查询完成',1);
         } else {
-          infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
+          infoTips("该时间范围内无日志，请重新设置!", 0);
         }
-      }
-    );
-  });
+      },
+      error: (function(data) {
+        infoTips('读取日志出现错误，信息:\n' + JSON.stringify(data));
+      })
+    });
 
-//AJAX返回值
-
-function ReadLog(ID) {
-  var strUrl = getRootUrl('MicroBlog') + "ReadLog";
-  var Log = "该条记录未填写任何日志";
-  $.ajax({
-    type: 'POST',
-    async: false,
-    url: strUrl,
-    data: {
-      ID: ID
-    },
-    success: function(data) {
-      Log = data;
-    }
-  });
-  return Log;
-}
-
-function ReadLogSettings() {
-  var strUrl = getRootUrl('MicroBlog') + "ReadLogQuerySettings";
-  console.log(strUrl);
-  $.ajax({
-    type: 'POST',
-    async: false,
-    url: strUrl,
-    success: function(data) {
-      var strJSON = jQuery.parseJSON(data);
-      var obj = strJSON.data[0];
-      //设置控件初始值
-      $("#LoadingNum").val(obj.NumsID); //每次加载
-      $("#RefreshTime").val(obj.RefreshTime); //轮询时间
-      if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState'); //如果需要关 
-      //infoTips(obj.NumsID+obj.RefreshTime+obj.AutoRefresh,0); 
-      QueryMicroblog(0); //首次加载任何日志           
-    }
-  });
-}
-//切换开关
-
-function SwitchSelect(Name, ID) {
-  var v = 'input:radio[name=' + Name + ']:nth(' + ID + ')';
-  return v;
-}
-
-function GetSwitchValue(Name, Num) {
-  var v = $('input:radio[name=' + Name + ']:nth(' + 0 + ')').bootstrapSwitch('state');
-  for (var i = 1; i <= Num && !v; i++) {
-    v = $('input:radio[name=' + Name + ']:nth(' + i + ')').bootstrapSwitch('state');
+    return rows;
   }
-  return i;
-}
 
-function PromotAlert(str) {
-  bootbox.prompt(str, function(result) {
-    if (result === null) {
-      alert("Prompt dismissed");
-    } else {
-      alert("Hi <b>" + result + "</b>");
+  var handleSearchBox = function() {
+    // handle hor menu search form on enter press
+    $('.page-header').on('keypress', '.search-form .form-control', function(e) {
+      if (e.which == 13) {
+        $(this).closest('.search-form').removeClass("open");
+        $('#PostMicriBlog').data('sn', 0);
+        var rows = QueryMicroBlog($(this).val());
+        if (rows) {
+          bsTips('查询到' + rows + '条记录', 1);
+        }
+        $(this).val("");
+      }
+    });
+
+    // handle header search button click
+    $('.page-header').on('mousedown', '.search-form.open .submit', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).closest('.search-form').removeClass("open"); //.submit();
+      $('#PostMicriBlog').data('sn', 0);
+      var rows = QueryMicroBlog($('.search-form .form-control').val());
+      if (rows) {
+        bsTips('查询到' + rows + '条记录', 1);
+      }
+      $('.search-form .form-control').val("");
+    });
+  }();
+
+
+  return {
+    init: function() {
+      ReadLogSettings();
+      QueryMicroBlog();
+      //查询
+      $("#QueryData").on('click', function() {
+        QueryMicroBlog();
+      });
+
+      //查询
+      $('#dashboard-report-range').on('apply.daterangepicker', function() {
+        $('#PostMicriBlog').data('sn', 0);
+        QueryMicroBlog();
+      });
+
+      //删除
+      $('body').on('confirmed.bs.confirmation', '.del', function() {
+        var strUrl = getRootPath() + "/DataInterface/update";
+        var obj = $(this);
+        var iData = {
+          "tbl": TBL.MICRO_BLOG,
+          "id": obj.data('sn'),
+          "HideBlog": 1
+        };
+        $.post(strUrl, iData, function(data, status) {
+          if (status == "success") {
+            obj.parents('.timeline-item').remove();
+            bsTips('工作笔记删除成功', 2);
+          } else {
+            bsTips("工作笔记失败，请稍后重试或联系管理员!", 0);
+            infoTips(JSON.stringify(data));
+          }
+        });
+      });
+
+      $('body').on('canceled.bs.confirmation', 'a.del', function() {
+        $('div.popover').parent().find('a.del').click();
+      });
     }
-  });
-}
-
-//记录选择状态  
+  };
+}();
 jQuery(document).ready(function() {
   UIIdleTimeout.init();
-
   initDashboardDaterange('YYYY-MM-DD');
   initDom();
-  //修复顶部style="margin-top:-43px;"
-  //系统主题设置
-  //DarkInfoTheme(1);       
-  ReadLogSettings();
-  //ChangeMainTheme(1);
-  //RoundedTheme(0);
+  MicroBlog.init(); //初始化表单
 });
 jQuery(window).resize(function() {
   HeadFix();

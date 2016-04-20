@@ -18,7 +18,7 @@
 				</ul>
 				
 				<div class="page-toolbar">
-					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height green-seagreen" data-placement="top" data-original-title="点击修改查询时间">
+					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
 						<span class="thin uppercase">&nbsp;</span>&nbsp;
 						<i class="fa fa-angle-down"></i>
@@ -26,7 +26,7 @@
 				</div>
 			</div>	
 			<h3 class="page-title font-yahei">
-				机检工作日志 <small id="today"></small>
+				<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="timeline">					

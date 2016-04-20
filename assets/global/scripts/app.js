@@ -1,4 +1,4 @@
-﻿/**
+/**
 Core script to handle the entire theme and core functions
 **/
 var App = function() {
@@ -325,7 +325,7 @@ var App = function() {
         if (!$().confirmation) {
             return;
         }
-        $('[data-toggle=confirmation]').confirmation({ container: 'body', btnOkClass: 'btn btn-sm btn-success', btnCancelClass: 'btn btn-sm btn-danger'});
+        $('[data-toggle=confirmation]').confirmation({ btnOkClass: 'btn btn-sm btn-success', btnCancelClass: 'btn btn-sm btn-danger'});
     }
     
     // Handles Bootstrap Accordions.
@@ -373,7 +373,7 @@ var App = function() {
         });
 
         // fix page scrollbars issue
-        $('body').on('hide.bs.modal', '.modal', function() {
+        $('body').on('hidden.bs.modal', '.modal', function() {
             $('body').removeClass("modal-open-noscroll");
         });
 

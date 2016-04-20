@@ -27,6 +27,8 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_API		= 'tblDataInterface';		 //30 API列表
 	const TBL_SELECT	= 'tblSettings_Select_List'; //31 下拉框列表
 	const TBL_WORK_LOG_OPR = 'tblWorklog_Operator';	 //32 机检日志人员名单
+	const TBL_SETTINGS_MENULIST ='tbl_menu_list';	 //33 菜单列表
+	const TBL_SETTINGS_MENUDETAIL='tbl_menu_detail'; //34 菜单子项
 	public function __construct()
 	{
 		$this->load->database();
@@ -52,16 +54,26 @@ class DataInterfaceModel extends CI_Model {
 			29=>self::TBL_DB,
 			30=>self::TBL_API,
 			31=>self::TBL_SELECT,
-			32=>self::TBL_WORK_LOG_OPR
+			32=>self::TBL_WORK_LOG_OPR,
+			33=>self::TBL_SETTINGS_MENULIST,
+			34=>self::TBL_SETTINGS_MENUDETAIL
 		);
 		return $tblName[$id];
 	}
 
-	public function TransToUTF($data){
-		return iconv("gbk","utf-8",$data);
+	public function TransToUTF($str){
+		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
+		if($encode == "GBK")
+		{
+			$str = iconv($encode,"UTF-8",$str);
+		}elseif($encode="EUC-CN")
+		{
+			$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
+		}
+		return $str;
 	}
-	public function TransToGBK($data){
-		return iconv("utf-8","gbk",$data);
+	public function TransToGBK($str){
+		return iconv("UTF-8","GBK",$str);
 	}
 
 	public function GetNewApiID($UserName)
@@ -87,8 +99,9 @@ class DataInterfaceModel extends CI_Model {
 		$data['AuthorName'] = $this->TransToGBK($data['AuthorName']);
 		$data['Token'] = sha1(self::PRE_STR.$data['AuthorName']);		
 		$data['ApiDesc'] = $this->TransToGBK($data['ApiDesc']);
-		$data['strSQL'] = $this->TransToGBK($data['strSQL']);
-
+		//$data['strSQL'] = $this->TransToGBK($data['strSQL']);
+		$data['strSQL'] = base64_encode($data['strSQL']);
+		
 		//$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['AuthorName'] ."' and ApiID = ".$data['ApiID'];
 		//$query=$LOGINDB->query($SQLStr);
 		//if($query->num_rows()>0)
@@ -130,6 +143,7 @@ class DataInterfaceModel extends CI_Model {
 		$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
 		$query=$LOGINDB->query($SQLStr,array($data['Token']));
 		$strJson = $query->result_json();
+
 		//return $strJson ;//调试语句 
 		$ApiInfo = json_decode($strJson);
 		$query->free_result(); //清理内存
@@ -140,13 +154,27 @@ class DataInterfaceModel extends CI_Model {
 		//解析params,用于SQL查询参数
 		$aParTemp = explode(',',$ApiInfo->data[0]->Params);
 		if($aParTemp[0]==''){//当参数为空时
-			$aParams[0] = 1;
+			$aParTemp[0] = 1;
 		}
 		else
 		{
-
-			for($i=0;$i<count($aParTemp);$i++){ 
-				$aParams[$i] = $data[$aParTemp[$i]];
+			for( $i=0;$i<count($aParTemp);$i++ ){ 
+				//对TSTART1 TSTART2做特殊处理
+				$flag = 1;
+				if($aParTemp[$i] == 'tstart2'){
+					if(!isset($data[$aParTemp[$i]])){
+						$aParTemp[$i] = $data['tstart'];
+						$flag = 0;
+					}
+				}elseif($aParTemp[$i] == 'tend2'){
+					if(!isset($data[$aParTemp[$i]])){
+						$aParTemp[$i] = $data['tend'];
+						$flag = 0;
+					}
+				}
+				if($flag){
+					$aParTemp[$i] = $data[$aParTemp[$i]];
+				}
 			} 
 		}
 
@@ -157,10 +185,10 @@ class DataInterfaceModel extends CI_Model {
 			case '0':
 			case '2':
 			case '3':
-				$strApiInfo = $this->ShowApiData($aParams,$ApiInfo->data[0],$data['M']);//输出质量数据
+				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M']);//输出质量数据
 				break;
 			case '1':
-				$strApiInfo = $this->ShowApiData($aParams,$ApiInfo->data[0],$data['M']);//输出列名
+				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M']);//输出列名
 				return '{"rows":"0",'.$strApiInfo.',"title":"'.$ApiInfo->data[0]->ApiName.'","source":"数据来源:'.$ApiInfo->data[0]->DBName.'"}';
 				break;
 		}
@@ -179,43 +207,108 @@ class DataInterfaceModel extends CI_Model {
 	//工序，每页多少条，处理状态，时间范围,当前ID
 	public function ShowApiData($aParams,$ApiInfo,$mode)
 	{
-		$SQLStr = $ApiInfo->strSQL;
+		/*
+		使用BASE64编码,避免UTF2GBK时某些字符转换失败的问题而导致后续的  标记符?  在替换时造成的各种不兼容;
+		*/
+		$SQLStr = $this->TransToUTF(base64_decode($ApiInfo->strSQL));
 		switch ($ApiInfo->DBID) {
-			case '0':
+			case '0': //MSSQLSERVER
 				$LOGINDB=$this->load->database('Quality',TRUE);	
 				break;
-			
-			case '5':
+			case '1'://ORCAL
+				$LOGINDB=$this->load->database('XZHC',TRUE);	
+				break;
+			case '2'://ORCAL
+				$LOGINDB=$this->load->database('QFM',TRUE);	
+				break;
+			case '3'://ORCAL
+				$LOGINDB=$this->load->database('JTZY',TRUE);	
+				break;
+			case '4'://ORCAL
+				$LOGINDB=$this->load->database('KG',TRUE);	
+				break;
+			case '5'://MSSQLSERVER
 				$LOGINDB=$this->load->database('sqlsvr',TRUE);	
+				break;
+			case '6'://ORCAL
+				$LOGINDB=$this->load->database('SHY',TRUE);	
+				break;
+			case '7'://ORCAL
+				$LOGINDB=$this->load->database('ZXQS',TRUE);	
+				break;
+			case '8'://ORCAL
+				$LOGINDB=$this->load->database('OFFICEHELPER',TRUE);	
 				break;
 		}		
 
 		if ($mode == 0 ) {
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			$SQLStr = $this->handleStr($this->TransToGBK($SQLStr),$aParams);
+			$query = $LOGINDB->query($SQLStr);
 			$strJson = $query->result_json();	
 		}
 		else if($mode == 1 ) {
-			$SQLStr = str_ireplace('select ', 'SELECT TOP 0 ',$SQLStr);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			if($ApiInfo->DBID == 0 || $ApiInfo->DBID== 5){ //MS SQL SERVER
+				$SQLStr = str_ireplace('select ', 'SELECT TOP 0 ',$SQLStr);			
+			}else{
+				$SQLStr = "select * from (". $SQLStr . ")where rownum<1";			
+			}
+			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			$SQLStr = $this->handleStr($this->TransToGBK($SQLStr),$aParams);
+			$query = $LOGINDB->query($SQLStr);
 			$strJson = $query->result_json();
-			//$strFileds = $query->list_fields();
-			//$strJson = $query->Array2Head($strFileds);
+			$strFileds = $query->list_fields();
+			$strJson = $query->Array2Head($strFileds);
 		}	
 		else if($mode == 2 ) {
-			$SQLStr = str_ireplace('select ', 'SELECT TOP 10 ',$SQLStr);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			if($ApiInfo->DBID == 0 || $ApiInfo->DBID== 5){ //MS SQL SERVER
+				$SQLStr = str_ireplace('select ', 'SELECT TOP 10 ',$SQLStr);			
+			}else{
+				$SQLStr = "select * from (". $SQLStr . ")where rownum<11";			
+			}
+			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			$SQLStr = $this->handleStr($this->TransToGBK($SQLStr),$aParams);
+			$query = $LOGINDB->query($SQLStr);
 			$strJson = $query->result_json();
 		}		
 		else if ($mode == 3 ) {
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			//不使用官方替换字符串的函数(在处理ORCAL的查询语句时会报错);
+			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
+			$SQLStr = $this->handleStr($SQLStr,$aParams);
+			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			$strJson = $query->result_datatable_json();
 		}
 		$query->free_result(); //清理内存
 		$LOGINDB->close();//关闭连接
 		return $strJson;
 	}
-
+	public function handleStr($str,$params)
+	{	
+		$iCount = count($params);
+		$str = $this->TransToUTF($str);
+		$str = str_replace("'?'","?",$str);	
+		if($iCount == 0)//无待替换字符时
+		{
+			$strOut = $str;
+		}else if($iCount == 1)//只有一个
+		{
+			$strOut = str_replace("?","'".$params[0]."'",$str);
+		}else//有多个
+		{
+			$strTemp = explode('?',$str);
+			$strOut = " ";
+			for( $i=0;$i<count($strTemp)-1;$i++ ){ 
+				//$strOut .= str_replace("?","'".$params[$i]."'",$strTemp[$i].'?') ;
+				$strOut .= $strTemp[$i]."'".$params[$i]."'" ;
+			}
+			$strOut .= $strTemp[count($strTemp)-1];
+		}
+		$strOut = str_replace("[","",$strOut);
+		$strOut = str_replace("]","",$strOut);
+		//$strOut =  " SELECT a.品种, a.工序, SUM (a.封皮_全好品) AS 封皮_全好品, SUM ( a.封皮_已分析全检品 ) AS 封皮_已分析全检品, SUM ( a.封皮_未分析全检品 ) AS 封皮_未分析全检品, SUM (a.封皮总数) AS 封皮总数, SUM (a.小开废_全好品) AS 小开废_全好品, SUM ( a.小开废_已分析全检品 ) AS 小开废_已分析全检品, SUM ( a.小开废_未分析全检品 ) AS 小开废_未分析全检品, SUM (a.大张废总数) AS 大张废总数, SUM (a.作废总开数) AS 作废总开数, ROUND( CASE WHEN SUM (a.封皮总数) = 0 THEN 0 ELSE CAST ( SUM (a.作废总开数) AS float ) / SUM (a.封皮总数) END, 3 ) AS 作废率 FROM dbo.view_print_waste_ananysis AS a GROUP BY a.工序, a.品种, ProcID ORDER BY a.品种, PROCID";
+		//print_r($strOut);
+		return $strOut;
+	}
 	//读取日志查询设置
 	public function ReadSettings($data)
 	{
@@ -231,7 +324,28 @@ class DataInterfaceModel extends CI_Model {
 		$LOGINDB->close();//关闭连接
 		return $strJson;	
 	}
-
+	
+	
+	//读取日志查询设置
+	public function convert2Base64()
+	{
+		$this->load->helper('url');
+	  	//判断用户名是否已存在
+		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
+		//先获取当前用户ID
+		$SQLStr="SELECT ID,strSQL from tblDataInterface where ID=116";
+		$query=$LOGINDB->query($SQLStr);
+		foreach($query->result() as $row)
+		{	
+			/*$data['strSQL'] = base64_decode($row->strSQL);			
+			$where = '[id] = '.$row->ID;	
+			$LOGINDB->update('tblDataInterface', $data,$where);*/
+			print_r(base64_decode($row->strSQL)."<br>");
+		}
+		$LOGINDB->close();//关闭连接
+		$query->free_result();
+	}
+	
 	public function insert($data)
 	{
 		if ($data['tbl'] >= 20) {
@@ -246,7 +360,8 @@ class DataInterfaceModel extends CI_Model {
 		unset($data['utf2gbk']);		
 		$tblName = $this->getDBName($data['tbl']);
 		unset($data['tbl']);
-		return $LOGINDB->insert($tblName, $data);
+		$LOGINDB->insert($tblName, $data);
+		return $LOGINDB->insert_id();
 	}
 
 	public function delete($data)
@@ -267,10 +382,13 @@ class DataInterfaceModel extends CI_Model {
 			$LOGINDB=$this->load->database('sqlsvr',TRUE);	
 		}else{
 			$LOGINDB=$this->load->database('Quality',TRUE);	
-		}	
-		foreach ($data['utf2gbk'] as $str) 
+		}
+		if (isset($data['utf2gbk']))
 		{
-			$data[$str] = $this->TransToGBK($data[$str]);
+			foreach ($data['utf2gbk'] as $str) 
+			{
+				$data[$str] = $this->TransToGBK($data[$str]);
+			}			
 		}
 		$tblName = $this->getDBName($data['tbl']);
 		$where = '[id] = '.$data['id'];

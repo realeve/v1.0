@@ -237,12 +237,12 @@ var FormWizard = function () {
                 if($("select[name='select_cat']").val() === '0'){
                     dataID = 'Value';
                     dataName = 'Name';
-                    iData.tbl = 31;
+                    iData.tbl = TBL.SELECT;
                 }else{
                     obj = $('select[name="preview"]');
-                    dataID = obj.attr("data-ID");
-                    dataName = obj.attr("data-Name");
-                    iData.tbl = $('select[name="select_cat"]').find("option:selected").attr('data-tblID');
+                    dataID = obj.data("ID");
+                    dataName = obj.data("Name");
+                    iData.tbl = $('select[name="select_cat"]').find("option:selected").data('tblID');
                 }
                 iData.utf2gbk = [dataName];
                 var iFlag = 0;
@@ -288,8 +288,8 @@ var handleSelect2 = function(){
         InitSelect("select_cat", Data);
         var i = 1;
         Data.data.map(function(elem) {
-            $("select[name='select_cat'] option:nth("+ i +")").attr('data-apiUrl',elem[2]);
-            $("select[name='select_cat'] option:nth("+ i +")").attr('data-tblID',elem[3]);
+            $("select[name='select_cat'] option:nth("+ i +")").data('apiUrl',elem[2]);
+            $("select[name='select_cat'] option:nth("+ i +")").data('tblID',elem[3]);
             i++;
         });
     }
@@ -298,8 +298,8 @@ var handleSelect2 = function(){
         if($(this).val()<0){
             return;
         }
-        var str = getRootPath(1)+"/"+$(this).find("option:selected").attr('data-apiUrl');
-        var tblID = getRootPath(1)+"/"+$(this).find("option:selected").attr('data-tblID');
+        var str = getRootPath(1)+"/"+$(this).find("option:selected").data('apiUrl');
+        var tblID = getRootPath(1)+"/"+$(this).find("option:selected").data('tblID');
         var Data = ReadData(str);
         var selText = $(this).find("option:selected").text();
         InitSelect("select_name",Data);
@@ -307,10 +307,10 @@ var handleSelect2 = function(){
         //记录列名
         if($(this).val()>0){
             var obj = $('select[name="preview"]');
-            obj.attr("data-ID",Data.header[0].title);
-            obj.attr("data-Name",Data.header[1].title);
+            obj.data("ID",Data.header[0].title);
+            obj.data("Name",Data.header[1].title);
         }
-        $("select[name='select_name']").attr('data-tblID',tblID);
+        $("select[name='select_name']").data('tblID',tblID);
         $('span[name="selectName"]').text(selText);
         $('#tab3 p[data-display="select_cat"]').text(selText);
         $('a.button-next').click();
@@ -419,6 +419,7 @@ var Profile = function() {
 
 jQuery(document).ready(function() {
 	initDom();
+    UIIdleTimeout.init();
 	FormWizard.init();
     //Profile.init();
     handleSelect2.init();

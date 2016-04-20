@@ -72,6 +72,8 @@ var Login = function() {
                     function(data, status) {
                         if (status == "success") {
                             var obj = jQuery.parseJSON(data);
+                            //存储菜单项
+                            localStorage.settings_default_menu = obj.segment_html;
                             if (obj.type === 2 || obj.type === 3 || obj.type === 4 || obj.type === 7) {
                                 obj.type = 0;
                             } else if (obj.type === 5 || obj.type === 1) {
@@ -79,7 +81,8 @@ var Login = function() {
                             } else if (obj.type === 6) {
                                 obj.type = 2;
                             } else if (obj.type === 9) {
-                                window.location.href = getRootPath(1) + '/welcome';
+                                var url = (typeof localStorage.lastUrl == 'undefined') ? (getRootPath(1) + '/welcome') : localStorage.lastUrl;
+                                window.location.href = url;
                                 return;
                             } else {
                                 obj.type = 3;

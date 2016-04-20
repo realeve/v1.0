@@ -1,0 +1,507 @@
+				<li class="nav-item start active open">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-home"></i>
+					<span class="title">质量控制中心</span>
+					<span class="selected"></span>
+					<span class="arrow open"></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item active">
+							<a href="<?php echo base_url()?>">
+							<i class="icon-screen-desktop"></i>
+							主页</a>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-notebook"></i> 机检日志 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>worklog"><i class="icon-book-open"></i> 查看日志</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>worklog/editlog"><i class="icon-pencil"></i> 填写日志</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+				<li class="heading nav-link nav-toggle">
+					<h3 class="uppercase" style="font-size:1.3em;">质量数据</h3>
+				</li>
+				<li class="tooltips nav-item" data-container="body" data-placement="right" data-html="true" data-original-title="交互式质量数据可视化图表">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-bar-chart"></i>
+					<span class="title">质量曲线图</span>
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub-menu" style="display: none;">
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-puzzle"></i> 胶凹离线检测 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									胶印离线质量 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 月度质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 当天质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 原始质量数据</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									凹印离线质量 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 月度质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 当天质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 原始质量数据</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-calendar"></i> 印码核查工艺 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-tag"></i> 各品种质量汇总</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i>各机台质量汇总</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 各机长平均好品率</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 原始质量数据</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-shield"></i> 检封机检工序 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-tag"></i> 清分机质量曲线 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i> 装箱情况 </a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="tooltips nav-item" data-container="body" data-placement="right" data-html="true" data-original-title="交互式质量数据报表">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-pie-chart"></i>
+					<span class="title">报表查询</span>
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub-menu" style="display: none;">
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-directions"></i> 钞纸机检工序 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									算法参数 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-power"></i> 宏区算法参数</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 纸区算法参数</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 安全线算法参数 </a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									判废标准 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-power"></i> 宏区判废标准</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 纸区判废标准</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 安全线判废标准 </a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									纸张测量统计 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-power"></i> 横切光标间距</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 对角线差</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 单幅水印宽 </a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 单幅水印高 </a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 抄宽 </a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-camera"></i> 缺陷类型统计 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-link"></i> 缺陷区域统计 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pointer"></i> 小开缺陷统计 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pointer"></i> 缺陷类型分布 </a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-puzzle"></i> 胶凹离线检测 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									胶印离线质量 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 月度质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 当天质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 原始质量数据</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-link nav-toggle">
+									<i class="icon-user"></i>
+									凹印离线质量 <span class="arrow"></span>
+									</a>
+									<ul class="sub-menu">
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-star"></i> 月度质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-paper-plane"></i> 当天质量汇总</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 原始质量数据</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-calendar"></i> 印码核查工艺 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>QualityTable" class="nav-link nav-toggle"><i class="icon-tag"></i> 各品种质量汇总</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i>各机台质量汇总</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 各机长平均好品率</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 原始质量数据</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-screen-desktop"></i> 图像判废及特抽 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">								
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i>胶凹机台实废情况</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-tag"></i>印码机台实废情况</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i>小开分析仪</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i>FLC荧光标定仪</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-shield"></i> 检封机检工序 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-tag"></i> 清分机质量曲线 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i> 装箱情况 </a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-bar-chart"></i> 其它 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-tag"></i> 备用1</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i> 备用2</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 备用3</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+				<li class="nav-item">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-globe"></i>
+					<span class="title">专题分析</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">						
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-globe"></i> 印码核查工艺 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>Addition/QualityAnaly/index.html" target="_Blank" class="nav-link nav-toggle"><i class="icon-tag"></i> 2014印钞质量分析</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-pencil"></i> 2014印码三合一作废分析 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 印码机检未检数分布情况 </a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 不同时间开印产品质量对比</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 白班/中班开印产品质量对比</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 胶凹各机长质量对比</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 胶凹机长异常品分布</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 2011-2015印码机检好品率对比</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 印码机台误废分析</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link nav-toggle"><i class="icon-graph"></i> 胶凹机台实废分析</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="heading nav-link nav-toggle">
+					<h3 class="uppercase" style="font-size:1.3em;">事务处理</h3>
+				</li>										
+				<li class="nav-item main">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-present"></i> <span class="title">常用工具</span> <span class="arrow"></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>MicroBlog" class="nav-link nav-toggle"><i class="icon-note"></i> 工作笔记 </a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>topic/km" target="_blank" class="nav-link nav-toggle"><i class="icon-diamond"></i> 思维导图 </a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>topic/gallery" target="_blank" class="nav-link nav-toggle"><i class="icon-bar-chart"></i> eCharts图表 </a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item main">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-wallet"></i>
+					<span class="title">系统设置</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							数据接口<span class="arrow"></span></a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>DataInterface" class="nav-link nav-toggle">数据接口管理</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>QualityChart" class="nav-link nav-toggle">数据可视化接口</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>QualityTable"  class="nav-link nav-toggle">报表接口 </a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>Settings/account" class="nav-link nav-toggle">帐户设置</a>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							个性化设置 <span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>Settings/select"  class="nav-link nav-toggle">选项框设置 </a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo base_url()?>Settings/menu"  class="nav-link nav-toggle">自定义菜单 </a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>				
+				<li class="nav-item">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-bar-chart"></i>
+					<span class="title">检测系统实时监测</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item">
+							<a href="charts_flotcharts.html" class="nav-link nav-toggle">
+							钞纸工序</a>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:;" class="nav-link nav-toggle">
+							印码工序<span class="arrow"></span></a>
+							<ul class="sub-menu">
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-item"><i class="icon-power"></i>机检系统状态</a>
+								</li>
+								<li class="nav-item">
+									<a href="javascript:;" class="nav-item"><i class="icon-paper-plane"></i>实时质量信息</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="charts_flotcharts.html" class="nav-link nav-toggle">
+							检封工序</a>
+						</li>						
+					</ul>
+				</li>
+				<li class="heading nav-link nav-toggle">
+					<h3 class="uppercase" style="font-size:1.3em;">信息录入</h3>
+				</li>
+				<li class="nav-item main">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-notebook"></i> <span class="title">机检工作日志</span> <span class="arrow"></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>worklog" class="nav-link nav-toggle"><i class="icon-book-open"></i> 查看日志</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>worklog/editlog" class="nav-link nav-toggle"><i class="icon-pencil"></i> 填写日志</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item main">
+					<a href="javascript:;" class="nav-link nav-toggle">
+					<i class="icon-layers"></i> <span class="title">钞纸信息录入</span> <span class="arrow"></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>PaperPara" class="nav-link nav-toggle"><i class="icon-book-open"></i> 物理站 </a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>PaperPara/chemy" class="nav-link nav-toggle"><i class="icon-pencil"></i> 化验站 </a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>PaperPara/surface" class="nav-link nav-toggle"><i class="icon-magnifier"></i> 外观指标 </a>
+						</li>
+					</ul>
+				</li>
+				<li class="heading nav-link nav-toggle">
+					<h3 class="uppercase" style="font-size:1.3em;">其它</h3>
+				</li>
+				<li class="nav-item main">
+					<li class="nav-item">
+						<a href="javascript:;" class="nav-link nav-toggle">
+						<i class="icon-envelope-open"></i>
+						<span class="title">关于我们</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li class="nav-item">
+								<a href="<?php echo base_url()?>topic/xian" target="_blank" class="nav-link nav-toggle">
+								质量信息系统<br>
+								应用与开发交流</a>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+								<span class="title">方案设计</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="<?php echo base_url()?>topic/doc/Dataupload.svg" target="_blank" class="nav-link nav-toggle"> 数据采集情况 </a>
+									</li>
+									<li class="nav-item">
+										<a href="<?php echo base_url()?>topic/doc/Application.svg" target="_blank" class="nav-link nav-toggle"> 数据应用方案 </a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</li>

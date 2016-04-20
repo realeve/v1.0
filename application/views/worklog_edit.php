@@ -42,7 +42,7 @@
 			</div>	
 						
 			<h3 class="page-title">
-			机检日志原始记录 <small id="today"></small>
+			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 			<form role="form" name="theForm" class="form-horizontal">
 				<!-- BEGIN PAGE CONTENT-->
@@ -69,79 +69,82 @@
 					<div class="portlet-body form">
 						<div class="form-body">
 							<div class="row">
-								<div class="col-md-6 form-group">
-									<label class="control-label col-md-3">工序
-										<span class="required"> * </span>
-									</label>
-									<div class="col-md-9">
-										<div class="input-group">
-											<div class="icheck-inline" name="proc_id" data-proc="<?php echo $GroupID?>">
-												<label>
-												<input type="radio" name="proc_id" class="icheck"> 钞纸  </label>
-												<label>
-												<input type="radio" name="proc_id" class="icheck"> 胶凹 </label>
-												<label>
-												<input type="radio" name="proc_id" class="icheck"> 印码 </label>
-												<label>
-												<input type="radio" name="proc_id" class="icheck"> 检封 </label>
+								<div class="col-md-6">									
+									<div class="form-group">
+										<label class="col-md-3 control-label">工序
+											<span class="required"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<div class="icheck-inline" name="proc_id">
+													<label>
+													<input type="radio" name="proc_id" class="icheck"> 钞纸  </label>
+													<label>
+													<input type="radio" name="proc_id" class="icheck"> 胶凹 </label>
+													<label>
+													<input type="radio" name="proc_id" class="icheck"> 印码 </label>
+													<label>
+													<input type="radio" name="proc_id" class="icheck"> 检封 </label>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6 form-group">
-									<label class="control-label col-md-3">班次
-										<span class="required"> * </span>
-									</label>
-									<div class="col-md-9">
-										<div class="input-group">
-											<div class="icheck-inline">
-												<label>
-												<input type="radio" name="class_id" class="icheck"> 白班  </label>
-												<label>
-												<input type="radio" name="class_id" class="icheck"> 中班 </label>
-												<label>
-												<input type="radio" name="class_id" class="icheck"> 夜班 </label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
 									<div class="form-group">
 										<label class="col-md-3 control-label">记录人</label>
 										<div class="col-md-9">
 											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" disabled data-user ="<?php echo $FullName?>" value="<?php echo $FullName?>">
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6 form-group">
-									<label class="control-label col-md-3">添加至工作报告
-										<span class="required"> * </span>
-									</label>
-									<div class="col-md-9">
-										<div class="checkbox-list">
-											<label>
-												<input type="checkbox" name="bReport" class="icheck"/> 将该条信息生成至工作报告中										
-											</label>
+									<div class="form-group">
+										<label class="col-md-3 control-label">机台</label>
+										<div class="col-md-9">
+											<select class="form-control select2" name="machine_id">
+											</select>
+											<div class="form-control-focus">
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 form-group">
-									<label class="col-md-3 control-label">品种</label>
-									<div class="col-md-9">
-										<select class="form-control select2" name="prod_id">
-										</select>
-										<div class="form-control-focus">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="col-md-3 control-label">班次
+											<span class="required"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<div class="icheck-inline">
+													<label>
+													<input type="radio" name="class_id" class="icheck"> 白班  </label>
+													<label>
+													<input type="radio" name="class_id" class="icheck"> 中班 </label>
+													<label>
+													<input type="radio" name="class_id" class="icheck"> 夜班 </label>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6 form-group">
-									<label class="col-md-3 control-label">机台</label>
-									<div class="col-md-9">
-										<select class="form-control select2" name="machine_id">
-										</select>
-										<div class="form-control-focus">
+									<div class="form-group">
+										<label class="col-md-3 control-label">发布
+											<span class="required"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="checkbox-list">
+												<label>
+													<input type="checkbox" name="bReport" class="icheck"/> 将该条信息生成至工作报告中										
+												</label>
+											</div>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">品种</label>
+										<div class="col-md-9">
+											<select class="form-control select2" name="prod_id">
+											</select>
+											<div class="form-control-focus">
+											</div>
+										</div>
+									</div>
+									
 								</div>
 							</div>		
 						</div>
@@ -249,6 +252,6 @@
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar.php");?>
+	<?php include("templates/quicksidebar/quicksidebar_worklogEdit.php");?>
 </div>
 <!-- END CONTAINER -->

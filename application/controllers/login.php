@@ -19,9 +19,10 @@ class Login extends CI_Controller {
 		$logindata['logged_in'] = true;		
 		$logindata['username'] = $this->session->userdata('username');
 		$logindata['userrole'] = $this->session->userdata('userrole');	
-		$logindata['FullName'] = $this->session->userdata('FuleName');
+		$logindata['FullName'] = $this->session->userdata('FullName');
 		$logindata['GroupID'] = $this->session->userdata('GroupID');		
-		$this->load->view('templates/header', $logindata);  
+		$this->load->view('templates/header', $logindata);
+		$this->load->view('templates/header/topmenu');
 		$this->load->view('templates/sidebar');
 		$this->load->view('welcome',$logindata);
 		$this->load->view('templates/footer');
