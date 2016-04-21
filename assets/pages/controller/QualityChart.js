@@ -7,7 +7,7 @@
 
      function GetJsonUrl(iID) {
        var date = getDateRange();
-       var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&chartType=bar&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
+       var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
        return strUrl;
      }
       //配置图表库
@@ -90,7 +90,8 @@
            "lineAreaStyle": (getUrlParam('linearea') === null) ? ['0'] : getUrlParam('linearea').split(','),
            "reverse": (getUrlParam('reverse') === null) ? ['0'] : getUrlParam('reverse').split(','),
            "circle": (getUrlParam('circle') === null) ? ['0'] : getUrlParam('circle').split(','),
-           "roseType": (getUrlParam('rose') === null) ? ['0'] : getUrlParam('rose').split(',')
+           "roseType": (getUrlParam('rose') === null) ? ['0'] : getUrlParam('rose').split(','),
+           "dimension": (getUrlParam('dimension') === null) ? ['0'] : getUrlParam('dimension').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -108,12 +109,13 @@
              "lineAreaStyle": (handleParam(objList.lineAreaStyle, i, '0') == '1') ? true : false,
              "reverse": (handleParam(objList.reverse, i, '0') == '1') ? true : false,
              "circle": (handleParam(objList.circle, i, '1') == '1') ? true : false,
-             "roseType": handleParam(objList.roseType, i, '0')
+             "roseType": handleParam(objList.roseType, i, '0'),
+             "dimension": parseInt(handleParam(objList.dimension, i, '1'), 10) - 1
            };
-           console.log(objRequest);
+           //console.log(objRequest);
 
            //数据处理
-           if (typeof curTheme.color !== 'undefined') {
+           if (typeof curTheme.valueAxis !== 'undefined') {
              curTheme.valueAxis.splitArea.show = (objRequest.splitArea[i]) ? true : false;
            } else {
              curTheme.color = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];

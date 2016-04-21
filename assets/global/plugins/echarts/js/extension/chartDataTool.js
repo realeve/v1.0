@@ -28,7 +28,7 @@
  * }
  * @输出参数：对应echarts 相关图形所需配置项
  */
-define(['./js/extension/dataTool'], function(dataTool) {
+define(['./js/extension/dataTool.min'], function(dataTool) {
 
   //读取指定URL的JSON数据
   function getJsonFromUrl(strUrl, Type) {
@@ -109,6 +109,41 @@ define(['./js/extension/dataTool'], function(dataTool) {
       });
       return UniqueData(res.sort(sortNumber));
     }
+    /**
+     * [getMinMax 获取多维数组指定列最小值/最大值]
+     * @param  {[type]} data [多维数组]
+     * @param  {[type]} id   [第几列]
+     * @return {[type]} obj     [最小值最大值]
+     */
+
+    function getMinMax(data, id) {
+      var res = [];
+      data.map(function(elem, index) {
+        res[index] = elem[id];
+      });
+      res = res.sort(sortNumber);
+      return {
+        "min": Math.floor(res[0]).toFixed(0),
+        "max": Math.ceil(res[res.length - 1]).toFixed(0)
+      };
+    }
+
+    /**
+     * [anayDataCategory 分析一维数组中哪些列是类目轴/非数值型]
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+
+    function anayDataCategory(data) {
+      var res = [];
+      data.map(function(elem, index) {
+        if (isNaN(elem)) { //如果是类目轴
+          res.push(index);
+        }
+      });
+      return res;
+    }
+
     /**
      * [convertCol2Row 矩阵列转换为行]
      * @param  {[type]} data [多维数组]
@@ -315,6 +350,7 @@ define(['./js/extension/dataTool'], function(dataTool) {
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
+      NewData['series'] = [];
       //infoTips(JSON.stringify(Data), 2);
       if (0 === Data.rows) {
         return NewData;
@@ -326,7 +362,6 @@ define(['./js/extension/dataTool'], function(dataTool) {
 
         NewData['legend'] = getUniData(Data.data, 0);
         NewData['xAxis'] = getUniData(Data.data, 1);
-        NewData['series'] = [];
 
         var arrTemp = [];
         //yAxis数据清零
@@ -396,7 +431,6 @@ define(['./js/extension/dataTool'], function(dataTool) {
 
         NewData['legend'] = [];
         NewData['legend'][0] = NewData['yAxisTitle'];
-        NewData['series'] = [];
         NewData['series'][0] = {
           "name": NewData['yAxisTitle'],
           "type": objRequest.type,
@@ -426,7 +460,6 @@ define(['./js/extension/dataTool'], function(dataTool) {
         }
         iConvData = dataTool.prepareBoxplotData(NewData['yAxis']);
 
-        NewData['series'] = [];
         NewData['series'][0] = {
           "name": NewData['yAxisTitle'],
           "type": objRequest.type,
@@ -546,6 +579,7 @@ define(['./js/extension/dataTool'], function(dataTool) {
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
+      NewData['series'] = [];
       //infoTips(JSON.stringify(Data), 2);
       if (0 === Data.rows) {
         return NewData;
@@ -569,7 +603,6 @@ define(['./js/extension/dataTool'], function(dataTool) {
         //每列宽度
         var dataIndex = Data.cols - 1;
         var radiusWidth = 80 / dataIndex;
-        NewData['series'] = [];
         for (i = 0; i < dataIndex; i++) {
           NewData['series'].push({
             "name": Data.header[i].title,
@@ -682,7 +715,6 @@ define(['./js/extension/dataTool'], function(dataTool) {
           };
         }
       }
-
       return NewData;
     }
 
@@ -693,6 +725,7 @@ define(['./js/extension/dataTool'], function(dataTool) {
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
+      NewData['series'] = [];
       //infoTips(JSON.stringify(Data), 2);
       if (0 === Data.rows) {
         return NewData;
@@ -831,6 +864,125 @@ define(['./js/extension/dataTool'], function(dataTool) {
       return NewData;
     }
 
+    function getParallelSeries(arr, legend, seriesType) {
+      var seriesArr = [];
+      var i = 0;
+
+      var lineStyle = {
+        normal: {
+          width: 1,
+          opacity: 0.5
+        }
+      };
+      var obj = {};
+      if (typeof legend.data != 'undefined') {
+        legend.data.map(function(elem) {
+          obj[elem] = [];
+        });
+        arr.map(function(elem) {
+          obj[elem[0]].push(elem.slice(1, elem.length));
+        });
+        legend.data.map(function(elem, index) {
+          seriesArr.push({
+            name: elem,
+            type: seriesType,
+            lineStyle: lineStyle,
+            data: obj[elem]
+          });
+        });
+      }else{
+        seriesArr.push({
+            name: '平行坐标',
+            type: seriesType,
+            lineStyle: lineStyle,
+            data:arr
+          });
+      }
+      return seriesArr;
+    }
+
+    function convertParallelData(objRequest) {
+      var Data = getJsonFromUrl(objRequest.url);
+      var NewData = [];
+      var iConvData;
+      NewData['title'] = Data.title;
+      NewData['subTitle'] = Data.source;
+      NewData['rows'] = Data.rows;
+      NewData['series'] = [];
+      NewData['legend'] = [];
+      NewData['visualMap'] = [];
+      NewData['parallelAxis'] = [];
+
+      //infoTips(JSON.stringify(Data), 2);
+      if (0 == Data.rows || 1 == Data.cols) {
+        return NewData;
+      }
+
+      //分析哪些列是类目轴数组
+      var arrCategory = anayDataCategory(Data.data[0]);
+      var bShowLegend = 0;
+
+      //如果没有类目轴是数组或者第0个类目轴不是数组,
+      //则不显示Legend,同时对应的parallelAxis的定义也需要处理
+      if (arrCategory.length > 0 && 0 === arrCategory[0]) {
+        var legendData = getUniData(Data.data, 0);
+        NewData['legend'] = {
+          top: 20,
+          data: legendData,
+          itemGap: 20,
+          x: '10',
+          y: 'top',
+          textStyle: {
+            color: '#aaa',
+            fontSize: 14
+          }
+        };
+        bShowLegend = 1;
+        if (legendData.length < 2) {
+          NewData['legend'].show = false;
+        }
+      }
+
+      if (0 === bShowLegend) {
+        NewData['legend'].show = false;
+      }
+
+      //第0列为Legend
+      for (var i = bShowLegend; i < Data.cols; i++) {
+        NewData['parallelAxis'].push({
+          dim: i - bShowLegend,
+          name: Data.header[i].title
+        });
+      }
+
+      //第0列为legend
+      for (i = bShowLegend; i < arrCategory.length; i++) {
+        NewData['parallelAxis'][arrCategory[i] - bShowLegend].type = "category";
+        NewData['parallelAxis'][arrCategory[i] - bShowLegend].data = getUniData(Data.data, arrCategory[i]);
+      }
+
+
+      var dimMinMax = getMinMax(Data.data, objRequest.dimension);
+
+      NewData['parallelAxis'][objRequest.dimension - bShowLegend].max = dimMinMax.max;
+      NewData['parallelAxis'][objRequest.dimension - bShowLegend].min = dimMinMax.min;
+
+      NewData['visualMap'] = {
+        show: false,
+        min: dimMinMax.min,
+        max: dimMinMax.max,
+        dimension: objRequest.dimension - bShowLegend,
+        calculable: true,
+        inRange: {
+          color: ['#e92312', '#a2ca36', '#50a3ba'].reverse()
+        }
+      };
+      NewData['series'] = getParallelSeries(Data.data, NewData['legend'], objRequest.type);
+
+      return NewData;
+    }
+
+
     var returnData;
     switch (objRes.type) {
       case 'bar':
@@ -847,261 +999,339 @@ define(['./js/extension/dataTool'], function(dataTool) {
       case 'sunrise':
         returnData = convertSunRiseData(objRes);
         break;
+      case 'parallel':
+        returnData = convertParallelData(objRes);
+        break;
     }
     return returnData;
   };
 
+  var getGridAxisOption = function(objRequest) {
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center',
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 10,
+        y2: 5
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: objRequest.toolbox,
+        feature: {
+          mark: {
+            show: true
+          },
+          //dataZoom : {show: true},
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          dataZoom: {
+            show: true
+          },
+          magicType: {
+            show: true,
+            type: ['line', 'bar', 'stack', 'tiled']
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: true,
+      tooltip: {
+        trigger: (objRequest.type == 'boxplot') ? 'item' : 'axis'
+      },
+      dataZoom: [{
+        type: 'inside',
+        realtime: true,
+        start: 0,
+        end: 100
+      }, {
+        show: (objRequest.dataZoom == 'h' || objRequest.dataZoom == 'vh') ? true : false,
+        realtime: true,
+        start: 0,
+        end: 100,
+        height: 20,
+        y2: 25
+      }, {
+        type: 'inside',
+        yAxisIndex: 0,
+        realtime: true,
+        start: 0,
+        end: 100
+      }, {
+        show: (objRequest.dataZoom == 'v' || objRequest.dataZoom == 'vh') ? true : false,
+        yAxisIndex: 0,
+        filterMode: 'empty',
+        width: 12,
+        height: '70%',
+        handleSize: 8,
+        showDataShadow: false,
+        right: 5
+      }],
+      legend: {
+        data: Data.legend,
+        x: 'center',
+        y: 70,
+        itemGap: 20,
+        textStyle: {
+          fontSize: 16,
+        },
+        show: (Data.legend.length <= 1) ? false : true
+      },
+      xAxis: [{
+        name: Data.xAxisTitle,
+        axisTick: {
+          show: false
+        }, //隐藏标记线,
+        type: 'category',
+        boundaryGap: (objRequest.type == 'line') ? false : true,
+        data: Data.xAxis,
+      }],
+      yAxis: [{
+        name: Data.yAxisTitle,
+        type: 'value',
+        position: 'left',
+        scale: true, //自动缩放最大最小值
+        axisLabel: {
+          show: true,
+          interval: 'auto',
+          margin: 8,
+        },
+        axisTick: {
+          show: false
+        }
+      }],
+      series: Data.series
+    };
+
+    if (objRequest.type == 'boxplot') {
+      outData.title[2] = {
+        text: '上边缘: Q3 + 1.5 * IRQ \n下边缘: Q1 - 1.5 * IRQ\nIRQ: Q3-Q1',
+        borderColor: '#999',
+        borderWidth: 1,
+        textStyle: {
+          fontSize: 14
+        },
+        x2: 10,
+        y: 30
+      };
+      if (objRequest.minMax) {
+        outData.title[2].text = '上边缘: 最大值 \n下边缘: 最小值';
+      }
+    }
+    if (objRequest.reverse) { //是否需要调换X/Y轴
+      var objTemp;
+      objTemp = outData.xAxis;
+      outData.xAxis = outData.yAxis;
+      outData.yAxis = objTemp;
+    }
+    return outData;
+  };
+
+  var getRadiusOption = function(objRequest) {
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center',
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 10,
+        y2: 5
+      }],
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+      },
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: objRequest.toolbox,
+        feature: {
+          mark: {
+            show: true
+          },
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: true,
+      legend: Data.legend,
+      series: Data.series
+    };
+    if (objRequest.type == 'funnel') {
+
+      if (outData.series.length > 1) {
+
+        outData.series[0].width = '60%';
+        outData.series[0].height = '40%';
+        outData.series[0].left = '20%';
+        outData.series[0].top = '10%';
+        outData.series[0].label = {
+          "normal": {
+            "position": "inner"
+          }
+        };
+        outData.series[0].labelLine = {
+          "normal": {
+            "show": false
+          }
+        };
+        outData.series[1].width = '60%';
+        outData.series[1].height = '40%';
+        outData.series[1].left = '20%';
+        outData.series[1].top = '50%';
+        outData.series[1].sort = 'ascending';
+        outData.series[1].label = {
+          "normal": {
+            "position": "inner"
+          }
+        };
+        outData.series[1].labelLine = {
+          "normal": {
+            "show": false
+          }
+        };
+
+      } else {
+        outData.series[0].width = '60%';
+        outData.series[0].height = '60%';
+        outData.series[0].left = '20%';
+        outData.series[0].top = '20%';
+        outData.series[0].sort = 'ascending';
+        outData.series[0].label = {
+          "normal": {
+            "position": "inner"
+          }
+        };
+        outData.series[0].labelLine = {
+          "normal": {
+            "show": false
+          }
+        };
+      }
+    }
+    return outData;
+  };
+
+  var getParallelOption = function(objRequest) {
+    var outData = {
+      backgroundColor: '#445',
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center',
+        "textStyle": {
+          color: '#bbb',
+        }
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal',
+          "color": '#aaa'
+        },
+        x2: 10,
+        y2: 5
+      }],
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            readOnly: false
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
+      parallel: {
+        left: '20',
+        right: '8%',
+        top: 70,
+        parallelAxisDefault: {
+          type: 'value',
+          nameLocation: 'start',
+          nameGap: 20,
+          nameTextStyle: {
+            color: '#aaa',
+            fontSize: 12
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#aaa'
+            }
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#aaa'
+            }
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#aaa'
+            }
+          }
+        }
+      },
+      parallelAxis: Data.parallelAxis,
+      visualMap: Data.visualMap,
+      legend: Data.legend,
+      series: Data.series
+    };
+
+    return outData;
+  };
+
+  var Data;
   var getOption = function(objRequest) {
-    var Data = convertData(objRequest);
+    Data = convertData(objRequest);
     if (Data.rows == 0) {
       return false;
     }
-
-    var getGridAxisOption = function(objRequest) {
-      var outData = {
-        title: [{
-          text: Data.title,
-          subtext: Data.subTitle,
-          x: 'center',
-        }, {
-          text: '©成都印钞有限公司 技术质量部',
-          borderColor: '#999',
-          borderWidth: 0,
-          textStyle: {
-            fontSize: 14
-          },
-          x2: 10,
-          y2: 5
-        }],
-        grid: {
-          left: '5%',
-          right: '5%',
-          top: '10%',
-          bottom: '10%',
-          containLabel: true
-        },
-        toolbox: {
-          show: objRequest.toolbox,
-          feature: {
-            mark: {
-              show: true
-            },
-            //dataZoom : {show: true},
-            dataView: {
-              show: true,
-              readOnly: false
-            },
-            dataZoom: {
-              show: true
-            },
-            magicType: {
-              show: true,
-              type: ['line', 'bar', 'stack', 'tiled']
-            },
-            restore: {
-              show: true
-            },
-            saveAsImage: {
-              show: true
-            }
-          }
-        },
-        calculable: true,
-        tooltip: {
-          trigger: (objRequest.type == 'boxplot') ? 'item' : 'axis'
-        },
-        dataZoom: [{
-          type: 'inside',
-          realtime: true,
-          start: 0,
-          end: 100
-        }, {
-          show: (objRequest.dataZoom == 'h' || objRequest.dataZoom == 'vh') ? true : false,
-          realtime: true,
-          start: 0,
-          end: 100,
-          height: 20,
-          y2: 25
-        }, {
-          type: 'inside',
-          yAxisIndex: 0,
-          realtime: true,
-          start: 0,
-          end: 100
-        }, {
-          show: (objRequest.dataZoom == 'v' || objRequest.dataZoom == 'vh') ? true : false,
-          yAxisIndex: 0,
-          filterMode: 'empty',
-          width: 12,
-          height: '70%',
-          handleSize: 8,
-          showDataShadow: false,
-          right: 5
-        }],
-        legend: {
-          data: Data.legend,
-          x: 'center',
-          y: 70,
-          itemGap: 20,
-          textStyle: {
-            fontSize: 16,
-          },
-          show: (Data.legend.length <= 1) ? false : true
-        },
-        xAxis: [{
-          name: Data.xAxisTitle,
-          axisTick: {
-            show: false
-          }, //隐藏标记线,
-          type: 'category',
-          boundaryGap: (objRequest.type == 'line') ? false : true,
-          data: Data.xAxis,
-        }],
-        yAxis: [{
-          name: Data.yAxisTitle,
-          type: 'value',
-          position: 'left',
-          scale: true, //自动缩放最大最小值
-          axisLabel: {
-            show: true,
-            interval: 'auto',
-            margin: 8,
-          },
-          axisTick: {
-            show: false
-          }
-        }],
-        series: Data.series
-      };
-
-      if (objRequest.type == 'boxplot') {
-        outData.title[2] = {
-          text: '上边缘: Q3 + 1.5 * IRQ \n下边缘: Q1 - 1.5 * IRQ\nIRQ: Q3-Q1',
-          borderColor: '#999',
-          borderWidth: 1,
-          textStyle: {
-            fontSize: 14
-          },
-          x2: 10,
-          y: 30
-        };
-        if (objRequest.minMax) {
-          outData.title[2].text = '上边缘: 最大值 \n下边缘: 最小值';
-        }
-      }
-      if (objRequest.reverse) { //是否需要调换X/Y轴
-        var objTemp;
-        objTemp = outData.xAxis;
-        outData.xAxis = outData.yAxis;
-        outData.yAxis = objTemp;
-      }
-      return outData;
-    };
-
-    var getRadiusOption = function(objRequest) {
-      var outData = {
-        title: [{
-          text: Data.title,
-          subtext: Data.subTitle,
-          x: 'center',
-        }, {
-          text: '©成都印钞有限公司 技术质量部',
-          borderColor: '#999',
-          borderWidth: 0,
-          textStyle: {
-            fontSize: 14
-          },
-          x2: 10,
-          y2: 5
-        }],
-        tooltip: {
-          trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
-        },
-        grid: {
-          left: '5%',
-          right: '5%',
-          top: '10%',
-          bottom: '10%',
-          containLabel: true
-        },
-        toolbox: {
-          show: objRequest.toolbox,
-          feature: {
-            mark: {
-              show: true
-            },
-            dataView: {
-              show: true,
-              readOnly: false
-            },
-            restore: {
-              show: true
-            },
-            saveAsImage: {
-              show: true
-            }
-          }
-        },
-        calculable: true,
-        legend: Data.legend,
-        series: Data.series
-      };
-      if (objRequest.type == 'funnel') {
-
-        if (outData.series.length > 1) {
-
-          outData.series[0].width = '60%';
-          outData.series[0].height = '40%';
-          outData.series[0].left = '20%';
-          outData.series[0].top = '10%';
-          outData.series[0].label = {
-            "normal": {
-              "position": "inner"
-            }
-          };
-          outData.series[0].labelLine = {
-            "normal": {
-              "show": false
-            }
-          };
-          outData.series[1].width = '60%';
-          outData.series[1].height = '40%';
-          outData.series[1].left = '20%';
-          outData.series[1].top = '50%';
-          outData.series[1].sort = 'ascending';
-          outData.series[1].label = {
-            "normal": {
-              "position": "inner"
-            }
-          };
-          outData.series[1].labelLine = {
-            "normal": {
-              "show": false
-            }
-          };
-
-        } else {
-          outData.series[0].width = '60%';
-          outData.series[0].height = '60%';
-          outData.series[0].left = '20%';
-          outData.series[0].top = '20%';
-          outData.series[0].sort = 'ascending';
-          outData.series[0].label = {
-            "normal": {
-              "position": "inner"
-            }
-          };
-          outData.series[0].labelLine = {
-            "normal": {
-              "show": false
-            }
-          };
-        }
-      }
-      return outData;
-    };
-
     var outData;
     switch (objRequest.type) {
       case 'bar':
@@ -1113,6 +1343,9 @@ define(['./js/extension/dataTool'], function(dataTool) {
       case 'funnel':
       case 'sunrise':
         outData = getRadiusOption(objRequest);
+        break;
+      case 'parallel': //平行坐标系
+        outData = getParallelOption(objRequest);
         break;
     }
 
