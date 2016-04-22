@@ -62,7 +62,7 @@
          var dom = $('.eCharts-main');
          var width = domParent.width();
          dom.css('width', width);
-         dom.css('height', width / ((dom.length == 1) ? 2 : 2.5));
+         dom.css('height', width / ((dom.length === 1) ? 2 : 2.5));
        }
 
        function showChart(curTheme, url) {
@@ -97,18 +97,18 @@
            objRequest = {
              "url": GetJsonUrl(objList.id[i]),
              "type": handleParam(objList.type, i, "line"),
-             "smooth": (handleParam(objList.smooth, i, '1') == '1') ? true : false,
-             "blind": (getUrlParam('blind') == "0" || getUrlParam('blind') === null) ? false : true,
+             "smooth": (handleParam(objList.smooth, i, '1') === '1') ? true : false,
+             "blind": (getUrlParam('blind') === "0" || getUrlParam('blind') === null) ? false : true,
              "toolbox": /*(objRequest.blind && i) ? false : */ true,
-             "markLine": (handleParam(objList.markLine, i, '0') == '1') ? true : false,
-             "markPoint": (handleParam(objList.markPoint, i, '0') == '1') ? true : false,
-             "barMaxWidth": (handleParam(objList.barMaxWidth, i, '0') == '1') ? true : false,
-             "splitArea": (handleParam(objList.splitArea, i, '0') == '1') ? true : false,
+             "markLine": (handleParam(objList.markLine, i, '0') === '1') ? true : false,
+             "markPoint": (handleParam(objList.markPoint, i, '0') === '1') ? true : false,
+             "barMaxWidth": (handleParam(objList.barMaxWidth, i, '0') === '1') ? true : false,
+             "splitArea": (handleParam(objList.splitArea, i, '0') === '1') ? true : false,
              "dataZoom": handleParam(objList.dataZoom, i, '0'),
-             "minMax": (handleParam(objList.minMax, i, '0') == '1') ? true : false,
-             "lineAreaStyle": (handleParam(objList.lineAreaStyle, i, '0') == '1') ? true : false,
-             "reverse": (handleParam(objList.reverse, i, '0') == '1') ? true : false,
-             "circle": (handleParam(objList.circle, i, '1') == '1') ? true : false,
+             "minMax": (handleParam(objList.minMax, i, '0') === '1') ? true : false,
+             "lineAreaStyle": (handleParam(objList.lineAreaStyle, i, '0') === '1') ? true : false,
+             "reverse": (handleParam(objList.reverse, i, '0') === '1') ? true : false,
+             "circle": (handleParam(objList.circle, i, '1') === '1') ? true : false,
              "roseType": handleParam(objList.roseType, i, '0'),
              "dimension": parseInt(handleParam(objList.dimension, i, '1'), 10) - 1
            };
@@ -178,7 +178,7 @@
        }
 
        function selectChange(value) {
-         var theme = value;
+         //var theme = value;
          localStorage.setItem("eChartsTheme", value);
          bsTips("主题更换成功，请刷新页面查看", 1);
 
@@ -193,7 +193,7 @@
            setTimeout(refreshTheme(), 500);
          });*/
        }
-
+       /*
        function refreshTheme() {
          for (i = 0; i < iChartNums; i++) {
            myChart[i].hideLoading();
@@ -203,7 +203,7 @@
            //console.log(myChart[i].getTheme());  
            myChart[i].setOption(curTheme);
          }
-       }
+       }*/
 
        //初始化主题模块
 
@@ -246,7 +246,7 @@
            var domParent = $('.portlet-body.form');
            var dom = $('.eCharts-main');
            var width = domParent.width();
-           dom.css('width', width).css('height', width / ((dom.length == 1) ? 2 : 2.5));
+           dom.css('width', width).css('height', width / ((dom.length === 1) ? 2 : 2.5));
 
            for (i = 0; i < iChartNums; i++) {
              myChart[i].resize();

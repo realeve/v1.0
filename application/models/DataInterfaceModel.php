@@ -189,7 +189,7 @@ class DataInterfaceModel extends CI_Model {
 				break;
 			case '1':
 				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M']);//输出列名
-				return '{"rows":"0",'.$strApiInfo.',"title":"'.$ApiInfo->data[0]->ApiName.'","source":"数据来源:'.$ApiInfo->data[0]->DBName.'"}';
+				return '{"rows":0,'.$strApiInfo.',"title":"'.$ApiInfo->data[0]->ApiName.'","source":"数据来源:'.$ApiInfo->data[0]->DBName.'"}';
 				break;
 		}
 		//方案1：JSON编码

@@ -890,13 +890,13 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
             data: obj[elem]
           });
         });
-      }else{
+      } else {
         seriesArr.push({
-            name: '平行坐标',
-            type: seriesType,
-            lineStyle: lineStyle,
-            data:arr
-          });
+          name: '平行坐标',
+          type: seriesType,
+          lineStyle: lineStyle,
+          data: arr
+        });
       }
       return seriesArr;
     }
@@ -914,7 +914,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['parallelAxis'] = [];
 
       //infoTips(JSON.stringify(Data), 2);
-      if (0 == Data.rows || 1 == Data.cols) {
+      if (0 === Data.rows || 1 === Data.cols) {
         return NewData;
       }
 

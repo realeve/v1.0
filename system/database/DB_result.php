@@ -357,13 +357,13 @@ class CI_DB_result {
 			return array();
 		}
 
-		$strHead = '{"rows": "'. $nums.'",';
+		$strHead = '{"rows": '. $nums.',';
 		//先构造表头
 		$strFields = $this->list_fields();
 		$strCols = $this->Array2Head($strFields);
 		//构造JSON语句
 		if (!$nums) {			
-			return '{"rows":"0",'. $strCols . '}';//为空时直接返回
+			return '{"rows":0,'. $strCols . '}';//为空时直接返回
 			//2015-12-31 需要加套接字符
 		}	
 		$strHead .= $strCols.',"data":[';			
@@ -426,7 +426,7 @@ class CI_DB_result {
 	public function Array2Head($arr)
 	{
 		$nums = count($arr);
-		$strHead = '"cols": "'. $nums.'","header":['; 
+		$strHead = '"cols": '. $nums.',"header":['; 
 		if (!$nums) {
 			$strHead .="]";
 			return $strHead;//为空时直接返回
@@ -473,7 +473,7 @@ class CI_DB_result {
 			return array();
 		}
 
-		$strHead = '{"rows": "'. $nums.'",';
+		$strHead = '{"rows": '. $nums.',';
 		//先构造表头
 		$strFields = $this->list_fields();
 		$strCols = $this->Array2Head($strFields);
