@@ -41,10 +41,10 @@
 				output = a + '-' + b + '-' + c;
 				break;
 			case 7:
-				output = a.toString() + jsRight(('0' + b), 2) + jsRight(('0' + c), 2) ;
+				output = a.toString() + jsRight(('0' + b), 2) + jsRight(('0' + c), 2);
 				break;
 			case 8:
-				output = a.toString() + jsRight(('0' + b), 2) ;
+				output = a.toString() + jsRight(('0' + b), 2);
 				break;
 			default:
 				output = b + '月' + c + '日 ' + week + ' ' + d + ':' + e + ':' + f;
@@ -53,7 +53,7 @@
 		return output;
 	}
 
-	var title = "质量控制中心 " + today();
+	var title;
 
 	//信息推送
 	var sendMsgToUsers = function(msg, receiver) {
@@ -66,7 +66,7 @@
 					"delaytime": 30 * 1000, //30S延时
 					"msg": msg,
 					"receiver": receiver, //10879",//多人用逗号或分号隔开
-					"title": title					
+					"title": "质量控制中心 " + today()
 				},
 				dataType: "jsonp",
 				callback: "JsonCallback",
@@ -85,6 +85,10 @@
 	var getOnlineInfo = function() {
 		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=102&M=3&t=75";
 		var msg = "";
+		var res = {
+			"msg": "",
+			"status": 0
+		};
 		$.ajax({
 			url: url,
 			type: "get",
@@ -94,23 +98,31 @@
 			//jsonpCallback:"JsonCallback",
 			callback: "JsonCallback",
 			success: function(json) {
-				if (json.rows) {
+				if (json.rows > 0) {
+					res.status = 1;
 					json.data.map(function(elem, index) {
 						msg += elem[1] + " 好品率较低(" + elem[11] + "%)\n";
 					});
 					msg += '\n[(点击此处查看详情)|http://10.8.2.133/OnlineQuality.asp]';
+				} else {
+					console.log("该时间内无相关数据");
 				}
 
 			}
 		});
-		return msg;
+		res.msg = msg;
+		return res;
 	};
 
 	//获取每天推送的质量信息
 	var getLastDayInfo = function() {
 		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=109&M=3";
 		var lastDay = ")印码机检好品率:\n"; //昨天质量情况
-		//var theMonth = "当月好品率:\n"; //当月质量情况
+		//var theMonth = "当月好品率:\n"; //当月质量情况		
+		var res = {
+			"msg": "",
+			"status": 0
+		};
 		var dateName, msg;
 		var dataProdt = {
 			"data": {},
@@ -125,7 +137,8 @@
 			//jsonpCallback:"JsonCallback",
 			callback: "JsonCallback",
 			success: function(json) {
-				if (json.rows) {
+				if (json.rows > 0) {
+					res.status = 1;
 					json.data.map(function(elem, index) {
 						if (typeof dataProdt['data'][elem[1]] == 'undefined') {
 							dataProdt['data'][elem[1]] = {};
@@ -156,14 +169,17 @@
 						lastDay += elem + " : " + dataProdt['data'][elem]['lastDay'] + " (" + preStr + "%);\n";
 
 					});
-
 					msg = '昨日(' + dateName + lastDay; // + theMonth;
 					msg += '[(点击此处查看详情)|http://10.8.2.133/MonthStatic.asp]';
+				} else {
+					res.status = 0;
+					console.log('当前时间范围内无数据');
 				}
 
 			}
 		});
-		return msg;
+		res.msg = msg;
+		return res;
 	};
 
 
@@ -171,6 +187,10 @@
 	var getUncheckInfo = function() {
 		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=110&M=3";
 		var msg = "\n\n----平均未检数最多的机台:----\n"; //昨天质量情况
+		var res = {
+			"msg": "",
+			"status": 0
+		};
 		$.ajax({
 			url: url,
 			type: "get",
@@ -180,15 +200,21 @@
 			//jsonpCallback:"JsonCallback",
 			callback: "JsonCallback",
 			success: function(json) {
-				if (json.rows) {
+				if (json.rows > 0) {
+					res.status = 1;
 					for (var i = 0; i < 4; i++) {
 						msg += json.data[i][0] + " : " + json.data[i][1] + " 大张/万\n";
 					};
 					msg += '[(点击此处查看详情)|http://10.8.2.133/qualitydetail.asp]\n';
+				} else {
+					console.log("该时间内无相关数据");
+					res.status = 0;
+					msg = "\n\n----无机检未检信息----\n";
 				}
 			}
 		});
-		return msg;
+		res.msg = msg;
+		return res;
 	};
 
 	//获取用户信息(印码工序)
@@ -198,8 +224,8 @@
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
-				//json.dataCode.map(function(elem, index) {
-				json.dataTest.map(function(elem, index) {
+				json.dataCode.map(function(elem, index) {
+					//json.dataTest.map(function(elem, index) {
 					userInfo += elem[3] + ",";
 				})
 				userInfo = jsOnRight(userInfo, 1);
@@ -213,7 +239,8 @@
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
-				json.datatTest.map(function(elem, index) {
+				json.dataPrint.map(function(elem, index) {
+					//json.dataTest.map(function(elem, index) {
 					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString());
 				})
 			}
@@ -222,8 +249,12 @@
 
 	//获取每天推送的质量信息
 	var getPaperProcessInfo = function() {
-		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=60&M=3&tstart="+ today(8) +"01&tend=" + today(8) +"31";
-		var msg = "\n----本月钞纸过程质量控制水平如下:----\n"; 
+		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=60&M=3&tstart=" + today(8) + "01&tend=" + today(8) + "31";
+		var msg = "\n----本月钞纸过程质量控制水平如下:----\n";
+		var res = {
+			"msg": "",
+			"status": 0
+		};
 		$.ajax({
 			url: url,
 			type: "get",
@@ -233,15 +264,21 @@
 			//jsonpCallback:"JsonCallback",
 			callback: "JsonCallback",
 			success: function(json) {
-				if (json.rows) {
+				if (json.rows > 0) {
+					res.status = 1;
 					json.data.map(function(elem, index) {
 						msg += elem[0] + " : " + elem[3] + " 分\n";
 					});
 					msg += '[(点击此处查看详情)|http://10.8.2.133:70/qualitytable?tid=60]\n';
+				} else {
+					console.log("该时间内无相关数据");
+					res.status = 0;
+					msg = "\n\n----无本月相关钞纸过程质量控制水平检测数据----\n";
 				}
 			}
-		});		
-		return msg;
+		});
+		res.msg = msg;
+		return res;
 	};
 
 	//向钞纸工艺组推送信息
@@ -250,8 +287,8 @@
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
-				//json.dataPaperGY.map(function(elem, index) {
-				json.dataTest.map(function(elem, index) {
+				json.dataPaperGY.map(function(elem, index) {
+					//json.dataTest.map(function(elem, index) {
 					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString());
 				})
 			}
@@ -287,7 +324,7 @@
 					isPass = 0;
 				}
 			} else if (mode == 1) { //每天推送1次消息 ,早上6点推送
-				if(hours !=7){
+				if (hours != 7) {
 					isPass = 0;
 				}
 			}
@@ -311,14 +348,14 @@
 			}
 
 			var onlineInfo = getOnlineInfo();
-			if (onlineInfo != ''){
-				pushOnlineInfo(onlineInfo);
-				if(intervalID.count == 50){
+			if (onlineInfo.status > 0) {
+				pushOnlineInfo(onlineInfo.msg);
+				if (intervalID.count == 500) {
 					window.console.clear();
 				}
 				intervalID.count++;
 			}
-		}, 15 * 60 * 1000);
+		}, 20 * 60 * 1000);
 
 		/**
 		 *	每天推送一次信息------印码机检质量
@@ -329,22 +366,38 @@
 			//1小时刷新一次
 			if (!dateValidate(1)) {
 				console.log('每天推送消息 时间校验未通过:     ' + today(3));
-				return;
-			}
+			} else {
+				if (typeof localStorage.pushLog == 'undefined') {
+					localStorage.pushLog = '{"today":"0"}';
+				}
+				if ($.parseJSON(localStorage.pushLog).today < today(7)) {
+					localStorage.pushLog = JSON.stringify({
+						"today": today(7)
+					});
 
-			if ($.parseJSON(localStorage.pushLog).today <= today(7)) {
-				localStorage.pushLog = JSON.stringify({
-					"today": today(7)
-				});
-				
-				//推送上个工作日质量信息
-				var lastDayInfo = getLastDayInfo();
-				var uncheckInfo = getUncheckInfo();
-				pushLastDayInfo(lastDayInfo + uncheckInfo);
+					//推送上个工作日质量信息
+					var lastDayInfo = getLastDayInfo();
+					var uncheckInfo = getUncheckInfo();
+					var msg = '';
+					if (lastDayInfo.status > 0) {
+						msg += lastDayInfo.msg;
+					}
+					if (uncheckInfo.status > 0) {
+						msg += uncheckInfo.msg;
+					}
+					if (lastDayInfo.status + uncheckInfo.status > 0) {
+						pushLastDayInfo(msg);
+					}
+					console.log(msg);
 
-				//推送钞纸过程质量控制数据
-				var paperProcessInfo = getPaperProcessInfo();
-				pushPaperProcessInfo( paperProcessInfo );
+					//推送钞纸过程质量控制数据
+					var paperProcessInfo = getPaperProcessInfo();
+					if (paperProcessInfo.status > 0) {
+						pushPaperProcessInfo(paperProcessInfo.msg);
+					}
+				} else {
+					console.log('当天已推送该信息:   ' + today(3));
+				}
 			}
 		}, 60 * 60 * 1000);
 	}();
