@@ -109,6 +109,16 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       });
       return UniqueData(res.sort(sortNumber));
     }
+
+    //多维矩阵行列转换
+    function convertMatrixRowCol(data, id) {
+      var res = [];
+      data.map(function(elem, index) {
+        res[index] = elem[id];
+      });
+      return res;
+
+    }
     /**
      * [getMinMax 获取多维数组指定列最小值/最大值]
      * @param  {[type]} data [多维数组]
@@ -154,7 +164,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     function convertCol2Row(data, id) {
       var res = [];
       data.map(function(elem, index) {
-        res[index] = elem[id];
+        res[index] = Number.parseFloat(elem[id]);
       });
       return res;
     }
@@ -181,7 +191,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['yAxisTitle'] = Data.header[2].title;
 
         NewData['legend'] = getUniData(Data.data, 0);
-        NewData['xAxis'] = getUniData(Data.data, 1);
+        NewData['xAxis'] = convertMatrixRowCol(Data.data, 1);
+        //NewData['yAxis'] = convertMatrixRowCol(Data.data, 2);
         NewData['yAxis'] = [];
 
         //yAxis数据清零
@@ -239,16 +250,19 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['xAxisTitle'] = Data.header[0].title;
         NewData['yAxisTitle'] = Data.header[1].title;
 
-        NewData['xAxis'] = getUniData(Data.data, 0);
 
-        NewData['yAxis'] = [];
+        NewData['xAxis'] = convertMatrixRowCol(Data.data, 0);
+        NewData['yAxis'] = convertMatrixRowCol(Data.data, 1);
+
+        /*NewData['yAxis'] = [];
         //yAxis数据清零
         for (i = 0; i < NewData.xAxis.length; i++) {
           NewData['yAxis'][i] = '-';
         }
         for (i = 0; i < Data.rows; i++) {
           NewData['yAxis'][i] = Number.parseFloat(Data.data[i][1]);
-        }
+        }*/
+
         NewData['legend'] = [];
         NewData['legend'][0] = NewData['yAxisTitle'];
         NewData['series'] = [];
@@ -294,6 +308,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         for (i = 0; i < Data.rows; i++) {
           NewData['yAxis'][i] = Number.parseFloat(Data.data[i][0]);
         }
+
+        //NewData['yAxis'] = convertMatrixRowCol(Data.data, 0);
         NewData['series'] = [];
         NewData['series'][0] = {
           "name": NewData['yAxisTitle'],
