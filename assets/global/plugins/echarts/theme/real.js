@@ -66,9 +66,9 @@ var theme = {
 		borderRadius: 4,
 		borderWidth: 0,
 		padding: 10,
-		trigger: 'axis',
+		//trigger: 'axis',
 		showDelay : 0,
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+        /*axisPointer : {            // 坐标轴指示器，坐标轴触发有效
            // type : 'line',         // 默认为直线，可选为：'line' | 'shadow'
 			type : 'cross',
             lineStyle : {          // 直线指示器样式设置
@@ -82,9 +82,9 @@ var theme = {
             shadowStyle : {                     // 阴影指示器样式设置
                 color: 'rgba(200,200,200,0.3)'
             }			
-        },
+        },*/
 		textStyle: { color: '#eee',
-                     fontSize:12},
+                     fontSize:12}
     },
 
     // 区域缩放控制器

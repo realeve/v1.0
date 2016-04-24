@@ -68,7 +68,7 @@
 							<thead><tr><th>参数名</th><th>参数说明</th><th>可选值</th></tr></thead>
 							<tbody>
 								<tr><td>tid</td><td>图表ID</td><td>随数据接口而变化</td></tr>
-								<tr><td>type</td><td>图表类型</td><td>line:曲线图,bar:柱状图,boxplot:箱形图,pie:饼图,funnel:漏斗图,sunrise:旭日图,parallel:平行坐标系</td></tr>
+								<tr><td>type</td><td>图表类型</td><td>line:曲线图,bar:柱状图,boxplot:箱形图,pie:饼图,funnel:漏斗图,sunrise:旭日图,parallel:平行坐标系,treemap:树形图</td></tr>
 								<tr><td>minmax</td><td>箱形图boxplot专用，将上下边缘设置为最大最小值</td><td>0，1</td></tr>
 								<tr><td>linearea</td><td>线形图专用，设为1表示面积图</td><td>0，1</td></tr>
 								<tr><td>circle</td><td>饼图专用，设为1表示为环形图</td><td>0，1（默认为1)</td></tr>

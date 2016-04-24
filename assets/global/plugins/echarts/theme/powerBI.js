@@ -4,11 +4,11 @@ define(function() {
         backgroundColor: 'rgb(229,239,241)',
         // 默认色板
         color: [
-            '#01b8aa','#374649', '#fd625e', '#f2c80f', '#5f6b6d','#8ad4eb',
-            '#fe9666', '#a66999','#3599b8','#dfbfbf','#4ac5bb',
-            '#5f6b6d','#fb8281','#f4d25a','#7f898a','#a4ddee',
-            '#fdab89','#b687ac','#28738a','#a78f8f','#168980',
-            '#293537','#bb4a4a','#b59525','#475052','#6a9fb0'
+            '#01b8aa', '#374649', '#fd625e', '#f2c80f', '#5f6b6d', '#8ad4eb',
+            '#fe9666', '#a66999', '#3599b8', '#dfbfbf', '#4ac5bb',
+            '#5f6b6d', '#fb8281', '#f4d25a', '#7f898a', '#a4ddee',
+            '#fdab89', '#b687ac', '#28738a', '#a78f8f', '#168980',
+            '#293537', '#bb4a4a', '#b59525', '#475052', '#6a9fb0'
         ],
 
         // 图表标题
@@ -47,15 +47,15 @@ define(function() {
 
         // 提示框
         tooltip: {
-        //backgroundColor: 'rgba(61,61,61,0.8)',
-		//borderColor: 'rgb(121,183,230)',
-		backgroundColor: '#009688',
+            //backgroundColor: 'rgba(61,61,61,0.8)',
+            //borderColor: 'rgb(121,183,230)',
+            backgroundColor: '#009688',
             borderRadius: 4,
             borderWidth: 0,
             padding: 10,
-            trigger: 'axis',
-            showDelay: 0,
-            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            //trigger: 'axis',
+            //showDelay: 0,
+            /*axisPointer: { // 坐标轴指示器，坐标轴触发有效
                 // type : 'line',         // 默认为直线，可选为：'line' | 'shadow'
                 type: 'cross',
                 lineStyle: { // 直线指示器样式设置
@@ -69,11 +69,11 @@ define(function() {
                 shadowStyle: { // 阴影指示器样式设置
                     color: 'rgba(200,200,200,0.3)'
                 }
-            },
+            },*/
             textStyle: {
                 color: '#eee',
                 fontSize: 12
-            },
+            }
         },
 
         // 区域缩放控制器

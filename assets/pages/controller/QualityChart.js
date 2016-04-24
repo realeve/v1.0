@@ -91,7 +91,8 @@
            "reverse": (getUrlParam('reverse') === null) ? ['0'] : getUrlParam('reverse').split(','),
            "circle": (getUrlParam('circle') === null) ? ['0'] : getUrlParam('circle').split(','),
            "roseType": (getUrlParam('rose') === null) ? ['0'] : getUrlParam('rose').split(','),
-           "dimension": (getUrlParam('dimension') === null) ? ['0'] : getUrlParam('dimension').split(',')
+           "dimension": (getUrlParam('dimension') === null) ? ['0'] : getUrlParam('dimension').split(','),
+           "squareRatio":(getUrlParam('squareratio') === null) ? ['0.618'] : getUrlParam('squareratio').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -110,7 +111,8 @@
              "reverse": (handleParam(objList.reverse, i, '0') === '1') ? true : false,
              "circle": (handleParam(objList.circle, i, '1') === '1') ? true : false,
              "roseType": handleParam(objList.roseType, i, '0'),
-             "dimension": parseInt(handleParam(objList.dimension, i, '1'), 10) - 1
+             "dimension": Number.parseInt(handleParam(objList.dimension, i, '1'), 10) - 1,
+             "squareRatio": Number.parseFloat(handleParam(objList.squareRatio, i, '1.618'))
            };
            //console.log(objRequest);
 
@@ -125,7 +127,6 @@
 
            option = chartDataTool.getOption(objRequest);
            console.log("option = " + JSON.stringify(option));
-
            if (option !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
              myChart[i].setOption(option);

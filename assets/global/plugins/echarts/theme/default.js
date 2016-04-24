@@ -6,9 +6,5 @@
  *
  */
 define(function() {
-	var theme={
-		// 全图默认背景
-        backgroundColor: '#445',
-	};
-	return theme;
+	return{};
 });

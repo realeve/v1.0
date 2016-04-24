@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
 
     var zrUtil = require('zrender/core/util');
     var numberUtil = require('./number');
@@ -12,8 +12,7 @@ define(function (require) {
             return '-';
         }
         x = (x + '').split('.');
-        return x[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g,'$1,')
-               + (x.length > 1 ? ('.' + x[1]) : '');
+        return x[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,') + (x.length > 1 ? ('.' + x[1]) : '');
     }
 
     /**
@@ -36,14 +35,12 @@ define(function (require) {
      */
     function normalizeCssArray(val) {
         var len = val.length;
-        if (typeof (val) === 'number') {
+        if (typeof(val) === 'number') {
             return [val, val, val, val];
-        }
-        else if (len === 2) {
+        } else if (len === 2) {
             // vertical | horizontal
             return [val[0], val[1], val[0], val[1]];
-        }
-        else if (len === 3) {
+        } else if (len === 3) {
             // top | horizontal | bottom
             return [val[0], val[1], val[2], val[1]];
         }
@@ -82,7 +79,7 @@ define(function (require) {
         var $vars = paramsList[0].$vars;
         for (var i = 0; i < $vars.length; i++) {
             var alias = TPL_VAR_ALIAS[i];
-            tpl = tpl.replace(wrapVar(alias),  wrapVar(alias, 0));
+            tpl = tpl.replace(wrapVar(alias), wrapVar(alias, 0));
         }
         for (var seriesIdx = 0; seriesIdx < seriesLen; seriesIdx++) {
             for (var k = 0; k < $vars.length; k++) {
@@ -103,12 +100,7 @@ define(function (require) {
      * @inner
      */
     function formatTime(tpl, value) {
-        if (tpl === 'week'
-            || tpl === 'month'
-            || tpl === 'quarter'
-            || tpl === 'half-year'
-            || tpl === 'year'
-        ) {
+        if (tpl === 'week' || tpl === 'month' || tpl === 'quarter' || tpl === 'half-year' || tpl === 'year') {
             tpl = 'MM-dd\nyyyy';
         }
 

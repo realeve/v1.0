@@ -173,11 +173,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
 
-      //infoTips(JSON.stringify(Data), 2);
       if (0 === Data.rows) {
         return NewData;
       }
-
       if (Data.cols == 3) {
         NewData['xAxisTitle'] = Data.header[1].title;
         NewData['yAxisTitle'] = Data.header[2].title;
@@ -197,7 +195,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           iTemp = Data.data[i][0]; //Legend
           for (j = 0; j < NewData.xAxis.length; j++) {
             if (Data.data[i][1] == NewData.xAxis[j]) {
-              NewData['yAxis'][iTemp][j] = parseFloat(Data.data[i][2]); //字符——————>浮点型(否则数据无法做average等比较)
+              NewData['yAxis'][iTemp][j] = Number.parseFloat(Data.data[i][2]); //字符——————>浮点型(否则数据无法做average等比较)
               break;
             }
           }
@@ -249,7 +247,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           NewData['yAxis'][i] = '-';
         }
         for (i = 0; i < Data.rows; i++) {
-          NewData['yAxis'][i] = parseFloat(Data.data[i][1]);
+          NewData['yAxis'][i] = Number.parseFloat(Data.data[i][1]);
         }
         NewData['legend'] = [];
         NewData['legend'][0] = NewData['yAxisTitle'];
@@ -294,7 +292,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['xAxis'] = arrTemp;
         NewData['yAxis'] = [];
         for (i = 0; i < Data.rows; i++) {
-          NewData['yAxis'][i] = parseFloat(Data.data[i][0]);
+          NewData['yAxis'][i] = Number.parseFloat(Data.data[i][0]);
         }
         NewData['series'] = [];
         NewData['series'][0] = {
@@ -351,7 +349,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
       NewData['series'] = [];
-      //infoTips(JSON.stringify(Data), 2);
+
       if (0 === Data.rows) {
         return NewData;
       }
@@ -375,7 +373,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           iTemp = Data.data[i][0]; //Legend
           for (j = 0; j < NewData.xAxis.length; j++) {
             if (Data.data[i][1] == NewData.xAxis[j]) {
-              arrTemp[iTemp][j].push(parseFloat(Data.data[i][2])); //字符——————>浮点型(否则数据无法做average等比较)
+              arrTemp[iTemp][j].push(Number.parseFloat(Data.data[i][2])); //字符——————>浮点型(否则数据无法做average等比较)
               break;
             }
           }
@@ -421,7 +419,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           iTemp = Data.data[i][0]; //Legend
           for (j = 0; j < NewData.xAxis.length; j++) {
             if (iTemp == NewData.xAxis[j]) {
-              NewData['yAxis'][j].push(parseFloat(Data.data[i][1])); //字符——————>浮点型(否则数据无法做average等比较)
+              NewData['yAxis'][j].push(Number.parseFloat(Data.data[i][1])); //字符——————>浮点型(否则数据无法做average等比较)
               break;
             }
           }
@@ -456,7 +454,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['yAxis'] = [];
         NewData['yAxis'][0] = [];
         for (i = 0; i < Data.rows; i++) {
-          NewData['yAxis'][0][i] = parseFloat(Data.data[i][0]);
+          NewData['yAxis'][0][i] = Number.parseFloat(Data.data[i][0]);
         }
         iConvData = dataTool.prepareBoxplotData(NewData['yAxis']);
 
@@ -493,9 +491,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       var seriesArr = [];
       arr.map(function(elem) {
         if (typeof obj[elem[nameID]] == 'undefined') {
-          obj[elem[nameID]] = parseFloat(elem[dataID]);
+          obj[elem[nameID]] = Number.parseFloat(elem[dataID]);
         } else {
-          obj[elem[nameID]] += parseFloat(elem[dataID]);
+          obj[elem[nameID]] += Number.parseFloat(elem[dataID]);
         }
       });
       //遍历obj的KEY
@@ -519,11 +517,10 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     function getSunRiseSeries(arr, nameID, dataID, seriesColor) {
       var seriesArr = [];
       var i = 0;
-
       arr.map(function(elem) {
         if (i === 0) {
           seriesArr.push({
-            "value": parseFloat(elem[dataID]).toFixed(2),
+            "value": Number.parseFloat(elem[dataID]).toFixed(2),
             "name": elem[nameID],
             "itemStyle": {
               "normal": {
@@ -534,15 +531,16 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           i++;
         } else {
           if (seriesArr[i - 1].name == elem[nameID]) {
-            seriesArr[i - 1].value = parseFloat(seriesArr[i - 1].value) + parseFloat(elem[dataID]);
+            seriesArr[i - 1].value = Number.parseFloat(seriesArr[i - 1].value) + Number.parseFloat(elem[dataID]);
             seriesArr[i - 1].value = seriesArr[i - 1].value.toFixed(2);
           } else {
             seriesArr.push({
-              "value": parseFloat(elem[dataID]).toFixed(2),
+              "value": Number.parseFloat(elem[dataID]).toFixed(2),
               "name": elem[nameID],
               "itemStyle": {
                 "normal": {
-                  "color": seriesColor[elem[0]]
+                  "color": seriesColor[elem[0]],
+                  //"opacity":opacity//透明度
                 }
               }
             });
@@ -571,7 +569,6 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     }
 
     //旭日图
-
     function convertSunRiseData(objRequest) {
       var Data = getJsonFromUrl(objRequest.url);
       var NewData = [];
@@ -580,7 +577,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
       NewData['series'] = [];
-      //infoTips(JSON.stringify(Data), 2);
+
       if (0 === Data.rows) {
         return NewData;
       }
@@ -619,7 +616,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
             "itemStyle": {
               "normal": {
                 "borderColor": '#fbfbfb',
-                "borderWidth": 1
+                "borderWidth": 1,
+                "opacity": 1 - 0.2 * (i / dataIndex)
               },
               "emphasis": {
                 "shadowBlur": 10,
@@ -667,7 +665,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         var obj;
         Data.data.map(function(elem, index) {
           obj.push({
-            "value": parseFloat(elem).toFixed(2),
+            "value": Number.parseFloat(elem).toFixed(2),
             "name": "数据" + (index + 1)
           });
         });
@@ -726,7 +724,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
       NewData['series'] = [];
-      //infoTips(JSON.stringify(Data), 2);
+
       if (0 === Data.rows) {
         return NewData;
       }
@@ -818,7 +816,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         var obj;
         Data.data.map(function(elem, index) {
           obj.push({
-            "value": parseFloat(elem).toFixed(2),
+            "value": Number.parseFloat(elem).toFixed(2),
             "name": "数据" + (index + 1)
           });
         });
@@ -901,6 +899,91 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       return seriesArr;
     }
 
+    /**
+     * [isExistLeaf 横向搜索树枝中某一枝叶所在的ID]
+     * @param  {[type]} objTree [树枝]
+     * @param  {[type]} _name   [枝叶]
+     * @return {[type]}         [ID索引]
+     * (默认数据按每列序号排序，直接从尾部向前搜索以提高效率)
+     */
+    function isExistLeaf(objTree, _name) {
+      var nID = -1;
+      var lastTreeNode = objTree.length - 1;
+      for (var i = lastTreeNode; !(objTree[i] == null) && nID == -1; i--) {
+        if (objTree[i].name == _name) {
+          nID = i;
+          return nID;
+        }
+      }
+      return nID;
+    }
+
+    /**
+     * [getTreeLeafData  将数组类型的数据转换为TreeNode数据
+     *                   获取指定树结构是否存在某树枝，如果存在则处理数据，不存在则新建]
+     * @param  {[type]} objTree [判断的树结构]
+     * @param  {[type]} parentArr     [待处理的数据的父结构]
+     * @param  {[type]} obj     [待处理的数据]
+     * @return {[type]}         [处理之后的树结构]
+     */
+    function getTreeLeafData(objTree, parentArr, obj) {
+      if (parentArr.length - 1 == obj.deepLevel) {
+        return objTree;
+      }
+      var _name = parentArr[obj.deepLevel];
+      var leafID = isExistLeaf(objTree, _name);
+      //如果以该值为名字的树枝不存在
+      if (leafID == -1) {
+        objTree.push({
+          name: _name,
+          value: obj.value
+        });
+        leafID = objTree.length - 1;
+        if (parentArr.length - 2 > obj.deepLevel) { //还没到最后一层
+          objTree[leafID].children = [];
+        }
+      } else {
+        //树枝存在，需要累加该结点原有数据。原NAME值不变
+        objTree[leafID].value += obj.value;
+
+        //子结点不存在为首次添加
+        if (objTree[leafID].children == null) {
+          //不存在子结点 
+          if (parentArr.length - 2 > obj.deepLevel) { //还没到最后一层
+            objTree[leafID].children = [];
+          }
+        }
+      }
+
+      obj.deepLevel++; //搜索深度+1
+      if (parentArr.length - 1 > obj.deepLevel) { //还没到最后一层
+        objTree[leafID].children = getTreeLeafData(objTree[leafID].children, parentArr, obj); //对子结点进行搜索并更新
+      }
+      return objTree;
+    }
+
+    /**
+     * [convertArr2TreeMapObj 将N*M维数组转换为树形数据结构]
+     * @param  {[type]} arr [待转换数组]
+     * @return {[type]}     [树形图数据结构]
+     */
+    function convertArr2TreeMapObj(arr) {
+      var arrTree = [];
+      var lastNode = arr[0].length - 1;
+      var obj;
+      //遍历数组,转换为对应的TreeNode数据结构
+      arr.map(function(elem) {
+        //每结数据从根结点开始搜索
+        obj = {
+          value: Number.parseFloat(elem[lastNode]),
+          deepLevel: 0
+        }
+        arrTree = getTreeLeafData(arrTree, elem, obj);
+      })
+      return arrTree;
+    }
+
+
     function convertParallelData(objRequest) {
       var Data = getJsonFromUrl(objRequest.url);
       var NewData = [];
@@ -913,8 +996,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['visualMap'] = [];
       NewData['parallelAxis'] = [];
 
-      //infoTips(JSON.stringify(Data), 2);
-      if (0 === Data.rows || 1 === Data.cols) {
+      if (1 === Data.cols || 0 === Data.rows) {
         return NewData;
       }
 
@@ -982,6 +1064,76 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       return NewData;
     }
 
+    //树形图
+    function convertTreeMapData(objRequest) {
+      var Data = getJsonFromUrl(objRequest.url);
+      if (0 === Data.rows) {
+        return false;
+      }
+
+      function getLevelOption() {
+        return [{
+          itemStyle: {
+            normal: {
+              borderWidth: 0,
+              gapWidth: 3
+            }
+          }
+        }, {
+          itemStyle: {
+            normal: {
+              gapWidth: 2
+            }
+          }
+        }, {
+          colorSaturation: [0.25, 0.4],
+          itemStyle: {
+            normal: {
+              gapWidth: 1,
+              borderColorSaturation: 1
+            }
+          }
+        }];
+      }
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        lastColName: Data.header[Data.cols - 1].title,
+        series: [{
+          name: Data.header[Data.cols - 1].title,
+          type: objRequest.type,
+          label: {
+            show: true,
+            formatter: '{b}'
+          },
+          squareRatio: objRequest.squareRatio,
+          width: '100%',
+          height: '90%',
+          top: 55,
+          itemStyle: {
+            normal: {
+              borderColor: '#fff'
+            }
+          },
+          levels: getLevelOption(),
+          data: convertArr2TreeMapObj(Data.data)
+        }]
+      };
+
+      //设置系列颜色，解除无Legend时颜色显示不正常的问题
+      /*var colorNums = objRequest.color.length;
+      NewData.series[0].data.map(function(elem, index) {
+        NewData.series[0].data[index].itemStyle = {
+          "normal": {
+            "color": objRequest.color[index % colorNums]
+          }
+        };
+      })*/
+
+      return NewData;
+    }
+
 
     var returnData;
     switch (objRes.type) {
@@ -1001,6 +1153,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'parallel':
         returnData = convertParallelData(objRes);
+        break;
+      case 'treemap':
+        returnData = convertTreeMapData(objRes);
         break;
     }
     return returnData;
@@ -1326,6 +1481,84 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     return outData;
   };
 
+  var getTreeMapOption = function(objRequest) {
+
+    var echartsFormat = function() {
+      this.encodeHTML = function(source) {
+        return String(source)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      };
+
+      /**
+       * 每三位默认加,格式化
+       * @type {string|number} x
+       */
+      this.addCommas = function(x) {
+        if (isNaN(x)) {
+          return '-';
+        }
+        x = (x + '').split('.');
+        return x[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,') + (x.length > 1 ? ('.' + x[1]) : '');
+      };
+    };
+
+    var formatUtil = new echartsFormat();
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center'
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 5,
+        y2: 2
+      }],
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            readOnly: false
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
+      //tooltip:{},
+      tooltip: {
+        formatter: function(info) {
+          var value = info.value;
+          var treePathInfo = info.treePathInfo;
+          var treePath = [];
+
+          for (var i = 1; i < treePathInfo.length; i++) {
+            treePath.push(treePathInfo[i].name);
+          }
+
+          //return [
+          //  '<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+          //  Data.lastColName + ': ' + formatUtil.addCommas(value),
+          //].join('');
+          return treePath.join('/') + '<br>' + Data.lastColName + ': ' + value;
+        }
+      },
+      series: Data.series
+    };
+
+    return outData;
+  };
+
+
   var Data;
   var getOption = function(objRequest) {
     Data = convertData(objRequest);
@@ -1346,6 +1579,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'parallel': //平行坐标系
         outData = getParallelOption(objRequest);
+        break;
+      case 'treemap': //树形图
+        outData = getTreeMapOption(objRequest);
         break;
     }
 
