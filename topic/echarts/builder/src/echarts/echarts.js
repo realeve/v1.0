@@ -818,6 +818,8 @@ define(function (require) {
             chartView.__alive = true;
             chartView.render(seriesModel, ecModel, api, payload);
 
+            chartView.group.silent = !!seriesModel.get('silent');
+
             updateZ(seriesModel, chartView);
         }, this);
 
@@ -847,6 +849,10 @@ define(function (require) {
                     params.event = e;
                     params.type = eveName;
                     this.trigger(eveName, params);
+                }
+                // If element has custom eventData of components
+                else if (el && el.eventData) {
+                    this.trigger(eveName, el.eventData);
                 }
             }, this);
         }, this);
@@ -964,9 +970,9 @@ define(function (require) {
         /**
          * @type {number}
          */
-        version: '3.1.6',
+        version: '3.1.7',
         dependencies: {
-            zrender: '3.0.7'
+            zrender: '3.0.8'
         }
     };
 
