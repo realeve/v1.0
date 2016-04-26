@@ -118,26 +118,27 @@ var PaperParam = function() {
 
 	$('input[name="Reel_Code"]').on('blur', function(event) {
 		if ($(this).val().length > 1 && $('select[name="Prod_id"]').val() !== '-1') {
-			loadHisData();
-		}
-		if ($('.portlet button[type="submit"]').text().trim() == '更新'){
+			if (loadHisData());
+			$('.portlet button[type="submit"]').text('更新');
+			$('.amounts h4').html("<strong>评价总分:</strong> " + calcScore());
+		} else if ($('.portlet button[type="submit"]').text().trim() == '更新') {
 			//将上次载入的轴号记录
-			if($(this).data('reelcode') != $(this).val()){
+			if ($(this).data('reelcode') != $(this).val()) {
 				$('.portlet button[type="submit"]').text('提交');
 			}
 		}
 	});
 
 	function loadHisData() {
-		var Reel_Code = $('select[name="Prod_id"]').val()+$('input[name="Reel_Code"]').val();
+		var Reel_Code = $('select[name="Prod_id"]').val() + $('input[name="Reel_Code"]').val();
 		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=33&M=0&r=" + Reel_Code;
 		var Data = ReadData(strUrl);
 		//bsTips(JSON.stringify(Data));
 		if (Data.rows === "0") {
-			return;
+			return 0;
 		}
 		//将上次载入的轴号记录
-		$('input[name="Reel_Code"]').data('reelcode',Reel_Code);
+		$('input[name="Reel_Code"]').data('reelcode', Reel_Code);
 		Data.header.map(function(elem) {
 			var keys = elem.title;
 			//$('form input.form-control[name="'+ keys +'"], form select.form-control[name="'+ keys +'"]').val(Data.data[0][keys]);
@@ -160,6 +161,7 @@ var PaperParam = function() {
 		$('#checkbox2').iCheck('uncheck');
 		$('.normalPara input').attr('disabled', 'true');
 		$('.normalParaEdit').show();
+		return 1;
 	}
 
 	function refreshData() {
@@ -275,7 +277,7 @@ var PaperParam = function() {
 
 	function validateBeforeSubmit() {
 		var iKey, curVal, isNormal = 1;
-		var scoreSheet = (GetSelect2Text('Prod_id') === '103-G-7T') ? stdScore['9607T'] : stdScore['normal'];
+		var scoreSheet = (GetSelect2Text('Prod_id') === '103-G-7T') ? stdScore['9607T'] : ((GetSelect2Text('Prod_id') === '103-G-2A') ? stdScore['9602A'] : stdScore['normal']);
 		$('.normalPara input[type="text"]:enabled').each(function(index, el) {
 			iKey = $(this).attr('name');
 			curVal = $(this).val();
@@ -375,7 +377,7 @@ var PaperParam = function() {
 			var iData = getFormData('theForm');
 			iData.tbl = TBL.PHYSIC;
 			iData.class_id = GetRadioChecked('class_id');
-			iData.score = calcScore(1);
+			iData.score = calcScore(0);
 			iData.utf2gbk = ['remark'];
 			iData.record_Time = today(1);
 			iData.class_id = GetiCheckChecked('class_id');

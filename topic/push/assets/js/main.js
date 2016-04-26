@@ -157,17 +157,18 @@
 
 					$.each(dataProdt.prod, function(index, elem) {
 						var preStr;
-						var delta = dataProdt['data'][elem]['lastDay'] - dataProdt['data'][elem]['theMonth'];
-						delta = delta.toFixed(2);
-						if (delta > 0) {
-							preStr = "↑" + delta;
-						} else if (delta == 0) {
-							preStr = "-";
-						} else {
-							preStr = "↓" + (-delta);
+						if (typeof dataProdt['data'][elem]['lastDay'] != 'undefined') {
+							var delta = dataProdt['data'][elem]['lastDay'] - dataProdt['data'][elem]['theMonth'];
+							delta = delta.toFixed(2);
+							if (delta > 0) {
+								preStr = "↑" + delta;
+							} else if (delta == 0) {
+								preStr = "-";
+							} else {
+								preStr = "↓" + (-delta);
+							}
+							lastDay += elem + " : " + dataProdt['data'][elem]['lastDay'] + " (" + preStr + "%);\n";
 						}
-						lastDay += elem + " : " + dataProdt['data'][elem]['lastDay'] + " (" + preStr + "%);\n";
-
 					});
 					msg = '昨日(' + dateName + lastDay; // + theMonth;
 					msg += '[(点击此处查看详情)|http://10.8.2.133/MonthStatic.asp]';
