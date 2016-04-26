@@ -120,33 +120,40 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
     }
     /**
-     * [getMinMax 获取多维数组指定列最小值/最大值]
+     * [getMinMax 获取多维数组指定列最小值/最大值(四舍五入至整数)]
      * @param  {[type]} data [多维数组]
      * @param  {[type]} id   [第几列]
      * @return {[type]} obj     [最小值最大值]
      */
-
+    //采用排序算法，需要对所有数据排序，仅取极值
     function getMinMax(data, id) {
-      var res = [];
+      var min = data[0][id],
+        max = data[0][id];
+      var curData;
       data.map(function(elem, index) {
-        res[index] = elem[id];
+        curData = Number.parseFloat(elem[id]);
+        if (curData < min) {
+          min = curData;
+        } else if (curData > max) {
+          max = curData;
+        }
+
       });
-      res = res.sort(sortNumber);
       return {
-        "min": Math.floor(res[0]).toFixed(0),
-        "max": Math.ceil(res[res.length - 1]).toFixed(0)
+        "min": Math.floor(min).toFixed(0),
+        "max": Math.ceil(max).toFixed(0)
       };
     }
 
     /**
      * [anayDataCategory 分析一维数组中哪些列是类目轴/非数值型]
-     * @param  {[type]} data [description]
+     * @param  {[type]} arr [description]
      * @return {[type]}      [description]
      */
 
-    function anayDataCategory(data) {
+    function anayDataCategory(arr) {
       var res = [];
-      data.map(function(elem, index) {
+      arr.map(function(elem, index) {
         if (isNaN(elem)) { //如果是类目轴
           res.push(index);
         }
@@ -602,9 +609,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
         //除了最后一列外，全部集合至legend中
         var legend = [];
-        Data.header.map(function(elem) {
-          legend.push(elem.title);
-        });
+        for (var i = 0; i < Data.header.length - 1; i++) {
+          legend.push(Data.header[i].title);
+        }
 
         NewData['legend'] = {
           "orient": 'vertical',
@@ -999,6 +1006,109 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       return arrTree;
     }
 
+    /**
+     * [getRadarSeriesData 将arr转为radarMap的Series数据]
+     * @param  {[type]} arr [arr]
+     * @return {[obj]}  
+     */
+    function getRadarSeriesData(arr) {
+      var res = {};
+      arr.map(function(elem) {
+        //如果不存在，先置为空数组
+        if (isNaN(res[elem[0]])) {
+          res[elem[0]] = [];
+        }
+        //res[elem[0]].push(elem.slice(1, elem.length));
+        var arrData = [];
+        for (var i = 1; i < elem.length; i++) {
+          arrData.push(Number.parseFloat(elem[i]).toFixed(2));
+        };
+        res[elem[0]].push(arrData);
+      })
+      return res;
+    }
+
+    /**
+     * [convertArr2RadarMapObj 数组转雷达图数据结构]
+     * @param  {[obj]} arr [数组结构]
+     * @return {[type]}     [description]
+     */
+    function convertArr2RadarMapObj(objData) {
+      var radarObj = {
+        radarIndicator: [],
+        series: [],
+        legend: {}
+      };
+      var bShowLegend = 0;
+      //legend;
+      var arrCategory = anayDataCategory(objData.data[0]);
+      if (arrCategory.length > 0 && 0 === arrCategory[0]) {
+        radarObj.legend = {
+          data: getUniData(objData.data, 0),
+          orient: 'vertical',
+          left: 'left',
+        };
+        bShowLegend = 1;
+      }
+
+      //indicator
+      for (var i = bShowLegend; i < objData.cols; i++) {
+        //获取第i列的min/max值
+        var dataRange = getMinMax(objData.data, i);
+        dataRange.max = dataRange.max * 1.1; //最大值范围比当前值要大
+        radarObj.radarIndicator.push({
+          name: objData.header[i].title,
+          max: dataRange.max.toFixed(0)
+        })
+      }
+
+      //series
+      if (bShowLegend) {
+        var radarSeries = getRadarSeriesData(objData.data);
+        //var j = 0;
+        for (var key in radarSeries) {
+          //radarObj.series[j] = objSeries;
+          //radarObj.series[j].name = key;
+          //radarObj.series[j].data = radarSeries[key];
+          radarObj.series.push({
+            name: key,
+            type: 'radar',
+            symbol: 'none',
+            areaStyle: {
+              normal: {
+                opacity: 0.3
+              }
+            },
+            lineStyle: {
+              normal: {
+                width: 1,
+                opacity: 0.5
+              }
+            },
+            data: radarSeries[key]
+          });
+        }
+      } else {
+        radarObj.series.push({
+          name: objData.title,
+          type: 'radar',
+          symbol: 'none',
+          areaStyle: {
+            normal: {
+              opacity: 0.3
+            }
+          },
+          lineStyle: {
+            normal: {
+              width: 1,
+              opacity: 0.5
+            }
+          },
+          data: objData.data
+        });
+      }
+      return radarObj;
+    }
 
     function convertParallelData(objRequest) {
       var Data = getJsonFromUrl(objRequest.url);
@@ -1030,7 +1140,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           itemGap: 20,
           x: '10',
           top: '20',
-          width:'600',
+          width: '500',
           textStyle: {
             color: '#aaa',
             fontSize: 14
@@ -1062,7 +1172,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
 
       var dimMinMax = getMinMax(Data.data, objRequest.dimension);
-
+      console.log(dimMinMax);
       NewData['parallelAxis'][objRequest.dimension - bShowLegend].max = dimMinMax.max;
       NewData['parallelAxis'][objRequest.dimension - bShowLegend].min = dimMinMax.min;
 
@@ -1137,17 +1247,24 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           data: convertArr2TreeMapObj(Data.data)
         }]
       };
+      return NewData;
+    }
 
-      //设置系列颜色，解除无Legend时颜色显示不正常的问题
-      /*var colorNums = objRequest.color.length;
-      NewData.series[0].data.map(function(elem, index) {
-        NewData.series[0].data[index].itemStyle = {
-          "normal": {
-            "color": objRequest.color[index % colorNums]
-          }
-        };
-      })*/
-
+    //雷达图
+    function convertRadarMapData(objRequest) {
+      var Data = getJsonFromUrl(objRequest.url);
+      if (0 === Data.rows || Data.cols < 3) {
+        return false;
+      }
+      var radarObj = convertArr2RadarMapObj(Data);
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        radarIndicator: radarObj.radarIndicator,
+        series: radarObj.series,
+        legend: radarObj.legend
+      };
       return NewData;
     }
 
@@ -1173,6 +1290,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'treemap':
         returnData = convertTreeMapData(objRes);
+        break;
+      case 'radar':
+        returnData = convertRadarMapData(objRes);
         break;
     }
     return returnData;
@@ -1458,9 +1578,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         }
       },
       parallel: {
-        left: '30',
-        right: '30',
-        top: 110,
+        left: '50',
+        right: '50',
+        top: 120,
         parallelAxisDefault: {
           type: 'value',
           nameLocation: 'start',
@@ -1575,6 +1695,60 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     return outData;
   };
 
+  var getRadarMapOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center'
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 5,
+        y2: 2
+      }],
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            readOnly: false
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
+      tooltip: {},
+      legend: Data.legend,
+      radar: {
+        indicator: Data.radarIndicator,
+        shape: objRequest.shape,
+        name: {
+            textStyle: {
+                color: '#555'
+            }
+        },        
+        splitLine: {
+            lineStyle: {
+                color: '#bbb'
+            }
+        },
+        center: ['50%', '58%'],
+        radius: '75%',
+        splitArea: {
+          show: false
+        }
+      },
+      series: Data.series
+    };
+    return outData;
+  };
+
 
   var Data;
   var getOption = function(objRequest) {
@@ -1599,6 +1773,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'treemap': //树形图
         outData = getTreeMapOption(objRequest);
+        break;
+      case 'radar': //雷达图
+        outData = getRadarMapOption(objRequest);
         break;
     }
 
