@@ -415,6 +415,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
             "type": objRequest.type,
             "data": iConvData.boxData,
             "tooltip": {
+              backgroundColor: '#009688',
               formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
             }
           };
@@ -457,6 +458,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
+            backgroundColor: '#009688',
             formatter: boxFormatter
           }
         };
@@ -486,6 +488,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
+            backgroundColor: '#009688',
             formatter: boxFormatter
           }
         };
@@ -1203,13 +1206,15 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           itemStyle: {
             normal: {
               borderWidth: 0,
-              gapWidth: 3
+              gapWidth: 3,
+              borderColor: 'black'
             }
           }
         }, {
           itemStyle: {
             normal: {
-              gapWidth: 2
+              gapWidth: 2,
+              borderColor: 'black'
             }
           }
         }, {
@@ -1217,7 +1222,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           itemStyle: {
             normal: {
               gapWidth: 1,
-              borderColorSaturation: 1
+              //borderColorSaturation: 1,
+              borderColor: 'black'
             }
           }
         }];
@@ -1226,7 +1232,6 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         title: Data.title,
         subTitle: Data.source,
         rows: Data.rows,
-        lastColName: Data.header[Data.cols - 1].title,
         series: [{
           name: Data.header[Data.cols - 1].title,
           type: objRequest.type,
@@ -1240,7 +1245,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           top: 55,
           itemStyle: {
             normal: {
-              borderColor: '#fff'
+              borderColor: 'black'
             }
           },
           levels: getLevelOption(),
@@ -1350,6 +1355,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       },
       calculable: true,
       tooltip: {
+        backgroundColor: '#009688',
         trigger: (objRequest.type == 'boxplot') ? 'item' : 'axis'
       },
       dataZoom: [{
@@ -1458,6 +1464,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         y2: 5
       }],
       tooltip: {
+        backgroundColor: '#009688',
         trigger: 'item',
         formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
@@ -1671,8 +1678,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           saveAsImage: {}
         }
       },
-      //tooltip:{},
       tooltip: {
+        backgroundColor: '#009688',
         formatter: function(info) {
           var value = info.value;
           var treePathInfo = info.treePathInfo;
@@ -1684,9 +1691,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
           //return [
           //  '<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
-          //  Data.lastColName + ': ' + formatUtil.addCommas(value),
+          //  treePathInfo[0].name + ': ' + formatUtil.addCommas(value),
           //].join('');
-          return treePath.join('/') + '<br>' + Data.lastColName + ': ' + value;
+          return treePath.join('/') + '<br>' + treePathInfo[0].name + ': ' + value;
         }
       },
       series: Data.series
@@ -1723,20 +1730,20 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           saveAsImage: {}
         }
       },
-      tooltip: {},
+      tooltip: {backgroundColor: '#009688',},
       legend: Data.legend,
       radar: {
         indicator: Data.radarIndicator,
         shape: objRequest.shape,
         name: {
-            textStyle: {
-                color: '#555'
-            }
-        },        
+          textStyle: {
+            color: '#555'
+          }
+        },
         splitLine: {
-            lineStyle: {
-                color: '#bbb'
-            }
+          lineStyle: {
+            color: '#bbb'
+          }
         },
         center: ['50%', '58%'],
         radius: '75%',

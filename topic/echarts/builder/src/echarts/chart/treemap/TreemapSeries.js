@@ -180,7 +180,8 @@ define(function(require) {
             var params = SeriesModel.prototype.getDataParams.apply(this, arguments);
 
             var data = this.getData();
-            var node = data.tree.getNodeByDataIndex(dataIndex);
+            //var node = data.tree.getNodeByDataIndex(dataIndex);
+            var node = data.tree.getNodeByDataIndex(dataIndex-1);
             var treePathInfo = params.treePathInfo = [];
 
             while (node) {

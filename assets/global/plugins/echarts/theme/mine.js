@@ -57,12 +57,12 @@ var curTheme = {
     },
 
     // 提示框
-    tooltip: {
+    /*tooltip: {
         backgroundColor: 'rgba(61,61,61,0.8)',
         borderColor: 'rgb(121,183,230)',
-        borderRadius: 4,
-        borderWidth: 0,
-        padding: 10,
+        //borderRadius: 4,
+        //borderWidth: 0,
+        //padding: 10,
         axisPointer: { // 坐标轴指示器，坐标轴触发有效
             type: 'line', // 默认为直线，可选为：'line' | 'shadow'
             lineStyle: { // 直线指示器样式设置
@@ -81,7 +81,7 @@ var curTheme = {
             color: '#eee',
             fontSize: 12
         },
-    },
+    },*/
 
     // 区域缩放控制器
     /*dataZoom: {

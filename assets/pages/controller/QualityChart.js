@@ -92,7 +92,7 @@
            "circle": (getUrlParam('circle') === null) ? ['0'] : getUrlParam('circle').split(','),
            "roseType": (getUrlParam('rose') === null) ? ['0'] : getUrlParam('rose').split(','),
            "dimension": (getUrlParam('dimension') === null) ? ['0'] : getUrlParam('dimension').split(','),
-           "squareRatio":(getUrlParam('squareratio') === null) ? ['0.618'] : getUrlParam('squareratio').split(','),
+           "squareRatio":(getUrlParam('squareratio') === null) ? ['1.618'] : getUrlParam('squareratio').split(','),
            "shape": (getUrlParam('shape') === null) ? ['polygon'] : getUrlParam('shape').split(',')
          };
          for (i = 0; i < iChartNums; i++) {

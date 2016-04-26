@@ -76,6 +76,7 @@
 								<tr><td>smooth</td><td>线型图专用，是否平滑曲线</td><td>0,1</td></tr>
 								<tr><td>dimension</td><td>平行坐标系专用，默认以第几维数据区分线条颜色</td><td>默认1</td></tr>
 								<tr><td>shape</td><td>雷达图专用，雷达形状，默认为多边形(polygon)，可设为环形(circle)</td><td>(默认)polygon,circle</td></tr>
+								<tr><td>squareratio</td><td>树形图专用，每个方格的长宽比</td><td>(默认)1.618</td></tr>
 
 								<tr><td>reverse</td><td>是否反转X/Y轴<br>对于柱状图/箱形图，变换X/Y轴后图像有不同的表现，例如柱状图交换后成为了条形图</td><td>0,1</td></tr>
 								<tr><td>markline</td><td>标注线（平均值）</td><td>0,1</td></tr>

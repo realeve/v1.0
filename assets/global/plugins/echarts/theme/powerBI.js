@@ -46,13 +46,13 @@ define(function() {
         },
 
         // 提示框
-        tooltip: {
+        /*tooltip: {
             //backgroundColor: 'rgba(61,61,61,0.8)',
             //borderColor: 'rgb(121,183,230)',
             backgroundColor: '#009688',
-            borderRadius: 4,
-            borderWidth: 0,
-            padding: 10,
+            //borderRadius: 4,
+            //borderWidth: 0,
+           // padding: 10,
             trigger: 'axis',
             //showDelay: 0,
             axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -74,7 +74,7 @@ define(function() {
                 color: '#eee',
                 fontSize: 12
             }
-        },
+        },*/
 
         // 区域缩放控制器
         /*dataZoom: {
