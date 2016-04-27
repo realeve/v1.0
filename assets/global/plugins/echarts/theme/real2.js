@@ -82,7 +82,10 @@ define(function() {
             fillerColor: 'rgba(98,201,145,0.4)', // 填充颜色
             handleColor: 'rgb(38,185,139)' // 手柄颜色
         },*/
-
+        
+        tooltip: {
+            "trigger": "item"
+        },
         grid: {
             borderWidth: 0,
             y: 90,
@@ -191,6 +194,16 @@ define(function() {
                     label: {
                         show: false
                     }
+                }
+            },
+            lineStyle: {
+                normal: {
+                    width: 8,
+                    type: 'solid',
+                    shadowColor: 'rgba(0,0,0,0.3)',
+                    shadowBlur: 5,
+                    shadowOffsetX: 5,
+                    shadowOffsetY: 5
                 }
             },
             showAllSymbol: true

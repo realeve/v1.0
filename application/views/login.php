@@ -68,7 +68,7 @@
 		</div>
 		<div class="form-actions">
 			<button type="submit" class="btn btn-success uppercase">登录</button>
-			<label class="rememberme check">
+			<label class="rememberme">
 			<input type="checkbox" name="remember" checked="true" name="tnc"/>记住密码 </label>
 			<a href="javascript:;" id="forget-password" class="forget-password">忘记密码?</a>
 		</div>

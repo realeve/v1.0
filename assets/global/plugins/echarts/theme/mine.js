@@ -55,6 +55,9 @@ var curTheme = {
     toolbox: {
         color: ['rgb(38,185,139)', 'rgb(38,185,139)', 'rgb(38,185,139)', 'rgb(38,185,139)'],
     },
+    tooltip: {
+        "trigger": "item"
+    },
 
     // 提示框
     /*tooltip: {
@@ -202,6 +205,16 @@ var curTheme = {
                 label: {
                     show: false
                 }
+            }
+        },
+        lineStyle: {
+            normal: {
+                width: 8,
+                type: 'solid',
+                shadowColor: 'rgba(0,0,0,0.3)',
+                shadowBlur: 5,
+                shadowOffsetX: 5,
+                shadowOffsetY: 5
             }
         },
         showAllSymbol: true

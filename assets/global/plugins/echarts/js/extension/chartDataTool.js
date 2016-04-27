@@ -229,12 +229,26 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
             "data": NewData.yAxis[NewData.legend[i]],
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
-            "itemStyle": dataStyle_iT
+            "itemStyle": dataStyle_iT,
+            "symbolSize": 16
           };
           //是否为面积图
           if (objRequest.lineAreaStyle) {
             NewData['series'][i].areaStyle = {
-              "normal": {}
+              "normal": {
+                "opacity": 0.4
+              }
+            };
+            //NewData['series'][i].symbolSize = 0;
+            NewData['series'][i].lineStyle = {
+              normal: {
+                width: 0,
+                type: 'solid',
+                shadowColor: 'rgba(0,0,0,0)',
+                shadowBlur: 0,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0
+              }
             };
           }
 
@@ -248,8 +262,11 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           }
           //线型图隐藏文本标签
           if (objRequest.type == 'line') {
-            NewData['series'][i].itemStyle.normal = {
-              show: false
+            NewData['series'][i].label = {
+              normal: {
+                show: false,
+                position: 'top'
+              }
             };
           }
         }
@@ -281,13 +298,25 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
-          "itemStyle": dataStyle_iT
+          "itemStyle": dataStyle_iT,
+          "symbolSize": 16
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
           NewData['series'][0].areaStyle = {
             "normal": {
-
+              "opacity": 0.4
+            }
+          };
+          //NewData['series'][0].symbolSize = 0;
+          NewData['series'][0].lineStyle = {
+            normal: {
+              width: 0,
+              type: 'solid',
+              shadowColor: 'rgba(0,0,0,0)',
+              shadowBlur: 0,
+              shadowOffsetX: 0,
+              shadowOffsetY: 0
             }
           };
         }
@@ -299,6 +328,15 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           if (objRequest.markPoint) {
             NewData['series'][0].markPoint = MPtStyleBoth;
           }
+        }
+        //线型图隐藏文本标签
+        if (objRequest.type == 'line') {
+          NewData['series'][0].label = {
+            normal: {
+              show: false,
+              position: 'top'
+            }
+          };
         }
 
       } else if (Data.cols == 1) {
@@ -326,12 +364,26 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
-          "itemStyle": dataStyle_iT
+          "itemStyle": dataStyle_iT,
+          "symbolSize": 16
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
           NewData['series'][0].areaStyle = {
-            "normal": {}
+            "normal": {
+              "opacity": 0.4
+            }
+          };
+          //NewData['series'][0].symbolSize = 0;
+          NewData['series'][0].lineStyle = {
+            normal: {
+              width: 0,
+              type: 'solid',
+              shadowColor: 'rgba(0,0,0,0)',
+              shadowBlur: 0,
+              shadowOffsetX: 0,
+              shadowOffsetY: 0
+            }
           };
         }
 
@@ -342,6 +394,15 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           if (objRequest.markPoint) {
             NewData['series'][0].markPoint = MPtStyleBoth;
           }
+        }
+        //线型图隐藏文本标签
+        if (objRequest.type == 'line') {
+          NewData['series'][0].label = {
+            normal: {
+              show: false,
+              position: 'top'
+            }
+          };
         }
       }
 
@@ -1273,6 +1334,81 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       return NewData;
     }
 
+    /**
+     * [getScatterSeriesData 数据接口数据转散点图数据结构]
+     * @param  {[type]} arr [输入多维数组]
+     * @return {[type]}     [description]
+     */
+    function getScatterSeriesData(arr, scale) {
+      var res = {};
+      arr.data.map(function(elem) {
+        //如果不存在，先置为空数组
+        if (typeof res[elem[0]] == 'undefined') {
+          res[elem[0]] = {
+            name: elem[0],
+            type: 'scatter',
+            symbolSize: function(val) {
+              var scSize = scale * val[1];
+              return scSize.toFixed(0);
+            },
+            data: []
+          };
+        }
+        var arrData = [];
+        for (var i = 1; i < elem.length; i++) {
+          arrData.push(Number.parseFloat(elem[i]).toFixed(2));
+        }
+        res[elem[0]].data.push(arrData);
+      });
+
+      var arrSeries = [];
+      for (var k in res) {
+        arrSeries.push(res[k]);
+      }
+      return arrSeries;
+    }
+
+    //散点图
+    function convertScatterData(objRequest) {
+
+      var Data = getJsonFromUrl(objRequest.url);
+
+      var haveLegendCol = isNaN(Data.data[0][0]);
+
+      if (0 === Data.rows || 1 === Data.cols || (haveLegendCol && Data.cols <= 2)) {
+        return false;
+      }
+
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        xAxisName: haveLegendCol ? Data.header[1].title : Data.header[0].title,
+        yAxisName: haveLegendCol ? Data.header[2].title : Data.header[1].title
+      };
+      if (haveLegendCol) {
+        NewData.legend = {
+          data: getUniData(Data.data, 0),
+          left: 'left'
+        };
+        var objMinMax = getMinMax(Data.data, 2);
+        var scale = objRequest.scatterSize / objMinMax.max;
+        NewData.series = getScatterSeriesData(Data, scale);
+
+      } else {
+        var objMinMax = getMinMax(Data.data, 1);
+        var scale = objRequest.scatterSize / objMinMax.max;
+        NewData.series = {
+          type: 'scatter',
+          symbolSize: function(val) {
+            var scSize = scale * val[1];
+            return scSize.toFixed(0);
+          },
+          data: Data.data
+        };
+      }
+      return NewData;
+    }
 
     var returnData;
     switch (objRes.type) {
@@ -1298,6 +1434,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'radar':
         returnData = convertRadarMapData(objRes);
+        break;
+      case 'scatter':
+        returnData = convertScatterData(objRes);
         break;
     }
     return returnData;
@@ -1356,7 +1495,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       calculable: true,
       tooltip: {
         backgroundColor: '#009688',
-        trigger: (objRequest.type == 'boxplot') ? 'item' : 'axis'
+        trigger: 'item' //(objRequest.type == 'boxplot') ? 'item' : 'axis'
       },
       dataZoom: [{
         type: 'inside',
@@ -1730,7 +1869,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           saveAsImage: {}
         }
       },
-      tooltip: {backgroundColor: '#009688',},
+      tooltip: {
+        backgroundColor: '#009688',
+      },
       legend: Data.legend,
       radar: {
         indicator: Data.radarIndicator,
@@ -1756,6 +1897,137 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     return outData;
   };
 
+
+  var getScatterOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center'
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 5,
+        y2: 2
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          mark: {
+            show: true
+          },
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          dataZoom: {
+            show: true
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function(params) {
+          if (params.value.length > 1) {
+            return params.seriesName + ' :<br/>' + params.value[0] + ' , ' + params.value[1] + ' ';
+          } else {
+            return params.seriesName + ' :<br/>' + params.name + ' : ' + params.value;
+          }
+        },
+        axisPointer: {
+          show: true,
+          type: 'cross',
+          lineStyle: {
+            type: 'dashed',
+            width: 1
+          }
+        }
+      },
+      dataZoom: [{
+        type: 'inside',
+        realtime: true,
+        start: 0,
+        end: 100
+      }, {
+        show: false,
+        realtime: true,
+        start: 0,
+        end: 100,
+        height: 20,
+        y2: 25
+      }, {
+        type: 'inside',
+        yAxisIndex: 0,
+        realtime: true,
+        start: 0,
+        end: 100
+      }, {
+        show: false,
+        yAxisIndex: 0,
+        filterMode: 'empty',
+        width: 12,
+        height: '70%',
+        handleSize: 8,
+        showDataShadow: false,
+        right: 5
+      }],
+      xAxis: [{
+        name: Data.xAxisName,
+        type: 'value',
+        axisTick: {
+          show: false
+        },
+        boundaryGap: false,
+        scale: true,
+        axisLabel: {
+          show: true
+        },
+        axisLine: {
+          show: true
+        }
+      }],
+      yAxis: [{
+        name: Data.yAxisName,
+        type: 'value',
+        scale: true,
+        position: 'left',
+        axisLabel: {
+          show: true,
+          interval: 'auto',
+          margin: 8
+        },
+        axisTick: {
+          show: false
+        },
+        axisLine: {
+          show: true
+        }
+      }],
+      legend: Data.legend,
+      series: Data.series
+    };
+    return outData;
+  };
 
   var Data;
   var getOption = function(objRequest) {
@@ -1783,6 +2055,9 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'radar': //雷达图
         outData = getRadarMapOption(objRequest);
+        break;
+      case 'scatter': //散点图
+        outData = getScatterOption(objRequest);
         break;
     }
 
