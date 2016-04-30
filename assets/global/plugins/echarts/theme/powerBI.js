@@ -10,7 +10,7 @@ define(function() {
             '#fdab89', '#b687ac', '#28738a', '#a78f8f', '#168980',
             '#293537', '#bb4a4a', '#b59525', '#475052', '#6a9fb0'
         ],
-
+        animationDuration: 1500,
         // 图表标题
         title: {
             itemGap: 8,

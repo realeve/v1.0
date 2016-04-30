@@ -7,7 +7,7 @@ define({
         '#bef0bb', '#99e2vb', '#94f8a8', '#7de5b8', '#4dfb70'
     ],
 
-
+        animationDuration: 1500,
 
     // 值域
     dataRange: {

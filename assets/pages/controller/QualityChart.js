@@ -61,8 +61,9 @@
          }
          var dom = $('.eCharts-main');
          var width = domParent.width();
+         var height = width / ((dom.length === 1) ? 2 : 2.5);
          dom.css('width', width);
-         dom.css('height', width / ((dom.length === 1) ? 2 : 2.5));
+         dom.css('height', height);
        }
 
        function showChart(curTheme, url) {
@@ -94,7 +95,8 @@
            "dimension": (getUrlParam('dimension') === null) ? ['0'] : getUrlParam('dimension').split(','),
            "squareRatio":(getUrlParam('squareratio') === null) ? ['1.618'] : getUrlParam('squareratio').split(','),
            "shape": (getUrlParam('shape') === null) ? ['polygon'] : getUrlParam('shape').split(','),
-           "scatterSize":(getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(',')
+           "scatterSize":(getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(','),
+           "force":(getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -116,9 +118,18 @@
              "dimension": Number.parseInt(handleParam(objList.dimension, i, '1'), 10) - 1,
              "squareRatio": Number.parseFloat(handleParam(objList.squareRatio, i, '1.618')),
              "shape": handleParam(objList.shape, i, "polygon"),
-             "scatterSize": Number.parseFloat(handleParam(objList.scatterSize, i, '20'))
+             "scatterSize": Number.parseFloat(handleParam(objList.scatterSize, i, '20')),
+             "force": handleParam(objList.force, i, "1")
            };
            //console.log(objRequest);
+           //桑基图高度增加一倍
+
+           if(objRequest.type == 'sankey'){
+             var dom = $("#eChart-main" + i);
+             var width = $('.portlet-body.form').width();
+             var height = width/1.5;
+             dom.css('height', height);            
+           }
 
            //数据处理
            if (typeof curTheme.valueAxis !== 'undefined') {
@@ -149,7 +160,7 @@
          }
          var themeSelector = $(".actions select");
          var defaultTheme, str = "";
-         var themeList = ['default', 'real2', 'real', 'powerBI', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
+         var themeList = ['default', 'real2', 'real', 'powerBI','darkColor','whiteDark','magzin','magzin2','colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
          themeList.map(function(elem, index) {
            str += '<option name="' + elem + '">' + elem + '</option>';
          });
@@ -251,7 +262,8 @@
            var domParent = $('.portlet-body.form');
            var dom = $('.eCharts-main');
            var width = domParent.width();
-           dom.css('width', width).css('height', width / ((dom.length === 1) ? 2 : 2.5));
+           var height = width / ((dom.length === 1) ? 2 : 2.5);
+           dom.css('width', width).css('height', height);
 
            for (i = 0; i < iChartNums; i++) {
              myChart[i].resize();

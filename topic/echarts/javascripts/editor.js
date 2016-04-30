@@ -67,7 +67,7 @@ function checkEditorIfToShow() {
 function disposeAndRun() {
 	gb.chart && gb.chart.dispose();
 	$("#theme-btn").val() || "default";
-	gb.chart = echarts.init($("#chart-panel")[0]), run(!0)
+	gb.chart = echarts.init($("#chart-panel")[0]/*,'dark'*/), run(!0)
 }
 
 function updateEchartsVersion() {

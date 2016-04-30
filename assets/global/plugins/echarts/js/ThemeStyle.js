@@ -17,7 +17,8 @@ var dataStyle_iL = {
 			show: true,
 			position: 'insideLeft',
 			formatter: '{c}%'
-		}
+		},
+		barBorderRadius:[4,4,0,0]
 	}
 };
 var dataStyle_iT = {
@@ -27,6 +28,7 @@ var dataStyle_iT = {
 			position: 'insideTop',
 			formatter: '{c}'
 		},
+		barBorderRadius:[4,4,0,0]
 		//areaStyle: {type: 'default'},
 	}
 };

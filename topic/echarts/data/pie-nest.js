@@ -17,7 +17,10 @@ option = {
 
             label: {
                 normal: {
-                    position: 'inner'
+                    position: 'inner',
+                    textStyle: {
+                        color:'#fff'
+                    }
                 }
             },
             labelLine: {
@@ -36,6 +39,13 @@ option = {
             type:'pie',
             radius: ['40%', '55%'],
 
+            label: {
+                normal: {
+                    textStyle: {
+                        color:'#333'
+                    }
+                }
+            },
             data:[
                 {value:335, name:'直达'},
                 {value:310, name:'邮件营销'},

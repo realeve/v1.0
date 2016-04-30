@@ -19,7 +19,7 @@
         log('ECharts is not Loaded');
         return;
     }
-    var contrastColor = '#eee';
+    var contrastColor = '#fafafa';
     var axisCommon = function () {
         return {
             axisLine: {
@@ -52,9 +52,17 @@
     };
 
     var colorPalette = ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'];
+    var colors= {
+            white: "#FFF",
+            whiteLight: "rgba(255, 255, 255, 0.2)",
+            whiteLighter: "rgba(255, 255, 255, 0.1)",
+            primary: "#556fb5",
+            primaryLight: "#889acb",
+            background:'#556'
+        };
     var theme = {
         color: colorPalette,
-        backgroundColor: '#333',
+        backgroundColor: '#40ab46',
         tooltip: {
             axisPointer: {
                 lineStyle: {

@@ -1,4 +1,4 @@
-(function (root, factory) {
+(function(root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['exports', 'echarts'], factory);
@@ -9,8 +9,8 @@
         // Browser globals
         factory({}, root.echarts);
     }
-}(this, function (exports, echarts) {
-    var log = function (msg) {
+}(this, function(exports, echarts) {
+    var log = function(msg) {
         if (typeof console !== 'undefined') {
             console && console.error && console.error(msg);
         }
@@ -19,8 +19,8 @@
         log('ECharts is not Loaded');
         return;
     }
-    var contrastColor = '#eee';
-    var axisCommon = function () {
+    var contrastColor = '#fafafa';
+    var axisCommon = function() {
         return {
             axisLine: {
                 lineStyle: {
@@ -51,43 +51,62 @@
         };
     };
 
-    var colorPalette = ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'];
+    //var colorPalette = ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'];
+    var colors = {
+        white: "#FFF",
+        white9: "rgba(255,255,255,0.9)",
+        white8: "rgba(255,255,255,0.8)",
+        white7: "rgba(255,255,255,0.7)",
+        white6: "rgba(255,255,255,0.6)",
+        white5: "rgba(255,255,255,0.5)",
+        white4: "rgba(255,255,255,0.4)",
+        white3: "rgba(255,255,255,0.3)",
+        whiteLight: "rgba(255, 255, 255, 0.2)",
+        whiteLighter: "rgba(255, 255, 255, 0.1)",
+        primary: "#556fb5",
+        primaryLight: "#889acb",
+        background: '#556',
+        dark: '#556'
+    };
+    var colorPalette = [colors.white7, colors.white6, colors.white5, colors.white4];
+    //var colorPalette = ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'];
     var theme = {
+        animationDuration: 1500,
         color: colorPalette,
-        backgroundColor: '#333',
+        backgroundColor: colors.background,
         tooltip: {
             axisPointer: {
                 lineStyle: {
-                    color: contrastColor
+                    color: colors.white
                 },
                 crossStyle: {
-                    color: contrastColor
+                    color: colors.white
                 }
             }
         },
         legend: {
             textStyle: {
-                color: contrastColor
+                color: colors.white
             }
         },
         textStyle: {
-            color: contrastColor
+            color: colors.white
         },
         title: {
             textStyle: {
-                color: contrastColor
+                color: colors.white
             }
         },
         toolbox: {
             iconStyle: {
                 normal: {
-                    borderColor: contrastColor
+                    borderColor: colors.white
                 }
             }
         },
         timeline: {
             lineStyle: {
-                color: contrastColor
+                color: colors.white
             },
             itemStyle: {
                 normal: {
@@ -97,14 +116,14 @@
             label: {
                 normal: {
                     textStyle: {
-                        color: contrastColor
+                        color: colors.white
                     }
                 }
             },
             controlStyle: {
                 normal: {
-                    color: contrastColor,
-                    borderColor: contrastColor
+                    color: colors.white,
+                    borderColor: colors.white
                 }
             }
         },
@@ -112,7 +131,13 @@
         logAxis: axisCommon(),
         valueAxis: axisCommon(),
         categoryAxis: axisCommon(),
-
+        label: {
+            normal: {
+                textStyle: {
+                    color: colors.dark
+                }
+            }
+        },
         line: {
             symbol: 'circle'
         },
@@ -122,7 +147,7 @@
         gauge: {
             title: {
                 textStyle: {
-                    color: contrastColor
+                    color: colors.white
                 }
             }
         }

@@ -6,7 +6,7 @@ define(function() {
             '#408829', '#68a54a', '#a9cba2', '#86b379',
             '#397b29', '#8abb6f', '#759c6a', '#bfd3b7'
         ],
-
+        animationDuration: 1500,
         // 图表标题
         title: {
             textStyle: {

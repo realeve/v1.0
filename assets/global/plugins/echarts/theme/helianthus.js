@@ -8,7 +8,7 @@ define(function() {
             '#E95569', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
             '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'
         ],
-
+        animationDuration: 1500,
         // 图表标题
         title: {
             backgroundColor: '#F2F2E6',

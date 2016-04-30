@@ -97,17 +97,27 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     }
     /**
      * [getUniData 返回arr多维数组中指定列index中不重复的数据]
-     * @param  {[type]} arr   [多维数组]
-     * @param  {[type]} index [第几列]
+     * @param  {[type]} data   [多维数组]
+     * @param  {[type]} id [判断第几列的非重复数据]
+     * @param  {[type]} legendData [有此参数时，只排列指定行等于该值的非重复项]
+     * @param  {[type]} legendIdx [指定第几行]
      * @return {[type]}       [不重复数据]
      */
 
-    function getUniData(data, id) {
+    function getUniData(data, id, legendData, legendIdx) {
       var res = [];
-      data.map(function(elem, index) {
-        res[index] = elem[id];
-      });
-      return UniqueData(res.sort(sortNumber));
+      if (typeof legendData == 'undefined') {
+        data.map(function(elem, index) {
+          res[index] = elem[id];
+        });
+      } else {
+        data.map(function(elem, index) {
+          if (elem[legendIdx] == legendData) {
+            res[index] = elem[id];
+          }
+        });
+      }
+      return UniqueData(res);
     }
 
     //多维矩阵行列转换
@@ -189,6 +199,17 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
+      var itemStyle = {
+        normal: {
+          label: {
+            show: true,
+            position: 'insideTop',
+            formatter: '{c}'
+          },
+          barBorderRadius: [4, 4, 0, 0]
+            //areaStyle: {type: 'default'},
+        }
+      };
 
       if (0 === Data.rows) {
         return NewData;
@@ -198,7 +219,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['yAxisTitle'] = Data.header[2].title;
 
         NewData['legend'] = getUniData(Data.data, 0);
-        NewData['xAxis'] = convertMatrixRowCol(Data.data, 1);
+        //NewData['xAxis'] = convertMatrixRowCol(Data.data, 1);
+        NewData['xAxis'] = getUniData(Data.data, 1);
         //NewData['yAxis'] = convertMatrixRowCol(Data.data, 2);
         NewData['yAxis'] = [];
 
@@ -226,11 +248,12 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
             "type": objRequest.type,
             "smooth": objRequest.smooth,
             "barMaxWidth": objRequest.barMaxWidth,
+            "barMinHeight": 10,
             "data": NewData.yAxis[NewData.legend[i]],
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
-            "itemStyle": dataStyle_iT,
-            "symbolSize": 16
+            "itemStyle": itemStyle,
+            "symbolSize": 10
           };
           //是否为面积图
           if (objRequest.lineAreaStyle) {
@@ -274,32 +297,25 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['xAxisTitle'] = Data.header[0].title;
         NewData['yAxisTitle'] = Data.header[1].title;
 
+        NewData['legend'] = [];
+        NewData['legend'][0] = NewData['yAxisTitle'];
+
 
         NewData['xAxis'] = convertMatrixRowCol(Data.data, 0);
         NewData['yAxis'] = convertMatrixRowCol(Data.data, 1);
 
-        /*NewData['yAxis'] = [];
-        //yAxis数据清零
-        for (i = 0; i < NewData.xAxis.length; i++) {
-          NewData['yAxis'][i] = '-';
-        }
-        for (i = 0; i < Data.rows; i++) {
-          NewData['yAxis'][i] = Number.parseFloat(Data.data[i][1]);
-        }*/
-
-        NewData['legend'] = [];
-        NewData['legend'][0] = NewData['yAxisTitle'];
         NewData['series'] = [];
         NewData['series'][0] = {
           "name": NewData['yAxisTitle'],
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
+          "barMinHeight": 10,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
-          "itemStyle": dataStyle_iT,
-          "symbolSize": 16
+          "itemStyle": itemStyle,
+          "symbolSize": 10
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
@@ -361,11 +377,12 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
+          "barMinHeight": 10,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
-          "itemStyle": dataStyle_iT,
-          "symbolSize": 16
+          "itemStyle": itemStyle,
+          "symbolSize": 10
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
@@ -413,7 +430,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
     function handleBoxPlotDataMinMax(plotData, arr) {
       for (var i = 0; i < arr.length; i++) {
-        arr[i].sort(sortNumber); //升序排序
+        arr[i].sort(); //升序排序
         plotData.boxData[i][0] = arr[i][0]; //最小值
         plotData.boxData[i][4] = arr[i][arr[i].length - 1]; //最大值
       }
@@ -1373,11 +1390,11 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
       var Data = getJsonFromUrl(objRequest.url);
 
-      var haveLegendCol = isNaN(Data.data[0][0]);
-
-      if (0 === Data.rows || 1 === Data.cols || (haveLegendCol && Data.cols <= 2)) {
+      if (0 === Data.rows || 1 === Data.cols || (Data.cols <= 2 && isNaN(Data.data[0][0]))) {
         return false;
       }
+
+      var haveLegendCol = isNaN(Data.data[0][0]);
 
       var NewData = {
         title: Data.title,
@@ -1410,6 +1427,215 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       return NewData;
     }
 
+    /**
+     * [getSankeySeriesData 数据接口数据转桑基图数据结构]
+     * @param  {[type]} arr [输入多维数组]
+     * @return {[type]}     [description]
+     */
+    function getSankeySeriesData(obj) {
+
+      var series = {
+        nodes: [],
+        links: [],
+        linkName: []
+      };
+      var sankeyData = {
+        nodes: [],
+        links: []
+      };
+
+      var len = obj.header.length;
+      //获取除最后一列之外所有列的Nodes，默认均为Category,此处不做数据类型校验
+      for (var i = 0; i < len - 1; i++) {
+        if (i == len - 2) {
+          series.linkName = series.nodes;
+        }
+        series.nodes = series.nodes.concat(getUniData(obj.data, i));
+      }
+      //构造links 的 obj
+      series.linkName.map(function(elem) {
+        series.links[elem] = {};
+      });
+
+      //处理数据为通用数组格式
+      obj.data.map(function(elem) {
+        for (var i = 0; i < len - 2; i++) {
+          if (isNaN(series.links[elem[i]][elem[i + 1]])) {
+            series.links[elem[i]][elem[i + 1]] = Number.parseFloat(elem[len - 1]);
+          } else {
+            series.links[elem[i]][elem[i + 1]] += Number.parseFloat(elem[len - 1]);
+          }
+        }
+      });
+
+      series.nodes.map(function(elem) {
+        sankeyData.nodes.push({
+          name: elem
+        });
+      });
+
+      for (var source in series.links) {
+        for (var target in series.links[source]) {
+          sankeyData.links.push({
+            source: source,
+            target: target,
+            value: series.links[source][target]
+          });
+        }
+      }
+
+      return sankeyData;
+    }
+
+    //桑基图
+    function convertSankeyData(objRequest) {
+
+      var Data = getJsonFromUrl(objRequest.url);
+      //必须3列以上
+      if (0 === Data.rows || Data.cols <= 2) {
+        return false;
+      }
+
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        series: getSankeySeriesData(Data)
+      };
+
+      return NewData;
+    }
+
+    /**
+     * [uniqueForceArr ForceGraph数组去重]
+     * @param  {[type]} source [待比较的对象]
+     * @param  {[type]} target [目标数组]
+     * @return {[type]}           [目标数组]
+     */
+    function uniqueForceArr(source, target) {
+      //字符串比较是否相等
+      var strSource = JSON.stringify(source);
+      var haveSameData = false;
+      var len = target.length;
+      for (var i = 0;
+        (i < len) && !haveSameData; i++) {
+        if (strSource == JSON.stringify(target[i])) {
+          haveSameData = true;
+        }
+      }
+      if (!haveSameData) {
+        target.push(source);
+      }
+      return target;
+    }
+
+    function getForceGraphSeriesData(obj) {
+
+      var series = {
+        nodes: [],
+        nodesName: [],
+        links: []
+      };
+      var forceData = {
+        categories: [],
+        nodes: [],
+        links: [],
+        legend: []
+      };
+      //类目编号
+      var categoryIdx = [];
+
+      var len = obj.header.length;
+      var nodeID = 0;
+
+      //计算不同列的数据大小
+      var scale = 90 / len;
+      var symbolSize = [];
+      for (var i = 0; i < len - 1; i++) {
+        var size = scale * (len - i);
+        symbolSize[i] = size.toFixed(0);
+      }
+
+      forceData.legend = getUniData(obj.data, 0);
+      forceData.legend.map(function(elem, catIdx) {
+        forceData.categories.push({
+          name: elem
+        });
+        categoryIdx[elem] = catIdx;
+
+        series.nodesName[catIdx] = [];
+        series.nodes[catIdx] = [];
+
+        //获取各类目轴对应的Nodes
+        for (var i = 0; i < len - 1; i++) {
+          var catData = getUniData(obj.data, i, elem, 0);
+          catData.map(function(nodeName, nodeIdx) {
+            series.nodes[catIdx][nodeName] = {
+              name: nodeName,
+              value: 0,
+              category: catIdx,
+              id: nodeID,
+              symbolSize: symbolSize[i]
+            };
+            nodeID++;
+          });
+        }
+
+      });
+
+      //处理数据为通用数组格式
+      obj.data.map(function(elem) {
+        for (var i = 0; i < len - 2; i++) {
+          var lgdIdx = categoryIdx[elem[0]];
+          var sourceName = elem[i];
+          var targetName = elem[i + 1];
+          //数据由 SQL Group By 查询所得，无重复数据，直接生成LINKS数据即可
+          series.links.push({
+            source: series.nodes[lgdIdx][sourceName].id,
+            target: series.nodes[lgdIdx][targetName].id
+          });
+          series.nodes[lgdIdx][sourceName].value += Number.parseFloat(elem[len - 1]);
+        }
+        //处理最后一列数据
+        series.nodes[categoryIdx[elem[0]]][elem[i]].value += Number.parseFloat(elem[len - 1]);
+      });
+
+      series.nodes.map(function(nodes) {
+        for (var key in nodes) {
+          forceData.nodes.push(
+            nodes[key]
+          );
+        }
+      });
+
+      //links 去重
+      forceData.links[0] = series.links[0];
+
+      series.links.map(function(elem) {
+        forceData.links = uniqueForceArr(elem, forceData.links);
+      });
+      return forceData;
+    }
+
+    //力导向布局图
+    function convertForceGraphData(objRequest) {
+
+      var Data = getJsonFromUrl(objRequest.url);
+      //必须3列以上
+      if (0 === Data.rows || Data.cols <= 2) {
+        return false;
+      }
+
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        series: getForceGraphSeriesData(Data)
+      };
+
+      return NewData;
+    }
+
     var returnData;
     switch (objRes.type) {
       case 'bar':
@@ -1437,6 +1663,12 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'scatter':
         returnData = convertScatterData(objRes);
+        break;
+      case 'sankey':
+        returnData = convertSankeyData(objRes);
+        break;
+      case 'graph':
+        returnData = convertForceGraphData(objRes);
         break;
     }
     return returnData;
@@ -1636,6 +1868,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       legend: Data.legend,
       series: Data.series
     };
+
     if (objRequest.type == 'funnel') {
 
       if (outData.series.length > 1) {
@@ -2029,6 +2262,149 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
     return outData;
   };
 
+
+  var getSankeyOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center'
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 5,
+        y2: 2
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+
+      },
+      series: {
+        type: objRequest.type,
+        data: Data.series.nodes,
+        links: Data.series.links,
+        layout: 'none',
+        itemStyle: {
+          normal: {
+            borderWidth: 1,
+            borderColor: '#aaa'
+          }
+        },
+        lineStyle: {
+          normal: {
+            curveness: 0.5
+          }
+        }
+      }
+    };
+    return outData;
+  };
+
+
+  var getForceGraphOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle,
+        x: 'center'
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 5,
+        y2: 2
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      legend: {
+        data: Data.series.legend,
+        x: 'center',
+        y: 70,
+        itemGap: 20,
+        textStyle: {
+          fontSize: 16,
+        }
+      },
+      tooltip: {},
+      series: {
+        name: "关系图",
+        type: objRequest.type,
+        layout: objRequest.force == '1' ? 'force' : 'circular',
+        label: {
+          normal: {
+            position: 'right',
+            formatter: '{b}'
+          }
+        },
+        draggable: true,
+        nodes: Data.series.nodes,
+        categories: Data.series.categories,
+        force: {
+          // initLayout: 'circular',
+          gravity: 0.07,
+          edgeLength: 100,
+          repulsion: 150
+        },
+        links: Data.series.links
+      }
+    };
+    return outData;
+  };
+
   var Data;
   var getOption = function(objRequest) {
     Data = convertData(objRequest);
@@ -2058,6 +2434,12 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'scatter': //散点图
         outData = getScatterOption(objRequest);
+        break;
+      case 'sankey': //桑基图
+        outData = getSankeyOption(objRequest);
+        break;
+      case 'graph': //力导向布局图
+        outData = getForceGraphOption(objRequest);
         break;
     }
 
