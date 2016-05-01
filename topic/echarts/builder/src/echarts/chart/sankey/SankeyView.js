@@ -3,7 +3,8 @@ define(function (require) {
     var graphic = require('../../util/graphic');
     var modelUtil = require('../../util/model');
     var zrUtil = require('zrender/core/util');
-
+	var VisualMapping = require('../../visual/VisualMapping');
+					
     var SankeyShape = graphic.extendShape({
         shape: {
             x1: 0, y1: 0,
@@ -58,7 +59,7 @@ define(function (require) {
             var formatModel = modelUtil.createDataFormatModel(
                 seriesModel, edgeData, rawOption.edges || rawOption.links
             );
-
+			
             formatModel.formatTooltip = function (dataIndex) {
                 var params = this.getDataParams(dataIndex);
                 var rawDataOpt = params.data;
@@ -69,6 +70,23 @@ define(function (require) {
                 return html;
             };
 
+			
+			//modify edgeLineColor
+			var nodes = graph.nodes;	
+			nodes.sort(function (a, b) {
+				return a.getLayout().value - b.getLayout().value;
+			});
+
+			var minValue = nodes[0].getLayout().value;
+			var maxValue = nodes[nodes.length - 1].getLayout().value;
+			
+			var mapping = new VisualMapping({
+				type: 'color',
+				mappingMethod: 'linear',
+				dataExtent: [minValue, maxValue],
+				visual: seriesModel.get('color')
+			});
+			
             // generate a rect  for each node
             graph.eachNode(function (node) {
                 var layout = node.getLayout();
@@ -153,8 +171,15 @@ define(function (require) {
                     cpx2: cpx2,
                     cpy2: cpy2
                 });
-
-                curve.setStyle(lineStyleModel.getItemStyle());
+				
+				//modify Edge Color
+				var edgeLineStyle = lineStyleModel.getItemStyle();												
+				var mapValueToColor = mapping.mapValueToVisual(n1Layout.value);
+				
+				edgeLineStyle.fill = mapValueToColor;							
+                curve.setStyle(edgeLineStyle);
+				
+                //curve.setStyle(lineStyleModel.getItemStyle());
                 graphic.setHoverStyle(curve, edge.getModel('lineStyle.emphasis').getItemStyle());
 
                 group.add(curve);

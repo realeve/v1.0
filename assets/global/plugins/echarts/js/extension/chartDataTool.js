@@ -2321,7 +2321,8 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         },
         lineStyle: {
           normal: {
-            curveness: 0.5
+            curveness: 0.5,
+            opacity: 0.5
           }
         }
       }
