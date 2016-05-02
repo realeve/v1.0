@@ -1239,9 +1239,12 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
       //第0列为Legend
       for (var i = bShowLegend; i < Data.cols; i++) {
+        var dimMinMax = getMinMax(Data.data, i);
         NewData['parallelAxis'].push({
           dim: i - bShowLegend,
-          name: Data.header[i].title
+          name: Data.header[i].title,
+          max: dimMinMax.max,
+          min: dimMinMax.min
         });
       }
 
@@ -1251,12 +1254,10 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         NewData['parallelAxis'][arrCategory[i] - bShowLegend].data = getUniData(Data.data, arrCategory[i]);
       }
 
-
-      var dimMinMax = getMinMax(Data.data, objRequest.dimension);
-      console.log(dimMinMax);
-      NewData['parallelAxis'][objRequest.dimension - bShowLegend].max = dimMinMax.max;
-      NewData['parallelAxis'][objRequest.dimension - bShowLegend].min = dimMinMax.min;
-
+      //NewData['parallelAxis'][objRequest.dimension - bShowLegend].max = dimMinMax.max;
+      //NewData['parallelAxis'][objRequest.dimension - bShowLegend].min = dimMinMax.min;
+      
+      dimMinMax = getMinMax(Data.data, objRequest.dimension);
       NewData['visualMap'] = {
         show: false,
         min: dimMinMax.min,
