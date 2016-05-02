@@ -9,7 +9,6 @@ class Login extends CI_Controller {
 		'url' 
 	) );
 	$this->load->library('session');
-    $this->load->model('LoginModel');
   }
 
   public function index(){

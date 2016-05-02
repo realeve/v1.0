@@ -10,16 +10,12 @@ class QualityChart extends CI_Controller {
 			'url' 
 		) );
 		$this->load->library('session');
-		$this->load->model('QualityChartModel');
 	}
 
 	public function index()
 	{
-		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
-			//$this->output->set_output($logindata);//调试
-			//$this->session->sess_destroy();//注销
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
@@ -39,41 +35,5 @@ class QualityChart extends CI_Controller {
 		}
 		
 	}
-
-	//日志主要信息查询
-	public function QueryData()//通用接口
-	{
-		$TimeStart = $this->input->get('TimeStart');
-		$TimeEnd = $this->input->get('TimeEnd');
-		$Data = $this->QualityChartModel->ShowQualityChart($TimeStart,$TimeEnd);
-		$this->output->set_output($Data);
-	}
-	
-	//保存日志设置
-	public function SaveSettings()
-	{
-		$Settings = array(
-			'UserName' => $this->session->userdata('username'),
-			'RefreshTime' => $this->input->post('RefreshTime'),
-			'AutoRefresh' => $this->input->post('AutoRefresh'),
-			'FixTblHead' => $this->input->post('FixTblHead'),
-			'FixTblCol' => $this->input->post('FixTblCol'),
-			'FootSearch' => $this->input->post('FootSearch'),
-			'InputToggle' => $this->input->post('InputToggle'),
-			'InputInner' => $this->input->post('InputInner'),
-		);
-		$LogData = $this->QualityChartModel->SaveSettings($Settings);//,JSON_UNESCAPED_UNICODE
-		$this->output->set_output(json_encode($LogData));
-	}
-	//读取日志设置
-	public function ReadSettings()
-	{
-		$Settings = array(
-			'UserName' => $this->session->userdata('username'),
-		);
-		$LogData = $this->QualityChartModel->ReadSettings($Settings);
-		$this->output->set_output($LogData);
-	}
-
 }
 

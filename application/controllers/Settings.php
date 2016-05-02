@@ -10,8 +10,6 @@ class settings extends CI_Controller {
 			'url' 
 		) );
 		$this->load->library('session');
-		$this->load->model('PaperParaModel');
-		$this->load->model('DataInterfaceModel');
 	}
 
 	//概览
@@ -141,32 +139,6 @@ class settings extends CI_Controller {
 			$this->load->view('login');
 		}
 		
-	}
-
-	//保存日志设置
-	public function SaveSettings()
-	{
-		$Settings = array(
-			'UserName' => $this->session->userdata('username'),
-			'RefreshTime' => $this->input->post('RefreshTime'),
-			'AutoRefresh' => $this->input->post('AutoRefresh'),
-			'FixTblHead' => $this->input->post('FixTblHead'),
-			'FixTblCol' => $this->input->post('FixTblCol'),
-			'FootSearch' => $this->input->post('FootSearch'),
-			'InputToggle' => $this->input->post('InputToggle'),
-			'InputInner' => $this->input->post('InputInner'),
-		);
-		$LogData = $this->QualityChartModel->SaveSettings($Settings);//,JSON_UNESCAPED_UNICODE
-		$this->output->set_output(json_encode($LogData));
-	}
-	//读取日志设置
-	public function ReadSettings()
-	{
-		$Settings = array(
-			'UserName' => $this->session->userdata('username'),
-		);
-		$LogData = $this->QualityChartModel->ReadSettings($Settings);
-		$this->output->set_output($LogData);
 	}
 
 }
