@@ -32,6 +32,8 @@ var PaperValidate = function() {
 		Data = ReadData(str);
 		InitSelect("oper_id", Data);
 
+		$('[name=passed]').iCheck('check');
+		
 		$("input[name='rec_date']").val(today(6));
 
 		$("input[name='reel_code']").maxlength({
@@ -265,15 +267,6 @@ var PaperValidate = function() {
 			SetiCheckChecked('passed', 0);
 			$('input[name="package_weight"]').val(0);
 		}
-
-		$('#checkbox2').on('ifChecked', function() {
-			var iStat = ($(this).prop("checked")) ? 1 : 0;
-			if (!iStat) {
-				$('.normalPara input').attr('disabled', 'true');
-			} else { //允许
-				$('.normalPara input').removeAttr('disabled');
-			}
-		});
 	};
 
 	var handleUnPassData = (function() {
@@ -321,7 +314,6 @@ var PaperValidate = function() {
 						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.package_weight + '</td><td> ' + elem.cut_weight + '</td><td><a href="javascript:;" class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-cutweight=' + elem.package_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
 					});
 					$('table[name="unPassedList"] tbody').html(strTr);
-					console.log(strTr);
 				} else {
 					$('table[name="unPassedList"] tbody').html('<tr><td class="text-center" colspan="7">近期所有产品均已通过检验</td></tr>');
 				}
@@ -343,7 +335,6 @@ var PaperValidate = function() {
 jQuery(document).ready(function() {
 	initDom();
 	iChechBoxInit();
-	$('[name=passed]').iCheck('check');
 	PaperValidate.init();
 });
 jQuery(window).resize(function() {
