@@ -146,7 +146,7 @@
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
              myChart[i].setOption(option);
            } else {
-             infoTips('第' + (i + 1) + '张图表无数据，请重新选择查询时间', 2);
+             bsTips('第' + (i + 1) + '张图表无数据，请重新选择查询时间', 2);
            }
          }
          if (objRequest.blind) {

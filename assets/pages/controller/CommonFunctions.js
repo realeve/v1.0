@@ -11,6 +11,7 @@
     "PPR_MCH": 5, //'Paper_Machine_Info', //5 钞纸机台
     "PRT_PROD": 6, //'ProductData', //6 印钞品种
     "PRT_MCH": 7, //'MachineData', //7 印钞机台
+    "PPR_VALIDATE": 8, //机检验证
 
     "USR": 20, //'tblUser', //20  用户信息
     "DPMT": 21, //'tblDepartMent', //21  用户所在部门/分组
@@ -56,6 +57,10 @@
       closeInSeconds: Type ? 5 : 0, // auto close after defined seconds
       icon: "check" // put icon before the message
     });
+  }
+
+  function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
   }
 
   function bsTips(strMes, Type) {
