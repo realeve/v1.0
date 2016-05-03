@@ -265,15 +265,6 @@ var PaperValidate = function() {
 			SetiCheckChecked('passed', 0);
 			$('input[name="package_weight"]').val(0);
 		}
-
-		$('#checkbox2').on('ifChecked', function() {
-			var iStat = ($(this).prop("checked")) ? 1 : 0;
-			if (!iStat) {
-				$('.normalPara input').attr('disabled', 'true');
-			} else { //允许
-				$('.normalPara input').removeAttr('disabled');
-			}
-		});
 	};
 
 	var handleUnPassData = (function() {
