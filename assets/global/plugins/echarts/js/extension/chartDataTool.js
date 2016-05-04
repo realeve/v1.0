@@ -203,10 +203,10 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         normal: {
           label: {
             show: true,
-            position: 'insideTop',
+            position: (objRequest.reverse) ? 'insideRight' : 'insideTop',
             formatter: '{c}'
           },
-          barBorderRadius: [4, 4, 0, 0]
+          barBorderRadius: (objRequest.reverse) ? [0, 4, 4, 0] : [4, 4, 0, 0]
             //areaStyle: {type: 'default'},
         }
       };
@@ -214,7 +214,87 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
       if (0 === Data.rows) {
         return NewData;
       }
-      if (Data.cols == 3) {
+
+      //大于3列，横向模式
+      //testAPI:  SELECT b.MachineName AS 机台,ROUND(AVG(a.F1Count), 2) AS 正1, ROUND(AVG(a.F2Count), 2) AS 正2, ROUND(AVG(a.F3Count), 2) AS 正3, ROUND(AVG(a.F4Count), 2) AS 正4, ROUND(AVG(a.F5Count), 2) AS 正5, ROUND(AVG(a.B1Count), 2) AS 背1, ROUND(AVG(a.B2Count), 2) AS 背2, ROUND(AVG(a.BS1Count), 2) AS 背精1, ROUND(AVG(a.BS2Count), 2) AS 背精2, ROUND(AVG(a.BS3Count), 2) AS 背精3, ROUND(AVG(a.BS4Count), 2) AS 背精4 FROM MaHouData a INNER JOIN MachineData b ON a.MachineID = b.MachineID WHERE a.produceDate BETWEEN ? AND ? GROUP BY b.MachineName ORDER BY b.MachineName
+      if (Data.cols > 3) {
+
+        NewData['xAxisTitle'] = " ";
+        NewData['yAxisTitle'] = " ";
+
+        //根据catelegory中的类目轴
+        var category = anayDataCategory(Data.data[0]);
+        var haveLegend = 0;
+        if (category.length > 0 && category[0] == 0) {
+          NewData['legend'] = getUniData(Data.data, 0);
+          haveLegend = 1;
+        } else {
+          NewData['legend'] = [];
+          NewData['legend'][0] = NewData['yAxisTitle'];
+        }
+
+        NewData['xAxis'] = [];
+        for (var i = haveLegend; i < Data.header.length; i++) {
+          NewData['xAxis'].push(Data.header[i].title);
+        }
+
+        NewData['yAxis'] = [];
+
+        NewData['series'] = [];
+        Data.data.map(function(elem) {
+          var obj = {
+            "name": haveLegend ? elem[0] : ' ',
+            "type": objRequest.type,
+            "smooth": objRequest.smooth,
+            "barMaxWidth": objRequest.barMaxWidth,
+            "barMinHeight": 20,
+            "data": haveLegend ? elem.slice(1, elem.length) : elem,
+            //"markPoint": MPtStyle,
+            //"markLine": MLnStyle_avg,
+            "itemStyle": itemStyle,
+            "symbolSize": 10
+          };
+          //是否为面积图
+          if (objRequest.lineAreaStyle) {
+            obj.areaStyle = {
+              "normal": {
+                "opacity": 0.4
+              }
+            };
+            //NewData['series'][i].symbolSize = 0;
+            obj.lineStyle = {
+              normal: {
+                width: 0,
+                type: 'solid',
+                shadowColor: 'rgba(0,0,0,0)',
+                shadowBlur: 0,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0
+              }
+            };
+          }
+
+          if (!objRequest.reverse) {
+            if (objRequest.markLine) {
+              obj.markLine = MLnStyle_avg;
+            }
+            if (objRequest.markPoint) {
+              obj.markPoint = MPtStyleBoth;
+            }
+          }
+          //线型图隐藏文本标签
+          if (objRequest.type == 'line') {
+            obj.label = {
+              normal: {
+                show: false,
+                position: 'top'
+              }
+            };
+          }
+
+          NewData['series'].push(obj);
+        });
+      } else if (Data.cols == 3) {
         NewData['xAxisTitle'] = Data.header[1].title;
         NewData['yAxisTitle'] = Data.header[2].title;
 
@@ -248,7 +328,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
             "type": objRequest.type,
             "smooth": objRequest.smooth,
             "barMaxWidth": objRequest.barMaxWidth,
-            "barMinHeight": 10,
+            "barMinHeight": 20,
             "data": NewData.yAxis[NewData.legend[i]],
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
@@ -310,7 +390,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
-          "barMinHeight": 10,
+          "barMinHeight": 20,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
@@ -377,7 +457,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
-          "barMinHeight": 10,
+          "barMinHeight": 20,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
@@ -1256,7 +1336,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
 
       //NewData['parallelAxis'][objRequest.dimension - bShowLegend].max = dimMinMax.max;
       //NewData['parallelAxis'][objRequest.dimension - bShowLegend].min = dimMinMax.min;
-      
+
       dimMinMax = getMinMax(Data.data, objRequest.dimension);
       NewData['visualMap'] = {
         show: false,
@@ -1742,13 +1822,13 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         end: 100,
         height: 20,
         y2: 25
-      }, {
+      }, /*{
         type: 'inside',
         yAxisIndex: 0,
         realtime: true,
         start: 0,
         end: 100
-      }, {
+      },*/ {
         show: (objRequest.dataZoom == 'v' || objRequest.dataZoom == 'vh') ? true : false,
         yAxisIndex: 0,
         filterMode: 'empty',

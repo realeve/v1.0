@@ -3567,9 +3567,11 @@ define('echarts/chart/pie/PieView', ['require', '../../util/graphic', 'zrender/c
             // Sector may has animation of updating data. Force to move to the last frame
             // Or it may stopped on the wrong shape
             sector.stopAnimation(true);
+			var emphasis = itemStyleModel.parentModel.option.emphasis;
+			var hoverRadius = (typeof emphasis.hoverRadius == 'undefined') ? 10 : emphasis.hoverRadius;
             sector.animateTo({
                 shape: {
-                    r: layout.r + 10
+                    r: layout.r + hoverRadius
                 }
             }, 300, 'elasticOut');
         }

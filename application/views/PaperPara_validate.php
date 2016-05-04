@@ -81,10 +81,16 @@
 												<div class="input-group">
 													<div class="icheck-inline">
 														<label>
-															<input type="radio" name="passed" class="icheck"> 不放行 
+															<input type="radio" name="passed" class="icheck"> 返工 
 														</label>
 														<label>
 															<input type="radio" name="passed" class="icheck"> 放行  
+														</label>
+														<label>
+															<input type="radio" name="passed" class="icheck"> 不统计  
+														</label>
+														<label>
+															<input type="radio" name="passed" class="icheck"> 待放行  
 														</label>
 													</div>
 												</div>
@@ -248,8 +254,8 @@
                                                         <th><i class="fa fa-briefcase"></i> 机台 </th>
                                                         <th><i class="fa fa-user"></i> 轴号</th>
                                                         <th><i class="fa fa-calendar-plus-o"></i> 检验时间 </th>
-                                                        <th><i class="fa fa-dedent"></i> 封包轴重</th>
                                                         <th><i class="fa fa-cut"></i> 裁切轴重</th>
+                                                        <th><i class="fa fa-dedent"></i> 封包轴重</th>
                                                         <th><i class="fa fa-link"></i> 操作 </th>
                                                     </tr>
                                                 </thead>

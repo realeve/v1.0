@@ -28,7 +28,7 @@ var PaperValidate = function() {
 		Data = ReadData(str);
 		InitSelect("machine_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_id", Data);
 
@@ -44,7 +44,7 @@ var PaperValidate = function() {
 		initSelect2();
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
-		SetiCheckChecked('passed', 0);
+		SetiCheckChecked('passed', 1);
 		focusInput();
 	}
 
@@ -61,7 +61,7 @@ var PaperValidate = function() {
 		 * 	SELECT a.id,a.reel_code, a.prod_id, a.oper_id, a.machine_id, CONVERT(VARCHAR(10),a.rec_date,120) as rec_date, a.validate_num, a.number_right, a.package_weight, a.serious_fake, a.normal_fake_h, a.normal_fake_m, a.normal_fake_l, a.reel_end, a.suspect_paper, a.well_paper, a.other, a.record_Time, a.passed, a.cut_weight  FROM dbo.Paper_Validate AS a  WHERE cast(prod_id as varchar)+ reel_code=?
 		 *  param: r
 		 */
-		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=128&M=0&r=" + reel_code;
+		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=113&M=0&r=" + reel_code;
 		var Data = ReadData(strUrl);
 		if (Data.rows === "0") {
 			return 0;
@@ -112,7 +112,7 @@ var PaperValidate = function() {
 	});
 
 	$('input[name="cut_weight"]').on('keyup', function() {
-		if (GetiCheckChecked('passed')) {
+		if (GetiCheckChecked('passed') == 1) {
 			$('input[name="package_weight"]').val($(this).val());
 		}
 	});
@@ -124,7 +124,7 @@ var PaperValidate = function() {
 	});*/
 
 	function validateBeforeSubmit() {
-		var haveReason = $('[name=reel_end]').text() !== '' || $('[name=suspect_paper]').text() !== '' || $('[name=well_paper]').text() !== '' || $('[name=other]').text() !== '';
+		var haveReason = $('[name=reel_end]').val() !== '' || $('[name=suspect_paper]').val() !== '' || $('[name=well_paper]').val() !== '' || $('[name=other]').val() !== '';
 		var isPassed = GetiCheckChecked('passed');
 		if (haveReason) {
 			$('.err-reason').closest('.form-group').removeClass('has-error');
@@ -231,10 +231,14 @@ var PaperValidate = function() {
 					bsTips(obj.message, obj.type);
 					resetInputBox();
 					//不合格时
-					if (!iData.passed) {
+					if (iData.passed == 0) {
 						bsTips('该轴不放行，如需修改数据，请重新输入轴号载入信息');
-					} else {
+					} else if (iData.passed == 1) {
 						bsTips('该轴放行，如需修改数据，请重新输入轴号载入信息', 1);
+					}else if(iData.passed == 2) {
+						bsTips('该轴不统计，如需修改数据，请重新输入轴号载入信息', 1);
+					}else if(iData.passed == 3) {
+						bsTips('该轴待放行，如需修改数据，请重新输入轴号载入信息', 1);
 					}
 				},
 				error: function(data) {
@@ -264,7 +268,7 @@ var PaperValidate = function() {
 			$('.validateData input[type="text"]').val('');
 			$('input[name="reel_code"]').val('');
 			focusInput();
-			SetiCheckChecked('passed', 0);
+			SetiCheckChecked('passed', 1);
 			$('input[name="package_weight"]').val(0);
 		}
 	};
@@ -272,7 +276,7 @@ var PaperValidate = function() {
 	var handleUnPassData = (function() {
 		$('table[name="unPassedList"] tbody').on('click', 'a', function() {
 			var id = $(this).data('id');
-			var cut_weight = $(this).data('cutweight');
+			var cut_weight = $(this).data('weight');
 			var obj = $(this);
 			var strUrl = getRootPath() + "/DataInterface/update";
 			$.ajax({
@@ -282,7 +286,7 @@ var PaperValidate = function() {
 				data: {
 					"id": id,
 					"passed": 1,
-					"cut_weight": cut_weight,
+					"package_weight": cut_weight,
 					"tbl": TBL.PPR_VALIDATE
 				},
 				success: function() {
@@ -303,15 +307,15 @@ var PaperValidate = function() {
 		return {
 			loadUnPassedData: function() {
 
-				//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed = 0 
+				//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed =3 order by 7 
 
-				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=129&M=2";
+				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=114&M=2";
 				var Data = ReadData(strUrl);
 
 				var strTr = "";
 				if (Data.rows > 0) {
 					Data.data.map(function(elem) {
-						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.package_weight + '</td><td> ' + elem.cut_weight + '</td><td><a href="javascript:;" class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-cutweight=' + elem.package_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
+						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;" class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
 					});
 					$('table[name="unPassedList"] tbody').html(strTr);
 				} else {
