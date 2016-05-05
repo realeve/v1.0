@@ -9,7 +9,7 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>worklog">机检日志</a>
+						<a href="<?php echo base_url()?>worklog">维护日志</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>

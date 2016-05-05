@@ -33,7 +33,7 @@ var PaperValidate = function() {
 		InitSelect("oper_id", Data);
 
 		$('[name=passed]').iCheck('check');
-		
+
 		$("input[name='rec_date']").val(today(6));
 
 		$("input[name='reel_code']").maxlength({
@@ -186,7 +186,7 @@ var PaperValidate = function() {
 			var iData = getFormData('theForm');
 
 			iData.tbl = TBL.PPR_VALIDATE;
-			iData.utf2gbk = ['reel_end', 'suspect_paper', 'well_paper'];
+			iData.utf2gbk = ['reel_end', 'suspect_paper', 'well_paper', 'other'];
 			iData.record_Time = today(1);
 			iData.passed = GetiCheckChecked('passed');
 
@@ -217,7 +217,7 @@ var PaperValidate = function() {
 			var iData = getFormData('theForm');
 
 			iData.tbl = TBL.PPR_VALIDATE;
-			iData.utf2gbk = ['reel_end', 'suspect_paper', 'well_paper'];
+			iData.utf2gbk = ['reel_end', 'suspect_paper', 'well_paper', 'other'];
 			iData.record_Time = today(1);
 			iData.passed = GetiCheckChecked('passed');
 			iData.id = $('.portlet button[type="submit"]').data('sn');
@@ -235,9 +235,9 @@ var PaperValidate = function() {
 						bsTips('该轴不放行，如需修改数据，请重新输入轴号载入信息');
 					} else if (iData.passed == 1) {
 						bsTips('该轴放行，如需修改数据，请重新输入轴号载入信息', 1);
-					}else if(iData.passed == 2) {
+					} else if (iData.passed == 2) {
 						bsTips('该轴不统计，如需修改数据，请重新输入轴号载入信息', 1);
-					}else if(iData.passed == 3) {
+					} else if (iData.passed == 3) {
 						bsTips('该轴待放行，如需修改数据，请重新输入轴号载入信息', 1);
 					}
 				},

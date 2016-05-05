@@ -61,7 +61,7 @@
          }
          var dom = $('.eCharts-main');
          var width = domParent.width();
-         var height = width / ((dom.length === 1) ? 2 : 2.5);
+         var height = width / ((dom.length === 1) ? 1.3 : 1.5);
          dom.css('width', width);
          dom.css('height', height);
        }
