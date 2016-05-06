@@ -357,19 +357,22 @@ var PaperParam = function() {
 			} else if (iData.score < 100) {
 				iData.remark = "扣分项:" + jsOnRight(deScoreText, 1);
 			}
-			$.post(strUrl, iData,
-				function(data, status) {
-					if (status == "success") {
-						var obj = $.parseJSON(data);
-						infoTips(obj.message, obj.type);
-						resetInputBox();
-						$('.portlet.light').hide();
-					} else {
-						infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
-						infoTips(JSON.stringify(data));
-					}
+			$.ajax({
+				url: strUrl,
+				type: 'POST',
+				data: iData,
+				success: function(data) {
+					var obj = $.parseJSON(data);
+					bsTips(obj.message, obj.type);
+					resetInputBox();
+					$('.portlet.light').hide();
+				},
+				error: function(data) {
+					infoTips("保存数据失败，请稍后重试或联系管理员!", 0);
+					infoTips(JSON.stringify(data));
 				}
-			);
+			});
+
 		}
 
 		function updateData() {
@@ -393,8 +396,12 @@ var PaperParam = function() {
 				iData.remark = "扣分项:" + jsOnRight(deScoreText, 1);
 			}
 			bsTips((iData.isNormal == 1) ? '合格' : '不合格');
-			$.post(strUrl, iData, function(data, status) {
-				if (status == "success") {
+
+			$.ajax({
+				url: strUrl,
+				type: 'POST',
+				data: iData,
+				success: function(data) {
 					var obj = $.parseJSON(data);
 					infoTips(obj.message, obj.type);
 					resetInputBox();
@@ -402,8 +409,9 @@ var PaperParam = function() {
 					//状态还原
 					$('.normalPara input').removeAttr('disabled');
 					$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新', '提交'));
-				} else {
-					infoTips("保存设置失败，请稍后重试或联系管理员!", 0);
+				},
+				error: function(data) {
+					infoTips("更新数据失败，请稍后重试或联系管理员!", 0);
 					infoTips(JSON.stringify(data));
 				}
 			});

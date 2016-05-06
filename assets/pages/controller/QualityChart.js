@@ -3,19 +3,20 @@
          $(".mt-element-ribbon").addClass('hide');
        });
 
-      //获取url的JSON值
+     //获取url的JSON值
 
      function GetJsonUrl(iID) {
        var date = getDateRange();
        var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
        return strUrl;
      }
-      //配置图表库
+     //配置图表库
      var mECharts = function() {
        var myChart = []; //任意个数的图表
        var echarts, chartDataTool;
        var iChartNums = (getUrlParam('tid') === null) ? 0 : getUrlParam('tid').split(',').length;
        var curTheme;
+       var option;
 
        function launchChart() {
          require.config({
@@ -61,7 +62,7 @@
          }
          var dom = $('.eCharts-main');
          var width = domParent.width();
-         var height = width / ((dom.length === 1) ? 2 : 2.5);
+         var height = width / ((dom.length === 1) ? 1.3 : 1.5);
          dom.css('width', width);
          dom.css('height', height);
        }
@@ -75,7 +76,7 @@
          if (!echarts) {
            return;
          } //如果未加载则去掉
-         var i, option;
+         var i;
          var objRequest = {};
          var objList = {
            "id": getUrlParam('tid').split(','),
@@ -93,10 +94,10 @@
            "circle": (getUrlParam('circle') === null) ? ['0'] : getUrlParam('circle').split(','),
            "roseType": (getUrlParam('rose') === null) ? ['0'] : getUrlParam('rose').split(','),
            "dimension": (getUrlParam('dimension') === null) ? ['0'] : getUrlParam('dimension').split(','),
-           "squareRatio":(getUrlParam('squareratio') === null) ? ['1.618'] : getUrlParam('squareratio').split(','),
+           "squareRatio": (getUrlParam('squareratio') === null) ? ['1.618'] : getUrlParam('squareratio').split(','),
            "shape": (getUrlParam('shape') === null) ? ['polygon'] : getUrlParam('shape').split(','),
-           "scatterSize":(getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(','),
-           "force":(getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(',')
+           "scatterSize": (getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(','),
+           "force": (getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -124,11 +125,11 @@
            //console.log(objRequest);
            //桑基图高度增加一倍
 
-           if(objRequest.type == 'sankey'){
+           if (objRequest.type == 'sankey') {
              var dom = $("#eChart-main" + i);
              var width = $('.portlet-body.form').width();
-             var height = width/1.5;
-             dom.css('height', height);            
+             var height = width / 1.5;
+             dom.css('height', height);
            }
 
            //数据处理
@@ -141,12 +142,17 @@
            objRequest.color = curTheme.color;
 
            option = chartDataTool.getOption(objRequest);
-           console.log("option = " + JSON.stringify(option));
+           //console.log("option = " + JSON.stringify(option));
+
            if (option !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
              myChart[i].setOption(option);
+
+             //$('[name="chartTitle"]:nth('+ i +')').text(option.title[0].text);
+             //$('[name="chartSource"]:nth('+ i +')').text(option.title[0].subtext);
+
            } else {
-             infoTips('第' + (i + 1) + '张图表无数据，请重新选择查询时间', 2);
+             bsTips('第' + (i + 1) + '张图表无数据，请重新选择查询时间', 2);
            }
          }
          if (objRequest.blind) {
@@ -160,7 +166,7 @@
          }
          var themeSelector = $(".actions select");
          var defaultTheme, str = "";
-         var themeList = ['default', 'real2', 'real', 'powerBI','darkColor','whiteDark','magzin','magzin2','colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
+         var themeList = ['default', 'real2', 'real', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
          themeList.map(function(elem, index) {
            str += '<option name="' + elem + '">' + elem + '</option>';
          });
@@ -251,6 +257,52 @@
              setTimeout(showChart(curTheme, strUrl + '&chartType=line'), 500);
            });
          });
+
+       function downloadExample() {
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>',
+           file = new Blob([html], {
+             type: "text/html;charset=UTF-8",
+             encoding: "UTF-8"
+           }),
+           n = document.createElement("a");
+         n.href = URL.createObjectURL(file), n.download = option.title[0].text + ".html", n.click()
+       }
+
+       function shareExample() {
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>';
+         var filename = $.base64.encode(new Date().getTime());
+         $('#share textarea').text(' ');
+         $.ajax({
+           url: getRootPath(0) + '/demo/chartShare.php',
+           type: 'POST',
+           data: {
+             filename: filename + ".html",
+             contents: html
+           },
+           success: function(data) {
+             var obj = $.parseJSON(data);
+             var url = getRootPath(0) + obj.url;
+             $('#share textarea').text(url);
+             $('#successShare').click();
+             setTimeout(function() {
+               $('#share textarea').select();
+             }, 600);
+           },
+           error: function(data) {
+             var obj = $.parseJSON(data);
+             bsTips('图表分享失败，请稍后重试', obj.status);
+           }
+         });
+
+       }
+
+       $('[name="shareExample"]').on('click', function() {
+         shareExample();
+       });
+
+       $('[name="downloadExample"]').on('click', function() {
+         downloadExample();
+       });
 
        return {
          init: function() {

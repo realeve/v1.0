@@ -14,6 +14,7 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_PPR_MCH	= 'Paper_Machine_Info';		 //5 钞纸机台
 	const TBL_PRT_PROD	= 'ProductData';			 //6 印钞品种
 	const TBL_PRT_MCH	= 'MachineData';			 //7 印钞机台
+	const TBL_PPR_VALIDATE	= 'Paper_Validate';		 //8 纸张验证
 
 	const TBL_USR		= 'tblUser';				 //20 用户信息
 	const TBL_DPMT		= 'tblDepartMent';			 //21 用户所在部门/分组
@@ -45,6 +46,7 @@ class DataInterfaceModel extends CI_Model {
 			5 =>self::TBL_PPR_MCH,
 			6 =>self::TBL_PRT_PROD,
 			7 =>self::TBL_PRT_MCH,
+			8 =>self::TBL_PPR_VALIDATE,
 			20=>self::TBL_USR,
 			21=>self::TBL_DPMT,
 			25=>self::TBL_WORK_LOG,

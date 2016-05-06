@@ -206,8 +206,8 @@ var dataTable = function() {
 				});
 				$(tableID).parents('.portlet').find('.tools').append($(tableID).parents('.portlet').find('.tabletools-btn-group').clone(true));
 				$(tableID).parents('.portlet').find('.tbTools').remove();
-				//infoTips(JSON.stringify(Data), 2);
-				infoTips('数据加载完成', 2);
+				//bsTips(JSON.stringify(Data), 2);
+				bsTips('数据加载完成', 2);
 			}
 		};
 		if (bFixhead) {
@@ -261,7 +261,7 @@ var dataTable = function() {
 		$('#today').text(Data.source);
 
 		if (Data.cols < 2) {
-			infoTips("请确保数据列在2列以上，当前为：" + Data.cols);
+			bsTips("请确保数据列在2列以上，当前为：" + Data.cols);
 			return;
 		}
 		if (Data.rows > 0) {
@@ -270,7 +270,7 @@ var dataTable = function() {
 				return;
 			}
 		} else {
-			infoTips("该时间范围内无质量数据，请重新选择查询时间!", 1);
+			bsTips("该时间范围内无质量数据，请重新选择查询时间!", 1);
 			return;
 		}
 		oTable = table.dataTable();
@@ -282,7 +282,7 @@ var dataTable = function() {
 		}
 		oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
 		oTable.fnDraw();
-		//infoTips(JSON.stringify(Data), 2);
+		//bsTips(JSON.stringify(Data), 2);
 	}
 
 	return {

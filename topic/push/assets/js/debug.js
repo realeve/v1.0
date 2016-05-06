@@ -218,7 +218,7 @@
 		return res;
 	};
 
-	//获取钞纸封包信息	
+	//获取钞纸封包信息
 	var getPackageInfo = function() {
 		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=138&M=3";
 		var msg = "----本月钞纸各品种封包率:----\n"; //昨天质量情况
@@ -252,7 +252,6 @@
 		return res;
 	};
 
-
 	//获取用户信息(印码工序)
 	var getUserInfo = function() {
 		var userInfo = "";
@@ -260,8 +259,8 @@
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
-				json.dataCode.map(function(elem, index) {
-					//json.dataTest.map(function(elem, index) {
+				//json.dataCode.map(function(elem, index) {
+				json.dataTest.map(function(elem, index) {
 					userInfo += elem[3] + ",";
 				})
 				userInfo = jsOnRight(userInfo, 1);
@@ -275,8 +274,8 @@
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
-				json.dataPrint.map(function(elem, index) {
-					//json.dataTest.map(function(elem, index) {
+				//json.dataPrint.map(function(elem, index) {
+				json.dataTest.map(function(elem, index) {
 					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString());
 				})
 			}
@@ -305,7 +304,7 @@
 					json.data.map(function(elem, index) {
 						msg += elem[0] + " : " + elem[3] + " 分\n";
 					});
-					msg += '[(点击此处查看详情)|http://10.8.2.133:70/qualitytable?tid=60]\n';
+					msg += '[(点击此处查看详情)|http://10.8.2.133:70/qualitytable?tid=60]\n\n';
 				} else {
 					console.log("该时间内无相关数据");
 					res.status = 0;
@@ -323,7 +322,8 @@
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
-				json.dataPaperGY.map(function(elem, index) {
+				//json.dataPaperGY.map(function(elem, index) {
+				json.dataTest.map(function(elem, index) {
 					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString());
 				})
 			}
@@ -390,7 +390,7 @@
 				}
 				intervalID.count++;
 			}
-		}, 20 * 60 * 1000);
+		}, 50 * 1000);
 
 		/**
 		 *	每天推送一次信息------印码机检质量
@@ -398,44 +398,30 @@
 		 *	为防止信息轰炸,需判断当天日期
 		 **/
 		intervalID.lastDay = setInterval(function() {
-			//1小时刷新一次
-			if (!dateValidate(1)) {
-				console.log('每天推送消息 时间校验未通过:     ' + today(3));
-			} else {
-				if (typeof localStorage.pushLog == 'undefined') {
-					localStorage.pushLog = '{"today":"0"}';
-				}
-				if ($.parseJSON(localStorage.pushLog).today < today(7)) {
-					localStorage.pushLog = JSON.stringify({
-						"today": today(7)
-					});
 
-					//推送上个工作日质量信息
-					var lastDayInfo = getLastDayInfo();
-					var uncheckInfo = getUncheckInfo();
-					var msg = '';
-					if (lastDayInfo.status > 0) {
-						msg += lastDayInfo.msg;
-					}
-					if (uncheckInfo.status > 0) {
-						msg += uncheckInfo.msg;
-					}
-					if (lastDayInfo.status + uncheckInfo.status > 0) {
-						pushLastDayInfo(msg);
-					}
-					console.log(msg);
-
-					//推送钞纸过程质量控制数据
-					var paperProcessInfo = getPaperProcessInfo();
-					var paperPackageInfo = getPackageInfo();
-					if (paperProcessInfo.status > 0) {
-						pushPaperProcessInfo(paperProcessInfo.msg + paperPackageInfo.msg);
-					}
-				} else {
-					console.log('当天已推送该信息:   ' + today(3));
-				}
+			//推送上个工作日质量信息
+			var lastDayInfo = getLastDayInfo();
+			var uncheckInfo = getUncheckInfo();
+			var msg = '';
+			if (lastDayInfo.status > 0) {
+				msg += lastDayInfo.msg;
 			}
-		}, 60 * 60 * 1000);
+			if (uncheckInfo.status > 0) {
+				msg += uncheckInfo.msg;
+			}
+			if (lastDayInfo.status + uncheckInfo.status > 0) {
+				pushLastDayInfo(msg);
+			}
+			console.log(msg);
+
+			//推送钞纸过程质量控制数据
+			var paperProcessInfo = getPaperProcessInfo();
+			var paperPackageInfo = getPackageInfo();
+			if (paperProcessInfo.status > 0) {
+				pushPaperProcessInfo(paperProcessInfo.msg + paperPackageInfo.msg);
+			}
+
+		}, 5 * 1000);
 	}();
 })();
 
