@@ -1811,6 +1811,7 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
         trigger: 'item' //(objRequest.type == 'boxplot') ? 'item' : 'axis'
       },
       dataZoom: [{
+<<<<<<< HEAD
           type: 'inside',
           realtime: true,
           start: 0,
@@ -1841,6 +1842,35 @@ define(['./js/extension/dataTool.min'], function(dataTool) {
           right: 5
         }
       ],
+=======
+        type: 'inside',
+        realtime: true,
+        start: 0,
+        end: 100
+      }, {
+        show: (objRequest.dataZoom == 'h' || objRequest.dataZoom == 'vh') ? true : false,
+        realtime: true,
+        start: 0,
+        end: 100,
+        height: 20,
+        y2: 25
+      }, /*{
+        type: 'inside',
+        yAxisIndex: 0,
+        realtime: true,
+        start: 0,
+        end: 100
+      },*/ {
+        show: (objRequest.dataZoom == 'v' || objRequest.dataZoom == 'vh') ? true : false,
+        yAxisIndex: 0,
+        filterMode: 'empty',
+        width: 12,
+        height: '70%',
+        handleSize: 8,
+        showDataShadow: false,
+        right: 5
+      }],
+>>>>>>> 3d7e5ece247f15c0562572daab551c9982678122
       legend: {
         data: Data.legend,
         x: 'center',
