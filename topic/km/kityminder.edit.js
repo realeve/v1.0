@@ -54490,13 +54490,13 @@
 
 			var selected = null;
 
-			minder.on('uiready', function() {
+			/*minder.on('uiready', function() {
 				var $user = minder.getUI('topbar/user');
 				$user.requireLogin($container);
 				fio.user.on('login', function() {
 					list();
 				});
-			});
+			});*/
 
 			handleClick();
 			handleDrag();
@@ -55747,7 +55747,7 @@
 			var $open = minder.getUI('menu/open/open');
 			var $recent = minder.getUI('menu/open/recent');
 			var $save = minder.getUI('menu/save/save');
-			var $share = minder.getUI('menu/share/share');
+			//var $share = minder.getUI('menu/share/share');
 			var $draft = minder.getUI('menu/open/draft');
 
 			setMenuDefaults();
@@ -55771,13 +55771,13 @@
 				$save.$tabs.select(0);
 
 				// 如果用户登陆了，选中「百度云存储」
-				fio.user.check().then(function(user) {
+				/*fio.user.check().then(function(user) {
 					if (user) {
 						$save.$tabs.select(0);
 					}
-				});
+				});*/
 
-				$share.$menu.$tabs.select(0); // 当前脑图
+				//$share.$menu.$tabs.select(0); // 当前脑图
 			}
 
 			function loadLandingFile() {
@@ -55914,9 +55914,9 @@
 		/* 网盘面板 */
 		var $panel = $($open.createSub('recent')).addClass('recent-file-panel');
 
-		minder.on('uiready', function() {
+		/*minder.on('uiready', function() {
 			minder.getUI('topbar/user').requireLogin($panel);
-		});
+		});*/
 
 		/* 标题 */
 		var $title = $('<h2></h2>')
@@ -55937,12 +55937,12 @@
 
 			if (!doc.checkSaved()) return;
 
-			var netdisk = minder.getUI('menu/open/netdisk');
+			//var netdisk = minder.getUI('menu/open/netdisk');
 			var path = $(e.target)
 				.closest('.recent-file-item')
 				.data('path');
 
-			netdisk.open(path);
+			//netdisk.open(path);
 		});
 
 		$clear.on('click', function() {
@@ -57733,7 +57733,7 @@
 	 * @author: techird
 	 * @copyright: Baidu FEX, 2014
 	 */
-
+	/*
 	KityMinder.registerUI('topbar/user', function(minder) {
 		var eve = minder.getUI('eve');
 
@@ -57745,14 +57745,14 @@
 			.text(minder.getLang('ui.checklogin'))
 			.appendTo($userPanel);
 
-		/* 登录按钮 */
+		/* 登录按钮 
 		var $loginButton = new FUI.Button({
 			label: minder.getLang('ui.login'),
 			text: minder.getLang('ui.login'),
 			className: 'login-button'
 		}).appendTo($userPanel[0]).hide();
 
-		/* 用户按钮 */
+		/* 用户按钮 
 		var $userButton = new FUI.Button({
 			icon: {
 				// 1px 透明图
@@ -57761,7 +57761,7 @@
 			className: 'user-button'
 		}).appendTo($userPanel[0]).hide();
 
-		/* 用户菜单 */
+		/* 用户菜单 
 		var $userMenu = new FUI.PopupMenu({
 			id: 'user-menu'
 		}).appendTo(document.getElementById('content-wrapper')).positionTo($userButton);
@@ -57880,7 +57880,8 @@
 			},
 			requireLogin: requireLogin
 		};
-	});
+	});*/
+	
 	/**
 	 * @fileOverview
 	 *
