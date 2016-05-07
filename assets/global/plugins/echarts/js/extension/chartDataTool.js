@@ -76,11 +76,11 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       return [
         '序列 ' + param.seriesName + ': ',
         '分组 ' + param.name + ': ',
-        '上边缘: ' + param.data[4].toFixed(2),
-        '上四分位(Q1): ' + param.data[3].toFixed(2),
-        '中位数: ' + param.data[2].toFixed(2),
-        '下四分位(Q3): ' + param.data[1].toFixed(2),
-        '下边缘: ' + param.data[0].toFixed(2)
+        '上边缘: ' + param.data[4].toFixed(3),
+        '上四分位(Q1): ' + param.data[3].toFixed(3),
+        '中位数: ' + param.data[2].toFixed(3),
+        '下四分位(Q3): ' + param.data[1].toFixed(3),
+        '下边缘: ' + param.data[0].toFixed(3)
       ].join('<br/>');
     }
 
@@ -88,11 +88,11 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       return [
         '序列 ' + param.seriesName + ': ',
         '分组 ' + param.name + ': ',
-        '最大值: ' + param.data[4].toFixed(2),
-        '上四分位(Q1): ' + param.data[3].toFixed(2),
-        '中位数: ' + param.data[2].toFixed(2),
-        '下四分位(Q3): ' + param.data[1].toFixed(2),
-        '最小值: ' + param.data[0].toFixed(2)
+        '最大值: ' + param.data[4].toFixed(3),
+        '上四分位(Q1): ' + param.data[3].toFixed(3),
+        '中位数: ' + param.data[2].toFixed(3),
+        '下四分位(Q3): ' + param.data[1].toFixed(3),
+        '最小值: ' + param.data[0].toFixed(3)
       ].join('<br/>');
     }
     /**
