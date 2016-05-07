@@ -16,7 +16,7 @@
        var echarts, chartDataTool;
        var iChartNums = (getUrlParam('tid') === null) ? 0 : getUrlParam('tid').split(',').length;
        var curTheme;
-       var option;
+       var option = [];
 
        function launchChart() {
          require.config({
@@ -54,17 +54,35 @@
          });
        }
 
+       /* function initEchartDom() {
+          var domParent = $('.portlet-body.form');
+          for (i = 0; i < iChartNums; i++) {
+            var html = '<div id="eChart-main' + i + '" optionKey="Line" class="eCharts-main margin-top-5"></div>';
+            domParent.append(html);
+          }
+          var dom = $('.eCharts-main');
+          var width = domParent.width();
+          var height = width / ((dom.length === 1) ? 1.3 : 1.5);
+          dom.css('width', width);
+          dom.css('height', height);
+        }*/
+
        function initEchartDom() {
-         var domParent = $('.portlet-body.form');
+         var domParent = $('.page-content');
          for (i = 0; i < iChartNums; i++) {
-           var html = '<div id="eChart-main' + i + '" optionKey="Line" class="eCharts-main margin-top-5"></div>';
+           var html = '<div class="portlet light bordered">\n  <div class="portlet-title">\n    <button class="btn blue btn-circle" name="downloadExample" data-chartid="' + i + '"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</button>\n  <a class="btn red btn-circle" name="shareExample" data-chartid="' + i + '"><i class="fa fa-share-alt"> </i> 分享 </a>';
+           html += '\n   <div class="actions">          \n              <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">\n              </a>\n            </div>\n          </div>\n          <div class="portlet-body form">';
+           html += '\n      <div id="eChart-main' + i + '" optionKey="Line" class="eCharts-main margin-top-5"></div>';
+           html += '\n          </div>\n        </div>';
            domParent.append(html);
          }
+
+         //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
+
          var dom = $('.eCharts-main');
          var width = domParent.width();
-         var height = width / ((dom.length === 1) ? 1.3 : 1.5);
-         dom.css('width', width);
-         dom.css('height', height);
+         var height = width / 1.3;
+         dom.css('height', height.toFixed(0));
        }
 
        function showChart(curTheme, url) {
@@ -141,12 +159,12 @@
            //必须传颜色表，旭日图等自定义颜色的图表中需要使用
            objRequest.color = curTheme.color;
 
-           option = chartDataTool.getOption(objRequest);
+           option[i] = chartDataTool.getOption(objRequest);
            //console.log("option = " + JSON.stringify(option));
 
-           if (option !== false) {
+           if (option[i] !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
-             myChart[i].setOption(option);
+             myChart[i].setOption(option[i]);
 
              //$('[name="chartTitle"]:nth('+ i +')').text(option.title[0].text);
              //$('[name="chartSource"]:nth('+ i +')').text(option.title[0].subtext);
@@ -200,9 +218,11 @@
        }
 
        function selectChange(value) {
-         //var theme = value;
          localStorage.setItem("eChartsTheme", value);
-         bsTips("主题更换成功，请刷新页面查看", 1);
+         require(['theme/' + value], function(tarTheme) {
+           curTheme = tarTheme;
+           showChart(curTheme);
+         });
 
          //if (typeof Cookies !== "undefined") {
          //  Cookies.set('eCharts_theme', value);
@@ -258,50 +278,57 @@
            });
          });
 
-       function downloadExample() {
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>',
+       function downloadExample(id) {
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>',
            file = new Blob([html], {
              type: "text/html;charset=UTF-8",
              encoding: "UTF-8"
            }),
            n = document.createElement("a");
-         n.href = URL.createObjectURL(file), n.download = option.title[0].text + ".html", n.click()
+         n.href = URL.createObjectURL(file), n.download = option[id].title[0].text + ".html", n.click();
        }
 
-       function shareExample() {
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>';
+       function shareExample(id) {
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>';
          var filename = $.base64.encode(new Date().getTime());
          $('#share textarea').text(' ');
          $.ajax({
            url: getRootPath(0) + '/demo/chartShare.php',
            type: 'POST',
+           async: false,
            data: {
              filename: filename + ".html",
              contents: html
            },
            success: function(data) {
-             var obj = $.parseJSON(data);
-             var url = getRootPath(0) + obj.url;
-             $('#share textarea').text(url);
-             $('#successShare').click();
-             setTimeout(function() {
-               $('#share textarea').select();
-             }, 600);
+             try {
+               var obj = $.parseJSON(data);
+               var url = getRootPath(0) + obj.url;
+               $('#share textarea').text(url);
+               $('#successShare').click();
+               setTimeout(function() {
+                 $('#share textarea').select();
+               }, 600);
+             } catch (e) {
+               console.log(e);
+               infoTips(data);
+               bsTips('图表分享失败，请稍后重试', 0);
+             }
            },
-           error: function(data) {
-             var obj = $.parseJSON(data);
-             bsTips('图表分享失败，请稍后重试', obj.status);
+           error: function(e) {
+             console.log(e);
+             bsTips('图表分享失败，请稍后重试', 0);
            }
          });
 
        }
 
-       $('[name="shareExample"]').on('click', function() {
-         shareExample();
+       $('.page-content').on('click', '[name="shareExample"]', function() {
+         shareExample($(this).data('chartid'));
        });
 
-       $('[name="downloadExample"]').on('click', function() {
-         downloadExample();
+       $('.page-content').on('click', '[name="downloadExample"]', function() {
+         downloadExample($(this).data('chartid'));
        });
 
        return {
@@ -314,8 +341,8 @@
            var domParent = $('.portlet-body.form');
            var dom = $('.eCharts-main');
            var width = domParent.width();
-           var height = width / ((dom.length === 1) ? 2 : 2.5);
-           dom.css('width', width).css('height', height);
+           var height = width / 1.3;
+           dom.css('width', width).css('height', height.toFixed(0));
 
            for (i = 0; i < iChartNums; i++) {
              myChart[i].resize();

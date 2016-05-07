@@ -114,7 +114,7 @@
 					</div>
 				</div>
 			</div>
-            <div class="modal fade" id="share" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal fade" stype="top:50%;" id="share" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -135,14 +135,8 @@
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">
-					<!--div class="caption font-green-sharp">
-						<i class="icon-speech font-green-sharp"></i>
-						<span class="caption-subject bold uppercase" name="chartTitle"> 图表接口</span>
-						<span class="caption-helper" name="chartSource">(数据来源:质量综合管理系统)...</span>
-						<a href="javascript:;" name="downloadExample">下载本示例</a>
-					</div-->
-					<button class="btn blue btn-circle" name="downloadExample"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</button>	
-					<a class="btn red btn-circle" name="shareExample"><i class="fa fa-share-alt"> </i> 分享 </a>	
+					<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>	
+					<a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>	
 					<a data-toggle="modal" href="#share" id="successShare"></a>					
 					<div class="actions"> 						
 						<select class="bs-select form-control" data-style="blue" data-width="125px">
@@ -152,6 +146,7 @@
 					</div>
 				</div>
 				<div class="portlet-body form">	
+					<div id="eChart-main0" class="eCharts-main margin-top-5"></div>
 				</div>
 			</div>
 			<!-- END Portlet PORTLET-->
