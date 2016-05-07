@@ -52,7 +52,7 @@
 <script src="../../assets/pages/controller/idletimeout.min.js"></script-->
 <!-- END PAGE LEVEL SCRIPTS -->
 
-<script src="../../assets/global/plugins/require.js"></script>
+<script src="../../assets/global/plugins/require.min.js"></script>
 <!--script src="../../assets/global/plugins/echarts/js/echarts2/echarts.js"></script-->
 <script src="../../assets/global/plugins/echarts/js/ThemeStyle.min.js"></script>
 

@@ -13,25 +13,27 @@
      //配置图表库
      var mECharts = function() {
        var myChart = []; //任意个数的图表
-       var echarts, chartDataTool;
+       var echarts, chartDataTool, Clipboard;
        var iChartNums = (getUrlParam('tid') === null) ? 0 : getUrlParam('tid').split(',').length;
        var curTheme;
        var option = [];
 
        function launchChart() {
          require.config({
-           baseUrl: "assets/global/plugins/echarts/",
+           baseUrl: "assets/global/plugins/",
            paths: {
-             "theme": "theme",
-             "echarts": "js/echarts.min",
-             "chartDataTool": "js/extension/chartDataTool.min"
+             "theme": "echarts/theme",
+             "echarts": "echarts/js/echarts.min",
+             "chartDataTool": "echarts/js/extension/chartDataTool.min",
+             "Clipboard": "clipboard/clipboard.min"
            }
          });
 
-         require(["echarts", "chartDataTool"], function(ec, dt) {
+         require(["echarts", "chartDataTool", "Clipboard"], function(ec, dt, cp) {
            var defaultTheme;
            echarts = ec;
            chartDataTool = dt;
+           Clipboard = cp;
            /*if (typeof Cookies.get('eCharts_theme') == 'undefined') {
              defaultTheme = 'real2';
              Cookies.set('eCharts_theme', 'real2');
@@ -45,6 +47,17 @@
            } else {
              defaultTheme = localStorage.eChartsTheme;
            }
+
+           var handleClipboard = (function() {
+             var clipboard = new Clipboard('#share button');
+             /*clipboard.on('success', function(e) {
+               console.log(e);
+             });
+
+             clipboard.on('error', function(e) {
+               console.log(e);
+             });*/
+           })();
 
            require(["theme/" + defaultTheme], function(tarTheme) {
              curTheme = tarTheme;
@@ -69,8 +82,8 @@
 
        function initEchartDom() {
          var domParent = $('.page-content');
-         for (i = 0; i < iChartNums; i++) {
-           var html = '<div class="portlet light bordered">\n  <div class="portlet-title">\n    <button class="btn blue btn-circle" name="downloadExample" data-chartid="' + i + '"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</button>\n  <a class="btn red btn-circle" name="shareExample" data-chartid="' + i + '"><i class="fa fa-share-alt"> </i> 分享 </a>';
+         for (i = 1; i < iChartNums; i++) {
+           var html = '<div class="portlet light bordered">\n  <div class="portlet-title">\n    <button class="btn blue btn-circle" name="downloadExample" data-clipboard-action="copy" data-clipboard-target="#share textarea"  data-chartid="' + i + '"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</button>\n  <a class="btn red btn-circle" name="shareExample" data-chartid="' + i + '"><i class="fa fa-share-alt"> </i> 分享 </a>';
            html += '\n   <div class="actions">          \n              <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">\n              </a>\n            </div>\n          </div>\n          <div class="portlet-body form">';
            html += '\n      <div id="eChart-main' + i + '" optionKey="Line" class="eCharts-main margin-top-5"></div>';
            html += '\n          </div>\n        </div>';
@@ -306,9 +319,9 @@
                var url = getRootPath(0) + obj.url;
                $('#share textarea').text(url);
                $('#successShare').click();
-               setTimeout(function() {
+               /*setTimeout(function() {
                  $('#share textarea').select();
-               }, 600);
+               }, 600);*/
              } catch (e) {
                console.log(e);
                infoTips(data);

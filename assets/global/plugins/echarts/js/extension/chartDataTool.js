@@ -28,7 +28,7 @@
  * }
  * @输出参数：对应echarts 相关图形所需配置项
  */
-define(['./js/extension/dataTool.min'], function(dataTool) {
+define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
 
   //读取指定URL的JSON数据
   function getJsonFromUrl(strUrl, Type) {
