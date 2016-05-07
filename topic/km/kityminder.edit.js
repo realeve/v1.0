@@ -56442,7 +56442,7 @@
 	 * @copyright: Baidu FEX, 2014
 	 */
 
-	KityMinder.registerUI('menu/save/save', function(minder) {
+	KityMinder.registerUI('menu/save/save', function(minder) {			
 		return minder.getUI('menu/menu').createSubMenu('save');
 	});
 	/**
@@ -57670,8 +57670,14 @@
 				});
 			}
 
+			/*function quickSave() {
+				minder.getUI('menu/save/save').quickSave();
+			}*/
+			// 快速保存
 			function quickSave() {
-				minder.getUI('menu/save/netdisk').quickSave();
+				var $menu = minder.getUI('menu/menu');
+				$menu.$tabs.select(2);
+				$menu.show();
 			}
 
 			/*function quickShare() {
@@ -57679,7 +57685,6 @@
 				$menu.$tabs.select(3);
 				$menu.show();
 			}*/
-
 
 			$new.click(quickNew);
 			$save.click(quickSave);
