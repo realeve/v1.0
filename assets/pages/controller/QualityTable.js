@@ -201,7 +201,7 @@ var dataTable = function() {
 			scrollCollapse: true,
 			"initComplete": function() {
 				var api = this.api();
-				api.$(document).on("click", 'td', function() {
+				api.on("click", 'tbody td', function() {
 					api.search(this.innerText.trim()).draw();
 				});
 				$(tableID).parents('.portlet').find('.tools').append($(tableID).parents('.portlet').find('.tabletools-btn-group').clone(true));

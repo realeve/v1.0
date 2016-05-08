@@ -245,8 +245,8 @@ class DataInterfaceModel extends CI_Model {
 
 		if ($mode == 0 ) {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
-			$SQLStr = $this->handleStr($this->TransToGBK($SQLStr),$aParams);
-			$query = $LOGINDB->query($SQLStr);
+			$SQLStr = $this->handleStr($SQLStr,$aParams);
+			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			$strJson = $query->result_json();	
 		}
 		else if($mode == 1 ) {
@@ -256,8 +256,8 @@ class DataInterfaceModel extends CI_Model {
 				$SQLStr = "select * from (". $SQLStr . ")where rownum<1";			
 			}
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
-			$SQLStr = $this->handleStr($this->TransToGBK($SQLStr),$aParams);
-			$query = $LOGINDB->query($SQLStr);
+			$SQLStr = $this->handleStr($SQLStr,$aParams);
+			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			$strJson = $query->result_json();
 			$strFileds = $query->list_fields();
 			$strJson = $query->Array2Head($strFileds);
@@ -269,8 +269,8 @@ class DataInterfaceModel extends CI_Model {
 				$SQLStr = "select * from (". $SQLStr . ")where rownum<11";			
 			}
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
-			$SQLStr = $this->handleStr($this->TransToGBK($SQLStr),$aParams);
-			$query = $LOGINDB->query($SQLStr);
+			$SQLStr = $this->handleStr($SQLStr,$aParams);
+			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			$strJson = $query->result_json();
 		}		
 		else if ($mode == 3 ) {

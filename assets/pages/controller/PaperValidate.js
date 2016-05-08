@@ -309,7 +309,7 @@ var PaperValidate = function() {
 
 				//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed =3 order by 7 
 
-				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=114&M=2";
+				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=114&M=0";
 				var Data = ReadData(strUrl);
 
 				var strTr = "";
