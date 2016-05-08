@@ -58,7 +58,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     }
 
     function UniqueData(arr) {
-      arr.sort();
+      /*arr.sort();
       var re = [arr[0]];
       var i = 0;
       arr.map(function(elem) {
@@ -67,6 +67,17 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           i++;
         }
       });
+      return re;*/
+      //更新数据唯一值判定算法
+      var re = [];
+      var status = [];
+      arr.map(function(elem) {
+        if (status[elem] != 1) {
+          re.push(elem);
+          status[elem] = 1;
+        }
+      });
+      console.log(re);
       return re;
     }
 
