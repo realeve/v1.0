@@ -135,11 +135,32 @@
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">
-					<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>	
-					<a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>
-					<a data-toggle="modal" href="#share" id="successShare"></a>					
-					<div class="actions"> 						
-						<select class="bs-select form-control" data-style="blue" data-width="125px">
+					<div class="col-md-3">
+						<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>	
+						<a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>
+						<a data-toggle="modal" href="#share" id="successShare"></a>	
+					</div>
+					<div class="col-md-2" style="margin-left:-55px;">	
+						<select class="bs-select form-control" name="ratio" data-style="blue" data-width="80px">
+							<option value="2.35">2.35:1</option>
+							<option value="2">2:1</option>
+							<option value="1.78">16:9</option>
+							<option value="1.6">16:10</option>
+							<option value="1.5">3:2</option>
+							<option value="1.4">7:5</option>
+							<option value="1.33">4:3</option>
+							<option value="1.3">13:10</option>
+							<option value="0.769">10:13</option>
+							<option value="0.75">3:4</option>
+							<option value="0.714">5:7</option>
+							<option value="0.67">2:3</option>
+							<option value="0.625">10:16</option>
+							<option value="0.5625">9:16</option>
+							<option value="0.5">1:2</option>
+						</select>	
+					</div>						
+					<div class="actions"> 					
+						<select class="bs-select form-control" name="theme" data-style="blue" data-width="125px">
 						</select>		 		
 						<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
 						</a>

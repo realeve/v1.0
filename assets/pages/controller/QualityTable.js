@@ -12,7 +12,11 @@ function GetJsonUrl(id) {
 			strLimit += '&' + index;
 		}
 	});
-	var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + "&t=" + Math.random();
+	var token = getUrlParam('token');
+	if (token == null) {
+		token = '79d84495ca776ccb523114a2120e273ca80b315b';
+	}
+	var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + "&t=" + Math.random();
 	return strUrl;
 }
 
@@ -143,24 +147,24 @@ var dataTable = function() {
 				orientation: Data.cols > 10 ? 'landscape' : 'portrit',
 				pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
 				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
-				download: 'open',
+				download: 'download',
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
 				},
 				className: "btn dark btn-outline",
 				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
-				//Token:'成都印钞有限公司 技术质量部',
-				/* customize: function ( doc ) {
-					doc.content.unshift( {
-						text: ' ©成都印钞有限公司 技术质量部',
-						style: {
-							alignment: 'left',
-							fontSize: 10
-						},
-						//margin: [ 0, 0, 0, 12 ]
-					} );
-				}*/
+					//Token:'成都印钞有限公司 技术质量部',
+					/* customize: function ( doc ) {
+						doc.content.unshift( {
+							text: ' ©成都印钞有限公司 技术质量部',
+							style: {
+								alignment: 'left',
+								fontSize: 10
+							},
+							//margin: [ 0, 0, 0, 12 ]
+						} );
+					}*/
 			}, {
 				extend: 'print',
 				autoPrint: false,
@@ -252,7 +256,7 @@ var dataTable = function() {
 			bFixhead = true;
 		}
 		//重新读取数据
-		Data = ReadData(strUrl,1);
+		Data = ReadData(strUrl, 1);
 		//更新表格相关信息
 		table.parents('.portlet').find('[name="TableTitle"]').text(Data.title);
 		table.parents('.portlet').find('[name="datasource"]').text('(' + Data.source + ')');
@@ -293,7 +297,7 @@ var dataTable = function() {
 			});
 
 			//载入数据
-			if(getUrlParam('tid') !== null){
+			if (getUrlParam('tid') !== null) {
 				InitTable(1);
 			}
 

@@ -198,7 +198,7 @@ var PaperValidate = function() {
 			iData.utf2gbk = ['reel_end', 'suspect_paper', 'well_paper', 'other'];
 			iData.record_Time = today(1);
 			iData.passed = GetiCheckChecked('passed');
-
+			
 			$.ajax({
 				url: strUrl,
 				type: 'POST',
@@ -289,7 +289,7 @@ var PaperValidate = function() {
 		//放行轴号
 		function passedByReelCode(obj) {
 			var id = obj.data('id');
-			var cut_weight = $(this).data('weight');
+			var cut_weight = obj.data('weight');
 			var strUrl = getRootPath() + "/DataInterface/update";
 			$.ajax({
 				type: 'POST',

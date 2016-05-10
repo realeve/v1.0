@@ -7,7 +7,11 @@
 
      function GetJsonUrl(iID) {
        var date = getDateRange();
-       var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
+       var token = getUrlParam('token');
+       if (token == null) {
+         token = '79d84495ca776ccb523114a2120e273ca80b315b';
+       }
+       var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
        return strUrl;
      }
      //配置图表库
@@ -42,8 +46,8 @@
            }*/
 
            if (typeof localStorage.eChartsTheme == 'undefined') {
-             defaultTheme = 'real2';
-             localStorage.setItem("eChartsTheme", "real2");
+             defaultTheme = 'real';
+             localStorage.setItem("eChartsTheme", "real");
            } else {
              defaultTheme = localStorage.eChartsTheme;
            }
@@ -91,11 +95,10 @@
          }
 
          //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
-
-         var dom = $('.eCharts-main');
+         /*var dom = $('.eCharts-main');
          var width = domParent.width();
          var height = width / 1.3;
-         dom.css('height', height.toFixed(0));
+         dom.css('height', height.toFixed(0));*/
        }
 
        function showChart(curTheme, url) {
@@ -155,13 +158,12 @@
            };
            //console.log(objRequest);
            //桑基图高度增加一倍
-
-           if (objRequest.type == 'sankey') {
+           /*if (objRequest.type == 'sankey') {
              var dom = $("#eChart-main" + i);
              var width = $('.portlet-body.form').width();
              var height = width / 1.5;
              dom.css('height', height);
-           }
+           }*/
 
            //数据处理
            if (typeof curTheme.valueAxis !== 'undefined') {
@@ -197,7 +199,7 @@
          }
          var themeSelector = $(".actions select");
          var defaultTheme, str = "";
-         var themeList = ['default', 'real2', 'real', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
+         var themeList = ['default', 'real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
          themeList.map(function(elem, index) {
            str += '<option name="' + elem + '">' + elem + '</option>';
          });
@@ -215,8 +217,45 @@
            iconBase: 'fa',
            tickIcon: 'fa-check'
          });
-         $('select.bs-select').hide();
+
+         //$('.bs-select[name="theme"]').hide();
          //$('div.bs-select').css({'margin-top':'-40px','margin-right':'20px'});
+       }
+
+       var initChartRatio = (function() {
+
+         var ratioSelector = $('.bs-select[name="ratio"]');
+         //loadDefaultValue
+         if (typeof localStorage.chartRatio == 'undefined') {
+           chartRatio = 1.5;
+           localStorage.setItem("chartRatio", chartRatio);
+         } else {
+           chartRatio = localStorage.chartRatio;
+           ratioSelector.find('[value="' + chartRatio + '"]').attr('selected', true);
+           changeChartRatio(chartRatio);
+         }
+
+         //changeEvent
+         if (ratioSelector) {
+           $(ratioSelector).change(function() {
+             changeChartRatio($(this).val()); //更新图表主题
+           });
+         }
+
+       })();
+
+       //更改图表长宽比
+       function changeChartRatio(val) {
+         if (typeof val == 'undefined') {
+           val = $('.bs-select[name="ratio"]').val();
+         }
+         //保存默认值
+         localStorage.setItem("chartRatio", val);
+         var domParent = $('.portlet-body.form');
+         var dom = $('.eCharts-main');
+         var width = domParent.width();
+         var height = width / val;
+         dom.css('height', height.toFixed(0)); //css('width', width).
        }
 
        function blindChart() {
@@ -292,7 +331,7 @@
          });
 
        function downloadExample(id) {
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]).replace(/null/g,NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>',
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>',
            file = new Blob([html], {
              type: "text/html;charset=UTF-8",
              encoding: "UTF-8"
@@ -302,7 +341,7 @@
        }
 
        function shareExample(id) {
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]).replace(/null/g,NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>';
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0" onresize = "resize()">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nfunction resize(){\n    myChart.resize();\n}       </script>\n   </body>\n</html>';
          var filename = $.base64.encode(new Date().getTime());
          $('#share textarea').text(' ');
          $.ajax({
@@ -351,12 +390,12 @@
            initTheme();
          },
          resize: function() {
-           var domParent = $('.portlet-body.form');
-           var dom = $('.eCharts-main');
-           var width = domParent.width();
-           var height = width / 1.3;
-           dom.css('width', width).css('height', height.toFixed(0));
-
+           /* var domParent = $('.portlet-body.form');
+            var dom = $('.eCharts-main');
+            var width = domParent.width();
+            var height = width / 1.3;
+            dom.css('width', width).css('height', height.toFixed(0));*/
+           changeChartRatio();
            for (i = 0; i < iChartNums; i++) {
              myChart[i].resize();
            }

@@ -5,7 +5,7 @@ var Demo = function() {
 
     var panel = $('.theme-panel');
     var lastSelectedLayout = '';
-    var lastDataRangeTheme = 'dark';
+    var lastDataRangeTheme = 'darkblue';
     // handle theme colors
     var setColor = function(color) {
         var color_ = (App.isRTL() ? color + '-rtl' : color);
@@ -115,7 +115,8 @@ var Demo = function() {
             });*/
 
             //默认主题
-            Cookies.set("layout-style-option", "square");
+            //默认方角
+            Cookies.set("layout-style-option", "rounded");//square
             Cookies.set("layout-option", "fluid");
             Cookies.set("page-header-option", "fixed");
             Cookies.set("page-header-top-dropdown-style-option", "light");
@@ -124,7 +125,7 @@ var Demo = function() {
             Cookies.set("sidebar-style-option", "default");
             Cookies.set("sidebar-pos-option", "left");
             Cookies.set("page-footer-option", "default");
-            Cookies.set("theme-colors", "default");
+            Cookies.set("theme-colors", "darkblue");
             //$('.theme-colors > ul > li.current').removeClass("current");
             //$('.theme-colors > ul > li.color-default').addClass("current");
         };

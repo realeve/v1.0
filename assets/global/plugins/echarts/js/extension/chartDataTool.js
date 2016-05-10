@@ -584,7 +584,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
             "type": objRequest.type,
             "data": iConvData.boxData,
             "tooltip": {
-              backgroundColor: '#009688',
+              //backgroundColor: '#009688',
               formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
             }
           };
@@ -627,7 +627,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
-            backgroundColor: '#009688',
+            //backgroundColor: '#009688',
             formatter: boxFormatter
           }
         };
@@ -657,7 +657,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
-            backgroundColor: '#009688',
+            //backgroundColor: '#009688',
             formatter: boxFormatter
           }
         };
@@ -1818,7 +1818,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       },
       calculable: true,
       tooltip: {
-        backgroundColor: '#009688',
+        //backgroundColor: '#009688',
         trigger: 'item' //(objRequest.type == 'boxplot') ? 'item' : 'axis'
       },
       dataZoom: [{
@@ -1930,7 +1930,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         y2: 5
       }],
       tooltip: {
-        backgroundColor: '#009688',
+        //backgroundColor: '#009688',
         trigger: 'item',
         formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
@@ -2146,7 +2146,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         }
       },
       tooltip: {
-        backgroundColor: '#009688',
+        //backgroundColor: '#009688',
         formatter: function(info) {
           var value = info.value;
           var treePathInfo = info.treePathInfo;
@@ -2198,7 +2198,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         }
       },
       tooltip: {
-        backgroundColor: '#009688',
+        //backgroundColor: '#009688',
       },
       legend: Data.legend,
       radar: {
