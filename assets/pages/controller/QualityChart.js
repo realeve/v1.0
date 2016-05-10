@@ -66,6 +66,7 @@
            require(["theme/" + defaultTheme], function(tarTheme) {
              curTheme = tarTheme;
              initEchartDom();
+             initChartRatio();
              showChart(curTheme);
            });
          });
@@ -222,7 +223,7 @@
          //$('div.bs-select').css({'margin-top':'-40px','margin-right':'20px'});
        }
 
-       var initChartRatio = (function() {
+       var initChartRatio = function() {
 
          var ratioSelector = $('.bs-select[name="ratio"]');
          //loadDefaultValue
@@ -242,7 +243,7 @@
            });
          }
 
-       })();
+       };
 
        //更改图表长宽比
        function changeChartRatio(val) {

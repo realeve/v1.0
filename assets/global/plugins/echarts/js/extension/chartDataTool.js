@@ -77,7 +77,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           status[elem] = 1;
         }
       });
-      console.log(re);
+      //console.log(re);
       return re;
     }
 
