@@ -41,10 +41,15 @@ var PaperValidate = function() {
 			threshold: 3
 		});
 
+		$('input[name="passed"]').on('ifChanged', function() {
+			var package_weight = (GetiCheckChecked('passed') == 1) ? $('input[name="cut_weight"]').val() : 0;
+			$('input[name="package_weight"]').val(package_weight);
+		});
+
 		initSelect2();
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
-		SetiCheckChecked('passed', 1);
+		SetiCheckChecked('passed', 3);
 		focusInput();
 	}
 
@@ -102,8 +107,12 @@ var PaperValidate = function() {
 
 	$('input[name="reel_code"]').on('keyup', function() {
 		var obj = $(this);
-		if (obj.val().length == 1) {
-			SetSelect2Val('machine_id', obj.val());
+		//取右边一位信息
+		var curVal = jsRight(obj.val(), 1);
+		if (obj.val().length == 2) {
+			SetSelect2Val('prod_id', curVal);
+		} else if (obj.val().length == 3) {
+			SetSelect2Val('machine_id', curVal);
 		}
 	});
 
@@ -137,8 +146,8 @@ var PaperValidate = function() {
 	var handleValidate = function() {
 		var vRules = {
 			reel_code: {
-				minlength: 4,
-				maxlength: 7,
+				minlength: 6,
+				maxlength: 8,
 				number: false,
 				required: true
 			},
@@ -268,16 +277,19 @@ var PaperValidate = function() {
 			$('.validateData input[type="text"]').val('');
 			$('input[name="reel_code"]').val('');
 			focusInput();
-			SetiCheckChecked('passed', 1);
+			SetiCheckChecked('passed', 3);
 			$('input[name="package_weight"]').val(0);
 		}
 	};
 
 	var handleUnPassData = (function() {
 		$('table[name="unPassedList"] tbody').on('click', 'a', function() {
-			var id = $(this).data('id');
+
+		});
+		//放行轴号
+		function passedByReelCode(obj) {
+			var id = obj.data('id');
 			var cut_weight = $(this).data('weight');
-			var obj = $(this);
 			var strUrl = getRootPath() + "/DataInterface/update";
 			$.ajax({
 				type: 'POST',
@@ -302,7 +314,7 @@ var PaperValidate = function() {
 					infoTips(JSON.stringify(data));
 				}
 			});
-		});
+		}
 
 		return {
 			loadUnPassedData: function() {
@@ -311,16 +323,24 @@ var PaperValidate = function() {
 
 				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=114&M=0";
 				var Data = ReadData(strUrl);
-
+				var bsConfirm = 'data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="是否放行这个轴号?" data-btn-ok-label="是" data-btn-ok-icon="fa fa-credit-card" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"';
 				var strTr = "";
 				if (Data.rows > 0) {
 					Data.data.map(function(elem) {
-						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;" class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
+						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;"' + bsConfirm + ' class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
 					});
 					$('table[name="unPassedList"] tbody').html(strTr);
 				} else {
 					$('table[name="unPassedList"] tbody').html('<tr><td class="text-center" colspan="7">近期所有产品均已通过检验</td></tr>');
 				}
+				//初始化
+				$('table[name="unPassedList"] tbody a').confirmation();
+
+
+                //放行
+                $('body').on('confirmed.bs.confirmation', 'table[name="unPassedList"] tbody a', function() {
+                    passedByReelCode($(this));
+                });
 			}
 		};
 	})();

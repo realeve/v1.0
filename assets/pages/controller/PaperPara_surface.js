@@ -5,7 +5,7 @@ var PaperParam = function() {
 				rtl: App.isRTL(),
 				orientation: "left",
 				autoclose: true,
-				format:'yyyy-mm-dd'
+				format: 'yyyy-mm-dd'
 			});
 		}
 	};
@@ -27,34 +27,34 @@ var PaperParam = function() {
 	}
 
 	function vialidate() {
-		if ($("input[name='Reel_Code']").val()==='' || $('select[name="oper_ID"]').val() == -1 || $('select[name="prod_ID"]').val() == -1) {
-			$('.portlet.light').hide();
+		if ($("input[name='Reel_Code']").val().length < 6 || $('select[name="oper_ID"]').val() == -1 || $('select[name="prod_ID"]').val() == -1) {
+			//$('.portlet.light').hide();
 			return true;
 		}
-		$('.portlet.light').show();
+		//$('.portlet.light').show();
 		return false;
 	}
 
 	function refreshData() {
 		//02A，隐藏部分选项
 		var hideID = [3, 6, 7, 9, 10, 13, 14, 15, 16, 17];
-		var hide07TID = [19,20,21];
+		var hide07TID = [19, 20, 21];
 		var prodType = $('select[name="prod_ID"]').find("option:selected").text();
-		if (prodType === '103-G-7T' ) {
+		if (prodType === '103-G-7T') {
 			hide07TID.map(function(val) {
 				$('.normalPara input:nth(' + val + ')').parents('.form-group').show();
 			});
 			//help-block提示信息
 			$('.normalPara input:nth(15)').parent().find('.help-block').text('安全线：开窗线≥3.6mm，全埋线≥1.3mm ');
 			$('.normalPara input:nth(17)').parent().find('.help-block').text('≤3mm ');
-		}else{
+		} else {
 			$('.normalPara input:nth(15)').parent().find('.help-block').text('不得低于：宽线≥1.7mm，窄线≥1.2mm ');
 			$('.normalPara input:nth(17)').parent().find('.help-block').text('≤2mm ');
 
 			hide07TID.map(function(val) {
 				$('.normalPara input:nth(' + val + ')').parents('.form-group').hide();
 			});
-			if ( prodType === '103-G-2A') {
+			if (prodType === '103-G-2A') {
 				hideID.map(function(val) {
 					$('.normalPara input:nth(' + val + ')').parents('.form-group').hide();
 				});
@@ -79,6 +79,15 @@ var PaperParam = function() {
 	$('input[name="Reel_Code"]').change(function() {
 		if (!vialidate()) {
 			refreshData();
+		}
+	});
+
+	$('input[name="Reel_Code"]').on('keyup', function() {
+		var obj = $(this);
+		//取右边一位信息
+		var curVal = jsRight(obj.val(), 1);
+		if (obj.val().length == 2) {
+			SetSelect2Val('prod_ID', curVal);
 		}
 	});
 
@@ -118,13 +127,13 @@ var PaperParam = function() {
 			'tbl': TBL.SURFACE,
 			'score': parseFloat($('.list-unstyled.amounts li:nth(0)').text().replace('当前得分:', '')),
 			'chk_ID': $('input[name="chk_ID"]').val(),
-			'reel_code':$("input[name='Reel_Code']").val(),
+			'reel_code': $("input[name='Reel_Code']").val(),
 			'prod_ID': $('select[name="prod_ID"]').val(),
 			'oper_ID': $('select[name="oper_ID"]').val(),
 			'rec_date': $("input[name='rec_date']").val(),
 			'remark': $("input[name='remark']").val(),
-			'utf2gbk' : ['remark'],
-			'record_Time' : today(1)
+			'utf2gbk': ['remark'],
+			'record_Time': today(1)
 		};
 		//surData.remark = UTF2GBK(surData.remark);
 		var keyList = [
@@ -157,20 +166,20 @@ var PaperParam = function() {
 		var curVal;
 		$('.normalPara input').map(function(elem) {
 			curVal = $(this).val();
-			if(curVal===''){
+			if (curVal === '') {
 				curVal = 0;
 			}
-			checkStr = checkStr + ',"' + keyList[elem] + '":'+curVal;
+			checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
 		});
 		checkStr += '}';
 		return $.parseJSON(checkStr);
 	}
 
-	$('button[type="reset"]').on('click',function() {
+	$('button[type="reset"]').on('click', function() {
 		$('.normalPara input').val('');
-		SetSelect2Val('oper_ID',-1);
-		SetSelect2Val('prod_ID',-1);
-		$('.portlet.light').hide();
+		//SetSelect2Val('oper_ID',-1);
+		//SetSelect2Val('prod_ID',-1);
+		//$('.portlet.light').hide();
 		$("input[name='remark']").val('无');
 		setRecordNum();
 		$("input[name='rec_date']").val(today(6));
@@ -178,7 +187,7 @@ var PaperParam = function() {
 
 	function insertData() {
 		//var strUrl = getRootUrl('PaperPara') + 'insert';
-		var strUrl = getRootPath()+"/DataInterface/insert";
+		var strUrl = getRootPath() + "/DataInterface/insert";
 		var options = {
 			url: strUrl,
 			type: 'post',
@@ -199,36 +208,36 @@ var PaperParam = function() {
 	}
 	return {
 		init: function() {
-			$('.portlet.light').hide();
+			//$('.portlet.light').hide();
 			handleDatePickers();
 			initDOM();
 			iChechBoxInit();
 			setRecordNum();
-			$('.modal-footer .green').on('click',function() {
+			$('.modal-footer .green').on('click', function() {
 				insertData();
 			});
 
-			$('a[name="submit"]').on('click',function() {
+			$('a[name="submit"]').on('click', function() {
 				var score = parseFloat($('.list-unstyled.amounts li:nth(3)').text().replace('当月总分:', ''));
 				if (score >= 95) {
 					insertData();
-				}
-				else{
+				} else {
 					bsTips('当月评价总分将低于95分，请检查后重试');
 				}
 			});
 
-			$('.normalPara input').on('change',function() {
+			$('.normalPara input').on('change', function() {
 				var surScore = parseFloat($('.list-unstyled.amounts li:nth(2)').text().replace('外观指标:', ''));
 				var pscScore = parseFloat($('.list-unstyled.amounts li:nth(1)').text().replace('物理指标:', ''));
-				var curScore = 100, totalScore,id;
+				var curScore = 100,
+					totalScore, id;
 				var prodType = $('select[name="prod_ID"]').find("option:selected").text();
 				//分数表
-				var detailScore = (prodType ==='103-G-7T')?[0.5,0.5,3,3,0.75,0.75,1,1,0.75,0.75,0.75,0.5,0.5,0.5,0.5,3,3,1,3,2,2,0.5,0.75]:[0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5,0,0,0, 1, 1];
+				var detailScore = (prodType === '103-G-7T') ? [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 1, 3, 2, 2, 0.5, 0.75] : [0.5, 0.5, 3, 3, 0.75, 0.75, 1, 1, 0.75, 0.75, 0.75, 0.5, 0.5, 0.5, 0.5, 3, 3, 0.5, 0, 0, 0, 1, 1];
 				//分数动态更新
-				$('.normalPara input').map(function(index,elem) {
-					id = parseInt($(this).attr('name').replace('checkbox',''),10)-1;
-					curScore -= $(this).val()*detailScore[id];
+				$('.normalPara input').map(function(index, elem) {
+					id = parseInt($(this).attr('name').replace('checkbox', ''), 10) - 1;
+					curScore -= $(this).val() * detailScore[id];
 				});
 
 				//获取当月数据条数

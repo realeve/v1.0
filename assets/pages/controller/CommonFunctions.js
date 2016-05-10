@@ -1,4 +1,7 @@
-﻿  /**
+﻿  //系统当前版本
+  var curVersion = 1.12;
+
+  /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
    */
   //0-10 质量中心数据库
@@ -515,6 +518,37 @@
     }
   }
 
+
+  //系统新功能提示
+  function appVersionTips() {
+    var alertInfo = false;
+    var localVersion = Number.parseFloat(localStorage.appVersion);
+    if (typeof localStorage.appVersion == 'undefined') {
+      localStorage.setItem("appVersion", curVersion);
+      alertInfo = true;
+      localVersion = 0;
+    } else if (localVersion < curVersion) {
+      alertInfo = true;
+    }
+    //获取程序版本信息
+    if (alertInfo) {
+      localStorage.setItem("appVersion", curVersion);
+      var url = getRootPath(1) + "/assets/pages/controller/data/update_info.json";
+      $.get(url, function(json) {
+        json.appInfo.map(function(appInfo) {
+          //比当前版本号更大
+          var info = '';
+          if (appInfo.version > localVersion) {
+            info += "\n\n<hr><p>【版本号】: " + appInfo.version + "</p>\n<p>【更新日期】: " + appInfo.date + "</p>\n<p>【近期功能更新】：</p>\n" + appInfo.html;
+          }
+          infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
+        });
+
+      });
+    }
+  }
+
+
   function initDom() {
     //sideBarHack();
     HeadFix();
@@ -524,6 +558,8 @@
     loadMenuSettings();
     handleCurSubMenu();
     setLocationUrl();
+    //程序版本升级提醒
+    appVersionTips();
   }
 
   function setLocationUrl() {

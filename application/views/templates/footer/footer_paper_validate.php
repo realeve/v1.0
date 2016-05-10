@@ -49,6 +49,7 @@
 <!--BEGIN MY LEVEL SCRIPT-->
 <script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>
+<script src="../../assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../assets/pages/controller/idletimeout.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/PaperValidate.min.js"></script>
 <!--END MY LEVEL SCRIPT-->

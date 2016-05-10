@@ -75,7 +75,13 @@ class DataInterfaceModel extends CI_Model {
 		return $str;
 	}
 	public function TransToGBK($str){
-		return iconv("UTF-8","GBK",$str);
+		$str = iconv("UTF-8","GBK",$str);
+		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
+		if($encode == 'CP936'){
+			return iconv("UTF-8","GBK",$str);
+		}else{
+			return $str;
+		}
 	}
 
 	public function GetNewApiID($UserName)

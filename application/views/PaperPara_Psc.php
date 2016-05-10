@@ -47,21 +47,60 @@
 								<div class="form-body row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="col-md-3 control-label">品种</label>
+											<label class="col-md-3 control-label">轴号</label>
 											<div class="col-md-9">
-												<select class="form-control select2" name="Prod_id">
+												<input type="text" class="form-control uppercase" maxlength="8" placeholder="请在此输入轴号信息,如6820015A" name="Reel_Code">
+												<div class="form-control-focus">
+												</div>
+												<label class="hide">轴号</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">温度</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" placeholder="检测要求(23±1)℃" name="temperature">
+												<div class="form-control-focus">
+												</div>
+												<label class="hide">温度</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">湿度</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" placeholder="检测要求(50±2%)RH" name="humidity">
+												<div class="form-control-focus">
+												</div>
+												<label class="hide">湿度</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">检验员</label>
+											<div class="col-md-9">
+												<select class="form-control select2" name="oper_id">
 												</select>
 												<div class="form-control-focus">
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">轴号</label>
+											<label class="col-md-3 control-label">备注</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control uppercase" maxlength="7" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
+												<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
 												<div class="form-control-focus">
 												</div>
-												<label class="hide">轴号</label>
+												<label class="hide">备注</label>
+											</div>
+										</div>	
+
+									</div>									
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="col-md-3 control-label">品种</label>
+											<div class="col-md-9">
+												<select class="form-control select2" name="Prod_id">
+												</select>
+												<div class="form-control-focus">
+												</div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -100,44 +139,6 @@
 												<label class="hide">取样日期</label>
 											</div>
 										</div>
-									</div>									
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="col-md-3 control-label">温度</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" placeholder="检测要求(23±1)℃" name="temperature">
-												<div class="form-control-focus">
-												</div>
-												<label class="hide">温度</label>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">湿度</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" placeholder="检测要求(50±2%)RH" name="humidity">
-												<div class="form-control-focus">
-												</div>
-												<label class="hide">湿度</label>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">检验员</label>
-											<div class="col-md-9">
-												<select class="form-control select2" name="oper_id">
-												</select>
-												<div class="form-control-focus">
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">备注</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
-												<div class="form-control-focus">
-												</div>
-												<label class="hide">备注</label>
-											</div>
-										</div>	
 									</div>
 								</div>
 							</div>

@@ -47,18 +47,9 @@
 								<div class="form-body row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="col-md-3 control-label">品种</label>
-											<div class="col-md-9">
-												<select class="form-control select2" name="prod_id">
-												</select>
-												<div class="form-control-focus">
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
 											<label class="col-md-3 control-label">轴号</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control uppercase" maxlength="7" placeholder="请在此输入轴号信息,如201500A" name="reel_code">
+												<input type="text" class="form-control uppercase" maxlength="8" placeholder="请在此输入轴号信息,如201500A" name="reel_code">
 												<div class="form-control-focus">
 												</div>
 												<label class="hide">轴号</label>
@@ -102,6 +93,15 @@
 											<label class="col-md-3 control-label">验证日期</label>
 											<div class="col-md-9">
 												<input class="form-control form-control-inline date-picker" name="rec_date" size="16" type="text"/>
+												<div class="form-control-focus">
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">品种</label>
+											<div class="col-md-9">
+												<select class="form-control select2" name="prod_id">
+												</select>
 												<div class="form-control-focus">
 												</div>
 											</div>

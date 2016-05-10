@@ -270,8 +270,12 @@ var PaperParam = function() {
 
 	$('input[name="Reel_Code"]').on('keyup', function() {
 		var obj = $(this);
-		if (obj.val().length == 1) {
-			SetSelect2Val('machine_id', obj.val());
+		//取右边一位信息
+		var curVal = jsRight(obj.val(), 1);
+		if (obj.val().length == 2) {
+			SetSelect2Val('Prod_id', curVal);
+		} else if (obj.val().length == 3) {
+			SetSelect2Val('machine_id', curVal);
 		}
 	});
 
@@ -292,8 +296,8 @@ var PaperParam = function() {
 	var handleValidate = function() {
 		var vRules = getValidateRule('theForm');
 		vRules.Reel_Code = {
-			minlength: 4,
-			maxlength: 7,
+			minlength: 6,
+			maxlength: 8,
 			number: false,
 			required: true
 		};

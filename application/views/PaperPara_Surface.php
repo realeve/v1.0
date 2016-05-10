@@ -54,7 +54,7 @@
 							<div class="col-md-6 form-group">
 								<label class="col-md-3 control-label">轴号</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control uppercase" maxlength="6" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
+									<input type="text" class="form-control uppercase" maxlength="8" placeholder="请在此输入轴号信息,如201500A" name="Reel_Code">
 									<div class="form-control-focus">
 									</div>
 									<label class="hide">轴号</label>
