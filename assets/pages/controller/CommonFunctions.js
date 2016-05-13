@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.13;
+  var curVersion = 1.14;
 
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -58,7 +58,7 @@
       reset: false, // close all previouse alerts first
       focus: true, // auto scroll to the alert after shown
       closeInSeconds: Type ? 5 : 0, // auto close after defined seconds
-      icon: "check" // put icon before the message
+      icon: "info-circle" // put icon before the message
     });
   }
 
@@ -537,11 +537,11 @@
       $.get(url, function(json) {
         json.appInfo.map(function(appInfo) {
           //比当前版本号更大
-          var info = '';
+          var info = '更新说明';
           if (appInfo.version > localVersion) {
             info += "\n\n<hr><p>【版本号】: " + appInfo.version + "</p>\n<p>【更新日期】: " + appInfo.date + "</p>\n<p>【近期功能更新】：</p>\n" + appInfo.html;
+            infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
           }
-          infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
         });
 
       });

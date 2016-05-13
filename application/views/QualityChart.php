@@ -87,6 +87,7 @@
 								<tr><td>splitarea</td><td>值域背景分割条</td><td>0，1</td></tr>
 								<tr><td>zoom</td><td>显示缩放控件</td><td>0(关闭),v(vertical 垂直),h(horizontal 水平),vh(同时打开)</td></tr>
 								<!--tr><td>blind</td><td>多表是否绑定，如果不绑定则各图表独立操作</td><td>0,1</td></tr-->
+								<tr><td>banknoteColor</td><td>使用钞券颜色</td><td>默认关闭，打开此项后，Legend序列中存在钞券代号时，将启用对应的颜色。打开后，部分主题可能失效。</td></tr>
 							</tbody>
 						</table>
 	                </div>          
@@ -135,23 +136,26 @@
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>	
 						<a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>
+						<a class="btn btn-circle btn-default" name="showTable" data-chartid="0" target="_blank"><i class="fa fa-table"> </i> 报表 </a>
 						<a data-toggle="modal" href="#share" id="successShare"></a>	
 					</div>
 					<div class="col-md-2" style="margin-left:-55px;">	
-						<select class="bs-select form-control" name="ratio" data-style="blue" data-width="80px">
+						<select class="bs-select form-control" name="ratio" data-width="100px" data-size="10">
 							<option value="2.35">2.35:1</option>
 							<option value="2">2:1</option>
 							<option value="1.78">16:9</option>
 							<option value="1.6">16:10</option>
 							<option value="1.5">3:2</option>
+							<option data-divider="true"></option>
 							<option value="1.4">7:5</option>
 							<option value="1.33">4:3</option>
 							<option value="1.3">13:10</option>
 							<option value="0.769">10:13</option>
 							<option value="0.75">3:4</option>
+							<option data-divider="true"></option>
 							<option value="0.714">5:7</option>
 							<option value="0.67">2:3</option>
 							<option value="0.625">10:16</option>

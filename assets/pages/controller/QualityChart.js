@@ -95,6 +95,9 @@
            domParent.append(html);
          }
 
+         $('[name="showTable"]').attr({
+           href: getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid")
+         });
          //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
          /*var dom = $('.eCharts-main');
          var width = domParent.width();
@@ -132,7 +135,8 @@
            "squareRatio": (getUrlParam('squareratio') === null) ? ['1.618'] : getUrlParam('squareratio').split(','),
            "shape": (getUrlParam('shape') === null) ? ['polygon'] : getUrlParam('shape').split(','),
            "scatterSize": (getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(','),
-           "force": (getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(',')
+           "force": (getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(','),
+           "banknoteColor": (getUrlParam('banknoteColor') === null) ? ['1'] : getUrlParam('banknoteColor').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -155,7 +159,8 @@
              "squareRatio": Number.parseFloat(handleParam(objList.squareRatio, i, '1.618')),
              "shape": handleParam(objList.shape, i, "polygon"),
              "scatterSize": Number.parseFloat(handleParam(objList.scatterSize, i, '20')),
-             "force": handleParam(objList.force, i, "1")
+             "force": handleParam(objList.force, i, "1"),
+             "banknoteColor": handleParam(objList.banknoteColor, i, "1")
            };
            //console.log(objRequest);
            //桑基图高度增加一倍
@@ -176,7 +181,7 @@
            objRequest.color = curTheme.color;
 
            option[i] = chartDataTool.getOption(objRequest);
-           //console.log("option = " + JSON.stringify(option[i]));
+           console.log("option = " + JSON.stringify(option[i]));
 
            if (option[i] !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
@@ -202,7 +207,7 @@
          var defaultTheme, str = "";
          var themeList = ['default', 'real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
          themeList.map(function(elem, index) {
-           str += '<option name="' + elem + '">' + elem + '</option>';
+           str += '<option value="' + elem + '">' + elem + '</option>';
          });
          themeSelector.html(str);
 
@@ -212,12 +217,13 @@
          } else {
            defaultTheme = localStorage.eChartsTheme;
          }
-         themeSelector.find('[name="' + defaultTheme + '"]').attr('selected', true);
 
+         $('.bs-select[name="ratio"]').find('option').data('icon', 'fa fa-desktop');
          $('.bs-select').selectpicker({
            iconBase: 'fa',
-           tickIcon: 'fa-check'
+           tickIcon: 'fa-check',
          });
+         themeSelector.selectpicker('val', defaultTheme);
 
          //$('.bs-select[name="theme"]').hide();
          //$('div.bs-select').css({'margin-top':'-40px','margin-right':'20px'});
@@ -226,13 +232,14 @@
        var initChartRatio = function() {
 
          var ratioSelector = $('.bs-select[name="ratio"]');
+         ratioSelector.find('option').data('icon', 'fa fa-down');
          //loadDefaultValue
          if (typeof localStorage.chartRatio == 'undefined') {
            chartRatio = 1.5;
            localStorage.setItem("chartRatio", chartRatio);
          } else {
            chartRatio = localStorage.chartRatio;
-           ratioSelector.find('[value="' + chartRatio + '"]').attr('selected', true);
+           ratioSelector.selectpicker('val', chartRatio);
            changeChartRatio(chartRatio);
          }
 
@@ -240,6 +247,9 @@
          if (ratioSelector) {
            $(ratioSelector).change(function() {
              changeChartRatio($(this).val()); //更新图表主题
+             for (i = 0; i < iChartNums; i++) {
+               myChart[i].resize();
+             }
            });
          }
 
@@ -256,7 +266,7 @@
          var dom = $('.eCharts-main');
          var width = domParent.width();
          var height = width / val;
-         dom.css('height', height.toFixed(0)); //css('width', width).
+         dom.css('height', height.toFixed(0)); //css('width', width)
        }
 
        function blindChart() {

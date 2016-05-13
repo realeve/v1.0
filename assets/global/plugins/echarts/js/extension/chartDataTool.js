@@ -51,6 +51,21 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     return Data;
   }
 
+  var banknoteColorSheet = {
+    "9602A": "rgb(0,200,100)",
+    "103-G-2A": "rgb(0,200,100)",
+    "9603A": "rgb(189,66,175)",
+    "103-G-3A": "rgb(189,66,175)",
+    "9604A": "rgb(138,148,184)",
+    "103-G-4A": "rgb(138,148,184)",
+    "9605A": "rgb(200,200,30)",
+    "103-G-5A": "rgb(200,200,30)",
+    "9606A": "#148f47",
+    "103-G-6A": "#148f47",
+    "9607T": "rgb(255,127,104)",
+    "103-G-7T": "rgb(255,127,104)"
+  };
+
   var convertData = function(objRes) {
     //数组去重
     function sortNumber(a, b) {
@@ -69,6 +84,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       });
       return re;*/
       //更新数据唯一值判定算法
+      arr.sort();
       var re = [];
       var status = [];
       arr.map(function(elem) {
@@ -167,12 +183,12 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     }
 
     /**
-     * [anayDataCategory 分析一维数组中哪些列是类目轴/非数值型]
+     * [ananyDataCategory 分析一维数组中哪些列是类目轴/非数值型]
      * @param  {[type]} arr [description]
      * @return {[type]}      [description]
      */
 
-    function anayDataCategory(arr) {
+    function ananyDataCategory(arr) {
       var res = [];
       arr.map(function(elem, index) {
         if (isNaN(elem)) { //如果是类目轴
@@ -206,6 +222,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       var Data, arrTem;
       var iTemp, i, j;
       var NewData = [];
+
       Data = getJsonFromUrl(objRequest.url);
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
@@ -234,7 +251,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         NewData['yAxisTitle'] = " ";
 
         //根据catelegory中的类目轴
-        var category = anayDataCategory(Data.data[0]);
+        var category = ananyDataCategory(Data.data[0]);
         var haveLegend = 0;
         if (category.length > 0 && category[0] == 0) {
           NewData['legend'] = getUniData(Data.data, 0);
@@ -503,6 +520,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
             NewData['series'][0].markPoint = MPtStyleBoth;
           }
         }
+
         //线型图隐藏文本标签
         if (objRequest.type == 'line') {
           NewData['series'][0].label = {
@@ -669,7 +687,6 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         };
 
       }
-
       return NewData;
     }
 
@@ -790,6 +807,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           "x": 'left',
           "data": legend
         };
+
         var seriesColor = getSunRiseSeriesColor(Data, objRequest.color);
 
         //每列宽度
@@ -1001,6 +1019,20 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           NewData['series'][0].radius = [0, "60%"];
           NewData['series'][0].center = ['50%', '50%'];
         }
+
+        //玫瑰图
+        if (objRequest.roseType != '0') {
+          if (NewData.series.length == 1) {
+            NewData['series'][0].roseType = objRequest.roseType;
+          } else {
+            NewData['series'][0].roseType = objRequest.roseType;
+            NewData['series'][0].radius = ['10%', "50%"];
+            NewData['series'][0].center = ['25%', '50%'];
+            NewData['series'][1].roseType = objRequest.roseType;
+            NewData['series'][1].radius = ['10%', "50%"];
+            NewData['series'][1].center = ['75%', '50%'];
+          }
+        }
       } else if (Data.cols == 1) {
         NewData['legend'] = {
           "show": false,
@@ -1028,6 +1060,9 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           NewData['series'][0].radius = [0, "60%"];
           NewData['series'][0].center = ['50%', '50%'];
         }
+        if (objRequest.roseType != '0') {
+          NewData['series'][0].roseType = objRequest.roseType;
+        }
       }
 
       //自动处理标签位置
@@ -1054,6 +1089,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           };
         }
       });
+
       return NewData;
     }
 
@@ -1213,7 +1249,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       };
       var bShowLegend = 0;
       //legend;
-      var arrCategory = anayDataCategory(objData.data[0]);
+      var arrCategory = ananyDataCategory(objData.data[0]);
       if (arrCategory.length > 0 && 0 === arrCategory[0]) {
         radarObj.legend = {
           data: getUniData(objData.data, 0),
@@ -1299,7 +1335,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       }
 
       //分析哪些列是类目轴数组
-      var arrCategory = anayDataCategory(Data.data[0]);
+      var arrCategory = ananyDataCategory(Data.data[0]);
       var bShowLegend = 0;
 
       //如果没有类目轴是数组或者第0个类目轴不是数组,
@@ -1440,6 +1476,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         series: radarObj.series,
         legend: radarObj.legend
       };
+
       return NewData;
     }
 
@@ -1516,6 +1553,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           data: Data.data
         };
       }
+
       return NewData;
     }
 
@@ -1790,6 +1828,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         bottom: '10%',
         containLabel: true
       },
+      connectNulls: true,
       toolbox: {
         show: objRequest.toolbox,
         feature: {
@@ -2501,6 +2540,17 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     return outData;
   };
 
+  function handleBankNoteColors(objLegend, color) {
+    var bankNoteLegend = [];
+    objLegend.map(function(legend) {
+      //如果是现有品种里面的序列
+      if (typeof banknoteColorSheet[legend] != 'undefined') {
+        bankNoteLegend.push(banknoteColorSheet[legend]);
+      }
+    })
+    return bankNoteLegend.concat(color);
+  }
+
   var Data;
   var staticDateRange;
   var getOption = function(objRequest) {
@@ -2546,6 +2596,10 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       case 'graph': //力导向布局图
         outData = getForceGraphOption(objRequest);
         break;
+    }
+    //处理钞券颜色
+    if (objRequest.banknoteColor == 1 && typeof outData.legend != 'undefined') {
+      outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
     }
 
     return outData;
