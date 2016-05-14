@@ -25,12 +25,15 @@ define(function (require) {
         }
         if (zoom != null) {
             if (zoomLimit) {
+                var zoomMin = zoomLimit.min || 0;
+                var zoomMax = zoomLimit.max || Infinity;
                 zoom = Math.max(
-                    Math.min(previousZoom * zoom, zoomLimit.max),
-                    zoomLimit.min
+                    Math.min(previousZoom * zoom, zoomMax),
+                    zoomMin
                 ) / previousZoom;
             }
-            // var roamTransform = view.getRoamTransform();
+
+            // Zoom on given point(originX, originY)
             view.scale[0] *= zoom;
             view.scale[1] *= zoom;
             var position = view.position;

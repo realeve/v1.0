@@ -49,7 +49,7 @@ define(function (require) {
 
         init: function (option) {
 
-            option = this._fillOption(option);
+            option = this._fillOption(option, option.map);
             this.option = option;
 
             MapSeries.superApply(this, 'init', arguments);
@@ -68,21 +68,22 @@ define(function (require) {
         },
 
         mergeOption: function (newOption) {
-            newOption = this._fillOption(newOption);
+            if (newOption.data) {
+                newOption = this._fillOption(newOption, this.option.map);
+            }
 
             MapSeries.superCall(this, 'mergeOption', newOption);
 
             this.updateSelectedMap();
         },
 
-        _fillOption: function (option) {
+        _fillOption: function (option, mapName) {
             // Shallow clone
             option = zrUtil.extend({}, option);
 
-            var map = echarts.getMap(option.map);
+            var map = echarts.getMap(mapName);
             var geoJson = map && map.geoJson;
-            geoJson && option.data
-                && (option.data = fillData(option.data, geoJson));
+            geoJson && (option.data = fillData((option.data || []), geoJson));
 
             return option;
         },
@@ -153,7 +154,6 @@ define(function (require) {
 
             zoom: 1,
 
-
             scaleLimit: null,
 
             label: {
@@ -164,9 +164,9 @@ define(function (require) {
                     }
                 },
                 emphasis: {
-                    show: false,
+                    show: true,
                     textStyle: {
-                        color: '#000'
+                        color: 'rgb(100,0,0)'
                     }
                 }
             },

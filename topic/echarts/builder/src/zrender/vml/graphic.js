@@ -357,7 +357,7 @@ if (!require('../core/env').canvasSupported) {
 
                     var type = clockwise ? ' wa ' : ' at ';
                     // IE won't render arches drawn counter clockwise if x0 == x1.
-                    if (Math.abs(x0 - x1) < 1e-10 && clockwise) {
+                    if (Math.abs(x0 - x1) < 1e-10 && Math.abs(endAngle - startAngle) > 1e-2 && clockwise) {
                         // Offset x0 by 1/80 of a pixel. Use something
                         // that can be represented in binary
                         x0 += 270 / Z;
@@ -478,6 +478,9 @@ if (!require('../core/env').canvasSupported) {
         // Text
         if (style.text) {
             this.drawRectText(vmlRoot, this.getBoundingRect());
+        }
+        else {
+            this.removeRectText(vmlRoot);
         }
     };
 
@@ -627,7 +630,7 @@ if (!require('../core/env').canvasSupported) {
         var imageEl = this._imageEl;
         var cropEl = this._cropEl;
 
-        if (! imageEl) {
+        if (!imageEl) {
             imageEl = vmlCore.doc.createElement('div');
             this._imageEl = imageEl;
         }
@@ -1003,13 +1006,16 @@ if (!require('../core/env').canvasSupported) {
         proto.appendRectText = appendRectText;
     }
 
-    Text.prototype.brushVML = function (root) {
+    Text.prototype.brushVML = function (vmlRoot) {
         var style = this.style;
         if (style.text) {
-            this.drawRectText(root, {
+            this.drawRectText(vmlRoot, {
                 x: style.x || 0, y: style.y || 0,
                 width: 0, height: 0
             }, this.getBoundingRect(), true);
+        }
+        else {
+            this.removeRectText(vmlRoot);
         }
     };
 

@@ -19,7 +19,7 @@
  *   linearea:整形    曲线图是否显示为面积图
  *   circle:整形      饼图是否显示为环形图
  *   smooth:整形      是否需要平滑显示线形图
- *   markline：标注线 线形图/柱状图中是否需要显示标注线，打开则标注平均值
+ *   markline：标注线 线形图/柱状图中是否需要显示标注线
  *   markpoint: 标注点 同上，打开则标注最大最小值
  *   barwidth:柱状图最大宽度
  *   splitarea:是否需要显示值域背景分割条
@@ -28,7 +28,7 @@
  * }
  * @输出参数：对应echarts 相关图形所需配置项
  */
-define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
+define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/statisticsTool.min'], function(dataTool, statTool) {
 
   //读取指定URL的JSON数据
   function getJsonFromUrl(strUrl, Type) {
@@ -243,6 +243,51 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         return NewData;
       }
 
+      var lineStyle = {
+        average: {
+          type: 'average',
+          name: '平均值',
+          symbol: 'pin',
+          itemStyle: {
+            normal: {
+              borderWidth: 1,
+              label: {
+                show: true,
+                formatter: '平均值:\n{c}'
+              }
+            }
+          },
+        },
+        min: {
+          type: 'min',
+          name: '最小值',
+          symbol: 'pin',
+          itemStyle: {
+            normal: {
+              borderWidth: 1,
+              label: {
+                show: true,
+                formatter: '最小值:\n{c}'
+              }
+            }
+          },
+        },
+        max: {
+          type: 'max',
+          name: '最大值',
+          symbol: 'pin',
+          itemStyle: {
+            normal: {
+              borderWidth: 1,
+              label: {
+                show: true,
+                formatter: '最大值:\n{c}'
+              }
+            }
+          },
+        }
+      };
+
       //大于3列，横向模式
       //testAPI:  SELECT b.MachineName AS 机台,ROUND(AVG(a.F1Count), 2) AS 正1, ROUND(AVG(a.F2Count), 2) AS 正2, ROUND(AVG(a.F3Count), 2) AS 正3, ROUND(AVG(a.F4Count), 2) AS 正4, ROUND(AVG(a.F5Count), 2) AS 正5, ROUND(AVG(a.B1Count), 2) AS 背1, ROUND(AVG(a.B2Count), 2) AS 背2, ROUND(AVG(a.BS1Count), 2) AS 背精1, ROUND(AVG(a.BS2Count), 2) AS 背精2, ROUND(AVG(a.BS3Count), 2) AS 背精3, ROUND(AVG(a.BS4Count), 2) AS 背精4 FROM MaHouData a INNER JOIN MachineData b ON a.MachineID = b.MachineID WHERE a.produceDate BETWEEN ? AND ? GROUP BY b.MachineName ORDER BY b.MachineName
       if (Data.cols > 3) {
@@ -280,13 +325,13 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
             "itemStyle": itemStyle,
-            "symbolSize": 10
+            "symbolSize": objRequest.symbolSize
           };
           //是否为面积图
           if (objRequest.lineAreaStyle) {
             obj.areaStyle = {
               "normal": {
-                "opacity": 0.4
+                "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.4
               }
             };
             //NewData['series'][i].symbolSize = 0;
@@ -303,9 +348,33 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           }
 
           if (!objRequest.reverse) {
-            if (objRequest.markLine) {
-              obj.markLine = MLnStyle_avg;
+            if (objRequest.markLine != '0') {
+
+              //用户自定义类型
+              if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
+                obj.markLine = {
+                  lineStyle: {
+                    normal: {
+                      type: 'dashed'
+                    }
+                  },
+                  symbolSize: 0,
+                  label: {
+                    normal: {
+                      position: 'end',
+                      formatter: '{b}:\n{c}'
+                    }
+                  },
+                  data: [{
+                    name: decodeURI(objRequest.markLine),
+                    yAxis: Number.parseFloat(objRequest.markLineValue)
+                  }]
+                };
+              } else {
+                obj.markLine = lineStyle[objRequest.markLine];
+              }
             }
+
             if (objRequest.markPoint) {
               obj.markPoint = MPtStyleBoth;
             }
@@ -361,13 +430,14 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
             "itemStyle": itemStyle,
-            "symbolSize": 10
+            "symbolSize": objRequest.symbolSize,
+            sampling: 'average'
           };
           //是否为面积图
           if (objRequest.lineAreaStyle) {
             NewData['series'][i].areaStyle = {
               "normal": {
-                "opacity": 0.4
+                "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.4
               }
             };
             //NewData['series'][i].symbolSize = 0;
@@ -384,9 +454,32 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           }
 
           if (!objRequest.reverse) {
-            if (objRequest.markLine) {
-              NewData['series'][i].markLine = MLnStyle_avg;
+            if (objRequest.markLine != '0') {
+              //用户自定义类型
+              if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
+                NewData['series'][i].markLine = {
+                  lineStyle: {
+                    normal: {
+                      type: 'dashed'
+                    }
+                  },
+                  symbolSize: 0,
+                  label: {
+                    normal: {
+                      position: 'end',
+                      formatter: '{b}:\n{c}'
+                    }
+                  },
+                  data: [{
+                    name: decodeURI(objRequest.markLine),
+                    yAxis: Number.parseFloat(objRequest.markLineValue)
+                  }]
+                };
+              } else {
+                NewData['series'][i].markLine = lineStyle[objRequest.markLine];
+              }
             }
+
             if (objRequest.markPoint) {
               NewData['series'][i].markPoint = MPtStyleBoth;
             }
@@ -423,13 +516,14 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
           "itemStyle": itemStyle,
-          "symbolSize": 10
+          "symbolSize": objRequest.symbolSize,
+          sampling: 'average'
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
           NewData['series'][0].areaStyle = {
             "normal": {
-              "opacity": 0.4
+              "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.4
             }
           };
           //NewData['series'][0].symbolSize = 0;
@@ -446,9 +540,32 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         }
 
         if (!objRequest.reverse) {
-          if (objRequest.markLine) {
-            NewData['series'][0].markLine = MLnStyle_avg;
+          if (objRequest.markLine != '0') {
+            //用户自定义类型
+            if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
+              NewData['series'][0].markLine = {
+                lineStyle: {
+                  normal: {
+                    type: 'dashed'
+                  }
+                },
+                symbolSize: 0,
+                label: {
+                  normal: {
+                    position: 'end',
+                    formatter: '{b}:\n{c}'
+                  }
+                },
+                data: [{
+                  name: decodeURI(objRequest.markLine),
+                  yAxis: Number.parseFloat(objRequest.markLineValue)
+                }]
+              };
+            } else {
+              NewData['series'][0].markLine = lineStyle[objRequest.markLine];
+            }
           }
+
           if (objRequest.markPoint) {
             NewData['series'][0].markPoint = MPtStyleBoth;
           }
@@ -490,13 +607,14 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
           "itemStyle": itemStyle,
-          "symbolSize": 10
+          "symbolSize": objRequest.symbolSize,
+          sampling: 'average'
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
           NewData['series'][0].areaStyle = {
             "normal": {
-              "opacity": 0.4
+              "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.4
             }
           };
           //NewData['series'][0].symbolSize = 0;
@@ -513,8 +631,30 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         }
 
         if (!objRequest.reverse) {
-          if (objRequest.markLine) {
-            NewData['series'][0].markLine = MLnStyle_avg;
+          if (objRequest.markLine != '0') {
+            //用户自定义类型
+            if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
+              NewData['series'][0].markLine = {
+                lineStyle: {
+                  normal: {
+                    type: 'dashed'
+                  }
+                },
+                symbolSize: 0,
+                label: {
+                  normal: {
+                    position: 'end',
+                    formatter: '{b}:\n{c}'
+                  }
+                },
+                data: [{
+                  name: decodeURI(objRequest.markLine),
+                  yAxis: Number.parseFloat(objRequest.markLineValue)
+                }]
+              };
+            } else {
+              NewData['series'][0].markLine = lineStyle[objRequest.markLine];
+            }
           }
           if (objRequest.markPoint) {
             NewData['series'][0].markPoint = MPtStyleBoth;
@@ -532,6 +672,19 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         }
       }
 
+      //数据堆叠
+      if (objRequest.stack) {
+        for (i = 0; i < NewData.legend.length; i++) {
+          NewData.series[i].stack = '总量';
+          NewData.series[i].itemStyle.normal.barBorderRadius = 0;
+          NewData.series[i].symbolSize = 0;
+
+          var str = JSON.stringify(NewData.series[i].data);
+          str = str.replace(/"-"/g, 0);
+          NewData.series[i].data = $.parseJSON(str);
+        }
+        //NewData.series[0].itemStyle.normal.barBorderRadius =  (objRequest.reverse) ? [0, 4, 4, 0] : [4, 4, 0, 0];
+      }
       return NewData;
     }
 
@@ -1284,7 +1437,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
             symbol: 'none',
             areaStyle: {
               normal: {
-                opacity: 0.3
+                "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.3
               }
             },
             lineStyle: {
@@ -1303,7 +1456,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
           symbol: 'none',
           areaStyle: {
             normal: {
-              opacity: 0.3
+              "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.3
             }
           },
           lineStyle: {
@@ -1766,11 +1919,195 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       return NewData;
     }
 
+    //事件河流图
+    function convertThemeRiverData(objRequest) {
+
+      var Data = getJsonFromUrl(objRequest.url);
+      //必须3列以上
+      if (0 === Data.rows || Data.cols != 3) {
+        return false;
+      }
+
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        series: [{
+          type: objRequest.type,
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 20,
+              shadowColor: 'rgba(0, 0, 0, 0.8)'
+            }
+          },
+          data: Data.data
+        }],
+        legend: {
+          data: getUniData(Data.data, 2),
+          x: 'center',
+          y: 70,
+          itemGap: 20,
+          textStyle: {
+            fontSize: 16,
+          }
+        }
+      };
+
+      return NewData;
+    }
+
+    //控制图
+    function convertSPCData(objRequest) {
+      var Data, arrTem;
+      var iTemp, i, j;
+      var NewData = [];
+
+      Data = getJsonFromUrl(objRequest.url);
+      NewData['title'] = Data.title;
+      NewData['subTitle'] = Data.source;
+      NewData['rows'] = Data.rows;
+
+      if (0 === Data.rows) {
+        return NewData;
+      }
+
+      if (Data.cols == 3) {
+        NewData['xAxisTitle'] = Data.header[1].title;
+        NewData['yAxisTitle'] = Data.header[2].title;
+
+        NewData['legend'] = getUniData(Data.data, 0);
+        NewData['xAxis'] = getUniData(Data.data, 1);
+        NewData['yAxis'] = [];
+
+        //yAxis数据清零
+        for (i = 0; i < NewData.legend.length; i++) {
+          NewData['yAxis'][NewData.legend[i]] = [];
+          for (j = 0; j < NewData.xAxis.length; j++) {
+            NewData['yAxis'][NewData.legend[i]][j] = '-';
+          }
+        }
+        for (i = 0; i < Data.rows; i++) {
+          iTemp = Data.data[i][0]; //Legend
+          for (j = 0; j < NewData.xAxis.length; j++) {
+            if (Data.data[i][1] == NewData.xAxis[j]) {
+              NewData['yAxis'][iTemp][j] = Number.parseFloat(Data.data[i][2]); //字符——————>浮点型(否则数据无法做average等比较)
+              break;
+            }
+          }
+        }
+
+        NewData['series'] = [];
+        for (i = 0; i < NewData.legend.length; i++) {
+          NewData['series'][i] = {
+            "name": NewData.legend[i],
+            "type": "line",
+            "smooth": objRequest.smooth,
+            "data": NewData.yAxis[NewData.legend[i]],
+            "label": {
+              normal: {
+                show: false
+              }
+            }
+          };
+        }
+      } else if (Data.cols == 2) {
+        NewData['xAxisTitle'] = Data.header[0].title;
+        NewData['yAxisTitle'] = Data.header[1].title;
+
+        NewData['legend'] = [];
+        NewData['legend'][0] = NewData['yAxisTitle'];
+
+
+        NewData['xAxis'] = convertMatrixRowCol(Data.data, 0);
+        NewData['yAxis'] = convertMatrixRowCol(Data.data, 1);
+
+        NewData['series'] = [];
+        NewData['series'][0] = {
+          "name": NewData['yAxisTitle'],
+          "type": "line",
+          "smooth": objRequest.smooth,
+          "data": NewData.yAxis,
+          "label": {
+            normal: {
+              show: false
+            }
+          }
+        };
+
+      } else if (Data.cols == 1) {
+        NewData['xAxisTitle'] = "数据编号";
+        NewData['yAxisTitle'] = Data.header[0].title;
+        NewData['legend'] = [];
+        NewData['legend'][0] = NewData['yAxisTitle'];
+        arrTemp = [];
+        for (i = 0; i < Data.rows; i++) {
+          arrTemp[i] = i + 1;
+        }
+        NewData['xAxis'] = arrTemp;
+        NewData['yAxis'] = [];
+        for (i = 0; i < Data.rows; i++) {
+          NewData['yAxis'][i] = Number.parseFloat(Data.data[i][0]);
+        }
+        NewData['series'] = [];
+        NewData['series'][0] = {
+          "name": NewData['yAxisTitle'],
+          "type": "line",
+          "smooth": objRequest.smooth,
+          "data": NewData.yAxis,
+          "label": {
+            normal: {
+              show: false
+            }
+          }
+        };
+      }
+
+      if (Data.cols <= 3) {
+        for (i = 0; i < NewData.legend.length; i++) {
+          var markLineData = statTool.pChart(NewData['series'][i]['data']);
+
+          NewData['series'][i].markLine = {
+            lineStyle: {
+              normal: {
+                type: 'dashed'
+              }
+            },
+            symbolSize: 0,
+            label: {
+              normal: {
+                position: 'end',
+                formatter: '{b}:\n{c}'
+              }
+            },
+            data: [{
+              name: 'UCL',
+              yAxis: markLineData.UCL
+            }, {
+              name: 'CL',
+              yAxis: markLineData.CL
+            }, {
+              name: 'LCL',
+              yAxis: markLineData.LCL,
+              lineStyle: {
+                normal: {
+                  color: '#ea2333'
+                }
+              }
+            }]
+          };
+        }
+      }
+
+      return NewData;
+    }
     var returnData;
     switch (objRes.type) {
       case 'bar':
       case 'line':
         returnData = convertBarData(objRes);
+        break;
+      case 'spc':
+        returnData = convertSPCData(objRes);
         break;
       case 'boxplot':
         returnData = convertBoxPlotData(objRes);
@@ -1799,6 +2136,9 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'graph':
         returnData = convertForceGraphData(objRes);
+        break;
+      case 'themeRiver':
+        returnData = convertThemeRiverData(objRes);
         break;
     }
     return returnData;
@@ -1927,6 +2267,13 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       series: Data.series
     };
 
+    if (objRequest.max != '0') {
+      outData.yAxis[0].max = Number.parseFloat(objRequest.max);
+    }
+    if (objRequest.min != '0') {
+      outData.yAxis[0].min = Number.parseFloat(objRequest.min);
+    }
+
     if (objRequest.type == 'boxplot') {
       outData.title[2] = {
         text: '上边缘: Q3 + 1.5 * IRQ \n下边缘: Q1 - 1.5 * IRQ\nIRQ: Q3-Q1',
@@ -1950,6 +2297,121 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     }
     return outData;
   };
+
+
+  var getSPCOption = function(objRequest) {
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle + staticDateRange,
+        x: 'center',
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 10,
+        y2: 5
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      connectNulls: true,
+      toolbox: {
+        show: objRequest.toolbox,
+        feature: {
+          mark: {
+            show: true
+          },
+          //dataZoom : {show: true},
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          dataZoom: {
+            show: true
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: true,
+      tooltip: {
+        //backgroundColor: '#009688',
+        trigger: 'item'
+      },
+      dataZoom: [{
+        type: 'inside',
+        realtime: true,
+        start: 0,
+        end: 100
+      }, {
+        show: (objRequest.dataZoom == 'h' || objRequest.dataZoom == 'vh') ? true : false,
+        realtime: true,
+        start: 0,
+        end: 100,
+        height: 20,
+        y2: 25
+      }, {
+        show: (objRequest.dataZoom == 'v' || objRequest.dataZoom == 'vh') ? true : false,
+        yAxisIndex: 0,
+        filterMode: 'empty',
+        width: 12,
+        height: '70%',
+        handleSize: 8,
+        showDataShadow: false,
+        right: 5
+      }],
+      legend: {
+        data: Data.legend,
+        x: 'center',
+        y: 70,
+        itemGap: 20,
+        textStyle: {
+          fontSize: 16,
+        },
+        selectedMode: 'single',
+        show: (Data.legend.length <= 1) ? false : true
+      },
+      xAxis: [{
+        name: Data.xAxisTitle,
+        axisTick: {
+          show: false
+        }, //隐藏标记线,
+        type: 'category',
+        boundaryGap: (objRequest.type == 'line') ? false : true,
+        data: Data.xAxis,
+      }],
+      yAxis: [{
+        name: Data.yAxisTitle,
+        type: 'value',
+        position: 'left',
+        scale: true, //自动缩放最大最小值
+        axisLabel: {
+          show: true,
+          interval: 'auto',
+          margin: 8,
+        },
+        axisTick: {
+          show: false
+        }
+      }],
+      series: Data.series
+    };
+    return outData;
+  };
+
 
   var getRadiusOption = function(objRequest) {
     var outData = {
@@ -2455,6 +2917,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         },
         lineStyle: {
           normal: {
+            colorMode: 'source',
             curveness: 0.5,
             opacity: 0.5
           }
@@ -2463,6 +2926,7 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     };
     return outData;
   };
+
 
 
   var getForceGraphOption = function(objRequest) {
@@ -2540,6 +3004,76 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
     return outData;
   };
 
+  var getThemeRiverOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        subtext: Data.subTitle + staticDateRange,
+        x: 'center'
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 14,
+          fontWeight: 'normal'
+        },
+        x2: 5,
+        y2: 2
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '10%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'line',
+          lineStyle: {
+            color: 'rgba(0,0,0,0.2)',
+            width: 1,
+            type: 'solid'
+          }
+        }
+      },
+      singleAxis: {
+        axisTick: {},
+        axisLabel: {},
+        bottom: '10%',
+        type: 'time',
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: 'dashed',
+            opacity: 0.2
+          }
+        }
+      },
+      legend: Data.legend,
+      series: Data.series
+    };
+    return outData;
+  };
+
   function handleBankNoteColors(objLegend, color) {
     var bankNoteLegend = [];
     objLegend.map(function(legend) {
@@ -2573,6 +3107,9 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
       case 'boxplot':
         outData = getGridAxisOption(objRequest);
         break;
+      case 'spc':
+        outData = getSPCOption(objRequest);
+        break;
       case 'pie':
       case 'funnel':
       case 'sunrise':
@@ -2595,6 +3132,9 @@ define(['../plugins/echarts/js/extension/dataTool.min'], function(dataTool) {
         break;
       case 'graph': //力导向布局图
         outData = getForceGraphOption(objRequest);
+        break;
+      case 'themeRiver': //事件河流图
+        outData = getThemeRiverOption(objRequest);
         break;
     }
     //处理钞券颜色

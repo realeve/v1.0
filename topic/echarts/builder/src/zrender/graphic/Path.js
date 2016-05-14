@@ -57,24 +57,38 @@ define(function (require) {
             var path = this.path;
             var hasStroke = pathHasStroke(style);
             var hasFill = pathHasFill(style);
-
-            if (this.__dirtyPath) {
-                // Update gradient because bounding rect may changed
-                if (hasFill && (style.fill instanceof Gradient)) {
-                    style.fill.updateCanvasGradient(this, ctx);
-                }
-                if (hasStroke && (style.stroke instanceof Gradient)) {
-                    style.stroke.updateCanvasGradient(this, ctx);
-                }
-            }
+            var hasFillGradient = hasFill && !!(style.fill.colorStops);
+            var hasStrokeGradient = hasStroke && !!(style.stroke.colorStops);
 
             style.bind(ctx, this);
             this.setTransform(ctx);
+
+            if (this.__dirtyPath) {
+                var rect = this.getBoundingRect();
+                // Update gradient because bounding rect may changed
+                if (hasFillGradient) {
+                    this._fillGradient = style.getGradient(ctx, style.fill, rect);
+                }
+                if (hasStrokeGradient) {
+                    this._strokeGradient = style.getGradient(ctx, style.stroke, rect);
+                }
+            }
+            // Use the gradient
+            if (hasFillGradient) {
+                ctx.fillStyle = this._fillGradient;
+            }
+            if (hasStrokeGradient) {
+                ctx.strokeStyle = this._strokeGradient;
+            }
 
             var lineDash = style.lineDash;
             var lineDashOffset = style.lineDashOffset;
 
             var ctxLineDash = !!ctx.setLineDash;
+
+            // Update path sx, sy
+            var scale = this.getGlobalScale();
+            path.setScale(scale[0], scale[1]);
 
             // Proxy context
             // Rebuild path in following 2 cases
@@ -141,10 +155,8 @@ define(function (require) {
                 // Needs update rect with stroke lineWidth when
                 // 1. Element changes scale or lineWidth
                 // 2. Shape is changed
-                var rectWithStroke = this._rectWithStroke;
+                var rectWithStroke = this._rectWithStroke || (this._rectWithStroke = rect.clone());
                 if (this.__dirty || needsUpdateRect) {
-                    var rectWithStroke = this._rectWithStroke
-                        || (this._rectWithStroke = rect.clone());
                     rectWithStroke.copy(rect);
                     // FIXME Must after updateTransform
                     var w = style.lineWidth;

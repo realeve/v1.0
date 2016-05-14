@@ -68,9 +68,13 @@
 							<thead><tr><th>参数名</th><th>参数说明</th><th>可选值</th></tr></thead>
 							<tbody>
 								<tr><td>tid</td><td>图表ID</td><td>随数据接口而变化</td></tr>
-								<tr><td>type</td><td>图表类型</td><td>line:曲线图,bar:柱状图,boxplot:箱形图,pie:饼图,funnel:漏斗图,sunrise:旭日图,parallel:平行坐标系,treemap:树形图,radar:雷达图,scatter:散点图,sankey:桑基图,graph:力导向布局图</td></tr>
+								<tr><td>type</td><td>图表类型</td><td>line:曲线图,bar:柱状图,boxplot:箱形图,pie:饼图,funnel:漏斗图,sunrise:旭日图,parallel:平行坐标系,treemap:树形图,radar:雷达图,scatter:散点图,sankey:桑基图,graph:力导向布局图,themeRiver:事件河流图</td></tr>
 								<tr><td>minmax</td><td>箱形图boxplot专用，将上下边缘设置为最大最小值</td><td>0，1</td></tr>
 								<tr><td>linearea</td><td>线形图专用，设为1表示面积图</td><td>0，1</td></tr>
+								<tr><td>stack</td><td>线形/柱形图专用</td><td>数据是否堆叠</td></tr>
+								<tr><td>max</td><td>坐标轴最大值</td><td>数值,不设置时自动适应</td></tr>
+								<tr><td>min</td><td>坐标轴最小值</td><td>数值，不设置时自动适应</td></tr>
+								<tr><td>opacity</td><td>系列透明度</td><td>数值，默认0.4/0.5</td></tr>
 								<tr><td>circle</td><td>饼图专用，设为1表示为环形图</td><td>0，1（默认为1)</td></tr>
 								<tr><td>rose</td><td>饼图专用，是否为玫瑰图</td><td>area(面积模式),radius(半径模式)</td></tr>
 								<tr><td>smooth</td><td>线型图专用，是否平滑曲线</td><td>0,1</td></tr>
@@ -81,7 +85,8 @@
 								<tr><td>force</td><td>力导向布局图专用，布局类型</td><td>(默认,力导向)1,0(环形)</td></tr>
 
 								<tr><td>reverse</td><td>是否反转X/Y轴<br>对于柱状图/箱形图，变换X/Y轴后图像有不同的表现，例如柱状图交换后成为了条形图</td><td>0,1</td></tr>
-								<tr><td>markline</td><td>标注线（平均值）</td><td>0,1</td></tr>
+								<tr><td>markline</td><td>标注线</td><td>0,average,min,max,自定义名字</td></tr>
+								<tr><td>marklinevalue</td><td>自定义标注线值</td><td>对应Y轴数值</td></tr>
 								<tr><td>markpoint</td><td>标注点（最大值，最小值）</td><td>0,1</td></tr>
 								<tr><td>barwidth</td><td>柱形宽度</td><td>数值型(默认100)</td></tr>
 								<tr><td>splitarea</td><td>值域背景分割条</td><td>0，1</td></tr>

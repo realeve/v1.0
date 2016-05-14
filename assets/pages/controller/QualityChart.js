@@ -121,6 +121,7 @@
            "type": (getUrlParam('type') === null) ? ['line'] : getUrlParam('type').split(','),
            "smooth": (getUrlParam('smooth') === null) ? ['1'] : getUrlParam('smooth').split(','),
            "markLine": (getUrlParam('markline') === null) ? ['0'] : getUrlParam('markline').split(','),
+           "markLineValue": (getUrlParam('marklinevalue') === null) ? ['0'] : getUrlParam('marklinevalue').split(','),
            "markPoint": (getUrlParam('markpoint') === null) ? ['0'] : getUrlParam('markpoint').split(','),
            "barMaxWidth": (getUrlParam('barwidth') === null) ? ['0'] : getUrlParam('barwidth').split(','),
            "splitArea": (getUrlParam('splitarea') === null) ? ['0'] : getUrlParam('splitarea').split(','),
@@ -136,7 +137,12 @@
            "shape": (getUrlParam('shape') === null) ? ['polygon'] : getUrlParam('shape').split(','),
            "scatterSize": (getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(','),
            "force": (getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(','),
-           "banknoteColor": (getUrlParam('banknoteColor') === null) ? ['1'] : getUrlParam('banknoteColor').split(',')
+           "banknoteColor": (getUrlParam('banknoteColor') === null) ? ['1'] : getUrlParam('banknoteColor').split(','),
+           "stack": (getUrlParam('stack') === null) ? ['0'] : getUrlParam('stack').split(','),
+           "max": (getUrlParam('max') === null) ? ['0'] : getUrlParam('max').split(','),
+           "min": (getUrlParam('min') === null) ? ['0'] : getUrlParam('min').split(','),
+           "symbolSize": (getUrlParam('symbolsize') === null) ? ['10'] : getUrlParam('symbolsize').split(','),
+           "opacity": (getUrlParam('opacity') === null) ? ['0'] : getUrlParam('opacity').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -145,7 +151,8 @@
              "smooth": (handleParam(objList.smooth, i, '1') === '1') ? true : false,
              "blind": (getUrlParam('blind') === "0" || getUrlParam('blind') === null) ? false : true,
              "toolbox": /*(objRequest.blind && i) ? false : */ true,
-             "markLine": (handleParam(objList.markLine, i, '0') === '1') ? true : false,
+             "markLine": handleParam(objList.markLine, i, "average"),
+             "markLineValue": handleParam(objList.markLineValue, i, "0"),
              "markPoint": (handleParam(objList.markPoint, i, '0') === '1') ? true : false,
              "barMaxWidth": (handleParam(objList.barMaxWidth, i, '0') === '1') ? true : false,
              "splitArea": (handleParam(objList.splitArea, i, '0') === '1') ? true : false,
@@ -160,7 +167,12 @@
              "shape": handleParam(objList.shape, i, "polygon"),
              "scatterSize": Number.parseFloat(handleParam(objList.scatterSize, i, '20')),
              "force": handleParam(objList.force, i, "1"),
-             "banknoteColor": handleParam(objList.banknoteColor, i, "1")
+             "banknoteColor": handleParam(objList.banknoteColor, i, "1"),
+             "stack": (handleParam(objList.stack, i, '0') === '1') ? true : false,
+             "max": handleParam(objList.max, i, "1"),
+             "min": handleParam(objList.min, i, "1"),
+             "symbolSize": handleParam(objList.symbolSize, i, "10"),
+             "opacity": handleParam(objList.opacity, i, 0.4)
            };
            //console.log(objRequest);
            //桑基图高度增加一倍
@@ -181,7 +193,7 @@
            objRequest.color = curTheme.color;
 
            option[i] = chartDataTool.getOption(objRequest);
-           console.log("option = " + JSON.stringify(option[i]));
+           //console.log("option = " + JSON.stringify(option[i]));
 
            if (option[i] !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
