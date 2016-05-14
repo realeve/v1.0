@@ -103,11 +103,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       return [
         '序列 ' + param.seriesName + ': ',
         '分组 ' + param.name + ': ',
-        '上边缘: ' + param.data[4].toFixed(3),
-        '上四分位(Q1): ' + param.data[3].toFixed(3),
+        '上须: ' + param.data[4].toFixed(3),
+        '较高四分位点(Q1): ' + param.data[3].toFixed(3),
         '中位数: ' + param.data[2].toFixed(3),
-        '下四分位(Q3): ' + param.data[1].toFixed(3),
-        '下边缘: ' + param.data[0].toFixed(3)
+        '较低四分位点(Q3): ' + param.data[1].toFixed(3),
+        '下须: ' + param.data[0].toFixed(3)
       ].join('<br/>');
     }
 
@@ -116,9 +116,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         '序列 ' + param.seriesName + ': ',
         '分组 ' + param.name + ': ',
         '最大值: ' + param.data[4].toFixed(3),
-        '上四分位(Q1): ' + param.data[3].toFixed(3),
+        '较高四分位点(Q1): ' + param.data[3].toFixed(3),
         '中位数: ' + param.data[2].toFixed(3),
-        '下四分位(Q3): ' + param.data[1].toFixed(3),
+        '较低四分位点(Q3): ' + param.data[1].toFixed(3),
         '最小值: ' + param.data[0].toFixed(3)
       ].join('<br/>');
     }
@@ -243,50 +243,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         return NewData;
       }
 
-      var lineStyle = {
-        average: {
-          type: 'average',
-          name: '平均值',
-          symbol: 'pin',
-          itemStyle: {
-            normal: {
-              borderWidth: 1,
-              label: {
-                show: true,
-                formatter: '平均值:\n{c}'
-              }
-            }
-          },
-        },
-        min: {
-          type: 'min',
-          name: '最小值',
-          symbol: 'pin',
-          itemStyle: {
-            normal: {
-              borderWidth: 1,
-              label: {
-                show: true,
-                formatter: '最小值:\n{c}'
-              }
-            }
-          },
-        },
-        max: {
-          type: 'max',
-          name: '最大值',
-          symbol: 'pin',
-          itemStyle: {
-            normal: {
-              borderWidth: 1,
-              label: {
-                show: true,
-                formatter: '最大值:\n{c}'
-              }
-            }
-          },
-        }
+      var lineStyleName = {
+        average: '平均值',
+        min: '最小值',
+        max: '最大值'
       };
+
+      var mkVal, mkName, mkNameLen;
 
       //大于3列，横向模式
       //testAPI:  SELECT b.MachineName AS 机台,ROUND(AVG(a.F1Count), 2) AS 正1, ROUND(AVG(a.F2Count), 2) AS 正2, ROUND(AVG(a.F3Count), 2) AS 正3, ROUND(AVG(a.F4Count), 2) AS 正4, ROUND(AVG(a.F5Count), 2) AS 正5, ROUND(AVG(a.B1Count), 2) AS 背1, ROUND(AVG(a.B2Count), 2) AS 背2, ROUND(AVG(a.BS1Count), 2) AS 背精1, ROUND(AVG(a.BS2Count), 2) AS 背精2, ROUND(AVG(a.BS3Count), 2) AS 背精3, ROUND(AVG(a.BS4Count), 2) AS 背精4 FROM MaHouData a INNER JOIN MachineData b ON a.MachineID = b.MachineID WHERE a.produceDate BETWEEN ? AND ? GROUP BY b.MachineName ORDER BY b.MachineName
@@ -348,30 +311,46 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           }
 
           if (!objRequest.reverse) {
+
+            //单个图表中，某项参数有多个值时用分号隔开
+            mkVal = objRequest.markLineValue.split(';');
+            mkName = objRequest.markLine.split(';');
+            mkNameLen = mkName.length;
+
             if (objRequest.markLine != '0') {
 
+              obj.markLine = {
+                lineStyle: {
+                  normal: {
+                    type: 'dashed'
+                  }
+                },
+                symbolSize: 0,
+                label: {
+                  normal: {
+                    position: 'end',
+                    formatter: '{b}:\n{c}'
+                  }
+                },
+                data: []
+              };
+
               //用户自定义类型
-              if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
-                obj.markLine = {
-                  lineStyle: {
-                    normal: {
-                      type: 'dashed'
-                    }
-                  },
-                  symbolSize: 0,
-                  label: {
-                    normal: {
-                      position: 'end',
-                      formatter: '{b}:\n{c}'
-                    }
-                  },
-                  data: [{
-                    name: decodeURI(objRequest.markLine),
-                    yAxis: Number.parseFloat(objRequest.markLineValue)
-                  }]
-                };
+              if (mkName[0] != 'min' && mkName[0] != 'max' && mkName[0] != 'average') {
+                mkVal.map(function(markLineValue, idx) {
+                  obj.markLine.data.push({
+                    name: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                    yAxis: Number.parseFloat(markLineValue)
+                  });
+                });
+
               } else {
-                obj.markLine = lineStyle[objRequest.markLine];
+                mkName.map(function(markLineValue, idx) {
+                  obj.markLine.data.push({
+                    type: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                    name: lineStyleName[mkNameLen == 1 ? objRequest.markLine : mkName[idx]]
+                  });
+                });
               }
             }
 
@@ -454,30 +433,49 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           }
 
           if (!objRequest.reverse) {
+
+            //单个图表中，某项参数有多个值时用分号隔开
+            mkVal = objRequest.markLineValue.split(';');
+            mkName = objRequest.markLine.split(';');
+            mkNameLen = mkName.length;
+
             if (objRequest.markLine != '0') {
+
+              NewData['series'][i].markLine = {
+                lineStyle: {
+                  normal: {
+                    type: 'dashed'
+                  }
+                },
+                symbolSize: 0,
+                label: {
+                  normal: {
+                    position: 'end',
+                    formatter: '{b}:\n{c}'
+                  }
+                },
+                data: []
+              };
+
+
               //用户自定义类型
-              if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
-                NewData['series'][i].markLine = {
-                  lineStyle: {
-                    normal: {
-                      type: 'dashed'
-                    }
-                  },
-                  symbolSize: 0,
-                  label: {
-                    normal: {
-                      position: 'end',
-                      formatter: '{b}:\n{c}'
-                    }
-                  },
-                  data: [{
-                    name: decodeURI(objRequest.markLine),
-                    yAxis: Number.parseFloat(objRequest.markLineValue)
-                  }]
-                };
+              if (mkName[0] != 'min' && mkName[0] != 'max' && mkName[0] != 'average') {
+                mkVal.map(function(markLineValue, idx) {
+                  NewData['series'][i].markLine.data.push({
+                    name: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                    yAxis: Number.parseFloat(markLineValue)
+                  });
+                });
+
               } else {
-                NewData['series'][i].markLine = lineStyle[objRequest.markLine];
+                mkName.map(function(markLineValue, idx) {
+                  NewData['series'][i].markLine.data.push({
+                    type: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                    name: lineStyleName[mkNameLen == 1 ? objRequest.markLine : mkName[idx]]
+                  });
+                });
               }
+
             }
 
             if (objRequest.markPoint) {
@@ -540,29 +538,47 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
 
         if (!objRequest.reverse) {
+
+          //单个图表中，某项参数有多个值时用分号隔开
+          mkVal = objRequest.markLineValue.split(';');
+          mkName = objRequest.markLine.split(';');
+          mkNameLen = mkName.length;
+
           if (objRequest.markLine != '0') {
+
+            NewData['series'][0].markLine = {
+              lineStyle: {
+                normal: {
+                  type: 'dashed'
+                }
+              },
+              symbolSize: 0,
+              label: {
+                normal: {
+                  position: 'end',
+                  formatter: '{b}:\n{c}'
+                }
+              },
+              data: []
+            };
+
             //用户自定义类型
-            if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
-              NewData['series'][0].markLine = {
-                lineStyle: {
-                  normal: {
-                    type: 'dashed'
-                  }
-                },
-                symbolSize: 0,
-                label: {
-                  normal: {
-                    position: 'end',
-                    formatter: '{b}:\n{c}'
-                  }
-                },
-                data: [{
-                  name: decodeURI(objRequest.markLine),
-                  yAxis: Number.parseFloat(objRequest.markLineValue)
-                }]
-              };
+            if (mkName[0] != 'min' && mkName[0] != 'max' && mkName[0] != 'average') {
+
+              mkVal.map(function(markLineValue, idx) {
+                NewData['series'][0].markLine.data.push({
+                  name: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                  yAxis: Number.parseFloat(markLineValue)
+                });
+              });
+
             } else {
-              NewData['series'][0].markLine = lineStyle[objRequest.markLine];
+              mkName.map(function(markLineValue, idx) {
+                NewData['series'][0].markLine.data.push({
+                  type: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                  name: lineStyleName[mkNameLen == 1 ? objRequest.markLine : mkName[idx]]
+                });
+              });
             }
           }
 
@@ -631,29 +647,46 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
 
         if (!objRequest.reverse) {
+
+          //单个图表中，某项参数有多个值时用分号隔开
+          mkVal = objRequest.markLineValue.split(';');
+          mkName = objRequest.markLine.split(';');
+          mkNameLen = mkName.length;
           if (objRequest.markLine != '0') {
+
+            NewData['series'][0].markLine = {
+              lineStyle: {
+                normal: {
+                  type: 'dashed'
+                }
+              },
+              symbolSize: 0,
+              label: {
+                normal: {
+                  position: 'end',
+                  formatter: '{b}:\n{c}'
+                }
+              },
+              data: []
+            };
+
             //用户自定义类型
-            if (objRequest.markLine != 'min' && objRequest.markLine != 'max' && objRequest.markLine != 'average') {
-              NewData['series'][0].markLine = {
-                lineStyle: {
-                  normal: {
-                    type: 'dashed'
-                  }
-                },
-                symbolSize: 0,
-                label: {
-                  normal: {
-                    position: 'end',
-                    formatter: '{b}:\n{c}'
-                  }
-                },
-                data: [{
-                  name: decodeURI(objRequest.markLine),
-                  yAxis: Number.parseFloat(objRequest.markLineValue)
-                }]
-              };
+            if (mkName[0] != 'min' && mkName[0] != 'max' && mkName[0] != 'average') {
+
+              mkVal.map(function(markLineValue, idx) {
+                NewData['series'][0].markLine.data.push({
+                  name: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                  yAxis: Number.parseFloat(markLineValue)
+                });
+              });
+
             } else {
-              NewData['series'][0].markLine = lineStyle[objRequest.markLine];
+              mkName.map(function(markLineValue, idx) {
+                NewData['series'][0].markLine.data.push({
+                  type: decodeURI(mkNameLen == 1 ? objRequest.markLine : mkName[idx]),
+                  name: lineStyleName[mkNameLen == 1 ? objRequest.markLine : mkName[idx]]
+                });
+              });
             }
           }
           if (objRequest.markPoint) {
@@ -685,6 +718,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
         //NewData.series[0].itemStyle.normal.barBorderRadius =  (objRequest.reverse) ? [0, 4, 4, 0] : [4, 4, 0, 0];
       }
+
       return NewData;
     }
 
@@ -755,7 +789,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             "type": objRequest.type,
             "data": iConvData.boxData,
             "tooltip": {
-              //backgroundColor: '#009688',
+              backgroundColor: '#fff',
+              textStyle: {
+                color: '#333'
+              },
+              extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
               formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
             }
           };
@@ -798,7 +836,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
-            //backgroundColor: '#009688',
+            backgroundColor: '#fff',
+            extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            textStyle: {
+              color: '#333'
+            },
             formatter: boxFormatter
           }
         };
@@ -828,7 +870,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
-            //backgroundColor: '#009688',
+            backgroundColor: '#fff',
+            extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            textStyle: {
+              color: '#333'
+            },
             formatter: boxFormatter
           }
         };
@@ -2197,7 +2243,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       calculable: true,
       tooltip: {
-        //backgroundColor: '#009688',
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
         trigger: 'item' //(objRequest.type == 'boxplot') ? 'item' : 'axis'
       },
       dataZoom: [{
@@ -2276,7 +2326,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     if (objRequest.type == 'boxplot') {
       outData.title[2] = {
-        text: '上边缘: Q3 + 1.5 * IRQ \n下边缘: Q1 - 1.5 * IRQ\nIRQ: Q3-Q1',
+        text: '上须: Q3 + 1.5 * IRQ \n下须: Q1 - 1.5 * IRQ\nIRQ: Q3-Q1',
         borderColor: '#999',
         borderWidth: 1,
         textStyle: {
@@ -2286,7 +2336,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         y: 30
       };
       if (objRequest.minMax) {
-        outData.title[2].text = '上边缘: 最大值 \n下边缘: 最小值';
+        outData.title[2].text = '上须: 最大值 \n下须: 最小值';
       }
     }
     if (objRequest.reverse) { //是否需要调换X/Y轴
@@ -2348,7 +2398,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       calculable: true,
       tooltip: {
-        //backgroundColor: '#009688',
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
         trigger: 'item'
       },
       dataZoom: [{
@@ -2431,7 +2485,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         y2: 5
       }],
       tooltip: {
-        //backgroundColor: '#009688',
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
         trigger: 'item',
         formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
@@ -2647,7 +2705,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
       },
       tooltip: {
-        //backgroundColor: '#009688',
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
         formatter: function(info) {
           var value = info.value;
           var treePathInfo = info.treePathInfo;
@@ -2699,7 +2761,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
       },
       tooltip: {
-        //backgroundColor: '#009688',
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
       },
       legend: Data.legend,
       radar: {
@@ -2776,6 +2842,12 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       tooltip: {
         trigger: 'axis',
         showDelay: 0,
+
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
         formatter: function(params) {
           if (params.value.length > 1) {
             return params.seriesName + ' :<br/>' + params.value[0] + ' , ' + params.value[1] + ' ';
@@ -2901,7 +2973,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       tooltip: {
         trigger: 'item',
-        triggerOn: 'mousemove'
+        triggerOn: 'mousemove',
+
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        },
 
       },
       series: {
@@ -2978,7 +3056,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontSize: 16,
         }
       },
-      tooltip: {},
+      tooltip: {
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
+        }
+      },
       series: {
         name: "关系图",
         type: objRequest.type,
@@ -3053,6 +3137,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             width: 1,
             type: 'solid'
           }
+        },
+        backgroundColor: '#fff',
+        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        textStyle: {
+          color: '#333'
         }
       },
       singleAxis: {
