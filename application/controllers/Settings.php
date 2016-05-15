@@ -47,11 +47,11 @@ class settings extends CI_Controller {
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;	
-				$this->load->view('templates/header/header_settings', $logindata);  
+				$this->load->view('templates/header/header_settings_account', $logindata);  
 				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('settings_account',$logindata);
-				$this->load->view('templates/footer/footer_settings');				
+				$this->load->view('templates/footer/footer_settings_account');				
 			}	
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
@@ -98,11 +98,11 @@ class settings extends CI_Controller {
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
-				$this->load->view('templates/header/header_settings', $logindata);  
+				$this->load->view('templates/header/header_settings_select', $logindata);  
 				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('settings_select',$logindata);
-				$this->load->view('templates/footer/footer_settings');				
+				$this->load->view('templates/footer/footer_settings_select');				
 			}	
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')

@@ -36,8 +36,8 @@
 				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" class="img-circle" src="../../assets/pages/media/profile/profile_user.jpg"/>
-					<span class="username username-hide-on-mobile" data-uid="<?php echo $uid?>">
+					<img alt="" class="img-circle"/>
+					<span class="username username-hide-on-mobile" data-uid="<?php echo $uid?>" data-avatar="<?php echo $avatar?>">
 					<?php echo $username?> </span>
 					<i class="fa fa-angle-down"></i>
 					</a>

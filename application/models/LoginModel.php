@@ -33,6 +33,8 @@ class LoginModel extends CI_Model {
 			$logindata['userrole'] = $row->UserRole;
 			$logindata['uid'] = $row->id;
 			$logindata['segment_html'] = $row->segment_html;
+			//全局函数，记录用户登录信息
+			$logindata['avatar'] = base64_encode($logindata['uid'].$logindata['username']);
 		}
 		else
 		{

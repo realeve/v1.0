@@ -29,7 +29,7 @@
                         <div class="portlet light profile-sidebar-portlet ">
                             <!-- SIDEBAR USERPIC -->
                             <div class="profile-userpic">
-                                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
+                                <img class="img-responsive" alt=""> </div>
                             <!-- END SIDEBAR USERPIC -->
                             <!-- SIDEBAR USER TITLE -->
                             <div class="profile-usertitle">
@@ -41,7 +41,7 @@
                             <div class="profile-usermenu">
                                 <ul class="nav">
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings">
+                                        <a href="javascript:;">
                                             <i class="icon-home"></i> 概览 </a>
                                     </li>
                                     <li>
@@ -62,8 +62,7 @@
                         </div>
                         <!-- END PORTLET MAIN -->
                         <!-- PORTLET MAIN -->
-                        <div class="portlet light ">
-                            <!-- STAT -->
+                        <!--div class="portlet light ">
                             <div class="row list-separated profile-stat">
                                 <div class="col-md-4 col-sm-4 col-xs-6">
                                     <div class="uppercase profile-stat-title"> 37 </div>
@@ -78,7 +77,6 @@
                                     <div class="uppercase profile-stat-text"> 机检日志 </div>
                                 </div>
                             </div>
-                            <!-- END STAT -->
                             <div>
                                 <h4 class="profile-desc-title">关于 <?php echo $username?></h4>
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
@@ -91,7 +89,7 @@
                                     <a href="#">@</a>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <!-- END PORTLET MAIN -->
                     </div>
                     <!-- END BEGIN PROFILE SIDEBAR -->

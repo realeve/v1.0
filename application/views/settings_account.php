@@ -29,8 +29,8 @@
                         <div class="portlet light profile-sidebar-portlet ">
                             <!-- SIDEBAR USERPIC -->
                             <div class="profile-userpic">
-                                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
-                            <!-- END SIDEBAR USERPIC -->
+                                <img class="img-responsive" alt=""> </div>
+                            <!-- END SIDEBAR USERPIC src="../assets/pages/media/profile/profile_user.jpg"  -->
                             <!-- SIDEBAR USER TITLE -->
                             <div class="profile-usertitle">
                                 <div class="profile-usertitle-name"> <?php echo $username?> </div>
@@ -41,7 +41,7 @@
                             <div class="profile-usermenu">
                                 <ul class="nav">
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings">
+                                        <a href="javascript:;">
                                             <i class="icon-home"></i> 概览 </a>
                                     </li>
                                     <li class="active">
@@ -62,8 +62,7 @@
                         </div>
                         <!-- END PORTLET MAIN -->
                         <!-- PORTLET MAIN -->
-                        <div class="portlet light ">
-                            <!-- STAT -->
+                        <!--div class="portlet light ">
                             <div class="row list-separated profile-stat">
                                 <div class="col-md-4 col-sm-4 col-xs-6">
                                     <div class="uppercase profile-stat-title"> 37 </div>
@@ -78,7 +77,6 @@
                                     <div class="uppercase profile-stat-text"> 机检日志 </div>
                                 </div>
                             </div>
-                            <!-- END STAT -->
                             <div>
                                 <h4 class="profile-desc-title">关于 <?php echo $username?></h4>
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
@@ -91,7 +89,7 @@
                                     <a href="#">@</a>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <!-- END PORTLET MAIN -->
                     </div>
                     <!-- END BEGIN PROFILE SIDEBAR -->
@@ -110,13 +108,16 @@
                                                 <a href="#tab_1_1" data-toggle="tab">个人信息</a>
                                             </li>
                                             <li>
-                                                <a href="#tab_1_2" data-toggle="tab">更改头像</a>
+                                                <a href="#tab_1_2" data-toggle="tab">上传头像文件</a>
                                             </li>
                                             <li>
-                                                <a href="#tab_1_3" data-toggle="tab">更改密码</a>
+                                                <a href="#tab_1_3" data-toggle="tab">编辑头像</a>
                                             </li>
                                             <li>
-                                                <a href="#tab_1_4" data-toggle="tab">其它设置</a>
+                                                <a href="#tab_1_4" data-toggle="tab">更改密码</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_1_5" data-toggle="tab">其它设置</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -150,35 +151,60 @@
                                             <!-- END PERSONAL INFO TAB -->
                                             <!-- CHANGE AVATAR TAB -->
                                             <div class="tab-pane" id="tab_1_2">
-                                                <p> 点击选择个人头像. </p>
-                                                <form action="#" role="form">
-                                                    <div class="form-group">
-                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                                <img src="../../assets/pages/media/profile/Avatar_none.gif" alt="" /> </div>
-                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                                                            <div>
-                                                                <span class="btn default btn-file">
-                                                                    <span class="fileinput-new"> 选择图像 </span>
-                                                                    <span class="fileinput-exists"> 重新选择 </span>
-                                                                    <input type="file" name="..."> </span>
-                                                                <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 移除 </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="clearfix margin-top-10">
-                                                            <span class="label label-danger">注意! </span>
-                                                            <span>图像缩略图只在最新版的 Firefox, Chrome, Opera, Safari 和 IE10 以上的浏览器兼容！ </span>
-                                                        </div>
+                                                <p> 点击选择个人头像. </p>												
+												<form id="avatarForm">  
+													<div class="form-group">
+														<div class="fileinput fileinput-new" data-provides="fileinput">
+															<div class="fileinput-new thumbnail">
+																<img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" alt="" /> </div>
+															<div class="fileinput-preview fileinput-exists thumbnail"> </div>
+															<div>
+																<span class="btn default btn-file">
+																	<span class="fileinput-new"> 选择图像 </span>
+																	<span class="fileinput-exists"> 重新选择 </span>
+																	<input id="file-input" type="file" name="file" id="avatarFile" multiple class="file-loading" accept="image/*" name="avatarFile"/></span>
+																<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+															</div>
+															<div class="clearfix margin-top-10">
+																<span class="label label-danger">注意! </span>
+																<span>&nbsp;图像文件请不要超过1M！ </span>
+															</div>
+														</div>
+													</div>
+													<div class="margin-top-10">
+														<a value="上传" class="btn green" id="submitAvatar"> 提交 </a>
+														<a href="javascript:;" class="btn default"> 取消 </a>
+													</div>	
+												</form> 												
+                                            </div>
+                                            <!-- END CHANGE AVATAR TAB -->
+											
+                                            <!-- CHANGE AVATAR TAB -->
+                                            <div class="tab-pane" id="tab_1_3">
+												<div class="row">
+                                                    <div class="col-md-9 responsive-1024">
+                                                        <!-- This is the image we're attaching Jcrop to -->
+                                                        <img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" id="demo8" alt="Jcrop Example"> </div>
+														
+                                                    <div class="col-md-12 responsive-1024 margin-top-20">
+														<!--div id="preview-pane">
+                                                            <div class="preview-container">
+                                                                <img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" class="jcrop-preview" alt="Preview" />																
+																</div>
+                                                        </div-->
+                                                        <form id="demo8_form">
+                                                            <input type="hidden" id="crop_x" name="x" />
+                                                            <input type="hidden" id="crop_y" name="y" />
+                                                            <input type="hidden" id="crop_w" name="w" />
+                                                            <input type="hidden" id="crop_h" name="h" />
+														</form>
+                                                        <a id="saveAvatar" href="javascript:;" class="btn btn-large green"> 裁剪为头像 </a>
                                                     </div>
-                                                    <div class="margin-top-10">
-                                                        <a href="javascript:;" class="btn green"> 提交 </a>
-                                                        <a href="javascript:;" class="btn default"> 取消 </a>
-                                                    </div>
-                                                </form>
+                                                </div>										
                                             </div>
                                             <!-- END CHANGE AVATAR TAB -->
                                             <!-- CHANGE PASSWORD TAB -->
-                                            <div class="tab-pane" id="tab_1_3">
+                                            <div class="tab-pane" id="tab_1_4">
                                                 <form action="#">
                                                     <div class="form-group">
                                                         <label class="control-label">旧密码</label>
@@ -197,11 +223,11 @@
                                             </div>
                                             <!-- END CHANGE PASSWORD TAB -->
                                             <!-- PRIVACY SETTINGS TAB -->
-                                            <div class="tab-pane" id="tab_1_4">
+                                            <div class="tab-pane" id="tab_1_5">
                                                 <form action="#">
                                                     <table class="table table-light table-hover">
                                                         <tr>
-                                                            <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
+                                                            <td> 设置1.. </td>
                                                             <td>
                                                                 <label class="uniform-inline">
                                                                     <input type="radio" name="optionsRadios1" value="option1" /> Yes </label>
@@ -210,21 +236,21 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+                                                            <td> 设置2 </td>
                                                             <td>
                                                                 <label class="uniform-inline">
                                                                     <input type="checkbox" value="" /> Yes </label>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+                                                            <td> 设置3 </td>
                                                             <td>
                                                                 <label class="uniform-inline">
                                                                     <input type="checkbox" value="" /> Yes </label>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+                                                            <td> 设置4 </td>
                                                             <td>
                                                                 <label class="uniform-inline">
                                                                     <input type="checkbox" value="" /> Yes </label>
@@ -233,8 +259,8 @@
                                                     </table>
                                                     <!--end profile-settings-->
                                                     <div class="margin-top-10">
-                                                        <a href="javascript:;" class="btn red"> Save Changes </a>
-                                                        <a href="javascript:;" class="btn default"> Cancel </a>
+                                                        <a href="javascript:;" class="btn red"> 保存设置 </a>
+                                                        <a href="javascript:;" class="btn default"> 取消 </a>
                                                     </div>
                                                 </form>
                                             </div>

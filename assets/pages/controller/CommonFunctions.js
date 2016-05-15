@@ -1,5 +1,11 @@
 ﻿  //系统当前版本
-  var curVersion = 1.14;
+  var curVersion = 1.16;
+  /*, {
+    "version": 1.17,
+    "date": "2016-05-15",
+    "html": "<p>1.系统帐户：从现在起，您可以设置自己的头像了，<a href=\"http://10.8.2.133:70/Settings/account#tab_1_2\">点击这里</a>来试试吧！"
+  }*/
+
 
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -561,6 +567,30 @@
     //程序版本升级提醒
     appVersionTips();
   }
+
+  //载入用户头像（临时方案)
+  var initAvatarImages = (function() {
+    var avatarName = $('.username').data('avatar');
+    var refreshUserHeadInfo = function(smallAvatarName) {
+      if (typeof smallAvatarName == 'undefined') {
+        smallAvatarName = avatarName;
+      }
+      var avatarUrl = getRootPath(1) + '/demo/avatar/' + smallAvatarName + '.jpg?' + Date.parse(new Date());
+      $('.username').parent().find('img').attr('src', avatarUrl);
+      $('.profile-userpic img').attr('src', avatarUrl);
+    };
+
+    var avatar = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg?' + Date.parse(new Date());
+    $.ajax({
+      url: avatar,
+      success: function() {
+        refreshUserHeadInfo();
+      },
+      error: function() {
+        refreshUserHeadInfo("Avatar_none");
+      }
+    });
+  })();
 
   function setLocationUrl() {
     lastUrl = (typeof localStorage.lastUrl == 'undefined') ? getRootPath(1) + '/welcome' : window.location.href;
