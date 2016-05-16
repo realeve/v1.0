@@ -1,12 +1,6 @@
 ﻿  //系统当前版本
-  var curVersion = 1.16;
-  /*, {
-    "version": 1.17,
-    "date": "2016-05-15",
-    "html": "<p>1.系统帐户：从现在起，您可以设置自己的头像了，<a href=\"http://10.8.2.133:70/Settings/account#tab_1_2\">点击这里</a>来试试吧！"
-  }*/
-
-
+  var curVersion = 1.18;
+ 
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
    */
@@ -286,6 +280,9 @@
     $("select[name='" + sel_Name + "']").html(GetSelectStr(Data));
   }
 
+  function SetSelectVal(Name, val) {
+    $("select[name='" + Name + "']").val(val);
+  }
   //切换开关
 
   function SwitchSelect(Name, ID) {
@@ -462,6 +459,9 @@
     $('form[name="' + theForm + '"] input[type="text"]').map(function(elem) {
       str += '"' + $(this).attr("name") + '":"' + $(this).val() + '",';
     });
+    $('form[name="' + theForm + '"] input[type="password"]').map(function(elem) {
+      str += '"' + $(this).attr("name") + '":"' + $(this).val() + '",';
+    });
     $('form[name="' + theForm + '"] select').map(function(elem) {
       str += '"' + $(this).attr("name") + '":"' + $(this).val() + '",';
     });
@@ -576,12 +576,24 @@
         smallAvatarName = avatarName;
       }
       var avatarUrl = getRootPath(1) + '/demo/avatar/' + smallAvatarName + '.jpg?' + Date.parse(new Date());
+      //右上角图标
       $('.username').parent().find('img').attr('src', avatarUrl);
+      //用户信息
       $('.profile-userpic img').attr('src', avatarUrl);
+      if(typeof $('.username').data('avatar')!='undefined'){
+        localStorage.setItem('avatarUrl', avatarUrl);
+      }
+
+      if (typeof localStorage.avatarUrl != 'undefined') {
+        //锁屏
+        $('.lock-avatar-block img').attr('src', localStorage.avatarUrl);
+      }
     };
 
-    var avatar = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg?' + Date.parse(new Date());
-    $.ajax({
+    //var avatar = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg?' + Date.parse(new Date());
+    refreshUserHeadInfo($('.username').data('set-avatar') == 1 ? avatarName : 'Avatar_none');
+
+    /*$.ajax({
       url: avatar,
       success: function() {
         refreshUserHeadInfo();
@@ -589,7 +601,7 @@
       error: function() {
         refreshUserHeadInfo("Avatar_none");
       }
-    });
+    });*/
   })();
 
   function setLocationUrl() {

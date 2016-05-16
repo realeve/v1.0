@@ -57,6 +57,7 @@ class Welcome extends CI_Controller {
 	}
 
 	$logindata = $this->LoginModel->logincheck($UserName,$Password);
+
 	if ($logindata['logged_in'] == true) {
 		if ($logindata['userrole'] >0) {//帐号激活
 			$this->session->set_userdata($logindata);
@@ -68,8 +69,7 @@ class Welcome extends CI_Controller {
 			$logindata['type'] = 6;
 			$logindata['message'] = $this->loginMessage(6);//未激活
 			$this->output->set_output(json_encode($logindata));
-		}
-		
+		}		
 	}
 	else
 	{

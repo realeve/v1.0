@@ -37,7 +37,7 @@
 				<li class="dropdown dropdown-user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 					<img alt="" class="img-circle"/>
-					<span class="username username-hide-on-mobile" data-uid="<?php echo $uid?>" data-avatar="<?php echo $avatar?>">
+					<span class="username username-hide-on-mobile" data-uid="<?php echo $uid?>" data-avatar="<?php echo $avatar?>" data-set-avatar="<?php echo $set_avatar?>">
 					<?php echo $username?> </span>
 					<i class="fa fa-angle-down"></i>
 					</a>

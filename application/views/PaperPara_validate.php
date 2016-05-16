@@ -228,6 +228,7 @@
 								</div>
 								<div class="form-actions noborder row right">	
 									<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
+									<a name="loadHisData" class="btn red"> 载入数据 <i class="fa fa-cloud-download"></i> </a>
 									<a name="reset" class="btn default"> 重置 <i class="icon-refresh"></i></a>
 								</div>
 							</div>
@@ -248,6 +249,42 @@
                                     <div class="portlet-body">
                                         <div class="table-scrollable">
                                             <table class="table table-striped table-bordered table-advance table-hover" name="unPassedList">
+                                                <thead>
+                                                    <tr>
+                                                        <th><i class="fa fa-calendar-plus-o"></i> 品种 </th>
+                                                        <th><i class="fa fa-briefcase"></i> 机台 </th>
+                                                        <th><i class="fa fa-user"></i> 轴号</th>
+                                                        <th><i class="fa fa-calendar-plus-o"></i> 检验时间 </th>
+                                                        <th><i class="fa fa-cut"></i> 裁切轴重</th>
+                                                        <th><i class="fa fa-dedent"></i> 封包轴重</th>
+                                                        <th><i class="fa fa-link"></i> 操作 </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                                  
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PROFILE CONTENT -->
+
+                    <!-- BEGIN PROFILE CONTENT -->
+                    <div class="col-md-12 profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light ">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-globe theme-font hide"></i>
+                                            <span class="caption-subject font-blue-madison bold uppercase"><i class="fa fa-credit-card"></i> 历史数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="table-scrollable">
+                                            <table class="table table-striped table-bordered table-advance table-hover" name="reelList">
                                                 <thead>
                                                     <tr>
                                                         <th><i class="fa fa-calendar-plus-o"></i> 品种 </th>

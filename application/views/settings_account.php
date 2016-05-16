@@ -33,8 +33,8 @@
                             <!-- END SIDEBAR USERPIC src="../assets/pages/media/profile/profile_user.jpg"  -->
                             <!-- SIDEBAR USER TITLE -->
                             <div class="profile-usertitle">
-                                <div class="profile-usertitle-name"> <?php echo $username?> </div>
-                                <div class="profile-usertitle-job"> <?php echo $FullName?> </div>
+                                <div class="profile-usertitle-name"></div>
+                                <div class="profile-usertitle-job"></div>
                             </div>
                             <!-- END SIDEBAR USER TITLE -->
                             <!-- SIDEBAR MENU -->
@@ -125,26 +125,25 @@
                                         <div class="tab-content">
                                             <!-- PERSONAL INFO TAB -->
                                             <div class="tab-pane active" id="tab_1_1">
-                                                <form role="form" action="#">
+                                                <form role="form" action="#" name="userInfo">
                                                     <div class="form-group">
-                                                        <label class="control-label">姓名</label>
-                                                        <input type="text" placeholder="请填写真实姓名" class="form-control" /> </div>
+                                                        <label class="control-label"> <i class="fa fa-user"></i> 姓名</label>
+                                                        <input type="text" placeholder="请填写真实姓名" class="form-control" name="FullName"/> </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">电话</label>
-                                                        <input type="text" placeholder="填写个人办公电话" class="form-control" /> </div>
+                                                        <label class="control-label"> <i class="fa fa-phone"></i> 电话</label>
+                                                        <input type="text" placeholder="填写个人办公电话" class="form-control" name="Phone"/> </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">职务/岗位</label>
-                                                        <input type="text" placeholder="个人职务或岗位" class="form-control" /> </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">简介</label>
-                                                        <textarea class="form-control" rows="3" placeholder="用于展示在左侧的个人简介信息. "></textarea>
+                                                        <label class="control-label"> <i class="fa fa-users"></i> 部门</label>
+                                                        <label class="control-label visible-ie8 visible-ie9">所在部门</label>
+                                                        <select name="department" class="form-control">
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">个人页面</label>
-                                                        <input type="text" placeholder="http://10.8.2.133" class="form-control" /> </div>
+                                                        <label class="control-label"> <i class="icon-envelope"></i> Email</label>
+                                                        <input type="text" placeholder="该信息是找回密码唯一凭据" class="form-control" name="Email"/> </div>
                                                     <div class="margiv-top-10">
-                                                        <a href="javascript:;" class="btn green"> 保存设置 </a>
-                                                        <a href="javascript:;" class="btn default"> 退出 </a>
+                                                        <a href="javascript:;" class="btn green" name="saveUserInfo"> <i class="fa fa-save"></i> 保存设置 </a>
+                                                        <a href="javascript:;" class="btn default" name="restore"> <i class="fa fa-rotate-left"></i> 还原 </a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -205,19 +204,19 @@
                                             <!-- END CHANGE AVATAR TAB -->
                                             <!-- CHANGE PASSWORD TAB -->
                                             <div class="tab-pane" id="tab_1_4">
-                                                <form action="#">
+                                                <form action="#" name="userPsw">
                                                     <div class="form-group">
                                                         <label class="control-label">旧密码</label>
-                                                        <input type="password" class="form-control" /> </div>
+                                                        <input type="password" class="form-control" name="oldPsw"/> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">新密码</label>
-                                                        <input type="password" class="form-control" /> </div>
+                                                        <input type="password" class="form-control" name="newPsw"/> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">请重新输入密码</label>
-                                                        <input type="password" class="form-control" /> </div>
+                                                        <input type="password" class="form-control" name="rptPsw"/> </div>
                                                     <div class="margin-top-10">
-                                                        <a href="javascript:;" class="btn green"> 更新密码 </a>
-                                                        <a href="javascript:;" class="btn default"> 取消 </a>
+                                                        <a href="javascript:;" class="btn green" name="changePsw"> 更新密码 </a>
+                                                        <a href="javascript:;" class="btn default" name="clearPsw"> 取消 </a>
                                                     </div>
                                                 </form>
                                             </div>

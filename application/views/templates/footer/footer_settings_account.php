@@ -49,6 +49,10 @@
 <script src="../assets/global/plugins/jcrop/js/jquery.Jcrop.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 
+<script src="../../assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
+
 <!--BEGIN MY LEVEL SCRIPT-->
 <script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>

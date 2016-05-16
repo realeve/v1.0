@@ -40,6 +40,16 @@ var accountActive = function() {
             }
         });
     });
+
+    var loadUserBasicInfo = function() {
+        //SELECT a.FullName, b.DepartMentName, a.Phone, a.Email FROM dbo.tblUser AS a INNER JOIN dbo.tblDepartMent AS b ON b.DptID = a.DepartMent where username=? 
+        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=164&M=3&u=" + $('.username').text().trim();
+        var Data = ReadData(str);
+        var userInfo = Data.data[0];
+        $('.profile-usertitle-name').text(userInfo[0]);
+        $('.profile-usertitle-job').text(userInfo[2]);
+    }();
+
     return {
         init: function() {
             initDOM();

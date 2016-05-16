@@ -157,5 +157,27 @@ class DataInterface extends CI_Controller {
 	{
 		$this->DataInterfaceModel->convert2Base64();
 	}
+
+
+	public function md5(){
+		$sourseStr = $this->input->get(NULL);
+		$targetStr = '';
+		foreach($sourseStr as $key=>$str)
+		{	
+			$targetStr .= ',"'.$key.'":"'.md5($str).'"';
+		}
+		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
+	}
+
+
+	public function sha1(){
+		$sourseStr = $this->input->get(NULL);
+		$targetStr = '';
+		foreach($sourseStr as $key=>$str)
+		{	
+			$targetStr .= ',"'.$key.'":"'.sha1($str).'"';
+		}
+		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
+	}
 }
 

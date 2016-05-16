@@ -361,6 +361,7 @@ class DataInterfaceModel extends CI_Model {
 		}else{
 			$LOGINDB=$this->load->database('Quality',TRUE);	
 		}
+		
 		foreach ($data['utf2gbk'] as $str) 
 		{
 			$data[$str] = $this->TransToGBK($data[$str]);
@@ -391,6 +392,7 @@ class DataInterfaceModel extends CI_Model {
 		}else{
 			$LOGINDB=$this->load->database('Quality',TRUE);	
 		}
+		
 		if (isset($data['utf2gbk']))
 		{
 			foreach ($data['utf2gbk'] as $str) 
@@ -398,6 +400,7 @@ class DataInterfaceModel extends CI_Model {
 				$data[$str] = $this->TransToGBK($data[$str]);
 			}			
 		}
+
 		$tblName = $this->getDBName($data['tbl']);
 		$where = '[id] = '.$data['id'];
 		unset($data['tbl']);
