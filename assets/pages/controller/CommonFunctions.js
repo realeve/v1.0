@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.18;
+  var curVersion = 1.19;
  
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')

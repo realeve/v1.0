@@ -9,17 +9,23 @@ var WorkLogInit = function() {
     });
   }
 
+  //处理用户图片
+  function getUserAvatar(data) {
+    var avatarName = (data.set_avatar == '1')?$.base64.encode(data.avatarUrl):'Avatar_none';
+    return getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg';
+  }
+
   function GetLogString(data, keyWord) {
-    var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\">";
-    TimeHead += "<div class=\"timeline-icon\"><i class=\"icon-user font-green-haze\"></i></div></div>"; //"<div class=\"timeline-badge\"><img class=\"timeline-badge-userpic\" src=\"" + getRootPath(0)+ "/assets/pages/media/users/realeve.jpg\"></div></div>";
-    TimeHead += "<div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
-    var TimeTitle = "</a><span class=\"timeline-body-time font-grey-cascade\">发表于" + data.rec_time + " <span class=\"badge badge-round badge-success\">" + data.ClassName + "</span></small>";
+    var TimeHead = '<div class="timeline-item"><div class="timeline-badge">';
+    TimeHead += '<div class="timeline-badge"><img class="timeline-badge-userpic" src="' + getUserAvatar(data) + '"></div></div>';
+    TimeHead += '<div class="timeline-body"><div class="timeline-body-arrow"></div><div class="timeline-body-head"><div class="timeline-body-head-caption"><a href="#" class="timeline-body-title font-blue-madison">';
+    var TimeTitle = '</a><span class="timeline-body-time font-grey-cascade">发表于' + data.rec_time + ' <span class="badge badge-round badge-success">' + data.ClassName + '</span></small>';
     var TimeButton, strErrDesc;
     var statusClass, oper, strOper;
 
     strErrDesc = GBK2UTF(data.ErrDesc);
     if (keyWord !== "") {
-      strErrDesc = strErrDesc.replace(new RegExp(keyWord, 'g'), "<span class=\"caption-subject bold font-yellow-casablanca\" style=\"font-size: 16px; line-height: 18px;\">" + keyWord + "</span>");
+      strErrDesc = strErrDesc.replace(new RegExp(keyWord, 'g'), '<span class="caption-subject bold font-yellow-casablanca" style="font-size: 16px; line-height: 18px;">' + keyWord + '</span>');
     }
 
     oper = data.oper_name.split(',');
@@ -42,20 +48,21 @@ var WorkLogInit = function() {
       data.productName = '无';
     }
 
-    TimeButton = "</span></div><div class=\"timeline-body-head-actions\"><div class=\"btn-group\"><button class=\"btn btn-circle " + statusClass + " btn-sm dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" data-hover=\"dropdown\" data-close-others=\"true\">操作 <i class=\"fa fa-angle-down\"></i></button><ul class=\"dropdown-menu pull-right\" role=\"menu\" data-sn=" + data.ID + "><li><a href=\"" + getRootPath(0) + "/worklog/editlog?ID=" + data.ID + "\"><i class=\"icon-pencil\"></i>&nbsp;&nbsp;编辑 </a></li>";
-    TimeButton += "<li><a data-sn=" + data.ID + " class=\"del\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定删除该条日志?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-trash\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-trash\"></i>&nbsp;&nbsp;删除 </a></li>";
+    TimeButton = '</span></div><div class="timeline-body-head-actions"><div class="btn-group"><button class="btn btn-circle " + statusClass + " btn-sm dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">操作 <i class="fa fa-angle-down"></i></button><ul class="dropdown-menu pull-right" role="menu" data-sn=" + data.ID + "><li><a href="' + getRootPath(0) + '/worklog/editlog?ID=' + data.ID + '"><i class="icon-pencil"></i>&nbsp;&nbsp;编辑 </a></li>';
+    TimeButton += '<li><a data-sn=' + data.ID + ' class="del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a></li>';
     if (data.proStatus_id > 3) {
-      TimeButton += "<li class=\"divider\"></li><li><a data-sn=" + data.ID + " class=\"complete\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定标记为已完成?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-check\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-check\"></i>&nbsp;&nbsp;标记为已完成 </a></li>";
+      TimeButton += '<li class="divider"></li><li><a data-sn=' + data.ID + ' class="complete" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定标记为已完成?" data-btn-ok-label="是" data-btn-ok-icon="icon-check" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-check"></i>&nbsp;&nbsp;标记为已完成 </a></li>';
     }
-    TimeButton += "</ul></div></div></div><div class=\"timeline-body-content\"><span class=\"font-grey-mint\">" + strErrDesc + "</span>";
+    TimeButton += '</ul></div></div></div><div class="timeline-body-content"><span class="font-grey-mint">' + strErrDesc + '</span><hr>';
 
-    TimeButton += "<hr><div class=\"col-md-6 font-grey-cascade\">问题描述：<span>" + data.MainErrDesc + "/" + data.SubErrDesc + "</span></div>";
-    TimeButton += "<div class=\"col-md-6 font-grey-cascade\">操作人员：<span>" + oper + "</span></div>";
-    TimeButton += "<div class=\"col-md-6 font-grey-cascade\">机台：<span data-sn=\"" + data.machine_id + "\">" + data.machineName + "</span></div>";
-    TimeButton += "<div class=\"col-md-6 font-grey-cascade\">品种：<span data-sn=\"" + data.prod_id + "\">" + data.productName + "</span></div>";
-    TimeButton += "<div class=\"col-md-6 font-grey-cascade\">相关车号：<span data-sn=\"" + data.prod_id + "\">" + data.prod_info + "</span></div>";
-    TimeButton += "<div class=\"col-md-6 font-grey-cascade\">处理结果：<span data-sn=\"" + data.prod_id + "\">" + data.StatusName + "</span></div>";
-    TimeButton += "</div></div></div></div>";
+    //TimeButton += '<div class="col-md-6 font-grey-cascade">问题描述：<span>" + data.MainErrDesc + "/" + data.SubErrDesc + '</span></div>';
+    TimeButton += '<div class="col-md-6 font-grey-cascade">相关车号：<span data-sn="' + data.prod_id + '">' + data.prod_info + '</span></div>';
+    TimeButton += '<div class="col-md-6 font-grey-cascade">品种：<span data-sn="' + data.prod_id + '">' + data.productName + '</span></div>';
+    TimeButton += '<div class="col-md-6 font-grey-cascade">机台：<span data-sn="' + data.machine_id + '">' + data.machineName + '</span></div>';
+    TimeButton += '<div class="col-md-6 font-grey-cascade">处理结果：<span data-sn="' + data.prod_id + '">' + data.StatusName + '</span></div>';
+    TimeButton += '<div class="col-md-6 font-grey-cascade">操作人员：<span>' + oper + '</span></div>';
+    TimeButton += '</div></div></div></div>';
+
     return TimeHead + data.rec_user_name + TimeTitle + TimeButton;
   }
 
@@ -190,7 +197,7 @@ var WorkLogInit = function() {
           },
           success: function(data) {
             var obj = jQuery.parseJSON(data);
-            infoTips(obj.message, 1);
+            bsTips(obj.message, 1);
           },
           error: function(data) {
             infoTips("保存设置失败，请稍后重试或联系管理员!<br>错误提示:" + JSON.stringify(data), 0);

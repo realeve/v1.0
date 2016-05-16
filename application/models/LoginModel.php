@@ -84,6 +84,7 @@ class LoginModel extends CI_Model {
 		$RegisterData['FullName'] = $this->TransToGBK($RegisterData['FullName']);
 		$RegisterData['Email'] = $this->TransToGBK($RegisterData['Email']);
 		$RegisterData['set_avatar'] = 0;//默认无头像
+		//$RegisterData['avatar_url'] = 0;//头像文件链接名
 		$RegisterData['default_menu_id'] = 0;//默认菜单项0
 
 	  	//判断用户名是否已存在
@@ -108,6 +109,11 @@ class LoginModel extends CI_Model {
 		{
 			$data['message'] = 4;//注册失败
 		}
+
+		//更新图像地址信息
+		/*$avatarData['avatar_url'] = base64_encode($data['ID'].$RegisterData['UserName']);
+		$LOGINDB->where('id', $data['ID']);
+		$LOGINDB->update('tblUser', $avatarData); */
 
 		//工作日志默认数据
 		$WorkLogSettingData['UserID'] = $data['ID'];
