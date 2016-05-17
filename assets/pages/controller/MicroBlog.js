@@ -1,5 +1,7 @@
 var MicroBlog = function() {
   //读取设置
+  var avatarUrl = getUserAvatar();
+
   function ReadLogSettings() {
     var strUrl = getRootUrl('MicroBlog') + "ReadSettings";
     $.ajax({
@@ -40,6 +42,12 @@ var MicroBlog = function() {
       );
     });
 
+  //处理用户图片
+  function getUserAvatar() {
+    var avatarName = ($('.username').data('set-avatar') == '1') ? $('.username').data('avatar') : 'Avatar_none';
+    return getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg';
+  }
+
   //插入工作日志
   $("#PostMicriBlog").on('click', function() {
     //获取各控制值
@@ -50,7 +58,7 @@ var MicroBlog = function() {
         "tbl": TBL.MICRO_BLOG,
         "RecordTime": today(1),
         'BlogHTML': UTF2GBK(strBlogHTML),
-        "utf2gbk": ['BlogHTML','UserName'],
+        "utf2gbk": ['BlogHTML', 'UserName'],
         'UserName': UTF2GBK($("#PostMicriBlog").data('username')),
         'HideBlog': 0, //默认每条记录均显示
       };
@@ -65,15 +73,15 @@ var MicroBlog = function() {
           $('#WordNum').html('还可以输入140字');
           $('#PostMicriBlog').data('sn', obj.id);
           //追加信息
-          var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\">";
-          TimeHead += "<div class=\"timeline-icon\"><i class=\"icon-user font-green-haze\"></i></div></div>"; //"<div class=\"timeline-badge\"><img class=\"timeline-badge-userpic\" src=\"" + getRootPath(0)+ "/assets/pages/media/users/realeve.jpg\"></div></div>";
-          TimeHead += "<div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
-          var TimeTitle = "</a><span class=\"timeline-body-time font-grey-cascade\">发表于";
-          var TimeEnd = "</h4></span></div></div></div>";
+          var TimeHead = '<div class="timeline-item"><div class="timeline-badge">';
+          TimeHead += '<div class="timeline-badge"><img class="timeline-badge-userpic" src="' + avatarUrl + '"></div></div>';
+          TimeHead += '<div class="timeline-body"><div class="timeline-body-arrow"></div><div class="timeline-body-head"><div class="timeline-body-head-caption"><a href="#" class="timeline-body-title font-blue-madison">';
+          var TimeTitle = '</a><span class="timeline-body-time font-grey-cascade">发表于';
+          var TimeEnd = '</h4></span></div></div></div>';
 
-          var TimeButton = "</small></span></div><div class=\"timeline-body-head-actions\">";
-          TimeButton += "<a data-sn=" + obj.id + " class=\"btn btn-circle red btn-outline btn-block del\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定删除该条日志?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-trash\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-trash\"></i>&nbsp;&nbsp;删除 </a>";
-          TimeButton += "</div></div><div class=\"timeline-body-content\"><span class=\"font-grey-mint\"><h4>";
+          var TimeButton = '</small></span></div><div class="timeline-body-head-actions">';
+          TimeButton += '<a data-sn=" + obj.id + " class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
+          TimeButton += '</div></div><div class="timeline-body-content"><span class="font-grey-mint"><h4>';
 
           $(".timeline:first").prepend(TimeHead + GBK2UTF(iData.UserName) + TimeTitle + iData.RecordTime + TimeButton + GBK2UTF(iData.BlogHTML) + TimeEnd);
           $('.del').first().confirmation();
@@ -106,9 +114,9 @@ var MicroBlog = function() {
       Nums: iNums[$("#LoadingNum").val()],
       TimeStart: date.start,
       TimeEnd: date.end,
-      KeyWord: keyWord,
+      KeyWord: UTF2GBK(keyWord),
       CurID: (KeyWord !== "") ? 0 : parseInt($('#PostMicriBlog').data('sn'), 10),
-      UserName:UTF2GBK($("#PostMicriBlog").data('username'))
+      UserName: UTF2GBK($("#PostMicriBlog").data('username'))
     };
     if (0 === iData.CurID) {
       $('.timeline').html('');
@@ -124,20 +132,20 @@ var MicroBlog = function() {
         var obj = jQuery.parseJSON(data);
         if (obj.rows > 0) {
           //obj = jQuery.parseJSON(data);
-          var TimeHead = "<div class=\"timeline-item\"><div class=\"timeline-badge\">";
-          TimeHead += "<div class=\"timeline-icon\"><i class=\"icon-user font-green-haze\"></i></div></div>"; //"<div class=\"timeline-badge\"><img class=\"timeline-badge-userpic\" src=\"" + getRootPath(0)+ "/assets/pages/media/users/realeve.jpg\"></div></div>";
-          TimeHead += "<div class=\"timeline-body\"><div class=\"timeline-body-arrow\"></div><div class=\"timeline-body-head\"><div class=\"timeline-body-head-caption\"><a href=\"#\" class=\"timeline-body-title font-blue-madison\">";
-          var TimeTitle = "</a><span class=\"timeline-body-time font-grey-cascade\">发表于";
-          var TimeEnd = "</h4></span></div></div></div>";
+          var TimeHead = '<div class="timeline-item"><div class="timeline-badge">';
+          TimeHead +='<div class="timeline-badge"><img class="timeline-badge-userpic" src="' + avatarUrl + '"></div></div>';
+          TimeHead +='<div class="timeline-body"><div class="timeline-body-arrow"></div><div class="timeline-body-head"><div class="timeline-body-head-caption"><a href="#" class="timeline-body-title font-blue-madison">';
+          var TimeTitle = '</a><span class="timeline-body-time font-grey-cascade">发表于';
+          var TimeEnd = '</h4></span></div></div></div>';
           var strContent, TimeButton;
           for (var i = obj.rows - 1; i >= 0; i--) {
-            TimeButton = "</small></span></div><div class=\"timeline-body-head-actions\">";
-            TimeButton += "<a data-sn=" + obj.data[i].ID + " class=\"btn btn-circle red btn-outline btn-block del\" data-toggle=\"confirmation\" data-singleton=\"true\" data-popout=\"true\" data-placement=\"left\" data-title=\"确定删除该条日志?\" data-btn-ok-label=\"是\" data-btn-ok-icon=\"icon-trash\" data-btn-ok-class=\"btn-success\" data-btn-cancel-label=\"取消\" data-btn-cancel-icon=\"icon-close\" data-btn-cancel-class=\"btn-danger\"><i class=\"icon-trash\"></i>&nbsp;&nbsp;删除 </a>";
+            TimeButton = '</small></span></div><div class="timeline-body-head-actions">';
+            TimeButton +='<a data-sn=" + obj.data[i].ID + " class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
 
-            TimeButton += "</div></div><div class=\"timeline-body-content\"><span class=\"font-grey-mint\"><h4>";
+            TimeButton +='</div></div><div class="timeline-body-content"><span class="font-grey-mint"><h4>';
             strContent = GBK2UTF(obj.data[i].BlogHTML);
-            if (iData.KeyWord !== "") {
-              strContent = strContent.replace(new RegExp(iData.KeyWord, 'g'), "<span class=\"caption-subject bold font-yellow-casablanca\" style=\"font-size: 16px; line-height: 18px;\">" + iData.KeyWord + "</span>");
+            if (iData.KeyWord !== '') {
+              strContent = strContent.replace(new RegExp(iData.KeyWord, 'g'), '<span class="caption-subject bold font-yellow-casablanca" style="font-size: 16px; line-height: 18px;">' + GBK2UTF(iData.KeyWord) + '</span>');
             }
             $(".timeline:first").prepend(TimeHead + GBK2UTF(obj.data[i].UserName) + TimeTitle + obj.data[i].RecordTime + TimeButton + strContent + TimeEnd);
             $('.del').first().confirmation();

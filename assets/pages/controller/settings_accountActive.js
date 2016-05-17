@@ -2,10 +2,10 @@ var accountActive = function() {
     function initDOM() {
         var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=43&M=0";
         var Data = ReadData(str);
-        var strTr;
+        var strTr='';
         if (Data.rows > 0) {
             Data.data.map(function(elem) {
-                strTr = "<tr><td>" + elem['FullName'] + "</td><td> " + elem['DepartMentName'] + " </td><td> " + elem['regTime'] + "</td><td><a href=\"javascript:;\" class=\"btn sbold uppercase btn-outline blue\" data-id=\"" + elem['id'] + "\"><i class=\"fa fa-unlink\"></i>激活帐户</a></td></tr>";
+                strTr += "<tr><td>" + elem['FullName'] + "</td><td> " + elem['DepartMentName'] + " </td><td> " + elem['regTime'] + "</td><td><a href=\"javascript:;\" class=\"btn sbold uppercase btn-outline blue\" data-id=\"" + elem['id'] + "\"><i class=\"fa fa-unlink\"></i>激活帐户</a></td></tr>";
             });
             $('table[name="accountList"] tbody').html(strTr);
         } else {

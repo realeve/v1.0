@@ -1,6 +1,6 @@
 ﻿  //系统当前版本
   var curVersion = 1.19;
- 
+
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
    */
@@ -154,6 +154,17 @@
     }
     return output;
   }
+
+  /**
+   * [data2ThousandSeparator 数字转千分位]
+   * @param  {[type]} num [待转数字]
+   * @return {[type]}      [转换后数据]
+   */
+  function data2ThousandSeparator(num, isFloat) {
+    isFloat = isFloat || 0;
+    return (((isFloat) ? num.toFixed(2) : num) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+  }
+
   /*function fmoney(s, n)   
      { 
         n = n <= 20 ? n : 2;   
@@ -580,7 +591,7 @@
       $('.username').parent().find('img').attr('src', avatarUrl);
       //用户信息
       $('.profile-userpic img').attr('src', avatarUrl);
-      if(typeof $('.username').data('avatar')!='undefined'){
+      if (typeof $('.username').data('avatar') != 'undefined') {
         localStorage.setItem('avatarUrl', avatarUrl);
       }
 

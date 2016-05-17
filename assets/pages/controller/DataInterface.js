@@ -529,7 +529,7 @@ showbuttons: false
       showbuttons: 'bottom',
       rows: 8,
       inputclass: "form-control",
-      tpl: '<textarea style="min-width:430px;"></textarea>',
+      tpl: '<textarea style="min-width:350px;"></textarea>',
       validate: function(value) {
         if ($.trim(value) === '') return '该字段不能为空';
       },

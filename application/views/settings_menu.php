@@ -141,7 +141,7 @@
                         </div>
                         <div class="portlet-body ">                            
                             <div class="task-content">
-                                <div class="scroller" style="max-height: 650px;min-height:400px;" data-always-visible="1" data-rail-visible1="1">
+                                <div class="scroller" style="max-height: 950px;min-height:600px;" data-always-visible="1" data-rail-visible1="1">
                                     <!-- START TASK LIST -->
                                     <ul class="task-list col-md-6">
                                         

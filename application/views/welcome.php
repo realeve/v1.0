@@ -9,21 +9,21 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a>事务中心</a>
+						<a>仪表盘</a>
 					</li>
 				</ul>
-				<div class="page-toolbar">
+				<!--div class="page-toolbar">
 					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height btn-info" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
 						<span class="thin uppercase visible-lg-inline-block">&nbsp;</span>&nbsp;
 						<i class="fa fa-angle-down"></i>
 					</div>
-				</div>
+				</div-->
 			</div>
 			<!-- END PAGE HEADER-->	
-			<h3 class="page-title font-yahei">
+			<!--h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
-			</h3>
+			</h3-->
 			<!-- BEGIN DASHBOARD STATS -->
 			<div class="row top-info">
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -32,8 +32,7 @@
 							<i class="fa fa-comments"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="130">
-								 130
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
 								 印钞机检好品率低于70%
@@ -50,11 +49,10 @@
 							<i class="fa fa-bar-chart-o"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="1,400">
-								 1,400
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
-								 本月已开印产品
+								 已开印产品
 							</div>
 						</div>
 						<a class="more" href="javascript:;">
@@ -68,11 +66,10 @@
 							<i class="fa fa-shopping-cart"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="0">
-								 0
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
-								 异常品数量
+								 今日好品率低于80%机台数
 							</div>
 						</div>
 						<a class="more" href="javascript:;">
@@ -86,8 +83,7 @@
 							<i class="fa fa-globe"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="0">
-								 0
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
 								 机检系统异常产品
@@ -100,6 +96,89 @@
 				</div>
 			</div>
 			<!-- END DASHBOARD STATS -->
+			
+			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light" name="hisQuality">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font-color hide"></i>
+								<span class="caption-subject theme-font-color bold uppercase">机检好品率</span>
+								<span class="caption-helper">码后核查工艺...</span>
+							</div>
+							<div class="actions">
+								<div class="btn-group btn-group-devided" data-toggle="buttons">
+									<label class="btn btn-outline purple-studio btn-circle btn-sm active" data-id=0>
+									<input type="radio" name="options" class="toggle">最近一天</label>
+									<label class="btn btn-outline purple-studio btn-circle btn-sm" data-id=1>
+									<input type="radio" name="options" class="toggle">本周</label>
+									<label class="btn btn-outline purple-studio btn-circle btn-sm" data-id=2>
+									<input type="radio" name="options" class="toggle">本月</label>
+								</div>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="row list-separated">
+								<!--div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9602A
+									</div>
+									<div class="uppercase font-hg font-red-flamingo" name="quaNum">
+										  <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div-->
+							</div>
+							<div id="passed_a_year_quality_static" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<!-- BEGIN WIDGET BLOG -->
+					<div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 415px; padding-top: 50px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
+						<div class="widget-blog-heading text-uppercase" style="margin-top:-40px;">
+							<div class="mt-widget-1" style="border:none;">
+								<div class="mt-img" style="margin:0 0 5px">
+                            		<img src="./demo/avatar/MTVkZXZlbG9w.jpg" style="width:120px;height:120px;">
+                            	</div> 
+                            </div>
+							<h3 class="widget-blog-title">马可</h3>
+							<span class="widget-blog-subtitle">印码机检组</span>
+						</div>
+						<p>近期多功能-2#机误报较多，请大家注意.
+						</p>
+						<br/>
+						<a class="btn btn-danger text-uppercase" href="#">标记为已读</a>
+					</div>
+					<!-- END WIDGET BLOG -->
+				</div>
+                <div class="col-md-3 col-sm-12">
+                    <!-- BEGIN PORTLET  bordered-->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-share font-red-sunglo hide"></i>
+                                <span class="caption-subject font-red-sunglo bold uppercase">数据上传情况</span>
+                                <span class="caption-helper">最近印刷20车产品...</span>
+                            </div>
+                            <div class="actions">
+                            	<a href="javascript:;" class="btn btn-circle green" name="upload_refresh">
+								<i class="fa fa-repeat"></i></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="data_upload_loading">
+                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                            <div id="data_upload_content" class="display-none">
+                                <div id="data_upload" class="chart" style="height:320px;"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+			</div>
 			<div class="clearfix">
 			</div>
 			<div class="row">
@@ -113,7 +192,7 @@
                                 <span class="caption-helper">数据库及硬盘可用量...</span>
                             </div>
                             <div class="actions">
-                            	<a href="javascript:;" class="btn btn-circle btn-icon-only grey" name="station_refresh">
+                            	<a href="javascript:;" class="btn btn-circle grey" name="station_refresh">
 								<i class="fa fa-repeat"></i></a>
                                 <!--div class="btn-group btn-group-devided" data-toggle="buttons">
                                     <label class="btn red btn-outline btn-circle btn-sm active">
@@ -133,156 +212,60 @@
                     </div>
                     <!-- END PORTLET-->
                 </div>
-                <div class="col-md-6 col-sm-6">
+
+                <div class="col-md-6">
+                    <!-- Begin: life time stats -->
                     <!-- BEGIN PORTLET-->
                     <div class="portlet light bordered">
-                        <div class="portlet-title">
+                        <div class="portlet-title tabbable-line">
                             <div class="caption">
-                                <i class="icon-share font-red-sunglo hide"></i>
-                                <span class="caption-subject font-red-sunglo bold uppercase">数据上传情况</span>
-                                <span class="caption-helper">最近印刷20车产品...</span>
+                                <i class="icon-globe font-red"></i>
+                                <span class="caption-subject font-red bold uppercase">Revenue</span>
                             </div>
-                            <div class="actions">
-                            	<a href="javascript:;" class="btn btn-circle btn-icon-only grey" name="upload_refresh">
-								<i class="fa fa-repeat"></i></a>
-                            </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#portlet_ecommerce_tab_1" data-toggle="tab"> Amounts </a>
+                                </li>
+                                <li>
+                                    <a href="#portlet_ecommerce_tab_2" id="statistics_orders_tab" data-toggle="tab"> Orders </a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="portlet-body">
-                            <div id="site_activities_loading">
-                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
-                            <div id="site_activities_content" class="display-none">
-                                <div id="site_activities" class="chart"> </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="portlet_ecommerce_tab_1">
+                                    <div id="statistics_1" class="chart"> </div>
+                                </div>
+                                <div class="tab-pane" id="portlet_ecommerce_tab_2">
+                                    <div id="statistics_2" class="chart"> </div>
+                                </div>
                             </div>
+                            <!--div class="well margin-top-20">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-success"> Revenue: </span>
+                                        <h3>$1,234,112.20</h3>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-info"> Tax: </span>
+                                        <h3>$134,90.10</h3>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-danger"> Shipment: </span>
+                                        <h3>$1,134,90.10</h3>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-warning"> Orders: </span>
+                                        <h3>235090</h3>
+                                    </div>
+                                </div>
+                            </div-->
                         </div>
                     </div>
-                    <!-- END PORTLET-->
+                    <!-- End: life time stats -->
                 </div>
             </div>
-			<div class="row">
-				<div class="col-md-8 col-sm-12">
-					<!-- BEGIN PORTLET-->
-					<div class="portlet light ">
-						<div class="portlet-title">
-							<div class="caption caption-md">
-								<i class="icon-bar-chart theme-font-color hide"></i>
-								<span class="caption-subject theme-font-color bold uppercase">机检好品率</span>
-								<span class="caption-helper">码后核查工艺...</span>
-							</div>
-							<div class="actions">
-								<div class="btn-group btn-group-devided" data-toggle="buttons">
-									<label class="btn btn-outline purple-studio btn-circle btn-sm active">
-									<input type="radio" name="options" class="toggle" id="option1">今天</label>
-									<label class="btn btn-outline purple-studio btn-circle btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">本周</label>
-									<label class="btn btn-outline purple-studio btn-circle btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">本月</label>
-								</div>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div class="row list-separated">
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9602A
-									</div>
-									<div class="uppercase font-hg font-red-flamingo">
-										 89 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9603A
-									</div>
-									<div class="uppercase font-hg theme-font-color">
-										 92.3 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9604A
-									</div>
-									<div class="uppercase font-hg font-blue">
-										 91.2 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9606A
-									</div>
-									<div class="uppercase font-hg font-purple">
-										 94.2 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9607T
-									</div>
-									<div class="uppercase font-hg font-blue-sharp">
-										 86.4 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-							</div>
-							<ul class="list-separated list-inline-xs hide">
-								<li>
-									<div class="font-grey-mint font-sm">
-										 Total Sales
-									</div>
-									<div class="uppercase font-hg font-red-flamingo">
-										 13,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-								<li>
-								</li>
-								<li class="border">
-									<div class="font-grey-mint font-sm">
-										 Revenue
-									</div>
-									<div class="uppercase font-hg theme-font-color">
-										 4,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<div class="font-grey-mint font-sm">
-										 Expenses
-									</div>
-									<div class="uppercase font-hg font-purple">
-										 11,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<div class="font-grey-mint font-sm">
-										 Growth
-									</div>
-									<div class="uppercase font-hg font-blue-sharp">
-										 9,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-							</ul>
-							<div id="sales_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
-							</div>
-						</div>
-					</div>
-					<!-- END PORTLET-->
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<!-- BEGIN WIDGET BLOG -->
-					<div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 413px; padding-top: 50px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
-						<div class="widget-blog-heading text-uppercase">
-							<h3 class="widget-blog-title">舒粤</h3>
-							<span class="widget-blog-subtitle">印码机检组</span>
-						</div>
-						<p>近期多功能-2#机误报较多，请大家注意.
-						</p>
-						<br/>
-						<a class="btn btn-danger text-uppercase" href="#">查看详情</a>
-					</div>
-					<!-- END WIDGET BLOG -->
-				</div>
-			</div>
+
 			<div class="clearfix"></div>
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
@@ -539,11 +522,11 @@
 				</div>
 				<div class="col-md-4 col-sm-12">
 					<!-- BEGIN PORTLET-->
-					<div class="portlet light ">
+					<div class="portlet light" style="height:400px;">
 						<div class="portlet-title">
 							<div class="caption caption-md">
 								<i class="icon-bar-chart theme-font-color hide"></i>
-								<span class="caption-subject theme-font-color bold uppercase">本月知识库贡献量Top3</span>
+								<span class="caption-subject theme-font-color bold uppercase">本月机检日志填写情况</span>
 								<span class="caption-helper hide">机检日志...</span>
 							</div>
 						</div>
@@ -660,7 +643,7 @@
 						<div class="portlet-body overflow-h">
 							<input type="text" placeholder="联系人" class="form-control margin-bottom-20">
 							<input type="text" placeholder="主题" class="form-control margin-bottom-20">
-							<textarea placeholder="内容" class="form-control margin-bottom-20" rows="3"></textarea>
+							<textarea placeholder="内容" class="form-control margin-bottom-20" rows="7"></textarea>
 							<button class="btn red-sunglo pull-right" type="button">提交</button>
 						</div>
 					</div>
@@ -771,6 +754,587 @@
 					</div>
 					<!-- END WIDGET TAB -->
 				</div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bubble font-dark hide"></i>
+                                <span class="caption-subject font-hide bold uppercase">Recent Users</span>
+                            </div>
+                            <div class="actions">
+                                <div class="btn-group">
+                                    <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="javascript:;"> Option 1</a>
+                                        </li>
+                                        <li class="divider"> </li>
+                                        <li>
+                                            <a href="javascript:;">Option 2</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">Option 3</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">Option 4</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--begin: widget 1-1 -->
+                                    <div class="mt-widget-1">
+                                        <div class="mt-icon">
+                                            <a href="#">
+                                                <i class="icon-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mt-img">
+                                            <img src="../assets/pages/media/users/avatar80_8.jpg"> </div>
+                                        <div class="mt-body">
+                                            <h3 class="mt-username">Diana Ellison</h3>
+                                            <p class="mt-user-title"> Lorem Ipsum is simply dummy text. </p>
+                                            <div class="mt-stats">
+                                                <div class="btn-group btn-group btn-group-justified">
+                                                    <a href="javascript:;" class="btn font-red">
+                                                        <i class="icon-bubbles"></i> 1,7k </a>
+                                                    <a href="javascript:;" class="btn font-green">
+                                                        <i class="icon-social-twitter"></i> 2,6k </a>
+                                                    <a href="javascript:;" class="btn font-yellow">
+                                                        <i class="icon-emoticon-smile"></i> 3,7k </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end: widget 1-1 -->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--begin: widget 1-2 -->
+                                    <div class="mt-widget-1">
+                                        <div class="mt-icon">
+                                            <a href="#">
+                                                <i class="icon-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mt-img">
+                                            <img src="../assets/pages/media/users/avatar80_7.jpg"> </div>
+                                        <div class="mt-body">
+                                            <h3 class="mt-username">Jason Baker</h3>
+                                            <p class="mt-user-title"> Lorem Ipsum is simply dummy text. </p>
+                                            <div class="mt-stats">
+                                                <div class="btn-group btn-group btn-group-justified">
+                                                    <a href="javascript:;" class="btn font-yellow">
+                                                        <i class="icon-bubbles"></i> 1,7k </a>
+                                                    <a href="javascript:;" class="btn font-blue">
+                                                        <i class="icon-social-twitter"></i> 2,6k </a>
+                                                    <a href="javascript:;" class="btn font-green">
+                                                        <i class="icon-emoticon-smile"></i> 3,7k </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end: widget 1-2 -->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--begin: widget 1-3 -->
+                                    <div class="mt-widget-1">
+                                        <div class="mt-icon">
+                                            <a href="#">
+                                                <i class="icon-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mt-img">
+                                            <img src="../assets/pages/media/users/avatar80_6.jpg"> </div>
+                                        <div class="mt-body">
+                                            <h3 class="mt-username">Julia Berry</h3>
+                                            <p class="mt-user-title"> Lorem Ipsum is simply dummy text. </p>
+                                            <div class="mt-stats">
+                                                <div class="btn-group btn-group btn-group-justified">
+                                                    <a href="javascript:;" class="btn font-yellow">
+                                                        <i class="icon-bubbles"></i> 1,7k </a>
+                                                    <a href="javascript:;" class="btn font-red">
+                                                        <i class="icon-social-twitter"></i> 2,6k </a>
+                                                    <a href="javascript:;" class="btn font-green">
+                                                        <i class="icon-emoticon-smile"></i> 3,7k </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end: widget 1-3 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <!-- Begin: life time stats -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-share font-blue"></i>
+                                <span class="caption-subject font-blue bold uppercase">Overview</span>
+                                <span class="caption-helper">report overview...</span>
+                            </div>
+                            <div class="actions">
+                                <div class="btn-group">
+                                    <a class="btn green btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="javascript:;"> All Project </a>
+                                        </li>
+                                        <li class="divider"> </li>
+                                        <li>
+                                            <a href="javascript:;"> AirAsia </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> Cruise </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> HSBC </a>
+                                        </li>
+                                        <li class="divider"> </li>
+                                        <li>
+                                            <a href="javascript:;"> Pending
+                                                <span class="badge badge-danger"> 4 </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> Completed
+                                                <span class="badge badge-success"> 12 </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> Overdue
+                                                <span class="badge badge-warning"> 9 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#overview_1" data-toggle="tab"> Top Selling </a>
+                                    </li>
+                                    <li>
+                                        <a href="#overview_2" data-toggle="tab"> Most Viewed </a>
+                                    </li>
+                                    <li>
+                                        <a href="#overview_3" data-toggle="tab"> New Customers </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> Orders
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a href="#overview_4" data-toggle="tab">
+                                                    <i class="icon-bell"></i> Latest 10 Orders </a>
+                                            </li>
+                                            <li>
+                                                <a href="#overview_4" data-toggle="tab">
+                                                    <i class="icon-info"></i> Pending Orders </a>
+                                            </li>
+                                            <li>
+                                                <a href="#overview_4" data-toggle="tab">
+                                                    <i class="icon-speech"></i> Completed Orders </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="#overview_4" data-toggle="tab">
+                                                    <i class="icon-settings"></i> Rejected Orders </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="overview_1">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th> Product Name </th>
+                                                        <th> Price </th>
+                                                        <th> Sold </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Apple iPhone 4s - 16GB - Black </a>
+                                                        </td>
+                                                        <td> $625.50 </td>
+                                                        <td> 809 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Samsung Galaxy S III SGH-I747 - 16GB </a>
+                                                        </td>
+                                                        <td> $915.50 </td>
+                                                        <td> 6709 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Motorola Droid 4 XT894 - 16GB - Black </a>
+                                                        </td>
+                                                        <td> $878.50 </td>
+                                                        <td> 784 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Samsung Galaxy Note 4 </a>
+                                                        </td>
+                                                        <td> $925.50 </td>
+                                                        <td> 21245 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Regatta Luca 3 in 1 Jacket </a>
+                                                        </td>
+                                                        <td> $25.50 </td>
+                                                        <td> 1245 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Samsung Galaxy Note 3 </a>
+                                                        </td>
+                                                        <td> $925.50 </td>
+                                                        <td> 21245 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="overview_2">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th> Product Name </th>
+                                                        <th> Price </th>
+                                                        <th> Views </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Metronic - Responsive Admin + Frontend Theme </a>
+                                                        </td>
+                                                        <td> $20.00 </td>
+                                                        <td> 11190 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Regatta Luca 3 in 1 Jacket </a>
+                                                        </td>
+                                                        <td> $25.50 </td>
+                                                        <td> 1245 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Motorola Droid 4 XT894 - 16GB - Black </a>
+                                                        </td>
+                                                        <td> $878.50 </td>
+                                                        <td> 784 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Apple iPhone 4s - 16GB - Black </a>
+                                                        </td>
+                                                        <td> $625.50 </td>
+                                                        <td> 809 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Samsung Galaxy S III SGH-I747 - 16GB </a>
+                                                        </td>
+                                                        <td> $915.50 </td>
+                                                        <td> 6709 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Motorola Droid 4 XT894 - 16GB - Black </a>
+                                                        </td>
+                                                        <td> $878.50 </td>
+                                                        <td> 784 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="overview_3">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th> Customer Name </th>
+                                                        <th> Total Orders </th>
+                                                        <th> Total Amount </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> David Wilson </a>
+                                                        </td>
+                                                        <td> 3 </td>
+                                                        <td> $625.50 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Amanda Nilson </a>
+                                                        </td>
+                                                        <td> 4 </td>
+                                                        <td> $12625.50 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Paul Strong </a>
+                                                        </td>
+                                                        <td> 1 </td>
+                                                        <td> $890.85 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Jhon Doe </a>
+                                                        </td>
+                                                        <td> 2 </td>
+                                                        <td> $125.00 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Bill Chang </a>
+                                                        </td>
+                                                        <td> 45 </td>
+                                                        <td> $12,125.70 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Paul Strong </a>
+                                                        </td>
+                                                        <td> 1 </td>
+                                                        <td> $890.85 </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="overview_4">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th> Customer Name </th>
+                                                        <th> Date </th>
+                                                        <th> Amount </th>
+                                                        <th> Status </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> David Wilson </a>
+                                                        </td>
+                                                        <td> 3 Jan, 2013 </td>
+                                                        <td> $625.50 </td>
+                                                        <td>
+                                                            <span class="label label-sm label-warning"> Pending </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Amanda Nilson </a>
+                                                        </td>
+                                                        <td> 13 Feb, 2013 </td>
+                                                        <td> $12625.50 </td>
+                                                        <td>
+                                                            <span class="label label-sm label-warning"> Pending </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Paul Strong </a>
+                                                        </td>
+                                                        <td> 1 Jun, 2013 </td>
+                                                        <td> $890.85 </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success"> Success </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Jhon Doe </a>
+                                                        </td>
+                                                        <td> 20 Mar, 2013 </td>
+                                                        <td> $125.00 </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success"> Success </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Bill Chang </a>
+                                                        </td>
+                                                        <td> 29 May, 2013 </td>
+                                                        <td> $12,125.70 </td>
+                                                        <td>
+                                                            <span class="label label-sm label-info"> In Process </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:;"> Paul Strong </a>
+                                                        </td>
+                                                        <td> 1 Jun, 2013 </td>
+                                                        <td> $890.85 </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success"> Success </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> View </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End: life time stats -->
+                </div>
+
+               	<div class="row widget-row no-space margin-bottom-20">
+                    <div class="col-md-9 col-sm-6 col-xs-12 no-space">
+                        <!-- BEGIN WIDGET SOCIALS -->
+                        <div class="widget-socials widget-bg-color-gray">
+                            <h2 class="widget-socials-title widget-title-color-white text-uppercase">Metronic
+                                <br> 6 Layout Admin</h2>
+                            <div class="margin-bottom-20">
+                                <strong class="widget-socials-paragraph text-uppercase">Platform</strong>
+                                <a class="widget-socials-paragraph" href="#">Bootstrap Framework</a>
+                            </div>
+                            <strong class="widget-socials-paragraph text-uppercase">Supports</strong>
+                            <a class="widget-socials-paragraph" href="#">SASS Solution</a>
+                        </div>
+                        <!-- END WIDGET SOCIALS -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 no-space">
+                        <!-- BEGIN WIDGET SOCIALS -->
+                        <div class="widget-socials widget-gradient" style="background: url(../../assets/layouts/layout/img/03.jpg)"></div>
+                        <!-- END WIDGET SOCIALS -->
+                    </div>
+                </div>
+		
 			</div>
 			<!-- END PAGE CONTENT-->
 		</div>

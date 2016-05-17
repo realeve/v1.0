@@ -268,6 +268,10 @@ var PaperValidate = function() {
 					infoTips(data);
 				}
 			});
+
+			//更新数据后，状态置为插入数据
+			gb.updateMode = 0;
+			$('.portlet button[type="submit"]').html('提交  <i class="icon-cloud-upload"></i>');
 		}
 
 		$('button[type="submit"]').on('click', function() {

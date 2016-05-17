@@ -616,7 +616,7 @@ var App = function() {
             handleModals(); // handle modals
             handleBootstrapConfirmation(); // handle bootstrap confirmations
             handleTextareaAutosize(); // handle autosize textareas
-            handleCounterup(); // handle counterup instances
+            //handleCounterup(); // handle counterup instances
 
             //Handle group element heights
             this.addResizeHandler(handleHeight); // handle auto calculating height on window resize
