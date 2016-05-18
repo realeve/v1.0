@@ -801,8 +801,6 @@
         while (data.length < totalPoints) {
           var prev = data.length > 0 ? data[data.length - 1] : min;
           var y = prev + Math.random() * 10 - 5;
-          if (y < 0) y = 0;
-          if (y > max) y = max;
           data.push(y);
         }
         // zip the generated y values with the x values
