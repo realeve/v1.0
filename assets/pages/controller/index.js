@@ -24,7 +24,12 @@ var Index = function() {
 		var Data = ReadData(str);
 		Data.data[0].map(function(statData, idx) {
 			$('.dashboard-stat .number:nth(' + idx + ')').attr('data-value', data2ThousandSeparator(statData)).text(data2ThousandSeparator(statData));
-		})
+		});
+		
+		if(Data.data[0][4]){
+			bsTips('近期有机检异常产品，请注意!');
+		}
+
 		handleCounterup($(".top-info .number"), 800);
 	}();
 
@@ -156,10 +161,53 @@ var Index = function() {
 		};
 	}();
 
+	var previousPoint = null;
+
+	function showChartTooltip(x, y, xValue, yValue) {
+		$('<div id="tooltip" class="chart-tooltip">' + yValue + '<\/div>').css({
+			position: 'absolute',
+			display: 'none',
+			top: y - 40,
+			left: x - 40,
+			border: '0px solid #ccc',
+			padding: '2px 6px',
+			'background-color': '#fff',
+			'background': '#fff'
+		}).appendTo("body").fadeIn(200);
+	}
+
+	function handleTooltip(pos, item, strUnit, fixedLen, plotData) {
+		fixedLen = fixedLen || 0;
+		$("#x").text(pos.x.toFixed(fixedLen));
+		$("#y").text(pos.y.toFixed(fixedLen));
+		if (item) {
+			if (previousPoint != item.dataIndex) {
+				previousPoint = item.dataIndex;
+				previousSeries = item.seriesIndex - 1;
+
+				$("#tooltip").remove();
+				var x = item.datapoint[0].toFixed(fixedLen),
+					y = item.datapoint[1].toFixed(fixedLen),
+					xCat = item.series.data[item.datapoint[0]][0];
+				//label = item.series.label.trim() + '<br>'; 
+				var tooltipInfo, offsetY = 0;
+				if (typeof plotData == 'undefined') {
+					tooltipInfo = xCat + " : " + item.datapoint[1].toFixed(fixedLen) + ' ' + strUnit;
+				} else {
+					tooltipInfo = '<span class="caption-subject">' + xCat + '</span><br>' + plotData[previousSeries].label.trim() + " : " + item.datapoint[1].toFixed(0) + ' ' + strUnit;
+					offsetY = 22;
+				}
+				showChartTooltip(item.pageX + 10, item.pageY - offsetY, item.datapoint[0], tooltipInfo);
+			}
+		} else {
+			$("#tooltip").remove();
+			previousPoint = null;
+		}
+	}
+
 	var handleOnlineInfo = function() {
 
 		var olInfo;
-		var previousPoint = null;
 
 		var loadOLInfo = function() {
 			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=173&M=3";
@@ -189,48 +237,6 @@ var Index = function() {
 				}
 			});
 		};
-
-		function showChartTooltip(x, y, xValue, yValue) {
-			$('<div id="tooltip" class="chart-tooltip">' + yValue + '<\/div>').css({
-				position: 'absolute',
-				display: 'none',
-				top: y - 40,
-				left: x - 40,
-				border: '0px solid #ccc',
-				padding: '2px 6px',
-				'background-color': '#fff',
-				'background': '#fff'
-			}).appendTo("body").fadeIn(200);
-		}
-
-		function handleTooltip(pos, item, strUnit, fixedLen, plotData) {
-			fixedLen = fixedLen || 0;
-			$("#x").text(pos.x.toFixed(fixedLen));
-			$("#y").text(pos.y.toFixed(fixedLen));
-			if (item) {
-				if (previousPoint != item.dataIndex) {
-					previousPoint = item.dataIndex;
-					previousSeries = item.seriesIndex - 1;
-
-					$("#tooltip").remove();
-					var x = item.datapoint[0].toFixed(fixedLen),
-						y = item.datapoint[1].toFixed(fixedLen),
-						xCat = item.series.data[item.datapoint[0]][0];
-					//label = item.series.label.trim() + '<br>'; 
-					var tooltipInfo, offsetY = 0;
-					if (typeof plotData == 'undefined') {
-						tooltipInfo = xCat + " : " + item.datapoint[1].toFixed(fixedLen) + ' ' + strUnit;
-					} else {
-						tooltipInfo = '<span class="caption-subject">' + xCat + '</span><br>' + plotData[previousSeries].label.trim() + " : " + item.datapoint[1].toFixed(0) + ' ' + strUnit;
-						offsetY = 22;
-					}
-					showChartTooltip(item.pageX + 10, item.pageY - offsetY, item.datapoint[0], tooltipInfo);
-				}
-			} else {
-				$("#tooltip").remove();
-				previousPoint = null;
-			}
-		}
 
 		var refreshRealQuality = function() {
 			$('#real_quality_loading').hide();
@@ -307,7 +313,7 @@ var Index = function() {
 					ticks: 5,
 					tickDecimals: 0,
 					tickColor: "#eee",
-					min: 50,
+					//min: 50,
 					max: 100,
 					font: {
 						lineHeight: 14,
@@ -614,229 +620,108 @@ var Index = function() {
 
 	var processQCDashboard = function() {
 
-		function showTooltip(x, y, labelX, labelY) {
-			$('<div id="tooltip" class="chart-tooltip">' + (labelY.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')) + 'USD<\/div>').css({
-				position: 'absolute',
-				display: 'none',
-				top: y - 40,
-				left: x - 60,
-				border: '0px solid #ccc',
-				padding: '2px 6px',
-				'background-color': '#fff'
-			}).appendTo("body").fadeIn(200);
-		}
-
-
 		var initNoteAnanyCharts = function() {
 
 			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=175&M=0";
 			var Data = ReadData(str);
-			/*var lineData = [];
-			Data.data.map(function(anayData) {
-				lineData.push({
-					"品种": anayData.品种,
-					"机检得分": anayData.机检得分,
-					"人工得分": Number.parseFloat(anayData.人工得分) - Number.parseFloat(anayData.机检得分),
-					"评价总分": Number.parseFloat(anayData.评价总分) - Number.parseFloat(anayData.机检得分)
-				})
-			})*/
-			var lineData = {
+
+			var flotData = {
 				element: 'noteAnany_static',
-				padding: 0,
+				//padding: 0,
 				behaveLikeLine: false,
-				gridEnabled: false,
-				gridLineColor: false,
-				axes: false,
+				//gridEnabled: false,
+				//gridLineColor: false,
+				//axes: false,
 				fillOpacity: 1,
-				stacked:0,
-				ymin: 70,
+				stacked: 0,
+				ymin: 95,
+				ymax: 100,
 				data: Data.data,
-				//lineColors: ['#399a8c', '#92998c', '#a62343'],
 				xkey: Data.header[0].title,
 				ykeys: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
 				labels: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
-				pointSize: 0,
-				lineWidth: 0,
-				hideHover: 'auto',
+				hideHover: true,
 				resize: true
 			};
 
 			if (Morris.EventEmitter) {
 				// Use Morris.Area instead of Morris.Line
-				dashboardMainChart = Morris.Area(lineData);
+				dashboardMainChart = Morris.Bar(flotData);
 			}
 		};
 
+		var isChart2Inited = false;
 		var initNoteAnanyCharts2 = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=176&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=175&M=0";
 			var Data = ReadData(str);
-			/*var lineData = [];
-			Data.data.map(function(anayData) {
-				lineData.push({
-					"品种": anayData.品种,
-					"机检得分": anayData.机检得分,
-					"人工得分": Number.parseFloat(anayData.人工得分) - Number.parseFloat(anayData.机检得分),
-					"评价总分": Number.parseFloat(anayData.评价总分) - Number.parseFloat(anayData.机检得分)
-				})
-			})*/
-			var lineData = {
+
+			var flotData = {
 				element: 'statistics_2',
-				padding: 0,
 				behaveLikeLine: false,
-				gridEnabled: false,
-				gridLineColor: false,
-				axes: false,
 				fillOpacity: 1,
-				stacked:0,
-				ymin: 70,
+				stacked: 0,
+				ymin: 95,
+				ymax: 100,
 				data: Data.data,
-				//lineColors: ['#399a8c', '#92998c', '#a62343'],
 				xkey: Data.header[0].title,
 				ykeys: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
 				labels: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
-				pointSize: 0,
-				lineWidth: 0,
-				hideHover: 'auto',
+				hideHover: true,
 				resize: true
 			};
 
 			if (Morris.EventEmitter) {
 				// Use Morris.Area instead of Morris.Line
-				dashboardMainChart = Morris.Area(lineData);
+				dashboardMainChart = Morris.Bar(flotData);
 			}
 		};
-		var initChart1 = function() {
 
-			var data = [
-				['01/2013', 4],
-				['02/2013', 8],
-				['03/2013', 10],
-				['04/2013', 12],
-				['05/2013', 2125],
-				['06/2013', 324],
-				['07/2013', 1223],
-				['08/2013', 1365],
-				['09/2013', 250],
-				['10/2013', 999],
-				['11/2013', 390]
-			];
+		var initChart2 = function() {
 
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=176&M=3";
+			var Data = ReadData(str);
+			var data = [];
+			Data.data.map(function(plotData) {
+				data.push([
+					plotData[0], plotData[3]
+				]);
+			});
+			/*{
+				data: data,
+				bars: {
+					show: true,
+					barWidth: 0.4,
+					lineWidth: 2,
+					lineColors: ["#08a3cc"],
+					align: "center",
+					fill: 0.8,
+					//horizontal: true
+				},
+				color: ['#BAD9F5'],
+				label: '过程质量评分'
+			}*/
 			var plot_statistics = $.plot(
-				$("#statistics_1"), [{
+				$("#statistics_2"), [{
 					data: data,
 					lines: {
-						fill: 0.6,
+						fill: 0.9,
 						lineWidth: 0
 					},
-					color: ['#f89f9f']
+					color: ["#556"],//f89f9f
+					label: '过程质量评分'
 				}, {
 					data: data,
+					yaxis: 1,
 					points: {
 						show: true,
 						fill: true,
 						radius: 5,
-						fillColor: "#f89f9f",
+						fillColor: "#556",
 						lineWidth: 3
 					},
 					color: '#fff',
 					shadowSize: 0
-				}], {
-
-					xaxis: {
-						tickLength: 0,
-						tickDecimals: 0,
-						mode: "categories",
-						min: 2,
-						font: {
-							lineHeight: 15,
-							style: "normal",
-							variant: "small-caps",
-							color: "#6F7B8A"
-						}
-					},
-					yaxis: {
-						ticks: 3,
-						tickDecimals: 0,
-						tickColor: "#f0f0f0",
-						font: {
-							lineHeight: 15,
-							style: "normal",
-							variant: "small-caps",
-							color: "#6F7B8A"
-						}
-					},
-					grid: {
-						backgroundColor: {
-							colors: ["#fff", "#fff"]
-						},
-						borderWidth: 1,
-						borderColor: "#f0f0f0",
-						margin: 0,
-						minBorderMargin: 0,
-						labelMargin: 20,
-						hoverable: true,
-						clickable: true,
-						mouseActiveRadius: 6
-					},
-					legend: {
-						show: false
-					}
-				}
-			);
-
-			var previousPoint = null;
-
-			$("#statistics_1").bind("plothover", function(event, pos, item) {
-				$("#x").text(pos.x.toFixed(2));
-				$("#y").text(pos.y.toFixed(2));
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-
-						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(2),
-							y = item.datapoint[1].toFixed(2);
-
-						showTooltip(item.pageX, item.pageY, item.datapoint[0], item.datapoint[1]);
-					}
-				} else {
-					$("#tooltip").remove();
-					previousPoint = null;
-				}
-			});
-
-		}
-
-		var initChart2 = function() {
-
-			var data = [
-				['01/2013', 10],
-				['02/2013', 0],
-				['03/2013', 10],
-				['04/2013', 12],
-				['05/2013', 212],
-				['06/2013', 324],
-				['07/2013', 122],
-				['08/2013', 136],
-				['09/2013', 250],
-				['10/2013', 99],
-				['11/2013', 190]
-			];
-
-			var plot_statistics = $.plot(
-				$("#statistics_2"), [{
-					data: data,
-					bars: {
-						show: true,
-						barWidth: 0.4,
-						lineWidth: 2,
-						lineColors: ["#08a3cc"],
-						align: "center",
-						fill: 0.8
-					},
-					color: ['#BAD9F5'],
-					label: 'data2'
 				}], {
 
 					xaxis: {
@@ -852,9 +737,11 @@ var Index = function() {
 						}
 					},
 					yaxis: {
-						ticks: 3,
+						ticks: 4,
 						tickDecimals: 0,
 						tickColor: "#f0f0f0",
+						min: 96,
+						max: 100,
 						font: {
 							lineHeight: 14,
 							style: "normal",
@@ -881,39 +768,27 @@ var Index = function() {
 				}
 			);
 
-			var previousPoint = null;
-
 			$("#statistics_2").bind("plothover", function(event, pos, item) {
-				$("#x").text(pos.x.toFixed(2));
-				$("#y").text(pos.y.toFixed(2));
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-
-						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(2),
-							y = item.datapoint[1].toFixed(2);
-
-						showTooltip(item.pageX, item.pageY, item.datapoint[0], item.datapoint[1]);
-					}
-				} else {
-					$("#tooltip").remove();
-					previousPoint = null;
-				}
+				handleTooltip(pos, item, "分", 2);
 			});
-
-		}
+		};
 
 		return {
 
 			//main function
 			init: function() {
-				//initChart1();
 				initNoteAnanyCharts();
 
-				$('#statistics_orders_tab').on('shown.bs.tab', function(e) {
-					initChart2();
-					//initNoteAnanyCharts2();
+				$('#process_quality_cut_tab').on('shown.bs.tab', function(e) {
+					if (!isChart2Inited) {
+						//initNoteAnanyCharts2();
+						initChart2();
+						isChart2Inited = false;
+					}
+
+				});
+				$('#process_quality_offline_tab').on('shown.bs.tab', function(e) {
+					bsTips('即将添加');
 				});
 			}
 

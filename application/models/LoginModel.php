@@ -13,7 +13,6 @@ class LoginModel extends CI_Model {
 		return iconv("gbk","utf-8",$data);
 	}
 
-
 	public function logincheck($UserName,$Password){
 		$UserName = $this->TransToGBK($UserName);
 		$logindata = array(

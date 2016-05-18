@@ -192,25 +192,26 @@
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a href="#portlet_ecommerce_tab_1" data-toggle="tab"> 单开分析仪 </a>
+                                    <a href="#portlet_process_quality_1" data-toggle="tab"> 单开分析仪 </a>
                                 </li>
                                 <li>
-                                    <a href="#portlet_ecommerce_tab_2" id="statistics_orders_tab" data-toggle="tab"> 检封裁切 </a>
+                                    <a href="#portlet_process_quality_2" id="process_quality_cut_tab" data-toggle="tab"> 检封裁切 </a>
                                 </li>
                                 <li>
-                                    <a href="#portlet_ecommerce_tab_3" id="statistics_orders_tab" data-toggle="tab"> 大张离线 </a>
+                                    <a href="#portlet_process_quality_3" id="process_quality_offline_tab" data-toggle="tab"> 大张离线 </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="portlet-body">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="portlet_ecommerce_tab_1">
-									<div id="noteAnany_static" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+                                <div class="tab-pane active" id="portlet_process_quality_1">
+									<div id="noteAnany_static" class="portlet-body-morris-fit morris-chart" style="height: 314px">
 									</div>
                                     <!--div id="statistics_1" class="chart"> </div-->
                                 </div>
-                                <div class="tab-pane" id="portlet_ecommerce_tab_2">
-                                    <div id="statistics_2" class="chart"> </div>
+                                <div class="tab-pane" id="portlet_process_quality_2">
+									<!--div id="statistics_2" class="portlet-body-morris-fit morris-chart" style="height: 314px"-->
+									<div id="statistics_2" class="chart"> </div>
                                 </div>
                             </div>
                             <!--div class="well margin-top-20">
