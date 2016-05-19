@@ -80,7 +80,7 @@ var MicroBlog = function() {
           var TimeEnd = '</h4></span></div></div></div>';
 
           var TimeButton = '</small></span></div><div class="timeline-body-head-actions">';
-          TimeButton += '<a data-sn=" + obj.id + " class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
+          TimeButton += '<a data-sn=' + obj.id + ' class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
           TimeButton += '</div></div><div class="timeline-body-content"><span class="font-grey-mint"><h4>';
 
           $(".timeline:first").prepend(TimeHead + GBK2UTF(iData.UserName) + TimeTitle + iData.RecordTime + TimeButton + GBK2UTF(iData.BlogHTML) + TimeEnd);
@@ -140,7 +140,7 @@ var MicroBlog = function() {
           var strContent, TimeButton;
           for (var i = obj.rows - 1; i >= 0; i--) {
             TimeButton = '</small></span></div><div class="timeline-body-head-actions">';
-            TimeButton +='<a data-sn=" + obj.data[i].ID + " class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
+            TimeButton +='<a data-sn=' + obj.data[i].ID + ' class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
 
             TimeButton +='</div></div><div class="timeline-body-content"><span class="font-grey-mint"><h4>';
             strContent = GBK2UTF(obj.data[i].BlogHTML);

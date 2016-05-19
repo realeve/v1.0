@@ -84,7 +84,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       });
       return re;*/
       //更新数据唯一值判定算法
-      arr.sort();
+      if (isNaN(arr[0])) {
+        arr.sort();
+      } else {
+        arr.sort(sortNumber);
+      }
       var re = [];
       var status = [];
       arr.map(function(elem) {
@@ -93,7 +97,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           status[elem] = 1;
         }
       });
-      //console.log(re);
       return re;
     }
 
@@ -174,7 +177,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         } else if (curData > max) {
           max = curData;
         }
-
       });
       return {
         "min": Math.floor(min).toFixed(0),
@@ -726,7 +728,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     function handleBoxPlotDataMinMax(plotData, arr) {
       for (var i = 0; i < arr.length; i++) {
-        arr[i].sort(); //升序排序
+        arr[i].sort(sortNumber); //升序排序
         plotData.boxData[i][0] = arr[i][0]; //最小值
         plotData.boxData[i][4] = arr[i][arr[i].length - 1]; //最大值
       }
@@ -828,6 +830,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
 
         iConvData = dataTool.prepareBoxplotData(NewData['yAxis']);
+        //如果需要处理箱形图数据
+        if (objRequest.minMax) {
+          iConvData = handleBoxPlotDataMinMax(iConvData, NewData['yAxis']);
+        }
 
         NewData['legend'] = [];
         NewData['legend'][0] = NewData['yAxisTitle'];
@@ -841,7 +847,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             textStyle: {
               color: '#333'
             },
-            formatter: boxFormatter
+            formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
           }
         };
 
@@ -864,6 +870,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           NewData['yAxis'][0][i] = Number.parseFloat(Data.data[i][0]);
         }
         iConvData = dataTool.prepareBoxplotData(NewData['yAxis']);
+        //如果需要处理箱形图数据
+        if (objRequest.minMax) {
+          iConvData = handleBoxPlotDataMinMax(iConvData, NewData['yAxis']);
+        }
 
         NewData['series'][0] = {
           "name": NewData['yAxisTitle'],
@@ -875,7 +885,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             textStyle: {
               color: '#333'
             },
-            formatter: boxFormatter
+            formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
           }
         };
 

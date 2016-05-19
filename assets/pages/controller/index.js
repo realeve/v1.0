@@ -781,12 +781,11 @@ var Index = function() {
 
 				$('#process_quality_cut_tab').on('shown.bs.tab', function(e) {
 					if (!isChart2Inited) {
-						//initNoteAnanyCharts2();
 						initChart2();
-						isChart2Inited = false;
+						isChart2Inited = true;
 					}
-
 				});
+				
 				$('#process_quality_offline_tab').on('shown.bs.tab', function(e) {
 					bsTips('即将添加');
 				});
