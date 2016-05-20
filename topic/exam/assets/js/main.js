@@ -26,9 +26,11 @@ var exam = {
 	isAnswered: [],
 	timeReleased: false,
 	isStarted: false,
-	timeLength: 60 * 1000,
-	sourceList: []
+	timeLength: 5 * 60 * 1000,
+	sourceList: [],
+	eachScore: 0
 };
+
 //页面总数
 var lastPage;
 
@@ -36,28 +38,44 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 	var secColor = [];
 
 	function getExamTemplate(data, i) {
-		var ques = '';
+		var ques = [];
+		var arr = [];
+		//选项乱序
+		arr = getRandomArr(data.question.length);
+		var oldOrder = [];
+		arr.map(function(arrData, id) {
+			oldOrder[arrData] = id;
+		});
 		var str = '<div class="section">';
 		str += '<h1 class="title">第<span>' + i + '</span>题</h1>';
 		str += '<div class="weui_cells_title">' + data.title + '</div>';
-		str += '<div class="weui_cells ' + (i % 2 ? '' : 'weui_cells_dark') + ' weui_cells_checkbox" data-id=' + (i - 1) + ' data-answer=' + data.answer + '>';
+		str += '<div class="weui_cells ' + (i % 2 ? '' : 'weui_cells_dark') + ' weui_cells_checkbox" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
+
 		data.question.map(function(qTitle, idx) {
-			ques += '    <label class="weui_cell weui_check_label">';
-			ques += '<div class="weui_cell_hd">';
-			ques += '    <input type="radio" class="weui_check" name="radio' + (i - 1) + '">';
-			ques += '    <i class="weui_icon_checked"></i>';
-			ques += '</div>';
-			ques += '<div class="weui_cell_bd weui_cell_primary" data-value=' + idx + '>';
-			ques += '    <p>' + qTitle + '</p>';
-			ques += '</div></label>';
+			ques[idx] = '';
+			ques[idx] += '    <label class="weui_cell weui_check_label">';
+			ques[idx] += '<div class="weui_cell_hd">';
+			ques[idx] += '    <input type="radio" class="weui_check" name="radio' + (i - 1) + '">';
+			ques[idx] += '    <i class="weui_icon_checked"></i>';
+			ques[idx] += '</div>';
+			ques[idx] += '<div class="weui_cell_bd weui_cell_primary" data-value=' + oldOrder[idx] + '>';
+			ques[idx] += '    <p>' + qTitle + '</p>';
+			ques[idx] += '</div></label>';
 		});
-		str += ques + '</div>\n</div>';
+
+		var strQues = '';
+		for (var j = 0; j < data.question.length; j++) {
+			strQues += ques[arr[j]];
+		}
+		//选项乱序 -END
+
+		str += strQues + '</div>\n</div>';
 		return str;
 	}
 
 	//数组随机排序
 	function randomsort(a, b) {
-		return Math.random() > .5 ? -1 : 1;
+		return Math.random() > 0.5 ? -1 : 1;
 	}
 
 	function getRandomArr(len) {
@@ -67,12 +85,13 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 		return arr.sort(randomsort);
 	}
-
-	$.getJSON("./assets/data/data.json", function(question) {
+	$.getJSON("./assets/data/test.min.json", function(question) {
 		var quesLen = question.length;
 		$('[name="nums"]').text(quesLen);
+		exam.eachScore = 100 / quesLen;
+		$('[name="scores"]').text(exam.eachScore.toFixed(0));
+
 		exam.sourceList = getRandomArr(quesLen);
-		console.log(exam.sourceList);
 
 		for (var i = 0; i < quesLen; i++) {
 			$('[name="form"]').before(getExamTemplate(question[exam.sourceList[i]], i + 1));
@@ -81,9 +100,9 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 		//间隔背景
 		lastPage = question.length + 2;
-		for (var i = 0; i < lastPage; i++) {
+		for (i = 0; i < lastPage; i++) {
 			secColor[i] = (i % 2) ? '#fff' : '#f3f3ff';
-		};
+		}
 
 	}).done(function() {
 		handleAnswer();
@@ -136,14 +155,41 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 					//答题时间提醒
 					setTimeout(function() {
+						$.toast("考试时间已过去三分之一");
+					}, exam.timeLength * 033);
+
+					//答题时间提醒
+					setTimeout(function() {
 						$.toast("考试时间仅剩三分之一");
 					}, exam.timeLength * 0.67);
-				};
+				}
 				pageChange(index);
 			},
 			afterLoad: function(index) {
 				pageChange(index);
 			}
+		});
+
+		function validate(data) {
+			var isPass = true;
+			if (data.userName == '') {
+				$('[name="userName"]').parents('.weui_cell').find('label').css('color', '#e64340');
+				isPass = false;
+			} else {
+				$('[name="userName"]').parents('.weui_cell').find('label').attr('style', '');
+			}
+
+			if (data.userCard == '') {
+				$('[name="userCard"]').parents('.weui_cell').find('label').css('color', '#e64340');
+				isPass = false;
+			} else {
+				$('[name="userCard"]').parents('.weui_cell').find('label').attr('style', '');
+			}
+			return isPass;
+		}
+
+		$('[name="form"] input').on('focus', function() {
+			$(this).parents('.weui_cell').find('label').attr('style', '');
 		});
 
 		$('[name="form"] .weui_btn').on('click', function(event) {
@@ -162,9 +208,16 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			var data = {
 				userName: $('[name="userName"]').val(),
 				userCard: $('[name="userCard"]').val(),
-				totalScore: exam.total,
+				totalScore: (exam.total * exam.eachScore).toFixed(0),
 				error: exam.error
 			};
+
+			if (!validate(data)) {
+				$.toast("请输入个人用户信息", "cancel");
+			} else {
+				$.toast("您一共取得了" + data.totalScore + "分");
+			}
+
 			console.log(data);
 		});
 	};

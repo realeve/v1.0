@@ -58,8 +58,8 @@
 .media-wrap {
     overflow: hidden;
     position: fixed;
-    top: 2.92rem;
-    right: 1.375rem;
+    top: 15px;
+    right: 15px;
     z-index: 10000;
     width: 6.5em;
     height: 6.5em;
@@ -108,4 +108,8 @@
 
 .weui_cells_dark{
 	background-color: #f3f3ff
+}
+
+.title{
+    color:#2194ff;
 }
