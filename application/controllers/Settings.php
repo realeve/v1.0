@@ -141,5 +141,18 @@ class settings extends CI_Controller {
 		
 	}
 
+	public function updatePsw(){
+		$postData = $this->input->GET(NULL);
+		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
+		$tblName = 'tblUser';
+		$where = '[id] = '.$postData['id']." and UserPassword = '". $postData['UserPassword'] ."'";
+		$data['UserPassword'] = $postData['newPsw'];
+        $returnData =  $LOGINDB->update($tblName, $data,$where) ;
+        if($returnData > 0 ){
+        	echo '{"type":' . $returnData . ',"message":"密码更新成功"}';
+        }else{
+        	echo '{"type":0,"message":"密码更新失败，请联系管理员或稍后重试"}';
+        }
+	}
 }
 

@@ -1,11 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.16;
-  /*, {
-    "version": 1.17,
-    "date": "2016-05-15",
-    "html": "<p>1.系统帐户：从现在起，您可以设置自己的头像了，<a href=\"http://10.8.2.133:70/Settings/account#tab_1_2\">点击这里</a>来试试吧！"
-  }*/
-
+  var curVersion = 1.21;
 
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -160,6 +154,17 @@
     }
     return output;
   }
+
+  /**
+   * [data2ThousandSeparator 数字转千分位]
+   * @param  {[type]} num [待转数字]
+   * @return {[type]}      [转换后数据]
+   */
+  function data2ThousandSeparator(num, isFloat) {
+    isFloat = isFloat || 0;
+    return (((isFloat) ? num.toFixed(2) : num) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+  }
+
   /*function fmoney(s, n)   
      { 
         n = n <= 20 ? n : 2;   
@@ -286,6 +291,9 @@
     $("select[name='" + sel_Name + "']").html(GetSelectStr(Data));
   }
 
+  function SetSelectVal(Name, val) {
+    $("select[name='" + Name + "']").val(val);
+  }
   //切换开关
 
   function SwitchSelect(Name, ID) {
@@ -462,6 +470,9 @@
     $('form[name="' + theForm + '"] input[type="text"]').map(function(elem) {
       str += '"' + $(this).attr("name") + '":"' + $(this).val() + '",';
     });
+    $('form[name="' + theForm + '"] input[type="password"]').map(function(elem) {
+      str += '"' + $(this).attr("name") + '":"' + $(this).val() + '",';
+    });
     $('form[name="' + theForm + '"] select').map(function(elem) {
       str += '"' + $(this).attr("name") + '":"' + $(this).val() + '",';
     });
@@ -576,12 +587,24 @@
         smallAvatarName = avatarName;
       }
       var avatarUrl = getRootPath(1) + '/demo/avatar/' + smallAvatarName + '.jpg?' + Date.parse(new Date());
+      //右上角图标
       $('.username').parent().find('img').attr('src', avatarUrl);
+      //用户信息
       $('.profile-userpic img').attr('src', avatarUrl);
+      if (typeof $('.username').data('avatar') != 'undefined') {
+        localStorage.setItem('avatarUrl', avatarUrl);
+      }
+
+      if (typeof localStorage.avatarUrl != 'undefined') {
+        //锁屏
+        $('.lock-avatar-block img').attr('src', localStorage.avatarUrl);
+      }
     };
 
-    var avatar = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg?' + Date.parse(new Date());
-    $.ajax({
+    //var avatar = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg?' + Date.parse(new Date());
+    refreshUserHeadInfo($('.username').data('set-avatar') == 1 ? avatarName : 'Avatar_none');
+
+    /*$.ajax({
       url: avatar,
       success: function() {
         refreshUserHeadInfo();
@@ -589,7 +612,7 @@
       error: function() {
         refreshUserHeadInfo("Avatar_none");
       }
-    });
+    });*/
   })();
 
   function setLocationUrl() {
@@ -778,8 +801,6 @@
         while (data.length < totalPoints) {
           var prev = data.length > 0 ? data[data.length - 1] : min;
           var y = prev + Math.random() * 10 - 5;
-          if (y < 0) y = 0;
-          if (y > max) y = max;
           data.push(y);
         }
         // zip the generated y values with the x values

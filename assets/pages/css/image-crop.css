@@ -5,7 +5,7 @@
   display: block;
   position: absolute;
   z-index: 2000;
-  right: -200px;
+  
   border: 1px rgba(0, 0, 0, 0.4) solid;
   background-color: white;
   -webkit-border-radius: 50%;

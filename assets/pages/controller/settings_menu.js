@@ -775,13 +775,11 @@ var customizeMenu = function() {
                     if (item.parent().hasClass('checked')) { //勾选状态-增加数据
                         itemPrnt.removeClass("task-done");
                         item.parent().removeClass("checked");
+
                         //删除信息
                         var obj = $('#menuPreviewList .dd-item[data-id="' + item_val + '"]');
                         var objPrev = $('#menuPreviewDetail [data-id="' + item_val + '"]');
                         var subMenu = $('#menuPreviewList li[data-id=' + item_val + '] ol');
-                        if (subMenu.length) { //先保存子项目
-                            $('#menuPreviewList ol').first().append(subMenu.first().html());
-                        }
 
                         if (obj.parent().find('li').length == 1) {
                             if ($('#menuPreviewDetail li').length == 1) {
@@ -794,6 +792,14 @@ var customizeMenu = function() {
                         } else {
                             obj.remove();
                             objPrev.remove();
+                        }
+
+                        if (subMenu.length) { //先保存子项目
+                            //$('#menuPreviewList ol').first().append(subMenu.first().html());
+                            //2016-05-17 子项目直接删除
+                            updateOutput($('#menuPreviewList').data('output', $('#menuPreviewList_output')));
+                            resetMenuList();
+                            Serial2DOM('#menuPreviewList', $.parseJSON($('#menuPreviewList_output').val()), 1);
                         }
 
                     } else {

@@ -19,6 +19,18 @@ var PaperValidate = function() {
 		$('form input[type="text"]').eq(0).focus();
 	}
 
+	function getCurReels() {
+		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=166&M=3&tstart=" +
+			$('[name="rec_date"]').val().replace(/-/g, '');
+		var Data = ReadData(str);
+		var reelCounts = Data.data[0];
+		if (reelCounts > 0) {
+			bsTips('当天共有 ' + reelCounts + '条数据！', 1);
+		} else {
+			bsTips('当天无相关数据');
+		}
+	}
+
 	function initDOM() {
 		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=24&M=3&t=1";
 		var Data = ReadData(str);
@@ -198,7 +210,7 @@ var PaperValidate = function() {
 			iData.utf2gbk = ['reel_end', 'suspect_paper', 'well_paper', 'other'];
 			iData.record_Time = today(1);
 			iData.passed = GetiCheckChecked('passed');
-			
+
 			$.ajax({
 				url: strUrl,
 				type: 'POST',
@@ -213,6 +225,7 @@ var PaperValidate = function() {
 					} else {
 						bsTips('该轴放行，如需修改数据，请重新输入轴号载入信息', 1);
 					}
+					getCurReels();
 				},
 				error: function(data) {
 					bsTips("数据添加失败，请稍后重试或联系管理员!", 0);
@@ -255,6 +268,10 @@ var PaperValidate = function() {
 					infoTips(data);
 				}
 			});
+
+			//更新数据后，状态置为插入数据
+			gb.updateMode = 0;
+			$('.portlet button[type="submit"]').html('提交  <i class="icon-cloud-upload"></i>');
 		}
 
 		$('button[type="submit"]').on('click', function() {
@@ -282,6 +299,69 @@ var PaperValidate = function() {
 		}
 	};
 
+	var handleReelList = (function() {
+		$('table[name="reelList"] tbody').on('click', 'a', function() {
+			updateReelDate($(this));
+		});
+
+		//记录之前日期
+		var oldDate;
+
+		//更新轴日期
+		function updateReelDate(obj) {
+			var id = obj.data('id');
+			var strUrl = getRootPath() + "/DataInterface/update";
+			var curDate = $('[name="rec_date"]').val();
+			var curTime = obj.parents('tr').find('td:nth(3)').text().trim().replace(oldDate, curDate);
+			$.ajax({
+				type: 'POST',
+				async: false,
+				url: strUrl,
+				data: {
+					"id": id,
+					"tbl": TBL.PPR_VALIDATE,
+					"rec_date": curDate,
+					"record_Time": curTime
+				},
+				success: function() {
+					bsTips("该轴号日期成功更新至" + curTime, 2);
+					//删除对应的项
+					obj.parents('tr').remove();
+					if ($('table[name="reelList"] a').length === 0) {
+						$('table[name="reelList"] tbody').html('<tr><td class="text-center" colspan="7">指定时间内无数据</td></tr>');
+					}
+				},
+				error: function(data) {
+					infoTips("日期修改失败，请联系系统管理员!", 0);
+					infoTips(JSON.stringify(data));
+				}
+			});
+		}
+
+		function loadReelByDate() {
+
+			//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed =3 order by 7 
+			var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=167&M=0&tstart=" + $('[name="rec_date"]').val().replace(/-/g, '');
+			var Data = ReadData(strUrl);
+			var strTr = "";
+			if (Data.rows > 0) {
+				Data.data.map(function(elem) {
+					strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;" class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + '><i class="fa fa-calendar-check-o"></i> 修改日期 </a></td></tr>';
+				});
+				$('table[name="reelList"] tbody').html(strTr);
+			} else {
+				$('table[name="reelList"] tbody').html('<tr><td class="text-center" colspan="7">指定时间内无数据</td></tr>');
+			}
+			bsTips('历史数据载入完毕，共载入' + Data.rows + '条数据', 1);
+			oldDate = $('[name="rec_date"]').val();
+		}
+
+		$('[name="loadHisData"]').on('click', function() {
+			loadReelByDate();
+		});
+
+	})();
+
 	var handleUnPassData = (function() {
 		$('table[name="unPassedList"] tbody').on('click', 'a', function() {
 
@@ -305,7 +385,7 @@ var PaperValidate = function() {
 					bsTips("该轴号成功放行", 2);
 					//删除对应的项
 					obj.parents('tr').remove();
-					if ($('table a').length === 0) {
+					if ($('table[name="unPassedList"] a').length === 0) {
 						$('table[name="unPassedList"] tbody').html('<tr><td class="text-center" colspan="7">近期所有产品均已通过检验</td></tr>');
 					}
 				},
@@ -337,10 +417,10 @@ var PaperValidate = function() {
 				$('table[name="unPassedList"] tbody a').confirmation();
 
 
-                //放行
-                $('body').on('confirmed.bs.confirmation', 'table[name="unPassedList"] tbody a', function() {
-                    passedByReelCode($(this));
-                });
+				//放行
+				$('body').on('confirmed.bs.confirmation', 'table[name="unPassedList"] tbody a', function() {
+					passedByReelCode($(this));
+				});
 			}
 		};
 	})();

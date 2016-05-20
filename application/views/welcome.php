@@ -9,21 +9,21 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a>事务中心</a>
+						<a>仪表盘</a>
 					</li>
 				</ul>
-				<div class="page-toolbar">
+				<!--div class="page-toolbar">
 					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height btn-info" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
 						<span class="thin uppercase visible-lg-inline-block">&nbsp;</span>&nbsp;
 						<i class="fa fa-angle-down"></i>
 					</div>
-				</div>
+				</div-->
 			</div>
 			<!-- END PAGE HEADER-->	
-			<h3 class="page-title font-yahei">
+			<!--h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
-			</h3>
+			</h3-->
 			<!-- BEGIN DASHBOARD STATS -->
 			<div class="row top-info">
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -32,8 +32,7 @@
 							<i class="fa fa-comments"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="130">
-								 130
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
 								 印钞机检好品率低于70%
@@ -50,11 +49,10 @@
 							<i class="fa fa-bar-chart-o"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="1,400">
-								 1,400
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
-								 本月已开印产品
+								 已开印产品
 							</div>
 						</div>
 						<a class="more" href="javascript:;">
@@ -68,11 +66,10 @@
 							<i class="fa fa-shopping-cart"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="0">
-								 0
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
-								 异常品数量
+								 今日好品率低于80%机台数
 							</div>
 						</div>
 						<a class="more" href="javascript:;">
@@ -86,8 +83,7 @@
 							<i class="fa fa-globe"></i>
 						</div>
 						<div class="details">
-							<div class="number" data-counter="counterup" data-value="0">
-								 0
+							<div class="number" data-counter="counterup">
 							</div>
 							<div class="desc">
 								 机检系统异常产品
@@ -100,6 +96,65 @@
 				</div>
 			</div>
 			<!-- END DASHBOARD STATS -->
+			
+			<div class="row">
+				<div class="col-md-8 col-sm-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light" name="hisQuality">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font-color hide"></i>
+								<span class="caption-subject theme-font-color bold uppercase">机检好品率</span>
+								<span class="caption-helper">码后核查工艺...</span>
+							</div>
+							<div class="actions">
+								<div class="btn-group btn-group-devided" data-toggle="buttons">
+									<label class="btn btn-outline purple-studio btn-circle btn-sm active" data-id=0>
+									<input type="radio" name="options" class="toggle">最近一天</label>
+									<label class="btn btn-outline purple-studio btn-circle btn-sm" data-id=1>
+									<input type="radio" name="options" class="toggle">本周</label>
+									<label class="btn btn-outline purple-studio btn-circle btn-sm" data-id=2>
+									<input type="radio" name="options" class="toggle">本月</label>
+								</div>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="row list-separated">
+								<!--div class="col-md-2 col-sm-2 col-xs-6">
+									<div class="font-grey-mint font-sm">
+										 9602A
+									</div>
+									<div class="uppercase font-hg font-red-flamingo" name="quaNum">
+										  <span class="font-lg font-grey-mint">%</span>
+									</div>
+								</div-->
+							</div>
+							<div id="passed_a_year_quality_static" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+				<div class="col-md-4 col-sm-12">
+					<!-- BEGIN WIDGET BLOG -->
+					<div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 415px; padding-top: 10px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
+						<div class="widget-blog-heading text-uppercase">
+							<div class="mt-widget-1" style="border:none;">
+								<div class="mt-img" style="margin:0 0 5px">
+                            		<img src="./demo/avatar/MTVkZXZlbG9w.jpg" style="width:120px;height:120px;">
+                            	</div> 
+                            </div>
+							<h3 class="widget-blog-title">马可</h3>
+							<span class="widget-blog-subtitle">印码机检组</span>
+						</div>
+						<p>近期多功能-2#机误报较多，请大家注意.
+						</p>
+						<br/>
+						<a class="btn btn-danger text-uppercase" href="#">标记为已读</a>
+					</div>
+					<!-- END WIDGET BLOG -->
+				</div>
+			</div>
 			<div class="clearfix">
 			</div>
 			<div class="row">
@@ -110,17 +165,9 @@
                             <div class="caption">
                                 <i class="icon-bar-chart font-green hide"></i>
                                 <span class="caption-subject font-green bold uppercase">设备运行情况</span>
-                                <span class="caption-helper">数据库及硬盘可用量...</span>
+                                <span class="caption-helper">数据库大小及硬盘可用量...</span>
                             </div>
-                            <div class="actions">
-                            	<a href="javascript:;" class="btn btn-circle btn-icon-only grey" name="station_refresh">
-								<i class="fa fa-repeat"></i></a>
-                                <!--div class="btn-group btn-group-devided" data-toggle="buttons">
-                                    <label class="btn red btn-outline btn-circle btn-sm active">
-                                        <input type="radio" name="options" class="toggle" id="option1">New</label>
-                                    <label class="btn red btn-outline btn-circle btn-sm">
-                                        <input type="radio" name="options" class="toggle" id="option2">Returning</label>
-                                </div-->
+                            <div class="actions" id="site_statistics_legend">
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -133,166 +180,127 @@
                     </div>
                     <!-- END PORTLET-->
                 </div>
-                <div class="col-md-6 col-sm-6">
+
+                <div class="col-md-6">
+                    <!-- Begin: life time stats -->
                     <!-- BEGIN PORTLET-->
                     <div class="portlet light bordered">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption">
+                                <i class="icon-globe font-red"></i>
+                                <span class="caption-subject font-red bold uppercase">过程质量控制水平</span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#portlet_process_quality_1" data-toggle="tab"> 单开分析仪 </a>
+                                </li>
+                                <li>
+                                    <a href="#portlet_process_quality_2" id="process_quality_cut_tab" data-toggle="tab"> 检封裁切 </a>
+                                </li>
+                                <li>
+                                    <a href="#portlet_process_quality_3" id="process_quality_offline_tab" data-toggle="tab"> 大张离线 </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="portlet_process_quality_1">
+									<div id="noteAnany_static" class="portlet-body-morris-fit morris-chart" style="height: 314px">
+									</div>
+                                    <!--div id="statistics_1" class="chart"> </div-->
+                                </div>
+                                <div class="tab-pane" id="portlet_process_quality_2">
+									<!--div id="statistics_2" class="portlet-body-morris-fit morris-chart" style="height: 314px"-->
+									<div id="statistics_2" class="chart"> </div>
+                                </div>
+                            </div>
+                            <!--div class="well margin-top-20">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-success"> Revenue: </span>
+                                        <h3>$1,234,112.20</h3>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-info"> Tax: </span>
+                                        <h3>$134,90.10</h3>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-danger"> Shipment: </span>
+                                        <h3>$1,134,90.10</h3>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <span class="label label-warning"> Orders: </span>
+                                        <h3>235090</h3>
+                                    </div>
+                                </div>
+                            </div-->
+                        </div>
+                    </div>
+                    <!-- End: life time stats -->
+                </div>
+            </div>
+
+			<div class="clearfix"></div>
+			<div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <!-- BEGIN PORTLET  bordered-->
+                    <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="icon-share font-red-sunglo hide"></i>
                                 <span class="caption-subject font-red-sunglo bold uppercase">数据上传情况</span>
                                 <span class="caption-helper">最近印刷20车产品...</span>
                             </div>
-                            <div class="actions">
-                            	<a href="javascript:;" class="btn btn-circle btn-icon-only grey" name="upload_refresh">
-								<i class="fa fa-repeat"></i></a>
+                            <div class="actions" id="data_upload_legend">
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <div id="site_activities_loading">
+                            <div id="data_upload_loading">
                                 <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
-                            <div id="site_activities_content" class="display-none">
-                                <div id="site_activities" class="chart"> </div>
+                            <div id="data_upload_content" class="display-none">
+                                <div id="data_upload" class="chart"> </div>
                             </div>
                         </div>
                     </div>
                     <!-- END PORTLET-->
                 </div>
-            </div>
-			<div class="row">
 				<div class="col-md-8 col-sm-12">
-					<!-- BEGIN PORTLET-->
-					<div class="portlet light ">
-						<div class="portlet-title">
-							<div class="caption caption-md">
-								<i class="icon-bar-chart theme-font-color hide"></i>
-								<span class="caption-subject theme-font-color bold uppercase">机检好品率</span>
-								<span class="caption-helper">码后核查工艺...</span>
-							</div>
-							<div class="actions">
-								<div class="btn-group btn-group-devided" data-toggle="buttons">
-									<label class="btn btn-outline purple-studio btn-circle btn-sm active">
-									<input type="radio" name="options" class="toggle" id="option1">今天</label>
-									<label class="btn btn-outline purple-studio btn-circle btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">本周</label>
-									<label class="btn btn-outline purple-studio btn-circle btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">本月</label>
-								</div>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div class="row list-separated">
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9602A
-									</div>
-									<div class="uppercase font-hg font-red-flamingo">
-										 89 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9603A
-									</div>
-									<div class="uppercase font-hg theme-font-color">
-										 92.3 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9604A
-									</div>
-									<div class="uppercase font-hg font-blue">
-										 91.2 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9606A
-									</div>
-									<div class="uppercase font-hg font-purple">
-										 94.2 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-6">
-									<div class="font-grey-mint font-sm">
-										 9607T
-									</div>
-									<div class="uppercase font-hg font-blue-sharp">
-										 86.4 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</div>
-							</div>
-							<ul class="list-separated list-inline-xs hide">
-								<li>
-									<div class="font-grey-mint font-sm">
-										 Total Sales
-									</div>
-									<div class="uppercase font-hg font-red-flamingo">
-										 13,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-								<li>
-								</li>
-								<li class="border">
-									<div class="font-grey-mint font-sm">
-										 Revenue
-									</div>
-									<div class="uppercase font-hg theme-font-color">
-										 4,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<div class="font-grey-mint font-sm">
-										 Expenses
-									</div>
-									<div class="uppercase font-hg font-purple">
-										 11,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<div class="font-grey-mint font-sm">
-										 Growth
-									</div>
-									<div class="uppercase font-hg font-blue-sharp">
-										 9,760 <span class="font-lg font-grey-mint">%</span>
-									</div>
-								</li>
-							</ul>
-							<div id="sales_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
-							</div>
-						</div>
-					</div>
-					<!-- END PORTLET-->
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<!-- BEGIN WIDGET BLOG -->
-					<div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 413px; padding-top: 50px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
-						<div class="widget-blog-heading text-uppercase">
-							<h3 class="widget-blog-title">舒粤</h3>
-							<span class="widget-blog-subtitle">印码机检组</span>
-						</div>
-						<p>近期多功能-2#机误报较多，请大家注意.
-						</p>
-						<br/>
-						<a class="btn btn-danger text-uppercase" href="#">查看详情</a>
-					</div>
-					<!-- END WIDGET BLOG -->
-				</div>
-			</div>
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12">
                     <!-- BEGIN PORTLET-->
                     <div class="portlet light bordered">
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="icon-bar-chart font-green hide"></i>
-                                <span class="caption-subject font-green bold uppercase">实时质量</span>
-                                <span class="caption-helper">印码机检...</span>
+                                <span class="caption-subject font-green bold uppercase" name="curQuality_title"></span>
+                                <span class="caption-helper">码后核查...</span>
+                            </div>
+
+                            <div class="actions">
+                            	<a href="javascript:;" class="btn blue-madison btn-outline" name="curQuality">
+								<i class="fa fa-repeat"></i> 当前质量</a>
+                                <!--div class="btn-group">
+                                    <a href="" class="btn blue btn-outline btn-circle btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 机台
+                                        <span class="fa fa-angle-down"> </span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="javascript:;"> 当前时间 
+                                            </a>
+                                        </li>
+                                        <li class="divider"> </li>
+                                        <li>
+                                            <a href="javascript:;"> Q2 2014 
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="javascript:;"> Q3 2014 
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> Q4 2014 
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div-->
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -539,11 +547,11 @@
 				</div>
 				<div class="col-md-4 col-sm-12">
 					<!-- BEGIN PORTLET-->
-					<div class="portlet light ">
+					<div class="portlet light" style="height:400px;">
 						<div class="portlet-title">
 							<div class="caption caption-md">
 								<i class="icon-bar-chart theme-font-color hide"></i>
-								<span class="caption-subject theme-font-color bold uppercase">本月知识库贡献量Top3</span>
+								<span class="caption-subject theme-font-color bold uppercase">本月机检日志填写情况</span>
 								<span class="caption-helper hide">机检日志...</span>
 							</div>
 						</div>
@@ -660,7 +668,7 @@
 						<div class="portlet-body overflow-h">
 							<input type="text" placeholder="联系人" class="form-control margin-bottom-20">
 							<input type="text" placeholder="主题" class="form-control margin-bottom-20">
-							<textarea placeholder="内容" class="form-control margin-bottom-20" rows="3"></textarea>
+							<textarea placeholder="内容" class="form-control margin-bottom-20" rows="7"></textarea>
 							<button class="btn red-sunglo pull-right" type="button">提交</button>
 						</div>
 					</div>
@@ -771,6 +779,35 @@
 					</div>
 					<!-- END WIDGET TAB -->
 				</div>
+
+				<div class="col-md-12 col-sm-12">
+                    <!-- BEGIN UNCHECKINFO-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-green hide"></i>
+                                <span class="caption-subject font-green bold uppercase">机检未检</span>
+                                <span class="caption-helper">印码机检...</span>
+                            </div>
+
+                            <div class="actions">
+                                <div class="btn-group">
+                                    <a href="" class="btn blue btn-outline btn-circle btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 机台
+                                        <span class="fa fa-angle-down"> </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="nocheck_loading">
+                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                            <div id="nocheck_content" class="display-none">
+                                <div id="nocheck_statistics" class="chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END UNCHECKINFO-->
+                </div>
 			</div>
 			<!-- END PAGE CONTENT-->
 		</div>

@@ -160,11 +160,11 @@
 							<div class="row">
 								<div class="col-md-12 form-body">
 									<table id="user" class="table table-striped table-bordered table-advance">
-									<!--thead>
+									<thead>
 										<th>接口属性</th>
 										<th style="width:50%">值</th>
 										<th style="width:35%">说明</th>
-									</thead-->
+									</thead>
 									<tbody>
 									<tr>
 										<td>
@@ -184,7 +184,7 @@
 											 创建者
 										</td>
 										<td>
-											<a href="#" id="AuthorName" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-original-title="接口建立人员">
+											<a href="#" id="AuthorName" style="white-space: pre-line" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-original-title="接口建立人员">
 											<?php echo $username?></a>
 										</td>
 										<td>

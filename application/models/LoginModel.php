@@ -13,28 +13,31 @@ class LoginModel extends CI_Model {
 		return iconv("gbk","utf-8",$data);
 	}
 
-
 	public function logincheck($UserName,$Password){
 		$UserName = $this->TransToGBK($UserName);
 		$logindata = array(
 		'username'  => $UserName,
 		);
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
-		$SQLStr="SELECT top 1 b.segment_html,a.[id] as id,a.UserName,a.UserRole,a.FullName,a.GroupID from tblUser a LEFT JOIN tbl_menu_list b on ISNULL(a.default_menu_id,0) = b.id WHERE UserName=? and UserPassword=?";
+		$SQLStr="SELECT top 1 b.segment_html,a.[id] as id,a.UserName,a.UserRole,a.FullName,a.GroupID,a.set_avatar from tblUser a LEFT JOIN tbl_menu_list b on ISNULL(a.default_menu_id,0) = b.id WHERE UserName=? and UserPassword=?";
 		$query=$LOGINDB->query($SQLStr,array($UserName,$Password));
 		if($query->num_rows()>0)
 		{			
 			$logindata['message'] = 1;//登录成功
 			$logindata['logged_in'] = true;			
 			$row = $query->row();
+
 			$logindata['FullName'] = $this->TransToUTF(trim($row->FullName));
 			$logindata['username'] = $this->TransToUTF(trim($row->UserName));
 			$logindata['GroupID'] = $row->GroupID;//机检组
 			$logindata['userrole'] = $row->UserRole;
 			$logindata['uid'] = $row->id;
-			$logindata['segment_html'] = $row->segment_html;
 			//全局函数，记录用户登录信息
+			$logindata['set_avatar'] = $row->set_avatar;
 			$logindata['avatar'] = base64_encode($logindata['uid'].$logindata['username']);
+
+			//菜单信息
+			$logindata['segment_html'] = $row->segment_html;
 		}
 		else
 		{
@@ -79,6 +82,9 @@ class LoginModel extends CI_Model {
 		$RegisterData['UserName'] = $this->TransToGBK($RegisterData['UserName']);
 		$RegisterData['FullName'] = $this->TransToGBK($RegisterData['FullName']);
 		$RegisterData['Email'] = $this->TransToGBK($RegisterData['Email']);
+		$RegisterData['set_avatar'] = 0;//默认无头像
+		//$RegisterData['avatar_url'] = 0;//头像文件链接名
+		$RegisterData['default_menu_id'] = 0;//默认菜单项0
 
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
@@ -102,6 +108,11 @@ class LoginModel extends CI_Model {
 		{
 			$data['message'] = 4;//注册失败
 		}
+
+		//更新图像地址信息
+		/*$avatarData['avatar_url'] = base64_encode($data['ID'].$RegisterData['UserName']);
+		$LOGINDB->where('id', $data['ID']);
+		$LOGINDB->update('tblUser', $avatarData); */
 
 		//工作日志默认数据
 		$WorkLogSettingData['UserID'] = $data['ID'];

@@ -56,10 +56,6 @@
 						<div class="tools">
 							<a href="#" class="collapse">
 							</a>
-							<a href="#portlet-config" data-toggle="modal" class="config">
-							</a>
-							<a href="#" class="reload">
-							</a>
 							<a class="fullscreen" href="#">
 							</a>
 							<!--<a href="#" class="remove">
@@ -69,7 +65,58 @@
 					<div class="portlet-body form">
 						<div class="form-body">
 							<div class="row">
-								<div class="col-md-6">									
+								<div class="col-md-6">	
+									<div class="form-group hidden">
+										<label class="col-md-3 control-label">记录人</label>
+										<div class="col-md-9">
+											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" disabled data-user ="<?php echo $FullName?>" value="<?php echo $FullName?>">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">机台</label>
+										<div class="col-md-9">
+											<select class="form-control select2" name="machine_id">
+											</select>
+											<div class="form-control-focus">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">品种</label>
+										<div class="col-md-9">
+											<select class="form-control select2" name="prod_id">
+											</select>
+											<div class="form-control-focus">
+											</div>
+										</div>
+									</div>									
+									<div class="form-group">
+										<label for="oper_name" class="col-md-3 control-label">操作人员</label>
+										<div class="col-md-9">																				
+											<select id="oper_name" name="oper_name" class="form-control select2-multiple" multiple>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">处理结果</label>
+										<div class="col-md-9">
+											<select class="form-control select2" name="proStatus_id">
+												<option value=""></option>
+												<optgroup label="已完成">
+													<option value="1" selected>当班解决</option>
+													<option value="2">经后续处理解决</option>
+													<option value="3">已处理，需观察</option>
+												</optgroup>
+												<optgroup label="处理中">
+													<option value="4">移交对班</option>
+													<option value="5">移交外协</option>
+													<option value="6">原因查找中</option>
+												</optgroup>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
 									<div class="form-group">
 										<label class="col-md-3 control-label">工序
 											<span class="required"> * </span>
@@ -90,23 +137,6 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">记录人</label>
-										<div class="col-md-9">
-											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" disabled data-user ="<?php echo $FullName?>" value="<?php echo $FullName?>">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">机台</label>
-										<div class="col-md-9">
-											<select class="form-control select2" name="machine_id">
-											</select>
-											<div class="form-control-focus">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
 										<label class="col-md-3 control-label">班次
 											<span class="required"> * </span>
 										</label>
@@ -124,93 +154,6 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">发布
-											<span class="required"> * </span>
-										</label>
-										<div class="col-md-9">
-											<div class="checkbox-list">
-												<label>
-													<input type="checkbox" name="bReport" class="icheck"/> 将该条信息生成至工作报告中										
-												</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">品种</label>
-										<div class="col-md-9">
-											<select class="form-control select2" name="prod_id">
-											</select>
-											<div class="form-control-focus">
-											</div>
-										</div>
-									</div>
-									
-								</div>
-							</div>		
-						</div>
-					</div>
-				</div>
-
-				<div class="portlet light">
-					<div class="portlet-title">
-						<div class="caption font-yahei font-purple-plum">
-							<i class="icon-pencil"></i>
-							<span class="caption-subject bold uppercase">2.故障描述</span>
-						</div>
-						<div class="tools">
-							<a href="#" class="collapse">
-							</a>
-							<a href="#portlet-config" data-toggle="modal" class="config">
-							</a>
-							<a href="#" class="reload">
-							</a>
-							<a class="fullscreen" href="#">
-							</a>
-							<!--<a href="#" class="remove">
-							</a>-->
-						</div>
-					</div>
-					<div class="portlet-body">
-						<div class="form-body">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="col-md-3 control-label">处理状态</label>
-										<div class="col-md-9">
-											<select class="form-control select2" name="proStatus_id">
-												<option value=""></option>
-												<optgroup label="已完成">
-													<option value="1" selected>当班解决</option>
-													<option value="2">经后续处理解决</option>
-													<option value="3">已处理，需观察</option>
-												</optgroup>
-												<optgroup label="处理中">
-													<option value="4">移交对班</option>
-													<option value="5">移交外协</option>
-													<option value="6">原因查找中</option>
-												</optgroup>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="oper_name" class="col-md-3 control-label">操作人员</label>
-										<div class="col-md-9">																				
-											<select id="oper_name" name="oper_name" class="form-control select2-multiple" multiple>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">一级描述</label>
-										<div class="col-md-9">
-											<select name="main_err" class="form-control select2"  data-placeholder="一级描述...">
-											</select>																		
-											<span class="help-block">
-												(信息的分类意义非常重要，请您勿必选择)</span>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
 										<label class="col-md-3 control-label">处理时间</label>
 										<div class="col-md-9 input-group date form_advance_datetime" data-date="<?php echo date('Y-m-d',time());?>">
 											<input name="process_time" type="text" size="16" class="form-control">
@@ -226,18 +169,63 @@
 											<input type="text" class="form-control uppercase" maxlength="8" placeholder="输入产品涉及的车号或轴号" name="prod_info">
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">二级描述</label>
+									<!--div class="form-group">
+										<label class="col-md-3 control-label">发布
+											<span class="required"> * </span>
+										</label>
 										<div class="col-md-9">
-											<select name="sub_err" class="form-control select2"  data-placeholder="二级描述...">										
-											</select>	
-											<span class="help-block">
-											(信息的分类意义非常重要，请您勿必选择)</span>
+											<div class="checkbox-list">
+												<label>
+													<input type="checkbox" name="bReport" class="icheck"/> 将该条信息生成至工作报告中										
+												</label>
+											</div>
 										</div>
-									</div>
+									</div-->
+									
 								</div>
+							</div>		
+						</div>
+					</div>
+				</div>
+				<!--div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-3 control-label">一级描述</label>
+						<div class="col-md-9">
+							<select name="main_err" class="form-control select2"  data-placeholder="一级描述...">
+							</select>																		
+							<span class="help-block">
+								(信息的分类意义非常重要，请您勿必选择)</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+				  <div class="form-group">
+						<label class="col-md-3 control-label">二级描述</label>
+						<div class="col-md-9">
+							<select name="sub_err" class="form-control select2"  data-placeholder="二级描述...">										
+							</select>	
+							<span class="help-block">
+							(信息的分类意义非常重要，请您勿必选择)</span>
+						</div>
+					</div>
+				</div-->
+				<div class="portlet light">
+					<div class="portlet-title">
+						<div class="caption font-yahei font-purple-plum">
+							<i class="icon-pencil"></i>
+							<span class="caption-subject bold uppercase">2.故障描述</span>
+						</div>
+						<div class="tools">
+							<a href="#" class="collapse">
+							</a>
+							<a class="fullscreen" href="#">
+							</a>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<div class="form-body">
+							<div class="row">
 								<div class="col-md-12">
-									<h3>故障详细说明</h3>
 									<div class="form-group">
 										<div name="ErrDesc" id="ErrDesc">	</div>
 									</div>

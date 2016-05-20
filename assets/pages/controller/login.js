@@ -203,6 +203,12 @@ var Login = function() {
     };
 
     var handleRegister = function() {
+        //SELECT a.DptID, a.DepartMentName FROM dbo.tblDepartMent AS a 
+        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=163&M=3";
+        var Data = ReadData(str);
+        InitSelect("department", Data);
+        SetSelectVal("department", 0);
+
         $('.register-form').validate({
             errorElement: 'span', //default input error message container
             errorClass: 'help-block', // default input error message class
@@ -329,5 +335,5 @@ var Login = function() {
 }();
 //记录选择状态  
 jQuery(document).ready(function() {
-  Login.init();
+    Login.init();
 });

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.fullPage.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery-weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/main.min.css"/>
+<script src="assets/js/require.min.js" data-main="assets/js/main.min"></script>
+<meta name="apple-mobile-web-app-capable" container="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" container="black-translucent"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<aside class="media-wrap">
+    <span id="musicBtnTxt" style="display: none;">关闭</span>
+    <i id="musicBtn" class="music-btn on"></i>
+</aside>
+<audio src="./assets/audio/bgm.mp3" autoplay="autoplay" loop="loop" id="autoplay"></audio>
+<div id="fullpage">
+    <div class="section center">
+        <h1>技术质量部<br>建模人员基础测试</h1>
+        <article class="weui_article">
+        <h1>考试时间：45分钟<p>题目:<span name="nums" style="font-weight:bold"></span> 道单选，每题1分。</p></h1>
+        </article>
+    </div>
+    <div class="section" name="form">
+		<div class="weui_msg">
+		    <div class="weui_icon_area"><i class="weui_icon_safe weui_icon_safe_success"></i></div>
+		    <div class="weui_text_area">
+		        <h2 class="weui_msg_title">答题完毕</h2>
+		        <p class="weui_msg_desc">请填写个人信息并提交</p>
+		    </div>
+		    <div class="bd">
+			    <div class="weui_cell">
+		            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+		            <div class="weui_cell_bd weui_cell_primary">
+		                <input class="weui_input" name="userName" type="text" placeholder="请输入姓名">
+		            </div>
+		        </div>
+			    <div class="weui_cell">
+		            <div class="weui_cell_hd"><label class="weui_label">员工卡号</label></div>
+		            <div class="weui_cell_bd weui_cell_primary">
+		                <input class="weui_input" name="userCard" type="number" pattern="[0-9]*" placeholder="请输入员工卡号">
+		            </div>
+		        </div>
+	        </div>
+		    <div class="weui_opr_area">
+		        <p class="weui_btn_area">
+		            <a href="javascript:;" class="weui_btn weui_btn_primary">确定</a>
+		        </p>
+		    </div>
+		    <div class="weui_extra_area">
+		        <a href="javascript:;">2016 © 成都印钞有限公司 . 技术质量部.</a>
+		    </div>
+		</div>
+    </div>
+</div>
+<div class="iSlider-arrow"></div>
+</body>
+</html>

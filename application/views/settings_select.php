@@ -59,8 +59,8 @@
                             <!-- END SIDEBAR USERPIC -->
                             <!-- SIDEBAR USER TITLE -->
                             <div class="profile-usertitle">
-                                <div class="profile-usertitle-name"> <?php echo $username?> </div>
-                                <div class="profile-usertitle-job"> <?php echo $FullName?> </div>
+                                <div class="profile-usertitle-name"></div>
+                                <div class="profile-usertitle-job"></div>
                             </div>
                             <!-- END SIDEBAR USER TITLE -->
                             <!-- SIDEBAR MENU -->

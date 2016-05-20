@@ -23,7 +23,7 @@ class MicroBlogModel extends CI_Model {
 		$SQLStr .=" and a.ID>". $qurayData['CurID'] ." and a.HideBlog=0 and a.UserName = ? ";
 		if($qurayData['KeyWord'] !="")
 		{
-			$SQLStr.=" AND a.BlogHTML like '%" .$this->TransToGBK($qurayData['KeyWord'])."%' ";
+			$SQLStr.=" AND a.BlogHTML like '%" .$qurayData['KeyWord']."%' ";
 		}
 		$SQLStr .=" order by a.ID DESC";
 		$query = $LOGINDB->query($SQLStr,array($qurayData['TimeStart'],$qurayData['TimeEnd'],$qurayData['UserName']));

@@ -1,4 +1,123 @@
 var Index = function() {
+	//隐藏相关面板
+	var initDOM = function() {
+		$('.theme-panel').hide();
+		hideSidebarTool();
+	};
+
+	// Handles counterup plugin wrapper
+	var handleCounterup = function(obj, time) {
+		if (!$().counterUp) {
+			return;
+		}
+
+		obj.counterUp({
+			delay: 10,
+			time: time
+		});
+	};
+
+	var handleDashBoardNums = function() {
+		//api:
+		//SELECT a.当月质量, a.上传大万数, b.实时质量, a.异常产品 FROM ( SELECT SUM ( CASE WHEN 好品率 < 70 THEN 1 ELSE 0 END ) AS 当月质量, COUNT (*) 上传大万数, SUM ( CASE WHEN ( 正面1缺陷数 = 0 OR 正2 = 0 OR 正3 = 0 OR 正4 = 0 OR 正5 = 0 OR 背精1缺陷数 = 0 OR 精2 = 0 OR 精3 = 0 OR 精4 = 0 ) THEN 1 ELSE 0 END ) AS 异常产品 FROM dbo.view_print_hecha WHERE 生产日期 / 100 = convert(varchar(6),GETDATE(),112) ) a, ( SELECT COUNT (*) AS 实时质量 FROM dbo.view_print_online_quality WHERE 好品率 < 80 AND CONVERT (VARCHAR, 上传时间, 112) = convert(varchar,GETDATE(),112) ) b
+		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=168&M=3";
+		var Data = ReadData(str);
+		Data.data[0].map(function(statData, idx) {
+			$('.dashboard-stat .number:nth(' + idx + ')').attr('data-value', data2ThousandSeparator(statData)).text(data2ThousandSeparator(statData));
+		});
+		
+		if(Data.data[0][4]){
+			bsTips('近期有机检异常产品，请注意!');
+		}
+
+		handleCounterup($(".top-info .number"), 800);
+	}();
+
+	//处理历史质量信息
+	var handleHisQuality = function() {
+		//对应CSS样式类
+		var banknoteClass = {
+			"9602A": "font-green-jungle",
+			"103-G-2A": "font-green-jungle",
+			"9603A": "font-purple",
+			"103-G-3A": "font-purple",
+			"9604A": "font-blue",
+			"103-G-4A": "font-blue",
+			"9606A": "font-green-seagreen",
+			"103-G-6A": "font-green-seagreen",
+			"9607T": "font-red-flamingo",
+			"103-G-7T": "font-red-flamingo"
+		};
+
+		function loadHisQuaData(apiID) {
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + apiID + "&M=3";
+			var Data = ReadData(str);
+			var prodHtml = '';
+
+			Data.data.map(function(data) {
+				var prodName = data[0];
+				prodHtml += '\n<div class="col-md-2 col-sm-2 col-xs-6"><div class="' + banknoteClass[prodName] + ' font-sm">' + prodName + '</div>';
+				prodHtml += '			<div class="uppercase font-hg ' + banknoteClass[prodName] + '"><span class="number" data-counter="counterup" data-value=' + data[1] + '>' + data[1];
+				prodHtml += '</span><span class="font-lg font-grey-mint">%</span>';
+				prodHtml += '			</div></div>';
+			})
+			if (Data.rows == 0) {
+				prodHtml = '<h3 style="padding-left:20px;height:20px;">对应时间无质量信息</h3>';
+			}
+
+			return prodHtml;
+		}
+
+		$('[name="hisQuality"] label').on('click', function() {
+			$('[name="hisQuality"] .list-separated').html(hisQuaHtml[$(this).data('id')]);
+			handleCounterup($('[name="hisQuality"] .number'), 300);
+		});
+
+		//存储不同时间段质量信息
+		var hisQuaHtml = [];
+		for (var i = 0; i < 3; i++) {
+			hisQuaHtml[i] = loadHisQuaData(i + 169);
+		}
+
+		var loadDefaultVal = function() {
+			//载入初始质量信息
+			$('[name="hisQuality"] .list-separated').html(hisQuaHtml[0]);
+			handleCounterup($('[name="hisQuality"] .number'), 300);
+		}();
+
+		var initQualityCharts = function() {
+
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=172&M=0";
+			var Data = ReadData(str);
+
+			var lineData = {
+				element: 'passed_a_year_quality_static',
+				padding: 0,
+				behaveLikeLine: false,
+				gridEnabled: false,
+				gridLineColor: false,
+				axes: false,
+				fillOpacity: 1,
+				ymin: 70,
+				//goals:[85,90],
+				//goalLineColors:['#f89f9f','#92e9dc'],
+				data: Data.data,
+				lineColors: ['#399a8c'], //, '#92e9dc' //399a8c
+				xkey: Data.header[0].title,
+				ykeys: [Data.header[1].title],
+				labels: [Data.header[1].title],
+				pointSize: 0,
+				lineWidth: 0,
+				hideHover: 'auto',
+				resize: true
+			};
+
+			if (Morris.EventEmitter) {
+				// Use Morris.Area instead of Morris.Line
+				dashboardMainChart = Morris.Area(lineData);
+			}
+		}();
+	};
 
 	var Tasks = function() {
 		return {
@@ -12,11 +131,23 @@ var Index = function() {
 				});
 
 				//任务完成
-				$('.task-list').on('click', '.complete', function() {
-					var obj = $(this).parents('li');
+				$('.task-list').on('click', '.complete,.task-checkbox,.liChild,.task-title', function() {
+					/*var obj = $(this).parents('li');
 					if (!obj.find('input[type="checkbox"]').is(':checked')) {
 						obj.addClass("task-done");
-						bsTips('任务标记为完成，请在后台更新数据', 2);
+					}*/
+
+					var item = $(this).parent().find('.liChild');
+					var itemPrnt = $(this).parents('li');
+					var item_val = item.val();
+					if (item.parent().hasClass('checked')) { //勾选状态-增加数据
+						itemPrnt.removeClass("task-done");
+						item.parent().removeClass("checked");
+						bsTips('任务标记为未完成，请在后台更新数据', 2);
+					} else {
+						itemPrnt.addClass("task-done");
+						item.parent().addClass("checked");
+						bsTips('任务标记为已完成，请在后台更新数据', 2);
 					}
 				});
 
@@ -30,156 +161,141 @@ var Index = function() {
 		};
 	}();
 
-	function refreshRealQuality() {
-		$('#real_quality_loading').hide();
-		$('#real_quality_content').show();
-		var dataReal = [];
-		var totalPoints = 500;
+	var previousPoint = null;
 
-		function GetData() {
-			dataReal.shift();
-			while (dataReal.length < totalPoints) {
-				var prev = dataReal.length > 0 ? dataReal[dataReal.length - 1] : 50;
-				var y = prev + Math.random() * 10 - 5;
-				y = y < 0 ? 0 : (y > 100 ? 100 : y);
-				dataReal.push(y);
-			}
-			var result = [];
-			for (var i = 0; i < dataReal.length; ++i) {
-				result.push([i, dataReal[i]])
-			}
-			return result;
-		}
-		var updateInterval = 100;
-		var plot = $.plot($("#real_quality_statistics"), [
-			GetData()
-		], {
-			series: {
-				lines: {
-					show: true,
-					fill: true
-				},
-				shadowSize: 0
-			},
-			yaxis: {
-				min: 0,
-				max: 100,
-				ticks: 10
-			},
-			xaxis: {
-				show: false
-			},
-			grid: {
-				hoverable: true,
-				clickable: true,
-				tickColor: "#f9f9f9",
-				borderWidth: 1,
-				borderColor: "#eeeeee"
-			},
-			colors: ["#f89f9f"],
-			tooltip: true,
-			tooltipOpts: {
-				defaultTheme: false
-			}
-		});
-
-		function update() {
-			plot.setData([GetData()]);
-			plot.draw();
-			setTimeout(update, updateInterval);
-		}
-		update();
+	function showChartTooltip(x, y, xValue, yValue) {
+		$('<div id="tooltip" class="chart-tooltip">' + yValue + '<\/div>').css({
+			position: 'absolute',
+			display: 'none',
+			top: y - 40,
+			left: x - 40,
+			border: '0px solid #ccc',
+			padding: '2px 6px',
+			'background-color': '#fff',
+			'background': '#fff'
+		}).appendTo("body").fadeIn(200);
 	}
 
-	var initFlotCharts = function() {
-		if (!jQuery.plot) {
-			return;
-		}
+	function handleTooltip(pos, item, strUnit, fixedLen, plotData) {
+		fixedLen = fixedLen || 0;
+		$("#x").text(pos.x.toFixed(fixedLen));
+		$("#y").text(pos.y.toFixed(fixedLen));
+		if (item) {
+			if (previousPoint != item.dataIndex) {
+				previousPoint = item.dataIndex;
+				previousSeries = item.seriesIndex - 1;
 
-		function showChartTooltip(x, y, xValue, yValue) {
-			$('<div id="tooltip" class="chart-tooltip">' + yValue + '<\/div>').css({
-				position: 'absolute',
-				display: 'none',
-				top: y - 40,
-				left: x - 40,
-				border: '0px solid #ccc',
-				padding: '2px 6px',
-				'background-color': '#fff'
-			}).appendTo("body").fadeIn(200);
-		}
-
-		function handleTooltip(pos, item, strUnit) {
-			$("#x").text(pos.x.toFixed(2));
-			$("#y").text(pos.y.toFixed(2));
-			if (item) {
-				if (previousPoint != item.dataIndex) {
-					previousPoint = item.dataIndex;
-
-					$("#tooltip").remove();
-					var x = item.datapoint[0].toFixed(2),
-						y = item.datapoint[1].toFixed(2),
-						xCat = item.series.data[item.datapoint[0]][0];
-					showChartTooltip(item.pageX, item.pageY, item.datapoint[0], xCat + " : " + item.datapoint[1].toFixed(2) + ' ' + strUnit);
-				}
-			} else {
 				$("#tooltip").remove();
-				previousPoint = null;
+				var x = item.datapoint[0].toFixed(fixedLen),
+					y = item.datapoint[1].toFixed(fixedLen),
+					xCat = item.series.data[item.datapoint[0]][0];
+				//label = item.series.label.trim() + '<br>'; 
+				var tooltipInfo, offsetY = 0;
+				if (typeof plotData == 'undefined') {
+					tooltipInfo = xCat + " : " + item.datapoint[1].toFixed(fixedLen) + ' ' + strUnit;
+				} else {
+					tooltipInfo = '<span class="caption-subject">' + xCat + '</span><br>' + plotData[previousSeries].label.trim() + " : " + item.datapoint[1].toFixed(0) + ' ' + strUnit;
+					offsetY = 22;
+				}
+				showChartTooltip(item.pageX + 10, item.pageY - offsetY, item.datapoint[0], tooltipInfo);
 			}
+		} else {
+			$("#tooltip").remove();
+			previousPoint = null;
 		}
+	}
 
-		var hardDisk, sqlSvr;
+	var handleOnlineInfo = function() {
 
-		hardDisk = randomData.flot(15, 0, 100);
-		sqlSvr = randomData.flot(15, 0, 100);
+		var olInfo;
 
-		function getFlotData(hardDisk, sqlSvr) {
-			return [{
-				data: sqlSvr,
-				lines: {
-					fill: 0.6,
-					lineWidth: 0
-				},
-				color: ['#f89f9f'],
-				label: '&nbsp;数据库&nbsp;'
-			}, {
-				data: sqlSvr,
-				points: {
+		var loadOLInfo = function() {
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=173&M=3";
+			var Data = ReadData(str);
+			olInfo = {
+				hardDisk: [],
+				sqlSvr: [],
+				data_uploads: [],
+				realQuality: []
+			};
+			Data.data.map(function(olData) {
+				olInfo.hardDisk.push([
+					olData[0], olData[2]
+				]);
+				olInfo.sqlSvr.push([
+					olData[0], Number.parseFloat(olData[3].replace('MB', '')) / 1000
+				]);
+				olInfo.data_uploads.push([
+					olData[0], olData[4]
+				]);
+
+				//不显示丝印产品 5表示该设备为丝印产品
+				if (olData[5] != 5) {
+					olInfo.realQuality.push([
+						olData[0], olData[1]
+					]);
+				}
+			});
+		};
+
+		var refreshRealQuality = function() {
+			$('#real_quality_loading').hide();
+			$('#real_quality_content').show();
+			var chartMode = 0;
+
+			function GetData() {
+				loadOLInfo();
+				return olInfo.realQuality;
+			}
+			var olData = GetData();
+			var machineData;
+			/*
+			{
+				data: data1,
+				bars: {
 					show: true,
-					fill: true,
-					radius: 5,
-					fillColor: "#f89f9f",
-					lineWidth: 3
+					barWidth: 0.4,
+					lineWidth: 2,
+					lineColors: ["#08a3cc"],
+					align: "center",
+					fill: 0.5
 				},
-				color: '#fff',
-				shadowSize: 0
-			}, {
-				data: hardDisk,
-				lines: {
-					fill: 0.6,
-					lineWidth: 0
-				},
-				color: ['#92e9dc'],
-				label: '&nbsp;硬盘&nbsp;'
-			}, {
-				data: hardDisk,
-				points: {
-					show: true,
-					fill: true,
-					radius: 5,
-					fillColor: "#92e9dc",
-					lineWidth: 3
-				},
-				color: '#fff',
-				shadowSize: 0
-			}];
-		}
+				shadowSize: 0,
+				color: ['#f89f9f']
+			}*/
 
-		if ($('#site_statistics').size() !== 0) {
+			var getQualityByMachine = function(machineName) {
+				var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=174&M=3&machine=" + machineName;
+				var Data = ReadData(str);
+				return getFlotSeries(Data.data, 1);
+			};
 
-			$('#site_statistics_loading').hide();
-			$('#site_statistics_content').show();
+			function getFlotSeries(data1, mode) {
+				mode = mode || 0;
+				var color = (mode) ? '#f89f9f' : '#893a7c';
+				return [{
+					data: data1,
+					lines: {
+						fill: 0.9,
+						lineWidth: 0
+					},
+					color: [color] //f89f9f
+				}, {
+					data: data1,
+					yaxis: 1,
+					points: {
+						show: true,
+						fill: true,
+						radius: 5,
+						fillColor: color,
+						lineWidth: 3
+					},
+					color: '#fff',
+					shadowSize: 0
+				}];
+			}
 
-			var plot_statistics = $.plot($("#site_statistics"), getFlotData(hardDisk, sqlSvr), {
+			var option = {
 				xaxis: {
 					tickLength: 0,
 					tickDecimals: 0,
@@ -190,14 +306,15 @@ var Index = function() {
 						style: "normal",
 						variant: "small-caps",
 						color: "#6F7B8A"
-					}
+					},
+					show: false
 				},
 				yaxis: {
 					ticks: 5,
 					tickDecimals: 0,
 					tickColor: "#eee",
-					//min:0,
-					//max:100,
+					//min: 50,
+					max: 100,
 					font: {
 						lineHeight: 14,
 						style: "normal",
@@ -213,173 +330,246 @@ var Index = function() {
 					borderWidth: 1
 				},
 				legend: {
-					show: true,
-					//noColumns: 0,
-					//container: "#site_legend"
+					show: false
+				}
+			};
+
+			$("#real_quality_statistics").bind("plothover", function(event, pos, item) {
+				handleTooltip(pos, item, "%", 2);
+			});
+
+			$("#real_quality_statistics").bind("plotclick", function(event, pos, item) {
+				var nodeName;
+				if (!chartMode) {
+					nodeName = olData[item.dataIndex][0];
+					$('[name="curQuality_title"]').text(nodeName);
+					machineData = getQualityByMachine(nodeName);
+					$.plot($("#real_quality_statistics"), machineData, option);
+					chartMode++;
+				} else {
+					nodeName = machineData[0]['data'][item.dataIndex][0];
+					bsTips('车号追溯功能加入后跳转至' + nodeName + '详细信息', 2);
 				}
 			});
 
-			var previousPoint = null;
-			$("#site_statistics").bind("plothover", function(event, pos, item) {
-				handleTooltip(pos, item, "GB");
+			$('[name="curQuality"]').on('click', function() {
+				$.plot($("#real_quality_statistics"), getFlotSeries(olData), option);
+				$('[name="curQuality_title"]').text('实时质量');
+				chartMode = 0;
 			});
+			$('[name="curQuality"]').click();
+		}();
 
-			$('a[name="station_refresh"]').on('click', function() {
-				hardDisk = randomData.flot(15, 0, 100);
-				sqlSvr = randomData.flot(15, 0, 100);
-				plot_statistics.setData(getFlotData(hardDisk, sqlSvr));
-				plot_statistics.draw();
-			});
-		}
 
-		if ($('#site_activities').size() !== 0) {
-			//site activities
-			var previousPoint2 = null;
-			$('#site_activities_loading').hide();
-			$('#site_activities_content').show();
+		//设备运行情况
+		var initFlotCharts = function() {
+			if (!jQuery.plot) {
+				return;
+			}
 
-			var data1 = randomData.flot(15, 0, 20);
+			var machineStatusInfo = getFlotData(olInfo.hardDisk, olInfo.sqlSvr);
+			var dataUploadInfo = getFlotData2(olInfo.data_uploads);
 
-			function getFlotData2(data1) {
+			function getFlotData(hardDisk, sqlSvr) {
 				return [{
-					data: data1,
+					data: sqlSvr,
+					yaxis: 1,
 					lines: {
-						fill: 0.3,
-						lineWidth: 0,
+						fill: 0.6,
+						lineWidth: 0
 					},
-					color: ['#BAD9F5']
+					color: ['#f89f9f'],
+					label: '&nbsp;数据库大小&nbsp;'
 				}, {
-					data: data1,
+					data: sqlSvr,
+					yaxis: 1,
 					points: {
 						show: true,
 						fill: true,
-						radius: 4,
-						fillColor: "#9ACAE6",
-						lineWidth: 2
-					},
-					color: '#9ACAE6',
-					shadowSize: 1
-				}, {
-					data: data1,
-					lines: {
-						show: true,
-						fill: false,
+						radius: 5,
+						fillColor: "#f89f9f",
 						lineWidth: 3
 					},
-					color: '#9ACAE6',
+					color: '#fff',
+					shadowSize: 0
+				}, {
+					data: hardDisk,
+					yaxis: 2,
+					lines: {
+						fill: 0.6,
+						lineWidth: 0
+					},
+					color: ['#92e9dc'],
+					label: '&nbsp;硬盘可用量&nbsp;'
+				}, {
+					data: hardDisk,
+					yaxis: 2,
+					points: {
+						show: true,
+						fill: true,
+						radius: 5,
+						fillColor: "#92e9dc",
+						lineWidth: 3
+					},
+					color: '#fff',
 					shadowSize: 0
 				}];
 			}
-			var plot_statistics2 = $.plot($("#site_activities"), getFlotData2(data1), {
-				xaxis: {
-					tickLength: 0,
-					tickDecimals: 0,
-					mode: "categories",
-					min: 0,
-					font: {
-						lineHeight: 18,
-						style: "normal",
-						variant: "small-caps",
-						color: "#6F7B8A"
+
+			if ($('#site_statistics').size() !== 0) {
+
+				$('#site_statistics_loading').hide();
+				$('#site_statistics_content').show();
+
+				var plot_statistics = $.plot($("#site_statistics"), machineStatusInfo, {
+					xaxis: {
+						tickLength: 0,
+						tickDecimals: 0,
+						mode: "categories",
+						min: 0,
+						font: {
+							lineHeight: 14,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						},
+						show: false
+					},
+					yaxes: [{
+						ticks: 5,
+						tickDecimals: 0,
+						tickColor: "#eee",
+						min: 0,
+						//max:100,
+						font: {
+							lineHeight: 14,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						}
+					}, {
+						ticks: 5,
+						tickDecimals: 0,
+						tickColor: "#eee",
+						position: 'right',
+						font: {
+							lineHeight: 14,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						}
+					}],
+					grid: {
+						hoverable: true,
+						clickable: true,
+						tickColor: "#eee",
+						borderColor: "#eee",
+						borderWidth: 1
+					},
+					legend: {
+						show: true,
+						noColumns: false,
+						container: "#site_statistics_legend"
 					}
-				},
-				yaxis: {
-					ticks: 5,
-					tickDecimals: 0,
-					tickColor: "#eee",
-					font: {
-						lineHeight: 14,
-						style: "normal",
-						variant: "small-caps",
-						color: "#6F7B8A"
-					}
-				},
-				grid: {
-					hoverable: true,
-					clickable: true,
-					tickColor: "#eee",
-					borderColor: "#eee",
-					borderWidth: 1
+				});
+
+				$("#site_statistics").bind("plothover", function(event, pos, item) {
+					handleTooltip(pos, item, "GB", 0, machineStatusInfo);
+				});
+			}
+
+			if ($('#data_upload').size() !== 0) {
+				//site activities
+				var previousPoint2 = null;
+				$('#data_upload_loading').hide();
+				$('#data_upload_content').show();
+
+				function getFlotData2(data_uploads) {
+					return [{
+						data: data_uploads,
+						lines: {
+							fill: 0.3,
+							lineWidth: 0,
+						},
+						color: ['#BAD9F5']
+					}, {
+						data: data_uploads,
+						points: {
+							show: true,
+							fill: true,
+							radius: 4,
+							fillColor: "#9ACAE6",
+							lineWidth: 2
+						},
+						color: '#9ACAE6',
+						shadowSize: 1,
+						label: '数据上传'
+					}, {
+						data: data_uploads,
+						lines: {
+							show: true,
+							fill: false,
+							lineWidth: 3
+						},
+						color: '#9ACAE6',
+						shadowSize: 0
+					}];
 				}
-			});
 
-			$("#site_activities").bind("plothover", function(event, pos, item) {
-				handleTooltip(pos, item, "车");
-			});
+				var plot_statistics2 = $.plot($("#data_upload"), dataUploadInfo, {
+					xaxis: {
+						tickLength: 0,
+						tickDecimals: 0,
+						mode: "categories",
+						min: 0,
+						font: {
+							lineHeight: 18,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						},
+						show: false
+					},
+					yaxis: {
+						ticks: 5,
+						tickDecimals: 0,
+						tickColor: "#eee",
+						font: {
+							lineHeight: 14,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						},
+						max: 20
+					},
+					grid: {
+						hoverable: true,
+						clickable: true,
+						tickColor: "#eee",
+						borderColor: "#eee",
+						borderWidth: 1
+					},
+					legend: {
+						show: false,
+						noColumns: false,
+						container: "#data_upload_legend"
+					}
+				});
 
-			$('#site_activities').bind("mouseleave", function() {
-				$("#tooltip").remove();
-			});
+				$("#data_upload").bind("plothover", function(event, pos, item) {
+					handleTooltip(pos, item, "车");
+				});
 
-			$('a[name="upload_refresh"]').on('click', function() {
-				data1 = randomData.flot(15, 0, 20);
-				plot_statistics2.setData(getFlotData2(data1));
-				plot_statistics2.draw();
-			});
-		}
-	};
+				$('#data_upload').bind("mouseleave", function() {
+					$("#tooltip").remove();
+				});
+			}
+		}();
+
+
+	}
 
 	var dashboardMainChart = null;
-
-	var initQualityCharts = function() {
-		if (Morris.EventEmitter) {
-			// Use Morris.Area instead of Morris.Line
-			dashboardMainChart = Morris.Area({
-				element: 'sales_statistics',
-				padding: 0,
-				behaveLikeLine: false,
-				gridEnabled: false,
-				gridLineColor: false,
-				axes: false,
-				fillOpacity: 1,
-				data: [{
-					period: '2011 Q1',
-					sales: 1400,
-					profit: 400
-				}, {
-					period: '2011 Q2',
-					sales: 1100,
-					profit: 600
-				}, {
-					period: '2011 Q3',
-					sales: 1600,
-					profit: 500
-				}, {
-					period: '2011 Q4',
-					sales: 1200,
-					profit: 400
-				}, {
-					period: '2012 Q1',
-					sales: 1550,
-					profit: 800
-				}, {
-					period: '2013 Q1',
-					sales: 550,
-					profit: 800
-				}, {
-					period: '2013 Q2',
-					sales: 2150,
-					profit: 1800
-				}, {
-					period: '2013 Q3',
-					sales: 1650,
-					profit: 1100
-				}, {
-					period: '2013 Q4',
-					sales: 3250,
-					profit: 1300
-				}],
-				lineColors: ['#399a8c', '#92e9dc'],
-				xkey: 'period',
-				ykeys: ['sales', 'profit'],
-				labels: ['Sales', 'Profit'],
-				pointSize: 0,
-				lineWidth: 0,
-				hideHover: 'auto',
-				resize: true
-			});
-		}
-	};
 
 	redrawCharts = function() {
 		dashboardMainChart.resizeHandler();
@@ -428,13 +618,191 @@ var Index = function() {
 		});
 	};
 
+	var processQCDashboard = function() {
+
+		var initNoteAnanyCharts = function() {
+
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=175&M=0";
+			var Data = ReadData(str);
+
+			var flotData = {
+				element: 'noteAnany_static',
+				//padding: 0,
+				behaveLikeLine: false,
+				//gridEnabled: false,
+				//gridLineColor: false,
+				//axes: false,
+				fillOpacity: 1,
+				stacked: 0,
+				ymin: 95,
+				ymax: 100,
+				data: Data.data,
+				xkey: Data.header[0].title,
+				ykeys: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
+				labels: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
+				hideHover: true,
+				resize: true
+			};
+
+			if (Morris.EventEmitter) {
+				// Use Morris.Area instead of Morris.Line
+				dashboardMainChart = Morris.Bar(flotData);
+			}
+		};
+
+		var isChart2Inited = false;
+		var initNoteAnanyCharts2 = function() {
+
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=175&M=0";
+			var Data = ReadData(str);
+
+			var flotData = {
+				element: 'statistics_2',
+				behaveLikeLine: false,
+				fillOpacity: 1,
+				stacked: 0,
+				ymin: 95,
+				ymax: 100,
+				data: Data.data,
+				xkey: Data.header[0].title,
+				ykeys: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
+				labels: [Data.header[1].title, Data.header[2].title, Data.header[3].title],
+				hideHover: true,
+				resize: true
+			};
+
+			if (Morris.EventEmitter) {
+				// Use Morris.Area instead of Morris.Line
+				dashboardMainChart = Morris.Bar(flotData);
+			}
+		};
+
+		var initChart2 = function() {
+
+			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=176&M=3";
+			var Data = ReadData(str);
+			var data = [];
+			Data.data.map(function(plotData) {
+				data.push([
+					plotData[0], plotData[3]
+				]);
+			});
+			/*{
+				data: data,
+				bars: {
+					show: true,
+					barWidth: 0.4,
+					lineWidth: 2,
+					lineColors: ["#08a3cc"],
+					align: "center",
+					fill: 0.8,
+					//horizontal: true
+				},
+				color: ['#BAD9F5'],
+				label: '过程质量评分'
+			}*/
+			var plot_statistics = $.plot(
+				$("#statistics_2"), [{
+					data: data,
+					lines: {
+						fill: 0.9,
+						lineWidth: 0
+					},
+					color: ["#556"],//f89f9f
+					label: '过程质量评分'
+				}, {
+					data: data,
+					yaxis: 1,
+					points: {
+						show: true,
+						fill: true,
+						radius: 5,
+						fillColor: "#556",
+						lineWidth: 3
+					},
+					color: '#fff',
+					shadowSize: 0
+				}], {
+
+					xaxis: {
+						tickLength: 0,
+						tickDecimals: 0,
+						mode: "categories",
+						min: 2,
+						font: {
+							lineHeight: 14,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						}
+					},
+					yaxis: {
+						ticks: 4,
+						tickDecimals: 0,
+						tickColor: "#f0f0f0",
+						min: 96,
+						max: 100,
+						font: {
+							lineHeight: 14,
+							style: "normal",
+							variant: "small-caps",
+							color: "#6F7B8A"
+						}
+					},
+					grid: {
+						backgroundColor: {
+							colors: ["#fff", "#fff"]
+						},
+						borderWidth: 1,
+						borderColor: "#f0f0f0",
+						margin: 0,
+						minBorderMargin: 0,
+						labelMargin: 20,
+						hoverable: true,
+						clickable: true,
+						mouseActiveRadius: 6
+					},
+					legend: {
+						show: true
+					}
+				}
+			);
+
+			$("#statistics_2").bind("plothover", function(event, pos, item) {
+				handleTooltip(pos, item, "分", 2);
+			});
+		};
+
+		return {
+
+			//main function
+			init: function() {
+				initNoteAnanyCharts();
+
+				$('#process_quality_cut_tab').on('shown.bs.tab', function(e) {
+					if (!isChart2Inited) {
+						initChart2();
+						isChart2Inited = true;
+					}
+				});
+				
+				$('#process_quality_offline_tab').on('shown.bs.tab', function(e) {
+					bsTips('即将添加');
+				});
+			}
+
+		};
+
+	}();
+
 	return {
 		init: function() {
+			initDOM();
+			handleHisQuality();
+			handleOnlineInfo();
+			processQCDashboard.init();
 			Tasks.initDashboardWidget();
-			initFlotCharts();
-			initQualityCharts();
 			initMiniCharts();
-			refreshRealQuality();
 			bsTips('本页功能尚未添加', 1);
 		}
 	};
@@ -443,7 +811,7 @@ var Index = function() {
 jQuery(document).ready(function() {
 	UIIdleTimeout.init();
 	initDom();
-	initDashboardDaterange('YYYY-MM-DD');
+	//initDashboardDaterange('YYYY-MM-DD');
 	Index.init();
 });
 jQuery(window).resize(function() {

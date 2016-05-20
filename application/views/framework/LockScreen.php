@@ -47,7 +47,7 @@
 		</div>
 		<div class="lock-body">
 			<div class="pull-left lock-avatar-block">
-				<img src="<?php echo base_url()?>assets/pages/media/profile/profile_user.jpg" class="lock-avatar">
+				<img class="lock-avatar">
 			</div>
 			<div class="lock-form pull-left">
 				<h4>你好,<?php echo $this->session->userdata('username')?>!</h4>

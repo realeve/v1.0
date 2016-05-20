@@ -128,16 +128,6 @@
 		<div class="form-group">
 			<label class="control-label visible-ie8 visible-ie9">所在部门</label>
 			<select name="department" class="form-control">
-				<option value="">所在部门</option>				
-				<option value="JZ">技术质量部</option>
-				<option value="SC">生产管理部</option>
-				<option value="QG">企管信息部</option>
-				<option value="CZ">钞纸制作部</option>
-				<option value="CP">钞纸成品制作部</option>
-				<option value="JW">胶凹制作部</option>
-				<option value="YM">印码制作部</option>
-				<option value="JF">检封制作部</option>
-				<option value="SG">数字管理部</option>
 			</select>
 		</div>
 		<p class="hint">

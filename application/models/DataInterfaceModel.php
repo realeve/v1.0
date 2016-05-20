@@ -75,7 +75,8 @@ class DataInterfaceModel extends CI_Model {
 		return $str;
 	}
 	public function TransToGBK($str){
-		$str = iconv("UTF-8","GBK",$str);
+		//$str = iconv("UTF-8","GBK",$str);
+		$str = mb_convert_encoding($str,"GBK",array('UTF-8'));
 		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
 		if($encode == 'CP936'){
 			return iconv("UTF-8","GBK",$str);
@@ -313,8 +314,10 @@ class DataInterfaceModel extends CI_Model {
 		}
 		$strOut = str_replace("[","",$strOut);
 		$strOut = str_replace("]","",$strOut);
-		//$strOut =  " SELECT a.品种, a.工序, SUM (a.封皮_全好品) AS 封皮_全好品, SUM ( a.封皮_已分析全检品 ) AS 封皮_已分析全检品, SUM ( a.封皮_未分析全检品 ) AS 封皮_未分析全检品, SUM (a.封皮总数) AS 封皮总数, SUM (a.小开废_全好品) AS 小开废_全好品, SUM ( a.小开废_已分析全检品 ) AS 小开废_已分析全检品, SUM ( a.小开废_未分析全检品 ) AS 小开废_未分析全检品, SUM (a.大张废总数) AS 大张废总数, SUM (a.作废总开数) AS 作废总开数, ROUND( CASE WHEN SUM (a.封皮总数) = 0 THEN 0 ELSE CAST ( SUM (a.作废总开数) AS float ) / SUM (a.封皮总数) END, 3 ) AS 作废率 FROM dbo.view_print_waste_ananysis AS a GROUP BY a.工序, a.品种, ProcID ORDER BY a.品种, PROCID";
 		//print_r($strOut);
+		/*if(mb_detect_encoding($strOut,array('ASCII','EUC-CN','GBK')) == 'CP936'){
+			$strOut = mb_convert_encoding($strOut,"GBK",array('UTF-8'));	
+		}	*/
 		return $strOut;
 	}
 	//读取日志查询设置
@@ -361,6 +364,7 @@ class DataInterfaceModel extends CI_Model {
 		}else{
 			$LOGINDB=$this->load->database('Quality',TRUE);	
 		}
+		
 		foreach ($data['utf2gbk'] as $str) 
 		{
 			$data[$str] = $this->TransToGBK($data[$str]);
@@ -391,6 +395,7 @@ class DataInterfaceModel extends CI_Model {
 		}else{
 			$LOGINDB=$this->load->database('Quality',TRUE);	
 		}
+		
 		if (isset($data['utf2gbk']))
 		{
 			foreach ($data['utf2gbk'] as $str) 
@@ -398,6 +403,7 @@ class DataInterfaceModel extends CI_Model {
 				$data[$str] = $this->TransToGBK($data[$str]);
 			}			
 		}
+
 		$tblName = $this->getDBName($data['tbl']);
 		$where = '[id] = '.$data['id'];
 		unset($data['tbl']);
