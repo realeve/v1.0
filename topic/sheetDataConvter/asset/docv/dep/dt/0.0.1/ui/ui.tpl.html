@@ -1,0 +1,22 @@
+
+<!-- saved from url=(0076)http://echarts.baidu.com/echarts2/docv/dep/dt/0.0.1/ui/ui.tpl.html?_v_=1.0.4 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css"></style><style type="text/css">div[id="bdyx_float_rb"]{display:none !important;}</style></head><body>{{ target: winPanel }}
+<div class="dtui-winpn">
+    <div class="dtui-close-cross">X</div>
+    <div class="dtui-winpn-con"></div>
+</div>
+{{ /target }}
+
+{{ target: dialogPanel }}
+<div class="dtui-dlg">
+    <div class="dtui-con">&nbsp;</div>
+    <div class="dtui-btns">
+        {{ for: ${viewModel.btnViewModels} as ${vm}, ${index} }}
+        <div data-cpt="
+            type: &#39;Button&#39;,
+            name: &#39;btns[${index}]&#39;,
+            viewModelGet: &#39;btnViewModels[${index}]&#39;"></div>
+        {{ /for }}
+    </div>
+</div>
+<div id="cli_dialog_div"></div></body></html>
