@@ -1,11 +1,12 @@
-/**
- * fullPage 2.6.0
+/*!
+ * fullPage 2.7.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
-html, body {
+html.fp-enabled,
+.fp-enabled body {
     margin: 0;
     padding: 0;
     overflow:hidden;
@@ -60,6 +61,10 @@ html, body {
     position: relative;
 }
 .fp-controlArrow {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
     position: absolute;
     z-index: 4;
     top: 50%;
@@ -159,7 +164,7 @@ html, body {
     height: 4px;
     width: 4px;
     border: 0;
-    background: #F04F47;
+    background: #333;
     left: 50%;
     top: 50%;
     margin: -2px 0 0 -2px;
@@ -186,6 +191,7 @@ html, body {
     display: block;
     opacity: 0;
     width: 0;
+    cursor: pointer;
 }
 #fp-nav ul li:hover .fp-tooltip,
 #fp-nav.fp-show-active a.active + .fp-tooltip {
@@ -199,4 +205,9 @@ html, body {
 }
 #fp-nav ul li .fp-tooltip.left {
     left: 20px;
+}
+.fp-auto-height.fp-section,
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell{
+    height: auto !important;
 }

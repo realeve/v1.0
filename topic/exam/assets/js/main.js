@@ -28,13 +28,15 @@ var exam = {
 	isStarted: false,
 	timeLength: 5 * 60 * 1000,
 	sourceList: [],
-	eachScore: 0
+	eachScore: 0,
+	isSubmit: false
 };
 
 //页面总数
 var lastPage;
 
 require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
+
 	var secColor = [];
 
 	function getExamTemplate(data, i) {
@@ -85,6 +87,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 		return arr.sort(randomsort);
 	}
+
 	$.getJSON("./assets/data/test.min.json", function(question) {
 		var quesLen = question.length;
 		$('[name="nums"]').text(quesLen);
@@ -105,8 +108,49 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 
 	}).done(function() {
+		document.getElementById('autoplay').play();
 		handleAnswer();
 	});
+
+	function jsRight(sr, rightn) {
+		return sr.substring(sr.length - rightn, sr.length);
+	}
+
+	function today(type) {
+		var date = new Date();
+		var a = date.getFullYear();
+		var b = jsRight(('0' + (date.getMonth() + 1)), 2);
+		var c = jsRight(('0' + date.getDate()), 2);
+		var d = date.getHours();
+		var e = date.getMinutes();
+		var f = date.getSeconds();
+		var output;
+		switch (type) {
+			case 0:
+				output = a + '年' + b + '月' + c + '日';
+				break;
+			case 1:
+				output = a + '-' + b + '-' + c + ' ' + d + ':' + e + ':' + f;
+				break;
+			case 2:
+				output = a + '年' + b + '月' + c + '日' + d + '时' + e + '分' + f + '秒';
+				break;
+			case 3:
+				output = a + '-' + b + '-' + c + ' ' + d + ':' + e;
+				break;
+			case 4:
+				output = a + '年' + b + '月' + c + '日  ' + d + '时' + e + '分';
+				break;
+			case 5:
+				output = b + '/' + c + '/' + a;
+				break;
+			case 6:
+				output = a + '-' + b + '-' + c;
+				break;
+		}
+		return output;
+	}
+
 	var handleAnswer = function() {
 
 		function timeReleasedTip() {
@@ -128,21 +172,29 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 		});
 
-		function pageChange(index) {
+		function pageChange(index, nextIndex, direction) {
 			var idx = index - 1;
-			if (!exam.timeReleased && idx > 0 && idx < lastPage - 1 && !exam.isAnswered[idx - 1]) {
-				$.alert("第" + idx + "题您还没有作答！", "警告！");
-				if (idx == lastPage - 2) {
-					$('.iSlider-arrow').css('display', 'none');
-				} else {
-					$('.iSlider-arrow').css('display', '');
+			if (direction == 'down' && !exam.timeReleased && idx > 0 && idx < lastPage - 1 && !exam.isAnswered[idx - 1]) {
+				$.alert("第" + idx + "题您还没有作答！", "警告！", function() {
+					$.fn.fullpage.moveTo(idx + 1);
+				});
+			}
+			if (idx >= lastPage - 2) {
+				$('.iSlider-arrow').hide();
+
+				if (!exam.isSubmit && idx == lastPage - 1) {
+					$.fn.fullpage.moveSectionUp();
 				}
+				//$('.iSlider-arrow').addClass('iSlider-arrow-prev');
+			} else {
+				$('.iSlider-arrow').show();
+				//$('.iSlider-arrow').removeClass('iSlider-arrow-prev');
 			}
 		}
 
 		$('#fullpage').fullpage({
 			sectionsColor: secColor,
-			onLeave: function(index) {
+			onLeave: function(index, nextIndex, direction) {
 				//开始计时
 				if (index == 1 && !exam.timeReleased) {
 					exam.isStarted = true;
@@ -163,10 +215,10 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 						$.toast("考试时间仅剩三分之一");
 					}, exam.timeLength * 0.67);
 				}
-				pageChange(index);
+				pageChange(index, nextIndex, direction);
 			},
 			afterLoad: function(index) {
-				pageChange(index);
+				//pageChange(index);
 			}
 		});
 
@@ -205,20 +257,49 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				}
 			});
 
+			var errStr = '';
+			exam.error.map(function(elem) {
+				errStr += elem + ',';
+			});
+			errStr = (errStr.length) ? errStr.substring(0, errStr.length - 1) : ' ';
+
 			var data = {
-				userName: $('[name="userName"]').val(),
-				userCard: $('[name="userCard"]').val(),
-				totalScore: (exam.total * exam.eachScore).toFixed(0),
-				error: exam.error
+				user_name: $('[name="userName"]').val(),
+				user_id: $('[name="userCard"]').val(),
+				score: (exam.total * exam.eachScore).toFixed(0),
+				errors: errStr,
+				rec_time: today(1)
 			};
 
+			$('[name="totalScore"]').text(data.score);
 			if (!validate(data)) {
 				$.toast("请输入个人用户信息", "cancel");
 			} else {
-				$.toast("您一共取得了" + data.totalScore + "分");
+				//'http://cbpm.sinaapp.com/topic/exam/data/setExamData.php',
+				//testURL:http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData&user_name=me&user_id=22333&score=95&errors=2&rec_time=test
+				$.ajax({
+					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData',
+					data: data,
+					success: function(obj) {
+						if (obj.status == 0) {
+							$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+							$('.weui_icon_success').addClass('weui_icon_warn');
+						} else if (obj.status == -1) {
+							$('[name="sucessInfo"] h1').text('该用户已提交数据');
+							$('.weui_icon_success').addClass('weui_icon_warn');
+						}
+					},
+					error: function(obj) {
+						if (obj.status == 0) {
+							$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+							$('.weui_icon_success').addClass('weui_icon_warn');
+						}
+					}
+				});
+				exam.isSubmit = true;
+				$.fn.fullpage.moveSectionDown();
 			}
 
-			console.log(data);
 		});
 	};
 
