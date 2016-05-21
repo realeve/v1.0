@@ -25,7 +25,7 @@
 
 /* Arrow */
 
-.iSlider-arrow,.iSlider-arrow-prev {
+.iSlider-arrow,.iSlider-arrow-prev,.iSlider-white {
     position: absolute;
     width: 3em;
     height: 3em;
@@ -33,11 +33,15 @@
     right: 0;
     bottom: 5%;
     margin: 0 auto;
-    border-top: 2px solid #2194ff;
-    border-right: 2px solid #2194ff;
+    border-top: 2px solid #31c7fb;
+    border-right: 2px solid #31c7fb;
     z-index: 10000;
     opacity: 0.8;
     -webkit-animation: nextPage 1.2s linear infinite;
+}
+.iSlider-white {
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
 }
 
 .iSlider-arrow-prev{
@@ -99,14 +103,17 @@
     height: 2.5em;
 }
 
-.music-btn {
+.music-btn,.music-btn-white {
     float: right;
     width: 1.8rem;
     height: 1.8rem;
     background: url('../img/music-icon.png');
     background-size: cover;
 }
-
+.music-btn-white {
+    background: url('../img/audio.jpg');
+    background-size: cover;
+}
 .music-btn.on {
     -webkit-animation: reverseRotataZ 1.2s linear infinite;
 }
@@ -130,5 +137,16 @@
 }
 
 .title{
-    color:#2194ff;
+    color:#31c7fb;
+}
+
+.lg-component-img{
+   position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    z-index: 1;
+    background-repeat:no-repeat;
+    background-position:center center;
 }

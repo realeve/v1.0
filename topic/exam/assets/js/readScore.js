@@ -13,12 +13,23 @@ require.config({　　　　
 });
 
 require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
-
     var dom = document.getElementById("container"),
         myChart;
+
+    $('#fullpage').fullpage({
+        sectionsColor: ['#293c55'],
+        afterRender: function() {
+            myChart = echarts.init(dom);
+            $(window).resize(function() {
+                myChart.resize();
+            });
+        }
+    });
+
     var gb = {
         colors: {
             white: "#FFF",
+            whiteMediumLight: "rgba(255, 255, 255, 0.3)",
             whiteLight: "rgba(255, 255, 255, 0.2)",
             whiteLighter: "rgba(255, 255, 255, 0.1)",
             primary: "#556fb5",
@@ -77,7 +88,7 @@ require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
             series: [{
                 name: '得分',
                 type: "bar",
-                barMaxWidth: 80,
+                barMaxWidth: 120,
                 areaStyle: {
                     normal: {
                         color: gb.colors.whiteLight
@@ -91,7 +102,7 @@ require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
                 data: [],
                 itemStyle: {
                     normal: {
-                        color: gb.colors.whiteLight,
+                        color: gb.colors.whiteMediumLight,
                         width: 1,
                         label: {
                             show: true,
@@ -107,15 +118,12 @@ require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
                 },
             }]
         };
-
         return option;
     };
 
-
     var refreshData = function() {
         var option = initOption();
-
-        timeTicket = setInterval(function() {
+        var updateChart = function() {
             //动态读取数据
             $.ajax({
                 url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getJZExamData',
@@ -127,20 +135,12 @@ require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
                     option.yAxis[0].data.push(data.user_name);
                     option.series[0].data.push(data.score);
                 });
-                //console.log(JSON.stringify(option));
                 myChart.setOption(option);
             });
-        }, 1000);
-    };
-
-    $('#fullpage').fullpage({
-        sectionsColor: ['#293c55']
-    });
-
-    myChart = echarts.init(dom);
-    refreshData();
-
-    $(window).resize(function() {
-        myChart.resize();
-    });
+        };
+        updateChart();
+        timeTicket = setInterval(function() {
+            updateChart();
+        }, 10000);
+    }();
 });

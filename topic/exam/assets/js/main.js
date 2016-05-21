@@ -39,6 +39,9 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 	var secColor = [];
 
+	//隐藏提示信息
+	$('[name="sucessInfo"] .weui_msg_title').hide();
+
 	function getExamTemplate(data, i) {
 		var ques = [];
 		var arr = [];
@@ -179,21 +182,22 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 					$.fn.fullpage.moveTo(idx + 1);
 				});
 			}
-			if (idx >= lastPage - 2) {
-				$('.iSlider-arrow').hide();
 
-				if (!exam.isSubmit && idx == lastPage - 1) {
-					$.fn.fullpage.moveSectionUp();
-				}
-				//$('.iSlider-arrow').addClass('iSlider-arrow-prev');
-			} else {
-				$('.iSlider-arrow').show();
-				//$('.iSlider-arrow').removeClass('iSlider-arrow-prev');
+			//第一页简单颜色切换
+			if (index == 1 && direction == 'down') {
+				$('.iSlider-arrow').removeClass('iSlider-white');
+			} else if (nextIndex == 1 && direction == 'up') {
+				$('.iSlider-arrow').addClass('iSlider-white');
+			}
+			//最后两页隐藏箭头
+			if (index >= lastPage - 1 && (direction == 'down')) {
+				$('.iSlider-arrow').hide();
 			}
 		}
 
 		$('#fullpage').fullpage({
 			sectionsColor: secColor,
+			easingcss3: 'cubic-bezier(0.25, 0.5, 0.35, 1.15)', //'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
 			onLeave: function(index, nextIndex, direction) {
 				//开始计时
 				if (index == 1 && !exam.timeReleased) {
@@ -208,30 +212,45 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 					//答题时间提醒
 					setTimeout(function() {
 						$.toast("考试时间已过去三分之一");
-					}, exam.timeLength * 033);
+					}, exam.timeLength * 0.33);
 
 					//答题时间提醒
 					setTimeout(function() {
 						$.toast("考试时间仅剩三分之一");
 					}, exam.timeLength * 0.67);
 				}
+
 				pageChange(index, nextIndex, direction);
 			},
-			afterLoad: function(index) {
-				//pageChange(index);
+			afterLoad: function(anchor, index) {
+				//最后两页隐藏箭头
+				if (index == lastPage) {
+					//console.log('进入倒数第二页');
+					$('.iSlider-arrow').hide();
+				} else if (index > lastPage) {
+					//console.log('进入最后一页');
+					$('.iSlider-arrow').hide();
+					if (!exam.isSubmit) {
+						setTimeout(function() {
+							$.fn.fullpage.moveSectionUp();
+						}, 500);
+					}
+				} else {
+					$('.iSlider-arrow').show();
+				}
 			}
 		});
 
 		function validate(data) {
 			var isPass = true;
-			if (data.userName == '') {
+			if (data.user_name == '') {
 				$('[name="userName"]').parents('.weui_cell').find('label').css('color', '#e64340');
 				isPass = false;
 			} else {
 				$('[name="userName"]').parents('.weui_cell').find('label').attr('style', '');
 			}
 
-			if (data.userCard == '') {
+			if (data.user_id == '') {
 				$('[name="userCard"]').parents('.weui_cell').find('label').css('color', '#e64340');
 				isPass = false;
 			} else {
@@ -271,33 +290,44 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				rec_time: today(1)
 			};
 
-			$('[name="totalScore"]').text(data.score);
 			if (!validate(data)) {
 				$.toast("请输入个人用户信息", "cancel");
 			} else {
+				$('[name="totalScore"]').text(data.score);
+				//显示提示信息
+				$('[name="sucessInfo"] .weui_msg_title').show();
 				//'http://cbpm.sinaapp.com/topic/exam/data/setExamData.php',
 				//testURL:http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData&user_name=me&user_id=22333&score=95&errors=2&rec_time=test
 				$.ajax({
-					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData',
-					data: data,
-					success: function(obj) {
-						if (obj.status == 0) {
-							$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
-							$('.weui_icon_success').addClass('weui_icon_warn');
-						} else if (obj.status == -1) {
-							$('[name="sucessInfo"] h1').text('该用户已提交数据');
-							$('.weui_icon_success').addClass('weui_icon_warn');
+						url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData',
+						data: data,
+						success: function(obj) {
+							if (obj.status == 0) {
+								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+							} else if (obj.status == -1) {
+								$('[name="sucessInfo"] h1').text('该用户已提交数据');
+							} else {
+								$('[name="sucessInfo"] h1').text('提交成功');
+								$('.weui_icon_msg').last().addClass('weui_icon_success');
+
+							}
+						},
+						error: function(obj) {
+							if (obj.status == 0) {
+								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+							} else if (obj.status == -1) {
+								$('[name="sucessInfo"] h1').text('该用户已提交数据');
+							} else {
+								$('[name="sucessInfo"] h1').text('提交成功');
+								$('.weui_icon_msg').last().addClass('weui_icon_success');
+
+							}
 						}
-					},
-					error: function(obj) {
-						if (obj.status == 0) {
-							$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
-							$('.weui_icon_success').addClass('weui_icon_warn');
-						}
-					}
-				});
-				exam.isSubmit = true;
-				$.fn.fullpage.moveSectionDown();
+					})
+					.always(function() {
+						exam.isSubmit = true;
+						$.fn.fullpage.moveSectionDown();
+					});
 			}
 
 		});
