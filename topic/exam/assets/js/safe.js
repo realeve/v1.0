@@ -26,10 +26,12 @@ var exam = {
 	isAnswered: [],
 	timeReleased: false,
 	isStarted: false,
-	timeLength: 50 * 60 * 1000,
+	timeLength: 180 * 60 * 1000,
 	sourceList: [],
 	eachScore: 0,
-	isSubmit: false
+	isSubmit: false,
+	maxAnswerNum: 20, //最大抽取多少道题目
+	paperData: "safe"
 };
 
 //页面总数
@@ -40,12 +42,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 	var secColor = [];
 	//testMode 0:默认，1，测试模式，2，安保
 	var testMode = (window.location.href.indexOf('?m=') == -1) ? 0 : window.location.href.split('?m=')[1].split('&')[0];
-	var paperData;
-	if (testMode == 0) {
-		paperData = 'data';
-	} else if (testMode == '1') {
-		paperData = 'data_test';
-	}
+	exam.maxAnswerNum = (testMode === 0) ? 20 : 3;
 	//隐藏提示信息
 	$('[name="sucessInfo"] .weui_msg_title').hide();
 
@@ -98,21 +95,42 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		return arr.sort(randomsort);
 	}
 
-	$.getJSON("./assets/data/" + paperData + ".min.json", function(question) {
+	$.getJSON("./assets/data/department.min.json", function(dpt) {
+		var dptLen = dpt.length,
+			dptName = [];
+		dpt.map(function(dpt_name) {
+			dptName.push(dpt_name.name);
+		});
+
+		$('[name="user_dpt"]').picker({
+			title: "请选择您的部门",
+			cols: [{
+				textAlign: 'center',
+				values: dptName
+			}]
+		});
+
+	});
+
+	$.getJSON("./assets/data/" + exam.paperData + ".min.json", function(question) {
 		var quesLen = question.length;
+		//所有题目参与排序
+		exam.sourceList = getRandomArr(quesLen);
+
+		//只抽取maxAnswerNum个
+		quesLen = (quesLen <= exam.maxAnswerNum) ? quesLen : exam.maxAnswerNum;
+
 		$('[name="nums"]').text(quesLen);
 		exam.eachScore = 100 / quesLen;
 		$('[name="scores"]').text(exam.eachScore.toFixed(0));
-
-		exam.sourceList = getRandomArr(quesLen);
-
+		
 		for (var i = 0; i < quesLen; i++) {
 			$('[name="form"]').before(getExamTemplate(question[exam.sourceList[i]], i + 1));
 			exam.isAnswered[i] = 0;
 		}
 
 		//间隔背景
-		lastPage = question.length + 2;
+		lastPage = quesLen + 2;
 		for (i = 0; i < lastPage; i++) {
 			secColor[i] = (i % 2) ? '#fff' : '#f3f3ff';
 		}
@@ -261,6 +279,13 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				$('[name="userName"]').parents('.weui_cell').find('label').attr('style', '');
 			}
 
+			if (data.user_dpt == '') {
+				$('[name="user_dpt"]').parents('.weui_cell').find('label').css('color', '#e64340');
+				isPass = false;
+			} else {
+				$('[name="user_dpt"]').parents('.weui_cell').find('label').attr('style', '');
+			}
+
 			if (data.user_id == '') {
 				$('[name="userCard"]').parents('.weui_cell').find('label').css('color', '#e64340');
 				isPass = false;
@@ -273,6 +298,25 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		$('[name="form"] input').on('focus', function() {
 			$(this).parents('.weui_cell').find('label').attr('style', '');
 		});
+
+		function handleTotalScore(iScore, uid) {
+			var tipStr = '';
+			if (iScore >= 80) {
+				tipStr = '恭喜您获奖！请根据部门通知领取答题奖品！';
+			} else if (iScore >= 80) {
+				tipStr = '下次继续努力哦！安全生产离不开您的参与！';
+			}
+			$('[name="weui_msg_title"]').text(tipStr);
+
+			$('[name="sucessInfo"] h1').text('提交成功，您一共得了<span name="totalScore">' + iScore + '</span>分');
+			$('.weui_icon_msg').last().addClass('weui_icon_success');
+
+			//处理得分专题
+			$('[name="scoreLink"]').attr('href', './safeScore.html?uid=' + uid);
+
+			//显示提示信息
+			$('[name="sucessInfo"] .weui_msg_title').show();
+		}
 
 		$('[name="form"] .weui_btn').on('click', function(event) {
 			//清空错误数据
@@ -296,6 +340,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			var data = {
 				user_name: $('[name="userName"]').val(),
 				user_id: $('[name="userCard"]').val(),
+				user_dpt: $('[name="user_dpt"]').val(),
 				score: (exam.total * exam.eachScore).toFixed(0),
 				errors: errStr,
 				rec_time: today(1)
@@ -304,28 +349,24 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			if (!validate(data)) {
 				$.toast("请输入个人用户信息", "cancel");
 			} else {
-				$('[name="totalScore"]').text(data.score);
-				//显示提示信息
-				$('[name="sucessInfo"] .weui_msg_title').show();
+
 				//'http://cbpm.sinaapp.com/topic/exam/data/setExamData.php',
 				//testURL:http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData&user_name=me&user_id=22333&score=95&errors=2&rec_time=test
 				$.ajax({
-						url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData',
+						url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setSafeExamData',
 						data: data,
 						success: function(obj) {
 							if (obj.status == 0) {
-								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试');
 							} else if (obj.status == -1) {
 								$('[name="sucessInfo"] h1').text('该用户已提交数据');
-							} else {
-								$('[name="sucessInfo"] h1').text('提交成功');
-								$('.weui_icon_msg').last().addClass('weui_icon_success');
-
+							} else { //提交成功
+								handleTotalScore(data.score,obj.uid);
 							}
 						},
 						error: function(obj) {
 							if (obj.status == 0) {
-								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试');
 							} else if (obj.status == -1) {
 								$('[name="sucessInfo"] h1').text('该用户已提交数据');
 							} else {

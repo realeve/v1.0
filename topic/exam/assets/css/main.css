@@ -137,7 +137,9 @@
 }
 
 .title{
-    color:#31c7fb;
+    font-family: "SentyZHAO";
+    color:#334;
+    font-size:3.5em;
 }
 
 .lg-component-img{
@@ -149,4 +151,18 @@
     z-index: 1;
     background-repeat:no-repeat;
     background-position:center center;
+}
+
+.headerTitle {
+  font-family: "SentyZHAO";
+  font-size:60px;
+  font-color:#e6e6e6;
+}
+
+.headerSubTitle {
+  font-family: "SentyZHAO";
+  font-size:30px;
+}
+.headerSubTitle h1{
+    font-size:20px;
 }

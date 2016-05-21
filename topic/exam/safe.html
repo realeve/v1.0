@@ -2,13 +2,13 @@
 <html lang="zh-cmn-Hans">
 <head>
 <meta charset="UTF-8">
-<title>Welcome</title>
+<title>安全月有奖答题</title>
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.fullPage.min.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/weui.min.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/jquery-weui.min.css"/>
-<link rel="stylesheet" type="text/css" href="assets/css/mainFont.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/safeFont.min.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/main.min.css"/>
-<script src="assets/js/require.min.js" data-main="assets/js/main.min"></script>
+<script src="assets/js/require.min.js" data-main="assets/js/safe.min"></script>
 <meta name="apple-mobile-web-app-capable" container="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" container="black-translucent"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -21,9 +21,9 @@
 <audio src="./assets/audio/bgm.mp3" autoplay="autoplay" loop="loop" id="autoplay"></audio>
 <div id="fullpage">
     <div class="section center" style="background-image: url(assets/img/welcome.png);">
-        <h1 class="white-font headerTitle">技术质量部<p class="headerSubTitle">建模人员基础测试</p></h1>
+        <h1 class="white-font headerTitle">品质成钞<p class="headerSubTitle">安全月有奖答题活动</p></h1>
         <article class="weui_article white-font headerSubTitle">
-        	<h1>考试时间：45分钟<p>题目: <span name="nums" style="font-weight:bold"></span> 道单选，每题 <span name="scores" style="font-weight:bold"></span> 分。</p></h1>
+        	<h1>活动时间：6月1日至6月8日 17时<p>题目: <span name="nums" style="font-weight:bold"></span> 道单选，每题 <span name="scores" style="font-weight:bold"></span> 分。</p></h1>
         </article>
         <img class="lg-component-img" src="./assets/img/bottom.png" style="width: 100%; height: 54px; border-width: 0px;">
     </div>
@@ -35,6 +35,12 @@
 		        <p class="weui_msg_desc">请填写个人信息并提交</p>
 		    </div>
 		    <div class="bd">
+		      	<div class="weui_cell">
+			        <div class="weui_cell_hd"><label for="date" class="weui_label">部门</label></div>
+			        <div class="weui_cell_bd weui_cell_primary">
+			          <input class="weui_input" name="user_dpt" type="text" value="">
+			        </div>
+		      	</div>
 			    <div class="weui_cell">
 		            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
 		            <div class="weui_cell_bd weui_cell_primary">
@@ -63,11 +69,11 @@
 		    <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_warn"></i></div>
 		    <div class="weui_text_area">
 		        <p class="weui_msg_desc">请先填写个人信息</p>
-		        <h2 class="weui_msg_title">恭喜您得了 <span name="totalScore"></span> 分</h2>
+		        <h2 class="weui_msg_title"></h2>
 		    </div>
 		    <div class="weui_opr_area">
 		        <p class="weui_btn_area">
-		            <a href="./score.html" class="weui_btn weui_btn_plain_primary">查看其它人得分</a>   
+		            <a name="scoreLink" class="weui_btn weui_btn_plain_primary">点击查看成绩统计</a>   
 		        </p>
 		    </div>
 		</div>
