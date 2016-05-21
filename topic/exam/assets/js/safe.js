@@ -56,7 +56,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			oldOrder[arrData] = id;
 		});
 		var str = '<div class="section">';
-		str += '<h1 class="title">第<span>' + i + '</span>题</h1>';
+		str += '<h1 class="title ">第<span>' + i + '</span>题</h1>';
 		str += '<div class="weui_cells_title">' + data.title + '</div>';
 		str += '<div class="weui_cells ' + (i % 2 ? '' : 'weui_cells_dark') + ' weui_cells_checkbox" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
@@ -123,7 +123,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		$('[name="nums"]').text(quesLen);
 		exam.eachScore = 100 / quesLen;
 		$('[name="scores"]').text(exam.eachScore.toFixed(0));
-		
+
 		for (var i = 0; i < quesLen; i++) {
 			$('[name="form"]').before(getExamTemplate(question[exam.sourceList[i]], i + 1));
 			exam.isAnswered[i] = 0;
@@ -303,19 +303,18 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			var tipStr = '';
 			if (iScore >= 80) {
 				tipStr = '恭喜您获奖！请根据部门通知领取答题奖品！';
-			} else if (iScore >= 80) {
+			} else {
 				tipStr = '下次继续努力哦！安全生产离不开您的参与！';
 			}
-			$('[name="weui_msg_title"]').text(tipStr);
 
-			$('[name="sucessInfo"] h1').text('提交成功，您一共得了<span name="totalScore">' + iScore + '</span>分');
-			$('.weui_icon_msg').last().addClass('weui_icon_success');
+			$('[name="sucessInfo"] .weui_msg_desc').html('提交成功，您一共得了<span name="totalScore" style="font-weight:bold;color:#445"> ' + iScore + ' </span>分');
+			$('.weui_icon_msg').last().addClass('weui_icon_success').removeClass('weui_icon_warn');
 
 			//处理得分专题
 			$('[name="scoreLink"]').attr('href', './safeScore.html?uid=' + uid);
 
 			//显示提示信息
-			$('[name="sucessInfo"] .weui_msg_title').show();
+			$('[name="sucessInfo"] .weui_msg_title').text(tipStr).show();
 		}
 
 		$('[name="form"] .weui_btn').on('click', function(event) {
@@ -357,23 +356,22 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 						data: data,
 						success: function(obj) {
 							if (obj.status == 0) {
-								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试');
+								$('[name="sucessInfo"] .weui_msg_title').text('提交失败，请稍后重试');
 							} else if (obj.status == -1) {
-								$('[name="sucessInfo"] h1').text('该用户已提交数据');
+								$('[name="sucessInfo"] .weui_msg_title').text('该用户已提交数据');
 							} else { //提交成功
-								handleTotalScore(data.score,obj.uid);
+								handleTotalScore(data.score, obj.uid);
 							}
 						},
 						error: function(obj) {
+							var tipStr;
+							//显示提示信息
 							if (obj.status == 0) {
-								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试');
+								tipStr = '提交失败，请稍后重试';
 							} else if (obj.status == -1) {
-								$('[name="sucessInfo"] h1').text('该用户已提交数据');
-							} else {
-								$('[name="sucessInfo"] h1').text('提交成功');
-								$('.weui_icon_msg').last().addClass('weui_icon_success');
-
+								tipStr = '该用户已提交数据';
 							}
+							$('[name="sucessInfo"] .weui_msg_title').text(tipStr).show();
 						}
 					})
 					.always(function() {

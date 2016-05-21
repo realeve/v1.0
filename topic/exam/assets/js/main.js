@@ -59,7 +59,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			oldOrder[arrData] = id;
 		});
 		var str = '<div class="section">';
-		str += '<h1 class="title">第<span>' + i + '</span>题</h1>';
+		str += '<h1 class="title answer-num">第<span>' + i + '</span>题</h1>';
 		str += '<div class="weui_cells_title">' + data.title + '</div>';
 		str += '<div class="weui_cells ' + (i % 2 ? '' : 'weui_cells_dark') + ' weui_cells_checkbox" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
@@ -274,6 +274,16 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			$(this).parents('.weui_cell').find('label').attr('style', '');
 		});
 
+		function handleTotalScore(iScore, uid) {
+
+			$('[name="sucessInfo"] .weui_msg_desc').text('您一共得了<span name="totalScore" style="font-weight:bold;color:#445"> ' + iScore + ' </span>分');
+			$('.weui_icon_msg').last().addClass('weui_icon_success').removeClass('weui_icon_warn');
+			//处理得分专题
+			$('[name="scoreLink"]').attr('href', './score.html?uid=' + uid);
+			//显示提示信息
+			$('[name="sucessInfo"] .weui_msg_title').text("提交成功").show();
+		}
+
 		$('[name="form"] .weui_btn').on('click', function(event) {
 			//清空错误数据
 			exam.error = [];
@@ -314,25 +324,30 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 						data: data,
 						success: function(obj) {
 							if (obj.status == 0) {
-								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+								$('[name="sucessInfo"] .weui_msg_title').text('提交失败，请稍后重试');
+							} else if (obj.status == -1) {
+								$('[name="sucessInfo"] .weui_msg_title').text('该用户已提交数据');
+							} else {
+								handleTotalScore(data.score,obj.uid);
+							}
+
+							if (obj.status == 0) {
+								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试');
 							} else if (obj.status == -1) {
 								$('[name="sucessInfo"] h1').text('该用户已提交数据');
-							} else {
-								$('[name="sucessInfo"] h1').text('提交成功');
-								$('.weui_icon_msg').last().addClass('weui_icon_success');
-
+							} else { //提交成功
+								handleTotalScore(data.score,obj.uid);
 							}
 						},
 						error: function(obj) {
+							var tipStr;
+							//显示提示信息
 							if (obj.status == 0) {
-								$('[name="sucessInfo"] h1').text('提交失败，请稍后重试或截屏保存分数');
+								tipStr = '提交失败，请稍后重试';
 							} else if (obj.status == -1) {
-								$('[name="sucessInfo"] h1').text('该用户已提交数据');
-							} else {
-								$('[name="sucessInfo"] h1').text('提交成功');
-								$('.weui_icon_msg').last().addClass('weui_icon_success');
-
+								tipStr = '该用户已提交数据';
 							}
+							$('[name="sucessInfo"] .weui_msg_title').text(tipStr).show();
 						}
 					})
 					.always(function() {

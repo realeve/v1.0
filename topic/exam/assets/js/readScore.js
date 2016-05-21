@@ -15,6 +15,7 @@ require.config({　　　　
 require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
     var dom = document.getElementById("container"),
         myChart;
+    var uid = (window.location.href.indexOf('?uid=') == -1) ? 0 : window.location.href.split('?uid=')[1].split('&')[0];
 
     $('#fullpage').fullpage({
         sectionsColor: ['#293c55'],
@@ -131,10 +132,28 @@ require(['jquery', 'echarts', 'jquery.fullPage'], function($, echarts) {
             }).done(function(score) {
                 option.yAxis[0].data = [];
                 option.series[0].data = [];
-                score.map(function(data) {
-                    option.yAxis[0].data.push(data.user_name);
-                    option.series[0].data.push(data.score);
-                });
+                if (uid == 0) {
+                    score.map(function(data) {
+                        option.yAxis[0].data.push(data.user_name);
+                        option.series[0].data.push(data.score);
+                    });
+                } else {
+                    score.map(function(data) {
+                        option.yAxis[0].data.push(data.user_name);
+                        if (data.uid != uid) {
+                            option.series[0].data.push(data.score);
+                        } else {
+                            option.series[0].data.push({
+                                value: data.score,
+                                itemStyle: {
+                                    normal: {
+                                        color:'rgba(66,233,98,0.5)'
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
                 myChart.setOption(option);
             });
         };

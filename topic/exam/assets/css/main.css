@@ -137,9 +137,12 @@
 }
 
 .title{
-    font-family: "SentyZHAO";
     color:#334;
     font-size:3.5em;
+}
+
+.answer-num{
+  font-family: "SentyZHAO";
 }
 
 .lg-component-img{
@@ -163,6 +166,7 @@
   font-family: "SentyZHAO";
   font-size:30px;
 }
+
 .headerSubTitle h1{
     font-size:20px;
 }
