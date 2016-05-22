@@ -20,12 +20,12 @@
 </aside>
 <audio src="./assets/audio/bgm.mp3" autoplay="autoplay" loop="loop" id="autoplay"></audio>
 <div id="fullpage">
-    <div class="section center" style="background-image: url(assets/img/welcome.png);">
+    <div class="section center background_dark">
         <h1 class="white-font headerTitle">技术质量部<p class="headerSubTitle">建模人员基础测试</p></h1>
         <article class="weui_article white-font headerSubTitle">
-        	<h1>考试时间：45分钟<p>题目: <span name="nums" style="font-weight:bold"></span> 道单选，每题 <span name="scores" style="font-weight:bold"></span> 分。</p></h1>
+        	<h1>考试时间：<span name="timeLatest" style="font-weight:bold"></span> 分钟<p>题目: <span name="nums" style="font-weight:bold"></span> 道单选，每题 <span name="scores" style="font-weight:bold"></span> 分。</p></h1>
         </article>
-        <img class="lg-component-img" src="./assets/img/bottom.png" style="width: 100%; height: 54px; border-width: 0px;">
+        <img class="lg-component-img" src="./assets/img/bottom.png">
     </div>
     <div class="section" name="form">
 		<div class="weui_msg">
@@ -38,13 +38,13 @@
 			    <div class="weui_cell">
 		            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
 		            <div class="weui_cell_bd weui_cell_primary">
-		                <input class="weui_input" name="userName" type="text" placeholder="请输入姓名">
+		                <input class="weui_input" name="userName" type="text" placeholder="点击输入姓名">
 		            </div>
 		        </div>
 			    <div class="weui_cell">
 		            <div class="weui_cell_hd"><label class="weui_label">员工卡号</label></div>
 		            <div class="weui_cell_bd weui_cell_primary">
-		                <input class="weui_input" name="userCard" type="number" pattern="[0-9]*" placeholder="请输入员工卡号">
+		                <input class="weui_input" name="userCard" type="number" pattern="[0-9]*" placeholder="点击输入员工卡号">
 		            </div>
 		        </div>
 	        </div>
@@ -58,7 +58,7 @@
 		    </div-->
 		</div>
     </div>
-    <div class="section" name="sucessInfo">
+    <div class="section" name="sucessInfo" style="background-color:#e4e4f4">
 		<div class="weui_msg">
 		    <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_warn"></i></div>
 		    <div class="weui_text_area">
@@ -67,7 +67,7 @@
 		    </div>
 		    <div class="weui_opr_area">
 		        <p class="weui_btn_area">
-		            <a name="scoreLink" class="weui_btn weui_btn_plain_primary">查看其它人得分</a>   
+		            <a name="scoreLink" class="weui_btn weui_btn_plain_primary">点击查看分数排名</a>   
 		        </p>
 		    </div>
 		</div>

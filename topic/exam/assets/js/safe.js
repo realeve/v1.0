@@ -26,12 +26,12 @@ var exam = {
 	isAnswered: [],
 	timeReleased: false,
 	isStarted: false,
-	timeLength: 180 * 60 * 1000,
+	timeLength: 0, //10 * 1000,//启用时间限制 0为不限制
 	sourceList: [],
 	eachScore: 0,
 	isSubmit: false,
 	maxAnswerNum: 20, //最大抽取多少道题目
-	paperData: "safe"
+	examPaper: "safe" //试卷文件
 };
 
 //页面总数
@@ -42,7 +42,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 	var secColor = [];
 	//testMode 0:默认，1，测试模式，2，安保
 	var testMode = (window.location.href.indexOf('?m=') == -1) ? 0 : window.location.href.split('?m=')[1].split('&')[0];
-	exam.maxAnswerNum = (testMode === 0) ? 20 : 3;
+	exam.maxAnswerNum = (testMode === 0) ? exam.maxAnswerNum : 5;
 	//隐藏提示信息
 	$('[name="sucessInfo"] .weui_msg_title').hide();
 
@@ -55,10 +55,10 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		arr.map(function(arrData, id) {
 			oldOrder[arrData] = id;
 		});
-		var str = '<div class="section">';
-		str += '<h1 class="title ">第<span>' + i + '</span>题</h1>';
-		str += '<div class="weui_cells_title">' + data.title + '</div>';
-		str += '<div class="weui_cells ' + (i % 2 ? '' : 'weui_cells_dark') + ' weui_cells_checkbox" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
+		var str = '<div class="section ' + (i % 2 ? '' : 'background_dark') + '">';
+		str += '<h1 class="title answer-num ' + (i % 2 ? '' : 'white-font') + '">第<span>' + i + '</span>题</h1>';
+		str += '<div class="weui_cells_title ' + (i % 2 ? '' : 'white-font') + '">' + data.title + '</div>';
+		str += '<div class="weui_cells weui_cells_checkbox' + (i % 2 ? '' : ' weui_cells_dark') + '" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
 		data.question.map(function(qTitle, idx) {
 			ques[idx] = '';
@@ -78,7 +78,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 		//选项乱序 -END
 
-		str += strQues + '</div>\n</div>';
+		str += strQues + '</div>' + (i % 2 ? '' : '<img class="lg-component-img" src="./assets/img/bottom.png">') + '</div>';
 		return str;
 	}
 
@@ -112,7 +112,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 	});
 
-	$.getJSON("./assets/data/" + exam.paperData + ".min.json", function(question) {
+	$.getJSON("./assets/data/" + exam.examPaper + ".min.json", function(question) {
 		var quesLen = question.length;
 		//所有题目参与排序
 		exam.sourceList = getRandomArr(quesLen);
@@ -132,7 +132,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		//间隔背景
 		lastPage = quesLen + 2;
 		for (i = 0; i < lastPage; i++) {
-			secColor[i] = (i % 2) ? '#fff' : '#f3f3ff';
+			secColor[i] = (i % 2) ? '#fff' : '#445';
 		}
 
 	}).done(function() {
@@ -213,10 +213,18 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			}
 
 			//第一页简单颜色切换
-			if (index == 1 && direction == 'down') {
-				$('.iSlider-arrow').removeClass('iSlider-white');
-			} else if (nextIndex == 1 && direction == 'up') {
-				$('.iSlider-arrow').addClass('iSlider-white');
+			if(direction == 'down'){
+				if (index % 2){
+					$('.iSlider-arrow').removeClass('iSlider-white');
+				}else if (nextIndex % 2){
+					$('.iSlider-arrow').addClass('iSlider-white');
+				}
+			}else{
+				if (nextIndex % 2){
+					$('.iSlider-arrow').addClass('iSlider-white');
+				}else{
+					$('.iSlider-arrow').removeClass('iSlider-white');
+				}
 			}
 			//最后两页隐藏箭头
 			if (index >= lastPage - 1 && (direction == 'down')) {
@@ -225,11 +233,11 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 
 		$('#fullpage').fullpage({
-			sectionsColor: secColor,
+			//sectionsColor: secColor,
 			easingcss3: 'cubic-bezier(0.25, 0.5, 0.35, 1.15)', //'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
 			onLeave: function(index, nextIndex, direction) {
 				//开始计时
-				if (index == 1 && !exam.timeReleased) {
+				if (exam.timeLength && index == 1 && !exam.timeReleased) {
 					exam.isStarted = true;
 
 					//答题时间用完

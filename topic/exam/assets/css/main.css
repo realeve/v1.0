@@ -1,11 +1,3 @@
-.white-font {
-    color: #fff;
-}
-
-.blue-font {
-    color: #445;
-}
-
 .center {
     text-align: center;
 }
@@ -132,10 +124,6 @@
 	margin-top:-10px;
 }
 
-.weui_cells_dark{
-	background-color: #f3f3ff
-}
-
 .title{
     color:#334;
     font-size:3.5em;
@@ -152,6 +140,9 @@
     bottom: 0;
     margin: 0 auto;
     z-index: 1;
+    width: 100%;
+    height: 54px;
+    border-width: 0px;
     background-repeat:no-repeat;
     background-position:center center;
 }
@@ -169,4 +160,34 @@
 
 .headerSubTitle h1{
     font-size:20px;
+}
+
+.weui_cells_dark,.weui_cells_dark .weui_cells_checkbox,.weui_cells_dark .weui_cell:active,.weui_cells_dark:active{
+    background-color: transparent;
+    color:#e6e6e6;
+}
+
+.weui_cells_dark:active{
+    background-color: transparent;
+}
+
+.weui_cells_dark .weui_cell:active{
+    background-color: rgba(20,33,50,0.8);
+    color:#e6e6e6;
+}
+
+.weui_cells_dark:before,.weui_cells_dark:after {
+  border-top: 1px solid #aaa;
+  color: #aaa;
+}
+.white-font {
+    color: #fff;
+}
+
+.blue-font {
+    color: #445;
+}
+
+.background_dark{
+    background-image: url(../img/welcome.png);
 }
