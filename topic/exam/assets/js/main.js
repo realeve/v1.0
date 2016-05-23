@@ -26,7 +26,7 @@ var exam = {
 	isAnswered: [],
 	timeReleased: false,
 	isStarted: false,
-	timeLength: 60 * 60 * 1000,
+	timeLength: 120 * 60 * 1000,
 	sourceList: [],
 	eachScore: 0,
 	isSubmit: false,
@@ -56,7 +56,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			oldOrder[arrData] = id;
 		});
 		var str = '<div class="section ' + (i % 2 ? '' : 'background_dark') + '">';
-		str += '<h1 class="title answer-num ' + (i % 2 ? '' : 'white-font') + '">第<span>' + i + '</span>题</h1>';
+		str += '<h1 class="title answer-nums ' + (i % 2 ? '' : 'white-font') + '" style="font-size:2.5em">第<span>' + i + '</span>题</h1>';
 		str += '<div class="weui_cells_title ' + (i % 2 ? '' : 'white-font') + '">' + data.title + '</div>';
 		str += '<div class="weui_cells weui_cells_checkbox' + (i % 2 ? '' : ' weui_cells_dark') + '" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
@@ -119,7 +119,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 
 	}).done(function() {
-		document.getElementById('autoplay').play();
+		//document.getElementById('autoplay').play();
 		handleAnswer();
 	});
 
@@ -181,19 +181,19 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				var curScore = (answerInfo.data('value') + 1 == answerPrnt.data('answer')) ? 1 : 0;
 				exam.answerList[answerPrnt.data('id')] = curScore;
 				exam.isAnswered[answerPrnt.data('id')] = 1;
-				setTimeout(function() {
+				/*setTimeout(function() {
 					$.fn.fullpage.moveTo(answerPrnt.data('id') + 3);
-				}, 200);
+				}, 500);*/
 			}
 		});
 
 		function pageChange(index, nextIndex, direction) {
 			var idx = index - 1;
-			if (direction == 'down' && !exam.timeReleased && idx > 0 && idx < lastPage - 1 && !exam.isAnswered[idx - 1]) {
+			/*if (direction == 'down' && !exam.timeReleased && idx > 0 && idx < lastPage - 1 && !exam.isAnswered[idx - 1]) {
 				$.alert("第" + idx + "题您还没有作答！", "警告！", function() {
 					$.fn.fullpage.moveTo(idx + 1);
 				});
-			}
+			}*/
 
 			//第一页简单颜色切换
 			if(direction == 'down'){
@@ -368,7 +368,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		});
 	};
 
-	var audioInit = function() {
+	/*var audioInit = function() {
 		var audio = document.getElementById('autoplay');
 		var controller = document.getElementById('musicBtn');
 		var controllerHint = document.getElementById('musicBtnTxt');
@@ -390,5 +390,5 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			}, 1000);
 
 		}, false);
-	}();
+	};*/
 });
