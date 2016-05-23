@@ -46,8 +46,8 @@
            }*/
 
            if (typeof localStorage.eChartsTheme == 'undefined') {
-             defaultTheme = 'real';
-             localStorage.setItem("eChartsTheme", "real");
+             defaultTheme = 'ali_G2';
+             localStorage.setItem("eChartsTheme", "ali_G2");
            } else {
              defaultTheme = localStorage.eChartsTheme;
            }
@@ -123,7 +123,7 @@
            "markLine": (getUrlParam('markline') === null) ? ['0'] : getUrlParam('markline').split(','),
            "markLineValue": (getUrlParam('marklinevalue') === null) ? ['0'] : getUrlParam('marklinevalue').split(','),
            "markPoint": (getUrlParam('markpoint') === null) ? ['0'] : getUrlParam('markpoint').split(','),
-           "barMaxWidth": (getUrlParam('barwidth') === null) ? ['0'] : getUrlParam('barwidth').split(','),
+           "barMaxWidth": (getUrlParam('barwidth') === null) ? ['100'] : getUrlParam('barwidth').split(','),
            "splitArea": (getUrlParam('splitarea') === null) ? ['0'] : getUrlParam('splitarea').split(','),
            "dataZoom": (getUrlParam('zoom') === null) ? ['0'] : getUrlParam('zoom').split(','),
            //箱线图上下边缘重置为最大值最小值
@@ -154,7 +154,7 @@
              "markLine": handleParam(objList.markLine, i, "average"),
              "markLineValue": handleParam(objList.markLineValue, i, "0"),
              "markPoint": (handleParam(objList.markPoint, i, '0') === '1') ? true : false,
-             "barMaxWidth": (handleParam(objList.barMaxWidth, i, '0') === '1') ? true : false,
+             "barMaxWidth": handleParam(objList.barMaxWidth, i, 100),
              "splitArea": (handleParam(objList.splitArea, i, '0') === '1') ? true : false,
              "dataZoom": handleParam(objList.dataZoom, i, '0'),
              "minMax": (handleParam(objList.minMax, i, '0') === '1') ? true : false,
@@ -217,7 +217,7 @@
          }
          var themeSelector = $(".actions select");
          var defaultTheme, str = "";
-         var themeList = ['default', 'real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'macarons', 'helianthus', 'infographic', 'shine', 'dark', 'blue', 'green', 'red', 'gray', 'roma', 'macarons2', 'sakura'];
+         var themeList = ['default', 'ali_G2', 'ali_G2_2','real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'helianthus', 'blue', 'green', 'red', 'gray'];
          themeList.map(function(elem, index) {
            str += '<option value="' + elem + '">' + elem + '</option>';
          });

@@ -233,10 +233,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         normal: {
           label: {
             show: true,
-            position: (objRequest.reverse) ? 'insideRight' : 'insideTop',
+            position: (objRequest.reverse) ? 'insideRight' : 'insideTop', //top//'insideRight' : 'insideTop'
             formatter: '{c}'
           },
-          barBorderRadius: (objRequest.reverse) ? [0, 4, 4, 0] : [4, 4, 0, 0]
+          barBorderRadius: (objRequest.reverse) ? [0, 2, 2, 0] : [2, 2, 0, 0]
             //areaStyle: {type: 'default'},
         }
       };
@@ -285,7 +285,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             "type": objRequest.type,
             "smooth": objRequest.smooth,
             "barMaxWidth": objRequest.barMaxWidth,
-            "barMinHeight": 20,
+            "barMinHeight": 15,
             "data": haveLegend ? elem.slice(1, elem.length) : elem,
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
@@ -406,7 +406,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             "type": objRequest.type,
             "smooth": objRequest.smooth,
             "barMaxWidth": objRequest.barMaxWidth,
-            "barMinHeight": 20,
+            "barMinHeight": 15,
             "data": NewData.yAxis[NewData.legend[i]],
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
@@ -511,7 +511,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
-          "barMinHeight": 20,
+          "barMinHeight": 15,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
@@ -620,7 +620,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
-          "barMinHeight": 20,
+          "barMinHeight": 15,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
@@ -1013,7 +1013,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
         NewData['legend'] = {
           "orient": 'vertical',
-          "x": 'left',
+          "x2": '5%',
           "data": legend
         };
 
@@ -1054,7 +1054,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         //系列的名称
         NewData['legend'] = {
           "orient": 'vertical',
-          "x": 'left',
+          "x2": '5%',
           "data": getUniData(Data.data, 0)
         };
         NewData['series'] = [{
@@ -1081,7 +1081,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         NewData['legend'] = {
           "show": false,
           "orient": 'vertical',
-          "x": 'left',
+          "x2": '5%',
           "data": Data.header[0].title
         };
         var obj;
@@ -1155,7 +1155,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         //系列1、系列2的名称
         NewData['legend'] = {
           "orient": 'vertical',
-          "x": 'left',
+          "x2": '5%',
           "data": getUniData(Data.data, 0).concat(getUniData(Data.data, 1))
         };
         NewData['series'] = [{
@@ -1205,7 +1205,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         //系列的名称
         NewData['legend'] = {
           "orient": 'vertical',
-          "x": 'left',
+          "x2": '5%',
           "data": getUniData(Data.data, 0)
         };
         NewData['series'] = [{
@@ -1246,7 +1246,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         NewData['legend'] = {
           "show": false,
           "orient": 'vertical',
-          "x": 'left',
+          "x2": '5%',
           "data": Data.header[0].title
         };
         var obj;
@@ -1450,7 +1450,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
      * @param  {[obj]} arr [数组结构]
      * @return {[type]}     [description]
      */
-    function convertArr2RadarMapObj(objData) {
+    function convertArr2RadarMapObj(objData, objRequest) {
       var radarObj = {
         radarIndicator: [],
         series: [],
@@ -1676,7 +1676,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       if (0 === Data.rows || Data.cols < 3) {
         return false;
       }
-      var radarObj = convertArr2RadarMapObj(Data);
+      var radarObj = convertArr2RadarMapObj(Data, objRequest);
       var NewData = {
         title: Data.title,
         subTitle: Data.source,
@@ -2204,28 +2204,46 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
         x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
         borderWidth: 0,
         textStyle: {
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: 'normal'
         },
-        x2: 10,
-        y2: 5
+        x: 'right',
+        y2: 3
       }],
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
       connectNulls: true,
       toolbox: {
+        left: "left",
         show: objRequest.toolbox,
         feature: {
           mark: {
@@ -2258,7 +2276,19 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         textStyle: {
           color: '#333'
         },
-        trigger: 'item' //(objRequest.type == 'boxplot') ? 'item' : 'axis'
+        trigger: (objRequest.type == 'boxplot') ? 'item' : 'axis',
+        axisPointer: {
+          type: (objRequest.type == 'line') ? 'line' : 'shadow',
+          lineStyle: {
+            color: '#aaa'
+          },
+          crossStyle: {
+            color: '#aaa'
+          },
+          shadowStyle: {
+            color: 'rgba(128,200,128,0.1)'
+          }
+        }
       },
       dataZoom: [{
           type: 'inside',
@@ -2293,8 +2323,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       ],
       legend: {
         data: Data.legend,
-        x: 'center',
-        y: 70,
+        x2: '5%',
+        y: 20,
         itemGap: 20,
         textStyle: {
           fontSize: 16,
@@ -2303,22 +2333,43 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       xAxis: [{
         name: Data.xAxisTitle,
+        nameTextStyle: {
+          fontSize: 16
+        },
         axisTick: {
-          show: false
+          show: true,
+          length: 8,
+          lineStyle: { // 属性lineStyle控制线条样式
+            color: '#aaa',
+            width: 2
+          }
         }, //隐藏标记线,
+        axisLabel: {
+          textStyle: {
+            fontSize: 16,
+          }
+        },
         type: 'category',
         boundaryGap: (objRequest.type == 'line') ? false : true,
         data: Data.xAxis,
       }],
       yAxis: [{
         name: Data.yAxisTitle,
+        nameLocation: 'middle',
+        nameGap: 35,
+        nameTextStyle: {
+          fontSize: 16
+        },
         type: 'value',
         position: 'left',
         scale: true, //自动缩放最大最小值
         axisLabel: {
           show: true,
           interval: 'auto',
-          margin: 8,
+          margin: 10,
+          textStyle: {
+            fontSize: 16,
+          }
         },
         axisTick: {
           show: false
@@ -2342,9 +2393,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         textStyle: {
           fontSize: 14
         },
-        x2: 10,
-        y: 30
+        x2: '5%'
       };
+      if (Data.legend.length < 5) {
+        outData.title[2].y = 70;
+      } else {
+        outData.title[2].y2 = 110;
+      }
       if (objRequest.minMax) {
         outData.title[2].text = '上须: 最大值 \n下须: 最小值';
       }
@@ -2363,8 +2418,25 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
         x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
@@ -2373,18 +2445,20 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontSize: 14,
           fontWeight: 'normal'
         },
-        x2: 10,
-        y2: 5
+        x: 10,
+        y2: 3
       }],
+
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
       connectNulls: true,
       toolbox: {
+        left: "left",
         show: objRequest.toolbox,
         feature: {
           mark: {
@@ -2413,7 +2487,19 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         textStyle: {
           color: '#333'
         },
-        trigger: 'item'
+        trigger: 'axis',
+        axisPointer: {
+          type: (objRequest.type == 'line') ? 'line' : 'shadow',
+          lineStyle: {
+            color: '#aaa'
+          },
+          crossStyle: {
+            color: '#aaa'
+          },
+          shadowStyle: {
+            color: 'rgba(128,200,128,0.1)'
+          }
+        }
       },
       dataZoom: [{
         type: 'inside',
@@ -2439,8 +2525,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }],
       legend: {
         data: Data.legend,
-        x: 'center',
-        y: 70,
+        x2: '5%',
+        y: 20,
         itemGap: 20,
         textStyle: {
           fontSize: 16,
@@ -2450,6 +2536,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       xAxis: [{
         name: Data.xAxisTitle,
+        nameTextStyle: {
+          fontSize: 16
+        },
         axisTick: {
           show: false
         }, //隐藏标记线,
@@ -2459,6 +2548,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }],
       yAxis: [{
         name: Data.yAxisTitle,
+        nameLocation: 'middle',
+        nameGap: 35,
+        nameTextStyle: {
+          fontSize: 16
+        },
         type: 'value',
         position: 'left',
         scale: true, //自动缩放最大最小值
@@ -2481,8 +2575,25 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
         x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
@@ -2492,7 +2603,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x2: 10,
-        y2: 5
+        y2: 3
       }],
       tooltip: {
         backgroundColor: '#fff',
@@ -2506,11 +2617,12 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
       toolbox: {
+        left: "left",
         show: objRequest.toolbox,
         feature: {
           mark: {
@@ -2608,7 +2720,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "color": '#aaa'
         },
         x2: 10,
-        y2: 5
+        y2: 3
       }],
       toolbox: {
         show: true,
@@ -2701,7 +2813,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontSize: 14,
           fontWeight: 'normal'
         },
-        x2: 5,
+        x2: 10,
         y2: 2
       }],
       toolbox: {
@@ -2747,18 +2859,35 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
-        x: 'center'
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
         borderWidth: 0,
         textStyle: {
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: 'normal'
         },
-        x2: 5,
-        y2: 2
+        x: 'right',
+        y2: 3
       }],
       toolbox: {
         show: true,
@@ -2808,23 +2937,41 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
-        x: 'center'
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
         borderWidth: 0,
         textStyle: {
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: 'normal'
         },
-        x2: 5,
-        y2: 2
+        x: 'right',
+        y2: 3
       }],
+
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
@@ -2946,23 +3093,41 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
-        x: 'center'
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
         borderWidth: 0,
         textStyle: {
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: 'normal'
         },
-        x2: 5,
-        y2: 2
+        x: 'right',
+        y2: 3
       }],
+
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
@@ -3022,23 +3187,40 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
-        x: 'center'
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
         borderWidth: 0,
         textStyle: {
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: 'normal'
         },
-        x2: 5,
-        y2: 2
+        x: 'right',
+        y2: 3
       }],
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
@@ -3103,23 +3285,41 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var outData = {
       title: [{
         text: Data.title,
-        subtext: Data.subTitle + staticDateRange,
-        x: 'center'
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 3
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
       }, {
         text: '©成都印钞有限公司 技术质量部',
         borderColor: '#999',
         borderWidth: 0,
         textStyle: {
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: 'normal'
         },
-        x2: 5,
-        y2: 2
+        x: 'right',
+        y2: 3
       }],
+
       grid: {
         left: '5%',
         right: '5%',
-        top: '10%',
+        top: '8%',
         bottom: '10%',
         containLabel: true
       },
@@ -3240,7 +3440,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     if (objRequest.banknoteColor == 1 && typeof outData.legend != 'undefined') {
       outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
     }
+    //处理legend过长
+    if (typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
+      outData.grid.right = '15%';
+      outData.legend.orient = 'vertical';
+    }
 
+    
     return outData;
   };
 

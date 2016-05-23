@@ -1,7 +1,7 @@
 define(function() {
 
     var theme = {
-        backgroundColor: 'rgb(229,239,241)',
+        backgroundColor: '#fff',//'rgb(229,239,241)',
         // 默认色板
         color: [
             'rgb(60,72,92)', 'rgb(243,111,91)', 'rgb(38,185,139)', 'rgb(68,68,68)',
@@ -23,13 +23,6 @@ define(function() {
             subtextStyle: {
                 color: '#666',
                 fontSize: 16,
-            },
-            copyright: {
-                text: '©成都印钞有限公司 技术质量部',
-                textStyle: {
-                    fontSize: 14,
-                    color: '#333'
-                },
             }
         },
 
@@ -96,7 +89,7 @@ define(function() {
             axisLine: { // 坐标轴线
                 lineStyle: { // 属性lineStyle控制线条样式
                     color: '#aaa',
-                    width: 4,
+                    width: 2,
                 }
             },
             //boundaryGap : false,//此处不将产量放进图表中（设为TRUE,柱形图会溢出边界）
@@ -107,6 +100,10 @@ define(function() {
                     width: 1,
                     //type: 'solid'
                 }
+            },
+            nameTextStyle: {
+              fontSize: 16,
+              color: '#555'
             },
             axisLabel: { // 坐标轴文本标签，详见axis.axisLabel
                 textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
@@ -131,11 +128,17 @@ define(function() {
                     fontSize: 16,
                 }
             },
+            nameTextStyle: {
+              fontSize: 16,
+              color: '#555'
+            },
             splitLine: { // 分隔线
                 lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
-                    color: ['#ddd']
+                    color: ['#ddd'],
+                    width: 1,
+                    type:'dashed'
                 },
-                show: false,
+                show: true,
             },
             splitArea: {
                 show: true,

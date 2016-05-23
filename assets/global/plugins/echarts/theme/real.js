@@ -23,7 +23,8 @@ define(function() {
             '#FFFF66','#99CC66','#666699','#99CC33','#FFCC00','#FF0033',
             '#FF9966','#FF9900','#CCFF00','#666699',
             '#CC3399','#99CC33','#FF6600','#993366','#CCCC33','#666633','#66CCCC'*/
-            'rgb(0,150,255)', 'rgb(248,159,159)','rgb(0,200,100)', 'rgb(38,185,139)', '#998899', 'rgb(255,127,104)', 'rgb(148,205,97)', 'rgb(138,148,184)',
+
+            /*'rgb(0,150,255)', 'rgb(248,159,159)',*/'rgb(0,200,100)', 'rgb(38,185,139)', '#998899', 'rgb(255,127,104)', 'rgb(148,205,97)', 'rgb(138,148,184)',
             'rgb(45,164,168)', 'rgb(141,74,143)', 'rgb(67,87,114)', 'rgb(254,167,67)', 'rgb(106,117,141)', 'rgb(207,34,87)',
             'rgb(207,97,80)', 'rgb(143,167,133)', 'rgb(71,74,83)', 'rgb(138,143,146)', 'rgb(218,61,61)',
             'rgb(113,37,86)', 'rgb(228,108,96)', 'rgb(185,61,95)', 'rgb(92,151,180)',
@@ -36,17 +37,10 @@ define(function() {
             textStyle: {
                 fontWeight: 'normal',
                 color: '#4A4A4A',
-                fontSize: 22,
+                fontSize: 28,
             },
             subtextStyle: {
                 color: '#666'
-            },
-            copyright: {
-                text: '©成都印钞有限公司 技术质量部',
-                /*textStyle: {
-                	fontSize: 12,
-                	color: '#333'
-                },*/
             }
         },
 
@@ -108,7 +102,7 @@ define(function() {
             axisLine: { // 坐标轴线
                 lineStyle: { // 属性lineStyle控制线条样式
                     color: '#aaa',
-                    width: 4,
+                    width: 2,
                 }
             },
             boundaryGap: true, //此处不将产量放进图表中（设为TRUE,柱形图会溢出边界）
@@ -124,6 +118,10 @@ define(function() {
                 textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                     color: '#222',
                 }
+            },
+            nameTextStyle: {
+              fontSize: 16,
+              color: '#555'
             },
             splitArea: {
                 show: false,
@@ -149,9 +147,15 @@ define(function() {
             },
             splitLine: { // 分隔线
                 lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
-                    color: ['#ddd']
+                    color: ['#ddd'],
+                    width: 1,
+                    type:'dashed'
                 },
-                show: false,
+                show: true,
+            },
+            nameTextStyle: {
+              fontSize: 16,
+              color: '#555'
             },
             splitArea: {
                 show: true,

@@ -1,7 +1,7 @@
 define(function() {
 
     var theme = {
-        backgroundColor: 'rgb(229,239,241)',
+        backgroundColor: '#fff',//'rgb(229,239,241)',
         // 默认色板
         color: [
             '#01b8aa', '#374649', '#fd625e', '#f2c80f', '#5f6b6d', '#8ad4eb',
@@ -108,6 +108,10 @@ define(function() {
                     //type: 'solid'
                 }
             },
+            nameTextStyle: {
+              fontSize: 16,
+              color: '#555'
+            },
             axisLabel: { // 坐标轴文本标签，详见axis.axisLabel
                 textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                     color: '#222',
@@ -131,11 +135,17 @@ define(function() {
                     fontSize: 16,
                 }
             },
+            nameTextStyle: {
+              fontSize: 16,
+              color: '#555'
+            },
             splitLine: { // 分隔线
                 lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
-                    color: ['#ddd']
+                    color: ['#ddd'],
+                    width: 1,
+                    type:'dashed'
                 },
-                show: false,
+                show: true,
             },
             splitArea: {
                 show: true,

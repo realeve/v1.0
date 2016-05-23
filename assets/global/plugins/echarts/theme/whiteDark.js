@@ -46,7 +46,7 @@ define(function() {
         primary: "#556fb5",
         primaryLight: "#889acb",
         background: '#556',
-        dark: '#556'
+        dark: '#262D3A'
     };
     var colorPalette = [colors.white7, colors.white6, colors.white5, colors.white4];
     //var colorPalette = ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'];
