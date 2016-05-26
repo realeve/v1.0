@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/data.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="active">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="数据源格式">数据源格式</h2><h3 id="json-数组">JSON 数组</h3><p>G2 接收的数据格式非常简单，标准的 JSON 数组，每个数组元素是一个 JSON 对象：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {gender:<span class="string">'男'</span>,count:<span class="number">40</span>},
+  {gender:<span class="string">'女'</span>,count:<span class="number">30</span>}
+];</code></pre></div><h3 id="frame-对象">Frame 对象</h3><p>G2 在图表的内部会将数据转换成一个 Frame 对象，当然也可以由用户直接创建 Frame 对象。chart.source() 方法支持传入 JSON 数组或者 Frame 对象。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> Frame = G2.Frame; <span class="comment">// 引入 Frame</span>
+
+<span class="keyword">var</span> data = [
+  {gender:<span class="string">'男'</span>,count:<span class="number">40</span>},
+  {gender:<span class="string">'女'</span>,count:<span class="number">30</span>}
+]; <span class="comment">// 数据源</span>
+
+<span class="comment">// 转换成 Frame</span>
+<span class="keyword">var</span> frame = <span class="keyword">new</span> Frame(data); <span class="comment">// 图表内部做的转换</span>
+Frame.sort(frame,<span class="string">'count'</span>); <span class="comment">// 按照count 排序</span>
+chart.source(frame); <span class="comment">// 载入数据源</span></code></pre></div><h2 id="frame-详解">Frame 详解</h2><p>G2 的图表设置数据源后，会把数据转换成 <code>Frame</code>，一个数据集合包括以下部分：</p>
+<ol>
+<li>names: 数据集合的所有列名称；</li>
+<li>arr: 一个二维数组，每个子数组对应数据集合中每一列的数据集；</li>
+<li>data: 存储原始的 JSON 数组。</li>
+</ol>
+<p>Frame (数据集合)对象的操作基本上都是列操作，常见的方法如下：</p>
+<ul>
+<li>colNames() <code>Array</code> 返回 names</li>
+<li>colCount()  <code>Number</code>  返回数据集合列的个数</li>
+<li>colIndex(name) <code>Number</code> 根据列名称获取对应的索引</li>
+<li>colArray(name) <code>Array</code> 根据列名称、索引获取列对应的数组</li>
+<li>colReplace(name,arr) <code>chainable</code><ul>
+<li>替换数据集合中的列数组</li>
+<li>name 可以是列名称也可以是索引</li>
+<li>返回数据集合本身，数据集合发生改变</li>
+</ul>
+</li>
+<li>rowCount() <code>Number</code> 数据集合行的个数</li>
+<li>rowObject(index) <code>Object</code>  根据索引获取行对象</li>
+<li>cell(rowIndex, colName) 返回指定行索引和列名称（列索引)的数值</li>
+<li>toArray() <code>Array</code>  将数据集合生成列数组</li>
+<li>toJSON() <code>Array</code> 将数据集合生成JSON 数组</li>
+<li>s() <code>String</code>  将整个数据集合生成字符串，一般用于调试输出现有集合</li>
+<li>addCol(name,arr|fn)<ul>
+<li>添加列</li>
+<li>name: 列名称</li>
+<li>arr：列对应的数组</li>
+<li>fn：回调函数，函数原型 function(obj){}</li>
+</ul>
+</li>
+<li>col(name) <code>Frame</code> 根据列名称或者索引生成新的数据集合</li>
+<li>cols(names) <code>Frame</code>  根据多个列名称或者索引生成新的数据集合</li>
+<li>row(rowInde) <code>Frame</code> 根据行索引生成新的数据集合</li>
+<li>rows(rowIndexs) <code>Frame</code> 根据多个行索引生成新的数据集合</li>
+<li>sub(startCol,endCol,startRow,endRow) <code>Frame</code> 根据行和列获取一个子集合</li>
+</ul>
+<h3 id="frame-静态方法">Frame 静态方法</h3><p>Frame 类同时还提供了大量静态方法，用于统计Frame的数据、合并、排序等功能。</p>
+<ul>
+<li>mean(frame,x) <code>Number</code> 计算列x的平局值</li>
+<li>geometric_mean(frame,x) <code>Number</code> 计算列x的列的几何均值</li>
+<li>sum(frame,x) <code>Number</code> 计算列x的和</li>
+<li>max(frame,x) <code>Number</code> 计算列x的最大值</li>
+<li>min(frame,x) <code>Number</code> 计算列x的最小值</li>
+<li>sum(frame,x) <code>Number</code> 计算列x的最大值</li>
+<li>range(frame,x) <code>Array</code> 计算列x的最小值和最大值</li>
+<li>model(frame,x) <code>Number</code> 计算列x的众数，最多的数</li>
+<li>median(frame,x) <code>Number</code> 计算列x的中位数</li>
+<li>variance(frame,x) <code>Number</code> 计算列x的方差</li>
+<li>standard_deviation(frame,x) <code>Number</code> 计算列x的标准方差</li>
+<li>sort(frame,x) <code>Frame</code> 返回按照列排序后的数据集合</li>
+<li>sortBy(frame,fn) <code>Frame</code><ul>
+<li>fn是排序的函数，函数原型是 function(obj1,obj2)</li>
+<li>返回按照列排序后的数据集合</li>
+</ul>
+</li>
+<li>filter(frame,fn)  <code>Frame</code><ul>
+<li>过滤数据集合</li>
+<li>fn 的函数原型 function(obj,index) 返回 true 或者 false</li>
+</ul>
+</li>
+<li>group(frame,condition) <code>Array</code><ul>
+<li>按照条件进行分组，返回 [frame1,frame2...framen]</li>
+<li>condition条件可以是列名的数组也可以是一个函数返回一个唯一的键值</li>
+</ul>
+</li>
+<li>groupToMap(frame,condition) <code>Array</code><ul>
+<li>按照条件进行分组，形成map，键值对,返回 {key1: frame1,key2: frame2,key3: frame3....keyn:framen}</li>
+<li>condition条件可以是列名的数组也可以是一个函数返回一个唯一的键值</li>
+</ul>
+</li>
+<li>complement(frame,cols) <code>Frame</code> 取指定列的补集组成的数据集合，例如 names: [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;]， Frame.complement(frame,[&#39;a&#39;,&#39;c&#39;]),生成的names : [&#39;b&#39;,&#39;d&#39;]的数据集合</li>
+<li>merge(frame1,frame2...framen) <code>Frame</code> 合并传入的集合成为一个集合，列不发生变化，假设传入的集合的列一致，仅是增加行</li>
+<li>combin(frame1,frame2...framen) <code>Frame</code> 合并传入的集合成为一个集合，列进行组合，行的数目不变，仅仅是列变化</li>
+<li>combinColumns(frame,cols,name,typeName,retains) <code>Frame</code><ul>
+<li>将多列合并成一列，然后基于多列的数据进行统计</li>
+<li>cols是要合并的列</li>
+<li>name 合并的新列的名称</li>
+<li>typeName 存储原先字段的名字作为分类</li>
+<li>除了合并的列之外保留的列</li>
+</ul>
+</li>
+<li>combinArray(newName,arr0,arr1...arrn) <code>Frame</code><ul>
+<li>将多个数组合并成一个数据集合，并形成新的列，新的列的值为数组的索引</li>
+<li>newName 生成新的列的字段名，默认为 &#39;type&#39;</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> arr1 = [{a: <span class="string">'a1'</span>, <span class="string">'b'</span>: <span class="string">'b1'</span>}];
+<span class="keyword">var</span> arr2 = [{a: <span class="string">'a2'</span>, <span class="string">'b'</span>: <span class="string">'b2'</span>}];
+
+Frame.combinArray(arr1, arr2); <span class="comment">// 新的数据 ： [{a: 'a1','b': 'b1',type: 0},{a: 'a2','b': 'b2',type:1}]</span>
+Frame.combinArray(<span class="string">'myType'</span>, arr1, arr2); <span class="comment">// 新的数据 ： [{a: 'a1','b': 'b1',myType: 0},{a: 'a2','b': 'b2',myType: 1}];</span></code></pre></div><h2 id="示例">示例</h2><p>下面的例子展示了如何使用 <code>Frame.combinColumns(frame,cols,name,typeName,retains)</code> 合并多列的功能。</p>
+<table>
+<thead>
+<tr>
+<th>genre</th>
+<th>sold</th>
+<th>satisfied</th>
+<th>dissatisfied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sports</td>
+<td>27,500</td>
+<td>25000</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>Strategy</td>
+<td>11,500</td>
+<td>10000</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>6,000</td>
+<td>5500</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Shooter</td>
+<td>3,500</td>
+<td>3000</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>1,500</td>
+<td>1000</td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
+<p> 我们想看一下不同类型游戏的满意、不满意的对比情况，所以我们需要将 satisfied , dissatisfied 合并成一列，进行数据展示：</p>
+<p><div id="c1"></div></p>
+<script>
+  var data = [
+    {genre: 'Sports', sold: 27500, satisfied: 25000, dissatisfied: 2000},
+    {genre: 'Strategy', sold: 11500, satisfied: 10000, dissatisfied: 1500},
+    {genre: 'Action', sold: 6000, satisfied: 5500, dissatisfied: 500},
+    {genre: 'Shooter', sold: 3500, satisfied: 3000, dissatisfied: 500},
+    {genre: 'Other', sold: 1500, satisfied: 1000, dissatisfied: 500},
+  ];
+  var Frame = G2.Frame;
+  var Stat = G2.Stat;
+  var frame = new Frame(data);
+  frame = Frame.combinColumns(frame, ['satisfied', 'dissatisfied'], 'count', 'type', 'genre'); // 将'satisfied','dissatisfied'合并成'count'列各自的类型 type = 'satisfied' 或者 type = 'dissatisfied'
+
+  var chart = new G2.Chart({
+    id : 'c1',
+    width : 800,
+    height : 300,
+    plotCfg: {
+      margin: [50, 100] 
+    }
+  });
+
+  chart.source(frame); // 载入数据源
+  chart.coord('theta'); // 设置坐标系
+  chart.facet(['genre']); // 设置分面的切割维度
+  chart.intervalStack().position(Stat.summary.percent('count')).color('type'); // 声明图形语法
+  chart.render();
+</script>
+
+
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+    <span class="comment">&lt;!-- 引入 G2 文件 --&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      <span class="keyword">var</span> data = [
+        {genre: <span class="string">'Sports'</span>, sold: <span class="number">27500</span>, satisfied: <span class="number">25000</span>, dissatisfied: <span class="number">2000</span>},
+        {genre: <span class="string">'Strategy'</span>, sold: <span class="number">11500</span>, satisfied: <span class="number">10000</span>, dissatisfied: <span class="number">1500</span>},
+        {genre: <span class="string">'Action'</span>, sold: <span class="number">6000</span>, satisfied: <span class="number">5500</span>, dissatisfied: <span class="number">500</span>},
+        {genre: <span class="string">'Shooter'</span>, sold: <span class="number">3500</span>, satisfied: <span class="number">3000</span>, dissatisfied: <span class="number">500</span>},
+        {genre: <span class="string">'Other'</span>, sold: <span class="number">1500</span>, satisfied: <span class="number">1000</span>, dissatisfied: <span class="number">500</span>},
+      ];
+      <span class="keyword">var</span> Frame = G2.Frame;
+      <span class="keyword">var</span> Stat = G2.Stat;
+      <span class="keyword">var</span> frame = <span class="keyword">new</span> Frame(data);
+      frame = Frame.combinColumns(frame, [<span class="string">'satisfied'</span>, <span class="string">'dissatisfied'</span>], <span class="string">'count'</span>, <span class="string">'type'</span>, <span class="string">'genre'</span>); <span class="comment">// 将'satisfied','dissatisfied'合并成'count'列各自的类型 type = 'satisfied' 或者 type = 'dissatisfied'</span>
+
+      <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+        id : <span class="string">'c1'</span>,
+        width : <span class="number">800</span>,
+        height : <span class="number">300</span>,
+        plotCfg: {
+          margin: [<span class="number">50</span>, <span class="number">80</span>, <span class="number">50</span>, <span class="number">60</span>] 
+        }
+      });
+
+      chart.source(frame); <span class="comment">// 载入数据源</span>
+      chart.coord(<span class="string">'theta'</span>); <span class="comment">// 设置坐标系</span>
+      chart.facet([<span class="string">'genre'</span>]); <span class="comment">// 设置分面的切割维度</span>
+      chart.intervalStack().position(Stat.summary.percent(<span class="string">'count'</span>)).color(<span class="string">'type'</span>); <span class="comment">// 声明图形语法</span>
+
+      chart.render();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><h2 id="更多">更多</h2><p>Frame 类的方法和工具方法了解即可，如果数据格式不能满足你的需要，你只需要知道我们提供了大量加工数据的方法，知道在这里可以查询到你所要的工具即可，在下一章节<a href="scale.html">度量</a>中，你将对数据有更多的了解。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/data.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:36 GMT -->
+</html>

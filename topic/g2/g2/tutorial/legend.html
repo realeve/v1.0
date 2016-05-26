@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/legend.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="active">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="图例简介">图例简介</h2><p>图例（legend）是图表的辅助元素，使用颜色、大小、形状区分不同的数据类型，用于图表中数据的筛选。G2 会根据图形属性和数据的类型自动生成不同的图例。</p>
+<h2 id="图例和图形属性">图例和图形属性</h2><p>我们在前面的章节中学习过<a href="attr.html">图形属性</a>，图形使用的属性会影响图例的生成：</p>
+<ul>
+<li>shape, color, size 这三个图形属性如果判断接收的参数是<a href="data.html">数据源</a>的字段时，会自动生成不同的图例；</li>
+<li>shape 属性，会根据不同的 shape 类型生成图例；</li>
+<li>color 属性, 会赋予不同的图例项不同的颜色来区分图形；</li>
+<li>size 属性, 在图例上显示图形的大小（仅限于 point类型）。</li>
+</ul>
+<h2 id="图例语法">图例语法</h2><div class="highlight"><pre><code class="javascript">chart.legend({ 
+  position: <span class="string">'bottom'</span>,<span class="comment">// 位置</span>
+  spacingX: <span class="number">20</span> <span class="comment">// 图例之间水平的间距</span>
+});
+
+chart.legend(<span class="string">'cut'</span>, <span class="literal">false</span>);<span class="comment">// 不显示cut字段对应的图例</span>
+
+chart.legend(<span class="string">'price'</span>, {
+  title: <span class="literal">null</span> <span class="comment">// 不展示图例 title</span>
+});
+
+chart.legend(<span class="literal">false</span>); <span class="comment">//所有的图例都不显示</span></code></pre></div><h2 id="图例配置项">图例配置项</h2><p><code>chart.legend(cfg)</code> 或者 <code>chart.legend(dim, cfg)</code>。当第一个参数不传入 dim（图例对应的字段名）时，默认对所有图例生效。具体参数配置请参考 <a href="../api/index-2.html">legend API</a>。 </p>
+<table>
+<thead>
+<tr>
+<th>cfg 配置属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position</td>
+<td>图例的显示位置，有 &#39;top&#39;,&#39;left&#39;,&#39;right&#39;,&#39;bottom&#39;四种位置，默认是&#39;right&#39;。</td>
+</tr>
+<tr>
+<td>leaveChecked</td>
+<td>是否保留一项不能取消勾选，默认为 false，即不能取消勾选。</td>
+</tr>
+<tr>
+<td>back</td>
+<td>图例外边框和背景的配置信息，是一个矩形。</td>
+</tr>
+<tr>
+<td>spacingX</td>
+<td>子项之间的间距，水平方向。</td>
+</tr>
+<tr>
+<td>spacingY</td>
+<td>子项之间的间距，垂直方向。</td>
+</tr>
+<tr>
+<td>title</td>
+<td>是否展示图例的标题，null 为不展示，默认 top bottom 两个位置的图例不展示。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="chart-filter-和图例">chart.filter() 和图例</h2><p><code>chart.filter(&#39;dim&#39;, arr)</code> </p>
+<p>可以过滤指定字段的数据，其中 arr 是一个数组，代表该 dim 字段你要保留的数据值。如果存在对应字段的图例，那么被过滤掉的类型会被取消选中，如下图表所示：</p>
+<div id="c1" class="chart-container"></div>
+
+<script>(function(){"use strict";
+
+var data = [{ "month": 0, "tem": 7, "city": "tokyo" }, { "month": 1, "tem": 6.9, "city": "tokyo" }, { "month": 2, "tem": 9.5, "city": "tokyo" }, { "month": 3, "tem": 14.5, "city": "tokyo" }, { "month": 4, "tem": 18.2, "city": "tokyo" }, { "month": 5, "tem": 21.5, "city": "tokyo" }, { "month": 6, "tem": 25.2, "city": "tokyo" }, { "month": 7, "tem": 26.5, "city": "tokyo" }, { "month": 8, "tem": 23.3, "city": "tokyo" }, { "month": 9, "tem": 18.3, "city": "tokyo" }, { "month": 10, "tem": 13.9, "city": "tokyo" }, { "month": 11, "tem": 9.6, "city": "tokyo" }, { "month": 0, "tem": -0.2, "city": "newYork" }, { "month": 1, "tem": 0.8, "city": "newYork" }, { "month": 2, "tem": 5.7, "city": "newYork" }, { "month": 3, "tem": 11.3, "city": "newYork" }, { "month": 4, "tem": 17, "city": "newYork" }, { "month": 5, "tem": 22, "city": "newYork" }, { "month": 6, "tem": 24.8, "city": "newYork" }, { "month": 7, "tem": 24.1, "city": "newYork" }, { "month": 8, "tem": 20.1, "city": "newYork" }, { "month": 9, "tem": 14.1, "city": "newYork" }, { "month": 10, "tem": 8.6, "city": "newYork" }, { "month": 11, "tem": 2.5, "city": "newYork" }, { "month": 0, "tem": -0.9, "city": "berlin" }, { "month": 1, "tem": 0.6, "city": "berlin" }, { "month": 2, "tem": 3.5, "city": "berlin" }, { "month": 3, "tem": 8.4, "city": "berlin" }, { "month": 4, "tem": 13.5, "city": "berlin" }, { "month": 5, "tem": 17, "city": "berlin" }, { "month": 6, "tem": 18.6, "city": "berlin" }, { "month": 7, "tem": 17.9, "city": "berlin" }, { "month": 8, "tem": 14.3, "city": "berlin" }, { "month": 9, "tem": 9, "city": "berlin" }, { "month": 10, "tem": 3.9, "city": "berlin" }, { "month": 11, "tem": 1, "city": "berlin" }];
+
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 800,
+  height: 350
+});
+
+var defs = { 'month': {
+    type: 'cat',
+    values: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+  } };
+
+chart.source(data, defs);
+
+chart.filter('city', ['berlin']); // 只展示 berlin 的数据
+chart.line().position('month*tem').color('city');
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:<span class="number">7</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">6.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">9.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">14.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">18.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">21.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">25.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">26.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">23.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">18.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">13.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">9.6</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:-<span class="number">0.2</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">0.8</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">5.7</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">11.3</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">17</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">22</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">24.8</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">24.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">20.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">14.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">8.6</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">2.5</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:-<span class="number">0.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">0.6</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">3.5</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">8.4</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">13.5</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">17</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">18.6</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">17.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">14.3</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">3.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">1</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>}
+];
+
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c1'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">350</span>
+});
+
+<span class="keyword">var</span> defs = {<span class="string">'month'</span>:{
+  type: <span class="string">'cat'</span>,
+  values: [
+    <span class="string">'一月'</span>,<span class="string">'二月'</span>,<span class="string">'三月'</span>,<span class="string">'四月'</span>,<span class="string">'五月'</span>,<span class="string">'六月'</span>,
+    <span class="string">'七月'</span>,<span class="string">'八月'</span>,<span class="string">'九月'</span>,<span class="string">'十月'</span>,<span class="string">'十一月'</span>,<span class="string">'十二月'</span>]
+}};
+
+chart.source(data,defs);
+
+chart.filter(<span class="string">'city'</span>, [<span class="string">'berlin'</span>]); <span class="comment">// 只展示 berlin 的数据</span>
+chart.line().position(<span class="string">'month*tem'</span>).color(<span class="string">'city'</span>);
+chart.render();</code></pre></div><h2 id="更多">更多</h2><p>本章介绍了图例，接下来你可以进入 <a href="tooltip.html">tooltip 的章节</a>，继续学习。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/legend.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+</html>

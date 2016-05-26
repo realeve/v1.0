@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/coord.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="active">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="坐标系简介">坐标系简介</h2><p>G2 中坐标系的功能是将经过度量后的数据（转换为 [0 - 1] 的范围的数据）转换到绘图控件（画布）上，从数据转换成画布上的图形主要经过以下 2  个步骤：</p>
+<ol>
+<li>数据通过度量（scale) 转换到 [0 - 1] 的区间；</li>
+<li>[0 - 1] 区间内的度量值，通过坐标系 Coord 转换成画布上的坐标。</li>
+</ol>
+<p>所以 G2 的坐标系只需要提供一下两者功能：</p>
+<ol>
+<li>将 [ 0 - 1 ] 度量区上的数据转换成画布上的坐标；</li>
+<li>把画布上的坐标还原到 [0 - 1] 区间内的数据。</li>
+</ol>
+<h2 id="坐标系的绘图范围">坐标系的绘图范围</h2><p>G2 的坐标跟画布本身的坐标的原点不一致，可以借助下面这张图来理解：</p>
+<p><img src="../../gtms04.alicdn.com/tps/i4/TB123MPIpXXXXaYXFXXGYnnMVXX-818-746.png" width="500"></p>
+<ul>
+<li>G2 的坐标的起始点在左下角，画布的起始点在左上角；</li>
+<li>G2 的坐标系仅负责将 [0 - 1] 之间的数值映射到画布上；</li>
+</ul>
+<h2 id="坐标系的分类">坐标系的分类</h2><p>在 G2 中通过 <code>chart.coord([type])</code> 来设置坐标系，默认为直角坐标系。下表展示了 G2 支持的所有坐标系：</p>
+<table>
+<thead>
+<tr>
+<th>坐标系类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>rect</code></td>
+<td>直角坐标系，由x, y两个垂直的维度构成</td>
+</tr>
+<tr>
+<td> <code>polar</code></td>
+<td>极坐标系，由角度和半径2个维度构成</td>
+</tr>
+<tr>
+<td> <code>plus</code></td>
+<td>一种特殊的极坐标系，原点不从圆心开始</td>
+</tr>
+<tr>
+<td> <code>theta</code></td>
+<td>一种半径固定的极坐标系，常用于饼图</td>
+</tr>
+<tr>
+<td> <code>map</code></td>
+<td>地理坐标系，支持不同类型的地理投影</td>
+</tr>
+</tbody>
+</table>
+<h2 id="坐标系的操作">坐标系的操作</h2><p>所有的坐标系都支持以下操作，下述操作均支持链式调用。</p>
+<div class="highlight"><pre><code class="javascript">chart.coord(<span class="string">'rect'</span>).rotate(<span class="number">70</span>).scale(<span class="number">1.5</span>, <span class="number">1.5</span>).reflect(<span class="string">'xy'</span>).transpose()</code></pre></div><ul>
+<li><code>rotate([angle])</code>: 坐标系旋转；</li>
+<li><code>scale(sx, sy)</code>: 坐标系缩放；</li>
+<li><code>reflect()</code>: 坐标系转置，将 x 或者 y 的起始、结束值倒置；</li>
+<li><code>transpose()</code>: 将坐标系 x 轴和 y 轴转置。</li>
+</ul>
+<p>下列分别展示了对坐标系做了 rotate(60)、scale、reflect、transpose 以及组合操作（scale rotate）的图表：</p>
+<div class="chart-container" id="rotate" style="display: inline-block;"></div>
+<div class="chart-container" id="scale" style="display: inline-block;"></div>
+<div class="chart-container" id="reflect" style="display: inline-block;"></div>
+<div class="chart-container" id="transpose" style="display: inline-block;"></div>
+<div class="chart-container" id="mix" style="display: inline-block;"></div>
+
+<script>
+var data = [
+  {action:'访问',visitor:500},
+  {action:'浏览',visitor:400},
+  {action:'交互',visitor:300},
+  {action:'下单',visitor:200},
+  {action:'付款',visitor:100}
+];
+var chart = new G2.Chart({
+  id: 'rotate',
+  width: 155,
+  height: 120,
+  plotCfg: {
+    margin: 0
+  }
+});
+chart.source(data);
+chart.coord().rotate(60);
+chart.axis('action', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.axis('visitor', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.legend(false);
+chart.intervalSymmetric().position('action*visitor').color('action');
+chart.render();
+
+var chart = new G2.Chart({
+  id: 'scale',
+  width: 155,
+  height: 120,
+  plotCfg: {
+    margin: 0
+  }
+});
+chart.source(data);
+chart.coord().scale(0.4, 0.5);
+chart.legend(false);
+chart.axis('action', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.axis('visitor', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.intervalSymmetric().position('action*visitor').color('action');
+chart.render();
+
+var chart = new G2.Chart({
+  id: 'reflect',
+  width: 155,
+  height: 120,
+  plotCfg: {
+    margin: 0
+  }
+});
+chart.source(data);
+chart.coord().reflect('xy');
+chart.legend(false);
+chart.axis('action', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.axis('visitor', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.intervalSymmetric().position('action*visitor').color('action');
+chart.render();
+
+var chart = new G2.Chart({
+  id: 'transpose',
+  width: 155,
+  height: 120,
+  plotCfg: {
+    margin: 0
+  }
+});
+chart.source(data);
+chart.coord().transpose();
+chart.legend(false);
+chart.axis('action', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.axis('visitor', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.intervalSymmetric().position('action*visitor').color('action');
+chart.render();
+
+var chart = new G2.Chart({
+  id: 'mix',
+  width: 155,
+  height: 120,
+  plotCfg: {
+    margin: 0
+  }
+});
+chart.source(data);
+chart.coord('rect').scale(0.5,-1.5).rotate(90);
+chart.legend(false);
+chart.axis('action', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.axis('visitor', {
+  tickLine: null,
+  labels: null,
+  title: null
+});
+chart.intervalSymmetric().position('action*visitor').color('action');
+chart.render();
+
+</script>
+
+<h2 id="坐标系的配置信息">坐标系的配置信息</h2><h3 id="chart-coord-39-rect-39">chart.coord(&#39;rect&#39;)</h3><p>默认的坐标系类型，没有特别的配置，如果未声明 type，如 <code>chart.coord()</code> 默认也是 rect 直角坐标系。 </p>
+<h3 id="chart-coord-39-plus-39-cfg">chart.coord(&#39;plus&#39;, cfg)</h3><div class="highlight"><pre><code class="javascript">chart.coord(<span class="string">'plus'</span>, {
+  radius: <span class="number">0.5</span>,
+  inner: <span class="number">0.6</span>
+});</code></pre></div><table>
+<thead>
+<tr>
+<th>cfg 可配置属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>radius</td>
+<td>极坐标的半径，[0 - 1]的小数</td>
+</tr>
+<tr>
+<td>inner</td>
+<td>内部坐标系起始点的半径，[0 - 1]的小数，默认是0.5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chart-coord-39-polar-39-cfg">chart.coord(&#39;polar&#39;, cfg)</h3><div class="highlight"><pre><code class="javascript">chart.coord(<span class="string">'polar'</span>, {
+  radius: <span class="number">0.5</span>,
+  inner: <span class="number">0.6</span>
+});</code></pre></div><table>
+<thead>
+<tr>
+<th>cfg 可配置属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>radius</td>
+<td>极坐标的半径，[0 - 1]的小数</td>
+</tr>
+<tr>
+<td>inner</td>
+<td>内部坐标系起始点的半径，[0 - 1]的小数,默认是 0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chart-coord-39-theta-39-cfg">chart.coord(&#39;theta&#39;, cfg)</h3><div class="highlight"><pre><code class="javascript">chart.coord(<span class="string">'theta'</span>, {
+  radius: <span class="number">0.5</span>,
+  inner: <span class="number">0.6</span>
+});</code></pre></div><table>
+<thead>
+<tr>
+<th>cfg 可配置属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>radius</td>
+<td>极坐标的半径，[0 - 1]的小数</td>
+</tr>
+<tr>
+<td>inner</td>
+<td>内部坐标系起始点的半径，[0 - 1]的小数,可以构建空心的饼图</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chart-coord-39-map-39-cfg">chart.coord(&#39;map&#39;, cfg)</h3><div class="highlight"><pre><code class="javascript">chart.coord(<span class="string">'map'</span>, {
+  projection: <span class="string">'albers'</span>, <span class="comment">// 指定投影方法</span>
+  basic: [<span class="number">110</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">47</span>], <span class="comment">// 指定投影方法的基本参数</span>
+  max: [<span class="number">16.573</span>, -<span class="number">13.613</span>], <span class="comment">// 指定投影后最大的坐标点</span>
+  min: [-<span class="number">27.187</span>, -<span class="number">49.739</span>] <span class="comment">// 指定投影后最小的坐标点</span>
+});</code></pre></div><p><strong>注意：</strong> 不同的投影支持的配置参数不同，下面列出了目前 G2 支持的所有投影类别，并提供了绘制特定地图的示例，你只需要复制示例中的坐标系参数就可以绘制出在该投影坐标系下的地图。</p>
+<ul>
+<li><a href="http://mathworld.wolfram.com/AlbersEqual-AreaConicProjection.html">albers</a> 投影</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cfg 可配置属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>projection</td>
+<td>指定投影的类型</td>
+</tr>
+<tr>
+<td>basic</td>
+<td>指定投影方法的基本参数，[λ0, φ0, φ1, φ2] 分别表示中央经度、坐标起始纬度、第一标准纬度、第二标准纬度</td>
+</tr>
+<tr>
+<td>max</td>
+<td>指定投影后最大的坐标点</td>
+</tr>
+<tr>
+<td>min</td>
+<td>指定投影后最小的坐标点</td>
+</tr>
+</tbody>
+</table>
+<p>【示例】albers 投影后的<a href="../demo/10-map/china-albers.html">中国地图</a>和<a href="../demo/10-map/world-albers.html">世界地图</a>。</p>
+<ul>
+<li><a href="http://mathworld.wolfram.com/MercatorProjection.html">mercator</a> 投影</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cfg 可配置属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>projection</td>
+<td>指定投影的类型</td>
+</tr>
+<tr>
+<td>max</td>
+<td>指定投影后最大的坐标点</td>
+</tr>
+<tr>
+<td>min</td>
+<td>指定投影后最小的坐标点</td>
+</tr>
+</tbody>
+</table>
+<p>【示例】mercator 投影后的<a href="../demo/10-map/world-mercator.html">世界地图</a>。</p>
+<h2 id="更多">更多</h2><p>通过更改图表的坐标系，可以得到很多很有意思的图表，在下一章节里我们将要开始图表的辅助元素的学习：<a href="axis.html">坐标轴</a>、<a href="legend.html">图例</a>和<a href="tooltip.html">tooltip</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/coord.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+</html>

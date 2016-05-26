@@ -1,0 +1,83 @@
+.range-ticks{
+  position:absolute;
+  line-height:26px;
+  width:100%;
+  height:100%;
+}
+.range-ticks:hover{
+  cursor: pointer;
+}
+.range-ticks .range-tick{
+  position:absolute;
+  color:#999;
+  font-size:11px;
+  top:0;
+}
+.range-selector{
+  width:100%;
+  height:100%;
+  z-index: 3;
+  position: absolute;
+}
+.range-selector .range-block {
+  opacity: 0.5;
+  top: 0;
+  height: 100%;
+  position: absolute;
+}
+.range-selector .range-block-middle {
+  background: #f4f4f4;
+}
+.range-selector .range-block-side {
+  background: #dfdfdf;
+}
+.range-selector .range-trigger {
+  margin-left: -18px;
+  position: absolute;
+  z-index: 5;
+  background: url(../../t.alipayobjects.com/images/rmsweb/T1YohhXd4bXXXXXXXX.png) no-repeat;
+  background-size: 36px 36px;
+  top: -5px;
+  width: 36px; 
+  height: 36px;
+}
+.range-selector .range-trigger:hover {
+  cursor: pointer;
+}
+.ac-tooltip{
+  z-index: 100;
+  padding: 12px;
+  position:absolute;
+  visibility:hidden;
+  border-radius: 6px;
+  background:rgba(102,102,102,0.90);
+  transition: top 200ms,left 200ms;
+  -moz-transition:  top 200ms,left 200ms;  /* Firefox 4 */
+  -webkit-transition:  top 200ms,left 200ms; /* Safari ºÍ Chrome */
+  -o-transition:  top 200ms,left 200ms;
+}
+
+.ac-tooltip .ac-title{
+  display: none;
+}
+
+.ac-tooltip .ac-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-tooltip li{
+  line-height:  22px;
+}
+
+
+.ac-tooltip li {
+  color: #fff;
+  font-size: 14px;
+
+}
+.ac-tooltip li span{
+  opacity: .8;
+  font-size: 12px;
+  color: #fff !important;
+}

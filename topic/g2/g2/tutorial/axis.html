@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/axis.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="active">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="坐标轴简介">坐标轴简介</h2><p>坐标轴用于表示图形的位置信息，G2 中通过指定 <code>position</code> 属性来定位数据的位置，所以坐标轴也根据 <code>position</code> 属性确定:</p>
+<ul>
+<li>position 属性中指定的字段的数量影响生成坐标轴的个数</li>
+<li>position 属性中指定的字段类型，影响坐标轴的类型，连续坐标轴或者分类坐标轴</li>
+<li>在不同坐标系下会自动确认不同类型的坐标轴</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.point().position(<span class="string">'cut*price'</span>)</code></pre></div><ul>
+<li>cut 是分类类型的字段，所以会生成一个分类的 X 坐标轴</li>
+<li>price 是连续字段会生成一个连续 Y 坐标轴</li>
+</ul>
+<h2 id="坐标轴语法">坐标轴语法</h2><div class="highlight"><pre><code class="javascript">chart.axis(<span class="string">'dim'</span>, cfg); <span class="comment">// 配置坐标轴的配置项</span>
+chart.axis(<span class="string">'dim'</span>, <span class="literal">false</span>); <span class="comment">// 不显示对应的坐标轴</span>
+chart.axis(<span class="literal">false</span>); <span class="comment">// 全部不显示坐标轴</span></code></pre></div><ul>
+<li>G2可以配置数据字段对应的坐标轴的配置项，也可以不显示对应的坐标轴</li>
+</ul>
+<h2 id="坐标系和坐标轴">坐标系和坐标轴</h2><p>不同的坐标系会生成不同的坐标轴： </p>
+<ul>
+<li>rect 直角坐标系下会生成垂直的2个坐标轴(x,y)；</li>
+<li>plus,polar 极坐标系会生成一个圆形的坐标轴用于表示角度，一个竖直的坐标轴用于表示半径；</li>
+<li>theta 坐标系，只有一个坐标轴用于表示角度，但是在实践中往往不显示；</li>
+</ul>
+<h2 id="坐标轴的配置信息">坐标轴的配置信息</h2><p><code>chart.axis(dim, cfg)</code>，下表展示了 cfg 中具体的参数，具体使用详见 <a href="../api/index-2.html">chart.axis() API</a>:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>formatter</td>
+<td>回调函数，格式化显示的文本。</td>
+</tr>
+<tr>
+<td>tickLine</td>
+<td>坐标点对应的轴线，null 不显示。</td>
+</tr>
+<tr>
+<td>line</td>
+<td>坐标轴线的配置信息，null 不显示。</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>文本的配置信息，null 不显示文本。</td>
+</tr>
+<tr>
+<td>title</td>
+<td>坐标轴的标题，如果为 null 则不显示。</td>
+</tr>
+<tr>
+<td>titleOffset</td>
+<td>坐标轴标题距离坐标轴线的距离。</td>
+</tr>
+<tr>
+<td>labelOffset</td>
+<td>坐标轴文本距离坐标轴线的距离。</td>
+</tr>
+<tr>
+<td>grid</td>
+<td>栅格配置信息，null 不显示，目前支持的栅格类型： line 不封闭的线；polygon 封闭的多边形；circle 圆。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="示例">示例</h2><div id="c1" class="chart-container"></div>
+
+
+<script>(function(){"use strict";
+
+var Stat = G2.Stat;
+$.getJSON('/data.json?filename=world.geo', function (mapData) {
+  var userData = [];
+  var features = mapData.features;
+  for (var i = 0; i < features.length; i++) {
+    var name = features[i].properties.name;
+    userData.push({
+      "name": name,
+      "value": Math.round(Math.random() * 1000)
+    });
+  }
+
+  var chart = new G2.Chart({
+    id: 'c1',
+    width: 800,
+    height: 500,
+    plotCfg: {
+      margin: [50, 80]
+    }
+  });
+  chart.source(userData);
+  // X 坐标轴配置
+  chart.axis('..long', {
+    line: null, // 不展示 line
+    tickLine: null, // 不展示 tickLine
+    labels: null, // 不展示文本
+    grid: {
+      line: {
+        stroke: '#d9d9d9',
+        'stroke-width': 1,
+        'stroke-dasharray': [4, 4]
+      }
+    } // 显示坐标轴栅格线
+  });
+  // Y 坐标轴配置
+  chart.axis('..lant', {
+    line: null,
+    tickLine: null,
+    labels: null
+  });
+  chart.coord('map', {
+    projection: 'mercator',
+    max: [180, 165.65], // 指定投影后最大的坐标点
+    min: [-180, -67.21] // 指定投影后最小的坐标点
+  });
+  chart.legend(false);
+  // Stat.map.region 会默认生成 ..long ..lant 两个字段
+  chart.polygon().position(Stat.map.region('name', mapData)).tooltip('name*value').color('#000');
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> Stat = G2.Stat;
+$.getJSON(<span class="string">'/data.json?filename=world.geo'</span>, <span class="function"><span class="keyword">function</span><span class="params">(mapData)</span>{</span>
+  <span class="keyword">var</span> userData = [];
+  <span class="keyword">var</span> features = mapData.features;
+  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;features.length; i++) {
+    <span class="keyword">var</span> name = features[i].properties.name;
+    userData.push({
+      <span class="string">"name"</span>: name,
+      <span class="string">"value"</span>: Math.round(Math.random()*<span class="number">1000</span>)
+    });
+  }
+
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c1'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">500</span>,
+    plotCfg: {
+      margin: [<span class="number">50</span>, <span class="number">80</span>]
+    }
+  });
+  chart.source(userData);
+  <span class="comment">// X 坐标轴配置</span>
+  chart.axis(<span class="string">'..long'</span>, {
+    line: <span class="literal">null</span>, <span class="comment">// 不展示 line</span>
+    tickLine: <span class="literal">null</span>, <span class="comment">// 不展示 tickLine</span>
+    labels: <span class="literal">null</span>, <span class="comment">// 不展示文本</span>
+    grid: {
+      line: {
+      stroke: <span class="string">'#d9d9d9'</span>,
+      <span class="string">'stroke-width'</span>: <span class="number">1</span>,
+      <span class="string">'stroke-dasharray'</span>: [<span class="number">4</span>, <span class="number">4</span>]
+      }
+    } <span class="comment">// 显示坐标轴栅格线</span>
+  });
+  <span class="comment">// Y 坐标轴配置</span>
+  chart.axis(<span class="string">'..lant'</span>, {
+    line: <span class="literal">null</span>,
+    tickLine: <span class="literal">null</span>,
+    labels: <span class="literal">null</span>
+  });
+  chart.coord(<span class="string">'map'</span>, {
+    projection: <span class="string">'mercator'</span>,
+    max: [<span class="number">180</span>, <span class="number">165.65</span>], <span class="comment">// 指定投影后最大的坐标点</span>
+    min: [-<span class="number">180</span>, -<span class="number">67.21</span>] <span class="comment">// 指定投影后最小的坐标点</span>
+  });
+  chart.legend(<span class="literal">false</span>);
+  <span class="comment">// Stat.map.region 会默认生成 ..long ..lant 两个字段</span>
+  chart.polygon()
+    .position(Stat.map.region(<span class="string">'name'</span>, mapData))
+    .tooltip(<span class="string">'name*value'</span>)
+    .color(<span class="string">'#000'</span>);
+  chart.render();
+});</code></pre></div><h2 id="更多">更多</h2><p>本章介绍了坐标轴的概念和一些配置信息，接下来你可以了解<a href="legend.html">图例</a>和 <a href="tooltip.html">tooltip</a> 相关的信息。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/axis.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+</html>

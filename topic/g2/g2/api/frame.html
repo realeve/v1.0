@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/api/frame.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a class="hover" href="index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+<div class="banner api">
+  <div class="banner-inner">
+    <h1>G2 语法</h1>
+    <p class="intro">在这里详细介绍 G2 API 的使用和可配置项<p/>
+    <p class="intro">G2 的 API 使用非常简单<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content api-body-content">
+  <div class="doc-nav">
+    <p class="title">语法</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >Chart</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale</a>
+  </li>
+  <li class="active">
+    <a href="frame.html" >Frame</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme</a>
+  </li>
+  <li class="">
+    <a href="util.html" >Util</a>
+  </li>
+  <li class="">
+    <a href="plugins.html" >Plugins</a>
+  </li>
+  <li class="">
+    <a href="graphic.html" >Graphic</a>
+  </li>
+</ul>
+  </div>
+
+  <div class="doc-content clearfix">
+    <div class="doc-inner" id="t2">
+      <h1 id="frame">Frame</h1><h1 id="概述">概述</h1><p>G2 接收的数据格式非常简单：标准的JSON数组，每个数组元素是一个 JSON 对象，G2 在图表的内部将数据转换成一个 Frame对象，也可以用户直接创建Frame 对象，同时执行一些数据操作。</p>
+<h1 id="语法">语法</h1><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {gender:<span class="string">'男'</span>,count:<span class="number">40</span>},
+  {gender:<span class="string">'女'</span>,count:<span class="number">30</span>}
+];
+
+<span class="keyword">var</span> Frame = G2.Frame;
+<span class="keyword">var</span> frame = <span class="keyword">new</span> Frame(data); <span class="comment">// 图表内部做的转换</span>
+Frame.sort(frame,<span class="string">'count'</span>); <span class="comment">// 按照count 排序</span>
+chart.source(frame);</code></pre></div><h2 id="方法">方法</h2><p>Frame 数据集合的操作基本上都是列操作，下面列出了 Frame 数据集合对象提供的操作方法：</p>
+<h3>frame.colNames()<span class="guide-text">Method</span></h3>
+
+<p>return Array; 返回数据集合的所有列名称。</p>
+<h3>frame.colCount()<span class="guide-text">Method</span></h3>
+
+<p>return Number; 返回数据集合列的个数。</p>
+<h3>frame.colIndex(name)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 根据列名称获取对应的索引。</p>
+<h3>frame.colArray(name)<span class="guide-text">Method</span></h3>
+
+<p>return Array; 根据列名称、索引获取列对应的数组。</p>
+<h3>frame.colReplace(name, arr)<span class="guide-text">Method</span></h3>
+
+<p>return frame; 替换数据集合中的列数组。</p>
+<ul>
+<li>name 可以是列名称也可以是索引</li>
+<li>返回数据集合本身，数据集合发生改变</li>
+</ul>
+<h3>frame.rowCount()<span class="guide-text">Method</span></h3>
+
+<p>return Number; 返回数据集合行的个数。</p>
+<h3>frame.rowObject(index)<span class="guide-text">Method</span></h3>
+
+<p>return Object; 根据索引获取行对象。</p>
+<h3>frame.cell(rowIndex,colName)<span class="guide-text">Method</span></h3>
+
+<p>返回指定行索引和列名称（列索引)的数值。</p>
+<h3>frame.toArray()<span class="guide-text">Method</span></h3>
+
+<p>return Array; 将数据集合生成列数组。</p>
+<h3>frame.toJSON()<span class="guide-text">Method</span></h3>
+
+<p>return Array; 将数据集合生成 JSON 数组。</p>
+<h3>frame.s()<span class="guide-text">Method</span></h3>
+
+<p>return String; 将整个数据集合生成字符串，一般用于调试输出现有集合。</p>
+<h3>frame.addCol(name, arr|fn)<span class="guide-text">Method</span></h3>
+
+<p>添加列:</p>
+<ul>
+<li>name： 列名称；</li>
+<li>arr：列对应的数组；</li>
+<li>fn：回调函数，函数原型 function(obj){}。</li>
+</ul>
+<h3>frame.col(name)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 根据列名称或者索引生成新的数据集合。</p>
+<h3>frame.cols(names)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 根据多个列名称或者索引生成新的数据集合。</p>
+<h3>frame.row(rowIndex)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 根据行索引生成新的数据集合。</p>
+<h3>frame.rows(rowIndexs)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 根据多个行索引生成新的数据集合。</p>
+<h3>frame.sub(startCol, endCol, startRow, endRow)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 根据行和列获取一个子集合。</p>
+<p>Frame 类有大量静态方法，用于统计 Frame 的数据、合并、排序等功能：</p>
+<h3>Frame.mean(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的平均值。</p>
+<h3>Frame.geometric_mean(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的几何平均值。</p>
+<h3>Frame.sum(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的和。</p>
+<h3>Frame.max(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的最大值。</p>
+<h3>Frame.min(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的最小值。</p>
+<h3>Frame.sum(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的数值总和。</p>
+<h3>Frame.range(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Array; 计算列 x 的最小值和最大值。</p>
+<h3>Frame.model(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的众数，最多的数。</p>
+<h3>Frame.median(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的中位数。</p>
+<h3>Frame.variance(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的方差。</p>
+<h3>Frame.standard_deviation(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Number; 计算列 x 的标准方差。</p>
+<h3>Frame.sort(frame, x)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 返回按照列排序后的数据集合。</p>
+<h3>Frame.sortBy(frame, fn)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 返回按照列排序后的数据集合，fn是排序的函数，函数原型是 function(obj1, obj2)。</p>
+<h3>Frame.filter(frame, fn)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 过滤数据集合，fn 的函数原型 function(obj,index) 返回 true 或者 false。</p>
+<h3>Frame.group(frame, condition)<span class="guide-text">Method</span></h3>
+
+<p>return Array; 按照条件进行分组，返回 [frame1,frame2...framen]，condition条件可以是列名的数组也可以是一个函数返回一个唯一的键值。</p>
+<h3>Frame.groupToMap(frame, condition) <span class="guide-text">Method</span></h3>
+
+<p>return Array;</p>
+<ul>
+<li>按照条件进行分组，形成map，键值对,返回 {key1: frame1,key2: frame2,key3: frame3....keyn:framen}；</li>
+<li>condition条件可以是列名的数组也可以是一个函数返回一个唯一的键值。</li>
+</ul>
+<h3>Frame.complement(frame, cols)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 取指定列的补集组成的数据集合，例如 names: [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;]， Frame.complement(frame,[&#39;a&#39;,&#39;c&#39;]),生成的names : [&#39;b&#39;,&#39;d&#39;]的数据集合</p>
+<h3>Frame.merge(frame1,frame2...framen)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 合并传入的集合成为一个集合，列不发生变化，假设传入的集合的列一致，仅是增加行</p>
+<h3>Frame.combin(frame1,frame2...framen)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 合并传入的集合成为一个集合，列进行组合，行的数目不变，仅仅是列变化</p>
+<h3>Frame.combinColumns(frame, cols, name, typeName, retains)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 将多列合并成一列，然后基于多列的数据进行统计</p>
+<ul>
+<li>cols：是要合并的列；</li>
+<li>name：合并的新列的名称；</li>
+<li>typeName：存储原先字段的名字作为分类；</li>
+<li>retains：除了合并的列之外保留的列。</li>
+</ul>
+<h3>Frame.combinArray(newName, arr0, arr1...arrn)<span class="guide-text">Method</span></h3>
+
+<p>return Frame; 将多个数组合并成一个数据集合，并形成新的列，新的列的值为数组的索引。</p>
+<ul>
+<li>newName 生成新的列的字段名，默认为 &#39;type&#39;。</li>
+</ul>
+<h5 id="示例">示例</h5><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> arr1 = [{a: <span class="string">'a1'</span>,<span class="string">'b'</span>: <span class="string">'b1'</span>}];
+<span class="keyword">var</span> arr2 = [{a: <span class="string">'a2'</span>,<span class="string">'b'</span>: <span class="string">'b2'</span>}];
+
+<span class="comment">// 新的数据 ： [{a: 'a1','b': 'b1',type: 0}, {a: 'a2','b': 'b2',type:1}]</span>
+Frame.combinArray(arr1, arr2); 
+<span class="comment">// 新的数据 ： [{a: 'a1','b': 'b1',myType: 0},{a: 'a2','b': 'b2',myType: 1}];</span>
+Frame.combinArray(<span class="string">'myType'</span>, arr1, arr2);</code></pre></div><script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+<style type="text/css">
+  .preNext {
+    margin: 50px 0;
+    width: 100%;
+  }
+</style>
+<div class="preNext clearfix">
+  <a href="scale.html" class="pull-left">
+    <i class="iconfont icon-pre"></i>
+    Scale
+  </a>
+  <a href="stat.html" class="pull-right">
+    Stat
+    <i class="iconfont icon-next"></i>
+  </a>
+</div>
+    </div>
+    <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+  </div>
+</div>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+</body>
+
+<!-- Mirrored from g2.alipay.com/api/frame.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:14 GMT -->
+</html>

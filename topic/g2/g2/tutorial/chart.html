@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/chart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="active">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="简介">简介</h2><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c1'</span>,
+  width: <span class="number">1000</span>,
+  height: <span class="number">500</span>
+});</code></pre></div><p>一般情况下 G2 创建一个图表，只需要 4 个语句即可:</p>
+<ol>
+<li>声明一个 Chart 对象；</li>
+<li>设置数据源；</li>
+<li>创建一个图层，指定图形类型、属性；</li>
+<li>渲染图表。</li>
+</ol>
+<p>本章我们主要详细讲解第一步：<strong>如何创建 Chart 对象</strong>。</p>
+<h2 id="属性">属性</h2><p>G2 的图表主要有下面6个属性：</p>
+<ul>
+<li>id：图表生成时所在的 DOM 容器的id；</li>
+<li>container: 图表的 DOM 容器，一般自动生成。如果不声明 id，可以直接使用此参数传入 DOM 节点；</li>
+<li>width: 图表的宽度；</li>
+<li>height: 图表的高度；</li>
+<li>animate: 图表是否执行动画；</li>
+<li>plotCfg: 图表绘图区域的配置信息，包括边距、边框、背景图片等信息，此属性详细的描述，可以参考<a href="../api/index-2.html#plotCfg">图表背景</a><ul>
+<li>margin 边距可以是单个数值也可以是一个数组，[top,right,bottom,left]，类似于css 的margin属性；</li>
+<li>border 边框的配置信息，默认为 null,可以通过 stroke 设置边框的颜色，fill 设置边框的填充；</li>
+<li>background 图表的背景。</li>
+</ul>
+</li>
+</ul>
+<p>另外，G2 绘制出的图表是由三层 canvas 组成的：</p>
+<ul>
+<li>最上层画布，用于绘制 tooltip guide 和 legend；</li>
+<li>中间画布，用于绘制 geom；</li>
+<li>最下层画布，用于绘制坐标轴 axis。</li>
+</ul>
+<p>上中下画布获取方式如下：</p>
+<div class="highlight"><pre><code class="javascript">chart.get(<span class="string">'frontCanvas'</span>); <span class="comment">// 获取最上层画布</span>
+chart.get(<span class="string">'canvas'</span>); <span class="comment">// 获取中间层画布</span>
+chart.get(<span class="string">'backCanvas'</span>); <span class="comment">// 获取最下层画布</span></code></pre></div><h2 id="方法">方法</h2><p>详见 <a href="../api/index-2.html">API</a>。</p>
+<h2 id="事件">事件</h2><p>详见 <a href="../api/index-2.html">API</a>。具体使用看参考 <a href="../demo/14-other/chart-event.html">demo</a>。</p>
+<h2 id="示例">示例</h2><p>下面是一个带有边框以及背景的图表示例：</p>
+<p><div id="c1"></div></p>
+<script>
+  var data = [
+    {gender:'男',count:40},{gender:'女',count:30}
+  ];
+  var chart = new G2.Chart({ // 声明一个图表
+    id: 'c1',
+    width: 800,
+    height: 400,
+    plotCfg: {
+      margin: 80, // 设置 margin
+      border: {
+        stroke: '#ddd',
+        'stroke-width': 3, // 设置线的宽度
+        radius: 10 // 设置圆角
+      }, // 设置边框
+      background : {
+        fill: '#3F3F4F'
+      } // 设置背景色
+    }
+  });
+
+  chart.source(data);
+  chart.col('count',{type: 'linear',min:0})
+  chart.interval().position('gender*count').color('gender').size(60);
+  chart.render();
+</script>
+
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+    <span class="comment">&lt;!-- 引入 G2 文件 --&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      <span class="keyword">var</span> data = [
+        {gender:<span class="string">'男'</span>,count:<span class="number">40</span>},{gender:<span class="string">'女'</span>,count:<span class="number">30</span>}
+      ];
+      <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({ <span class="comment">// 声明一个图表</span>
+        id: <span class="string">'c1'</span>,
+        width: <span class="number">800</span>,
+        height: <span class="number">400</span>,
+        plotCfg: {
+          margin: <span class="number">80</span>, <span class="comment">// 设置 margin</span>
+          border: {
+            stroke: <span class="string">'#ddd'</span>,
+            <span class="string">'stroke-width'</span>: <span class="number">3</span>, <span class="comment">// 设置线的宽度</span>
+            radius: <span class="number">10</span> <span class="comment">// 设置圆角</span>
+          }, <span class="comment">// 设置边框</span>
+          background : {
+            fill: <span class="string">'#3F3F4F'</span>
+          } <span class="comment">// 设置背景色</span>
+        }
+      });
+
+      chart.source(data);
+      chart.col(<span class="string">'count'</span>,{type: <span class="string">'linear'</span>,min:<span class="number">0</span>})
+      chart.interval().position(<span class="string">'gender*count'</span>).color(<span class="string">'gender'</span>).size(<span class="number">60</span>);
+      chart.render();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><h2 id="更多">更多</h2><p>为了更好的了解G2，在下一章节<a href="data.html">数据</a>里，我们更加详细的介绍图表的数据源和对数据源的一些常见操作。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/chart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:36 GMT -->
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/guide.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="active">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="guide-简介">Guide 简介</h2><p>除了<a href="legend.html">图例</a>，<a href="tooltip.html">提示信息</a>外 G2 还提供了 Guide 辅助元素，Guide 具体包含以下种类：</p>
+<ul>
+<li>辅助线，用于绘制辅助线，例如可以绘制平均值或者预期分布的直线，一般显示在图形的后面；</li>
+<li>辅助图片，在图表上添加辅助图片，一般显示在图形的后面；</li>
+<li>辅助文本，指定位置添加文本说明，一般显示在图形的前面，说明图形的含义；</li>
+<li>辅助框，框选一段图区，设置背景、边框等，一般显示在图形的后面；</li>
+<li>辅助标记(tag)，从目标到说明文本之间绘制一条线，一般显示在图形的前面。</li>
+</ul>
+<p><img src="../../gtms02.alicdn.com/tps/i2/TB1ZVTHIVXXXXanXpXXdoz7FXXX-1980-962.png" alt="" width="600"></p>
+<h2 id="guide-语法">Guide 语法</h2><p>辅助元素绘制过程中所有的点都是一个数组[x, y]，其中</p>
+<ul>
+<li>x：是 x 轴坐标对应字段的值，是原始数据值，不是画布坐标。</li>
+<li>y：是 y 轴坐标对应字段的值，是原始数据值，不是画布坐标。</li>
+</ul>
+<p>例如：[&#39;一月&#39;,20] ，[2.3,10000]</p>
+<p>如果 x y 值为分类类型的话，还可以传入索引值。</p>
+<p>下面列出了各个 guide 辅助元素的使用，具体的配置项请参见 [Guide API]。</p>
+<h3 id="辅助线">辅助线</h3><div class="highlight"><pre><code class="javascript">chart.guide().line(from, to, [cfg]);</code></pre></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>线的起点，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>to</td>
+<td>线的终点，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>cfg</td>
+<td>线的配置信息</td>
+</tr>
+</tbody>
+</table>
+<script>
+$.getJSON('/data.json?filename=diamond', function(data) {
+  var Stat = G2.Stat;
+  var frame = new G2.Frame(data);
+  var caratAvg = G2.Frame.mean(frame,'carat'); // 计算克拉数均值
+  var priceAvg = G2.Frame.mean(frame,'price'); // 计算价格均值
+  var chart = new G2.Chart({ // 创建图表
+    id : 'c1',
+    width: 800,
+    height: 400
+  });
+
+  chart.source(frame); // 设置数据源
+  chart.point().position('carat*price');
+  chart.guide().line([caratAvg,0],[caratAvg,20000]);
+  chart.guide().line([0,priceAvg],[4,priceAvg]);
+  chart.render(); // 图表渲染
+
+  var chart = new G2.Chart({
+    id: 'c2',
+    width: 800,
+    height: 400
+  });
+  chart.source(data);
+  chart.interval().position(Stat.summary.count(Stat.bin.rect('depth'))).shape('hollowRect');
+
+  chart.guide().image([55, 300], {
+    src: 'http://gtms02.alicdn.com/tps/i2/TB1LEzAIVXXXXaZXFXXKC07OVXX-160-230.png',
+    width: 80,
+    height: 165
+  });
+  chart.render();
+
+  var colors = G2.Global.colors['default'];
+  var chart = new G2.Chart({ // 创建图表
+    id : 'c3',
+    width: 800,
+    height: 400,
+    plotCfg: {
+      margin: [20, 90, 60, 80]
+    }
+  });
+  var defs = {
+    'cut': {
+      type: 'cat',
+      values:['Ideal', 'Premium', 'Very-Good', 'Good', 'Fair']
+    }
+  };
+
+  chart.source(data, defs); // 设置数据源
+  chart.pointJitter().position('cut*depth').color('cut');
+  chart.guide().text(['Ideal', 67], '越完美的钻石切割工艺集中', {
+    fill: colors[0],
+    'text-anchor': 'middle'
+  });
+  chart.guide().text(['Fair', 63], '越差的钻石切割工艺分散', {
+    fill: colors[4],
+    'text-anchor': 'middle'
+  });
+
+  chart.render(); // 图表渲染
+
+  var chart = new G2.Chart({ // 创建图表
+    id : 'c5',
+    width : 800,
+    height : 400
+  });
+
+  chart.source(frame); // 设置数据源
+  chart.point().position('carat*price');
+  chart.guide().tag([caratAvg,0],[caratAvg,20000],'钻石均值:'+caratAvg.toFixed(2))
+  chart.guide().tag([0,priceAvg],[4,priceAvg],'价格均值' + priceAvg.toFixed(2))
+  chart.guide().tag([3.65,11688],[4.2,16000],'异常值')
+  chart.render(); // 图表渲染
+});
+</script>
+
+<h4 id="示例">示例</h4><div id="c1" class="chart-container"></div>
+
+<div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>, <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> frame = <span class="keyword">new</span> G2.Frame(data);
+  <span class="keyword">var</span> caratAvg = G2.Frame.mean(frame,<span class="string">'carat'</span>); <span class="comment">// 计算克拉数均值</span>
+  <span class="keyword">var</span> priceAvg = G2.Frame.mean(frame,<span class="string">'price'</span>); <span class="comment">// 计算价格均值</span>
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({ <span class="comment">// 创建图表</span>
+    id : <span class="string">'c1'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>
+  });
+
+  chart.source(frame); <span class="comment">// 设置数据源</span>
+  chart.point().position(<span class="string">'carat*price'</span>);
+  chart.guide().line([caratAvg,<span class="number">0</span>],[caratAvg,<span class="number">20000</span>]);
+  chart.guide().line([<span class="number">0</span>,priceAvg],[<span class="number">4</span>,priceAvg]);
+  chart.render(); <span class="comment">// 图表渲染</span>
+});</code></pre></div><h3 id="辅助图片">辅助图片</h3><div class="highlight"><pre><code class="javascript">chart.guide().image(start, [end], cfg);</code></pre></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>图片的起始位置</td>
+</tr>
+<tr>
+<td>end</td>
+<td>图片的终止位置，可以为空</td>
+</tr>
+<tr>
+<td>cfg</td>
+<td>图片的配置项： src（图片路径）、width（宽度，可以不设置，如果设置了end，此属性无效）、height（ 高度，可以不设置，如果设置了end，此属性无效）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例">示例</h4><div id="c2" class="chart-container"></div>
+
+<div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>, <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c2'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>
+  });
+  chart.source(data);
+  chart.interval().position(Stat.summary.count(Stat.bin.rect(<span class="string">'depth'</span>))).shape(<span class="string">'hollowRect'</span>);
+  chart.guide().image([<span class="number">55</span>, <span class="number">300</span>], {
+    src: <span class="string">'http://gtms02.alicdn.com/tps/i2/TB1LEzAIVXXXXaZXFXXKC07OVXX-160-230.png'</span>,
+    width: <span class="number">80</span>,
+    height: <span class="number">165</span>
+  });
+  chart.render();
+});</code></pre></div><h3 id="辅助文本">辅助文本</h3><div class="highlight"><pre><code class="javascript">chart.guide().text(position, text, [cfg]);</code></pre></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position</td>
+<td>文本位置，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>text</td>
+<td>辅助文本的显示内容</td>
+</tr>
+<tr>
+<td>cfg</td>
+<td>文本的<a href="../api/index-2.html">配置信息</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例">示例</h4><div id="c3" class="chart-container"></div>
+
+<div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>, <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> colors = G2.Global.colors[<span class="string">'default'</span>];
+
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({ <span class="comment">// 创建图表</span>
+    id : <span class="string">'c3'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>,
+    plotCfg: {
+      margin: [<span class="number">20</span>, <span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>]
+    }
+  });
+  <span class="keyword">var</span> defs = {
+    <span class="string">'cut'</span>: {
+      type: <span class="string">'cat'</span>,
+      values:[<span class="string">'Ideal'</span>, <span class="string">'Premium'</span>, <span class="string">'Very-Good'</span>, <span class="string">'Good'</span>, <span class="string">'Fair'</span>]
+    }
+  };
+
+  chart.source(data, defs); <span class="comment">// 设置数据源</span>
+  chart.pointJitter().position(<span class="string">'cut*depth'</span>).color(<span class="string">'cut'</span>);
+  chart.guide().text([<span class="string">'Ideal'</span>, <span class="number">67</span>], <span class="string">'越完美的钻石切割工艺集中'</span>, {
+    fill: colors[<span class="number">0</span>],
+    <span class="string">'text-anchor'</span>: <span class="string">'middle'</span>
+  });
+  chart.guide().text([<span class="string">'Fair'</span>, <span class="number">63</span>], <span class="string">'越差的钻石切割工艺分散'</span>, {
+    fill: colors[<span class="number">4</span>],
+    <span class="string">'text-anchor'</span>: <span class="string">'middle'</span>
+  });
+
+  chart.render(); <span class="comment">// 图表渲染</span>
+});</code></pre></div><h3 id="辅助框">辅助框</h3><div class="highlight"><pre><code class="javascript">chart.guide().rect(start, end, [cfg]);</code></pre></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>起始点位置</td>
+</tr>
+<tr>
+<td>end</td>
+<td>结束点位置</td>
+</tr>
+<tr>
+<td>cfg</td>
+<td>矩形框的<a href="../api/index-2.html">配置信息</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例">示例</h4><div id="c4" class="chart-container"></div>
+
+<script>(function(){"use strict";
+
+var data = [{ "month": 0, "tem": 7, "city": "tokyo" }, { "month": 1, "tem": 6.9, "city": "tokyo" }, { "month": 2, "tem": 9.5, "city": "tokyo" }, { "month": 3, "tem": 14.5, "city": "tokyo" }, { "month": 4, "tem": 18.2, "city": "tokyo" }, { "month": 5, "tem": 21.5, "city": "tokyo" }, { "month": 6, "tem": 25.2, "city": "tokyo" }, { "month": 7, "tem": 26.5, "city": "tokyo" }, { "month": 8, "tem": 23.3, "city": "tokyo" }, { "month": 9, "tem": 18.3, "city": "tokyo" }, { "month": 10, "tem": 13.9, "city": "tokyo" }, { "month": 11, "tem": 9.6, "city": "tokyo" }, { "month": 0, "tem": -0.2, "city": "newYork" }, { "month": 1, "tem": 0.8, "city": "newYork" }, { "month": 2, "tem": 5.7, "city": "newYork" }, { "month": 3, "tem": 11.3, "city": "newYork" }, { "month": 4, "tem": 17, "city": "newYork" }, { "month": 5, "tem": 22, "city": "newYork" }, { "month": 6, "tem": 24.8, "city": "newYork" }, { "month": 7, "tem": 24.1, "city": "newYork" }, { "month": 8, "tem": 20.1, "city": "newYork" }, { "month": 9, "tem": 14.1, "city": "newYork" }, { "month": 10, "tem": 8.6, "city": "newYork" }, { "month": 11, "tem": 2.5, "city": "newYork" }, { "month": 0, "tem": -0.9, "city": "berlin" }, { "month": 1, "tem": 0.6, "city": "berlin" }, { "month": 2, "tem": 3.5, "city": "berlin" }, { "month": 3, "tem": 8.4, "city": "berlin" }, { "month": 4, "tem": 13.5, "city": "berlin" }, { "month": 5, "tem": 17, "city": "berlin" }, { "month": 6, "tem": 18.6, "city": "berlin" }, { "month": 7, "tem": 17.9, "city": "berlin" }, { "month": 8, "tem": 14.3, "city": "berlin" }, { "month": 9, "tem": 9, "city": "berlin" }, { "month": 10, "tem": 3.9, "city": "berlin" }, { "month": 11, "tem": 1, "city": "berlin" }];
+var chart = new G2.Chart({
+  id: 'c4',
+  width: 800,
+  height: 400
+});
+chart.source(data);
+chart.line().position('month*tem').color('city');
+chart.guide().rect([5, -5], [9, 30]); // 6月 - 8月最低温度
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:<span class="number">7</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">6.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">9.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">14.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">18.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">21.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">25.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">26.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">23.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">18.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">13.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">9.6</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:-<span class="number">0.2</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">0.8</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">5.7</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">11.3</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">17</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">22</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">24.8</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">24.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">20.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">14.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">8.6</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">2.5</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:-<span class="number">0.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">0.6</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">3.5</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">8.4</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">13.5</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">17</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">18.6</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">17.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">14.3</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">3.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">1</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>}
+];
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c4'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">400</span>
+});
+chart.source(data);
+chart.line().position(<span class="string">'month*tem'</span>).color(<span class="string">'city'</span>);
+chart.guide().rect([<span class="number">5</span>, -<span class="number">5</span>], [<span class="number">9</span>, <span class="number">30</span>]); <span class="comment">// 6月 - 8月最低温度</span>
+chart.render();</code></pre></div><h3 id="辅助标记">辅助标记</h3><div class="highlight"><pre><code class="javascript">chart.guide().tag(from, to, text, [cfg]);</code></pre></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>线的起始点，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>to</td>
+<td>线的起始点，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>text</td>
+<td>标记文本</td>
+</tr>
+<tr>
+<td>cfg</td>
+<td><a href="../api/index-2.html">配置信息</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例">示例</h4><p>下图使用了 <code>chart.guide().tag()</code> 辅助元素标示了钻石的克拉数均值、价值均值和异常点：</p>
+<div id="c5" class="chart-container"></div>
+
+<div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> frame = <span class="keyword">new</span> G2.Frame(data);
+  <span class="keyword">var</span> caratAvg = G2.Frame.mean(frame,<span class="string">'carat'</span>); <span class="comment">// 计算克拉数均值</span>
+  <span class="keyword">var</span> priceAvg = G2.Frame.mean(frame,<span class="string">'price'</span>); <span class="comment">// 计算价格均值</span>
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({ <span class="comment">// 创建图表</span>
+    id : <span class="string">'c5'</span>,
+    width : <span class="number">800</span>,
+    height : <span class="number">400</span>
+  });
+
+  chart.source(frame); <span class="comment">// 设置数据源</span>
+  chart.point().position(<span class="string">'carat*price'</span>);
+  chart.guide().tag([caratAvg,<span class="number">0</span>],[caratAvg,<span class="number">20000</span>],<span class="string">'钻石均值:'</span>+caratAvg.toFixed(<span class="number">2</span>))
+  chart.guide().tag([<span class="number">0</span>,priceAvg],[<span class="number">4</span>,priceAvg],<span class="string">'价格均值'</span> + priceAvg.toFixed(<span class="number">2</span>))
+  chart.guide().tag([<span class="number">3.65</span>,<span class="number">11688</span>],[<span class="number">4.2</span>,<span class="number">16000</span>],<span class="string">'异常值'</span>)
+  chart.render(); <span class="comment">// 图表渲染</span>
+});</code></pre></div><h3 id="辅助弧线">辅助弧线</h3><div class="highlight"><pre><code class="javascript">chart.guide().arc(from, to, [cfg]);</code></pre></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>线的起始点，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>to</td>
+<td>线的起始点，是一个数组 [x, y]</td>
+</tr>
+<tr>
+<td>cfg</td>
+<td><a href="../api/index-2.html">配置信息</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="更多">更多</h2><p>最后让我们来学习下 <a href="facet.html">分面 Facet</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/guide.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:48 GMT -->
+</html>

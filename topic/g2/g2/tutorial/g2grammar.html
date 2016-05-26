@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/g2grammar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="active">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="简介">简介</h2><p>在 <a href="components.html">G2 图表构成</a>章节中已经对 G2 的图表构成做了说明。本章主要以绘制散点图为例来引出并介绍组成 G2 图表的基本图形语法元素，每种语法元素都会有相应的章节进行详细的讲解。</p>
+<h2 id="场景">场景</h2><p>下表展示的是某一年不同性别群体的身高和体重数据，这组数据包含了很多有用的信息：（1）身高和体重的相关关系如何？（2）整体数据集的分布情况如何，身高和体重分别在哪一个数据段比较集中？（3）不同性别的身高、体重分布又如何？</p>
+<table>
+<thead>
+<tr>
+<th>性别</th>
+<th>身高（cm）</th>
+<th>体重（kg）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>女</td>
+<td>167.5</td>
+<td>59</td>
+</tr>
+<tr>
+<td>女</td>
+<td>161.2</td>
+<td>51.6</td>
+</tr>
+<tr>
+<td>男</td>
+<td>176</td>
+<td>86.4</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>男</td>
+<td>180.3</td>
+<td>82.8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="绘制散点图">绘制散点图</h2><p><div id="c1"></div></p>
+<script type="text/javascript">
+  $.getJSON('/data.json?filename=scatter',function(data){
+    var frame = new G2.Frame(data);
+    var hAvg = G2.Frame.mean(frame,'height'); // 计算体重的均值
+    var wAvg = G2.Frame.mean(frame,'weight'); // 计算身高均值
+    var lineCfg = { // 线的配置信息
+      stroke: '#94E08A'
+    };
+    var chart = new G2.Chart({
+      id: 'c1',
+      width : 800,
+      height : 400
+    });
+
+    chart.source(data, {
+      weight: {
+        alias: '体重（kg）'
+      },
+      height: {
+        alias: '身高（cm）'
+      }
+    });
+    chart.tooltip({
+      title: null
+    });
+    chart.point().position('height*weight').color('gender').tooltip('gender*height*weight');
+    chart.guide().tag([hAvg, 40], [hAvg, 120], '身高平均值: ' + hAvg.toFixed(2), {line:lineCfg});
+    chart.guide().tag([140, wAvg], [200, wAvg], '体重平均值: ' + wAvg.toFixed(2), {line:lineCfg});
+    chart.render();
+  });
+</script>
+
+<h2 id="数据源">数据源</h2><p>图形语法最基础的部分就是数据源，通过 <code>chart.source(data[, colDefs])</code> 方法为 G2 图表载入数据源。</p>
+<h2 id="图形语法">图形语法</h2><div class="highlight"><pre><code class="javascript">chart.point().position(<span class="string">'height*weight'</span>).color(<span class="string">'gender'</span>);</code></pre></div><h2 id="geom-选择">Geom 选择</h2><p><a href="https://antv.alipay.com/chart/details/scatter-plot.html">散点图</a>也叫 X-Y 图，它将所有的数据以<strong>点</strong>的形式展现在笛卡尔坐标系上，以显示变量之间的相互影响程度，所以绘制时我们需要选择 chart.point() 来创建一个图层。如前面所述，Geom 决定了图表中图形的形状，包括点、线、面、多边形等。如柱状图的几何对象为 interval，散点图对应 point，折线图对应 line。下表展示了常见的图表对应的 geom，另外通过设置数据的 <a href="../api/geom.html#语法">Adjust</a> 调整方式，还可以绘制出更多的图表。</p>
+<table>
+<thead>
+<tr>
+<th>图表</th>
+<th>geom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>点图（散点图、气泡图）</td>
+<td>point</td>
+</tr>
+<tr>
+<td>折线图</td>
+<td>line</td>
+</tr>
+<tr>
+<td>柱状图、饼图、玫瑰图</td>
+<td>interval</td>
+</tr>
+</tbody>
+</table>
+<p>目前 G2 提供的 geom 支持的类型如下：</p>
+<p>chart.&lt;<a href="geom.html">geom</a>&gt;()</p>
+<ul>
+<li>point: 将数据展示成一个个的点；</li>
+<li>path: 将数据连接成一条线，不保证数据的顺序；</li>
+<li>line: 一种特殊的path(路径)，x轴上的数据进行排序；</li>
+<li>area: 将线图进行闭合，中间区域填充，构成区域图；</li>
+<li>interval: 使用矩形、弧形表示数据的上下区间，可以用来生成柱状图、直方图、饼图等图表；</li>
+<li>polygon: 用于绘制地图、treemap 等多边形的图表；</li>
+<li>schema: 自定义图，用于自定义各种图表，可以用于展示箱型图、蜡烛图等图表；</li>
+<li>heatmap: 用于绘制热力图；</li>
+<li>contour: 用于绘制等高线。</li>
+</ul>
+<h2 id="attr-图形属性映射">Attr 图形属性映射</h2><p>散点图中，点（Point）的位置由变量的数值决定。每个点不仅有横坐标、纵坐标，还有大小、颜色和形状这些图形属性（<a href="attr.html">Attr</a>，每个图形属性都可以映射为一个变量或者为一个常数）。上图中我们使用数据中的 height（高度）属性控制点的横轴位置，weight(体重)属性控制点的纵轴位置，gender(性别)来决定点的颜色，而点的大小和形状没有指定，所以直接使用 G2 提供的默认设置。下表展示的数据或许更有利于大家对图形属性映射的理解：</p>
+<table>
+<thead>
+<tr>
+<th>color --&gt; gender</th>
+<th>x --&gt; height</th>
+<th>y --&gt; weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>女</td>
+<td>167.5</td>
+<td>59</td>
+</tr>
+<tr>
+<td>女</td>
+<td>161.2</td>
+<td>51.6</td>
+</tr>
+<tr>
+<td>男</td>
+<td>176</td>
+<td>86.4</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>男</td>
+<td>180.3</td>
+<td>82.8</td>
+</tr>
+</tbody>
+</table>
+<p>G2 中支持的图形属性映射如下；</p>
+<p>chart.&lt;<a href="geom.html">geom</a>&gt;().&lt;<a href="attr.html">attr</a>&gt;(dims[, cfg]):</p>
+<ul>
+<li>position(dim)：将对应字段的值映射到图形的位置；</li>
+<li>color(dim[, colors])：用对应字段的值或者常量来表示图形的颜色，如果传入 colors 会根据传入的颜色分配颜色；</li>
+<li>shape(dim[, shapes])：用对应字段的值或者常量来表示图形的形状，如果传入 shapes 会根据传入的图形集合分配图形类型；</li>
+<li>size(dim[, max[, min]])：用对应字段的值或者常量来表示图形的大小，如果同时传入max、min，则根据最大值、最小值的区间进行大小的自动计算；</li>
+<li>opacity(dim)：用对应字段的值或者常量来表示图形的透明度。</li>
+</ul>
+<p>另外还提供了以下三种方法，虽然使用的方式同以上方法一致，但是需要注意的是它们并不是一种图形映射属性，可以将其理解为图表的配置方法：</p>
+<ul>
+<li>label(dim[, cfg])：显示对应字段的数据文本；</li>
+<li>tooltip(dims)：指定 tooltip 中显示的数据字段；</li>
+<li>style(cfg)： 配置 geom 几何对象的图形样式。</li>
+</ul>
+<p>具体的使用方式请参见 API 文档： <a href="../api/geom.html#方法">图形属性</a>。</p>
+<p>如果我们改变使用的 <a href="geom.html">Geom</a> 几何图形对象，还可以绘制出<a href="../demo/02-line/line.html">折线图 line</a>、<a href="../demo/04-column/column.html">柱状图 interval</a>等等。</p>
+<p><img src="../../os.alipayobjects.com/rmsportal/jcdhWdwDzcLOZsw.png">
+<img src="../../os.alipayobjects.com/rmsportal/QgoWyCcbPKsbVWd.png"></p>
+<h2 id="coord-坐标系">Coord 坐标系</h2><p>坐标系用于将数据对象的位置映射到图形平面上，位置通常由两个坐标 (x, y) 来决定，但是 G2 也支持一维坐标系。目前 G2 支持多种坐标系，其中笛卡尔坐标系是最常用的，当你传入图形属性 <code>position</code> 中的参数包含两个维度时，默认使用的就是笛卡尔坐标系。另外 G2 提供的坐标系中还包含坐标轴和网格线。以下是 G2 所支持的坐标系种类，另外用户还可以对坐标系进行各种变换操作，具体的方法请参见 API <a href="../api/index-2.html">坐标系配置</a>:</p>
+<p>chart.coord(type[, cfg])[.action()]， 通过 type 来指定坐标系类型</p>
+<ul>
+<li>rect: 直角坐标系，常见的 x,y 轴垂直的直角坐标系（笛卡尔）坐标系；</li>
+<li>polar: 极坐标系，由半径和角度构成；</li>
+<li>theta: 半径固定的极坐标系，常用于生成饼图、环图；</li>
+<li>plus: 特殊的极坐标系，0点不在圆心的极坐标系；</li>
+<li>map: 地理坐标系，用于绘制不同投影下的地图。</li>
+</ul>
+<h2 id="facet-分面">Facet 分面</h2><p>分面在绘图时非常有用，通过设置分面，可以方便地展示数据的不同子集，如下图所示，我们通过设定以 &#39;gender&#39; 字段来分割数据，就可以很快得绘制出不同性别对应的身高和体重关系的散点图。</p>
+<p><div id="c2"></div></p>
+<script type="text/javascript">
+  $.getJSON('/data.json?filename=scatter',function(data){
+    var chart = new G2.Chart({
+      id: 'c2',
+      width : 800,
+      height : 300,
+      plotCfg: {
+        margin: [80, 100]
+      }
+    });
+
+    chart.source(data, {
+      weight: {
+        alias: '体重（kg）'
+      },
+      height: {
+        alias: '身高（cm）'
+      }
+    });
+    chart.tooltip({
+      title: null
+    });
+    chart.facet(['gender']);
+    chart.point().position('height*weight').color('gender').tooltip('gender*height*weight');
+    chart.render();
+  });
+</script>
+
+<p>关于分面的详细介绍请见 <a href="facet.html">Facet</a>。</p>
+<h2 id="图表辅助元素">图表辅助元素</h2><p>以下图形元素：坐标轴（Axis）、提示信息（Tooltip）、图例（Legend）、自定义辅助（Guide）作为图表的辅助元素，在图表信息阅读以及挖掘方面提供了非常重要的功能，所以 G2 也为这些图形元素提供了丰富的语法支持，这里我们统称他们为图表辅助元素。</p>
+<ul>
+<li>chart.axis(dim, cfg): 用于配置数据字段对应的坐标轴的配置项；</li>
+<li>chart.tooltip([enable], cfg): 用于配置鼠标 hover 到图表图形显示提示信息；</li>
+<li>chart.legend(dim, cfg): 用于配置图表图例的展示样式；</li>
+<li>chart.guide(): 添加辅助元素，详细信息参考<a href="guide.html">辅助元素</a>。</li>
+</ul>
+<h2 id="更多">更多</h2><p>通过本章节你已经熟悉了 G2 的主要语法，在接下来的章节中，你可以通过更加详细的讲解，了解 G2 方方面面的知识。下一章： <a href="chart.html">创建 Chart 图表</a></p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/g2grammar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:35 GMT -->
+</html>

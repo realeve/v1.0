@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a class="hover" href="index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<div class="banner">
+  <div class="banner-inner">
+    <h1>丰富的图表</h1>
+    <p class="intro">G2 可绘制出多样的图表，我们既支持各种传统图表，<p/>
+    <p class="intro">同时还可以创造出各种各样的图表。</p>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content demo-body">
+  <div class="doc-content demo-doc">
+    <div class="doc-inner">
+      <h2 id="点图">点图</h2>
+      <ul class="demo-detail-list clearfix" id="J_点图">
+        <li>
+          <a href="01-point/scatter.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/scatter.png" width="316px" height="167px" />
+            <div class="des">散点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/bubble.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/bubble.png" width="316px" height="167px" />
+            <div class="des">气泡图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/scatter-with-axis-range.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/scatter-with-axis-range.png" width="316px" height="167px" />
+            <div class="des">区域划分的散点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/custom-color.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/custom-color.png" width="316px" height="167px" />
+            <div class="des">扰动点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/linear.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/linear.png" width="316px" height="167px" />
+            <div class="des">连续数据散点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/one-dodge.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/one-dodge.png" width="316px" height="167px" />
+            <div class="des">一维点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/one-jitter.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/one-jitter.png" width="316px" height="167px" />
+            <div class="des">一维扰动点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/two-jitter.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/two-jitter.png" width="316px" height="167px" />
+            <div class="des">二维扰动点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="01-point/cat-linear.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/01-point/cat-linear.png" width="316px" height="167px" />
+            <div class="des">分类-连续点图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="线图">线图</h2>
+      <ul class="demo-detail-list clearfix" id="J_线图">
+        <li>
+          <a href="02-line/line.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/line.png" width="316px" height="167px" />
+            <div class="des">折线图</div>
+          </a>
+        </li>
+        <li>
+          <a href="02-line/path.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/path.png" width="316px" height="167px" />
+            <div class="des">路径图</div>
+          </a>
+        </li>
+        <li>
+          <a href="02-line/step-line.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/step-line.png" width="316px" height="167px" />
+            <div class="des">step 图</div>
+          </a>
+        </li>
+        <li>
+          <a href="02-line/line-smooth.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/line-smooth.png" width="316px" height="167px" />
+            <div class="des">光滑的折线图</div>
+          </a>
+        </li>
+        <li>
+          <a href="02-line/line-dot.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/line-dot.png" width="316px" height="167px" />
+            <div class="des">点线图</div>
+          </a>
+        </li>
+        <li>
+          <a href="02-line/line-spline.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/line-spline.png" width="316px" height="167px" />
+            <div class="des">样条函式曲线</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="区域图">区域图</h2>
+      <ul class="demo-detail-list clearfix" id="J_区域图">
+        <li>
+          <a href="03-area/area.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area.png" width="316px" height="167px" />
+            <div class="des">区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-stack.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-stack.png" width="316px" height="167px" />
+            <div class="des">层叠区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-percent.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-percent.png" width="316px" height="167px" />
+            <div class="des">百分比层叠区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-smooth.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-smooth.png" width="316px" height="167px" />
+            <div class="des">平滑的区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-range.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-range.png" width="316px" height="167px" />
+            <div class="des">范围区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-range-line.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-range-line.png" width="316px" height="167px" />
+            <div class="des">范围区域图与线图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-gradient.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-gradient.png" width="316px" height="167px" />
+            <div class="des">渐变区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-null.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-null.png" width="316px" height="167px" />
+            <div class="des">存在null的区域图</div>
+          </a>
+        </li>
+        <li>
+          <a href="03-area/area-with-negative.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/03-area/area-with-negative.png" width="316px" height="167px" />
+            <div class="des">存在负值的区域图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="柱状图">柱状图</h2>
+      <ul class="demo-detail-list clearfix" id="J_柱状图">
+        <li>
+          <a href="04-column/column.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/column.png" width="316px" height="167px" />
+            <div class="des">柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/bar.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/bar.png" width="316px" height="167px" />
+            <div class="des">横向柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/column-dodge.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/column-dodge.png" width="316px" height="167px" />
+            <div class="des">分组柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/column-stack.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/column-stack.png" width="316px" height="167px" />
+            <div class="des">层叠柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/column-percent.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/column-percent.png" width="316px" height="167px" />
+            <div class="des">百分比层叠柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/bar-dodge.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/bar-dodge.png" width="316px" height="167px" />
+            <div class="des">横向分组柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/column-line.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/column-line.png" width="316px" height="167px" />
+            <div class="des">空心的柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/range-bar.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/range-bar.png" width="316px" height="167px" />
+            <div class="des">有区间范围的条形图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/bar-negative.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/bar-negative.png" width="316px" height="167px" />
+            <div class="des">人口金字塔图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/tick.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/tick.png" width="316px" height="167px" />
+            <div class="des">钉形柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/column-bullet.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/column-bullet.png" width="316px" height="167px" />
+            <div class="des">子弹图</div>
+          </a>
+        </li>
+        <li>
+          <a href="04-column/symmetric.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/04-column/symmetric.png" width="316px" height="167px" />
+            <div class="des">对称调整的流量对比</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="饼图">饼图</h2>
+      <ul class="demo-detail-list clearfix" id="J_饼图">
+        <li>
+          <a href="05-pie/pie.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/pie.png" width="316px" height="167px" />
+            <div class="des">饼图</div>
+          </a>
+        </li>
+        <li>
+          <a href="05-pie/donut.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/donut.png" width="316px" height="167px" />
+            <div class="des">环图</div>
+          </a>
+        </li>
+        <li>
+          <a href="05-pie/rose.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/rose.png" width="316px" height="167px" />
+            <div class="des">南丁格尔玫瑰图</div>
+          </a>
+        </li>
+        <li>
+          <a href="05-pie/pie-half.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/pie-half.png" width="316px" height="167px" />
+            <div class="des">半圆</div>
+          </a>
+        </li>
+        <li>
+          <a href="05-pie/pie-proportion.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/pie-proportion.png" width="316px" height="167px" />
+            <div class="des">自定义文本饼图</div>
+          </a>
+        </li>
+        <li>
+          <a href="05-pie/pie-no-stat.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/pie-no-stat.png" width="316px" height="167px" />
+            <div class="des">饼图（无统计）</div>
+          </a>
+        </li>
+        <li>
+          <a href="05-pie/cascade.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/cascade.png" width="316px" height="167px" />
+            <div class="des">嵌套饼图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="股票图">股票图</h2>
+      <ul class="demo-detail-list clearfix" id="J_股票图">
+        <li>
+          <a href="06-k/k-chart.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/06-k/k-chart.png" width="316px" height="167px" />
+            <div class="des">股票图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="漏斗图">漏斗图</h2>
+      <ul class="demo-detail-list clearfix" id="J_漏斗图">
+        <li>
+          <a href="07-funnel/funnel.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/07-funnel/funnel.png" width="316px" height="167px" />
+            <div class="des">漏斗图</div>
+          </a>
+        </li>
+        <li>
+          <a href="07-funnel/funnel-mirror.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/07-funnel/funnel-mirror.png" width="316px" height="167px" />
+            <div class="des">对称漏斗图</div>
+          </a>
+        </li>
+        <li>
+          <a href="07-funnel/pyramid.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/07-funnel/pyramid.png" width="316px" height="167px" />
+            <div class="des">金字塔图</div>
+          </a>
+        </li>
+        <li>
+          <a href="07-funnel/funnel-des.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/07-funnel/funnel-des.png" width="316px" height="167px" />
+            <div class="des">漏斗图-倒序</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="色块图和热力图">色块图和热力图</h2>
+      <ul class="demo-detail-list clearfix" id="J_色块图和热力图">
+        <li>
+          <a href="08-heatmap/heatmap.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/08-heatmap/heatmap.png" width="316px" height="167px" />
+            <div class="des">色块图</div>
+          </a>
+        </li>
+        <li>
+          <a href="08-heatmap/subway.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/08-heatmap/subway.png" width="316px" height="167px" />
+            <div class="des">杭州地铁票价图</div>
+          </a>
+        </li>
+        <li>
+          <a href="08-heatmap/stock-calendar.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/08-heatmap/stock-calendar.png" width="316px" height="167px" />
+            <div class="des">股票波动</div>
+          </a>
+        </li>
+        <li>
+          <a href="08-heatmap/image.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/08-heatmap/image.png" width="316px" height="167px" />
+            <div class="des">热力图</div>
+          </a>
+        </li>
+        <li>
+          <a href="08-heatmap/map-with-heatmap.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/08-heatmap/map-with-heatmap.png" width="316px" height="167px" />
+            <div class="des">地图与热力图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="treemap">treemap</h2>
+      <ul class="demo-detail-list clearfix" id="J_treemap">
+        <li>
+          <a href="09-treemap/one.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/one.png" width="316px" height="167px" />
+            <div class="des">简单的 treemap</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/children.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/children.png" width="316px" height="167px" />
+            <div class="des">层次的 treemap</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/mobile.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/mobile.png" width="316px" height="167px" />
+            <div class="des">手机占比（可点击交互）</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/mobile-children.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/mobile-children.png" width="316px" height="167px" />
+            <div class="des">手机占比(详细)</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/polar.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/polar.png" width="316px" height="167px" />
+            <div class="des">极坐标下的 treemap</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/polar-slice-dice.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/polar-slice-dice.png" width="316px" height="167px" />
+            <div class="des">另一种 treemap</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/polar-slice-transpose.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/polar-slice-transpose.png" width="316px" height="167px" />
+            <div class="des">极坐标下转置的 treemap</div>
+          </a>
+        </li>
+        <li>
+          <a href="09-treemap/wheel.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/09-treemap/wheel.png" width="316px" height="167px" />
+            <div class="des">旭日图 - sunburst chart</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="地图">地图</h2>
+      <ul class="demo-detail-list clearfix" id="J_地图">
+        <li>
+          <a href="10-map/china-map.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/china-map.png" width="316px" height="167px" />
+            <div class="des">标准中国地图（带省会）</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/choropleth-map.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/choropleth-map.png" width="316px" height="167px" />
+            <div class="des">分级统计图</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/map-with-bubble.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/map-with-bubble.png" width="316px" height="167px" />
+            <div class="des">地图与气泡图</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/usa-map.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/usa-map.png" width="316px" height="167px" />
+            <div class="des">Dot map</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/world-map.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/world-map.png" width="316px" height="167px" />
+            <div class="des">世界地图</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/china-albers.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/china-albers.png" width="316px" height="167px" />
+            <div class="des">albers 投影之后的中国地图</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/world-albers.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/world-albers.png" width="316px" height="167px" />
+            <div class="des">albers 投影之后的世界地图</div>
+          </a>
+        </li>
+        <li>
+          <a href="10-map/world-mercator.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/world-mercator.png" width="316px" height="167px" />
+            <div class="des">mercator 投影之后的世界地图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="雷达图">雷达图</h2>
+      <ul class="demo-detail-list clearfix" id="J_雷达图">
+        <li>
+          <a href="11-radar/radar.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/11-radar/radar.png" width="316px" height="167px" />
+            <div class="des">雷达图(区域)</div>
+          </a>
+        </li>
+        <li>
+          <a href="11-radar/radar-stacked-percent-area.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/11-radar/radar-stacked-percent-area.png" width="316px" height="167px" />
+            <div class="des">雷达图(百分比层叠区域)</div>
+          </a>
+        </li>
+        <li>
+          <a href="11-radar/radar-line.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/11-radar/radar-line.png" width="316px" height="167px" />
+            <div class="des">雷达图（线）</div>
+          </a>
+        </li>
+        <li>
+          <a href="11-radar/radar-multiple.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/11-radar/radar-multiple.png" width="316px" height="167px" />
+            <div class="des">雷达图(多维对比)</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="仪表盘">仪表盘</h2>
+      <ul class="demo-detail-list clearfix" id="J_仪表盘">
+        <li>
+          <a href="12-gauges/dash-board.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/12-gauges/dash-board.png" width="316px" height="167px" />
+            <div class="des">基础仪表盘</div>
+          </a>
+        </li>
+        <li>
+          <a href="12-gauges/clock.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/12-gauges/clock.png" width="316px" height="167px" />
+            <div class="des">时钟</div>
+          </a>
+        </li>
+        <li>
+          <a href="12-gauges/clock-facet.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/12-gauges/clock-facet.png" width="316px" height="167px" />
+            <div class="des">世界时间（使用分面）</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="极坐标">极坐标</h2>
+      <ul class="demo-detail-list clearfix" id="J_极坐标">
+        <li>
+          <a href="13-polar/polar-mixture.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/polar-mixture.png" width="316px" height="167px" />
+            <div class="des">极坐标下的点、线、面</div>
+          </a>
+        </li>
+        <li>
+          <a href="13-polar/polar-interval.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/polar-interval.png" width="316px" height="167px" />
+            <div class="des">极坐标下的柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="13-polar/wind-rose.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/wind-rose.png" width="316px" height="167px" />
+            <div class="des">极坐标下的层叠柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="13-polar/pizza.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/pizza.png" width="316px" height="167px" />
+            <div class="des">pizza 图（圆内点图）</div>
+          </a>
+        </li>
+        <li>
+          <a href="13-polar/polar-box.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/polar-box.png" width="316px" height="167px" />
+            <div class="des">极坐标下的箱型图</div>
+          </a>
+        </li>
+        <li>
+          <a href="13-polar/polar-custom.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/polar-custom.png" width="316px" height="167px" />
+            <div class="des">极坐标</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="其他图表">其他图表</h2>
+      <ul class="demo-detail-list clearfix" id="J_其他图表">
+        <li>
+          <a href="14-other/box-plot.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/box-plot.png" width="316px" height="167px" />
+            <div class="des">箱型图</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/chart-event.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/chart-event.png" width="316px" height="167px" />
+            <div class="des">chart 事件支持</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/radial-bar.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/radial-bar.png" width="316px" height="167px" />
+            <div class="des">玉玦图</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/double-axis.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/double-axis.png" width="316px" height="167px" />
+            <div class="des">双 Y 轴</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/his.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/his.png" width="316px" height="167px" />
+            <div class="des">直方图</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/hot-hex.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/hot-hex.png" width="316px" height="167px" />
+            <div class="des">马赛克图(六边形)</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/mi.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/mi.png" width="316px" height="167px" />
+            <div class="des">各国制造指数</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/multiple.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/multiple.png" width="316px" height="167px" />
+            <div class="des">多图联动</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/contour.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/contour.png" width="316px" height="167px" />
+            <div class="des">等高线</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/stem-leaf.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/stem-leaf.png" width="316px" height="167px" />
+            <div class="des">茎叶图</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/text-lable.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/text-lable.png" width="316px" height="167px" />
+            <div class="des">辅助文本定义 label</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/waterfall.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/waterfall.png" width="316px" height="167px" />
+            <div class="des">瀑布图</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/regressioncurve.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/regressioncurve.png" width="316px" height="167px" />
+            <div class="des">回归曲线图</div>
+          </a>
+        </li>
+        <li>
+          <a href="14-other/distributioncurve.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/14-other/distributioncurve.png" width="316px" height="167px" />
+            <div class="des">分布曲线图</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="分面">分面</h2>
+      <ul class="demo-detail-list clearfix" id="J_分面">
+        <li>
+          <a href="15-facet/rect.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/rect.png" width="316px" height="167px" />
+            <div class="des">矩阵分面</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/circle.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/circle.png" width="316px" height="167px" />
+            <div class="des">圆型分面</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/row.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/row.png" width="316px" height="167px" />
+            <div class="des">行分面</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/column.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/column.png" width="316px" height="167px" />
+            <div class="des">列分面</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/list.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/list.png" width="316px" height="167px" />
+            <div class="des">可换行分面</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/tree-column.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/tree-column.png" width="316px" height="167px" />
+            <div class="des">树形分面-柱状图</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/tree-dot.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/tree-dot.png" width="316px" height="167px" />
+            <div class="des">树形分面-点图</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/tree-m.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/tree-m.png" width="316px" height="167px" />
+            <div class="des">树形分面-多级</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/tree-pie.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/tree-pie.png" width="316px" height="167px" />
+            <div class="des">树形分面-饼图</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/mirror-transpose.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/mirror-transpose.png" width="316px" height="167px" />
+            <div class="des">镜像分面 - 翻转</div>
+          </a>
+        </li>
+        <li>
+          <a href="15-facet/mirror.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/15-facet/mirror.png" width="316px" height="167px" />
+            <div class="des">镜像分面</div>
+          </a>
+        </li>
+      </ul>
+      <h2 id="统计函数">统计函数</h2>
+      <ul class="demo-detail-list clearfix" id="J_统计函数">
+        <li>
+          <a href="16-stat/min.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/min.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.min()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/max.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/max.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.max()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/sum.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/sum.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.sum()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/range.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/range.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.range()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/mean.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/mean.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.mean</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/median.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/median.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.median()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/sd.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/sd.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.sd()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/mode.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/mode.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.mode()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/count.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/count.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.count</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/proportion.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/proportion.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.proportion()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/percent.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/percent.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.percent()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/accumulate.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/accumulate.png" width="316px" height="167px" />
+            <div class="des">Stat.summary.cumulative()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/bin-dot.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/bin-dot.png" width="316px" height="167px" />
+            <div class="des">Stat.bin.dot()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/bin-hex.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/bin-hex.png" width="316px" height="167px" />
+            <div class="des">Stat.bin.hex()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/bin-rect.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/bin-rect.png" width="316px" height="167px" />
+            <div class="des">Stat.bin.rect()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/bin-quan.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/bin-quan.png" width="316px" height="167px" />
+            <div class="des">Stat.bin.quantile.letter()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/smooth.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/smooth.png" width="316px" height="167px" />
+            <div class="des">Stat.smooth.linear()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/smooth-two.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/smooth-two.png" width="316px" height="167px" />
+            <div class="des">Stat.smooth.quadratic() -二阶回归</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/smooth-cubic.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/smooth-cubic.png" width="316px" height="167px" />
+            <div class="des">Stat.smooth.cubic()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/smooth-exp.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/smooth-exp.png" width="316px" height="167px" />
+            <div class="des">Stat.smooth.exp()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/smooth-loess.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/smooth-loess.png" width="316px" height="167px" />
+            <div class="des">Stat.smooth.loess()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/loess.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/loess.png" width="316px" height="167px" />
+            <div class="des">Stat.smooth.loess.<kernelType>(&#39;x<em>y</em>z&#39;)</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/density-kernel.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/density-kernel.png" width="316px" height="167px" />
+            <div class="des">Stat.density.kernel()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/density.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/density.png" width="316px" height="167px" />
+            <div class="des">Stat.density.kernel.<kernelType>(&#39;x*y&#39;)</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/density-normal.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/density-normal.png" width="316px" height="167px" />
+            <div class="des">Stat.density.normal()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/spread-range.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/spread-range.png" width="316px" height="167px" />
+            <div class="des">Stat.spread.range()</div>
+          </a>
+        </li>
+        <li>
+          <a href="16-stat/spread-sd.html">
+            <img class="lazy" data-original="https://as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/16-stat/spread-sd.png" width="316px" height="167px" />
+            <div class="des">Stat.spread.sd()</div>
+          </a>
+        </li>
+      </ul>
+ 
+    </div>
+  </div>
+</div>
+<div class="nav-menu hide" id="J_navMenu"></div>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/jquery.lazyload.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $("img.lazy").lazyload();
+  });
+</script>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:33 GMT -->
+</html>

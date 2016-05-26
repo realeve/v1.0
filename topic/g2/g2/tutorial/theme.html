@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/theme.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="active">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="简介">简介</h2><p>G2 除了提供默认的图表样式外，还开放了自定义皮肤的功能，以便用户进行图表样式的格式化定制。</p>
+<h2 id="默认主题">默认主题</h2><p>G2 中我们默认提供了以下三套主题：</p>
+<ul>
+<li>主题名：default （默认主题）</li>
+</ul>
+<p><img src="../../os.alipayobjects.com/rmsportal/GFfAqpAZvAUvpfS.png" width="300px"></p>
+<ul>
+<li>主题名：dark</li>
+</ul>
+<p><img src="../../os.alipayobjects.com/rmsportal/TjzRXZQiIgbyQMm.png" width="300px"></p>
+<ul>
+<li>主题名：cherry</li>
+</ul>
+<p><img src="../../os.alipayobjects.com/rmsportal/tyJVmHNIJyWkKUp.png" width="300px"></p>
+<h2 id="切换主题">切换主题</h2><p>默认我们提供了三套皮肤，分别是 &#39;default&#39;、&#39;dark&#39;、&#39;cheery&#39;。用户可以通过以下方式进行主题切换：</p>
+<h4 id="方式一：-直接传入主题名">方式一： 直接传入主题名</h4><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> Global = G2.Global; <span class="comment">// 获取 Global 全局对象</span>
+Global.setTheme(<span class="string">'dark'</span>); <span class="comment">// 传入值为 'default'、'dark'、'cheery'的一种，如果不是，那么使用 default 主题。</span></code></pre></div><h4 id="方式二：-传入-g2-theme-对象">方式二： 传入 G2.Theme 对象</h4><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> Global = G2.Global; <span class="comment">// 获取 Global 全局对象</span>
+<span class="keyword">var</span> Theme = G2.Theme; <span class="comment">// 获取 Theme 对象，包含三个属性： 'default' 'dark' 'cheery' 对应主题名 </span>
+Global.setTheme(Theme[<span class="string">'cheery'</span>]); <span class="comment">// 传入值为 'default'、'dark'、'cheery'的一种，如果不是，那么使用 default 主题。</span></code></pre></div><h2 id="个性化主题">个性化主题</h2><h4 id="方式一：-直接赋值给全局对象-global">方式一： 直接赋值给全局对象 Global</h4><p>由于 G2 皮肤的配置项都是设置到<a href="global.html">全局变量</a>上才生效的，所以我们可以直接设置变量，但是不推荐。</p>
+<div class="highlight"><pre><code class="javascript">G2.Global.animate = <span class="literal">false</span> ; <span class="comment">// 关闭默认动画</span>
+G2.Global.colors[<span class="string">'default'</span>] = [<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="string">'yellow'</span>]; <span class="comment">// 更改默认的颜色</span></code></pre></div><h4 id="方式二：-使用-global-settheme-方法">方式二： 使用 Global.setTheme 方法</h4><p>推荐！通过</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> theme = G2.Util.mix(<span class="literal">true</span>, {}, G2.Theme, {
+  animate: <span class="literal">false</span>,
+  colors: {...},
+  shapes: {...}
+  <span class="comment">// 具体的配置项详见 api/global.html</span>
+});
+
+G2.Global.setTheme(theme); <span class="comment">// 将主题设置为用户自定义的主题</span></code></pre></div><h2 id="示例">示例</h2><p><style>
+  .demo-chart {
+    background-color: #21273b;
+  }
+</style></p>
+<script src="../../as.alipayobjects.com/g/datavis/g-plugin-map/1.1.0/index.js"></script>
+
+<div id="c1" class="demo-chart"></div>
+<div class="demo-chart" id="c2"></div>
+
+<script>(function(){'use strict';
+
+var theme = G2.Util.mix(true, {}, G2.Theme, {
+  shape: {
+    polygon: {
+      stroke: '#213c51', // 地图轮廓线颜色
+      'stroke-width': 1 // 地图轮廓线宽度
+    },
+    hollowPoint: {
+      fill: '#21273b', // 点的填充颜色
+      'stroke-width': 2, // 点的边框宽度
+      radius: 3 // 点的半径
+    },
+    interval: {
+      'fill-opacity': 1 // 填充透明度设置
+    }
+  },
+  axis: {
+    bottom: {
+      labels: {
+        label: { fill: '#999' } // 底部标签文本的颜色
+      }
+    },
+    left: {
+      labels: {
+        label: { fill: '#999' } // 左部标签文本的颜色
+      }
+    },
+    right: {
+      labels: {
+        label: { fill: '#999' } // 右部标签文本的颜色
+      }
+    }
+  }
+});
+
+G2.Global.setTheme(theme);
+
+$.getJSON('/data.json?filename=china', function (mapData) {
+  var Stat = G2.Stat;
+  var userData = [];
+  var features = mapData.features;
+  for (var i = 0; i < features.length; i++) {
+    var name = features[i].properties.name;
+    userData.push({
+      "name": name,
+      "value": Math.round(Math.random() * 1000)
+    });
+  }
+  var chart = new G2.Chart({
+    id: 'c1',
+    width: 650,
+    height: 450,
+    plotCfg: {
+      margin: [80, 80, 0, 80]
+    }
+  });
+  chart.source(userData);
+
+  var gmap = new G2.Plugin.GMap({
+    chart: chart,
+    mapData: mapData, // 地图数据
+    style: {
+      stroke: '#213c51'
+    }
+  }).draw();
+
+  chart.tooltip({
+    map: {
+      title: null,
+      name: "name",
+      value: "value"
+    }
+  });
+  chart.legend('value', false);
+  chart.polygon().position(Stat.map.region('name', mapData)).color('value', '#39ccf4-#20546b');
+  chart.render();
+});
+
+var data = [{ 'time': '10:10', 'call': 4, 'waiting': 2, 'people': 2 }, { 'time': '10:15', 'call': 2, 'waiting': 6, 'people': 3 }, { 'time': '10:20', 'call': 13, 'waiting': 2, 'people': 5 }, { 'time': '10:25', 'call': 9, 'waiting': 9, 'people': 1 }, { 'time': '10:30', 'call': 5, 'waiting': 2, 'people': 3 }, { 'time': '10:35', 'call': 8, 'waiting': 2, 'people': 1 }, { 'time': '10:40', 'call': 13, 'waiting': 1, 'people': 2 }];
+
+var Frame = G2.Frame;
+var frame = new Frame(data);
+frame = Frame.combinColumns(frame, ['call', 'waiting'], 'count', 'type', ['time', 'people']);
+
+var chart2 = new G2.Chart({
+  id: 'c2',
+  width: 800,
+  height: 300
+});
+chart2.source(frame, {
+  'count': { alias: '话务量（通）', min: 0 },
+  'people': { alias: '人数（人）', min: 0 }
+});
+
+chart2.axis('time', {
+  title: null // 去除 X 轴标题
+});
+
+chart2.legend(false); // 不显示图例
+chart2.intervalStack().position('time*count').color('type', ['#348cd1', '#43b5d8']); // 绘制层叠柱状图
+chart2.line().position('time*people').color('#5ed470').size(4).shape('smooth'); // 绘制曲线图
+chart2.point().position('time*people').color('#5ed470'); // 绘制点图
+chart2.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> theme = G2.Util.mix(<span class="literal">true</span>, {}, G2.Theme, {
+  shape: {
+    polygon: {
+      stroke: <span class="string">'#213c51'</span>, <span class="comment">// 地图轮廓线颜色</span>
+      <span class="string">'stroke-width'</span>: <span class="number">1</span> <span class="comment">// 地图轮廓线宽度</span>
+    },
+    hollowPoint: {
+      fill: <span class="string">'#21273b'</span>, <span class="comment">// 点的填充颜色</span>
+      <span class="string">'stroke-width'</span>: <span class="number">2</span>, <span class="comment">// 点的边框宽度</span>
+      radius: <span class="number">3</span> <span class="comment">// 点的半径</span>
+    },
+    interval: {
+      <span class="string">'fill-opacity'</span>: <span class="number">1</span> <span class="comment">// 填充透明度设置</span>
+    }
+  },
+  axis: {
+    bottom: {
+      labels: {
+        label: { fill: <span class="string">'#999'</span>} <span class="comment">// 底部标签文本的颜色</span>
+      }
+    },
+    left: {
+      labels: {
+        label: { fill: <span class="string">'#999'</span>} <span class="comment">// 左部标签文本的颜色</span>
+      }
+    },
+    right: {
+      labels: {
+        label: { fill: <span class="string">'#999'</span>} <span class="comment">// 右部标签文本的颜色</span>
+      }
+    }
+  }
+});
+
+G2.Global.setTheme(theme);
+
+$.getJSON(<span class="string">'/data.json?filename=china'</span>, <span class="function"><span class="keyword">function</span><span class="params">(mapData)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> userData = [];
+  <span class="keyword">var</span> features = mapData.features;
+  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;features.length; i++) {
+    <span class="keyword">var</span> name = features[i].properties.name;
+    userData.push({
+      <span class="string">"name"</span>: name,
+      <span class="string">"value"</span>: Math.round(Math.random()*<span class="number">1000</span>)
+    });
+  }
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c1'</span>,
+    width: <span class="number">650</span>,
+    height: <span class="number">450</span>,
+    plotCfg: {
+      margin: [<span class="number">80</span>, <span class="number">80</span>, <span class="number">0</span>, <span class="number">80</span>]
+    }
+  });
+  chart.source(userData);
+
+  <span class="keyword">var</span> gmap = <span class="keyword">new</span> G2.Plugin.GMap({
+    chart: chart,
+    mapData: mapData, <span class="comment">// 地图数据</span>
+    style: {
+      stroke: <span class="string">'#213c51'</span>,
+    }
+  }).draw();
+
+  chart.tooltip({
+    map: {
+      title: <span class="literal">null</span>,
+      name: <span class="string">"name"</span>,
+      value: <span class="string">"value"</span>
+    }
+  });
+  chart.legend(<span class="string">'value'</span>, <span class="literal">false</span>);
+  chart.polygon().position(Stat.map.region(<span class="string">'name'</span>, mapData)).color(<span class="string">'value'</span>,<span class="string">'#39ccf4-#20546b'</span>);
+  chart.render();
+});
+
+<span class="keyword">var</span> data = [
+  {<span class="string">'time'</span>: <span class="string">'10:10'</span>, <span class="string">'call'</span>: <span class="number">4</span>, <span class="string">'waiting'</span>: <span class="number">2</span>, <span class="string">'people'</span>: <span class="number">2</span>},
+  {<span class="string">'time'</span>: <span class="string">'10:15'</span>, <span class="string">'call'</span>: <span class="number">2</span>, <span class="string">'waiting'</span>: <span class="number">6</span>, <span class="string">'people'</span>: <span class="number">3</span>},
+  {<span class="string">'time'</span>: <span class="string">'10:20'</span>, <span class="string">'call'</span>: <span class="number">13</span>, <span class="string">'waiting'</span>: <span class="number">2</span>, <span class="string">'people'</span>: <span class="number">5</span>},
+  {<span class="string">'time'</span>: <span class="string">'10:25'</span>, <span class="string">'call'</span>: <span class="number">9</span>, <span class="string">'waiting'</span>: <span class="number">9</span>, <span class="string">'people'</span>: <span class="number">1</span>},
+  {<span class="string">'time'</span>: <span class="string">'10:30'</span>, <span class="string">'call'</span>: <span class="number">5</span>, <span class="string">'waiting'</span>: <span class="number">2</span>, <span class="string">'people'</span>: <span class="number">3</span>},
+  {<span class="string">'time'</span>: <span class="string">'10:35'</span>, <span class="string">'call'</span>: <span class="number">8</span>, <span class="string">'waiting'</span>: <span class="number">2</span>, <span class="string">'people'</span>: <span class="number">1</span>},
+  {<span class="string">'time'</span>: <span class="string">'10:40'</span>, <span class="string">'call'</span>: <span class="number">13</span>, <span class="string">'waiting'</span>: <span class="number">1</span>, <span class="string">'people'</span>: <span class="number">2</span>}
+];
+
+<span class="keyword">var</span> Frame = G2.Frame;
+<span class="keyword">var</span> frame = <span class="keyword">new</span> Frame(data);
+frame = Frame.combinColumns(frame,[<span class="string">'call'</span>,<span class="string">'waiting'</span>],<span class="string">'count'</span>,<span class="string">'type'</span>,[<span class="string">'time'</span>, <span class="string">'people'</span>]);
+
+<span class="keyword">var</span> chart2 = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c2'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">300</span>
+});
+chart2.source(frame, {
+  <span class="string">'count'</span>: {alias: <span class="string">'话务量（通）'</span>, min: <span class="number">0</span>},
+  <span class="string">'people'</span>: {alias: <span class="string">'人数（人）'</span>, min: <span class="number">0</span>}
+});
+
+chart2.axis(<span class="string">'time'</span>, {
+  title: <span class="literal">null</span> <span class="comment">// 去除 X 轴标题</span>
+});
+
+chart2.legend(<span class="literal">false</span>);<span class="comment">// 不显示图例</span>
+chart2.intervalStack().position(<span class="string">'time*count'</span>).color(<span class="string">'type'</span>, [<span class="string">'#348cd1'</span>, <span class="string">'#43b5d8'</span>]); <span class="comment">// 绘制层叠柱状图</span>
+chart2.line().position(<span class="string">'time*people'</span>).color(<span class="string">'#5ed470'</span>).size(<span class="number">4</span>).shape(<span class="string">'smooth'</span>); <span class="comment">// 绘制曲线图</span>
+chart2.point().position(<span class="string">'time*people'</span>).color(<span class="string">'#5ed470'</span>); <span class="comment">// 绘制点图</span>
+chart2.render();</code></pre></div><h2 id="更多">更多</h2><p><a href="global.html">全局变量</a>中还有一些其他的配置信息，可以去深入了解一下。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/theme.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:34 GMT -->
+</html>

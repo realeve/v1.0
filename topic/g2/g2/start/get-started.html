@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/start/get-started.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a class="hover" href="index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner start">
+  <div class="banner-inner">
+    <h1>G2 快速上手</h1>
+    <p class="intro">简要介绍 G2 以及特性，帮助您快速了解 G2<p/>
+    <p class="intro">并提供 G2 快速入门教程</p>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">快速上手</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >G2 介绍</a>
+  </li>
+  <li class="active">
+    <a href="get-started.html" >快速开始</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="五分钟上手-g2">五分钟上手 G2</h2><h3 id="获取-g2">获取 G2</h3><p>目前 G2 只提供 <code>&lt;script&gt;</code> 标签引入的方式。</p>
+<ol>
+<li><p>你可以下载 JS 文件 <a href="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js" download>点此下载</a> 到本地，然后通过 <code>&lt;script&gt;</code> 标签引入到页面上。</p>
+</li>
+<li><p>也可以直接引入cdn上的文件：</p>
+</li>
+</ol>
+<div class="highlight"><pre><code class="javascript">&lt;script src=<span class="string">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></code></pre></div><h3 id="引入-g2">引入 G2</h3><p>G2 的引入方式很简单，只需要像普通的 JavaScript 库一样用 script 标签引入即可。</p>
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+    <span class="comment">&lt;!-- 引入 G2 文件 --&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span><span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><h3 id="创建图表容器">创建图表容器</h3><p>标注 DOM 容器上的 ID，用于绘制图表。</p>
+<div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h3 id="绘制图表">绘制图表</h3><p>完成以上简单的两步之后，就可以进行简单的图表绘制了：</p>
+<ol>
+<li>创建 Chart 图表，指定图表所在的容器 ID、指定图表的宽高、边距等信息；</li>
+<li>载入图表数据源；</li>
+<li>使用图形语法进行图表的绘制；</li>
+<li>渲染图表。</li>
+</ol>
+<p>完整的代码如下：</p>
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>柱状图<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="comment">&lt;!-- 引入 G2 文件 --&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="comment">&lt;!-- 创建图表容器 --&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      <span class="keyword">var</span> data = [
+        {genre: <span class="string">'Sports'</span>, sold: <span class="number">275</span>},
+        {genre: <span class="string">'Strategy'</span>, sold: <span class="number">115</span>},
+        {genre: <span class="string">'Action'</span>, sold: <span class="number">120</span>},
+        {genre: <span class="string">'Shooter'</span>, sold: <span class="number">350</span>},
+        {genre: <span class="string">'Other'</span>, sold: <span class="number">150</span>},
+      ]; <span class="comment">// G2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。</span>
+      <span class="comment">// Step 1: 创建 Chart 对象</span>
+      <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+        id: <span class="string">'c1'</span>, <span class="comment">// 指定图表容器 ID</span>
+        width : <span class="number">800</span>, <span class="comment">// 指定图表宽度</span>
+        height : <span class="number">400</span> <span class="comment">// 指定图表高度</span>
+      });
+      <span class="comment">// Step 2: 载入数据源</span>
+      chart.source(data, {
+        genre: {
+          alias: <span class="string">'游戏种类'</span> <span class="comment">// 列定义，定义该属性显示的别名</span>
+        },
+        sold: {
+          alias: <span class="string">'销售量'</span>
+        }
+      });
+      <span class="comment">// Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴</span>
+      chart.interval().position(<span class="string">'genre*sold'</span>).color(<span class="string">'genre'</span>)
+      <span class="comment">// Step 4: 渲染图表</span>
+      chart.render();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><p>这样就可以绘制出一张漂亮的柱状图了，如下图所示：</p>
+<div id="c1"></div>
+
+<script>
+var data = [
+  {genre: 'Sports', sold: 275},
+  {genre: 'Strategy', sold: 115},
+  {genre: 'Action', sold: 120},
+  {genre: 'Shooter', sold: 350},
+  {genre: 'Other', sold: 150},
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width : 800,
+  height : 400
+});
+chart.source(data, {
+  genre: {
+    alias: '游戏种类'
+  },
+  sold: {
+    alias: '销售量'
+  }
+});
+chart.interval().position('genre*sold').color('genre')
+chart.render();
+</script>
+
+<p>想要了解 G2 更多的细节，请查看 G2 的<a href="../tutorial/index-2.html">教程</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/start/get-started.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:32 GMT -->
+</html>

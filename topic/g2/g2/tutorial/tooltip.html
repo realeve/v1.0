@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/tooltip.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+  <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="active">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="tooltip-简介">tooltip 简介</h2><p>提示信息(tooltip)，用于显示图表的详细信息，鼠标在图表上移动时，提示信息会显示当前点对应数据的一些信息：</p>
+<ul>
+<li>point(点图）,polygon(热力图）在hover上时，显示对应的点的一些信息；</li>
+<li>折线图、区域图、interval 根据 x 坐标轴的点来显示数据的信息；</li>
+<li>一个图表上有多个图层时，会同时显示各个图层的信息。</li>
+<li>单个图形（Geom)，可以指定自己的tooltip信息</li>
+</ul>
+<h2 id="tooltip-语法">tooltip 语法</h2><div class="highlight"><pre><code class="javascript">chart.tooltip(<span class="literal">true</span>, cfg); <span class="comment">// 可用 tooltip，并配置 tooltip 配置信息</span>
+chart.tooltip(cfg); <span class="comment">// 配置 tooltip 信息</span>
+chart.tooltip(<span class="literal">false</span>) <span class="comment">// 禁用 tooltip</span></code></pre></div><h2 id="单个图形的tooltip语法">单个图形的tooltip语法</h2><div class="highlight"><pre><code class="javascript">chart.<span class="xml"><span class="tag">&lt;<span class="title">geom</span>&gt;</span>.tooltip('dim1*dim2...dimn');</span></code></pre></div><ul>
+<li>line, interval等所有的图形都可以指定多个字段显示在提示信息上，每个字段占一行</li>
+<li>每行的格式是：字段的名称（别名）：字段值</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.line().position(<span class="string">'carat*price'</span>).color(<span class="string">'cut'</span>).tooltip(<span class="string">'price*cut'</span>);</code></pre></div><h2 id="tooltip-配置信息">tooltip 配置信息</h2><p><code>chart.tooltip(enable, cfg)</code> 控制提示信息是否显示，和一些配置信息。</p>
+<p>enable 是个布尔值，控制提示信息是否展示，默认为 true。以下展示的是具体的 cfg 配置项，更详细的使用方法请参见 <a href="../api/index-2.html">chart.tooltip()  API</a>。</p>
+<table>
+<thead>
+<tr>
+<th>cfg 配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offset</td>
+<td>偏移量，设置 tooltip 显示位置时距离当前鼠标 x 轴方向上的距离。</td>
+</tr>
+<tr>
+<td>crosshairs</td>
+<td>是否显示贯穿坐标轴的辅助线。</td>
+</tr>
+<tr>
+<td>title</td>
+<td>标题的配置项。</td>
+</tr>
+<tr>
+<td>border</td>
+<td>边框的配置项。</td>
+</tr>
+<tr>
+<td>custom</td>
+<td>是否使用自定义html，默认 false。</td>
+</tr>
+<tr>
+<td>html</td>
+<td>tooltip的html外层模板。</td>
+</tr>
+<tr>
+<td>itemTpl</td>
+<td>使用html时每一项的模板，默认支持index,name和value。</td>
+</tr>
+<tr>
+<td>map</td>
+<td>图表数据跟 tooltip 内容的映射，包含 3 个字段的映射 &#39;title&#39;,&#39;name&#39;,&#39;value&#39;，如果指定的字段是图表中的数据字段，则映射对应的数据，否则作为字符串输出</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><code class="javascript">chart.tooltip({
+  map: {
+    title: <span class="string">'cut'</span>, <span class="comment">// 标题展示 cut 字段值</span>
+    name: <span class="string">'价格'</span>,
+    value: <span class="string">'price'</span>
+  }
+});</code></pre></div><p>上述代码的显示效果为：<img src="../../t.alipayobjects.com/images/T1ceJoXm8cXXXXXXXX.png" alt="image"></p>
+<h2 id="指定-tooltip-的显示信息">指定 tooltip 的显示信息</h2><p>下面的示例将温度和月份都显示成一行。</p>
+<div id="c2" class="chart-container"></div>
+
+<script>(function(){"use strict";
+
+var data = [{ "month": 0, "tem": 7, "city": "tokyo" }, { "month": 1, "tem": 6.9, "city": "tokyo" }, { "month": 2, "tem": 9.5, "city": "tokyo" }, { "month": 3, "tem": 14.5, "city": "tokyo" }, { "month": 4, "tem": 18.2, "city": "tokyo" }, { "month": 5, "tem": 21.5, "city": "tokyo" }, { "month": 6, "tem": 25.2, "city": "tokyo" }, { "month": 7, "tem": 26.5, "city": "tokyo" }, { "month": 8, "tem": 23.3, "city": "tokyo" }, { "month": 9, "tem": 18.3, "city": "tokyo" }, { "month": 10, "tem": 13.9, "city": "tokyo" }, { "month": 11, "tem": 9.6, "city": "tokyo" }];
+
+var chart = new G2.Chart({
+  id: 'c2',
+  width: 800,
+  height: 300
+});
+
+var defs = {
+  'month': {
+    type: 'cat',
+    alias: '月份', // 别名，如果没有别名显示成字段名 month
+    values: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+  },
+  'tem': {
+    alias: '温度'
+  }
+};
+
+chart.source(data, defs);
+
+chart.tooltip(true, {
+  title: null // 默认标题不显示
+});
+chart.line().position('month*tem').tooltip('month*tem');
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:<span class="number">7</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">6.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">9.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">14.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">18.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">21.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">25.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">26.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">23.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">18.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">13.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">9.6</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>}
+];
+
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c2'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">300</span>
+});
+
+<span class="keyword">var</span> defs = {
+  <span class="string">'month'</span>:{
+    type: <span class="string">'cat'</span>,
+    alias: <span class="string">'月份'</span>, <span class="comment">// 别名，如果没有别名显示成字段名 month</span>
+    values: [
+      <span class="string">'一月'</span>,<span class="string">'二月'</span>,<span class="string">'三月'</span>,<span class="string">'四月'</span>,<span class="string">'五月'</span>,<span class="string">'六月'</span>,
+      <span class="string">'七月'</span>,<span class="string">'八月'</span>,<span class="string">'九月'</span>,<span class="string">'十月'</span>,<span class="string">'十一月'</span>,<span class="string">'十二月'</span>]
+  },
+  <span class="string">'tem'</span>: {
+    alias: <span class="string">'温度'</span>
+  }
+};
+
+chart.source(data,defs);
+
+chart.tooltip(<span class="literal">true</span>, {
+  title: <span class="literal">null</span> <span class="comment">// 默认标题不显示</span>
+});
+chart.line().position(<span class="string">'month*tem'</span>).tooltip(<span class="string">'month*tem'</span>);
+chart.render();</code></pre></div><h2 id="格式化提示信息示例">格式化提示信息示例</h2><div id="c22"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=diamond', function (data) {
+  var Stat = G2.Stat;
+  var chart = new G2.Chart({
+    id: 'c22',
+    width: 800,
+    height: 400,
+    plotCfg: {
+      margin: [20, 80, 60, 60]
+    }
+  });
+  chart.source(data);
+  chart.coord('theta', {
+    radius: 0.6 // 设置饼图的半径，设置的数值必须在 [0, 1] 范围内
+  });
+  // 不同 cut（切割工艺）所占的比例
+  chart.intervalStack().position(Stat.summary.proportion()).color('cut');
+  chart.render();
+
+  chart.on('tooltipchange', function (ev) {
+    var item = ev.items[0]; // 获取tooltip要显示的内容
+    item.value = '格式化-' + item.value;
+  });
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>, <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c22'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>,
+    plotCfg: {
+      margin: [<span class="number">20</span>, <span class="number">80</span>, <span class="number">60</span>, <span class="number">60</span>]
+    }
+  });
+  chart.source(data);
+  chart.coord(<span class="string">'theta'</span>, {
+    radius: <span class="number">0.6</span> <span class="comment">// 设置饼图的半径，设置的数值必须在 [0, 1] 范围内</span>
+  });
+  <span class="comment">// 不同 cut（切割工艺）所占的比例</span>
+  chart.intervalStack()
+    .position(Stat.summary.proportion())
+    .color(<span class="string">'cut'</span>);
+  chart.render();
+
+  chart.on(<span class="string">'tooltipchange'</span>,<span class="function"><span class="keyword">function</span><span class="params">(ev)</span>{</span>
+    <span class="keyword">var</span> item = ev.items[<span class="number">0</span>]; <span class="comment">// 获取tooltip要显示的内容</span>
+    item.value = <span class="string">'格式化-'</span> +  item.value;
+  });
+});</code></pre></div><h2 id="自定义提示信息示例">自定义提示信息示例</h2><div class="nico-insert-code"><style>
+  .pie-container{
+    position:absolute;
+    visibility:hidden;
+    border : 1px solid #efefef;
+    background-color: white;
+    opacity: .8;
+    padding: 5px;
+
+    transition: top 200ms,left 200ms;
+    -moz-transition:  top 200ms,left 200ms;  /* Firefox 4 */
+    -webkit-transition:  top 200ms,left 200ms; /* Safari 和 Chrome */
+    -o-transition:  top 200ms,left 200ms;
+  }
+</style>
+<div id="c3"></div>
+<div style="display:none">
+  <div id="p1" class="pie-container ac-tooltip">
+    <span>细节分步图</span>
+    <div id="c4"></div>
+  </div>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+  <span class="class">.pie-container</span><span class="rules">{
+    <span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;
+    <span class="rule"><span class="attribute">visibility</span>:<span class="value">hidden</span></span>;
+    <span class="rule"><span class="attribute">border </span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#efefef</span></span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> white</span></span>;
+    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> .<span class="number">8</span></span></span>;
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">5</span>px</span></span>;
+
+    <span class="rule"><span class="attribute">transition</span>:<span class="value"> top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>;
+    <span class="rule"><span class="attribute">-moz-transition</span>:<span class="value">  top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>;  <span class="comment">/* Firefox 4 */</span>
+    <span class="rule"><span class="attribute">-webkit-transition</span>:<span class="value">  top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>; <span class="comment">/* Safari 和 Chrome */</span>
+    <span class="rule"><span class="attribute">-o-transition</span>:<span class="value">  top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>;
+  <span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"display:none"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"p1"</span> <span class="attribute">class</span>=<span class="value">"pie-container ac-tooltip"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span>&gt;</span>细节分步图<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c4"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><script>(function(){'use strict';
+
+var Stat = G2.Stat;
+var data = [{ name: '类别1', value: 10, children: [{ name: '类别11', value: 18 }, { name: '类别12', value: 10 }, { name: '类别13', value: 7 }, { name: '类别14', value: 12 }] }, { name: '类别2', value: 8, children: [{ name: '类别21', value: 28 }, { name: '类别22', value: 20 }, { name: '类别23', value: 7 }, { name: '类别24', value: 2 }] }, { name: '类别3', value: 4, children: [{ name: '类别31', value: 14 }, { name: '类别32', value: 12 }, { name: '类别33', value: 6 }, { name: '类别34', value: 1 }] }, { name: '类别4', value: 9, children: [{ name: '类别41', value: 38 }, { name: '类别42', value: 10 }, { name: '类别43', value: 17 }, { name: '类别44', value: 22 }] }];
+
+var chart = new G2.Chart({
+  id: 'c3',
+  animate: false,
+  width: 800,
+  height: 400
+});
+var defs = {
+  'value': {
+    min: 0
+  }
+};
+chart.source(data);
+chart.tooltip(true, {
+  custom: true,
+  html: '#p1'
+});
+chart.interval().position('name*value').color('name'); // 绘制柱状图
+chart.render();
+
+var chart2 = new G2.Chart({
+  id: 'c4',
+  animate: false,
+  width: 300,
+  height: 300,
+  plotCfg: {
+    margin: [0, 0, 35] // 设置边框
+  }
+});
+
+chart2.coord('theta');
+chart2.legend('bottom', {
+  title: null
+});
+
+// 查找对应的数据
+function findObj(name) {
+  var rst = null;
+  data.forEach(function (item) {
+    if (item.name === name) {
+      rst = item;
+    }
+  });
+  return rst;
+}
+
+// 监听 tooltip 改变事件
+chart.on('tooltipchange', function (ev) {
+  var item = ev.items[0]; // 获取tooltip要显示的内容
+  var name = item.name;
+  var obj = findObj(name);
+  if (obj) {
+    chart2.clear();
+    chart2.source(obj.children);
+    chart2.intervalStack().position(Stat.summary.percent('value')).color('name');
+    chart2.render();
+  }
+});})()</script><div class="highlight"><pre><code class="javascript">  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> data = [
+    {name: <span class="string">'类别1'</span>,value: <span class="number">10</span>,children: [
+      {name: <span class="string">'类别11'</span>,value: <span class="number">18</span>},
+      {name: <span class="string">'类别12'</span>,value: <span class="number">10</span>},
+      {name: <span class="string">'类别13'</span>,value: <span class="number">7</span>},
+      {name: <span class="string">'类别14'</span>,value: <span class="number">12</span>}
+    ]},
+    {name: <span class="string">'类别2'</span>,value: <span class="number">8</span>,children: [
+      {name: <span class="string">'类别21'</span>,value: <span class="number">28</span>},
+      {name: <span class="string">'类别22'</span>,value: <span class="number">20</span>},
+      {name: <span class="string">'类别23'</span>,value: <span class="number">7</span>},
+      {name: <span class="string">'类别24'</span>,value: <span class="number">2</span>}
+    ]},
+    {name: <span class="string">'类别3'</span>,value: <span class="number">4</span>,children: [
+      {name: <span class="string">'类别31'</span>,value: <span class="number">14</span>},
+      {name: <span class="string">'类别32'</span>,value: <span class="number">12</span>},
+      {name: <span class="string">'类别33'</span>,value: <span class="number">6</span>},
+      {name: <span class="string">'类别34'</span>,value: <span class="number">1</span>}
+    ]},
+    {name: <span class="string">'类别4'</span>,value: <span class="number">9</span>,children: [
+      {name: <span class="string">'类别41'</span>,value: <span class="number">38</span>},
+      {name: <span class="string">'类别42'</span>,value: <span class="number">10</span>},
+      {name: <span class="string">'类别43'</span>,value: <span class="number">17</span>},
+      {name: <span class="string">'类别44'</span>,value: <span class="number">22</span>}
+    ]}
+  ];
+
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c3'</span>,
+    animate: <span class="literal">false</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>
+  });
+  <span class="keyword">var</span> defs = {
+    <span class="string">'value'</span>: {
+      min: <span class="number">0</span>
+    }
+  };
+  chart.source(data);
+  chart.tooltip(<span class="literal">true</span>, {
+    custom: <span class="literal">true</span>,
+    html: <span class="string">'#p1'</span>
+  });
+  chart.interval().position(<span class="string">'name*value'</span>).color(<span class="string">'name'</span>); <span class="comment">// 绘制柱状图</span>
+  chart.render();
+
+  <span class="keyword">var</span> chart2 = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c4'</span>,
+    animate: <span class="literal">false</span>,
+    width: <span class="number">300</span>,
+    height: <span class="number">300</span>,
+    plotCfg: {
+      margin: [<span class="number">0</span>, <span class="number">0</span>, <span class="number">35</span>] <span class="comment">// 设置边框</span>
+    }
+  });
+
+  chart2.coord(<span class="string">'theta'</span>);
+  chart2.legend(<span class="string">'bottom'</span>, {
+    title: <span class="literal">null</span>
+  });
+
+  <span class="comment">// 查找对应的数据</span>
+  <span class="function"><span class="keyword">function</span> <span class="title">findObj</span><span class="params">(name)</span> {</span>
+    <span class="keyword">var</span> rst = <span class="literal">null</span>
+    data.forEach(<span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span>
+      <span class="keyword">if</span> (item.name === name) {
+        rst = item;
+      }
+    });
+    <span class="keyword">return</span> rst;
+  }
+
+  <span class="comment">// 监听 tooltip 改变事件</span>
+  chart.on(<span class="string">'tooltipchange'</span>, <span class="function"><span class="keyword">function</span><span class="params">(ev)</span> {</span>
+    <span class="keyword">var</span> item = ev.items[<span class="number">0</span>]; <span class="comment">// 获取tooltip要显示的内容</span>
+    <span class="keyword">var</span> name = item.name;
+    <span class="keyword">var</span> obj = findObj(name);
+    <span class="keyword">if</span> (obj) {
+      chart2.clear();
+      chart2.source(obj.children);
+      chart2.intervalStack().position(Stat.summary.percent(<span class="string">'value'</span>)).color(<span class="string">'name'</span>);
+      chart2.render();
+    }
+  });</code></pre></div><h2 id="自定义-html-模板示例">自定义 html 模板示例</h2><div class="nico-insert-code"><style>
+  .ac-tooltip{
+    position:absolute;
+    visibility:hidden;
+    border : 1px solid #efefef;
+    background-color: white;
+    opacity: .8;
+    padding: 20px;
+
+    transition: top 200ms,left 200ms;
+    -moz-transition:  top 200ms,left 200ms;  /* Firefox 4 */
+    -webkit-transition:  top 200ms,left 200ms; /* Safari 和 Chrome */
+    -o-transition:  top 200ms,left 200ms;
+  }
+
+  .ac-tooltip .ac-title{
+    margin: 0;
+    padding: 5px 0;
+  }
+
+  .ac-tooltip .ac-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ac-tooltip li{
+    line-height:  22px;
+  }
+</style>
+
+<div id="c1" class="chart-container"></div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+  <span class="class">.ac-tooltip</span><span class="rules">{
+    <span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;
+    <span class="rule"><span class="attribute">visibility</span>:<span class="value">hidden</span></span>;
+    <span class="rule"><span class="attribute">border </span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#efefef</span></span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> white</span></span>;
+    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> .<span class="number">8</span></span></span>;
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">20</span>px</span></span>;
+
+    <span class="rule"><span class="attribute">transition</span>:<span class="value"> top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>;
+    <span class="rule"><span class="attribute">-moz-transition</span>:<span class="value">  top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>;  <span class="comment">/* Firefox 4 */</span>
+    <span class="rule"><span class="attribute">-webkit-transition</span>:<span class="value">  top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>; <span class="comment">/* Safari 和 Chrome */</span>
+    <span class="rule"><span class="attribute">-o-transition</span>:<span class="value">  top <span class="number">200</span>ms,left <span class="number">200</span>ms</span></span>;
+  <span class="rule">}</span></span>
+
+  <span class="class">.ac-tooltip</span> <span class="class">.ac-title</span><span class="rules">{
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">5</span>px <span class="number">0</span></span></span>;
+  <span class="rule">}</span></span>
+
+  <span class="class">.ac-tooltip</span> <span class="class">.ac-list</span><span class="rules">{
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
+    <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;
+  <span class="rule">}</span></span>
+  <span class="class">.ac-tooltip</span> <span class="tag">li</span><span class="rules">{
+    <span class="rule"><span class="attribute">line-height</span>:<span class="value">  <span class="number">22</span>px</span></span>;
+  <span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span> <span class="attribute">class</span>=<span class="value">"chart-container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><script>(function(){"use strict";
+
+var data = [{ "month": 0, "tem": 7, "city": "tokyo" }, { "month": 1, "tem": 6.9, "city": "tokyo" }, { "month": 2, "tem": 9.5, "city": "tokyo" }, { "month": 3, "tem": 14.5, "city": "tokyo" }, { "month": 4, "tem": 18.2, "city": "tokyo" }, { "month": 5, "tem": 21.5, "city": "tokyo" }, { "month": 6, "tem": 25.2, "city": "tokyo" }, { "month": 7, "tem": 26.5, "city": "tokyo" }, { "month": 8, "tem": 23.3, "city": "tokyo" }, { "month": 9, "tem": 18.3, "city": "tokyo" }, { "month": 10, "tem": 13.9, "city": "tokyo" }, { "month": 11, "tem": 9.6, "city": "tokyo" }, { "month": 0, "tem": -0.2, "city": "newYork" }, { "month": 1, "tem": 0.8, "city": "newYork" }, { "month": 2, "tem": 5.7, "city": "newYork" }, { "month": 3, "tem": 11.3, "city": "newYork" }, { "month": 4, "tem": 17, "city": "newYork" }, { "month": 5, "tem": 22, "city": "newYork" }, { "month": 6, "tem": 24.8, "city": "newYork" }, { "month": 7, "tem": 24.1, "city": "newYork" }, { "month": 8, "tem": 20.1, "city": "newYork" }, { "month": 9, "tem": 14.1, "city": "newYork" }, { "month": 10, "tem": 8.6, "city": "newYork" }, { "month": 11, "tem": 2.5, "city": "newYork" }, { "month": 0, "tem": -0.9, "city": "berlin" }, { "month": 1, "tem": 0.6, "city": "berlin" }, { "month": 2, "tem": 3.5, "city": "berlin" }, { "month": 3, "tem": 8.4, "city": "berlin" }, { "month": 4, "tem": 13.5, "city": "berlin" }, { "month": 5, "tem": 17, "city": "berlin" }, { "month": 6, "tem": 18.6, "city": "berlin" }, { "month": 7, "tem": 17.9, "city": "berlin" }, { "month": 8, "tem": 14.3, "city": "berlin" }, { "month": 9, "tem": 9, "city": "berlin" }, { "month": 10, "tem": 3.9, "city": "berlin" }, { "month": 11, "tem": 1, "city": "berlin" }];
+
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 800,
+  height: 300
+});
+
+var defs = { 'month': {
+    type: 'cat',
+    values: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+  } };
+
+chart.source(data, defs);
+
+chart.tooltip(true, {
+  custom: true // 使用自定义的 tooltip
+});
+chart.line().position('month*tem').color('city');
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:<span class="number">7</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">6.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">9.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">14.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">18.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">21.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">25.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">26.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">23.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">18.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">13.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">9.6</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:-<span class="number">0.2</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">0.8</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">5.7</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">11.3</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">17</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">22</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">24.8</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">24.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">20.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">14.1</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">8.6</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">2.5</span>,<span class="string">"city"</span>:<span class="string">"newYork"</span>},
+  {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:-<span class="number">0.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">0.6</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">3.5</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">8.4</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">13.5</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">17</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">18.6</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">17.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">14.3</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">3.9</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>},
+  {<span class="string">"month"</span>:<span class="number">11</span>,<span class="string">"tem"</span>:<span class="number">1</span>,<span class="string">"city"</span>:<span class="string">"berlin"</span>}
+];
+
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c1'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">300</span>
+});
+
+<span class="keyword">var</span> defs = {<span class="string">'month'</span>:{
+  type: <span class="string">'cat'</span>,
+  values: [
+    <span class="string">'一月'</span>,<span class="string">'二月'</span>,<span class="string">'三月'</span>,<span class="string">'四月'</span>,<span class="string">'五月'</span>,<span class="string">'六月'</span>,
+    <span class="string">'七月'</span>,<span class="string">'八月'</span>,<span class="string">'九月'</span>,<span class="string">'十月'</span>,<span class="string">'十一月'</span>,<span class="string">'十二月'</span>]
+}};
+
+chart.source(data,defs);
+
+chart.tooltip(<span class="literal">true</span>, {
+  custom: <span class="literal">true</span> <span class="comment">// 使用自定义的 tooltip</span>
+});
+chart.line().position(<span class="string">'month*tem'</span>).color(<span class="string">'city'</span>);
+chart.render();</code></pre></div><h2 id="更改-tooltip-信息示例">更改 tooltip 信息示例</h2><div id="c5"></div>
+
+<script>(function(){"use strict";
+
+var data = [// 数据
+{ "time": 1428163200000, "start": 469, "end": 480 }, { "time": 1428163203600, "start": 480, "end": 430 }, { "time": 1428163207200, "start": 430, "end": 410 }, { "time": 1428163210800, "start": 410, "end": 420 }, { "time": 1428163214400, "start": 420, "end": 440 }, { "time": 1428163218000, "start": 440, "end": 460 }, { "time": 1428163221600, "start": 460, "end": 410 }, { "time": 1428163225200, "start": 410, "end": 440 }, { "time": 1428163228800, "start": 440, "end": 490 }];
+var frame = new G2.Frame(data); // 创建数据源
+frame.addCol('range', function (obj) {
+  // 添加列
+  return [obj.start, obj.end];
+});
+
+frame.addCol('trend', function (obj) {
+  return obj.start <= obj.end ? 0 : 1;
+});
+
+var chart = new G2.Chart({
+  id: 'c5',
+  width: 800,
+  height: 400
+});
+
+var defs = {
+  'time': { // 设置日期类型
+    type: 'time',
+    mask: 'yyyy-mm-dd HH:MM:ss'
+  },
+  'trend': { //设置条件，显示不同的颜色
+    type: 'condition',
+    alias: '趋势',
+    values: ['上涨', '下跌']
+  }
+};
+
+chart.source(frame, defs);
+chart.interval().position('time*range').color('trend', ['#1bbd19', '#fa513a']).size(20);
+chart.render();
+
+chart.on('tooltipchange', function (ev) {
+  var items = ev.items; // tooltip显示的项
+  var origin = items[0]; // 将一条数据改成多条数据
+  var range = origin.point.range;
+  items.splice(0); // 清空
+
+  items.push({
+    name: '开始值',
+    title: origin.title,
+    marker: true,
+    color: origin.color,
+    value: range[0]
+  });
+
+  items.push({
+    name: '结束值',
+    marker: true,
+    title: origin.title,
+    color: origin.color,
+    value: range[1]
+  });
+});})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [ <span class="comment">// 数据</span>
+  {<span class="string">"time"</span>: <span class="number">1428163200000</span>,<span class="string">"start"</span>: <span class="number">469</span>,<span class="string">"end"</span>: <span class="number">480</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163203600</span>,<span class="string">"start"</span>: <span class="number">480</span>,<span class="string">"end"</span>: <span class="number">430</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163207200</span>,<span class="string">"start"</span>: <span class="number">430</span>,<span class="string">"end"</span>: <span class="number">410</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163210800</span>,<span class="string">"start"</span>: <span class="number">410</span>,<span class="string">"end"</span>: <span class="number">420</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163214400</span>,<span class="string">"start"</span>: <span class="number">420</span>,<span class="string">"end"</span>: <span class="number">440</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163218000</span>,<span class="string">"start"</span>: <span class="number">440</span>,<span class="string">"end"</span>: <span class="number">460</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163221600</span>,<span class="string">"start"</span>: <span class="number">460</span>,<span class="string">"end"</span>: <span class="number">410</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163225200</span>,<span class="string">"start"</span>: <span class="number">410</span>,<span class="string">"end"</span>: <span class="number">440</span>},
+  {<span class="string">"time"</span>: <span class="number">1428163228800</span>,<span class="string">"start"</span>: <span class="number">440</span>,<span class="string">"end"</span>: <span class="number">490</span>}
+];
+<span class="keyword">var</span> frame = <span class="keyword">new</span> G2.Frame(data); <span class="comment">// 创建数据源</span>
+frame.addCol(<span class="string">'range'</span>, <span class="function"><span class="keyword">function</span><span class="params">(obj)</span> {</span> <span class="comment">// 添加列</span>
+  <span class="keyword">return</span> [obj.start, obj.end];
+});
+
+frame.addCol(<span class="string">'trend'</span>, <span class="function"><span class="keyword">function</span><span class="params">(obj)</span> {</span>
+  <span class="keyword">return</span> (obj.start &lt;= obj.end) ? <span class="number">0</span> : <span class="number">1</span>;
+});
+
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c5'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">400</span>
+});
+
+<span class="keyword">var</span> defs = {
+  <span class="string">'time'</span>: { <span class="comment">// 设置日期类型</span>
+    type: <span class="string">'time'</span>,
+    mask: <span class="string">'yyyy-mm-dd HH:MM:ss'</span>
+  },
+  <span class="string">'trend'</span>: { <span class="comment">//设置条件，显示不同的颜色</span>
+    type: <span class="string">'condition'</span>,
+    alias: <span class="string">'趋势'</span>,
+    values: [<span class="string">'上涨'</span>, <span class="string">'下跌'</span>]
+  }
+};
+
+chart.source(frame, defs);
+chart.interval().position(<span class="string">'time*range'</span>).color(<span class="string">'trend'</span>, [<span class="string">'#1bbd19'</span>, <span class="string">'#fa513a'</span>]).size(<span class="number">20</span>);
+chart.render();
+
+chart.on(<span class="string">'tooltipchange'</span>, <span class="function"><span class="keyword">function</span><span class="params">(ev)</span> {</span>
+  <span class="keyword">var</span> items = ev.items; <span class="comment">// tooltip显示的项</span>
+  <span class="keyword">var</span> origin = items[<span class="number">0</span>]; <span class="comment">// 将一条数据改成多条数据</span>
+  <span class="keyword">var</span> range = origin.point.range;
+  items.splice(<span class="number">0</span>); <span class="comment">// 清空</span>
+
+  items.push({
+    name: <span class="string">'开始值'</span>,
+    title: origin.title,
+    marker: <span class="literal">true</span>,
+    color: origin.color,
+    value: range[<span class="number">0</span>]
+  });
+
+  items.push({
+    name: <span class="string">'结束值'</span>,
+    marker: <span class="literal">true</span>,
+    title: origin.title,
+    color: origin.color,
+    value: range[<span class="number">1</span>]
+  });
+});</code></pre></div><h2 id="更多">更多</h2><p>下面让我们来学习下 <a href="guide.html">Guide</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/tooltip.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:47 GMT -->
+</html>

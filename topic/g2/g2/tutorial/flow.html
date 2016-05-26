@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/flow.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="active">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="简介">简介</h2><p>在前面的章节里你应该已经了解了一些 G2 的语法概念，但是为了更好的 得了解 G2，你需要掌握从数据到 G2 图表的转换过程，开始从数据的角度思考如何选择图表。</p>
+<h2 id="图表的生成过程">图表的生成过程</h2><p>图表的生成过程主要有以几个过程： </p>
+<p><img src="../../gtms02.alicdn.com/tps/i2/TB1uc7wIpXXXXb7XFXX39Un9pXX-1228-700.png" alt="图表流程" width="800"/></p>
+<p><strong>说明</strong></p>
+<ul>
+<li>生成度量：根据各个<a href="geom.html">几何图形对象</a>（折线图、点图等）指定的字段，进行字段的初始化，判断数据的<a href="scale.html">度量类型</a>，如果用户自己<a href="scale.html#改变度量的类型">定义列</a>，则以用户定义的为主；</li>
+<li>分面的详细内容参考<a href="facet.html">分面</a>，分面的切割字段一定要指定 <code>cat</code> 类型的字段；</li>
+<li>每个分面自动生成一个<a href="coord.html">坐标系</a>，不同的分面类型，计算内部坐标系（位置、大小）的方式各不相同；</li>
+<li>每个分面拥有自己的一份数据源，使用这些数据绘制单个分面；</li>
+<li>把分面的数据传给每个图层，各个图层对数据进行初始化，进行<a href="stat.html">统计变换</a>，这个过程中数据的行列数可能会发生改变；</li>
+<li>将所有分面统计变换后的数据集合汇总起来，对前面生成的<a href="scale.html">度量</a>进行训练，保证最终生成的<a href="axis.html">坐标轴</a>符合每个图层、每个分面；</li>
+<li>将所有分面，所有图层的属性转换成画布上位置、颜色、大小、形状等相关的值，这个过程叫度量映射；</li>
+<li>绘制所有的图层；</li>
+<li>根据图层相关的度量，生成图例。</li>
+</ul>
+<h2 id="示例讲解">示例讲解</h2><p>下面我们仍然用钻石的数据来说明上面的过程，为了简单起见，我们不设置分面，仅使用一个图层(interval)。</p>
+<h3 id="数据源和图表">数据源和图表</h3><p>这里我们需要绘制一张柱状图，用于表示使用不同钻石切割工艺（cut）的钻石平均价格，下面的表格仅显示其中的 5 条数据。</p>
+<table>
+<thead>
+<tr>
+<th>carat</th>
+<th>cut</th>
+<th>color</th>
+<th>clarity</th>
+<th>depth</th>
+<th>table</th>
+<th>price</th>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.01</td>
+<td>Good</td>
+<td>G</td>
+<td>VVS2</td>
+<td>62.4</td>
+<td>59</td>
+<td>7332</td>
+<td>6.32</td>
+<td>6.37</td>
+<td>3.96</td>
+</tr>
+<tr>
+<td>1.56</td>
+<td>Very-Good</td>
+<td>F</td>
+<td>SI1</td>
+<td>61.0</td>
+<td>58</td>
+<td>12207</td>
+<td>7.41</td>
+<td>7.48</td>
+<td>4.54</td>
+</tr>
+<tr>
+<td>0.73</td>
+<td>Very-Good</td>
+<td>H</td>
+<td>VS1</td>
+<td>61.6</td>
+<td>59</td>
+<td>2641</td>
+<td>5.74</td>
+<td>5.81</td>
+<td>3.56</td>
+</tr>
+<tr>
+<td>0.32</td>
+<td>Ideal</td>
+<td>G</td>
+<td>SI1</td>
+<td>62.3</td>
+<td>57</td>
+<td>508</td>
+<td>4.38</td>
+<td>4.41</td>
+<td>2.74</td>
+</tr>
+<tr>
+<td>2.02</td>
+<td>Good</td>
+<td>H</td>
+<td>SI2</td>
+<td>59.0</td>
+<td>61</td>
+<td>13144</td>
+<td>8.26</td>
+<td>8.31</td>
+<td>4.89</td>
+</tr>
+</tbody>
+</table>
+<p>我们将使用下述语法生成：</p>
+<div class="highlight"><pre><code class="javascript">chart.interval().position(Stat.summary.mean(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);</code></pre></div><h3 id="生成度量">生成度量</h3><ul>
+<li>这个柱状图仅有一个图层 (interval)，使用了 2 个属性 position 和 color，有 2 个数据字段 cut, price；</li>
+<li>由于没有设定 color 和 price 的<a href="scale.html#改变度量的类型">列定义</a>，所以会根据数据的类型自动生成度量；</li>
+<li>cut 字段的数据都是字符串，所以会生成 <code>cat</code> 类型的度量，自动取 <code>cut</code> 字段的所有类型作为度量的属性 values: [&#39;Ideal&#39;,&#39;Good&#39;,&#39;Premium&#39;,&#39;Very-Good&#39;,&#39;Fair&#39;]；</li>
+<li>price 字段的数据是数字，所以默认生成 <code>linear</code> 类型的数据，此时计算出该字段的最大值、最小值。</li>
+</ul>
+<h3 id="生成坐标系">生成坐标系</h3><ul>
+<li>由于没有指定<a href="facet.html">分面</a>，所以默认生成一个分面，不对数据进行分组；</li>
+<li>默认生成一个<a href="coord.html">坐标系</a>，默认是直角坐标系，类型是 <code>rect</code>。</li>
+</ul>
+<h3 id="图层数据的初始化">图层数据的初始化</h3><ul>
+<li>interval 图层中有2个字段参与了图表的生成，所以首先将这2个字段的数据提取出来形成新的数据源</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Good</td>
+<td>7332</td>
+</tr>
+<tr>
+<td>Very-Good</td>
+<td>12207</td>
+</tr>
+<tr>
+<td>Very-Good</td>
+<td>2641</td>
+</tr>
+<tr>
+<td>Ideal</td>
+<td>508</td>
+</tr>
+<tr>
+<td>Good</td>
+<td>13144</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>cut 字段是字符串类型数据，生成的度量是 <code>cat</code> 类型，一共有&#39;Ideal&#39;、&#39;Good&#39;、&#39;Premium&#39;、&#39;Very-Good&#39; 和 &#39;Fair&#39; 5 种类型，由于未指定字符串的顺序，所以按照字符串出现的顺序将字符串转换成 0 - 4 的数字。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>7332</td>
+</tr>
+<tr>
+<td>3</td>
+<td>12207</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2641</td>
+</tr>
+<tr>
+<td>0</td>
+<td>508</td>
+</tr>
+<tr>
+<td>1</td>
+<td>13144</td>
+</tr>
+</tbody>
+</table>
+<p>如果你需要指定字符串的顺序，则可以使用列定义：</p>
+<div class="highlight"><pre><code class="javascript">chart.source(data, {
+  <span class="string">'cut'</span>: {
+    type:<span class="string">'cat'</span>,
+    values: [<span class="string">'Ideal'</span>,<span class="string">'Premium'</span>,<span class="string">'Very-Good'</span>,<span class="string">'Good'</span>,<span class="string">'Fair'</span>]
+  }
+});</code></pre></div><ul>
+<li>由于 interval 图层使用了 <code>position</code> 之外的 <code>color</code> <a href="attr.html">属性</a>对应的属性字段 <code>cut</code>是 分类类型，所以对数据进行分组：</li>
+</ul>
+<p>cut = &#39;Good&#39; (cut = 1)的分组</p>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>7332</td>
+</tr>
+<tr>
+<td>1</td>
+<td>13144</td>
+</tr>
+</tbody>
+</table>
+<p>cut = &#39;Very-Good&#39; (cut = 3)的分组</p>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>12207</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2641</td>
+</tr>
+</tbody>
+</table>
+<p>cut = &#39;Ideal&#39; (cut = 0)的分组</p>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>508</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数据进行统计变换">数据进行统计变换</h3><ul>
+<li>将上面数据初始化过程中生成的多组数据进行统计变换，每个分组都单独进行 <code>Stat.summary.mean</code> 的求平均值的变换</li>
+<li>下面的各组表格内部是全部数据集合（2000条）每个分组的平均值,其中 <code>price</code>字段进行了均值计算</li>
+</ul>
+<p>cut = &#39;Good&#39; (cut = 1)的分组</p>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>4426.44</td>
+</tr>
+</tbody>
+</table>
+<p>cut = &#39;Very-Good&#39; (cut = 3)的分组</p>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>3656.01</td>
+</tr>
+</tbody>
+</table>
+<p>cut = &#39;Ideal&#39; (cut = 0)的分组</p>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>3326.85</td>
+</tr>
+</tbody>
+</table>
+<h3 id="度量训练">度量训练</h3><ul>
+<li>由于<code>price</code>字段参与了统计变换，所以统计完成后需要进行度量的训练，重新计算度量的最大值、最小值</li>
+<li>通过训练后的坐标系，确定了最大值(5000)、最小值后(3000)，为后面生成坐标轴做准备，生成各个坐标点（ticks)(3000,3500,4000,4500,5000)</li>
+</ul>
+<h3 id="属性映射">属性映射</h3><ul>
+<li>将<code>position</code>属性对应的字段映射到坐标系的 x,y上，将color属性映射成各个颜色,将各个字段的数值通过度量转换到 [0-1]的范围</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.25</td>
+<td>0.723</td>
+</tr>
+<tr>
+<td>0.75</td>
+<td>0.328</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0.163</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>通过坐标系将 cut和price的【0-1】范围内的数值转换成画布上的坐标点，将cut字段转换成颜色值，默认的颜色集合是： [&#39;#727cc9&#39;,&#39;#57cffd&#39;,&#39;#7bc657&#39;,&#39;#fdb667&#39;,&#39;#f96a52&#39;,&#39;#00a3d7&#39;]</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>cut</th>
+<th>price</th>
+<th>x</th>
+<th>y</th>
+<th>color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.25</td>
+<td>0.723</td>
+<td>640</td>
+<td>280</td>
+<td>&#39;#57cffd&#39;</td>
+</tr>
+<tr>
+<td>0.75</td>
+<td>0.328</td>
+<td>1344</td>
+<td>606</td>
+<td>&#39;#fdb667&#39;</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0.163</td>
+<td>260</td>
+<td>746</td>
+<td>&#39;#727cc9&#39;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="绘制图形">绘制图形</h3><ul>
+<li>将数据的每条记录绘制成一个interval 图形，位置根据x,y决定，颜色根据 color 决定</li>
+<li>interval（柱状图形）的大小自动计算</li>
+</ul>
+<h3 id="生成坐标轴、图例">生成坐标轴、图例</h3><ul>
+<li>获取整个图表跟 position相关的度量 <code>cut</code>,<code>price</code>，分别绘制 x,y轴的坐标轴</li>
+<li>获取position之外的属性 <code>color</code>生成颜色的图例</li>
+</ul>
+<h3 id="最终的图表">最终的图表</h3><div id="c1"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=diamond', function (data) {
+  var Stat = G2.Stat;
+  var chart = new G2.Chart({
+    id: 'c1',
+    width: 800,
+    height: 400,
+    plotCfg: {
+      margin: [20, 90, 60, 80]
+    }
+  });
+  chart.source(data);
+  chart.interval().position(Stat.summary.mean('cut*price')).color('cut');
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>, <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c1'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>,
+    plotCfg: {
+      margin: [<span class="number">20</span>, <span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>]
+    }
+  });
+  chart.source(data);
+  chart.interval().position(Stat.summary.mean(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);
+  chart.render();
+});</code></pre></div><h2 id="分面示例">分面示例</h2><p>下面是一个使用了<a href="facet.html">树状分面</a>的场景</p>
+<div class="highlight"><pre><code class="javascript">chart.col(<span class="string">'clarity'</span>, {
+  type: <span class="string">'cat'</span>,
+  values: [<span class="string">'IF'</span>,<span class="string">'VVS1'</span>,<span class="string">'VVS2'</span>,<span class="string">'VS1'</span>,<span class="string">'VS2'</span>,<span class="string">'SI1'</span>,<span class="string">'SI2'</span>,<span class="string">'I1'</span>]
+});
+chart.facet([<span class="string">'clarity'</span>], {
+  type: <span class="string">'tree'</span>,
+  line: {
+    stroke: <span class="string">'#c0d0e0'</span>
+  },
+  smooth: <span class="literal">true</span>,
+  margin: <span class="number">30</span>
+});
+chart.interval().position(Stat.summary.mean(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);</code></pre></div><h3 id="生成度量">生成度量</h3><ul>
+<li>cut、price 依然会自动生成 <code>cat</code> 和 <code>linear</code> 类型的度量</li>
+<li>用于分面的 clarity 字段,由于我们定义了 values 属性，所以指定了各个字符串的顺序</li>
+</ul>
+<h3 id="生成分面">生成分面</h3><ul>
+<li>由于指定了树形分面，分面的字段是 <code>clarity</code>，所以根据该字段对数据进行分组</li>
+<li>每个分组代表一个分面，每个分面有一份数据，一个坐标系，坐标系的位置由树状结构确定</li>
+</ul>
+<h3 id="数据转换和统计变换">数据转换和统计变换</h3><ul>
+<li>遍历每个分面，对每个分面的数据进行数据初始化和统计变换</li>
+</ul>
+<h3 id="度量训练">度量训练</h3><ul>
+<li>将各个分面的数据合并到一起，对参与统计的 <code>price</code>字段进行度量训练，计算出最大值、最小值和ticks</li>
+</ul>
+<h3 id="属性映射和绘制图形">属性映射和绘制图形</h3><ul>
+<li>每个分面各自进行位置、颜色的映射，并根据生成的数据各自生成柱状图</li>
+</ul>
+<h3 id="图例和坐标轴">图例和坐标轴</h3><ul>
+<li>每个分面各自创建自己的x轴和y轴</li>
+<li>所有的分面共享图例</li>
+</ul>
+<h3 id="最终图表">最终图表</h3><div id="c2"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=diamond', function (data) {
+  var Stat = G2.Stat;
+  var chart = new G2.Chart({
+    id: 'c2',
+    width: 800,
+    height: 400
+  });
+  chart.source(data);
+  chart.legend('top'); // 设置顶部图例
+  chart.facet(['clarity'], {
+    type: 'tree',
+    line: {
+      stroke: '#c0d0e0'
+    },
+    smooth: true,
+    margin: 30
+  });
+  chart.interval().position(Stat.summary.mean('cut*price')).color('cut');
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c2'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>
+  });
+  chart.source(data);
+  chart.legend(<span class="string">'top'</span>); <span class="comment">// 设置顶部图例</span>
+  chart.facet([<span class="string">'clarity'</span>], {
+    type: <span class="string">'tree'</span>,
+    line: {
+      stroke: <span class="string">'#c0d0e0'</span>
+    },
+    smooth:<span class="literal">true</span>,
+    margin: <span class="number">30</span>
+  });
+  chart.interval().position(Stat.summary.mean(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);
+  chart.render();
+});</code></pre></div><h2 id="更多">更多</h2><p>本章节介绍了整个 G2 图表的生成过程，为了更好的了解 G2 的图表，可以去查看一下<a href="../demo/index-2.html">G2 Demo</a> 和 <a href="../api/index-2.html">G2 API</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/flow.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:48 GMT -->
+</html>

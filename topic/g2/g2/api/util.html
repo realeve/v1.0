@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/api/util.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a class="hover" href="index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+<div class="banner api">
+  <div class="banner-inner">
+    <h1>G2 语法</h1>
+    <p class="intro">在这里详细介绍 G2 API 的使用和可配置项<p/>
+    <p class="intro">G2 的 API 使用非常简单<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content api-body-content">
+  <div class="doc-nav">
+    <p class="title">语法</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >Chart</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale</a>
+  </li>
+  <li class="">
+    <a href="frame.html" >Frame</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme</a>
+  </li>
+  <li class="active">
+    <a href="util.html" >Util</a>
+  </li>
+  <li class="">
+    <a href="plugins.html" >Plugins</a>
+  </li>
+  <li class="">
+    <a href="graphic.html" >Graphic</a>
+  </li>
+</ul>
+  </div>
+
+  <div class="doc-content clearfix">
+    <div class="doc-inner" id="t2">
+      <h1 id="util">Util</h1><h1 id="概述">概述</h1><p>G2.Util 是一个工具类，提供了如下方法：</p>
+<ul>
+<li>字符串处理；</li>
+<li>类型判断；</li>
+<li>继承相关；</li>
+<li>数组相关；</li>
+<li>其他。</li>
+</ul>
+<h1 id="语法">语法</h1><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> Util = G2.Util;
+Util.extend(ChildClass, FatherClass); <span class="comment">// 继承</span>
+Util.isArray([]); <span class="comment">// 判断是否是数组</span></code></pre></div><h2 id="字符串相关">字符串相关</h2><h3>Util.substitute(str, obj)<span class="guide-text">Method</span></h3>
+
+<p>替换字符串中的字段，返回匹配字符串的正则表达式。</p>
+<ul>
+<li>str： String 类型，模板字符串</li>
+<li>obj: 一个 json 对象。</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> str = <span class="string">'M {x} {y}'</span>;
+<span class="keyword">var</span> point = {
+  x: <span class="number">100</span>,
+  y: <span class="number">30</span>
+}
+<span class="keyword">var</span> result = G2.Util.substitute(str, point); <span class="comment">// 返回 'M 100 30'</span></code></pre></div><h3>Util.ucfirst(str)<span class="guide-text">Method</span></h3>
+
+<p>将字符串的第一个字母变成大写。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> result = G2.Util.ucfirst(<span class="string">'test'</span>); <span class="comment">// 返回 Test</span></code></pre></div><h2 id="类型判断">类型判断</h2><h3>Util.isObject(param)<span class="guide-text">Method</span></h3>
+
+<p>判断参数是否为对象。</p>
+<h3>Util.isNumber(param)<span class="guide-text">Method</span></h3>
+
+<p>判断参数是否为数字。</p>
+<h3>Util.isNumeric(param)<span class="guide-text">Method</span></h3>
+
+<p>是否是数字或者数字字符串。</p>
+<h3>Util.isBoolean(param)<span class="guide-text">Method</span></h3>
+
+<p>判断参数是否为布尔值。</p>
+<h3>Util.isFunction(param)<span class="guide-text">Method</span></h3>
+
+<p>判断参数是否为函数。</p>
+<h3>Util.isArray(param)<span class="guide-text">Method</span></h3>
+
+<p>判断参数是否为数组。</p>
+<h3>Util.isDate(param)<span class="guide-text">Method</span></h3>
+
+<p>判断参数是否为日期。</p>
+<h3>Util.isNull(param)<span class="guide-text">Method</span></h3>
+
+<p>判断一个对象是否是 null 或者 undefined。</p>
+<h2 id="继承相关">继承相关</h2><h3>Util.mix(target, source1, source2....source)<span class="guide-text">Method</span></h3>
+
+<p>合并各个对象。【TODO 需要说明】</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// TODO</span></code></pre></div><h3>Util.mix(true, target, source1, source2....sourceN) <span class="guide-text">Method</span></h3>
+
+<p>深层合并。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// TODO</span></code></pre></div><h3>Util.augment(target, source1, source2...sourceN)<span class="guide-text">Method</span></h3>
+
+<p>将属性方法复制到 target 的原型链上。</p>
+<h3>Util.extend(subclass, superclass, overrides, staticOverrides)<span class="guide-text">Method</span></h3>
+
+<p>继承。</p>
+<h3>Util.mixin(target, mixins)<span class="guide-text">Method</span></h3>
+
+<p>将数组中的代码片段的属性和方法复制到target的原型链上。</p>
+<h2 id="数组相关">数组相关</h2><h3>Util.toArray(value)<span class="guide-text">Method</span></h3>
+
+<p>将 value 转换成数组。</p>
+<h3>Util.map(arr, fn)<span class="guide-text">Method</span></h3>
+
+<p>转换数值的值。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+<span class="keyword">var</span> doubleArr = G2.Util.map(arr, <span class="function"><span class="keyword">function</span><span class="params">(val)</span> {</span>
+  <span class="keyword">return</span> val * <span class="number">2</span>;
+}); <span class="comment">// 将 arr 数组中每个数据 * 2</span></code></pre></div><h3>Util.filter(arr, fn)<span class="guide-text">Method</span></h3>
+
+<p>过滤数组。</p>
+<h3>Util.each(arr | obj, fn)<span class="guide-text">Method</span></h3>
+
+<p>遍历数组或者对象。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 遍历对象</span>
+<span class="keyword">var</span> obj = {
+  a: <span class="string">'test'</span>,
+  b: <span class="string">'test'</span>
+};
+Util.each(obj, <span class="function"><span class="keyword">function</span><span class="params">(item, index)</span> {</span>
+  <span class="comment">// item 为 obj 的每一个属性： a: 'test' , b: 'test'</span>
+  <span class="comment">// index 为索引值</span>
+});
+
+<span class="comment">// 遍历数组</span>
+<span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+Util.each(arr, <span class="function"><span class="keyword">function</span><span class="params">(item, index)</span> {</span>
+
+});</code></pre></div><h3>Util.indexOf(arr, value)<span class="guide-text">Method</span></h3>
+
+<p>返回 value 在数组中的索引。</p>
+<h3>Util.remove(arr, value)<span class="guide-text">Method</span></h3>
+
+<p>将 value 从 arr 中删除。</p>
+<h3>Util.empty()<span class="guide-text">Method</span></h3>
+
+<p>清空。</p>
+<h3>equalsArray(arr1, arr2) <span class="guide-text">Method</span></h3>
+
+<p>判断数组内容是否相等。</p>
+<h2 id="其他">其他</h2><h3>Util.guid(prefix)<span class="guide-text">Method</span></h3>
+
+<p>产生唯一码。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> id = G2.Util.guid(<span class="string">'g-chart'</span>); <span class="comment">// id:g-chart1</span></code></pre></div><h3>Util.wrapBehavior(obj, fn)<span class="guide-text">Method</span></h3>
+
+<p>封装事件，便于使用上下文this,和便于解除事件时使用。</p>
+<h3>getWrapBehavior(obj,fn) <span class="guide-text">Method</span></h3>
+
+<p>获取封装的事件。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<style type="text/css">
+  .preNext {
+    margin: 50px 0;
+    width: 100%;
+  }
+</style>
+<div class="preNext clearfix">
+  <a href="theme.html" class="pull-left">
+    <i class="iconfont icon-pre"></i>
+    Theme
+  </a>
+  <a href="plugins.html" class="pull-right">
+    Plugins
+    <i class="iconfont icon-next"></i>
+  </a>
+</div>
+    </div>
+    <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+  </div>
+</div>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+</body>
+
+<!-- Mirrored from g2.alipay.com/api/util.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:15 GMT -->
+</html>

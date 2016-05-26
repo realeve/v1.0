@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/geom.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="active">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="geom-简介">Geom 简介</h2><p>我们称 geom 为几何图形对象，它执行着图层的实际渲染，决定生成的图表类型。G2 中并没有特定的图表类型（柱状图、散点图、折线图等）的概念，G2 采用的是图层的设计，每一个图层包含一种或者多种几何图形对象，即你可以很方便得在一个画布上为同一份数据绘制折线图、点图、柱状图以及各种混合图。下表列出了 G2 中所有的可用几何图形对象。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>point</td>
+<td>点，用于点图的构建。</td>
+</tr>
+<tr>
+<td>path</td>
+<td>路径，无序的点连接而成的一条线。</td>
+</tr>
+<tr>
+<td>line</td>
+<td>线，点按照 x 轴连接成一条线，构成线图。</td>
+</tr>
+<tr>
+<td>area</td>
+<td>填充线图跟坐标系之间构成区域图，也可以指定上下范围。</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>使用矩形或者弧形，用面积来表示大小关系的图形，一般构成柱状图、饼图等图表。</td>
+</tr>
+<tr>
+<td>polygon</td>
+<td>多边形，可以用于构建热力图、地图等图表类型。</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>自定义图形，用于构建箱须图、蜡烛图等图表。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geom-和传统图表">Geom 和传统图表</h2><p>虽然 G2 中没有特定的图表类型的概念，但是还是可以很方便得绘制出各种传统的图表。下表就展示了 G2 中的 geom 和传统图表的对应关系，更多的图表详见 <a href="../demo/index-2.html">demo</a>。</p>
+<table>
+<thead>
+<tr>
+<th>geom</th>
+<th>图表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>point</td>
+<td><a href="../demo/01-point/scatter.html" >散点图</a> , <a href="../demo/01-point/bubble.html" >气泡图</a></td>
+</tr>
+<tr>
+<td>path</td>
+<td><a href="../demo/02-line/path.html" >路径图</a> </td>
+</tr>
+<tr>
+<td>line</td>
+<td><a href="../demo/02-line/line.html" >折线图</a> , <a href="../demo/02-line/line-smooth.html" >曲线图</a></td>
+</tr>
+<tr>
+<td>area</td>
+<td><a href="../demo/03-area/area.html" >区域图</a> , <a href="../demo/03-area/area-stack.html" >层叠区域图</a> , <a href="../demo/03-area/area-range.html" >范围区域图</a></td>
+</tr>
+<tr>
+<td>interval</td>
+<td><a href="../demo/index-2.html#柱状图" >柱状图</a> , <a href="../demo/index-2.html#饼图" >饼图</a> , <a href="../demo/14-other/his.html" >直方图</a> , <a href="../demo/05-pie/rose.html" >玫瑰图</a> , <a href="../demo/05-pie/donut.html" >同心环图</a></td>
+</tr>
+<tr>
+<td>polygon</td>
+<td><a href="../demo/08-heatmap/heatmap.html" >马赛克图</a> , <a href="../demo/index-2.html#地图">地图</a></td>
+</tr>
+<tr>
+<td>schema</td>
+<td><a href="../demo/14-other/box-plot.html" >箱型图</a> , <a href="../demo/06-k/k-chart.html" >股票图</a> </td>
+</tr>
+<tr>
+<td>heatmap</td>
+<td><a href="../demo/08-heatmap/image.html" >热力图</a></td>
+</tr>
+<tr>
+<td>contour</td>
+<td><a href="../demo/14-other/contour.html" >等高线</a></td>
+</tr>
+</tbody>
+</table>
+<p>此外：</p>
+<ul>
+<li><a href="../demo/index.html#雷达图">雷达图</a>仅需要将折线图或者面积图的<a href="coord.html">坐标系</a>切换成极坐标即可；</li>
+<li><a href="coord.html">坐标系</a>的反转变换可以形成一些新的图形， 如下图所示，分别展示了 interval 几何图形对象在笛卡尔坐标系、极坐标下执行 reflect 转置、极坐标下执行 transpose x、y转置的结果。</li>
+</ul>
+<div id="c1" class="chart-container" style="display: inline-block;"></div>
+<div id="c2" class="chart-container" style="display: inline-block;"></div>
+<div id="c3" class="chart-container" style="display: inline-block;"></div>
+
+<script type="text/javascript">
+$.getJSON('/data.json?filename=diamond',function (data) {
+  var Stat = G2.Stat;
+  var chart1 = new G2.Chart({
+    id: 'c1',
+    width: 250,
+    height: 200,
+    plotCfg: {
+      margin: 0
+    }
+  });
+  chart1.source(data);
+  chart1.tooltip(false);
+  chart1.interval().position(Stat.summary.mean('cut*price')).color('cut');
+  chart1.render();
+
+  var chart2 = new G2.Chart({
+    id: 'c2',
+    width: 250,
+    height: 200,
+    plotCfg: {
+      margin: 0
+    }
+  });
+  chart2.source(data);
+  chart2.tooltip(false);
+  chart2.axis('price', {
+    labels: null
+  });
+  chart2.axis('cut', {
+    labels: null
+  });
+  chart2.coord('polar').reflect(); // plus 极坐标系
+  chart2.interval().position(Stat.summary.mean('cut*price')).color('cut');
+  chart2.render();
+
+  var chart3 = new G2.Chart({
+    id: 'c3',
+    width: 250,
+    height: 200,
+    plotCfg: {
+      margin: 0
+    }
+  });
+  chart3.source(data);
+  chart3.tooltip(false);
+  chart3.axis('price', {
+    labels: null
+  });
+  chart3.axis('cut', {
+    labels: null
+  });
+  chart3.coord('polar').transpose();
+  chart3.interval().position(Stat.summary.mean('cut*price')).color('cut');
+  chart3.render();
+});
+</script>
+
+<ul>
+<li>多个几何图形对象可以在一张图表上显示，形成<a href="../demo/14-other/double-axis.html">混合图表</a>。</li>
+</ul>
+<h2 id="geom-的属性">Geom 的属性</h2><p>每个几何图形对象都有一组它能识别的图形属性和一组绘图所需的值，例如点（point）含有颜色、大小和形状等图形属性以及 x、y 轴坐标。下面会对各个 geom 支持的图形属性进行说明。</p>
+<p>G2 中对应使用 geom 的语法如下，支持链式调用。</p>
+<div class="highlight"><pre><code class="javascript">chart.<span class="xml"><span class="tag">&lt;<span class="title">geom</span>&gt;</span>().<span class="tag">&lt;<span class="title">attr</span>&gt;</span>(dims);
+// 例如
+chart.line().position('x*y').color('z');</span></code></pre></div><p>G2 的几何图形对象 geom 有以下属性，</p>
+<ol>
+<li>position 位置；</li>
+<li>size 图形大小；</li>
+<li>color 图形的颜色；</li>
+<li>shape 各个 geom 的形状；</li>
+<li>opacity 透明度；</li>
+<li>label 图形对应的文本；</li>
+<li>style 设置 geom 的显示样式；</li>
+<li>tooltip 设置 tooltip 的展示维度。</li>
+</ol>
+<p>其中 position、size、color、shape、opacity 这五个属性属于图形属性，详细信息请参考<a href="attr.html">图形属性</a>，下面对 tooltip 和 style 进行下说明：</p>
+<ul>
+<li>tooltip(dims): 设置图形的 tooltip 信息，每个字段生成一行。</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.line().position(<span class="string">'a*b'</span>).tooltip(<span class="string">'c*d'</span>);</code></pre></div><ul>
+<li>style(styleCfg): 图表的图形配置项，即显示的样式。</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.interval().position(<span class="string">'a*b'</span>).style({
+  stroke: <span class="string">'#fff'</span>,
+  <span class="string">'stroke-width'</span>: <span class="number">1</span>
+});</code></pre></div><p>styleCfg：图形的配置信息，详细信息<a href="../api/graphic.html">参考shape</a></p>
+<h3 id="geom-支持的图形属性">Geom 支持的图形属性</h3><h4 id="point">point</h4><p>将一条数据映射成一个点（支持各种形状：圆点、方形、三角形等），支持所有的属性：</p>
+<ol>
+<li>postion 显示点的位置；</li>
+<li>size 决定点的大小，点代表的图形落在一个半径为 size的圆内；</li>
+<li>color 图形的颜色；</li>
+<li>shape 点图形的类型，详情<a href="../api/geom.html#shape">参考</a>；</li>
+<li>opacity 点的透明度；</li>
+<li>label 点对应的文本；</li>
+<li>style 设置点的显示样式；</li>
+<li>tooltip 设置 tooltip 的展示维度。</li>
+</ol>
+<p><a href="../demo/index-2.html#点图">Demo</a></p>
+<h4 id="path">path</h4><p>将多个点连接成一条线，表示一个路径，支持的属性：</p>
+<ol>
+<li>postion 路径上点的位置</li>
+<li>size 线的粗细</li>
+<li>color 线的颜色</li>
+<li>shape 线的类型，详情<a href="../api/geom.html#shape">参考</a></li>
+<li>opacity 线的透明度</li>
+<li>label 组成路径的点的文本</li>
+<li>style 设置线的显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度。</li>
+</ol>
+<p><a href="../demo/02-line/path.html">Demo</a></p>
+<h4 id="line">line</h4><p>将多个点按照 x 轴的方向连接成一条线，支持的属性：</p>
+<ol>
+<li>position 线上点的位置</li>
+<li>size 线的粗细</li>
+<li>color 线的颜色</li>
+<li>shape 线的类型，详情<a href="../api/geom.html#shape">参考</a></li>
+<li>opacity 线的透明度</li>
+<li>label 组成路径的点的文本</li>
+<li>style 设置线的显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p><a href="../demo/index-2.html#线图">Demo</a></p>
+<h4 id="area">area</h4><p>将多个点按照 x 轴的方向连接成一条线，用颜色填充线与x轴之间的空间，支持的属性：</p>
+<ol>
+<li>position 线上点的位置</li>
+<li>color 填充的颜色</li>
+<li>shape 线的类型，详情<a href="../api/geom.html#shape">参考</a></li>
+<li>opacity 填充的透明度</li>
+<li>label 线上的点的文本</li>
+<li>style 设置显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p><a href="../demo/index-2.html#区域图">Demo</a></p>
+<h4 id="interval">interval</h4><p>将数据的大小用图形（长方形、线）的长度来表示，支持的属性：</p>
+<ol>
+<li>position x 轴表示数据的位置，y 轴表示数据的大小</li>
+<li>size 图形的宽度</li>
+<li>color 填充图形的颜色</li>
+<li>shape 图形的类型，详情<a href="../api/geom.html#shape">参考</a></li>
+<li>opacity 填充的透明度</li>
+<li>label 数据对应的文本</li>
+<li>style 设置显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p><a href="../demo/index-2.html#柱状图">Demo</a></p>
+<h4 id="polygon">polygon</h4><p>一个数据上有多个点的坐标，构成一个多边形，支持的属性：</p>
+<ol>
+<li>position 多边形各个点的位置</li>
+<li>color 填充多边形的颜色</li>
+<li>opacity 填充的透明度</li>
+<li>label 数据对应的文本</li>
+<li>shape 图形的类型，详情<a href="../api/geom.html#shape">参考</a></li>
+<li>style 设置显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p>Demo: <a href="../demo/08-heatmap/heatmap.html">马赛克图</a>, <a href="../demo/index-2.html#地图">地图</a></p>
+<h4 id="schema">schema</h4><p>自定义图形，如箱型图、K线图等，支持的属性：</p>
+<ol>
+<li>position 图形的位置</li>
+<li>color 图形的颜色</li>
+<li>shape 自定义图形的类型，详情<a href="../api/geom.html#shape">参考</a></li>
+<li>opacity 图形的透明度</li>
+<li>style 设置显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p>Demo: <a href="../demo/14-other/box-plot.html">箱型图</a>, <a href="../demo/index-2.html#股票图">股票图</a></p>
+<h4 id="heatmap">heatmap</h4><p>多个点构成热力图，支持的属性：</p>
+<ol>
+<li>position 每个点的位置</li>
+<li>color 热力图的颜色</li>
+<li>size 热力图绘制时一个点影响的范围</li>
+<li>style 设置显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p>Demo: <a href="../demo/08-heatmap/image.html">热力图</a></p>
+<h4 id="contour">contour</h4><p>由多个点计算等高线，支持的属性：</p>
+<ol>
+<li>position 每个点的位置</li>
+<li>color 等高线图的颜色</li>
+<li>size 等高线的宽度</li>
+<li>opacity 线的透明度</li>
+<li>style 设置显示样式</li>
+<li>tooltip 设置 tooltip 的展示维度</li>
+</ol>
+<p>Demo: <a href="../demo/14-other/contour.html">等高线</a></p>
+<h2 id="更多">更多</h2><p>本章讲解了 G2 的几何图形对象和各种几何图形对象对应的常见图表，你可以在<a href="coord.html">坐标系</a>中发现切换坐标系后，图形的表现完全不一样。那么久让我们开始<a href="coord.html">坐标系</a>的学习吧。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/geom.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:46 GMT -->
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/attr.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="active">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="图形属性简介">图形属性简介</h2><p>图形的属性作为 G2 语法元素非常重要和灵活的一部分，是将数据的字段映射成位置、颜色、大小、形状等图形属性，通过本章你需要了解：</p>
+<ul>
+<li>字段和属性的映射方式</li>
+<li>属性对图表其他元素的影响</li>
+</ul>
+<h2 id="图形属性类型">图形属性类型</h2><ul>
+<li>position：位置；</li>
+<li>color：颜色；</li>
+<li>shape：形状；</li>
+<li>size：大小；</li>
+<li>opacity：透明度</li>
+</ul>
+<h2 id="图形属性的语法">图形属性的语法</h2><div class="highlight"><pre><code class="javascript">chart.point().position(<span class="string">'x*y'</span>).color(<span class="string">'z'</span>);
+chart.interval().position(<span class="string">'x*y'</span>).color(<span class="string">'x'</span>);</code></pre></div><p>G2 检查属性对应的参数 <code>dim</code>，有以下情形：</p>
+<ul>
+<li>单个单词的，判断是否是输入<a href="data.html">数据源</a>的字段名称，如果不是则认为是一个常量，如： &#39;cut&#39; 是数据的一个字段，&#39;red&#39; 是一个颜色常量；</li>
+<li>多个单词使用 <code>*</code> 连接，属性会对多个字段进行数据的映射，如：<code>cut*price</code>，<code>x*y</code> 等；</li>
+<li>统计函数，会对经过统计之后的数据进行映射，如：position(summary.count(&#39;cut&#39;))；</li>
+<li>存在一些特殊的属性名，你需要知道的，例如 &#39;..count&#39;, &#39;..percent&#39;，经过<a href="stat.html#summary">统计变换</a>后生成的字段名。</li>
+</ul>
+<p style="color: #f50;font-weight: bold;">注意：</p>
+
+<p>G2 中有以下保留字：x, y, color, shape, size, opacity，如果在代码中使用会出现以下情形：</p>
+<ul>
+<li>字段名和属性含义一致时不会出错：</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.line().position(<span class="string">'x*y'</span>).color(<span class="string">'color'</span>);</code></pre></div><ul>
+<li>字段名和属性名不一致时会出现问题：</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 此时显示会混乱</span>
+chart.line().position(<span class="string">'color*x'</span>).color(<span class="string">'y'</span>);</code></pre></div><ul>
+<li>属性内部使用统计函数，生成新的字段时，导致字段名无法对应</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.interval().position(Stat.summary.percent(<span class="string">'x'</span>)).color(<span class="string">'type'</span>);</code></pre></div><p>所以 G2 的语法中不要使用带有以上保留字的字段名。</p>
+<h2 id="图形属性和运算符">图形属性和运算符</h2><p>目前图形属性支持如下两种运算符 <code>+</code> <code>*</code>，下面对这两种运算符的含义进行解释：</p>
+<ul>
+<li><strong><code>x*y</code></strong></li>
+</ul>
+<p>以 chart.point().position(&#39;x<em>y&#39;) 为例，point 代表图形，即最后需要生成点图，而 position 代表位置，position(&#39;x</em>y&#39;) 代表数据在图形中的位置由 x 和 y 这两个维度的变量决定，x * y 的数据处理结果可以理解为：</p>
+<p><img src="../../t.alipayobjects.com/images/T1LnRoXipaXXXXXXXX.png" alt="image"></p>
+<ul>
+<li><strong><code>x+y</code></strong> 目前只有 position 图形属性支持</li>
+</ul>
+<p>以这个语法 <code>chart.interval().position((a + b + c + d)*d)</code> 为例，<code>(a + b + c + d)</code> 代表了数据的一个区间，从 a 到 b 到 c 到 d。G2 会默认按照声明的字段顺序将参与加法运算的属性进行合并，生成一列属性名为 &#39;a+b+c+d&#39; 的数据，其中的数据值为数组： [a1, b1, c1, d1]，然后将新生成的字段参与图形的绘制和映射。如下，展示的瀑布图，每一个柱子都代表了一个数值区间。</p>
+<div id="waterfall" class="chart-container"></div>
+
+<script>(function(){"use strict";
+
+var data = [{ "time": 1428163200000, "start": 469, "end": 480 }, { "time": 1428163203600, "start": 480, "end": 430 }, { "time": 1428163207200, "start": 430, "end": 410 }, { "time": 1428163210800, "start": 410, "end": 420 }, { "time": 1428163214400, "start": 420, "end": 440 }, { "time": 1428163218000, "start": 440, "end": 460 }, { "time": 1428163221600, "start": 460, "end": 410 }, { "time": 1428163225200, "start": 410, "end": 440 }, { "time": 1428163228800, "start": 440, "end": 490 }];
+var frame = new G2.Frame(data); // 创建数据源
+frame.addCol('trend', function (obj) {
+  return obj.start <= obj.end ? 0 : 1;
+});
+var chart = new G2.Chart({
+  id: 'waterfall',
+  width: 800,
+  height: 400
+});
+var defs = {
+  'time': { // 设置日期类型
+    type: 'timeCat',
+    nice: false,
+    mask: 'HH:MM:ss'
+  },
+  'trend': {
+    type: 'cat',
+    alias: '趋势',
+    values: ['上涨', '下跌']
+  }
+};
+chart.source(frame, defs);
+chart.interval().position('time*(start+end)').color('trend', ['#1bbd19', '#fa513a']).size(25);
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {<span class="string">"time"</span>:<span class="number">1428163200000</span>,<span class="string">"start"</span>:<span class="number">469</span>,<span class="string">"end"</span>:<span class="number">480</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163203600</span>,<span class="string">"start"</span>:<span class="number">480</span>,<span class="string">"end"</span>:<span class="number">430</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163207200</span>,<span class="string">"start"</span>:<span class="number">430</span>,<span class="string">"end"</span>:<span class="number">410</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163210800</span>,<span class="string">"start"</span>:<span class="number">410</span>,<span class="string">"end"</span>:<span class="number">420</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163214400</span>,<span class="string">"start"</span>:<span class="number">420</span>,<span class="string">"end"</span>:<span class="number">440</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163218000</span>,<span class="string">"start"</span>:<span class="number">440</span>,<span class="string">"end"</span>:<span class="number">460</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163221600</span>,<span class="string">"start"</span>:<span class="number">460</span>,<span class="string">"end"</span>:<span class="number">410</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163225200</span>,<span class="string">"start"</span>:<span class="number">410</span>,<span class="string">"end"</span>:<span class="number">440</span>},
+  {<span class="string">"time"</span>:<span class="number">1428163228800</span>,<span class="string">"start"</span>:<span class="number">440</span>,<span class="string">"end"</span>:<span class="number">490</span>}
+];
+<span class="keyword">var</span> frame = <span class="keyword">new</span> G2.Frame(data); <span class="comment">// 创建数据源</span>
+frame.addCol(<span class="string">'trend'</span>, <span class="function"><span class="keyword">function</span><span class="params">(obj)</span> {</span>
+  <span class="keyword">return</span> (obj.start &lt;= obj.end) ? <span class="number">0</span> : <span class="number">1</span>;
+});
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'waterfall'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">400</span>
+});
+<span class="keyword">var</span> defs = {
+  <span class="string">'time'</span>: { <span class="comment">// 设置日期类型</span>
+    type: <span class="string">'timeCat'</span>,
+    nice: <span class="literal">false</span>,
+    mask: <span class="string">'HH:MM:ss'</span>
+  },
+  <span class="string">'trend'</span>: {
+    type: <span class="string">'cat'</span>,
+    alias: <span class="string">'趋势'</span>,
+    values: [<span class="string">'上涨'</span>,<span class="string">'下跌'</span>]
+  }
+};
+chart.source(frame, defs);
+chart.interval()
+  .position(<span class="string">'time*(start+end)'</span>)
+  .color(<span class="string">'trend'</span>,[<span class="string">'#1bbd19'</span>,<span class="string">'#fa513a'</span>])
+  .size(<span class="number">25</span>);
+chart.render();</code></pre></div><h2 id="图形属性映射">图形属性映射</h2><p>通过下面几个例子让我们来了解下 G2 的语法是如何进行数据和图形属性的映射的：</p>
+<ul>
+<li>position 位置的映射</li>
+</ul>
+<p>位置属性的映射，用于确定由数据中的哪几个字段来确定在平面坐标系的位置。如下语句使用 <code>cut</code> 表示点的 x 轴的位置，<code>price</code> 表示点的 y 轴的位置，使用 <code>cut</code> 给点添加颜色，区分不同的数据。</p>
+<div class="highlight"><pre><code class="javascript">chart.point().position(<span class="string">'cut*price'</span>).color(<span class="string">'cut'</span>);</code></pre></div><ul>
+<li>shape 形状的映射</li>
+</ul>
+<p>这个语句通过 <code>cut</code> 字段来映射形状，即根据数据集中不同的 <code>cut</code> 值来绘制不同形状的图形。</p>
+<div class="highlight"><pre><code class="javascript">chart.point().position(<span class="string">'cut*price'</span>).shape(<span class="string">'cut'</span>);</code></pre></div><ul>
+<li>结合统计函数</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.interval().position(Stat.summary.max(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);</code></pre></div><p>这个语句首先经过统计函数计算出每个 <code>cut</code> 分类的 <code>price</code> 最大值，然后进行图形属性的映射，即这个时候横轴为 <code>cut</code>，纵轴为 <code>price</code> 的最大值，如下图所示：</p>
+<div id="c1" class="chart-container"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=diamond', function (data) {
+  var Stat = G2.Stat;
+  var chart = new G2.Chart({
+    id: 'c1',
+    width: 800,
+    height: 400,
+    plotCfg: {
+      margin: [20, 90, 60, 80]
+    }
+  });
+  chart.source(data);
+  chart.interval().position(Stat.summary.median('cut*price')).color('cut');
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c1'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>,
+    plotCfg: {
+      margin: [<span class="number">20</span>, <span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>]
+    }
+  });
+  chart.source(data);
+  chart.interval().position(Stat.summary.median(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);
+  chart.render();
+});</code></pre></div><h2 id="图形属性同其他语法元素">图形属性同其他语法元素</h2><h3 id="图形属性和统计">图形属性和统计</h3><p>统计函数用于对数据进行一些统计处理，常见的<a href="stat.html">统计函数</a>在前面的章节已经介绍过，图形属性会对统计函数的执行产生影响：</p>
+<ol>
+<li><p><code>color</code> 和 <code>shape</code> 图形属性进行映射的字段如果是<a href="scale.html">分类度量</a>时,G2 会首先对数据按照这些属性对应的字段进行分组，然后每个分组进行单独的统计。</p>
+<div class="highlight"><pre><code class="javascript">chart.interval().position(Stat.summary.median(<span class="string">'cut*price'</span>)).color(<span class="string">'cut'</span>);</code></pre></div><p>G2首先根据 <code>cut</code> 字段对数据进行分组，然后对于每个分组执行 <code>Stat.summary.median</code> 的统计取中位数，所以生成了多个柱状图。</p>
+</li>
+<li><p>统计函数的参数会传递到属性中，有时候统计函数会<a href="stat.html#summary-统计函数生成的新字段">自动产生新的变量</a>，如 &#39;..count&#39;,&#39;..percent&#39;,也会被属性接收。比如在使用统计函数 <code>Stat.summary.percent()</code> 来绘制展示百分比的饼图时，就会自动生成 <code>..percent</code> 字段，当需要进行自定义文本时，我们就需要使用到这个字段。</p>
+</li>
+</ol>
+<div id="c2" class="chart-container"></div>
+
+<script>(function(){// 格式化饼图文本
+'use strict';
+
+function formatter(text, item) {
+  var point = item.point; // 每个弧度对应的点
+  var percent = point['..percent']; // ..percent 字段由Stat.summary.percent
+  percent = (percent * 100).toFixed(2) + '%';
+  return text + ' ' + percent;
+}
+
+var data = [{ type: '类型一', value: 100 }, { type: '类型二', value: 200 }, { type: '类型三', value: 150 }, { type: '类型四', value: 50 }, { type: '类型一', value: 40 }];
+var Stat = G2.Stat; // 引用 Stat
+var chart = new G2.Chart({
+  id: 'c2',
+  width: 800,
+  height: 400,
+  plotCfg: {
+    margin: 100
+  }
+});
+chart.source(data);
+chart.coord('theta');
+// 根据 type 字段对数据进行分组，计算每个 type 下 value 占所有数据总和的百分比
+chart.intervalStack().position(Stat.summary.percent('value')).color('type').label('type', {
+  renderer: formatter
+});
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="comment">// 格式化饼图文本</span>
+<span class="function"><span class="keyword">function</span> <span class="title">formatter</span><span class="params">(text,item)</span>{</span>
+  <span class="keyword">var</span> point = item.point; <span class="comment">// 每个弧度对应的点</span>
+  <span class="keyword">var</span> percent = point[<span class="string">'..percent'</span>]; <span class="comment">// ..percent 字段由Stat.summary.percent</span>
+  percent = (percent * <span class="number">100</span>).toFixed(<span class="number">2</span>) + <span class="string">'%'</span>;
+  <span class="keyword">return</span> text + <span class="string">' '</span> + percent;
+}
+
+<span class="keyword">var</span> data = [
+  {type: <span class="string">'类型一'</span>,value: <span class="number">100</span>},
+  {type: <span class="string">'类型二'</span>,value: <span class="number">200</span>},
+  {type: <span class="string">'类型三'</span>,value: <span class="number">150</span>},
+  {type: <span class="string">'类型四'</span>,value: <span class="number">50</span>},
+  {type: <span class="string">'类型一'</span>,value: <span class="number">40</span>}
+];
+<span class="keyword">var</span> Stat = G2.Stat; <span class="comment">// 引用 Stat </span>
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c2'</span>,
+  width: <span class="number">800</span>,
+  height: <span class="number">400</span>,
+  plotCfg: {
+  margin: <span class="number">100</span>
+  }
+});
+chart.source(data);
+chart.coord(<span class="string">'theta'</span>);
+<span class="comment">// 根据 type 字段对数据进行分组，计算每个 type 下 value 占所有数据总和的百分比</span>
+chart.intervalStack()
+  .position(Stat.summary.percent(<span class="string">'value'</span>))
+  .color(<span class="string">'type'</span>)
+  .label(<span class="string">'type'</span>, {
+    renderer: formatter
+  });
+chart.render();</code></pre></div><h3 id="图形属性和图例">图形属性和图例</h3><p>使用 G2 绘制出的图表是否会渲染出<a href="legend.html">图例</a>，是由所使用的图形属性所决定的。图例的生成规则如下：</p>
+<ol>
+<li>如果 <code>color</code>、<code>shape</code>、<code>size</code> 3 个图形属性的参数是数据源中的字段属性时会生成图例，对应的图例会在颜色、大小上做区分；</li>
+<li>如果 <code>shape</code> 图形属性的参数是数据源中的字段属性时，生成的图例还会在形状上作区分；</li>
+<li>如果属性参数的字段类型是连续数据时，图例按照数字的大小对 color、size进行计算，生成不同的颜色值和大小的连续图例；</li>
+<li>如果属性参数的字段类型是分类数据时，图例会根据数值的分类生成对应不同的颜色、形状和大小的分类图例。</li>
+</ol>
+<p>下面分别展示了四种图例： 连续的 size、分类、连续的 color、不同的 shape:</p>
+<p><img src="../../os.alipayobjects.com/rmsportal/jJmlfYPzbbkVYwk.png">
+<img src="../../os.alipayobjects.com/rmsportal/JdZRXfEQnaGXcGy.png">
+<img src="../../os.alipayobjects.com/rmsportal/lhxUtZmyGQnAstV.png">
+<img src="../../os.alipayobjects.com/rmsportal/vLtiQJstgqKjgQY.png"></p>
+<p>具体可参见<a href="legend.html">图例</a>章节。</p>
+<h2 id="示例">示例</h2><p>下面展示的是不同颜色不同形状的散点图，这里我们都使用 <code>cut</code> 字段进行 shape 和 color 的映射，而点的位置是由 <code>carat</code> 和 <code>price</code>
+ 这两个字段决定的。</p>
+<div id="c3" class="chart-container"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=diamond', function (data) {
+  var chart = new G2.Chart({
+    id: 'c3',
+    width: 800,
+    height: 400 });
+  var shapes = ['cross', 'tick', 'plus', 'hyphen', 'line']; // 更换图形类型
+  chart.source(data);
+  chart.point().position('carat*price').shape('cut', shapes).color('cut').size(3);
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c3'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>  });
+  <span class="keyword">var</span> shapes = [<span class="string">'cross'</span>,<span class="string">'tick'</span>,<span class="string">'plus'</span>,<span class="string">'hyphen'</span>,<span class="string">'line'</span>]; <span class="comment">// 更换图形类型</span>
+  chart.source(data);
+  chart.point()
+    .position(<span class="string">'carat*price'</span>)
+    .shape(<span class="string">'cut'</span>, shapes)
+    .color(<span class="string">'cut'</span>)
+    .size(<span class="number">3</span>);
+  chart.render();
+});</code></pre></div><h2 id="更多">更多</h2><p>在了解了图形属性之后，让我们来详细了解下 G2 所提供的几何对象 <a href="geom.html">Geom</a> 的基本概念和方法。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/attr.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:46 GMT -->
+</html>

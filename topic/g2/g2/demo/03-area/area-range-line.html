@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/demo/03-area/area-range-line.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a class="hover" href="../index.html">图表</a>
+          </li>
+          <li>
+            <a href="../../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<div class="banner demo-detail">
+  <div class="banner-inner">
+    <h1>范围区域图与线图</h1>
+    <p class="intro"></p>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content demo-detail">
+<div class="demo-title clearfix">
+  <h2 class="title">
+    <a href="../index-2.html#区域图">
+      <span class="parent-title">区域图 / </span>
+      <span class="title" id="J_chartTitle">范围区域图与线图</span>
+    </a>
+  </h2>
+  <ul class="theme-choose">
+    <li>选择主题</li>
+    <li>
+      <button id="J_themeA" class="theme theme-a checked">
+        <img src="../../../t.alipayobjects.com/images/T1yzpnXc8dXXXXXXXX.png" width="12" height="12">
+      </button>
+    </li>
+    <li>
+      <button id="J_themeB" class="theme theme-b">
+        <img src="../../../t.alipayobjects.com/images/T1ay8nXgBeXXXXXXXX.png" width="12" height="12">
+      </button>
+    </li>
+  </ul>
+</div>
+<div class="doc-content demo-doc">
+  <div class="doc-inner">
+    <a href="javascript:void(0);" id="J_savePic">
+      <i class="iconfont icon-snapshot"></i>
+    </a>
+    <iframe id="preview" class="demo-chart"></iframe>
+    <div class="wrapper">
+      <div class="code-panel pull-left">
+        <div class="tabs">
+          <div class="tab" >
+            <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+            <label for="tab-1" class="tab-label">源码</label>
+            <div class="tab-content">
+              <textarea id='codeA' name='codeA'>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>范围区域图与线图</title>
+      <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/doc.css" />
+      <!--如果不需要jquery ajax 则可以不引入-->
+      <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+      <script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+      <!-- 引入 G2 脚本 -->
+
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+    </head>
+    <body>
+      <div id="c1"></div>
+      <!-- G2 code start -->
+      <script>
+var data = [
+  {time: 1246406400000, Temperature: [14.3, 27.7], averageTem: 21.5},
+  {time: 1246492800000, Temperature: [14.5, 27.8], averageTem: 22.1},
+  {time: 1246579200000, Temperature: [15.5, 29.6], averageTem: 23},
+  {time: 1246665600000, Temperature: [16.7, 30.7], averageTem: 23.8},
+  {time: 1246752000000, Temperature: [16.5, 25.0], averageTem: 21.4},
+  {time: 1246838400000, Temperature: [17.8, 25.7], averageTem: 21.},
+  {time: 1246924800000, Temperature: [13.5, 24.8], averageTem: 18.3},
+  {time: 1247011200000, Temperature: [10.5, 21.4], averageTem: 15.4},
+  {time: 1247097600000, Temperature: [9.2, 23.8], averageTem: 16.4},
+  {time: 1247184000000, Temperature: [11.6, 21.8], averageTem: 17.7},
+  {time: 1247270400000, Temperature: [10.7, 23.7], averageTem: 17.5},
+  {time: 1247356800000, Temperature: [11.0, 23.3], averageTem: 17.6},
+  {time: 1247443200000, Temperature: [11.6, 23.7], averageTem: 17.7},
+  {time: 1247529600000, Temperature: [11.8, 20.7], averageTem: 16.8},
+  {time: 1247616000000, Temperature: [12.6, 22.4], averageTem: 17.7},
+  {time: 1247702400000, Temperature: [13.6, 19.6], averageTem: 16.3},
+  {time: 1247788800000, Temperature: [11.4, 22.6], averageTem: 17.8},
+  {time: 1247875200000, Temperature: [13.2, 25.0], averageTem: 18.1},
+  {time: 1247961600000, Temperature: [14.2, 21.6], averageTem: 17.2},
+  {time: 1248048000000, Temperature: [13.1, 17.1], averageTem: 14.4},
+  {time: 1248134400000, Temperature: [12.2, 15.5], averageTem: 13.7},
+  {time: 1248220800000, Temperature: [12.0, 20.8], averageTem: 15.7},
+  {time: 1248307200000, Temperature: [12.0, 17.1], averageTem: 14.6},
+  {time: 1248393600000, Temperature: [12.7, 18.3], averageTem: 15.3},
+  {time: 1248480000000, Temperature: [12.4, 19.4], averageTem: 15.3},
+  {time: 1248566400000, Temperature: [12.6, 19.9], averageTem: 15.8},
+  {time: 1248652800000, Temperature: [11.9, 20.2], averageTem: 15.2},
+  {time: 1248739200000, Temperature: [11.0, 19.3], averageTem: 14.8},
+  {time: 1248825600000, Temperature: [10.8, 17.8], averageTem: 14.4},
+  {time: 1248912000000, Temperature: [11.8, 18.5], averageTem: 15},
+  {time: 1248998400000, Temperature: [10.8, 16.1], averageTem: 13.6}
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500
+});
+chart.source(data, {
+  time: {
+    type: 'timeCat',
+    mask: 'dd/mm',
+    tickCount: 16
+  },
+  Temperature: {
+    min: 5,
+    max: 35,
+    nice: false
+  },
+  averageTem: {
+    min: 5,
+    max: 35,
+    nice: false 
+  }
+});
+chart.axis('averageTem', false);
+chart.legend(false);
+chart.tooltip({
+  crosshairs: true
+});
+chart.area().position('time*Temperature').opacity(0.25);
+chart.line().position('time*averageTem').size(2);
+chart.render();
+</script>
+
+      <!-- G2 code end -->
+    </body>
+  
+<!-- Mirrored from g2.alipay.com/demo/03-area/area-range-line.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:17 GMT -->
+</html>
+              </textarea>
+
+              <textarea id='codeB' name='codeB'>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>范围区域图与线图</title>
+      <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/doc.css" />
+      <!--如果不需要jquery ajax 则可以不引入-->
+      <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+      <script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+      <!-- 引入 G2 脚本 -->
+
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+      <script>
+        G2.Global.setTheme('dark');
+      </script>
+    </head>
+    <body>
+      <div id="c1"></div>
+      <script>
+var data = [
+  {time: 1246406400000, Temperature: [14.3, 27.7], averageTem: 21.5},
+  {time: 1246492800000, Temperature: [14.5, 27.8], averageTem: 22.1},
+  {time: 1246579200000, Temperature: [15.5, 29.6], averageTem: 23},
+  {time: 1246665600000, Temperature: [16.7, 30.7], averageTem: 23.8},
+  {time: 1246752000000, Temperature: [16.5, 25.0], averageTem: 21.4},
+  {time: 1246838400000, Temperature: [17.8, 25.7], averageTem: 21.},
+  {time: 1246924800000, Temperature: [13.5, 24.8], averageTem: 18.3},
+  {time: 1247011200000, Temperature: [10.5, 21.4], averageTem: 15.4},
+  {time: 1247097600000, Temperature: [9.2, 23.8], averageTem: 16.4},
+  {time: 1247184000000, Temperature: [11.6, 21.8], averageTem: 17.7},
+  {time: 1247270400000, Temperature: [10.7, 23.7], averageTem: 17.5},
+  {time: 1247356800000, Temperature: [11.0, 23.3], averageTem: 17.6},
+  {time: 1247443200000, Temperature: [11.6, 23.7], averageTem: 17.7},
+  {time: 1247529600000, Temperature: [11.8, 20.7], averageTem: 16.8},
+  {time: 1247616000000, Temperature: [12.6, 22.4], averageTem: 17.7},
+  {time: 1247702400000, Temperature: [13.6, 19.6], averageTem: 16.3},
+  {time: 1247788800000, Temperature: [11.4, 22.6], averageTem: 17.8},
+  {time: 1247875200000, Temperature: [13.2, 25.0], averageTem: 18.1},
+  {time: 1247961600000, Temperature: [14.2, 21.6], averageTem: 17.2},
+  {time: 1248048000000, Temperature: [13.1, 17.1], averageTem: 14.4},
+  {time: 1248134400000, Temperature: [12.2, 15.5], averageTem: 13.7},
+  {time: 1248220800000, Temperature: [12.0, 20.8], averageTem: 15.7},
+  {time: 1248307200000, Temperature: [12.0, 17.1], averageTem: 14.6},
+  {time: 1248393600000, Temperature: [12.7, 18.3], averageTem: 15.3},
+  {time: 1248480000000, Temperature: [12.4, 19.4], averageTem: 15.3},
+  {time: 1248566400000, Temperature: [12.6, 19.9], averageTem: 15.8},
+  {time: 1248652800000, Temperature: [11.9, 20.2], averageTem: 15.2},
+  {time: 1248739200000, Temperature: [11.0, 19.3], averageTem: 14.8},
+  {time: 1248825600000, Temperature: [10.8, 17.8], averageTem: 14.4},
+  {time: 1248912000000, Temperature: [11.8, 18.5], averageTem: 15},
+  {time: 1248998400000, Temperature: [10.8, 16.1], averageTem: 13.6}
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500
+});
+chart.source(data, {
+  time: {
+    type: 'timeCat',
+    mask: 'dd/mm',
+    tickCount: 16
+  },
+  Temperature: {
+    min: 5,
+    max: 35,
+    nice: false
+  },
+  averageTem: {
+    min: 5,
+    max: 35,
+    nice: false 
+  }
+});
+chart.axis('averageTem', false);
+chart.legend(false);
+chart.tooltip({
+  crosshairs: true
+});
+chart.area().position('time*Temperature').opacity(0.25);
+chart.line().position('time*averageTem').size(2);
+chart.render();
+</script>
+
+    </body>
+  </html>
+              </textarea>
+            </div>
+          </div>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+            <label for="tab-2" class="tab-label">JS</label>
+            <div class="tab-content">
+              <textarea id='codeJS' name='codeJS'>
+<script>
+var data = [
+  {time: 1246406400000, Temperature: [14.3, 27.7], averageTem: 21.5},
+  {time: 1246492800000, Temperature: [14.5, 27.8], averageTem: 22.1},
+  {time: 1246579200000, Temperature: [15.5, 29.6], averageTem: 23},
+  {time: 1246665600000, Temperature: [16.7, 30.7], averageTem: 23.8},
+  {time: 1246752000000, Temperature: [16.5, 25.0], averageTem: 21.4},
+  {time: 1246838400000, Temperature: [17.8, 25.7], averageTem: 21.},
+  {time: 1246924800000, Temperature: [13.5, 24.8], averageTem: 18.3},
+  {time: 1247011200000, Temperature: [10.5, 21.4], averageTem: 15.4},
+  {time: 1247097600000, Temperature: [9.2, 23.8], averageTem: 16.4},
+  {time: 1247184000000, Temperature: [11.6, 21.8], averageTem: 17.7},
+  {time: 1247270400000, Temperature: [10.7, 23.7], averageTem: 17.5},
+  {time: 1247356800000, Temperature: [11.0, 23.3], averageTem: 17.6},
+  {time: 1247443200000, Temperature: [11.6, 23.7], averageTem: 17.7},
+  {time: 1247529600000, Temperature: [11.8, 20.7], averageTem: 16.8},
+  {time: 1247616000000, Temperature: [12.6, 22.4], averageTem: 17.7},
+  {time: 1247702400000, Temperature: [13.6, 19.6], averageTem: 16.3},
+  {time: 1247788800000, Temperature: [11.4, 22.6], averageTem: 17.8},
+  {time: 1247875200000, Temperature: [13.2, 25.0], averageTem: 18.1},
+  {time: 1247961600000, Temperature: [14.2, 21.6], averageTem: 17.2},
+  {time: 1248048000000, Temperature: [13.1, 17.1], averageTem: 14.4},
+  {time: 1248134400000, Temperature: [12.2, 15.5], averageTem: 13.7},
+  {time: 1248220800000, Temperature: [12.0, 20.8], averageTem: 15.7},
+  {time: 1248307200000, Temperature: [12.0, 17.1], averageTem: 14.6},
+  {time: 1248393600000, Temperature: [12.7, 18.3], averageTem: 15.3},
+  {time: 1248480000000, Temperature: [12.4, 19.4], averageTem: 15.3},
+  {time: 1248566400000, Temperature: [12.6, 19.9], averageTem: 15.8},
+  {time: 1248652800000, Temperature: [11.9, 20.2], averageTem: 15.2},
+  {time: 1248739200000, Temperature: [11.0, 19.3], averageTem: 14.8},
+  {time: 1248825600000, Temperature: [10.8, 17.8], averageTem: 14.4},
+  {time: 1248912000000, Temperature: [11.8, 18.5], averageTem: 15},
+  {time: 1248998400000, Temperature: [10.8, 16.1], averageTem: 13.6}
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500
+});
+chart.source(data, {
+  time: {
+    type: 'timeCat',
+    mask: 'dd/mm',
+    tickCount: 16
+  },
+  Temperature: {
+    min: 5,
+    max: 35,
+    nice: false
+  },
+  averageTem: {
+    min: 5,
+    max: 35,
+    nice: false 
+  }
+});
+chart.axis('averageTem', false);
+chart.legend(false);
+chart.tooltip({
+  crosshairs: true
+});
+chart.area().position('time*Temperature').opacity(0.25);
+chart.line().position('time*averageTem').size(2);
+chart.render();
+</script>
+
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="code-operation">
+          <button class="button" id="J_runCode">运行</button>
+          <button class="button" id="J_copyCode" data-clipboard-target="#codeJS">复制</button>
+          <span id="J_copyStatus" style="display: none; color: #43CBC6"></span>
+        </div>
+      </div>
+
+      <div class="side pull-right">
+
+        <div class="relative-links">
+          <h3>
+            <a href="../index-2.html#区域图">区域图</a>
+          </h3>
+          <ul class="other-list">
+            <li>
+              <a href="area.html">区域图</a>
+            </li>
+            <li>
+              <a href="area-stack.html">层叠区域图</a>
+            </li>
+            <li>
+              <a href="area-percent.html">百分比层叠区域图</a>
+            </li>
+            <li>
+              <a href="area-smooth.html">平滑的区域图</a>
+            </li>
+            <li>
+              <a href="area-range.html">范围区域图</a>
+            </li>
+            <li class="active">
+              <a href="area-range-line.html">范围区域图与线图</a>
+            </li>
+            <li>
+              <a href="area-gradient.html">渐变区域图</a>
+            </li>
+            <li>
+              <a href="area-null.html">存在null的区域图</a>
+            </li>
+            <li>
+              <a href="area-with-negative.html">存在负值的区域图</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror-compressed.js"></script>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/clipboard.min.js"></script>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demo-detail.js"></script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+</body>
+</html>

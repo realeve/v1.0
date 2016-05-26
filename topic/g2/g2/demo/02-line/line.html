@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/demo/02-line/line.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a class="hover" href="../index.html">图表</a>
+          </li>
+          <li>
+            <a href="../../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<div class="banner demo-detail">
+  <div class="banner-inner">
+    <h1>折线图</h1>
+    <p class="intro">折线图用于显示数据在一个连续的时间间隔或者时间跨度上的变化，它的特点是反映事物随时间或有序类别而变化的趋势。</p>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content demo-detail">
+<div class="demo-title clearfix">
+  <h2 class="title">
+    <a href="../index-2.html#线图">
+      <span class="parent-title">线图 / </span>
+      <span class="title" id="J_chartTitle">折线图</span>
+    </a>
+  </h2>
+  <ul class="theme-choose">
+    <li>选择主题</li>
+    <li>
+      <button id="J_themeA" class="theme theme-a checked">
+        <img src="../../../t.alipayobjects.com/images/T1yzpnXc8dXXXXXXXX.png" width="12" height="12">
+      </button>
+    </li>
+    <li>
+      <button id="J_themeB" class="theme theme-b">
+        <img src="../../../t.alipayobjects.com/images/T1ay8nXgBeXXXXXXXX.png" width="12" height="12">
+      </button>
+    </li>
+  </ul>
+</div>
+<div class="doc-content demo-doc">
+  <div class="doc-inner">
+    <a href="javascript:void(0);" id="J_savePic">
+      <i class="iconfont icon-snapshot"></i>
+    </a>
+    <iframe id="preview" class="demo-chart"></iframe>
+    <div class="wrapper">
+      <div class="code-panel pull-left">
+        <div class="tabs">
+          <div class="tab" >
+            <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+            <label for="tab-1" class="tab-label">源码</label>
+            <div class="tab-content">
+              <textarea id='codeA' name='codeA'>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>折线图</title>
+      <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/doc.css" />
+      <!--如果不需要jquery ajax 则可以不引入-->
+      <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+      <script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+      <!-- 引入 G2 脚本 -->
+
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+    </head>
+    <body>
+      <div id="c1"></div>
+      <!-- G2 code start -->
+      <script>
+var data = [
+  {"month":0,"tem":7,"city":"北京"},
+  {"month":1,"tem":6.9,"city":"北京"},
+  {"month":2,"tem":9.5,"city":"北京"},
+  {"month":3,"tem":14.5,"city":"北京"},
+  {"month":4,"tem":18.2,"city":"北京"},
+  {"month":5,"tem":21.5,"city":"北京"},
+  {"month":6,"tem":25.2,"city":"北京"},
+  {"month":7,"tem":26.5,"city":"北京"},
+  {"month":8,"tem":23.3,"city":"北京"},
+  {"month":9,"tem":18.3,"city":"北京"},
+  {"month":10,"tem":13.9,"city":"北京"},
+  {"month":11,"tem":9.6,"city":"北京"},
+  {"month":0,"tem":-0.2,"city":"上海"},
+  {"month":1,"tem":0.8,"city":"上海"},
+  {"month":2,"tem":5.7,"city":"上海"},
+  {"month":3,"tem":11.3,"city":"上海"},
+  {"month":4,"tem":17,"city":"上海"},
+  {"month":5,"tem":22,"city":"上海"},
+  {"month":6,"tem":24.8,"city":"上海"},
+  {"month":7,"tem":24.1,"city":"上海"},
+  {"month":8,"tem":20.1,"city":"上海"},
+  {"month":9,"tem":14.1,"city":"上海"},
+  {"month":10,"tem":8.6,"city":"上海"},
+  {"month":11,"tem":2.5,"city":"上海"},
+  {"month":0,"tem":-0.9,"city":"深圳"},
+  {"month":1,"tem":0.6,"city":"深圳"},
+  {"month":2,"tem":3.5,"city":"深圳"},
+  {"month":3,"tem":8.4,"city":"深圳"},
+  {"month":4,"tem":13.5,"city":"深圳"},
+  {"month":5,"tem":17,"city":"深圳"},
+  {"month":6,"tem":18.6,"city":"深圳"},
+  {"month":7,"tem":17.9,"city":"深圳"},
+  {"month":8,"tem":14.3,"city":"深圳"},
+  {"month":9,"tem":9,"city":"深圳"},
+  {"month":10,"tem":3.9,"city":"深圳"},
+  {"month":11,"tem":1,"city":"深圳"},
+  {"month":0,"tem":3.9,"city":"杭州"},
+  {"month":1,"tem":4.2,"city":"杭州"},
+  {"month":2,"tem":5.7,"city":"杭州"},
+  {"month":3,"tem":8.5,"city":"杭州"},
+  {"month":4,"tem":11.9,"city":"杭州"},
+  {"month":5,"tem":15.2,"city":"杭州"},
+  {"month":6,"tem":17.0,"city":"杭州"},
+  {"month":7,"tem":16.6,"city":"杭州"},
+  {"month":8,"tem":14.2,"city":"杭州"},
+  {"month":9,"tem":10.3,"city":"杭州"},
+  {"month":10,"tem":6.6,"city":"杭州"},
+  {"month":11,"tem":4.8,"city":"杭州"}
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500
+});
+var defs = {
+  'month': {
+    alias: '月份',
+    type: 'cat',
+    values: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+  },
+  'city': {
+    alias: '城市'
+  },
+  'tem': {
+    alias: '室外温度'
+  }
+};
+
+chart.source(data, defs);
+chart.line().position('month*tem').color('city').size(2);
+chart.render();
+
+</script>
+
+      <!-- G2 code end -->
+    </body>
+  
+<!-- Mirrored from g2.alipay.com/demo/02-line/line.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:15 GMT -->
+</html>
+              </textarea>
+
+              <textarea id='codeB' name='codeB'>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>折线图</title>
+      <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/doc.css" />
+      <!--如果不需要jquery ajax 则可以不引入-->
+      <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+      <script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+      <!-- 引入 G2 脚本 -->
+
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+      <script>
+        G2.Global.setTheme('dark');
+      </script>
+    </head>
+    <body>
+      <div id="c1"></div>
+      <script>
+var data = [
+  {"month":0,"tem":7,"city":"北京"},
+  {"month":1,"tem":6.9,"city":"北京"},
+  {"month":2,"tem":9.5,"city":"北京"},
+  {"month":3,"tem":14.5,"city":"北京"},
+  {"month":4,"tem":18.2,"city":"北京"},
+  {"month":5,"tem":21.5,"city":"北京"},
+  {"month":6,"tem":25.2,"city":"北京"},
+  {"month":7,"tem":26.5,"city":"北京"},
+  {"month":8,"tem":23.3,"city":"北京"},
+  {"month":9,"tem":18.3,"city":"北京"},
+  {"month":10,"tem":13.9,"city":"北京"},
+  {"month":11,"tem":9.6,"city":"北京"},
+  {"month":0,"tem":-0.2,"city":"上海"},
+  {"month":1,"tem":0.8,"city":"上海"},
+  {"month":2,"tem":5.7,"city":"上海"},
+  {"month":3,"tem":11.3,"city":"上海"},
+  {"month":4,"tem":17,"city":"上海"},
+  {"month":5,"tem":22,"city":"上海"},
+  {"month":6,"tem":24.8,"city":"上海"},
+  {"month":7,"tem":24.1,"city":"上海"},
+  {"month":8,"tem":20.1,"city":"上海"},
+  {"month":9,"tem":14.1,"city":"上海"},
+  {"month":10,"tem":8.6,"city":"上海"},
+  {"month":11,"tem":2.5,"city":"上海"},
+  {"month":0,"tem":-0.9,"city":"深圳"},
+  {"month":1,"tem":0.6,"city":"深圳"},
+  {"month":2,"tem":3.5,"city":"深圳"},
+  {"month":3,"tem":8.4,"city":"深圳"},
+  {"month":4,"tem":13.5,"city":"深圳"},
+  {"month":5,"tem":17,"city":"深圳"},
+  {"month":6,"tem":18.6,"city":"深圳"},
+  {"month":7,"tem":17.9,"city":"深圳"},
+  {"month":8,"tem":14.3,"city":"深圳"},
+  {"month":9,"tem":9,"city":"深圳"},
+  {"month":10,"tem":3.9,"city":"深圳"},
+  {"month":11,"tem":1,"city":"深圳"},
+  {"month":0,"tem":3.9,"city":"杭州"},
+  {"month":1,"tem":4.2,"city":"杭州"},
+  {"month":2,"tem":5.7,"city":"杭州"},
+  {"month":3,"tem":8.5,"city":"杭州"},
+  {"month":4,"tem":11.9,"city":"杭州"},
+  {"month":5,"tem":15.2,"city":"杭州"},
+  {"month":6,"tem":17.0,"city":"杭州"},
+  {"month":7,"tem":16.6,"city":"杭州"},
+  {"month":8,"tem":14.2,"city":"杭州"},
+  {"month":9,"tem":10.3,"city":"杭州"},
+  {"month":10,"tem":6.6,"city":"杭州"},
+  {"month":11,"tem":4.8,"city":"杭州"}
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500
+});
+var defs = {
+  'month': {
+    alias: '月份',
+    type: 'cat',
+    values: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+  },
+  'city': {
+    alias: '城市'
+  },
+  'tem': {
+    alias: '室外温度'
+  }
+};
+
+chart.source(data, defs);
+chart.line().position('month*tem').color('city').size(2);
+chart.render();
+
+</script>
+
+    </body>
+  </html>
+              </textarea>
+            </div>
+          </div>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+            <label for="tab-2" class="tab-label">JS</label>
+            <div class="tab-content">
+              <textarea id='codeJS' name='codeJS'>
+<script>
+var data = [
+  {"month":0,"tem":7,"city":"北京"},
+  {"month":1,"tem":6.9,"city":"北京"},
+  {"month":2,"tem":9.5,"city":"北京"},
+  {"month":3,"tem":14.5,"city":"北京"},
+  {"month":4,"tem":18.2,"city":"北京"},
+  {"month":5,"tem":21.5,"city":"北京"},
+  {"month":6,"tem":25.2,"city":"北京"},
+  {"month":7,"tem":26.5,"city":"北京"},
+  {"month":8,"tem":23.3,"city":"北京"},
+  {"month":9,"tem":18.3,"city":"北京"},
+  {"month":10,"tem":13.9,"city":"北京"},
+  {"month":11,"tem":9.6,"city":"北京"},
+  {"month":0,"tem":-0.2,"city":"上海"},
+  {"month":1,"tem":0.8,"city":"上海"},
+  {"month":2,"tem":5.7,"city":"上海"},
+  {"month":3,"tem":11.3,"city":"上海"},
+  {"month":4,"tem":17,"city":"上海"},
+  {"month":5,"tem":22,"city":"上海"},
+  {"month":6,"tem":24.8,"city":"上海"},
+  {"month":7,"tem":24.1,"city":"上海"},
+  {"month":8,"tem":20.1,"city":"上海"},
+  {"month":9,"tem":14.1,"city":"上海"},
+  {"month":10,"tem":8.6,"city":"上海"},
+  {"month":11,"tem":2.5,"city":"上海"},
+  {"month":0,"tem":-0.9,"city":"深圳"},
+  {"month":1,"tem":0.6,"city":"深圳"},
+  {"month":2,"tem":3.5,"city":"深圳"},
+  {"month":3,"tem":8.4,"city":"深圳"},
+  {"month":4,"tem":13.5,"city":"深圳"},
+  {"month":5,"tem":17,"city":"深圳"},
+  {"month":6,"tem":18.6,"city":"深圳"},
+  {"month":7,"tem":17.9,"city":"深圳"},
+  {"month":8,"tem":14.3,"city":"深圳"},
+  {"month":9,"tem":9,"city":"深圳"},
+  {"month":10,"tem":3.9,"city":"深圳"},
+  {"month":11,"tem":1,"city":"深圳"},
+  {"month":0,"tem":3.9,"city":"杭州"},
+  {"month":1,"tem":4.2,"city":"杭州"},
+  {"month":2,"tem":5.7,"city":"杭州"},
+  {"month":3,"tem":8.5,"city":"杭州"},
+  {"month":4,"tem":11.9,"city":"杭州"},
+  {"month":5,"tem":15.2,"city":"杭州"},
+  {"month":6,"tem":17.0,"city":"杭州"},
+  {"month":7,"tem":16.6,"city":"杭州"},
+  {"month":8,"tem":14.2,"city":"杭州"},
+  {"month":9,"tem":10.3,"city":"杭州"},
+  {"month":10,"tem":6.6,"city":"杭州"},
+  {"month":11,"tem":4.8,"city":"杭州"}
+];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500
+});
+var defs = {
+  'month': {
+    alias: '月份',
+    type: 'cat',
+    values: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+  },
+  'city': {
+    alias: '城市'
+  },
+  'tem': {
+    alias: '室外温度'
+  }
+};
+
+chart.source(data, defs);
+chart.line().position('month*tem').color('city').size(2);
+chart.render();
+
+</script>
+
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="code-operation">
+          <button class="button" id="J_runCode">运行</button>
+          <button class="button" id="J_copyCode" data-clipboard-target="#codeJS">复制</button>
+          <span id="J_copyStatus" style="display: none; color: #43CBC6"></span>
+        </div>
+      </div>
+
+      <div class="side pull-right">
+        <div class="demo-chart-intro">
+          <h3>折线图</h3>
+          <p>
+            折线图用于显示数据在一个连续的时间间隔或者时间跨度上的变化，它的特点是反映事物随时间或有序类别而变化的趋势。
+            <a href="https://antv.alipay.com/chart/details/line.html" target="_blank">了解更多</a>
+          </p>
+        </div>
+
+        <div class="relative-links">
+          <h3>
+            <a href="../index-2.html#线图">线图</a>
+          </h3>
+          <ul class="other-list">
+            <li class="active">
+              <a href="line.html">折线图</a>
+            </li>
+            <li>
+              <a href="path.html">路径图</a>
+            </li>
+            <li>
+              <a href="step-line.html">step 图</a>
+            </li>
+            <li>
+              <a href="line-smooth.html">光滑的折线图</a>
+            </li>
+            <li>
+              <a href="line-dot.html">点线图</a>
+            </li>
+            <li>
+              <a href="line-spline.html">样条函式曲线</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror-compressed.js"></script>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/clipboard.min.js"></script>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demo-detail.js"></script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+</body>
+</html>

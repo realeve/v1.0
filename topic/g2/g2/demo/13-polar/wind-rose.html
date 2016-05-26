@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/demo/13-polar/wind-rose.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a class="hover" href="../index.html">图表</a>
+          </li>
+          <li>
+            <a href="../../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<div class="banner demo-detail">
+  <div class="banner-inner">
+    <h1>极坐标下的层叠柱状图</h1>
+    <p class="intro">层叠的玫瑰图</p>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content demo-detail">
+<div class="demo-title clearfix">
+  <h2 class="title">
+    <a href="../index-2.html#极坐标">
+      <span class="parent-title">极坐标 / </span>
+      <span class="title" id="J_chartTitle">极坐标下的层叠柱状图</span>
+    </a>
+  </h2>
+  <ul class="theme-choose">
+    <li>选择主题</li>
+    <li>
+      <button id="J_themeA" class="theme theme-a checked">
+        <img src="../../../t.alipayobjects.com/images/T1yzpnXc8dXXXXXXXX.png" width="12" height="12">
+      </button>
+    </li>
+    <li>
+      <button id="J_themeB" class="theme theme-b">
+        <img src="../../../t.alipayobjects.com/images/T1ay8nXgBeXXXXXXXX.png" width="12" height="12">
+      </button>
+    </li>
+  </ul>
+</div>
+<div class="doc-content demo-doc">
+  <div class="doc-inner">
+    <a href="javascript:void(0);" id="J_savePic">
+      <i class="iconfont icon-snapshot"></i>
+    </a>
+    <iframe id="preview" class="demo-chart"></iframe>
+    <div class="wrapper">
+      <div class="code-panel pull-left">
+        <div class="tabs">
+          <div class="tab" >
+            <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+            <label for="tab-1" class="tab-label">源码</label>
+            <div class="tab-content">
+              <textarea id='codeA' name='codeA'>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>极坐标下的层叠柱状图</title>
+      <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/doc.css" />
+      <!--如果不需要jquery ajax 则可以不引入-->
+      <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+      <script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+      <!-- 引入 G2 脚本 -->
+
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+    </head>
+    <body>
+      <div id="c1"></div>
+      <!-- G2 code start -->
+      <script>
+var data = [
+  {direction: 'N', level: '< 0.5 m/s', value: 1.81},
+  {direction: 'N', level: '0.5-2 m/s', value: 1.78},
+  {direction: 'N', level: '2-4 m/s', value: 0.16},
+  {direction: 'N', level: '4-6 m/s', value: 0.00},
+  {direction: 'N', level: '6-8 m/s', value: 0.00},
+  {direction: 'N', level: '8-10 m/s', value: 0.00},
+  {direction: 'N', level: '> 10 m/s', value: 0.00},
+  {direction: 'NNE', level: '< 0.5 m/s', value: 0.62},
+  {direction: 'NNE', level: '0.5-2 m/s', value: 1.09},
+  {direction: 'NNE', level: '2-4 m/s', value: 0.00},
+  {direction: 'NNE', level: '4-6 m/s', value: 0.00},
+  {direction: 'NNE', level: '6-8 m/s', value: 0.00},
+  {direction: 'NNE', level: '8-10 m/s', value: 0.00},
+  {direction: 'NNE', level: '> 10 m/s', value: 0.00},
+  {direction: 'NE', level: '< 0.5 m/s', value: 0.82},
+  {direction: 'NE', level: '0.5-2 m/s', value: 0.82},
+  {direction: 'NE', level: '2-4 m/s', value: 0.07},
+  {direction: 'NE', level: '4-6 m/s', value: 0.00},
+  {direction: 'NE', level: '6-8 m/s', value: 0.00},
+  {direction: 'NE', level: '8-10 m/s', value: 0.00},
+  {direction: 'NE', level: '> 10 m/s', value: 0.00},
+  {direction: 'ENE', level: '< 0.5 m/s', value: 0.59},
+  {direction: 'ENE', level: '0.5-2 m/s', value: 1.22},
+  {direction: 'ENE', level: '2-4 m/s', value: 0.07},
+  {direction: 'ENE', level: '4-6 m/s', value: 0.00},
+  {direction: 'ENE', level: '6-8 m/s', value: 0.00},
+  {direction: 'ENE', level: '8-10 m/s', value: 0.00},
+  {direction: 'ENE', level: '> 10 m/s', value: 0.00},
+  {direction: 'E', level: '< 0.5 m/s', value: 0.62},
+  {direction: 'E', level: '0.5-2 m/s', value: 2.20},
+  {direction: 'E', level: '2-4 m/s', value: 0.49},
+  {direction: 'E', level: '4-6 m/s', value: 0.00},
+  {direction: 'E', level: '6-8 m/s', value: 0.00},
+  {direction: 'E', level: '8-10 m/s', value: 0.00},
+  {direction: 'E', level: '> 10 m/s', value: 0.00},
+  {direction: 'ESE', level: '< 0.5 m/s', value: 1.22},
+  {direction: 'ESE', level: '0.5-2 m/s', value: 2.01},
+  {direction: 'ESE', level: '2-4 m/s', value: 1.55},
+  {direction: 'ESE', level: '4-6 m/s', value: 0.30},
+  {direction: 'ESE', level: '6-8 m/s', value: 0.13},
+  {direction: 'ESE', level: '8-10 m/s', value: 0.00},
+  {direction: 'ESE', level: '> 10 m/s', value: 0.00},
+  {direction: 'SE', level: '< 0.5 m/s', value: 1.61},
+  {direction: 'SE', level: '0.5-2 m/s', value: 3.06},
+  {direction: 'SE', level: '2-4 m/s', value: 2.37},
+  {direction: 'SE', level: '4-6 m/s', value: 2.14},
+  {direction: 'SE', level: '6-8 m/s', value: 1.74},
+  {direction: 'SE', level: '8-10 m/s', value: 0.39},
+  {direction: 'SE', level: '> 10 m/s', value: 0.13},
+  {direction: 'SSE', level: '< 0.5 m/s', value: 2.04},
+  {direction: 'SSE', level: '0.5-2 m/s', value: 3.42},
+  {direction: 'SSE', level: '2-4 m/s', value: 1.97},
+  {direction: 'SSE', level: '4-6 m/s', value: 0.86},
+  {direction: 'SSE', level: '6-8 m/s', value: 0.53},
+  {direction: 'SSE', level: '8-10 m/s', value: 0.49},
+  {direction: 'SSE', level: '> 10 m/s', value: 0.00},
+  {direction: 'S', level: '< 0.5 m/s', value: 2.66},
+  {direction: 'S', level: '0.5-2 m/s', value: 4.74},
+  {direction: 'S', level: '2-4 m/s', value: 0.64},
+  {direction: 'S', level: '4-6 m/s', value: 0.00},
+  {direction: 'S', level: '6-8 m/s', value: 0.00},
+  {direction: 'S', level: '8-10 m/s', value: 0.49},
+  {direction: 'S', level: '> 10 m/s', value: 0.00},
+  {direction: 'SSW', level: '< 0.5 m/s', value: 2.96},
+  {direction: 'SSW', level: '0.5-2 m/s', value: 4.23},
+  {direction: 'SSW', level: '2-4 m/s', value: 0.34},
+  {direction: 'SSW', level: '4-6 m/s', value: 1.03},
+  {direction: 'SSW', level: '6-8 m/s', value: 0.30},
+  {direction: 'SSW', level: '8-10 m/s', value: 0.00},
+  {direction: 'SSW', level: '> 10 m/s', value: 0.00},
+  {direction: 'SW', level: '< 0.5 m/s', value: 2.53},
+  {direction: 'SW', level: '0.5-2 m/s', value: 4.01},
+  {direction: 'SW', level: '2-4 m/s', value: 1.22},
+  {direction: 'SW', level: '4-6 m/s', value: 0.49},
+  {direction: 'SW', level: '6-8 m/s', value: 0.13},
+  {direction: 'SW', level: '8-10 m/s', value: 0.00},
+  {direction: 'SW', level: '> 10 m/s', value: 0.00},
+  {direction: 'WSW', level: '< 0.5 m/s', value: 1.97},
+  {direction: 'WSW', level: '0.5-2 m/s', value: 2.66},
+  {direction: 'WSW', level: '2-4 m/s', value: 1.97},
+  {direction: 'WSW', level: '4-6 m/s', value: 0.79},
+  {direction: 'WSW', level: '6-8 m/s', value: 0.30},
+  {direction: 'WSW', level: '8-10 m/s', value: 0.00},
+  {direction: 'WSW', level: '> 10 m/s', value: 0.00},
+  {direction: 'W', level: '< 0.5 m/s', value: 1.64},
+  {direction: 'W', level: '0.5-2 m/s', value: 1.71},
+  {direction: 'W', level: '2-4 m/s', value: 0.92},
+  {direction: 'W', level: '4-6 m/s', value: 1.45},
+  {direction: 'W', level: '6-8 m/s', value: 0.26},
+  {direction: 'W', level: '8-10 m/s', value: 0.10},
+  {direction: 'W', level: '> 10 m/s', value: 0.00},
+  {direction: 'WNW', level: '< 0.5 m/s', value: 1.32},
+  {direction: 'WNW', level: '0.5-2 m/s', value: 2.40},
+  {direction: 'WNW', level: '2-4 m/s', value: 0.99},
+  {direction: 'WNW', level: '4-6 m/s', value: 1.61},
+  {direction: 'WNW', level: '6-8 m/s', value: 0.33},
+  {direction: 'WNW', level: '8-10 m/s', value: 0.00},
+  {direction: 'WNW', level: '> 10 m/s', value: 0.00},
+  {direction: 'NW', level: '< 0.5 m/s', value: 1.58},
+  {direction: 'NW', level: '0.5-2 m/s', value: 4.28},
+  {direction: 'NW', level: '2-4 m/s', value: 1.28},
+  {direction: 'NW', level: '4-6 m/s', value: 0.76},
+  {direction: 'NW', level: '6-8 m/s', value: 0.66},
+  {direction: 'NW', level: '8-10 m/s', value: 0.69},
+  {direction: 'NW', level: '> 10 m/s', value: 0.03},
+  {direction: 'NNW', level: '< 0.5 m/s', value: 1.51},
+  {direction: 'NNW', level: '0.5-2 m/s', value: 5.00},
+  {direction: 'NNW', level: '2-4 m/s', value: 1.32},
+  {direction: 'NNW', level: '4-6 m/s', value: 0.13},
+  {direction: 'NNW', level: '6-8 m/s', value: 0.23},
+  {direction: 'NNW', level: '8-10 m/s', value: 0.13},
+  {direction: 'NNW', level: '> 10 m/s', value: 0.07}
+];
+
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500,
+  plotCfg: {
+    margin: [20, 100, 80, 80]
+  }
+});
+
+chart.source(data);
+chart.coord('polar');
+chart.intervalStack().position('direction*value').color('level').size(45);
+chart.render();
+</script>
+
+      <!-- G2 code end -->
+    </body>
+  
+<!-- Mirrored from g2.alipay.com/demo/13-polar/wind-rose.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:00:20 GMT -->
+</html>
+              </textarea>
+
+              <textarea id='codeB' name='codeB'>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>极坐标下的层叠柱状图</title>
+      <link rel="stylesheet" type="text/css" href="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/doc.css" />
+      <!--如果不需要jquery ajax 则可以不引入-->
+      <script src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+      <script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+      <!-- 引入 G2 脚本 -->
+
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+      <script>
+        G2.Global.setTheme('dark');
+      </script>
+    </head>
+    <body>
+      <div id="c1"></div>
+      <script>
+var data = [
+  {direction: 'N', level: '< 0.5 m/s', value: 1.81},
+  {direction: 'N', level: '0.5-2 m/s', value: 1.78},
+  {direction: 'N', level: '2-4 m/s', value: 0.16},
+  {direction: 'N', level: '4-6 m/s', value: 0.00},
+  {direction: 'N', level: '6-8 m/s', value: 0.00},
+  {direction: 'N', level: '8-10 m/s', value: 0.00},
+  {direction: 'N', level: '> 10 m/s', value: 0.00},
+  {direction: 'NNE', level: '< 0.5 m/s', value: 0.62},
+  {direction: 'NNE', level: '0.5-2 m/s', value: 1.09},
+  {direction: 'NNE', level: '2-4 m/s', value: 0.00},
+  {direction: 'NNE', level: '4-6 m/s', value: 0.00},
+  {direction: 'NNE', level: '6-8 m/s', value: 0.00},
+  {direction: 'NNE', level: '8-10 m/s', value: 0.00},
+  {direction: 'NNE', level: '> 10 m/s', value: 0.00},
+  {direction: 'NE', level: '< 0.5 m/s', value: 0.82},
+  {direction: 'NE', level: '0.5-2 m/s', value: 0.82},
+  {direction: 'NE', level: '2-4 m/s', value: 0.07},
+  {direction: 'NE', level: '4-6 m/s', value: 0.00},
+  {direction: 'NE', level: '6-8 m/s', value: 0.00},
+  {direction: 'NE', level: '8-10 m/s', value: 0.00},
+  {direction: 'NE', level: '> 10 m/s', value: 0.00},
+  {direction: 'ENE', level: '< 0.5 m/s', value: 0.59},
+  {direction: 'ENE', level: '0.5-2 m/s', value: 1.22},
+  {direction: 'ENE', level: '2-4 m/s', value: 0.07},
+  {direction: 'ENE', level: '4-6 m/s', value: 0.00},
+  {direction: 'ENE', level: '6-8 m/s', value: 0.00},
+  {direction: 'ENE', level: '8-10 m/s', value: 0.00},
+  {direction: 'ENE', level: '> 10 m/s', value: 0.00},
+  {direction: 'E', level: '< 0.5 m/s', value: 0.62},
+  {direction: 'E', level: '0.5-2 m/s', value: 2.20},
+  {direction: 'E', level: '2-4 m/s', value: 0.49},
+  {direction: 'E', level: '4-6 m/s', value: 0.00},
+  {direction: 'E', level: '6-8 m/s', value: 0.00},
+  {direction: 'E', level: '8-10 m/s', value: 0.00},
+  {direction: 'E', level: '> 10 m/s', value: 0.00},
+  {direction: 'ESE', level: '< 0.5 m/s', value: 1.22},
+  {direction: 'ESE', level: '0.5-2 m/s', value: 2.01},
+  {direction: 'ESE', level: '2-4 m/s', value: 1.55},
+  {direction: 'ESE', level: '4-6 m/s', value: 0.30},
+  {direction: 'ESE', level: '6-8 m/s', value: 0.13},
+  {direction: 'ESE', level: '8-10 m/s', value: 0.00},
+  {direction: 'ESE', level: '> 10 m/s', value: 0.00},
+  {direction: 'SE', level: '< 0.5 m/s', value: 1.61},
+  {direction: 'SE', level: '0.5-2 m/s', value: 3.06},
+  {direction: 'SE', level: '2-4 m/s', value: 2.37},
+  {direction: 'SE', level: '4-6 m/s', value: 2.14},
+  {direction: 'SE', level: '6-8 m/s', value: 1.74},
+  {direction: 'SE', level: '8-10 m/s', value: 0.39},
+  {direction: 'SE', level: '> 10 m/s', value: 0.13},
+  {direction: 'SSE', level: '< 0.5 m/s', value: 2.04},
+  {direction: 'SSE', level: '0.5-2 m/s', value: 3.42},
+  {direction: 'SSE', level: '2-4 m/s', value: 1.97},
+  {direction: 'SSE', level: '4-6 m/s', value: 0.86},
+  {direction: 'SSE', level: '6-8 m/s', value: 0.53},
+  {direction: 'SSE', level: '8-10 m/s', value: 0.49},
+  {direction: 'SSE', level: '> 10 m/s', value: 0.00},
+  {direction: 'S', level: '< 0.5 m/s', value: 2.66},
+  {direction: 'S', level: '0.5-2 m/s', value: 4.74},
+  {direction: 'S', level: '2-4 m/s', value: 0.64},
+  {direction: 'S', level: '4-6 m/s', value: 0.00},
+  {direction: 'S', level: '6-8 m/s', value: 0.00},
+  {direction: 'S', level: '8-10 m/s', value: 0.49},
+  {direction: 'S', level: '> 10 m/s', value: 0.00},
+  {direction: 'SSW', level: '< 0.5 m/s', value: 2.96},
+  {direction: 'SSW', level: '0.5-2 m/s', value: 4.23},
+  {direction: 'SSW', level: '2-4 m/s', value: 0.34},
+  {direction: 'SSW', level: '4-6 m/s', value: 1.03},
+  {direction: 'SSW', level: '6-8 m/s', value: 0.30},
+  {direction: 'SSW', level: '8-10 m/s', value: 0.00},
+  {direction: 'SSW', level: '> 10 m/s', value: 0.00},
+  {direction: 'SW', level: '< 0.5 m/s', value: 2.53},
+  {direction: 'SW', level: '0.5-2 m/s', value: 4.01},
+  {direction: 'SW', level: '2-4 m/s', value: 1.22},
+  {direction: 'SW', level: '4-6 m/s', value: 0.49},
+  {direction: 'SW', level: '6-8 m/s', value: 0.13},
+  {direction: 'SW', level: '8-10 m/s', value: 0.00},
+  {direction: 'SW', level: '> 10 m/s', value: 0.00},
+  {direction: 'WSW', level: '< 0.5 m/s', value: 1.97},
+  {direction: 'WSW', level: '0.5-2 m/s', value: 2.66},
+  {direction: 'WSW', level: '2-4 m/s', value: 1.97},
+  {direction: 'WSW', level: '4-6 m/s', value: 0.79},
+  {direction: 'WSW', level: '6-8 m/s', value: 0.30},
+  {direction: 'WSW', level: '8-10 m/s', value: 0.00},
+  {direction: 'WSW', level: '> 10 m/s', value: 0.00},
+  {direction: 'W', level: '< 0.5 m/s', value: 1.64},
+  {direction: 'W', level: '0.5-2 m/s', value: 1.71},
+  {direction: 'W', level: '2-4 m/s', value: 0.92},
+  {direction: 'W', level: '4-6 m/s', value: 1.45},
+  {direction: 'W', level: '6-8 m/s', value: 0.26},
+  {direction: 'W', level: '8-10 m/s', value: 0.10},
+  {direction: 'W', level: '> 10 m/s', value: 0.00},
+  {direction: 'WNW', level: '< 0.5 m/s', value: 1.32},
+  {direction: 'WNW', level: '0.5-2 m/s', value: 2.40},
+  {direction: 'WNW', level: '2-4 m/s', value: 0.99},
+  {direction: 'WNW', level: '4-6 m/s', value: 1.61},
+  {direction: 'WNW', level: '6-8 m/s', value: 0.33},
+  {direction: 'WNW', level: '8-10 m/s', value: 0.00},
+  {direction: 'WNW', level: '> 10 m/s', value: 0.00},
+  {direction: 'NW', level: '< 0.5 m/s', value: 1.58},
+  {direction: 'NW', level: '0.5-2 m/s', value: 4.28},
+  {direction: 'NW', level: '2-4 m/s', value: 1.28},
+  {direction: 'NW', level: '4-6 m/s', value: 0.76},
+  {direction: 'NW', level: '6-8 m/s', value: 0.66},
+  {direction: 'NW', level: '8-10 m/s', value: 0.69},
+  {direction: 'NW', level: '> 10 m/s', value: 0.03},
+  {direction: 'NNW', level: '< 0.5 m/s', value: 1.51},
+  {direction: 'NNW', level: '0.5-2 m/s', value: 5.00},
+  {direction: 'NNW', level: '2-4 m/s', value: 1.32},
+  {direction: 'NNW', level: '4-6 m/s', value: 0.13},
+  {direction: 'NNW', level: '6-8 m/s', value: 0.23},
+  {direction: 'NNW', level: '8-10 m/s', value: 0.13},
+  {direction: 'NNW', level: '> 10 m/s', value: 0.07}
+];
+
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500,
+  plotCfg: {
+    margin: [20, 100, 80, 80]
+  }
+});
+
+chart.source(data);
+chart.coord('polar');
+chart.intervalStack().position('direction*value').color('level').size(45);
+chart.render();
+</script>
+
+    </body>
+  </html>
+              </textarea>
+            </div>
+          </div>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+            <label for="tab-2" class="tab-label">JS</label>
+            <div class="tab-content">
+              <textarea id='codeJS' name='codeJS'>
+<script>
+var data = [
+  {direction: 'N', level: '< 0.5 m/s', value: 1.81},
+  {direction: 'N', level: '0.5-2 m/s', value: 1.78},
+  {direction: 'N', level: '2-4 m/s', value: 0.16},
+  {direction: 'N', level: '4-6 m/s', value: 0.00},
+  {direction: 'N', level: '6-8 m/s', value: 0.00},
+  {direction: 'N', level: '8-10 m/s', value: 0.00},
+  {direction: 'N', level: '> 10 m/s', value: 0.00},
+  {direction: 'NNE', level: '< 0.5 m/s', value: 0.62},
+  {direction: 'NNE', level: '0.5-2 m/s', value: 1.09},
+  {direction: 'NNE', level: '2-4 m/s', value: 0.00},
+  {direction: 'NNE', level: '4-6 m/s', value: 0.00},
+  {direction: 'NNE', level: '6-8 m/s', value: 0.00},
+  {direction: 'NNE', level: '8-10 m/s', value: 0.00},
+  {direction: 'NNE', level: '> 10 m/s', value: 0.00},
+  {direction: 'NE', level: '< 0.5 m/s', value: 0.82},
+  {direction: 'NE', level: '0.5-2 m/s', value: 0.82},
+  {direction: 'NE', level: '2-4 m/s', value: 0.07},
+  {direction: 'NE', level: '4-6 m/s', value: 0.00},
+  {direction: 'NE', level: '6-8 m/s', value: 0.00},
+  {direction: 'NE', level: '8-10 m/s', value: 0.00},
+  {direction: 'NE', level: '> 10 m/s', value: 0.00},
+  {direction: 'ENE', level: '< 0.5 m/s', value: 0.59},
+  {direction: 'ENE', level: '0.5-2 m/s', value: 1.22},
+  {direction: 'ENE', level: '2-4 m/s', value: 0.07},
+  {direction: 'ENE', level: '4-6 m/s', value: 0.00},
+  {direction: 'ENE', level: '6-8 m/s', value: 0.00},
+  {direction: 'ENE', level: '8-10 m/s', value: 0.00},
+  {direction: 'ENE', level: '> 10 m/s', value: 0.00},
+  {direction: 'E', level: '< 0.5 m/s', value: 0.62},
+  {direction: 'E', level: '0.5-2 m/s', value: 2.20},
+  {direction: 'E', level: '2-4 m/s', value: 0.49},
+  {direction: 'E', level: '4-6 m/s', value: 0.00},
+  {direction: 'E', level: '6-8 m/s', value: 0.00},
+  {direction: 'E', level: '8-10 m/s', value: 0.00},
+  {direction: 'E', level: '> 10 m/s', value: 0.00},
+  {direction: 'ESE', level: '< 0.5 m/s', value: 1.22},
+  {direction: 'ESE', level: '0.5-2 m/s', value: 2.01},
+  {direction: 'ESE', level: '2-4 m/s', value: 1.55},
+  {direction: 'ESE', level: '4-6 m/s', value: 0.30},
+  {direction: 'ESE', level: '6-8 m/s', value: 0.13},
+  {direction: 'ESE', level: '8-10 m/s', value: 0.00},
+  {direction: 'ESE', level: '> 10 m/s', value: 0.00},
+  {direction: 'SE', level: '< 0.5 m/s', value: 1.61},
+  {direction: 'SE', level: '0.5-2 m/s', value: 3.06},
+  {direction: 'SE', level: '2-4 m/s', value: 2.37},
+  {direction: 'SE', level: '4-6 m/s', value: 2.14},
+  {direction: 'SE', level: '6-8 m/s', value: 1.74},
+  {direction: 'SE', level: '8-10 m/s', value: 0.39},
+  {direction: 'SE', level: '> 10 m/s', value: 0.13},
+  {direction: 'SSE', level: '< 0.5 m/s', value: 2.04},
+  {direction: 'SSE', level: '0.5-2 m/s', value: 3.42},
+  {direction: 'SSE', level: '2-4 m/s', value: 1.97},
+  {direction: 'SSE', level: '4-6 m/s', value: 0.86},
+  {direction: 'SSE', level: '6-8 m/s', value: 0.53},
+  {direction: 'SSE', level: '8-10 m/s', value: 0.49},
+  {direction: 'SSE', level: '> 10 m/s', value: 0.00},
+  {direction: 'S', level: '< 0.5 m/s', value: 2.66},
+  {direction: 'S', level: '0.5-2 m/s', value: 4.74},
+  {direction: 'S', level: '2-4 m/s', value: 0.64},
+  {direction: 'S', level: '4-6 m/s', value: 0.00},
+  {direction: 'S', level: '6-8 m/s', value: 0.00},
+  {direction: 'S', level: '8-10 m/s', value: 0.49},
+  {direction: 'S', level: '> 10 m/s', value: 0.00},
+  {direction: 'SSW', level: '< 0.5 m/s', value: 2.96},
+  {direction: 'SSW', level: '0.5-2 m/s', value: 4.23},
+  {direction: 'SSW', level: '2-4 m/s', value: 0.34},
+  {direction: 'SSW', level: '4-6 m/s', value: 1.03},
+  {direction: 'SSW', level: '6-8 m/s', value: 0.30},
+  {direction: 'SSW', level: '8-10 m/s', value: 0.00},
+  {direction: 'SSW', level: '> 10 m/s', value: 0.00},
+  {direction: 'SW', level: '< 0.5 m/s', value: 2.53},
+  {direction: 'SW', level: '0.5-2 m/s', value: 4.01},
+  {direction: 'SW', level: '2-4 m/s', value: 1.22},
+  {direction: 'SW', level: '4-6 m/s', value: 0.49},
+  {direction: 'SW', level: '6-8 m/s', value: 0.13},
+  {direction: 'SW', level: '8-10 m/s', value: 0.00},
+  {direction: 'SW', level: '> 10 m/s', value: 0.00},
+  {direction: 'WSW', level: '< 0.5 m/s', value: 1.97},
+  {direction: 'WSW', level: '0.5-2 m/s', value: 2.66},
+  {direction: 'WSW', level: '2-4 m/s', value: 1.97},
+  {direction: 'WSW', level: '4-6 m/s', value: 0.79},
+  {direction: 'WSW', level: '6-8 m/s', value: 0.30},
+  {direction: 'WSW', level: '8-10 m/s', value: 0.00},
+  {direction: 'WSW', level: '> 10 m/s', value: 0.00},
+  {direction: 'W', level: '< 0.5 m/s', value: 1.64},
+  {direction: 'W', level: '0.5-2 m/s', value: 1.71},
+  {direction: 'W', level: '2-4 m/s', value: 0.92},
+  {direction: 'W', level: '4-6 m/s', value: 1.45},
+  {direction: 'W', level: '6-8 m/s', value: 0.26},
+  {direction: 'W', level: '8-10 m/s', value: 0.10},
+  {direction: 'W', level: '> 10 m/s', value: 0.00},
+  {direction: 'WNW', level: '< 0.5 m/s', value: 1.32},
+  {direction: 'WNW', level: '0.5-2 m/s', value: 2.40},
+  {direction: 'WNW', level: '2-4 m/s', value: 0.99},
+  {direction: 'WNW', level: '4-6 m/s', value: 1.61},
+  {direction: 'WNW', level: '6-8 m/s', value: 0.33},
+  {direction: 'WNW', level: '8-10 m/s', value: 0.00},
+  {direction: 'WNW', level: '> 10 m/s', value: 0.00},
+  {direction: 'NW', level: '< 0.5 m/s', value: 1.58},
+  {direction: 'NW', level: '0.5-2 m/s', value: 4.28},
+  {direction: 'NW', level: '2-4 m/s', value: 1.28},
+  {direction: 'NW', level: '4-6 m/s', value: 0.76},
+  {direction: 'NW', level: '6-8 m/s', value: 0.66},
+  {direction: 'NW', level: '8-10 m/s', value: 0.69},
+  {direction: 'NW', level: '> 10 m/s', value: 0.03},
+  {direction: 'NNW', level: '< 0.5 m/s', value: 1.51},
+  {direction: 'NNW', level: '0.5-2 m/s', value: 5.00},
+  {direction: 'NNW', level: '2-4 m/s', value: 1.32},
+  {direction: 'NNW', level: '4-6 m/s', value: 0.13},
+  {direction: 'NNW', level: '6-8 m/s', value: 0.23},
+  {direction: 'NNW', level: '8-10 m/s', value: 0.13},
+  {direction: 'NNW', level: '> 10 m/s', value: 0.07}
+];
+
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 1000,
+  height: 500,
+  plotCfg: {
+    margin: [20, 100, 80, 80]
+  }
+});
+
+chart.source(data);
+chart.coord('polar');
+chart.intervalStack().position('direction*value').color('level').size(45);
+chart.render();
+</script>
+
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="code-operation">
+          <button class="button" id="J_runCode">运行</button>
+          <button class="button" id="J_copyCode" data-clipboard-target="#codeJS">复制</button>
+          <span id="J_copyStatus" style="display: none; color: #43CBC6"></span>
+        </div>
+      </div>
+
+      <div class="side pull-right">
+        <div class="demo-chart-intro">
+          <h3>极坐标下的层叠柱状图</h3>
+          <p>
+            层叠的玫瑰图
+            <a href="https://antv.alipay.com/chart/details/rose.html" target="_blank">了解更多</a>
+          </p>
+        </div>
+
+        <div class="relative-links">
+          <h3>
+            <a href="../index-2.html#极坐标">极坐标</a>
+          </h3>
+          <ul class="other-list">
+            <li>
+              <a href="polar-mixture.html">极坐标下的点、线、面</a>
+            </li>
+            <li>
+              <a href="polar-interval.html">极坐标下的柱状图</a>
+            </li>
+            <li class="active">
+              <a href="wind-rose.html">极坐标下的层叠柱状图</a>
+            </li>
+            <li>
+              <a href="pizza.html">pizza 图（圆内点图）</a>
+            </li>
+            <li>
+              <a href="polar-box.html">极坐标下的箱型图</a>
+            </li>
+            <li>
+              <a href="polar-custom.html">极坐标</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror-compressed.js"></script>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/clipboard.min.js"></script>
+<script src="../../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demo-detail.js"></script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+</html>

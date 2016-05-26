@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="138px" height="119px" viewBox="0 0 138 119" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.1 (28215) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 22</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="77" height="54"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="77" height="54" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="-4" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.484488493   0 0 0 0 0.557693864   0 0 0 0 0.630899235  0 0 0 0.304121377 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-4" x="0" y="0" width="77" height="54"></rect>
+        <mask id="mask-5" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="77" height="54" fill="white">
+            <use xlink:href="#path-4"></use>
+        </mask>
+        <rect id="path-6" x="5" y="6" width="17" height="16" rx="2"></rect>
+        <mask id="mask-7" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="17" height="16" fill="white">
+            <use xlink:href="#path-6"></use>
+        </mask>
+    </defs>
+    <g id="web-site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy-15" transform="translate(-897.000000, -1196.000000)">
+            <g id="Group-22" transform="translate(897.000000, 1197.000000)">
+                <circle id="Oval-6009" stroke="#DCDCDC" fill="#FFFFFF" cx="62.5" cy="11.5" r="11.5"></circle>
+                <polygon id="Star-1" stroke="#DCDCDC" fill="#FFFFFF" points="17.5 44.25 14.2671811 45.9495935 14.8845946 42.3497967 12.2691892 39.8004065 15.8835906 39.2752033 17.5 36 19.1164094 39.2752033 22.7308108 39.8004065 20.1154054 42.3497967 20.7328189 45.9495935"></polygon>
+                <polygon id="Star-1-Copy" stroke="#DCDCDC" fill="#FFFFFF" points="36 34 33.648859 35.236068 34.097887 32.618034 32.1957739 30.763932 34.8244295 30.381966 36 28 37.1755705 30.381966 39.8042261 30.763932 37.902113 32.618034 38.351141 35.236068"></polygon>
+                <polygon id="Star-1-Copy-2" stroke="#DCDCDC" fill="#FFFFFF" points="122.73158 27.4626165 119.807303 29 120.36579 25.7437694 118 23.4376941 121.269441 22.9626165 122.73158 20 124.193719 22.9626165 127.46316 23.4376941 125.09737 25.7437694 125.655857 29"></polygon>
+                <polygon id="Star-1-Copy-3" stroke="#DCDCDC" fill="#FFFFFF" points="97 98.73158 95.145898 99.7063391 95.5 97.6417662 94 96.1796276 96.072949 95.8784105 97 94 97.927051 95.8784105 100 96.1796276 98.5 97.6417662 98.854102 99.7063391"></polygon>
+                <g id="Group-21-Copy" transform="translate(0.000000, 64.000000)">
+                    <use id="Rectangle-617" stroke="#DCDCDC" mask="url(#mask-2)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <polygon id="H" fill="#DCDCDC" points="9.008 8.004 9.008 18 10.156 18 10.156 13.338 15.938 13.338 15.938 18 17.086 18 17.086 8.004 15.938 8.004 15.938 12.344 10.156 12.344 10.156 8.004"></polygon>
+                    <path d="M26.5,8.5 L65.5,8.5" id="Line" stroke="#DCDCDC" stroke-linecap="square"></path>
+                    <path d="M5.5,26.5 L57.509613,26.5" id="Line-Copy-3" stroke="#DCDCDC" stroke-linecap="square"></path>
+                    <path d="M5.5,32.5 L33.5,32.5" id="Line-Copy-4" stroke="#DCDCDC" stroke-linecap="square"></path>
+                    <path d="M5.5,38.5 L64.5,38.5" id="Line-Copy-5" stroke="#DCDCDC" stroke-linecap="square"></path>
+                    <path d="M5.5,44.5 L54.5,44.5" id="Line-Copy-6" stroke="#DCDCDC" stroke-linecap="square"></path>
+                    <path d="M26.5,14.5 L65.5,14.5" id="Line-Copy" stroke="#DCDCDC" stroke-linecap="square"></path>
+                    <path d="M26.5,20.5 L49.5,20.5" id="Line-Copy-2" stroke="#DCDCDC" stroke-linecap="square"></path>
+                </g>
+                <g id="Group-21" filter="url(#filter-3)" transform="translate(58.000000, 34.000000)" stroke="#DCDCDC">
+                    <use id="Rectangle-617" mask="url(#mask-5)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-4"></use>
+                    <path d="M26.5,8.5 L65.5,8.5" id="Line" stroke-linecap="square"></path>
+                    <path d="M5.5,26.5 L64.5,26.5" id="Line-Copy-3" stroke-linecap="square"></path>
+                    <path d="M5.5,32.5 L64.5,32.5" id="Line-Copy-4" stroke-linecap="square"></path>
+                    <path d="M5.5,38.5 L64.5,38.5" id="Line-Copy-5" stroke-linecap="square"></path>
+                    <path d="M26.5,14.5 L65.5,14.5" id="Line-Copy" stroke-linecap="square"></path>
+                    <path d="M26.5,20.5 L49.5,20.5" id="Line-Copy-2" stroke-linecap="square"></path>
+                    <use id="Rectangle-618" mask="url(#mask-7)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-6"></use>
+                </g>
+                <path d="M54.327911,9.25227168 C54.327911,9.25227168 57.5297282,5.7514994 60.5409792,9.25227168" id="Path-795" stroke="#DCDCDC" stroke-linecap="round"></path>
+                <path d="M64,9.55589879 C64,9.55589879 67.2018172,6.05512651 70.2130683,9.55589879" id="Path-795-Copy" stroke="#DCDCDC" stroke-linecap="round"></path>
+                <circle id="Oval-6010" stroke="#DCDCDC" fill="#FFFFFF" cx="59.5" cy="17.5" r="1.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

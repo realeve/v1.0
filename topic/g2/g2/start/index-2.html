@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/start/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a class="hover" href="index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner start">
+  <div class="banner-inner">
+    <h1>G2 快速上手</h1>
+    <p class="intro">简要介绍 G2 以及特性，帮助您快速了解 G2<p/>
+    <p class="intro">并提供 G2 快速入门教程</p>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">快速上手</p>
+<ul class="nav-list">
+  <li class="active">
+    <a href="index-2.html" >G2 介绍</a>
+  </li>
+  <li class="">
+    <a href="get-started.html" >快速开始</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="什么是-g2">什么是 G2</h2><p>G2(The Grammar Of Graphics) 是一个由纯 <strong>javascript</strong> 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。</p>
+<h2 id="g2-的特性">G2 的特性</h2><p>1、<strong>专业的数据可视化理论基础</strong>，从一个更高的视角来审视图表的构成进而提供了一套强大的图形与法，专注于数据到图形的映射，由数据驱动的方式生成可视化形式。</p>
+<p>2、<strong>语法简单且语义化</strong>。G2 的图形语法为我们提供了一套非常自由简洁的创建图表过程，可以说是一句话画图，相比于市面上众多的配置项生成式图表引擎，G2 只需简简单单一句话，以绘制常见的柱状图为例：</p>
+<div id="c1"></div>
+
+<script>(function(){'use strict';
+
+var data = [{ action: '访问', visitor: 500 }, { action: '浏览', visitor: 400 }, { action: '交互', visitor: 300 }, { action: '下单', visitor: 200 }, { action: '付款', visitor: 100 }];
+
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 800,
+  height: 400
+}); // 创建图表
+
+chart.source(data); // 载入数据源
+chart.interval().position('action*visitor').color('action'); // 使用图形语法绘制柱状图
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {action: <span class="string">'访问'</span>, visitor: <span class="number">500</span>},
+  {action: <span class="string">'浏览'</span>, visitor: <span class="number">400</span>},
+  {action: <span class="string">'交互'</span>, visitor: <span class="number">300</span>},
+  {action: <span class="string">'下单'</span>, visitor: <span class="number">200</span>},
+  {action: <span class="string">'付款'</span>, visitor: <span class="number">100</span>}
+];
+
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c1'</span>,
+  width : <span class="number">800</span>,
+  height : <span class="number">400</span>
+}); <span class="comment">// 创建图表</span>
+
+chart.source(data); <span class="comment">// 载入数据源</span>
+chart.interval().position(<span class="string">'action*visitor'</span>).color(<span class="string">'action'</span>); <span class="comment">// 使用图形语法绘制柱状图</span>
+chart.render();</code></pre></div><p>除去创建对象和载入数据的过程，其核心语法就是如下这句：绘制一张柱状图，以属性 action 的值为横轴，属性 visitor 为纵轴，然后根据不同的 action 属性值区分柱子的颜色。</p>
+<p><img src="../../t.alipayobjects.com/images/T1eW8oXe8eXXXXXXXX.png"></p>
+<p>3、<strong>G2 并不是一个特定几个图表的生产库，而是一个绘图工具，提供的是一种自由绘图、组合创造的能力</strong>，所有的可视化结果都是由几何图形对象，映射，度量，统计，坐标系等基本图形语法元素排列组合而成，这就决定了用户可以使用这些图形语法元素进行各种各样的组合，创造出属于自己的图表。目前 G2 已经可以绘制出数不清的图表，其中包含了<strong> 30 余种常见的图表</strong>，还有更多我们都叫不上名字的图表，详见<a href="https://antv.alipay.com/chart/index.html">数据图表</a>：</p>
+<p><img src="../../t.alipayobjects.com/images/T1URpoXeleXXXXXXXX.png" alt="img"></p>
+<p>其中所以的图表均使用 G2 绘制，也可以在<a href="../demo/index-2.html">图表</a>中查看我们的 demo 示例。</p>
+<p>4、<strong>更简单的可视化改变形式</strong>，对于使用者来说，用户仅仅改变非常少的配置就可以实现不同图表之间的切换。比如从柱状图到玫瑰图，用户只需要更改一个坐标系配置。可视化形式的轻松改变可以帮助数据分析人员更佳容易的找到适用于他的数据的形式，进而发现数据中的规律。</p>
+<div id="c2">
+</div>
+<div style="text-align: center;margin-bottom: 15px;">
+  <button id="J_toRose" class="button" style="font-weight: bold;">chart.coord('polar')</button>
+  <button id="J_toBar" class="button" style="font-weight: bold;">chart.coord('rect')</button>
+</div>
+
+<script type="text/javascript">
+var data = [
+  {action: '访问', visitor: 500},
+  {action: '浏览', visitor: 400},
+  {action: '交互', visitor: 300},
+  {action: '下单', visitor: 200},
+  {action: '付款', visitor: 100}
+];
+
+var chart = new G2.Chart({
+  id: 'c2',
+  width : 800,
+  height : 400
+}); // 创建图表
+
+chart.source(data); // 载入数据源
+chart.interval().position('action*visitor').color('action'); // 使用图形语法绘制柱状图
+chart.render(); 
+$('#J_toRose').click(function() {
+  chart.coord('polar');
+  chart.repaint();
+});
+$('#J_toBar').click(function() {
+  chart.coord('rect');
+  chart.repaint();
+});
+
+</script>
+
+<p>5、<strong>灵活的皮肤定制机制</strong>：详见<a href="../tutorial/theme.html">皮肤</a>。</p>
+<p>6、<strong>灵活易扩展的插件机制</strong>：详见 <a href="../api/plugins.html">Plugins</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/start/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:33 GMT -->
+</html>

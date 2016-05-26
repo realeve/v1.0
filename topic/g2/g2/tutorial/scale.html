@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/scale.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="active">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <h2 id="什么是度量">什么是度量</h2><p>度量（Scale）控制着数据到图形属性的映射，每一个图形属性（Attr）都对应着一个度量。可以这么理解度量：即一个从数据空间的某个区域（度量的定义域）到图形属性空间的某个区域（度量的值域）的一个函数。每种度量的定义域都对应着提供给这个度量的变量的取值范围，而值域则包含了我们可是感知的图形属性：位置、颜色、形状、大小等。</p>
+<p>而在G2中，度量的具体处理方式是将数据统一转换到 [0,1] 这个区间内。当然不同的数据类型的转换方法各不相同，但都有以下功能：</p>
+<ul>
+<li>scale: 将数据转换到[0,1]之间<ul>
+<li>有 0,1,2,3,4,5,6,7,8,9,10 几个数值，最大值 10,最小值 0 通过度量转换后，变成 0,0.1,0.2....0.9,1</li>
+<li>有 &#39;男&#39;,&#39;女&#39; 2个分类数据，通过度量转换后变成 0 ,1</li>
+</ul>
+</li>
+<li>invert: 将 [0,1] 之间的数据翻转回原始数据<ul>
+<li>将数据从 [0,1] 之间的 0,0.1,0.2....0.9,1翻转回到 0,1,2,3,4,5,6,7,8,9,10的原始数据</li>
+<li>将数据从 0,1 翻转成 &#39;男&#39;,&#39;女&#39;</li>
+</ul>
+</li>
+</ul>
+<p>度量作为数据的属性，所以需要在用户指定数据源时，一起设置。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {a: <span class="string">'A'</span>, b:<span class="number">100</span>},
+  {a: <span class="string">'B'</span>, b:<span class="number">13</span>},
+  {a: <span class="string">'C'</span>, b:<span class="number">24</span>},
+  {a: <span class="string">'D'</span>, b:<span class="number">1</span>}
+];
+<span class="keyword">var</span> defs = {
+  a: {
+    type: <span class="string">'cat'</span> <span class="comment">// 设置度量的类型，为分类 cat</span>
+  },
+  b: {
+    min: <span class="number">0</span>, <span class="comment">// 设置最小值</span>
+    max: <span class="number">100</span> <span class="comment">// 设置最大值</span>
+  } <span class="comment">// 如果没有具体声明字段的度量类型，G2 会根据数值的类型自己判断，这里为 linear 连续数值类型</span>
+};
+
+chart.source(data, defs);</code></pre></div><h2 id="度量的类型">度量的类型</h2><p>根据数据的类型，G2 支持以下几种度量类型：</p>
+<ul>
+<li><strong>identity</strong>，常量类型的数值，也就是说数据的某个字段是不变的常量；</li>
+<li><strong>linear</strong>，连续的数字 [1,2,3,4,5]；</li>
+<li><strong>cat</strong>，分类, [&#39;男&#39;,&#39;女&#39;]；</li>
+<li><strong>time</strong>，连续的时间类型；</li>
+<li><strong>timeCat</strong>，非连续的时间，比如股票的时间不包括周末或者未开盘的日期；</li>
+<li><strong>log</strong>，连续非线性的 Log 数据 将 [1,10,100,1000] 转换成[0,1,2,3]；</li>
+<li><strong>pow</strong>，连续非线性的 pow 数据 将 [2,4,8,16,32] 转换成 [1,2,3,4,5]。</li>
+</ul>
+<p><img src="../../gtms01.alicdn.com/tps/i1/TB1BoZVIpXXXXbYXpXXoSB1JVXX-1142-724.png" alt="" width="500"></p>
+<h2 id="改变度量的类型">改变度量的类型</h2><p>默认情况下 G2 会根据数据集中每个属性的第一个数据的类型来自动生成度量的类型，但是用户也可以根据自己的需求进行自定义，这里我们称这个操作为<strong>“列定义”</strong>。如下所示，我们的列定义是作为 <code>chart.source(data, colDefs)</code> 的第二个参数传入的。</p>
+<div class="highlight"><pre><code class="javascript">chart.source(data, {
+  <span class="string">'a'</span>: {
+    type: <span class="string">'cat'</span> <span class="comment">// 指定该列数据的类型为 cat</span>
+  }
+})</code></pre></div><p>另外还可以为列定义配置更多的信息，当然针对不同的度量类型，配置项有所不同，如下所示：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> defs = {
+  <span class="string">'a'</span>: {
+    type: <span class="string">'time'</span>, <span class="comment">// 指定 time 类型</span>
+    mask: <span class="string">'yyyy-mm-dd HH:MM:ss'</span> <span class="comment">// 指定时间的输出格式</span>
+  },
+  <span class="string">'b'</span>: {
+    type: <span class="string">'linear'</span>, <span class="comment">// 指定 linear 连续类型</span>
+    min: <span class="number">0</span> <span class="comment">// 指定度量的最小值</span>
+  },
+  <span class="string">'c'</span>: {
+    type: <span class="string">'cat'</span>, <span class="comment">// 指定 cat 分类类型</span>
+    values: [<span class="string">'一月'</span>,<span class="string">'二月'</span>,<span class="string">'三月'</span>] <span class="comment">// 重新指定 c 属性每一个的值</span>
+  }
+};
+chart.source(data, defs);</code></pre></div><p><strong>更详细的配置和使用，请参见 <a href="../api/scale.html">Scale API</a>。</strong></p>
+<h2 id="示例">示例</h2><div id="c1"></div>
+
+<script type="text/javascript">
+var data = [
+  {"value":10,"time":"2015-03-01T16:00:00.000Z"},
+  {"value":15,"time":"2015-03-01T16:10:00.000Z"},
+  {"value":26,"time":"2015-03-01T16:20:00.000Z"},
+  {"value":9,"time":"2015-03-01T16:30:00.000Z"},
+  {"value":12,"time":"2015-03-01T16:40:00.000Z"},
+  {"value":23,"time":"2015-03-01T16:50:00.000Z"},
+  {"value":18,"time":"2015-03-01T17:00:00.000Z"},
+  {"value":21,"time":"2015-03-01T17:10:00.000Z"},
+  {"value":22,"time":"2015-03-01T17:20:00.000Z"}
+];
+
+var chart = new G2.Chart({
+  id : 'c1',
+  width : 800,
+  height : 400
+});
+
+var defs = {
+  'time': {
+    type: 'time',
+    nice: false,
+    mask: 'yyyy-mm-dd HH:MM:ss'
+  }
+};
+
+chart.source(data,defs);
+chart.line().position('time*value').color('red');
+chart.render();
+</script>
+
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {<span class="string">"value"</span>:<span class="number">10</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T16:00:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">15</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T16:10:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">26</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T16:20:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">9</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T16:30:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">12</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T16:40:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">23</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T16:50:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">18</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T17:00:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">21</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T17:10:00.000Z"</span>},
+  {<span class="string">"value"</span>:<span class="number">22</span>,<span class="string">"time"</span>:<span class="string">"2015-03-01T17:20:00.000Z"</span>}
+];
+
+<span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id : <span class="string">'c1'</span>,
+  width : <span class="number">800</span>,
+  height : <span class="number">400</span>
+});
+
+<span class="keyword">var</span> defs = {
+  <span class="string">'time'</span>: {
+    type: <span class="string">'time'</span>,
+    nice: <span class="literal">false</span>,
+    mask: <span class="string">'yyyy-mm-dd HH:MM:ss'</span>
+  }
+};
+
+chart.source(data,defs);
+chart.line().position(<span class="string">'time*value'</span>).color(<span class="string">'red'</span>);
+chart.render();</code></pre></div><h2 id="更多">更多</h2><p>本章我们了解了度量 Scale，在使用 G2 过程中，通常还需要对数据进行各种统计操作，为此 G2 提供了一系列方便的统计函数，让我们开始下一章节<a href="stat.html">统计分析</a>的学习吧。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/scale.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:37 GMT -->
+</html>

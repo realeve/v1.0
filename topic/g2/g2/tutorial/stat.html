@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/tutorial/stat.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a class="hover" href="index.html">教程</a>
+          </li>
+          <li id="api">
+            <a href="../api/index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<div class="banner tutorial">
+  <div class="banner-inner">
+    <h1>G2 教程</h1>
+    <p class="intro">详细介绍 G2 图形语法以及各个语法元素的详细教程<p/>
+    <p class="intro">帮助你更深入了解 G2 的使用<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content tutorial-body-content">
+  <div class="doc-nav">
+    <p class="title">教程</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >图形语法</a>
+  </li>
+  <li class="">
+    <a href="components.html" >G2 图表构成</a>
+  </li>
+  <li class="">
+    <a href="g2grammar.html" >G2 语法</a>
+  </li>
+  <li class="">
+    <a href="chart.html" >G2.Chart 对象</a>
+  </li>
+  <li class="">
+    <a href="data.html" >Data 数据</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale 度量</a>
+  </li>
+  <li class="active">
+    <a href="stat.html" >Stat 统计</a>
+  </li>
+  <li class="">
+    <a href="attr.html" >Attr 图形属性</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom 几何图形</a>
+  </li>
+  <li class="">
+    <a href="coord.html" >Coord 坐标系</a>
+  </li>
+  <li class="">
+    <a href="axis.html" >Axis 坐标轴</a>
+  </li>
+  <li class="">
+    <a href="legend.html" >Legend 图例</a>
+  </li>
+  <li class="">
+    <a href="tooltip.html" >Tooltip 提示信息</a>
+  </li>
+  <li class="">
+    <a href="guide.html" >Guide 辅助元素</a>
+  </li>
+  <li class="">
+    <a href="facet.html" >Facet 分面</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme 皮肤</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global 全局变量</a>
+  </li>
+  <li class="">
+    <a href="flow.html" >G2 图表的生成过程</a>
+  </li>
+</ul>
+  </div>
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <div class="doc-content clearfix">
+    <div class="doc-inner">
+      <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+
+<h2 id="统计简介">统计简介</h2><p>G2 做为 DT 时代 web 端数据分析的工具，最核心的部分是其数据分析能力，这些都是基于一系列的统计方法，在 G2 中的统计方法有以下功能：</p>
+<ul>
+<li>将一个数据集合合并成一条数据或者多条记录，例如获取数据集合某一列的最大值、最小值和区间值；</li>
+<li>对数据集合进行常见的统计操作：mean,median,mode,variance等常见操作；</li>
+<li>支持统计方法嵌套，即可以执行连续的统计分析操作。</li>
+</ul>
+<h2 id="统计的分类">统计的分类</h2><p>根据对数据的处理方式的不同，G2 中提供了以下几种统计函数：</p>
+<ul>
+<li>summary： 汇总统计，计算数据集合的 最大值、最小值、平均数等；</li>
+<li>bin：封箱统计，将数据划分成一个个的区域，然后在外面嵌套汇总统计；</li>
+<li>smooth：线性回归、非线性回归以及各种平滑插值算法，用于查找数据的规律；</li>
+<li>density：样本估计总体的概率密度；</li>
+<li>region：计算数值区间，误差区间等；</li>
+<li>map：用于绘制地图的统计函数，根据地名获取经纬度信息等；</li>
+<li>treemap：用于矩阵树图的绘制计算。</li>
+</ul>
+<p>以下是具体的统计函数介绍：</p>
+<h3 id="summary">summary</h3><table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>summary.min(&#39;x*y&#39;)</td>
+<td>计算列 y 的最小值，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.max(&#39;x*y&#39;)</td>
+<td>计算列 y 的最大值，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.sum(&#39;x*y&#39;)</td>
+<td>计算列 y 的和，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.range(&#39;x*y&#39;)</td>
+<td>计算列 y 的最大值、最小值区间的差值，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.mean(&#39;x*y&#39;)</td>
+<td>计算列 y 的平均值，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.median(&#39;x*y&#39;)</td>
+<td>计算列 y 的中位数，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.mode(&#39;x*y&#39;)</td>
+<td>计算列 y 的众数，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.sd(&#39;x*y&#39;)</td>
+<td>计算列 y 的标准差，按照 x 进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.count(&#39;x&#39;)</td>
+<td>计算按照 x 分组后，各个分组的个数</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.proportion(&#39;x&#39;)</td>
+<td>计算按照 x 分组后，各个分组的个数占总数的比例</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.percent(&#39;x*y&#39;)</td>
+<td>计算每个 y  所有数据 sum(y) 的比例</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>summary.cumulative(&#39;x*y&#39;)</td>
+<td>计算累积值</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong></p>
+<ul>
+<li><code>summary.&lt;method&gt;</code> 可以接收多个列作为参数，例如：<code>summary.max(&#39;x&#39;)</code> 或者 <code>summary.max(&#39;x*y&#39;)</code>，此时用最后一个参数进行汇总统计，前面的参数用于分组，下面示例（钻石数据）表示，按照 &#39;cut&#39;（切割工艺）进行分组，然后统计每个分组的最大&#39;price&#39;(价格)</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">  chart.point().position(Stat.summary.max(<span class="string">'cut*price'</span>));</code></pre></div><h4 id="summary-统计函数生成的新字段">summary 统计函数生成的新字段</h4><p>需要说明的是，下面几个统计函数在统计过程中会生成新的字段：</p>
+<ul>
+<li>summary.count(&#39;x&#39;) 统计按照 &#39;x&#39; 分组后计算每个分组的个数，产生一个新的字段 <code>..count</code></li>
+<li>summary.percent(&#39;x&#39;) 统计按照 &#39;x&#39; 分组后计算每个分组 x 字段的和占所有字段 x 和的比例，产生一个新的字段 <code>..percent</code></li>
+<li>summary.proportion(&#39;x&#39;) 统计按照 &#39;x&#39; 分组后计算每个分组x字段个数，占总数的比例，产生一个新的字段 <code>..proportion</code></li>
+</ul>
+<h3 id="bin">bin</h3><p>binWidth：用于指定如何对数据进行划分，默认为0.03,将 x轴，y轴划分成 1/0.03 大约33个分片，每个分片作为一个分组。</p>
+<table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin.dot(&#39;x*y&#39;, binWidth)</td>
+<td>将 x,y 按照一定的比例进行划分多个区域，默认 0.03，将落到这个区域内的点的 x，y 变成统一的值</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>bin.rect(&#39;x*y&#39;, binWidth)</td>
+<td>将x,y按照一定的比例进行划分多个区域，默认0.03，将落到这个区域内的点的x，y变成统一的值,可以通过这个统计函数获取出一个矩形范围</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>bin.hex(&#39;x*y&#39;, binWidth)</td>
+<td>将x,y按照一定的比例进行划分多个区域，默认0.03，将落到这个区域内的点的x，y变成统一的值,可以通过这个统计函数获取出一个六边形范围</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>bin.quantile.letter(&#39;x*y&#39;,binWidth)</td>
+<td>计算y 的四分位值，一般用于形成箱须图</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="smooth">smooth</h3><table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smooth.linear(&#39;x*y&#39;)</td>
+<td>线性回归，生成一条线性回归曲线</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>smooth.quadratic(&#39;x*y&#39;)</td>
+<td>二阶回归曲线</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>smooth.cubic(&#39;x*y&#39;)</td>
+<td>三阶回归曲线</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>smooth.log(&#39;x*y&#39;)</td>
+<td>Log 回归曲线</td>
+<td>计算存在问题</td>
+</tr>
+<tr>
+<td>smooth.exp(&#39;x*y&#39;)</td>
+<td>次幂回归曲线</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>smooth.loess.<kernelType>(&#39;x*y&#39;)</td>
+<td>核函数局部回归曲线</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>smooth.loess.<kernelType>(&#39;x<em>y</em>z&#39;)</td>
+<td>核函数局部回归曲面</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="density">density</h3><table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>density.kernel.<kernelType>(&#39;x&#39;)</td>
+<td>核密度估计概率密度曲线</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>density.kernel.<kernelType>(&#39;x*y&#39;)</td>
+<td>核密度估计概率密度曲面</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>density.normal(&#39;x&#39;, 0.01)</td>
+<td>正态分布估计概率密度</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<p>kernelType：核函数类型，可选项：uniform、triangular、epanechnikov、quartic、triweight、tricube、gaussian、cosine</p>
+<h3 id="region">region</h3><table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>region.spread.range(&#39;x*y&#39;)</td>
+<td>计算列y的最大值、最小值，构成一个数组，按照x进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+<tr>
+<td>region.spread.sd(&#39;x*y&#39;)</td>
+<td>计算列y的标准差的上下范围，构成一个数组，按照x进行分组</td>
+<td><a href="https://www.alipay.com/404.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="map">map</h3><table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map.region(&#39;name&#39;)</td>
+<td>计算对应名称的图形的坐标区域：<code>name</code> 地名，返回格式： [[经度], [纬度]]。</td>
+<td><a href="../demo/10-map/world-map.html">示例</a></td>
+</tr>
+<tr>
+<td>map.center(&#39;name&#39;)</td>
+<td>返回对应名称区域的中心点坐标：<code>name</code> 地名，返回格式： [经度, 纬度]</td>
+<td><a href="../demo/10-map/map-with-bubble.html">示例</a></td>
+</tr>
+<tr>
+<td>map.name(&#39;x*y&#39;)</td>
+<td>根据提供的经纬度坐标，获取该坐标对应的区域地名：<code>x</code> 代表经度，<code>y</code> 代表纬度</td>
+<td></td>
+</tr>
+<tr>
+<td>map.location(&#39;x*y&#39;)</td>
+<td>根据传入的 x y 地理坐标点将点定位到相应的位置：<code>x</code> 代表经度，<code>y</code> 代表纬度</td>
+<td><a href="../demo/10-map/usa-map.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="treemap">treemap</h3><table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>treemap(&#39;x*y&#39;)</td>
+<td>用于生成简单的 treemap</td>
+<td><a href="../demo/09-treemap/mobile.html">示例</a> </td>
+</tr>
+<tr>
+<td>treemap.squarify(&#39;x*y&#39;)</td>
+<td>划分成比例合适的矩形</td>
+<td></td>
+</tr>
+<tr>
+<td>treemap.sliceDice(&#39;x*y&#39;)</td>
+<td>是横竖交替的划分，适用于极坐标</td>
+<td><a href="../demo/09-treemap/polar-slice-dice.html">示例</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="tree">tree</h3><h2 id="示例">示例</h2><ul>
+<li>示例 1：使用 bin.rect 和 summary.count 统计函数绘制马赛克图。</li>
+</ul>
+<div id="c1"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=diamond', function (data) {
+  var Stat = G2.Stat;
+  var chart = new G2.Chart({
+    id: 'c1',
+    width: 800,
+    height: 400
+  });
+
+  chart.source(data);
+  chart.polygon().position(Stat.bin.rect('carat*price', 0.01)).color(Stat.summary.count(), 'lightness');
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=diamond'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id : <span class="string">'c1'</span>,
+    width : <span class="number">800</span>,
+    height : <span class="number">400</span>
+  });
+
+  chart.source(data);
+  chart.polygon().position(Stat.bin.rect(<span class="string">'carat*price'</span>,<span class="number">0.01</span>)).color(Stat.summary.count(),<span class="string">'lightness'</span>);
+  chart.render();
+});</code></pre></div><ul>
+<li>示例二：嵌套使用统计函数 bin.rect 和 summary.count 绘制直方图。</li>
+</ul>
+<div id="c2" style="margin: 0 auto;"></div>
+
+<script>(function(){'use strict';
+
+$.getJSON('/data.json?filename=car', function (data) {
+  var Stat = G2.Stat;
+  var chart = new G2.Chart({
+    id: 'c2',
+    width: 800,
+    height: 400
+  });
+
+  chart.source(data);
+  chart.interval().position(Stat.summary.count(Stat.bin.rect('hwy')));
+  chart.render();
+});})()</script><div class="highlight"><pre><code class="javascript">$.getJSON(<span class="string">'/data.json?filename=car'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> {</span>
+  <span class="keyword">var</span> Stat = G2.Stat;
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id : <span class="string">'c2'</span>,
+    width : <span class="number">800</span>,
+    height : <span class="number">400</span>
+  });
+
+  chart.source(data);
+  chart.interval().position(Stat.summary.count(Stat.bin.rect(<span class="string">'hwy'</span>)));
+  chart.render();
+});</code></pre></div><h2 id="更多">更多</h2><p>本章节介绍了各种统计函数，使用统计函数配合各种图形，用户就能搭配出各种各样的图表。在学习几何图形对象之前，我们先了解下<a href="attr.html">图形属性</a>。</p>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+  <!-- cnzz 统计 -->
+  <div style="display: none;">
+  
+  </div>
+</body>
+
+<!-- Mirrored from g2.alipay.com/tutorial/stat.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:45 GMT -->
+</html>

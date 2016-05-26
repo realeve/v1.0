@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/api/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a class="hover" href="index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+<div class="banner api">
+  <div class="banner-inner">
+    <h1>G2 语法</h1>
+    <p class="intro">在这里详细介绍 G2 API 的使用和可配置项<p/>
+    <p class="intro">G2 的 API 使用非常简单<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content api-body-content">
+  <div class="doc-nav">
+    <p class="title">语法</p>
+<ul class="nav-list">
+  <li class="active">
+    <a href="index-2.html" >Chart</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale</a>
+  </li>
+  <li class="">
+    <a href="frame.html" >Frame</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme</a>
+  </li>
+  <li class="">
+    <a href="util.html" >Util</a>
+  </li>
+  <li class="">
+    <a href="plugins.html" >Plugins</a>
+  </li>
+  <li class="">
+    <a href="graphic.html" >Graphic</a>
+  </li>
+</ul>
+  </div>
+
+  <div class="doc-content clearfix">
+    <div class="doc-inner" id="t2">
+      <h1 id="chart">Chart</h1><h1 id="概述">概述</h1><p>用于创建图表的类，用于为创建的图表设置属性以及各种配置项方法。</p>
+<h1 id="语法">语法</h1><p>下面是创建图表的语法，生成的 chart 提供了图表配置的各种方法，下面会介绍到。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+  id: <span class="string">'c1'</span>,
+  width: <span class="number">1000</span>,
+  height: <span class="number">500</span>,
+  plotCfg: {
+    margin: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">10</span>, <span class="number">20</span>],
+  }
+});</code></pre></div><h2 id="属性">属性</h2><p>chart 对象的所有属性获取方式如下： </p>
+<div class="highlight"><pre><code class="javascript">chart.get(<span class="string">'属性名'</span>);</code></pre></div><p>下面对所有的属性依次作说明介绍：</p>
+<h3>id<span class="guide-text">String</span></h3>
+
+<p>创建图表的 DOM 容器 id。</p>
+<h3>container<span class="guide-text">HTMLElement</span></h3>
+
+<p>除了传递 id 值来指定图表容器，也支持直接传入容器的 html 节点对象。</p>
+<h3>width<span class="guide-text">String</span></h3>
+
+<p>设置图表的宽度</p>
+<h3>height<span class="guide-text">String</span></h3>
+
+<p>设置图表的高度</p>
+<h3>data<span class="guide-text">Array</span></h3>
+
+<p>设置图表的数据源，data 是一个包含 JSON 对象的数组。通常我们会使用 <code>chart.source(data[, colDefs])</code> 设置数据源。</p>
+<h3>animate<span class="guide-text">Boolean</span></h3>
+
+<p>chart 是否执行动画，默认值为 <code>true</code>，执行</p>
+<h3>plotCfg<span class="guide-text">Object</span></h3>
+
+<p>设置图表绘图区域的配置信息，包括边距、边框、背景图片等信息，如下图所示：</p>
+<p><img src="../../gtms03.alicdn.com/tps/i3/TB1nkqKGXXXXXccXVXXoGvmPFXX-480-360.jpg" alt="image"></p>
+<p>支持的配置属性:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> plotCfg = {
+  margin: [<span class="number">10</span>,<span class="number">20</span>,<span class="number">20</span>,<span class="number">30</span>], <span class="comment">// 边距设置，接受参数同 css 的 margin</span>
+  border: {
+    stroke: <span class="string">'red'</span>, <span class="comment">// 边颜色</span>
+    <span class="string">'stroke-width'</span>: <span class="number">1</span>, <span class="comment">// 边框粗细</span>
+  }, <span class="comment">// 边框设置 图形属性</span>
+  background: {
+    stroke: <span class="string">'red'</span>, <span class="comment">// 边颜色</span>
+    <span class="string">'stroke-width'</span>: <span class="number">1</span>, <span class="comment">// 边框粗细</span>
+    fill: <span class="string">'#fff'</span>, <span class="comment">// 背景色</span>
+    radius: <span class="number">30</span> <span class="comment">// 圆角设置</span>
+  } <span class="comment">// 背景设置 图形属性</span>
+};</code></pre></div><p>图形属性<a href="graphic.html#图形属性">详见</a>。</p>
+<h3>canvas<span class="guide-text">Object</span></h3>
+
+<p>在教程 <a href="../tutorial/chart.html">G2.Chart 对象</a>章节中提到，G2 绘制的图表由三层 canvas 组成，其中 canvas 用于绘制 <a href="../tutorial/geom.html">geom</a>。</p>
+<p>获取方式： </p>
+<div class="highlight"><pre><code class="javascript">chart.get(<span class="string">'canvas'</span>);</code></pre></div><h3>frontCanvas<span class="guide-text">Object</span></h3>
+
+<p>用于绘制 <a href="../tutorial/tooltip.html">tooltip</a> <a href="../tutorial/guide.html">guide</a> <a href="../tutorial/legend.html">legend</a>。</p>
+<p>获取方式： </p>
+<div class="highlight"><pre><code class="javascript">chart.get(<span class="string">'frontCanvas'</span>);</code></pre></div><h3>backCanvas<span class="guide-text">Object</span></h3>
+
+<p>用于绘制坐标轴 <a href="../tutorial/axis.html">axis</a>。</p>
+<p>获取方式： </p>
+<div class="highlight"><pre><code class="javascript">chart.get(<span class="string">'backCanvas'</span>);</code></pre></div><h2 id="方法">方法</h2><h3>source(data[, defs])<span class="guide-text">Method</span></h3>
+
+<p>设置图表的数据源</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>data</code></p>
+<p>数据源，格式为 JSON 形式的数组</p>
+</li>
+<li><p><code>defs</code></p>
+<p>【可选】，是一个对象，用于数据字段的定义，如数据的类型，显示别名，时间类型的格式等，不同的数字类型的配置项不同，<a href="scale.html">详情参考</a></p>
+</li>
+</ul>
+<h5 id="示例">示例</h5><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {type: <span class="number">0</span>, value: <span class="number">1</span>},
+  {type: <span class="number">1</span>, value: <span class="number">2</span>},
+  {type: <span class="number">2</span>, value: <span class="number">3</span>},
+];
+
+chart.source(data, {
+  type: {
+    type: <span class="string">'cat'</span>, <span class="comment">// 声明 type 字段为分类类型</span>
+    values: [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>] <span class="comment">// 重新显示的值</span>
+    alias: <span class="string">'类型'</span> <span class="comment">// 设置属性的别名</span>
+  }
+})</code></pre></div><h3>col(dim, cfg)<span class="guide-text">Method</span></h3>
+
+<p>为对应的 dim 进行列定义，当需要对多个字段进行列定义时，推荐使用 <a href="index-2.html#source(data[, defs]">chart.source(data, defs)</a>)。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>dim</code></p>
+<p>数据源中对应的某个字段名，表示只为该 dim 进行列定义。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>是一个对象，用于数据字段的定义，如数据的类型，显示别名，时间类型的格式等，不同的数字类型的配置项不同，<a href="scale.html">详情参考</a>。</p>
+</li>
+</ul>
+<h5 id="示例">示例</h5><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+  {type: <span class="number">0</span>, value: <span class="number">1</span>},
+  {type: <span class="number">1</span>, value: <span class="number">2</span>},
+  {type: <span class="number">2</span>, value: <span class="number">3</span>},
+];
+
+chart.col(<span class="string">'type'</span>, {
+  type: <span class="string">'cat'</span>, <span class="comment">// 声明 type 字段为分类类型</span>
+  values: [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>] <span class="comment">// 重新显示的值</span>
+  alias: <span class="string">'类型'</span> <span class="comment">// 设置属性的别名</span>
+});</code></pre></div><h3>axis(dim, cfg)<span class="guide-text">Method</span></h3>
+
+<p>设置坐标轴样式。</p>
+<h4 id="chart-axis-false">chart.axis(false)</h4><p>不显示所有的坐标轴。</p>
+<h4 id="chart-axis-dim-cfg">chart.axis(dim, cfg)</h4><h5 id="参数">参数</h5><ul>
+<li><p><code>dim</code></p>
+<p>dim 对应数据源中的字段名，即指定设置该字段对应的坐标轴显示样式。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>坐标轴配置信息，如果值为 <code>false</code>，表示不显示该字段对应的坐标轴，否则是一个 Object 对象，包含的可配置属性如下：</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.axis(<span class="string">'dim'</span>, <span class="literal">false</span>); <span class="comment">// 不显示该字段对应的坐标轴</span>
+chart.axis(<span class="string">'dim'</span>, {
+  position: <span class="string">'top'</span>, <span class="comment">// 设置坐标轴的显示位置，可取值 top bottom left right</span>
+  formatter: <span class="function"><span class="keyword">function</span><span class="params">(dimValue)</span> {</span>
+    <span class="keyword">return</span> (dimValue / <span class="number">1000</span>).toFixed(<span class="number">0</span>) + <span class="string">'k'</span>;
+  }, <span class="comment">// 回调函数，用于格式化坐标轴上显示的文本信息</span>
+  line: {
+    <span class="string">'stroke-width'</span>: <span class="number">1</span>, <span class="comment">// 设置线的宽度</span>
+    stroke: <span class="string">'#ccc'</span> <span class="comment">//  设置线的颜色</span>
+  }, <span class="comment">// 设置坐标轴线的样式，如果值为 null，则不显示坐标轴线 图形属性</span>
+  labels: {
+    label: {
+      <span class="string">'text-anchor'</span>: <span class="string">'middle'</span>, <span class="comment">// 文本对齐方向，可取值为： start middle end</span>
+      fill: <span class="string">'#404040'</span>, <span class="comment">//文本的颜色</span>
+      <span class="string">'font-size'</span>: <span class="string">'12'</span>, <span class="comment">// 文本大小</span>
+      <span class="string">'font-weight'</span>: <span class="string">'bold'</span> <span class="comment">// 文本粗细</span>
+    }, <span class="comment">// 设置坐标轴文本的显示样式，如果值为 null，则不显示坐标轴文本 文本属性</span>
+    autoRotate: <span class="literal">true</span> <span class="comment">// 是否需要自动旋转</span>
+  },
+  title: {
+    <span class="string">'font-size'</span>: <span class="string">'12'</span>,
+    <span class="string">'text-anchor'</span>: <span class="string">'middle'</span>,
+    fill: <span class="string">'#999'</span>,
+    <span class="string">'font-weight'</span>: <span class="string">'bold'</span>
+  }, <span class="comment">// 坐标轴标题设置，如果值为 null，则不显示标题 文本属性</span>
+  tickLine: {
+    <span class="string">'stroke-width'</span>: <span class="number">1</span>,
+    stroke: <span class="string">'#ccc'</span>,
+    value: <span class="number">5</span>,
+  }, <span class="comment">// 坐标点对应的线，null 不显示 图形属性</span>
+  titleOffset: <span class="number">45</span>, <span class="comment">// 设置标题距离轴线的距离</span>
+  labelOffset: <span class="number">20</span>, <span class="comment">// 标轴文本距离轴线的距离</span>
+  grid: {
+    line: {
+      stroke: <span class="string">'#d9d9d9'</span>,
+      <span class="string">'stroke-width'</span>: <span class="number">1</span>,
+      <span class="string">'stroke-dasharray'</span>: [<span class="number">4</span>, <span class="number">4</span>]
+    }, <span class="comment">// 代表栅格线的类型，line polygon circle 只能选择一种 图形属性</span>
+    minorLine: <span class="number">0</span>, <span class="comment">// 次要线的配置项</span>
+    minorCount: <span class="number">0</span>, <span class="comment">// 2个Grid线中间的次要线的数目</span>
+    odd: {
+      fill: <span class="string">'red'</span>
+    }, <span class="comment">// 如果值为 null，则不显示。栅格内部的奇数背景 图形属性</span>
+    even: {
+      fill: <span class="string">'red'</span>
+    } <span class="comment">//  如果值为 null，则不显示。栅格内部的偶数背景 图形属性</span>
+  }, <span class="comment">// 坐标轴栅格线的配置信息，默认只有左边的坐标轴带有栅格线，null 为不显示。</span>
+  gridAlign: <span class="string">'start'</span><span class="comment">// 栅格的位置跟坐标点(tick)的对齐方式，当前仅支持 start和middle</span>
+});</code></pre></div><p>图形属性<a href="graphic.html#图形属性">详见</a><br>文本属性<a href="graphic.html#文本属性">详见</a></p>
+<h3>legend(dim, cfg)<span class="guide-text">Method</span></h3>
+
+<p>设置图例样式。</p>
+<h4 id="chart-legend-false">chart.legend(false)</h4><p>不显示所有的图例。</p>
+<h4 id="chart-legend-cfg">chart.legend(cfg)</h4><p>为默认的图例进行配置，在<a href="../tutorial/legend.html">图例</a>章节我们提到过，shape, color, size 这三个图形属性如果判断接收的参数是输入数据的字段时，会自动生成不同的图例。所以当 <code>chart.legend()</code> 第一个参数是一个 Object 对象时，表示默认为所有自动生成的图例设置样式。</p>
+<h5 id="参数-分类图例">参数-分类图例</h5><div class="highlight"><pre><code class="javascript">chart.legend({
+  position: <span class="string">'right'</span>, <span class="comment">// 图例的显示位置，有 'top','left','right','bottom'四种位置，默认是'right'。</span>
+  leaveChecked: <span class="literal">false</span>, <span class="comment">// 是否保留一项不能取消勾选，默认为 false，即不能取消勾选。</span>
+  title: <span class="literal">null</span>, <span class="comment">// 是否展示图例的标题，null 为不展示，默认 top bottom 两个位置的图例不展示。</span>
+  spacingX: <span class="number">16</span>, <span class="comment">// 用于 position 为 top 或者 bottom 时调整子项之间的水平距离</span>
+  spacingY: <span class="number">24</span>, <span class="comment">// 用于 position 为 left 或者 right 时调整子项之间的垂直距离</span>
+  unChecked: <span class="string">'#CCC'</span>, <span class="comment">// 未选中时marker的颜色</span>
+  wordSpaceing: <span class="number">2</span>,  <span class="comment">// marker和文本之间的距离</span>
+  col: <span class="number">1</span>, <span class="comment">// 列数</span>
+  word: {
+    fill: <span class="string">'red'</span>
+  }, <span class="comment">//  文本属性</span>
+  back: {
+    fill: <span class="string">'red'</span>
+  } <span class="comment">// 图例外边框和背景的配置信息，是一个矩形 图形属性</span>
+});</code></pre></div><h5 id="参数-连续图例">参数-连续图例</h5><div class="highlight"><pre><code class="javascript">chart.legend({
+  width: <span class="number">30</span>, <span class="comment">// 宽度</span>
+  height: <span class="number">80</span>, <span class="comment">// 长度</span>
+  position: <span class="string">'right'</span>, <span class="comment">// 图例的显示位置，有 'top','left','right','bottom'四种位置，默认是'right'。</span>
+  title: <span class="literal">null</span>, <span class="comment">// @type {ATTRS-Text || null} 是否展示图例的标题，null 为不展示，默认 top bottom 两个位置的图例不展示。</span>
+  word: {
+    fill: <span class="string">'red'</span>
+  }, <span class="comment">// 文本属性</span>
+  back: {
+    fill: <span class="string">'red'</span>
+  } <span class="comment">// 图例外边框和背景的配置信息，是一个矩形 图形属性</span>
+});</code></pre></div><p>图形属性<a href="graphic.html#图形属性">详见</a><br>文本属性<a href="graphic.html#文本属性">详见</a></p>
+<h4 id="chart-legend-dim-cfg">chart.legend(dim, cfg)</h4><h5 id="参数">参数</h5><ul>
+<li><p><code>dim</code></p>
+<p>[String] 类型，可以传入对应图例的数据源字段名也可以传入对应图例的位置（right、left、top、bottom）</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>为对应字段的图例或者对应位置的图例配置信息，属性同上述，这里不再说明。</p>
+</li>
+</ul>
+<h3>coord(type, cfg)<span class="guide-text">Method</span></h3>
+
+<p>设置坐标系，并可对坐标系进行各种操作。注意 <code>chart.coord(type[, cfg])</code> 操作返回的不是 <code>chart</code> 对象，而是关于 Coord 的一个辅助类，以便进行坐标系的各种变换。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>type</code></p>
+<p>坐标系的类型，具体包括：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>rect</code></td>
+<td>默认类型，直角坐标系，由x, y两个垂直的维度构成。</td>
+<td><a href="../demo/02-line/line.html"><img src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/02-line/line.png" width="300px"></a></td>
+</tr>
+<tr>
+<td> <code>polar</code></td>
+<td>极坐标系，由角度和半径2个维度构成。</td>
+<td><a href="../demo/13-polar/polar-interval.html"><img src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/polar-interval.png" width="300px"></a></td>
+</tr>
+<tr>
+<td> <code>plus</code></td>
+<td>一种特殊的极坐标系，原点不从圆心开始。</td>
+<td><a href="../demo/13-polar/polar-box.html"><img src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/13-polar/polar-box.png" width="300px"></a></td>
+</tr>
+<tr>
+<td> <code>theta</code></td>
+<td>一种半径固定的极坐标系，常用于饼图。</td>
+<td><a href="../demo/05-pie/pie-no-stat.html"><img src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/05-pie/pie-no-stat.png" width="300px"></a></td>
+</tr>
+<tr>
+<td> <code>map</code></td>
+<td>地理坐标系，支持不同类型的地理投影</td>
+<td><a href="../demo/10-map/world-albers.html"><img src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/demoImg/10-map/world-albers.png" width="300px"></a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><code>cfg</code></p>
+<p>【可选】 坐标系的配置信息。</p>
+<p>对于 type 为 <code>polar</code>、<code>plus</code>、<code>theta</code> 这三种类型的坐标系，其可配置的 cfg 属性如下：</p>
+<div class="highlight"><pre><code class="javascript">chart.coord(<span class="string">'polar | plus | theta'</span>, {
+radius: <span class="number">0.5</span>, <span class="comment">// 设置半径，值为 0 至 1 的小数</span>
+inner: <span class="number">0.3</span> <span class="comment">// 内部极坐标系的半径，[0 - 1]的小数，对于 plus 坐标系，默认值为 0.5</span>
+});</code></pre></div><p>对于 <code>map</code> 类型的坐标系，情况比较特殊，对于不同的投影支持的配置参数不同。目前，您可以直接复制下列代码即可使用 G2 提供的 <code>map</code> 坐标系。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 适用于中国地图</span>
+chart.coord(<span class="string">'map'</span>, {
+projection: <span class="string">'albers'</span>, <span class="comment">// 指定投影方法</span>
+basic: [<span class="number">110</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">47</span>], <span class="comment">// 指定投影方法的基本参数，[λ0, φ0, φ1, φ2] 分别表示中央经度、坐标起始纬度、第一标准纬度、第二标准纬度</span>
+max: [<span class="number">16.573</span>, -<span class="number">13.613</span>], <span class="comment">// 指定投影后最大的坐标点</span>
+min: [-<span class="number">27.187</span>, -<span class="number">49.739</span>] <span class="comment">// 指定投影后最小的坐标点</span>
+});
+<span class="comment">// 适用于世界地图</span>
+chart.coord(<span class="string">'map'</span>, {
+projection: <span class="string">'albers'</span>, <span class="comment">// 指定投影方法</span>
+basic: [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">60</span>], <span class="comment">// 指定投影方法的基本参数，[λ0, φ0, φ1, φ2] 分别表示中央经度、坐标起始纬度、第一标准纬度、第二标准纬度</span>
+max: [<span class="number">161.89</span>, <span class="number">120.635</span>], <span class="comment">// 指定投影后最大的坐标点</span>
+min: [-<span class="number">144.485</span>, -<span class="number">27.666</span>] <span class="comment">// 指定投影后最小的坐标点</span>
+});
+<span class="comment">// 适用于世界地图</span>
+chart.coord(<span class="string">'map'</span>, {
+projection: <span class="string">'mercator'</span>,
+max: [<span class="number">180</span>, <span class="number">165.65</span>], <span class="comment">// 指定投影后最大的坐标点</span>
+min: [-<span class="number">180</span>, -<span class="number">67.21</span>] <span class="comment">// 指定投影后最小的坐标点</span>
+});</code></pre></div></li>
+</ul>
+<h5 id="坐标系变换">坐标系变换</h5><p>可支持的变换操作：</p>
+<ul>
+<li><p>rotate(angle): 坐标系旋转，angle 为旋转的角度，是一个度数值。</p>
+</li>
+<li><p>scale(sx, sy): 坐标系缩放，sx 代表 x 方向缩放比例，sy 代表 y 方向缩放比例。</p>
+</li>
+<li><p>reflect(): 坐标系转置，将 x 或者 y 的起始、结束值倒置</p>
+</li>
+<li><p>transpose(): 将坐标系 x 轴和 y 轴转置。</p>
+</li>
+</ul>
+<p>上述操作均可支持链式调用，如下：</p>
+<div class="highlight"><pre><code class="javascript">chart.coord().rotate(<span class="number">70</span>).scale(<span class="number">1.5</span>, <span class="number">1.5</span>).reflect(<span class="string">'xy'</span>).transpose();</code></pre></div><h3>facet(dimArray, cfg)<span class="guide-text">Method</span></h3>
+
+<p>设置分面的切割维度和配置信息。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>dimArray</code></p>
+<p>用于切割分面的数据源字段，是一个数组 Array。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>分面的配置信息。具体效果可参见<a href="../tutorial/facet.html#分面的配置信息">分面</a>，下面主要列出每一种分面类型支持的参数配置。</p>
+<div class="highlight"><pre><code class="javascript">chart.facet([dims], {
+type: <span class="string">'rect'</span>, <span class="comment">// 默认类型，指定 2 个维度作为行列，形成图表的矩阵。</span>
+margin: [<span class="number">10</span>, <span class="number">10</span>] <span class="comment">// 每个分面间的距离，使用方法同 css 中的 margin</span>
+});
+
+chart.facet([dims], {
+type: <span class="string">'list'</span>,
+cols: <span class="number">2</span>, <span class="comment">// 每行有几个分面，超过的分面自动折行</span>
+margin: [<span class="number">10</span>, <span class="number">10</span>] <span class="comment">// 每个分面间的距离，使用方法同 css 中的 margin</span>
+});
+
+chart.facet([dims], {
+type: <span class="string">'circle'</span>,
+margin: [<span class="number">10</span>, <span class="number">10</span>] <span class="comment">// 每个分面间的距离，使用方法同 css 中的 margin</span>
+});
+
+chart.facet([dims], {
+type: <span class="string">'tree'</span>,
+smooth: <span class="literal">true</span>, <span class="comment">// 各个树节点的连接线是否是平滑的曲线</span>
+line: {
+  stroke: <span class="string">'red'</span>, <span class="comment">// 边颜色</span>
+  <span class="string">'stroke-width'</span>: <span class="number">1</span> <span class="comment">// 边框粗细</span>
+} <span class="comment">// 连接各个树节点的线的配置项</span>
+});
+
+chart.facet([dims], {
+type: <span class="string">'mirror'</span>,
+transpose: <span class="literal">true</span> <span class="comment">// 设置镜像是否反转，默认为 false，不翻转</span>
+});</code></pre></div></li>
+</ul>
+<h3>tooltip([enable, ]cfg)<span class="guide-text">Method</span></h3>
+
+<p>设置显示的提示信息的内容</p>
+<h4 id="chart-tooltip-false">chart.tooltip(false)</h4><p>表示禁用 tooltip。</p>
+<h4 id="chart-tooltip-true-cfg">chart.tooltip(true, cfg)</h4><h5 id="参数">参数</h5><ul>
+<li><code>enable</code></li>
+</ul>
+<p>当 enable 为 true 时，表示 tooltip 可用，主要用于关闭 tooltip 之后重新开启。默认为 true。</p>
+<ul>
+<li><code>cfg</code></li>
+</ul>
+<p>tooltip 配置信息，是一个 Object 对象，当对 G2 自动生成的 tooltip 展示信息不满意时，用于可以通过这个方法进行自定义，当然稍后我们还会介绍一个更方便的方法。</p>
+<div class="highlight"><pre><code class="javascript">chart.tooltip(<span class="literal">true</span>, {
+  title: <span class="literal">null</span>, <span class="comment">// tooltip 不展示title</span>
+  map: {
+    title: <span class="string">'dim | const'</span>, <span class="comment">// 当需要展示 title 时，可在 map 中设置 title 对应的数据源字段或者设置为一个常量</span>
+    name: <span class="string">'dim | const'</span>, <span class="comment">// 设置 name 对应的数据源字段或者设置为一个常量</span>
+    value: <span class="string">'dim'</span> <span class="comment">// 设置 value 对应的数据源字段</span>
+  }, <span class="comment">// 用于重新设置 tooltip 的显示内容</span>
+  offset: <span class="number">15</span>, <span class="comment">// 偏移量，设置tooltip 显示位置距离 x 轴方向上的偏移</span>
+  crosshairs: <span class="literal">true</span>, <span class="comment">// 是否展示 tooltip 的辅助线，默认为 false，不展示</span>
+  crossLine: {
+    stroke: <span class="string">'#666'</span>
+  }, <span class="comment">// crosshairs 为 true 时，为辅助线设置样式</span>
+  padding: [<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>], <span class="comment">//内边距</span>
+  back: {
+    fill: <span class="string">'red'</span>
+  } <span class="comment">// 图例外边框和背景的配置信息，是一个矩形 图形属性</span>
+});</code></pre></div><p>下面是自定义 tooltip 模板的参数配置：</p>
+<div class="highlight"><pre><code class="javascript">chart.tooltip(<span class="literal">true</span>, {
+  custom: <span class="literal">true</span>, <span class="comment">// 表示使用自定义的模板显示 tooltip</span>
+  html:  <span class="string">'&lt;div class="ac-tooltip" style="position:absolute;visibility: hidden;"&gt;&lt;h4 class="ac-title"&gt;&lt;/h4&gt;&lt;table class="ac-list custom-table"&gt;&lt;/table&gt;&lt;/div&gt;'</span>, <span class="comment">// tooltip 的 html 外层模板</span>
+  itemTpl: <span class="string">'&lt;tr&gt;&lt;td&gt;{index}&lt;/td&gt;&lt;td style="color:{color}"&gt;{name}&lt;/td&gt;&lt;td&gt;{value}&lt;/td&gt;&lt;/tr&gt;'</span>, <span class="comment">// 使用 html 时每一个显示项的模板，默认支持 index, color, name, value 这四个字段。</span>
+  offset: <span class="number">50</span>, <span class="comment">// 偏移量，设置tooltip 显示位置距离 x 轴方向上的偏移</span>
+  customFollow: <span class="literal">false</span> <span class="comment">// 设置 tooltip 是否跟随鼠标移动，默认为 true，跟随。</span>
+});</code></pre></div><p>图形属性<a href="graphic.html#图形属性">详见</a><br>文本属性<a href="graphic.html#文本属性">详见</a></p>
+<h5 id="示例">示例</h5><p><div id="c1" class="chart-container"></div></p>
+<style>
+  .ac-tooltip{
+    position:absolute;
+    visibility:hidden;
+    border : 1px solid #efefef;
+    background-color: white;
+    opacity: .8;
+    padding: 5px 15px;
+
+    transition: top 200ms,left 200ms;
+    -moz-transition:  top 200ms,left 200ms;  /* Firefox 4 */
+    -webkit-transition:  top 200ms,left 200ms; /* Safari 和 Chrome */
+    -o-transition:  top 200ms,left 200ms;
+  }
+
+ .custom-table {
+    margin: 10px;
+
+ }
+
+ .custom-table td{
+    border: 1px solid #cdcdcd;
+    padding: 5px 8px;
+ }
+</style>
+
+
+<script>(function(){"use strict";
+
+var data = [{ "month": 0, "tem": 7, "city": "tokyo" }, { "month": 1, "tem": 6.9, "city": "tokyo" }, { "month": 2, "tem": 9.5, "city": "tokyo" }, { "month": 3, "tem": 14.5, "city": "tokyo" }, { "month": 4, "tem": 18.2, "city": "tokyo" }, { "month": 5, "tem": 21.5, "city": "tokyo" }, { "month": 6, "tem": 25.2, "city": "tokyo" }, { "month": 7, "tem": 26.5, "city": "tokyo" }, { "month": 8, "tem": 23.3, "city": "tokyo" }, { "month": 9, "tem": 18.3, "city": "tokyo" }, { "month": 10, "tem": 13.9, "city": "tokyo" }];
+var chart = new G2.Chart({
+  id: 'c1',
+  width: 800,
+  height: 400
+});
+var defs = { 'month': {
+    type: 'cat',
+    values: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+  } };
+
+chart.source(data, defs);
+
+chart.tooltip(true, { // 第一个参数是控制是否显示tooltip，可以设置为false，不显示tooltip
+  custom: true,
+  html: '<div class="ac-tooltip" style="position:absolute;visibility: hidden;"><p class="ac-title"></p><table class="ac-list custom-table"></table></div>', // tooltip的外层模板
+  itemTpl: '<tr><td>{index}</td><td style="color:{color}">{name}</td><td>{value}</td></tr>', // 支持的字段 index,color,name,value
+  offset: 50
+});
+chart.line().position('month*tem');
+chart.render();})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = [
+    {<span class="string">"month"</span>:<span class="number">0</span>,<span class="string">"tem"</span>:<span class="number">7</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">1</span>,<span class="string">"tem"</span>:<span class="number">6.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">2</span>,<span class="string">"tem"</span>:<span class="number">9.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">3</span>,<span class="string">"tem"</span>:<span class="number">14.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">4</span>,<span class="string">"tem"</span>:<span class="number">18.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">5</span>,<span class="string">"tem"</span>:<span class="number">21.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">6</span>,<span class="string">"tem"</span>:<span class="number">25.2</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">7</span>,<span class="string">"tem"</span>:<span class="number">26.5</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">8</span>,<span class="string">"tem"</span>:<span class="number">23.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">9</span>,<span class="string">"tem"</span>:<span class="number">18.3</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>},
+    {<span class="string">"month"</span>:<span class="number">10</span>,<span class="string">"tem"</span>:<span class="number">13.9</span>,<span class="string">"city"</span>:<span class="string">"tokyo"</span>}
+  ];
+  <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+    id: <span class="string">'c1'</span>,
+    width: <span class="number">800</span>,
+    height: <span class="number">400</span>
+  });
+  <span class="keyword">var</span> defs = {<span class="string">'month'</span>:{
+    type: <span class="string">'cat'</span>,
+    values: [<span class="string">'一月'</span>,<span class="string">'二月'</span>,<span class="string">'三月'</span>,<span class="string">'四月'</span>,<span class="string">'五月'</span>,<span class="string">'六月'</span>,<span class="string">'七月'</span>,<span class="string">'八月'</span>,<span class="string">'九月'</span>,<span class="string">'十月'</span>,<span class="string">'十一月'</span>,<span class="string">'十二月'</span>]
+  }};
+
+  chart.source(data,defs);
+
+  chart.tooltip(<span class="literal">true</span>,{ <span class="comment">// 第一个参数是控制是否显示tooltip，可以设置为false，不显示tooltip</span>
+    custom: <span class="literal">true</span>,
+    html:  <span class="string">'&lt;div class="ac-tooltip" style="position:absolute;visibility: hidden;"&gt;&lt;p class="ac-title"&gt;&lt;/p&gt;&lt;table class="ac-list custom-table"&gt;&lt;/table&gt;&lt;/div&gt;'</span>, <span class="comment">// tooltip的外层模板</span>
+    itemTpl: <span class="string">'&lt;tr&gt;&lt;td&gt;{index}&lt;/td&gt;&lt;td style="color:{color}"&gt;{name}&lt;/td&gt;&lt;td&gt;{value}&lt;/td&gt;&lt;/tr&gt;'</span>, <span class="comment">// 支持的字段 index,color,name,value</span>
+    offset: <span class="number">50</span>
+  });
+  chart.line().position(<span class="string">'month*tem'</span>);
+  chart.render();</code></pre></div><h4 id="chart-tooltip-cfg">chart.tooltip(cfg)</h4><p>默认显示 tooltip，cfg 配置信息同上。</p>
+<h3>guide()<span class="guide-text">Method</span></h3>
+
+<p>为图表添加自定义的辅助元素，如辅助线、辅助图片、辅助文本等，具体介绍可详见<a href="../tutorial/guide.html">guide</a>。<code>chart.guide()</code> 方法会返回一个 <code>GuideAssist</code> 对象，该对象支持一下各种辅助元素的绘制，并且还可以自定义显示样式。</p>
+<h4 id="chart-guide-line-from-to-cfg">chart.guide().line(from, to, cfg)</h4><p>绘制辅助线。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>from</code>, <code>to</code></p>
+<p>分别表示线的起点和终点，这两个参数均为数组 Array 格式： [x, y]：</p>
+<ul>
+<li>x：是 x 轴坐标对应字段的值，是原始数据值，不是画布坐标。</li>
+<li>y：是 y 轴坐标对应字段的值，是原始数据值，不是画布坐标。</li>
+</ul>
+<p>当然，如果 x y 值为分类类型的话，还可以传入索引值。</p>
+</li>
+<li><p><code>cfg</code></p>
+</li>
+</ul>
+<p>支持 图形属性<a href="graphic.html#图形属性">详见</a><br>支持 文本属性<a href="graphic.html#文本属性">详见</a></p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助线</span>
+chart.guide().line([startXValue, startYValue], [endXValue, startYValue], {
+  stroke: <span class="string">'#999'</span>, <span class="comment">// 线的颜色</span>
+  <span class="string">'stroke-dasharray'</span>: [<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>], <span class="comment">// 虚线的设置</span>
+  <span class="string">'stroke-width'</span>: <span class="number">3</span> <span class="comment">// 线的宽度</span>
+});</code></pre></div><h4 id="chart-guide-image-from-to-cfg">chart.guide().image(from[, to], cfg)</h4><p>绘制辅助线。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>from</code>, <code>to</code>
+同 <code>chart.guide.line()</code>，但是这里的 <code>to</code> 参数可选。</p>
+</li>
+<li><p><code>cfg</code></p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助图片</span>
+chart.guide().image([startXValue, startYValue], [endXValue, startYValue], {
+  src: <span class="string">'http://gtms02.alicdn.com/VXXXXaZX.png'</span>, <span class="comment">// 图片路径</span>
+  width: <span class="number">160</span>, <span class="comment">// 宽度，可以不设置，如果设置了end，此属性无效</span>
+  height: <span class="number">230</span> <span class="comment">// 高度，可以不设置，如果设置了end，此属性无效</span>
+});</code></pre></div><h4 id="chart-guide-text-from-text-cfg">chart.guide().text(from, text, [cfg])</h4><p>绘制辅助文本</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>from</code>
+同 <code>chart.guide.line()</code>。</p>
+</li>
+<li><p><code>text</code></p>
+<p>辅助文本显示内容。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>辅助文本的显示样式配置，可选，不配置使用默认 G2 提供的配置。</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助文本</span>
+chart.guide().text([startXValue, startYValue], <span class="string">'我是辅助文本呀！'</span>, {
+  fill: <span class="string">'#666'</span>, <span class="comment">// 文本颜色</span>
+  <span class="string">'font-size'</span>: <span class="string">'12'</span> <span class="comment">// 文本大小</span>
+});</code></pre></div><h4 id="chart-guide-rect-from-to-cfg">chart.guide().rect(from, to, [cfg])</h4><p>绘制辅助框</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>from</code> <code>to</code>
+同 <code>chart.guide.line()</code>。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>辅助框的显示样式配置，可选，不配置使用默认 G2 提供的配置。</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助框</span>
+chart.guide().rect([startXValue, startYValue], [endXValue, startYValue], {
+  <span class="string">'stroke-width'</span>: <span class="number">0</span>, <span class="comment">// 辅助框的边框宽度</span>
+  fill: DEFAULT_COLOR, <span class="comment">// 辅助框填充的颜色</span>
+  <span class="string">'fill-opacity'</span>: <span class="number">0.1</span> <span class="comment">// 辅助框的背景透明度</span>
+});</code></pre></div><h4 id="chart-tag-rect-from-to-text-cfg">chart.tag().rect(from, to, text, [cfg])</h4><p>绘制辅助标记。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>from</code> <code>to</code>
+同 <code>chart.guide.line()</code>。</p>
+</li>
+<li><p><code>text</code></p>
+<p>辅助标记文本内容， String。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>辅助标记的显示样式配置，可选，不配置使用默认 G2 提供的配置。</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助标记</span>
+chart.guide().tag([startXValue, startYValue], [endXValue, startYValue], <span class="string">'文本'</span>, {
+  line: {
+    stroke: <span class="string">'#999'</span>,
+    <span class="string">'stroke-dasharray'</span>: [<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>]
+  }, <span class="comment">// 辅助标记中连接线的样式配置</span>
+  text: {
+    fill: <span class="string">'#666'</span>,
+    <span class="string">'font-size'</span>: <span class="string">'12'</span>,
+    <span class="string">'text-anchor'</span>: <span class="string">'middle'</span>
+  }, <span class="comment">// 辅助标记中文本的样式配置</span>
+  rect: {
+    <span class="string">'stroke-width'</span>: <span class="number">0</span>,
+    fill: <span class="string">'#999'</span>,
+    <span class="string">'fill-opacity'</span>: <span class="number">0.1</span>
+  } <span class="comment">// 辅助标记中背景框的样式配置</span>
+});</code></pre></div><h4 id="chart-tag-arc-from-to-cfg">chart.tag().arc(from, to, [cfg])</h4><p>绘制辅助弧线。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>from</code> <code>to</code>
+同 <code>chart.guide.line()</code>。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>辅助弧线的显示样式配置，可选，不配置使用默认 G2 提供的配置。</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助标记</span>
+chart.guide().arc([startXValue, startYValue], [endXValue, startYValue], {
+   stroke: <span class="string">'#999'</span>, <span class="comment">// 线的颜色</span>
+  <span class="string">'stroke-dasharray'</span>: [<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>], <span class="comment">// 虚线的设置</span>
+  <span class="string">'stroke-width'</span>: <span class="number">3</span> <span class="comment">// 线的宽度</span>
+});</code></pre></div><h5 id="参数">参数</h5><ul>
+<li><p><code>from</code> <code>to</code></p>
+<p>同 <code>chart.guide.line()</code>。</p>
+</li>
+<li><p><code>text</code></p>
+<p>辅助标记文本内容， String。</p>
+</li>
+<li><p><code>cfg</code></p>
+<p>辅助标记的显示样式配置，可选，不配置使用默认 G2 提供的配置。</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// 添加辅助标记</span>
+chart.guide().tag([startXValue, startYValue], [endXValue, startYValue], <span class="string">'文本'</span>, {
+  line: {
+    stroke: <span class="string">'#999'</span>,
+    <span class="string">'stroke-dasharray'</span>: [<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>]
+  }, <span class="comment">// 辅助标记中连接线的样式配置</span>
+  text: {
+    fill: <span class="string">'#666'</span>,
+    <span class="string">'font-size'</span>: <span class="string">'12'</span>,
+    <span class="string">'text-anchor'</span>: <span class="string">'middle'</span>
+  }, <span class="comment">// 辅助标记中文本的样式配置</span>
+  rect: {
+    <span class="string">'stroke-width'</span>: <span class="number">0</span>,
+    fill: <span class="string">'#999'</span>,
+    <span class="string">'fill-opacity'</span>: <span class="number">0.1</span>
+  } <span class="comment">// 辅助标记中背景框的样式配置</span>
+});</code></pre></div><h3>filter(dim, remained)<span class="guide-text">Method</span></h3>
+
+<p>过滤数据，如果存在对应的图例，则过滤掉的字段置灰。只适用于分类类型的字段。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>dim</code></p>
+<p>指定过滤数据源的哪一个字段。</p>
+</li>
+<li><p><code>remained</code></p>
+<p>指定保留的字段值。</p>
+<div class="highlight"><pre><code class="javascript">chart.filter(<span class="string">'cut'</span>, [<span class="string">'Ideal'</span>, <span class="string">'Good'</span>]); <span class="comment">// 仅显示切割工艺Ideal,Good的钻石</span></code></pre></div></li>
+</ul>
+<h3>animate(enable)<span class="guide-text">Method</span></h3>
+
+<p>是否执行图表内部的图形动画。enable 是一个布尔值 Boolean，默认为 enable 值为 true，表示执行动画。</p>
+<h3>render()<span class="guide-text">Method</span></h3>
+
+<p>绘制图表，当调用这个方法后，图表即可被渲染绘制出来。</p>
+<h3>clear()<span class="guide-text">Method</span></h3>
+
+<p>清除所有的图层。</p>
+<h3>destroy()<span class="guide-text">Method</span></h3>
+
+<p>销毁图表，删除生成的图表。</p>
+<h3>repaint()<span class="guide-text">Method</span></h3>
+
+<p>图表重绘，数据结构不发生改变。</p>
+<h3>changeData(data)<span class="guide-text">Method</span></h3>
+
+<p>用于修改图表的数据源，注意这里 data 的数据结构需要同原始的数据结构保持一致。</p>
+<h3>changeSize(width, height)<span class="guide-text">Method</span></h3>
+
+<p>更改图表的大小。width 代表宽度，height 代表高度。</p>
+<h3>getFacets()<span class="guide-text">Method</span></h3>
+
+<p>获取图表中所有的分面，返回的结果是一个数据 Array。</p>
+<h3>getGeoms()<span class="guide-text">Method</span></h3>
+
+<p>获取图表中所有的几何图形对象，返回的结果是一个数据 Array。</p>
+<h3>getViews()<span class="guide-text">Method</span></h3>
+
+<p>获取图表中所有的视图对象，返回的结果是一个数据 Array。</p>
+<h3>getScale(dim)<span class="guide-text">Method</span></h3>
+
+<p>dim 为数据源的某个字段名，该方法用于获取该 dim 对应的度量<a href="../tutorial/scale.html">scale</a>对象。</p>
+<h3>getPosition({xDim: value, yDim: value})<span class="guide-text">Method</span></h3>
+
+<p>获取数据对应在画布空间的坐标，返回的结果为一个对象，格式如下：</p>
+<div class="highlight"><pre><code class="javascript">{
+  x: <span class="number">12</span>, <span class="comment">// 画布上的横坐标</span>
+  y: <span class="number">34</span> <span class="comment">// 画布上的纵坐标</span>
+}</code></pre></div><h3>getTooltipItems(point)<span class="guide-text">Method</span></h3>
+
+<p>根据传入的坐标点 point，获取当前坐标点上的 tooltip 信息，point 的格式如下，表示的是画布坐标：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> point= {
+  x: <span class="number">100</span>,
+  y: <span class="number">200</span>
+}</code></pre></div><h5 id="参数">参数</h5><p>接收的参数是一个对象，按照顺序指定 x 轴对应的字段名和对应的数值、y 轴对应的字段名和对应的数值，如下：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> data = {
+  cut: <span class="string">'a'</span>, price: <span class="number">1</span>,
+  cut: <span class="string">'b'</span>, price: <span class="number">2</span>,
+  cut: <span class="string">'c'</span>, price: <span class="number">3</span>,
+  cut: <span class="string">'d'</span>, price: <span class="number">4</span>
+};
+
+chart.getPosition({
+  cut: <span class="string">'b'</span>,
+  price: <span class="number">2</span>
+});</code></pre></div><h3>showTooltip(point)<span class="guide-text">Method</span></h3>
+
+<p>根据传入的坐标点显示对应的 tooltip 信息，这个方法通常同 <a href="index-2.html#getPosition({xDim: value, yDim: value}"><code>chart.getPosition(data)</code></a>) 配合使用。</p>
+<h5 id="参数">参数</h5><ul>
+<li><p><code>point</code></p>
+<p>point 是一个对象，代表画布上的坐标点，参数格式如下：</p>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">{
+  x: <span class="number">12</span>, <span class="comment">// 画布上的横坐标</span>
+  y: <span class="number">34</span> <span class="comment">// 画布上的纵坐标</span>
+}</code></pre></div><h2 id="事件">事件</h2><p>chart 对象提供了各种事件，方便用户扩展交互。基本的事件用法如下：</p>
+<div class="highlight"><pre><code class="javascript">chart.on(<span class="string">'eventType'</span>, fn); <span class="comment">// 添加事件</span>
+chart.off(<span class="string">'eventType'</span>, fn); <span class="comment">// 移除事件</span></code></pre></div><p><code>chart.off(&#39;eventType&#39;, fn)</code> 其中如果 fn 不指定，表示删除所有 eventType 事件，如果 eventType 和 fn 都不指定，则表示删除所有事件。</p>
+<p>下面列出了 chart 支持的所有事件类型。</p>
+<h3 id="plotmove-ev">plotmove(ev)</h3><p>鼠标在坐标系内移动时触发，在图表的坐标系外不触发。</p>
+<ul>
+<li><code>ev</code> 表示事件触发时返回的对象，包含以下属性<ul>
+<li>x：画布上的x坐标；</li>
+<li>y：画布上的y坐标；</li>
+<li>target：canvas 元素；</li>
+<li>toElement：目标元素。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.on(<span class="string">'plotmove'</span>, <span class="function"><span class="keyword">function</span><span class="params">(ev)</span> {</span>
+  <span class="keyword">var</span> point = {
+    x: ev.x,
+    y: ev.y
+  };
+  <span class="keyword">var</span> items = chart.getTooltipItems(point);
+  console.log(items);
+});</code></pre></div><h3 id="plotenter-ev">plotenter(ev)</h3><p>当鼠标移动进入坐标系内时触发。</p>
+<ul>
+<li><code>ev</code> 表示事件触发时返回的对象，包含以下属性<ul>
+<li>x：画布上的x坐标；</li>
+<li>y：画布上的y坐标；</li>
+<li>target：canvas 元素；</li>
+<li>toElement：目标元素。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.on(<span class="string">'plotenter'</span>, <span class="function"><span class="keyword">function</span><span class="params">(ev)</span> {</span>
+  <span class="keyword">var</span> point = {
+    x: ev.x,
+    y: ev.y
+  };
+  <span class="comment">// do something</span>
+});</code></pre></div><h3 id="plotleave-ev">plotleave(ev)</h3><p>当鼠标移出坐标系内时触发。</p>
+<ul>
+<li><code>ev</code> 表示事件触发时返回的对象，包含以下属性<ul>
+<li>x：画布上的x坐标；</li>
+<li>y：画布上的y坐标；</li>
+<li>target：canvas 元素；</li>
+<li>toElement：目标元素。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><code class="javascript">chart.on(<span class="string">'plotleave'</span>, <span class="function"><span class="keyword">function</span><span class="params">(ev)</span> {</span>
+  <span class="keyword">var</span> point = {
+    x: ev.x,
+    y: ev.y
+  };
+  <span class="comment">// do something</span>
+});</code></pre></div><h3 id="plotclick-ev">plotclick(ev)</h3><p>点击坐标系内的事件。</p>
+<ul>
+<li>ev: 事件触发时返回的对象，包含以下属性<ul>
+<li>x：画布上的x坐标；</li>
+<li>y：画布上的y坐标；</li>
+<li>target：canvas 元素；</li>
+<li>toElement：目标元素；</li>
+<li>shape：点击的图表元素，可能为空；</li>
+<li>data：选中图形代表的数据，可能为空；</li>
+<li>geom：选中图形，可能为空。</li>
+</ul>
+</li>
+</ul>
+<h3 id="itemselected-ev">itemselected(ev)</h3><p>图表元素被选中时触发。</p>
+<ul>
+<li>ev: 事件触发时返回的对象，包含以下属性<ul>
+<li>shape：选中的图形；</li>
+<li>data：选中图形代表的数据；</li>
+<li>geom：所选中的图表图层,参考<a href="../tutorial/geom.html">图表类型</a>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="itemunselected-ev">itemunselected(ev)</h3><p>图表元素取消选中时触发。</p>
+<ul>
+<li>ev: 事件触发时返回的对象，包含以下属性<ul>
+<li>shape：取消选中的图形；</li>
+<li>data：取消选中图形代表的数据；</li>
+<li>geom：所选中的图表图层,参考<a href="../tutorial/geom.html">图表类型</a>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="itemselectedchange-ev">itemselectedchange(ev)</h3><p>图表元素选中发生改变时触发。</p>
+<ul>
+<li>ev: 事件触发时返回的对象，包含以下属性<ul>
+<li>shape：选中的图形；</li>
+<li>data：选中图形代表的数据；</li>
+<li>preShape：之前选中的图形；</li>
+<li>preData：选中图形代表的数据；</li>
+<li>geom：所选中的图表图层,参考<a href="../tutorial/geom.html">图表类型</a>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="tooltipchange-ev">tooltipchange(ev)</h3><p>tooltip 信息更新改变的时候触发。使用详见教程 <a href="../tutorial/tooltip.html">tooltip</a>。</p>
+<ul>
+<li>ev：事件触发时返回的对象，包含以下属性：<ul>
+<li>tooltip: 当前生成的 tooltip 对象；</li>
+<li>x: 画布上的 x 坐标；</li>
+<li>y: 画布上的 y 坐标；</li>
+<li>items: 当前 tooltip 中的数据项。</li>
+</ul>
+</li>
+</ul>
+<h3 id="tooltipshow-ev">tooltipshow(ev)</h3><p>tooltip 显示时触发。</p>
+<ul>
+<li>ev：事件触发时返回的对象，包含以下属性：<ul>
+<li>tooltip: 当前生成的 tooltip 对象；</li>
+<li>x: 画布上的 x 坐标；</li>
+<li>y: 画布上的 y 坐标。</li>
+</ul>
+</li>
+</ul>
+<h3 id="tooltiphide-ev">tooltiphide(ev)</h3><p>tooltip 隐藏或者消失时触发。</p>
+<ul>
+<li>ev：事件触发时返回的对象，包含以下属性：<ul>
+<li>tooltip: 当前生成的 tooltip 对象。</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<style type="text/css">
+  .preNext {
+    margin: 50px 0;
+    width: 100%;
+  }
+</style>
+<div class="preNext clearfix">
+  <a href="geom.html" class="pull-right">
+    Geom
+    <i class="iconfont icon-next"></i>
+  </a>
+</div>
+    </div>
+    <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+  </div>
+</div>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+  
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+</body>
+
+<!-- Mirrored from g2.alipay.com/api/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:48 GMT -->
+</html>

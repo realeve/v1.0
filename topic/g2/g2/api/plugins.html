@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from g2.alipay.com/api/plugins.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>G2 - The Grammar Of Graphics </title>
+  <meta name="keywords" content="G2, The Grammar of Graphics, 图形语法,图表绘制引擎,图表库,可视化,数据可视化,AntV,Data Visualization,visualization,visualisation">
+  <meta name="description" content="G2(The Grammar Of Graphics) 是一个由纯 javascript 编写、强大的语义化图表生成工具，它提供了一整套图形语法，可以让用户通过简单的语法搭建出无数种图表，并且集成了大量的统计工具，支持多种坐标系绘制，可以让用户自由得定制图表，是为大数据时代而准备的强大的可视化工具。">
+  <link rel="icon" href="../../os.alipayobjects.com/rmsportal/VuIJNnUTtJpfuej.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../os.alipayobjects.com/rmsportal/PBJkVCMxFjrRGEl.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/codemirror.css" />
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <script src="../../g.alicdn.com/bui/index1d21.html??seajs/2.3.0/sea.js"></script>
+  <script src="../../g.alicdn.com/bui/bui/1.1.17/config.js"></script>
+  <script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/script.js"></script>
+</head>
+<body><header id="header">
+  <div class="nav-wrapper">
+    <div class="nav-content gradient-line clearfix" >
+      <a href="../index.html" class="nav-logo">
+        <img src="../../os.alipayobjects.com/rmsportal/nAStiIiXOkhKVdi.svg"/>
+        <span class="logo-text">G2</span> 一套图形语法
+      </a>
+      <div class="nav pull-right">
+        <ul id="J_nav" class="clearfix">
+          <li id="start">
+            <a href="../start/index.html">快速上手</a>
+          </li>
+          <li id="tutorial">
+            <a href="../tutorial/index.html">教程</a>
+          </li>
+          <li id="api">
+            <a class="hover" href="index.html">API</a>
+          </li>
+          <li id="download">
+            <a href="../download/index.html">下载</a>
+          </li>
+          <li id="demo">
+            <a href="../demo/index.html">图表</a>
+          </li>
+          <li>
+            <a href="../about/index.html">关于</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.css">
+
+<script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+<div class="banner api">
+  <div class="banner-inner">
+    <h1>G2 语法</h1>
+    <p class="intro">在这里详细介绍 G2 API 的使用和可配置项<p/>
+    <p class="intro">G2 的 API 使用非常简单<p/>
+  </div>
+</div>
+
+  <div class="main-container clearfix">
+<div class="body-content api-body-content">
+  <div class="doc-nav">
+    <p class="title">语法</p>
+<ul class="nav-list">
+  <li class="">
+    <a href="index-2.html" >Chart</a>
+  </li>
+  <li class="">
+    <a href="geom.html" >Geom</a>
+  </li>
+  <li class="">
+    <a href="scale.html" >Scale</a>
+  </li>
+  <li class="">
+    <a href="frame.html" >Frame</a>
+  </li>
+  <li class="">
+    <a href="stat.html" >Stat</a>
+  </li>
+  <li class="">
+    <a href="global.html" >Global</a>
+  </li>
+  <li class="">
+    <a href="theme.html" >Theme</a>
+  </li>
+  <li class="">
+    <a href="util.html" >Util</a>
+  </li>
+  <li class="active">
+    <a href="plugins.html" >Plugins</a>
+  </li>
+  <li class="">
+    <a href="graphic.html" >Graphic</a>
+  </li>
+</ul>
+  </div>
+
+  <div class="doc-content clearfix">
+    <div class="doc-inner" id="t2">
+      <h1 id="plugins">Plugins</h1><h1 id="概述">概述</h1><p>主要介绍 G2 的插件的使用方法。目前 G2 已提供两种插件： G2.Plugin.range 和 G2.Plugin.Gmap</p>
+<h1 id="语法">语法</h1><h2 id="g2-plugin-range">G2.Plugin.range</h2><p>用于范围的选择插件，尤其适用于大数据量的图表绘制，可以对不同的数据范围进行选择。</p>
+<h3 id="range-使用步骤">range 使用步骤</h3><h4 id="引入插件脚本和插件的样式">引入插件脚本和插件的样式</h4><div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- 引入插件的 css 样式 --&gt;</span>
+<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"https://os.alipayobjects.com/rmsportal/UBXCMkzNVlaZYNs.css"</span>&gt;</span>
+<span class="comment">&lt;!-- 引入插件脚本 --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g-plugin-range/0.0.6/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre></div><h4 id="创建-dom-容器">创建 DOM 容器</h4><p>然后还需要创建一个展示 range 插件的 DOM 容器，如：</p>
+<div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"range"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="创建对象并渲染">创建对象并渲染</h4><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> range = <span class="keyword">new</span> G2.Plugin.range({
+  id: <span class="string">"range"</span>, <span class="comment">// DOM id</span>
+  width: <span class="number">840</span>, <span class="comment">// 插件的宽度</span>
+  height: <span class="number">26</span>, <span class="comment">// 插件的高度</span>
+  dim: <span class="string">'time'</span> <span class="comment">// 指定筛选的数据维度</span>
+});
+
+range.source(frame); <span class="comment">// 载入数据源</span>
+range.link([chart, chart1]); <span class="comment">// 关联 G2 图表对象，支持一个或者多个 chart 对象</span>
+range.render(); <span class="comment">// 渲染，将 chart 和 range 插件一起渲染</span></code></pre></div><h4 id="示例">示例</h4><div class="nico-insert-code"><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>股票图</title>
+  <link rel="stylesheet" type="text/css" href="../../os.alipayobjects.com/rmsportal/UBXCMkzNVlaZYNs.css">
+  <script src="../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <!-- 该脚本只是网站用于请求数据用的，请不要复制 -->
+  <script src="../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+  <!-- 载入 G2 脚本 -->
+  <script src="../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <!-- 载入 g-plugin-range 脚本 -->
+  <script src="../../as.alipayobjects.com/g/datavis/g-plugin-range/0.0.6/index.js"></script>
+  <style>
+  #c1 {
+    position: relative;
+  }
+  #range {
+    margin: 5px 80px;
+  }
+  .crossLine{
+    border-left: 1px solid #999;
+    position: absolute;
+    display: none;
+    top: 20px;
+  }
+  </style>
+</head>
+<body>
+  <div id="c1"></div>
+  <div id="range"></div>
+  <script>
+  $.getJSON('/data.json?filename=candleSticks',function(data){
+    var Stat = G2.Stat;
+    var chart = new G2.Chart({
+      id: 'c1',
+      width: 800,
+      height: 360,
+      plotCfg: {
+        margin: [20, 80, 30, 80]
+      }
+    });
+    // g-plugin-range 只支持数值类型的数据排序，所以将时间统一转换为时间戳
+    for(var i=0;i<data.length;i++) {
+      var item = data[i];
+      var time = item.time;
+      item.time = new Date(time).getTime();
+    }
+
+    // 创建数据源
+    var Frame = G2.Frame;
+    var frame = new Frame(data);
+    frame.addCol('range', function(obj){
+      return [obj.start, obj.end, obj.max, obj.min]; // 添加列，顺序为 开盘价 收盘价 最高价 最低价
+    });
+    frame.addCol('trend', function(obj) {
+      return (obj.start <= obj.end) ? 0 : 1;
+    });
+
+    chart.source(frame, {
+      'trend': {
+        type: 'cat',
+        alias: '趋势',
+        values: ['上涨','下跌']
+      },
+      'time': {
+        type: 'timeCat',
+        nice: false,
+        mask: 'mm-dd',
+        alias: '时间',
+        tickCount: 10
+      },
+      'range':{
+        type: 'linear',
+        alias: '指数'
+      },
+      'start': {alias: '开盘价'},
+      'end': {alias: '收盘价'},
+      'max': {alias: '最高价'},
+      'min': {alias: '最低价'}
+    });
+    chart.axis('time', {
+      title: null
+    });
+    chart.schema().position('time*range').color('trend', ['#C00000','#19B24B']).shape('candle').tooltip('start*end*max*min');
+
+    var range = new G2.Plugin.range({
+      id: "range", //DOM id
+      width: 640,
+      height: 26,
+      dim: 'time'
+    });
+
+    range.source(frame);
+    range.link(chart);
+    range.render();
+  });
+  </script>
+</body>
+
+<!-- Mirrored from g2.alipay.com/api/plugins.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 05:58:35 GMT -->
+</html></div><div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">title</span>&gt;</span>股票图<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"https://os.alipayobjects.com/rmsportal/UBXCMkzNVlaZYNs.css"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="comment">&lt;!-- 该脚本只是网站用于请求数据用的，请不要复制 --&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://a.alipayobjects.com/alipay-request/3.0.3/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="comment">&lt;!-- 载入 G2 脚本 --&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="comment">&lt;!-- 载入 g-plugin-range 脚本 --&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g-plugin-range/0.0.6/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+  <span class="id">#c1</span> <span class="rules">{
+    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;
+  <span class="rule">}</span></span>
+  <span class="id">#range</span> <span class="rules">{
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">5</span>px <span class="number">80</span>px</span></span>;
+  <span class="rule">}</span></span>
+  <span class="class">.crossLine</span><span class="rules">{
+    <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#999</span></span></span>;
+    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;
+    <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">20</span>px</span></span>;
+  <span class="rule">}</span></span>
+  </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"range"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  $.getJSON(<span class="string">'/data.json?filename=candleSticks'</span>,<span class="function"><span class="keyword">function</span><span class="params">(data)</span>{</span>
+    <span class="keyword">var</span> Stat = G2.Stat;
+    <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+      id: <span class="string">'c1'</span>,
+      width: <span class="number">800</span>,
+      height: <span class="number">360</span>,
+      plotCfg: {
+        margin: [<span class="number">20</span>, <span class="number">80</span>, <span class="number">30</span>, <span class="number">80</span>]
+      }
+    });
+    <span class="comment">// g-plugin-range 只支持数值类型的数据排序，所以将时间统一转换为时间戳</span>
+    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;data.length;i++) {
+      <span class="keyword">var</span> item = data[i];
+      <span class="keyword">var</span> time = item.time;
+      item.time = <span class="keyword">new</span> Date(time).getTime();
+    }
+
+    <span class="comment">// 创建数据源</span>
+    <span class="keyword">var</span> Frame = G2.Frame;
+    <span class="keyword">var</span> frame = <span class="keyword">new</span> Frame(data);
+    frame.addCol(<span class="string">'range'</span>, <span class="function"><span class="keyword">function</span><span class="params">(obj)</span>{</span>
+      <span class="keyword">return</span> [obj.start, obj.end, obj.max, obj.min]; <span class="comment">// 添加列，顺序为 开盘价 收盘价 最高价 最低价</span>
+    });
+    frame.addCol(<span class="string">'trend'</span>, <span class="function"><span class="keyword">function</span><span class="params">(obj)</span> {</span>
+      <span class="keyword">return</span> (obj.start &lt;= obj.end) ? <span class="number">0</span> : <span class="number">1</span>;
+    });
+
+    chart.source(frame, {
+      <span class="string">'trend'</span>: {
+        type: <span class="string">'cat'</span>,
+        alias: <span class="string">'趋势'</span>,
+        values: [<span class="string">'上涨'</span>,<span class="string">'下跌'</span>]
+      },
+      <span class="string">'time'</span>: {
+        type: <span class="string">'timeCat'</span>,
+        nice: <span class="literal">false</span>,
+        mask: <span class="string">'mm-dd'</span>,
+        alias: <span class="string">'时间'</span>,
+        tickCount: <span class="number">10</span>
+      },
+      <span class="string">'range'</span>:{
+        type: <span class="string">'linear'</span>,
+        alias: <span class="string">'指数'</span>
+      },
+      <span class="string">'start'</span>: {alias: <span class="string">'开盘价'</span>},
+      <span class="string">'end'</span>: {alias: <span class="string">'收盘价'</span>},
+      <span class="string">'max'</span>: {alias: <span class="string">'最高价'</span>},
+      <span class="string">'min'</span>: {alias: <span class="string">'最低价'</span>}
+    });
+    chart.axis(<span class="string">'time'</span>, {
+      title: <span class="literal">null</span>
+    });
+    chart.schema().position(<span class="string">'time*range'</span>).color(<span class="string">'trend'</span>, [<span class="string">'#C00000'</span>,<span class="string">'#19B24B'</span>]).shape(<span class="string">'candle'</span>).tooltip(<span class="string">'start*end*max*min'</span>);
+
+    <span class="keyword">var</span> range = <span class="keyword">new</span> G2.Plugin.range({
+      id: <span class="string">"range"</span>, <span class="comment">//DOM id</span>
+      width: <span class="number">640</span>,
+      height: <span class="number">26</span>,
+      dim: <span class="string">'time'</span>
+    });
+
+    range.source(frame);
+    range.link(chart);
+    range.render();
+  });
+  </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><h2 id="g2-plugin-gmap">G2.Plugin.GMap</h2><p>用于地图背景的绘制，在 G2 中进行地理数据可视化时，我们的做法通常是在地图背景上绘制需要展示的数据，比如在地图上绘制气泡图、点图，在地图上对各个区域进行多级颜色渲染等，非常方便。</p>
+<h3 id="gmap-使用步骤">GMap 使用步骤</h3><h4 id="引入插件脚本">引入插件脚本</h4><div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- 引入插件脚本 --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g-plugin-map/1.1.0/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre></div><h4 id="创建对象并渲染">创建对象并渲染</h4><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> gmap = <span class="keyword">new</span> G2.Plugin.GMap({
+  chart: chart, <span class="comment">// 关联 G2 的 chart 对象</span>
+  mapData: mapData, <span class="comment">// 地图数据源</span>
+  style: {
+    stroke: <span class="string">'red'</span>, <span class="comment">// 边框的颜色</span>
+    fill: <span class="string">'#3E98C5'</span>, <span class="comment">// 背景填充色</span>
+    <span class="string">'stroke-width'</span>: <span class="number">1</span> <span class="comment">// 边框的宽度</span>
+  } <span class="comment">// 背景样式设置</span>
+}).draw(); <span class="comment">// 调用 draw() 方法即可完成渲染</span></code></pre></div><h4 id="示例">示例</h4><script src="../../as.alipayobjects.com/g/datavis/g-plugin-map/1.1.0/index.js"></script>
+<div id="c2"></div>
+<script>
+  $.getJSON('/data.json?filename=china', function(mapData) {
+    var Stat = G2.Stat;
+    var userData = [
+      {name: '北京',value: Math.round(Math.random()*1000)},
+      {name: '天津',value: Math.round(Math.random()*1000)},
+      {name: '上海',value: Math.round(Math.random()*1000)},
+      {name: '重庆',value: Math.round(Math.random()*1000)},
+      {name: '安徽',value: Math.round(Math.random()*1000)},
+      {name: '山东',value: Math.round(Math.random()*1000)},
+      {name: '新疆',value: Math.round(Math.random()*1000)},
+      {name: '江苏',value: Math.round(Math.random()*1000)},
+      {name: '福建',value: Math.round(Math.random()*1000)},
+      {name: '贵州',value: Math.round(Math.random()*1000)},
+      {name: '广东',value: Math.round(Math.random()*1000)},
+      {name: '青海',value: Math.round(Math.random()*1000)},
+      {name: '西藏',value: Math.round(Math.random()*1000)},
+      {name: '四川',value: Math.round(Math.random()*1000)}
+    ];
+
+    var chart = new G2.Chart({
+      id: 'c2',
+      width: 800,
+      height: 550
+    });
+    chart.source(userData);
+
+    var gmap = new G2.Plugin.GMap({
+      chart: chart,
+      mapData: mapData,     // 地图数据地址
+      style: {
+        stroke: '#666',
+        fill: '#fff'
+      }
+    }).draw();
+
+    chart.tooltip({
+      map: {
+        name: "数值",
+        value: "value"
+      }
+    });
+    chart.legend('value', false);
+    chart.polygon().position(Stat.map.region('name', mapData)).color('value','#ffffff-#3897C5');
+    chart.point().position(Stat.map.center('name', mapData)).color('value','#ffffff-#3897C5').label('name').shape('circle').size(0);
+
+    chart.render();
+  });
+  </script>
+
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">title</span>&gt;</span>地图插件<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="comment">&lt;!--如果不需要jquery ajax 则可以不引入--&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="comment">&lt;!-- 该脚本只是网站用于请求数据用的，请不要复制 --&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://a.alipayobjects.com/alipay-request/3.0.3/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="comment">&lt;!-- 载入 G2 脚本 --&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="comment">&lt;!-- 载入 g-plugin-map 脚本 --&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://as.alipayobjects.com/g/datavis/g-plugin-map/1.1.0/index.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  $.getJSON(<span class="string">'/data.json?filename=china'</span>, <span class="function"><span class="keyword">function</span><span class="params">(mapData)</span> {</span>
+    <span class="keyword">var</span> Stat = G2.Stat;
+    <span class="keyword">var</span> userData = [
+      {name: <span class="string">'北京'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'天津'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'上海'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'重庆'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'安徽'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'山东'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'新疆'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'江苏'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'福建'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'贵州'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'广东'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'青海'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'西藏'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)},
+      {name: <span class="string">'四川'</span>,value: Math.round(Math.random()*<span class="number">1000</span>)}
+    ];
+
+    <span class="keyword">var</span> chart = <span class="keyword">new</span> G2.Chart({
+      id: <span class="string">'c2'</span>,
+      width: <span class="number">800</span>,
+      height: <span class="number">550</span>
+    });
+    chart.source(userData);
+
+    <span class="keyword">var</span> gmap = <span class="keyword">new</span> G2.Plugin.GMap({
+      chart: chart,
+      mapData: mapData,     <span class="comment">// 地图数据地址</span>
+      style: {
+        stroke: <span class="string">'#666'</span>,
+        fill: <span class="string">'#fff'</span>
+      }
+    }).draw();
+
+    chart.tooltip({
+      map: {
+        name: <span class="string">"数值"</span>,
+        value: <span class="string">"value"</span>
+      }
+    });
+    chart.legend(<span class="string">'value'</span>, <span class="literal">false</span>);
+    chart.polygon().position(Stat.map.region(<span class="string">'name'</span>, mapData)).color(<span class="string">'value'</span>,<span class="string">'#ffffff-#3897C5'</span>);
+    chart.point().position(Stat.map.center(<span class="string">'name'</span>, mapData)).color(<span class="string">'value'</span>,<span class="string">'#ffffff-#3897C5'</span>).label(<span class="string">'name'</span>).shape(<span class="string">'circle'</span>).size(<span class="number">0</span>);
+
+    chart.render();
+  });
+  </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+<style type="text/css">
+  .preNext {
+    margin: 50px 0;
+    width: 100%;
+  }
+</style>
+<div class="preNext clearfix">
+  <a href="util.html" class="pull-left">
+    <i class="iconfont icon-pre"></i>
+    Util
+  </a>
+  <a href="graphic.html" class="pull-right">
+    Graphic
+    <i class="iconfont icon-next"></i>
+  </a>
+</div>
+    </div>
+    <script type="text/javascript" src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/nav-menu.js"></script>
+  </div>
+</div>
+<script src="../../as.alipayobjects.com/g/datavis/g2-static/0.0.6/prettify-min.js"></script>
+<script type="text/javascript">
+var CLS_PRETTY = 'prettyprint linenums';
+BUI.use('bui/common',function(BUI){
+  var preEls =  $('pre');
+  BUI.each(preEls,function(el){
+    var node = $(el), innerText;
+    node.addClass(CLS_PRETTY);
+    innerText = node.html();
+    var a = /^(\s+)/.exec(innerText),
+      regex;
+    if(a){
+      regex = new RegExp('('+a[0]+')(\\s*)','ig');
+      innerText = innerText.replace(regex,'$2');
+    }
+
+    node.html(innerText);
+  });
+  if(window.prettyPrint){
+    prettyPrint();
+  }
+});
+</script>
+
+  </div>
+
+ <a href="javascript:void(0);" id='toTop' title="返回顶部">
+	<i class="iconfont icon-to-top"></i>
+</a>
+</body>
+</html>
