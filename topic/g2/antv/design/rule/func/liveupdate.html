@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from antv.alipay.com/design/rule/func/liveupdate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:49:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>AntV</title>
+  <!-- normalize.min.css -->
+  <link rel="stylesheet" href="../../../../os.alipayobjects.com/rmsportal/kCUUeaMNGufqiDT.css">
+  <!-- animate.min.css -->
+  <link rel="stylesheet" type="text/css" href="../../../../os.alipayobjects.com/rmsportal/AiATVwcMTMRLdsC.css" />
+  <!-- style.css -->
+  <link rel="stylesheet" type="text/css" href="../../../../os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy40b1.css?1463111516374" />
+  <!-- https://os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy.css?1463390317657 -->
+  <!-- https://os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy.css?1463111516372 -->
+  <title>AntV</title>
+  <link rel="icon" href="../../../../os.alipayobjects.com/rmsportal/IhIZKOLdgNgzlaj.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../../os.alipayobjects.com/rmsportal/IhIZKOLdgNgzlaj.png" type="image/x-icon">
+  
+<script type="text/javascript" src="../../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <!-- autocomplete.min.js -->
+  <script type="text/javascript" src="../../../../os.alipayobjects.com/rmsportal/WXhljTcHlRAkjAu.js"></script>
+
+  
+<script src="../../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <!-- antv.min.js -->
+  <script type="text/javascript" src="../../../../os.alipayobjects.com/rmsportal/fLJXnXtkilXPVeT.js"></script>
+
+  <!-- for filename -->
+  
+<script src="../../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+  <meta name="keywords" content="AntV,专业数据可视化规范,数据可视化,Data Visualization,柱状图,层叠柱状图,分组柱状图,饼图,直方图,南丁格尔玫瑰图,玉玦图,面积图,层叠面积图,折线图,散点图,气泡图,雷达图,分级统计图,带气泡的地图,点描法地图,漏斗图,马赛克图,色块图,热力图,矩形树图,K 线图,股票图,仪表盘,回归曲线图,箱形图,茎叶图,Stemplot, Stem , Leaf Display,Box plot,K Chart,Candlestick Chart,Treemap, Rectangular Tree,Heatmap,color map,Mosaic Plot, Marimekko Chart,Funnel plot,Dot Map, Dot Distribution Map, Dot Density Map,Bubble Map,Choropleth Map,Radar chart, Spider Chart, Web Chart, Polar Chart, Star Plots,Bubble chart,Scatter graph, Point graph, X-Y plot, Scatter chart or Scattergram,Line chart,Stacked Area Graph,Area Graph,Radial bar chart,Nightingale Rose Chart, Coxcomb Chart, Polar Area Diagram,Histogram,Pie chart,Multi-set Bar Chart,,Radial bar chart,Stacked bar chart,Column chart,Bar chart"/>
+  <meta name="description" content="AntV是一套专业的数据可视化规范" />
+</head>
+<body>
+  <script type="text/javascript">
+    var searchBook = {"index":{"key":"index","keyCN":"设计规范","url":"/design/index.html","keyWords":"index设计规范"},"all-charts":{"key":"all-charts","keyCN":"全部","url":"/chart/classify/all-charts.html","keyWords":"all-charts全部关键词（用于搜索）"},"combine":{"key":"combine","keyCN":"聚合类","url":"/chart/classify/combine.html","keyWords":"combine聚合类关键词（用于搜索）"},"compare":{"key":"compare","keyCN":"比较类","url":"/chart/classify/compare.html","keyWords":"compare比较类关键词（用于搜索）"},"distribute":{"key":"distribute","keyCN":"分布类","url":"/chart/classify/distribute.html","keyWords":"distribute分布类关键词（用于搜索）"},"flow":{"key":"flow","keyCN":"流程类","url":"/chart/classify/flow.html","keyWords":"flow流程类"},"location":{"key":"location","keyCN":"地图类","url":"/chart/classify/location.html","keyWords":"location地图类地理信息"},"path":{"key":"path","keyCN":"路径类","url":"/chart/classify/path.html","keyWords":"path路径类关键词（用于搜索）"},"range":{"key":"range","keyCN":"区间类","url":"/chart/classify/range.html","keyWords":"range区间类关键词（用于搜索）"},"relation":{"key":"relation","keyCN":"关系类","url":"/chart/classify/relation.html","keyWords":"relation关系类关键词（用于搜索）"},"time":{"key":"time","keyCN":"时间类","url":"/chart/classify/time.html","keyWords":"time时间类关键词（用于搜索）"},"trend":{"key":"trend","keyCN":"趋势类","url":"/chart/classify/trend.html","keyWords":"trend趋势类关键词（用于搜索）"},"area":{"key":"area","keyCN":"面积图","url":"/chart/details/area.html","keyWords":"area面积图area 面积图 层叠"},"bar":{"key":"bar","keyCN":"柱状图","url":"/chart/details/bar.html","keyWords":"bar柱状图"},"boxplot":{"key":"boxplot","keyCN":"箱形图","url":"/chart/details/boxplot.html","keyWords":"boxplot箱形图箱形图 箱须图"},"bubble-chart":{"key":"bubble-chart","keyCN":"气泡图","url":"/chart/details/bubble-chart.html","keyWords":"bubble-chart气泡图bubble 气泡 气泡图"},"bubble-map":{"key":"bubble-map","keyCN":"带气泡的地图","url":"/chart/details/bubble-map.html","keyWords":"bubble-map带气泡的地图气泡图 地图"},"chord":{"key":"chord","keyCN":"和弦图","url":"/chart/details/chord.html","keyWords":"chord和弦图"},"choropleth-map":{"key":"choropleth-map","keyCN":"分级统计图","url":"/chart/details/choropleth-map.html","keyWords":"choropleth-map分级统计图地图 分级统计图"},"color-map":{"key":"color-map","keyCN":"色块图","url":"/chart/details/color-map.html","keyWords":"color-map色块图热力图"},"contourline":{"key":"contourline","keyCN":"等高线","url":"/chart/details/contourline.html","keyWords":"contourline等高线"},"distributioncurve":{"key":"distributioncurve","keyCN":"分布曲线图","url":"/chart/details/distributioncurve.html","keyWords":"distributioncurve分布曲线图分布曲线"},"donut-chart":{"key":"donut-chart","keyCN":"环图","url":"/chart/details/donut-chart.html","keyWords":"donut-chart环图圆形"},"dot-map":{"key":"dot-map","keyCN":"点描法地图","url":"/chart/details/dot-map.html","keyWords":"dot-map点描法地图点图 地图 点描法地图"},"funnel":{"key":"funnel","keyCN":"漏斗图","url":"/chart/details/funnel.html","keyWords":"funnel漏斗图流程 流量 单向"},"gauge":{"key":"gauge","keyCN":"仪表盘","url":"/chart/details/gauge.html","keyWords":"gauge仪表盘仪表盘"},"heatmap":{"key":"heatmap","keyCN":"热力图","url":"/chart/details/heatmap.html","keyWords":"heatmap热力图热力图"},"histogram":{"key":"histogram","keyCN":"直方图","url":"/chart/details/histogram.html","keyWords":"histogram直方图"},"k-chart":{"key":"k-chart","keyCN":"K 线图","url":"/chart/details/k-chart.html","keyWords":"k-chartK 线图k 股票 蜡烛"},"line":{"key":"line","keyCN":"折线图","url":"/chart/details/line.html","keyWords":"line折线图"},"mosaic":{"key":"mosaic","keyCN":"马赛克图","url":"/chart/details/mosaic.html","keyWords":"mosaic马赛克图马赛克图"},"multi-set-bar":{"key":"multi-set-bar","keyCN":"分组柱状图","url":"/chart/details/multi-set-bar.html","keyWords":"multi-set-bar分组柱状图"},"pie":{"key":"pie","keyCN":"饼图","url":"/chart/details/pie.html","keyWords":"pie饼图圆形 饼图"},"radar-chart":{"key":"radar-chart","keyCN":"雷达图","url":"/chart/details/radar-chart.html","keyWords":"radar-chart雷达图雷达 雷达图"},"regressioncurve":{"key":"regressioncurve","keyCN":"回归曲线图","url":"/chart/details/regressioncurve.html","keyWords":"regressioncurve回归曲线图回归曲线"},"rose":{"key":"rose","keyCN":"南丁格尔玫瑰图","url":"/chart/details/rose.html","keyWords":"rose南丁格尔玫瑰图玫瑰图"},"sankey":{"key":"sankey","keyCN":"桑基图","url":"/chart/details/sankey.html","keyWords":"sankey桑基图"},"scatter-plot":{"key":"scatter-plot","keyCN":"散点图","url":"/chart/details/scatter-plot.html","keyWords":"scatter-plot散点图散点 scatter X_Y"},"stacked-area":{"key":"stacked-area","keyCN":"层叠面积图","url":"/chart/details/stacked-area.html","keyWords":"stacked-area层叠面积图层叠 area 面积图"},"stacked-bar":{"key":"stacked-bar","keyCN":"层叠柱状图","url":"/chart/details/stacked-bar.html","keyWords":"stacked-bar层叠柱状图"},"stem-leaf":{"key":"stem-leaf","keyCN":"茎叶图","url":"/chart/details/stem-leaf.html","keyWords":"stem-leaf茎叶图"},"treemap":{"key":"treemap","keyCN":"矩形树图","url":"/chart/details/treemap.html","keyWords":"treemap矩形树图"},"venn":{"key":"venn","keyCN":"韦恩图","url":"/chart/details/venn.html","keyWords":"venn韦恩图韦恩图"},"color":{"key":"color","keyCN":"颜色使用原则","url":"/design/principle/color.html","keyWords":"color颜色使用原则"},"baseLine":{"key":"baseLine","keyCN":"基线","url":"/design/rule/assist/baseLine.html","keyWords":"baseLine基线"},"otherAssist":{"key":"otherAssist","keyCN":"其它","url":"/design/rule/assist/otherAssist.html","keyWords":"otherAssist其它"},"referLine":{"key":"referLine","keyCN":"参考线","url":"/design/rule/assist/referLine.html","keyWords":"referLine参考线"},"valueDisplayed":{"key":"valueDisplayed","keyCN":"值显示","url":"/design/rule/assist/valueDisplayed.html","keyWords":"valueDisplayed值显示"},"axis":{"key":"axis","keyCN":"坐标轴","url":"/design/rule/base/axis.html","keyWords":"axis坐标轴"},"grid":{"key":"grid","keyCN":"栅格","url":"/design/rule/base/grid.html","keyWords":"grid栅格"},"legend":{"key":"legend","keyCN":"图例","url":"/design/rule/base/legend.html","keyWords":"legend图例"},"title":{"key":"title","keyCN":"标题","url":"/design/rule/base/title.html","keyWords":"title标题"},"tooltip":{"key":"tooltip","keyCN":"提示信息","url":"/design/rule/base/tooltip.html","keyWords":"tooltip提示信息"},"liveUpdate":{"key":"liveUpdate","keyCN":"实时更新","url":"/design/rule/func/liveUpdate.html","keyWords":"liveUpdate实时更新"},"rangeSelect":{"key":"rangeSelect","keyCN":"值域选择","url":"/design/rule/func/rangeSelect.html","keyWords":"rangeSelect值域选择"},"responsive":{"key":"responsive","keyCN":"图表自适应","url":"/design/rule/func/responsive.html","keyWords":"responsive图表自适应"}};
+    var contentUrl = "../../../index.html";
+    var g2Realm = "https://g2.alipay.com/";
+  </script>
+<header>
+  <div class="nav-wrapper">
+    <a class="logo" href="../../../index.html"></a>
+    <ul class="nav">
+      <li class="float-left search-icon"></li>
+      <li class="float-left search"><div id="search"></div></li>
+      <li>
+          <a href="../../../about/index.html">工作小组</a>
+      </li>
+      <li class="active">
+          <a href="../../index.html">设计规范</a>
+      </li>
+      <li>
+          <a href="../../../chart/index.html">数据图表</a>
+      </li>
+    </ul>
+  </div>
+</header>
+  <div class="body-content
+  ">
+  <div class="doc-content desgin-doc">
+<div class="doc-aside-warper">
+<aside class="doc-aside">
+					<div class="list">
+			  	<span>
+				  	<i class="iconfont">&#xe63a;</i>
+				  	设计原则
+				  	<i class="iconfont">&#xe605;</i>
+			  	</span>
+				  	<ul> 
+								<li class="" >
+								<a href="../../principle/color.html">颜色使用原则</a>
+								</li>
+						</ul>
+					</div>
+					<div class="list">
+			  	<span>
+				  	<i class="iconfont">&#xe60a;</i>
+				  	组件规范
+				  	<i class="iconfont">&#xe605;</i>
+			  	</span>
+				  	<ul> 
+								<li class="subTitle" >辅助元素</li>
+						  	<li class="">
+						  	<a href="../assist/baseline.html">基线</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../assist/referline.html">参考线</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../assist/valuedisplayed.html">值显示</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../assist/otherassist.html">其它</a>
+						  	</li> 
+								<li class="subTitle" >基础元素</li>
+						  	<li class="">
+						  	<a href="../base/axis.html">坐标轴</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../base/grid.html">栅格</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../base/legend.html">图例</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../base/title.html">标题</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="../base/tooltip.html">提示信息</a>
+						  	</li> 
+								<li class="subTitle" >功能</li>
+						  	<li class="">
+						  	<a href="rangeselect.html">值域选择</a>
+						  	</li>
+						  	<li class="acitve">
+						  	<a href="liveupdate.html">实时更新</a>
+						  	</li>
+						  	<li class="">
+						  	<a href="responsive.html">图表自适应</a>
+						  	</li>
+						</ul>
+					</div>
+	
+<script type="text/javascript">
+	$("aside .list span").on("click", function(e){
+		var span = $(e.target);
+		var ul = span.next();
+		var arrow = $(span.find('i')[1]);
+		var ulClass = ul.attr('class');
+
+		if (!ulClass || ulClass.indexOf('hide') === -1) {
+			arrow.html('&#xe607;');
+			ul.slideUp(300,function(){
+				ul.addClass('hide');
+			});
+		}else{
+			arrow.html('&#xe605;');
+			ul.slideDown(300,function(){
+				ul.removeClass('hide');
+			});
+		}
+	});
+	</script>
+
+
+</aside>
+</div>
+    <div class="doc-inner-warper">
+	    <div class="doc-inner has-side">
+		    <div class="inAnim hide">
+	      <h1 id="实时更新">实时更新</h1><h2 id="一、定义">一、定义</h2><p>在实时数据进来时展现，页面不刷新，图表本身具有实时变化的功能。</p>
+<h2 id="二、内容">二、内容</h2><p><img src="../../../../os.alipayobjects.com/rmsportal/PIGyAqjqmCsWzUA.png" alt=""></p>
+<h2 id="三、动效">三、动效</h2><p>过渡自然，不光是图表内容有动效，xy轴的变化也有动效</p>
+
+	      </div>
+	    </div>
+    </div>
+  </div>
+
+  </div><footer>
+	<div class="footer-wrapper">
+		<ul>
+			<li>关于我们</li>
+			<li><a href="../../../about/index.html">我们的链接</a></li>
+		</ul>
+		<ul>
+			<li>联系我们</li>
+			<li><a href="https://github.com/antvis/feedback/issues/new" target="_blank">问题与建议－Issues</a></li>
+		</ul>
+		<ul>
+			<li>©2016 蚂蚁金服体验技术部出品 &nbsp; 文档版本 1.0 </li>
+			<li>支付宝版权所有 2004-2016 ICP证: 沪B2-20150087</li>
+		</ul>
+	</div>
+</footer>
+  </body>
+<script type="text/javascript">
+var ANIMS = ['headShake','bounce','pulse','rubberBand','shake','swing','tada','wobble','jello','bounceIn','fadeIn','flipInX','hinge','rotateIn','zoomIn','rollIn','slideInUp'];
+$.prototype.inAnim = function (x, callBack) {
+	var self = this;
+  self.removeClass('hide invisible').addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    self.removeClass(x + ' animated');
+    if (callBack) {
+    	callBack();
+    }
+  });
+};
+window.requestAnimationFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
+$.fn.isOnScreen = function(){
+  var win = $(window);
+  var viewport = {
+      top : win.scrollTop(),
+      left : win.scrollLeft()
+  };
+  viewport.right = viewport.left + win.width();
+  viewport.bottom = viewport.top + win.height();
+  var bounds = this.offset();
+  bounds.right = bounds.left + this.outerWidth();
+  bounds.bottom = bounds.top + this.outerHeight();
+  return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+};
+function ReplaceAll(str, sptr, sptr1){
+  while (str.indexOf(sptr) >= 0){
+     str = str.replace(sptr, sptr1);
+  }
+  return str;
+}
+function lazyLoad(codes) {
+  var isrun = [];
+  tryRun();
+  $(document).on('mousewheel',function(e){
+    tryRun();
+  });
+  function tryRun(){
+    codes.each(function(index,ele){
+      if (isrun.indexOf(ele) === -1) {
+        var $ele = $(ele);
+        if ( $ele.isOnScreen() ) {
+          setTimeout(function(){
+            var t = $ele.html();
+            t = ReplaceAll(t, '&lt;', '<');
+            t = ReplaceAll(t, '&gt;', '>');
+            t = ReplaceAll(t, '&amp;', '&');
+            eval(t);
+            $ele.hide();
+          },500);
+          isrun.push(ele);
+        };
+      };
+    });
+  }
+}
+function isWrong(id,text) {
+  var container = $("#"+id);
+  container.css('position','relative');
+  container.append('<div class="wrong tip">'+ text +'</div>');
+}
+function isRight(id,text) {
+  var container = $("#"+id);
+  container.css('position','relative');
+  container.append('<div class="right tip">'+ text +'</div>');
+}
+
+var animDom = $('.inAnim');
+var codes = $('.code');
+if (animDom.length) {
+  animDom.inAnim("fadeIn");
+};
+lazyLoad(codes);
+
+var k;
+var words = [];
+var key;
+for (k in searchBook) {
+  words.push(searchBook[k].key + ' ' + searchBook[k].keyCN);
+};
+$(document).ready(function(){
+  $('#search').autocomplete({
+    hints: words,
+    placeholder: '搜索',
+    onSubmit: function(e){
+      key = e.split(' ')[0];
+      if (searchBook[key]) {
+        window.location.href = contentUrl + searchBook[key].url;
+      }
+    },
+    showButton: false
+  });
+});
+if (window.location.host.indexOf('antv.alipay.net') != -1) {
+	window.Tracker && Tracker.start && Tracker.start();
+	window.Smartracker && Smartracker.sow && Smartracker.sow();
+};
+</script>
+
+<div style="display: none;">
+
+</div>
+
+<!-- Mirrored from antv.alipay.com/design/rule/func/liveupdate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:49:06 GMT -->
+</html>

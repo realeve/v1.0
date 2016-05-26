@@ -348,7 +348,7 @@
 					}
 				});
 				isOnline = str.substr(0, str.length - 1);
-				sendMsgToUsers(msg, userList);
+				sendMsgToUsers(msg, isOnline);
 			}
 		});
 	};

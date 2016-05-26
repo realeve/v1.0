@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from antv.alipay.com/chart/details/radar-chart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:49:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>AntV</title>
+  <!-- normalize.min.css -->
+  <link rel="stylesheet" href="../../../os.alipayobjects.com/rmsportal/kCUUeaMNGufqiDT.css">
+  <!-- animate.min.css -->
+  <link rel="stylesheet" type="text/css" href="../../../os.alipayobjects.com/rmsportal/AiATVwcMTMRLdsC.css" />
+  <!-- style.css -->
+  <link rel="stylesheet" type="text/css" href="../../../os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy40b1.css?1463111516374" />
+  <!-- https://os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy.css?1463390317657 -->
+  <!-- https://os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy.css?1463111516372 -->
+  <title>AntV</title>
+  <link rel="icon" href="../../../os.alipayobjects.com/rmsportal/IhIZKOLdgNgzlaj.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../os.alipayobjects.com/rmsportal/IhIZKOLdgNgzlaj.png" type="image/x-icon">
+  
+<script type="text/javascript" src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <!-- autocomplete.min.js -->
+  <script type="text/javascript" src="../../../os.alipayobjects.com/rmsportal/WXhljTcHlRAkjAu.js"></script>
+
+  
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <!-- antv.min.js -->
+  <script type="text/javascript" src="../../../os.alipayobjects.com/rmsportal/fLJXnXtkilXPVeT.js"></script>
+
+  <!-- for filename -->
+  
+<script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+  <meta name="keywords" content="AntV,专业数据可视化规范,数据可视化,Data Visualization,柱状图,层叠柱状图,分组柱状图,饼图,直方图,南丁格尔玫瑰图,玉玦图,面积图,层叠面积图,折线图,散点图,气泡图,雷达图,分级统计图,带气泡的地图,点描法地图,漏斗图,马赛克图,色块图,热力图,矩形树图,K 线图,股票图,仪表盘,回归曲线图,箱形图,茎叶图,Stemplot, Stem , Leaf Display,Box plot,K Chart,Candlestick Chart,Treemap, Rectangular Tree,Heatmap,color map,Mosaic Plot, Marimekko Chart,Funnel plot,Dot Map, Dot Distribution Map, Dot Density Map,Bubble Map,Choropleth Map,Radar chart, Spider Chart, Web Chart, Polar Chart, Star Plots,Bubble chart,Scatter graph, Point graph, X-Y plot, Scatter chart or Scattergram,Line chart,Stacked Area Graph,Area Graph,Radial bar chart,Nightingale Rose Chart, Coxcomb Chart, Polar Area Diagram,Histogram,Pie chart,Multi-set Bar Chart,,Radial bar chart,Stacked bar chart,Column chart,Bar chart"/>
+  <meta name="description" content="AntV是一套专业的数据可视化规范" />
+</head>
+<body>
+  <script type="text/javascript">
+    var searchBook = {"index":{"key":"index","keyCN":"设计规范","url":"/design/index.html","keyWords":"index设计规范"},"all-charts":{"key":"all-charts","keyCN":"全部","url":"/chart/classify/all-charts.html","keyWords":"all-charts全部关键词（用于搜索）"},"combine":{"key":"combine","keyCN":"聚合类","url":"/chart/classify/combine.html","keyWords":"combine聚合类关键词（用于搜索）"},"compare":{"key":"compare","keyCN":"比较类","url":"/chart/classify/compare.html","keyWords":"compare比较类关键词（用于搜索）"},"distribute":{"key":"distribute","keyCN":"分布类","url":"/chart/classify/distribute.html","keyWords":"distribute分布类关键词（用于搜索）"},"flow":{"key":"flow","keyCN":"流程类","url":"/chart/classify/flow.html","keyWords":"flow流程类"},"location":{"key":"location","keyCN":"地图类","url":"/chart/classify/location.html","keyWords":"location地图类地理信息"},"path":{"key":"path","keyCN":"路径类","url":"/chart/classify/path.html","keyWords":"path路径类关键词（用于搜索）"},"range":{"key":"range","keyCN":"区间类","url":"/chart/classify/range.html","keyWords":"range区间类关键词（用于搜索）"},"relation":{"key":"relation","keyCN":"关系类","url":"/chart/classify/relation.html","keyWords":"relation关系类关键词（用于搜索）"},"time":{"key":"time","keyCN":"时间类","url":"/chart/classify/time.html","keyWords":"time时间类关键词（用于搜索）"},"trend":{"key":"trend","keyCN":"趋势类","url":"/chart/classify/trend.html","keyWords":"trend趋势类关键词（用于搜索）"},"area":{"key":"area","keyCN":"面积图","url":"/chart/details/area.html","keyWords":"area面积图area 面积图 层叠"},"bar":{"key":"bar","keyCN":"柱状图","url":"/chart/details/bar.html","keyWords":"bar柱状图"},"boxplot":{"key":"boxplot","keyCN":"箱形图","url":"/chart/details/boxplot.html","keyWords":"boxplot箱形图箱形图 箱须图"},"bubble-chart":{"key":"bubble-chart","keyCN":"气泡图","url":"/chart/details/bubble-chart.html","keyWords":"bubble-chart气泡图bubble 气泡 气泡图"},"bubble-map":{"key":"bubble-map","keyCN":"带气泡的地图","url":"/chart/details/bubble-map.html","keyWords":"bubble-map带气泡的地图气泡图 地图"},"chord":{"key":"chord","keyCN":"和弦图","url":"/chart/details/chord.html","keyWords":"chord和弦图"},"choropleth-map":{"key":"choropleth-map","keyCN":"分级统计图","url":"/chart/details/choropleth-map.html","keyWords":"choropleth-map分级统计图地图 分级统计图"},"color-map":{"key":"color-map","keyCN":"色块图","url":"/chart/details/color-map.html","keyWords":"color-map色块图热力图"},"contourline":{"key":"contourline","keyCN":"等高线","url":"/chart/details/contourline.html","keyWords":"contourline等高线"},"distributioncurve":{"key":"distributioncurve","keyCN":"分布曲线图","url":"/chart/details/distributioncurve.html","keyWords":"distributioncurve分布曲线图分布曲线"},"donut-chart":{"key":"donut-chart","keyCN":"环图","url":"/chart/details/donut-chart.html","keyWords":"donut-chart环图圆形"},"dot-map":{"key":"dot-map","keyCN":"点描法地图","url":"/chart/details/dot-map.html","keyWords":"dot-map点描法地图点图 地图 点描法地图"},"funnel":{"key":"funnel","keyCN":"漏斗图","url":"/chart/details/funnel.html","keyWords":"funnel漏斗图流程 流量 单向"},"gauge":{"key":"gauge","keyCN":"仪表盘","url":"/chart/details/gauge.html","keyWords":"gauge仪表盘仪表盘"},"heatmap":{"key":"heatmap","keyCN":"热力图","url":"/chart/details/heatmap.html","keyWords":"heatmap热力图热力图"},"histogram":{"key":"histogram","keyCN":"直方图","url":"/chart/details/histogram.html","keyWords":"histogram直方图"},"k-chart":{"key":"k-chart","keyCN":"K 线图","url":"/chart/details/k-chart.html","keyWords":"k-chartK 线图k 股票 蜡烛"},"line":{"key":"line","keyCN":"折线图","url":"/chart/details/line.html","keyWords":"line折线图"},"mosaic":{"key":"mosaic","keyCN":"马赛克图","url":"/chart/details/mosaic.html","keyWords":"mosaic马赛克图马赛克图"},"multi-set-bar":{"key":"multi-set-bar","keyCN":"分组柱状图","url":"/chart/details/multi-set-bar.html","keyWords":"multi-set-bar分组柱状图"},"pie":{"key":"pie","keyCN":"饼图","url":"/chart/details/pie.html","keyWords":"pie饼图圆形 饼图"},"radar-chart":{"key":"radar-chart","keyCN":"雷达图","url":"/chart/details/radar-chart.html","keyWords":"radar-chart雷达图雷达 雷达图"},"regressioncurve":{"key":"regressioncurve","keyCN":"回归曲线图","url":"/chart/details/regressioncurve.html","keyWords":"regressioncurve回归曲线图回归曲线"},"rose":{"key":"rose","keyCN":"南丁格尔玫瑰图","url":"/chart/details/rose.html","keyWords":"rose南丁格尔玫瑰图玫瑰图"},"sankey":{"key":"sankey","keyCN":"桑基图","url":"/chart/details/sankey.html","keyWords":"sankey桑基图"},"scatter-plot":{"key":"scatter-plot","keyCN":"散点图","url":"/chart/details/scatter-plot.html","keyWords":"scatter-plot散点图散点 scatter X_Y"},"stacked-area":{"key":"stacked-area","keyCN":"层叠面积图","url":"/chart/details/stacked-area.html","keyWords":"stacked-area层叠面积图层叠 area 面积图"},"stacked-bar":{"key":"stacked-bar","keyCN":"层叠柱状图","url":"/chart/details/stacked-bar.html","keyWords":"stacked-bar层叠柱状图"},"stem-leaf":{"key":"stem-leaf","keyCN":"茎叶图","url":"/chart/details/stem-leaf.html","keyWords":"stem-leaf茎叶图"},"treemap":{"key":"treemap","keyCN":"矩形树图","url":"/chart/details/treemap.html","keyWords":"treemap矩形树图"},"venn":{"key":"venn","keyCN":"韦恩图","url":"/chart/details/venn.html","keyWords":"venn韦恩图韦恩图"},"color":{"key":"color","keyCN":"颜色使用原则","url":"/design/principle/color.html","keyWords":"color颜色使用原则"},"baseLine":{"key":"baseLine","keyCN":"基线","url":"/design/rule/assist/baseLine.html","keyWords":"baseLine基线"},"otherAssist":{"key":"otherAssist","keyCN":"其它","url":"/design/rule/assist/otherAssist.html","keyWords":"otherAssist其它"},"referLine":{"key":"referLine","keyCN":"参考线","url":"/design/rule/assist/referLine.html","keyWords":"referLine参考线"},"valueDisplayed":{"key":"valueDisplayed","keyCN":"值显示","url":"/design/rule/assist/valueDisplayed.html","keyWords":"valueDisplayed值显示"},"axis":{"key":"axis","keyCN":"坐标轴","url":"/design/rule/base/axis.html","keyWords":"axis坐标轴"},"grid":{"key":"grid","keyCN":"栅格","url":"/design/rule/base/grid.html","keyWords":"grid栅格"},"legend":{"key":"legend","keyCN":"图例","url":"/design/rule/base/legend.html","keyWords":"legend图例"},"title":{"key":"title","keyCN":"标题","url":"/design/rule/base/title.html","keyWords":"title标题"},"tooltip":{"key":"tooltip","keyCN":"提示信息","url":"/design/rule/base/tooltip.html","keyWords":"tooltip提示信息"},"liveUpdate":{"key":"liveUpdate","keyCN":"实时更新","url":"/design/rule/func/liveUpdate.html","keyWords":"liveUpdate实时更新"},"rangeSelect":{"key":"rangeSelect","keyCN":"值域选择","url":"/design/rule/func/rangeSelect.html","keyWords":"rangeSelect值域选择"},"responsive":{"key":"responsive","keyCN":"图表自适应","url":"/design/rule/func/responsive.html","keyWords":"responsive图表自适应"}};
+    var contentUrl = "../../index.html";
+    var g2Realm = "https://g2.alipay.com/";
+  </script>
+<header>
+  <div class="nav-wrapper">
+    <a class="logo" href="../../index.html"></a>
+    <ul class="nav">
+      <li class="float-left search-icon"></li>
+      <li class="float-left search"><div id="search"></div></li>
+      <li>
+          <a href="../../about/index.html">工作小组</a>
+      </li>
+      <li>
+          <a href="../../design/index.html">设计规范</a>
+      </li>
+      <li class="active">
+          <a href="../index.html">数据图表</a>
+      </li>
+    </ul>
+  </div>
+</header>
+  <div class="body-content
+  ">
+
+  <div class="doc-content detail-content">
+    <div class="doc-inner detail-doc">
+			<h1>雷达图</h1>
+			<ul class="catalogue"></ul>
+
+    	<h2 id="雷达图的简介">雷达图的简介</h2><p><img src="../../../os.alipayobjects.com/rmsportal/DLgjgcpcRbaZIfQ.jpg" width="800px" /></p>
+<p>雷达又叫戴布拉图、蜘蛛网图。传统的雷达图被认为是一种表现多维（4维以上）数据的图表。它将多个维度的数据量映射到坐标轴上，这些坐标轴起始于同一个圆心点，通常结束于圆周边缘，将同一组的点使用线连接起来就称为了雷达图。它可以将多维数据进行展示，但是点的相对位置和坐标轴之间的夹角是没有任何信息量的。在坐标轴设置恰当的情况下雷达图所围面积能表现出一些信息量。</p>
+<p>每一个维度的数据都分别对应一个坐标轴，这些坐标轴具有相同的圆心，以相同的间距沿着径向排列，并且各个坐标轴的刻度相同。连接各个坐标轴的网格线通常只作为辅助元素。将各个坐标轴上的数据点用线连接起来就形成了一个多边形。坐标轴、点、线、多边形共同组成了雷达图。</p>
+<p>着重要强调的是，虽然雷达图每个轴线都表示不同维度，但使用上为了容易理解和统一比较。使用雷达图经常会人为的将将多个坐标轴都统一成一个度量，比如：统一成分数、百分比等。这样这个图就退化成一个二维图了，事实上这种雷达图在日常生活更常见、更长用。 另外，雷达图还可以展示出数据集中各个变量的权重高低情况，非常适用于展示<strong>性能数据</strong>。</p>
+<p>雷达图的主要缺点是：</p>
+<p>(1) 如果雷达图上多边形过多会使可读性下降，使整体图形过于混乱。特别是有颜色填充的多边形的情况，上层会遮挡覆盖下层多边形。</p>
+<p>(2) 如果变量过多，也会造成可读性下降，因为一个变量对应一个坐标轴，这样会使坐标轴过于密集，使图表给人感觉很复杂。所以最佳实践就是尽可能控制变量的数量使雷达图保持简单清晰。</p>
+<p>英文名：Radar chart, Spider Chart, Web Chart, Polar Chart, Star Plots</p>
+<p>注意：</p>
+<p>(1) 为了使概念尽可能简单，且贴近现今的使用习惯，下面我们暂时只介绍退化为二维的雷达图。</p>
+<p>(2) 雷达图更注重于同类图表之间的对比（即雷达图与雷达图之间的对比）</p>
+<h2 id="雷达图的构成">雷达图的构成</h2><p><img class="constitute-img" width="400px" src="../../../os.alipayobjects.com/rmsportal/xeuEDbQyDWZngob.png" /></p>
+<table class="struct-table">
+  <tr>
+    <th>图表类型</th>
+    <th>单组雷达图</th>
+  </tr>
+  <tr>
+    <td>适合的数据</td>
+    <td>一个分类字段，一个连续字段</td>
+  </tr>
+  <tr>
+    <td>功能</td>
+    <td>
+      <code>对比</code>分类数据的数值大小
+    </td>
+  </tr>
+  <tr>
+    <td>数据与图形的映射</td>
+    <td>分类字段映射到极坐标下角度标定的位置</br>连续字段映射到半径长度。
+    </td>
+  </tr>
+  <tr>
+    <td>适合的数据条数</td>
+    <td>不超过30条</td>
+  </tr>
+</table>
+
+<div style="clear:both;"></div>
+
+<p><img class="constitute-img" width="400px" src="../../../os.alipayobjects.com/rmsportal/pQDJLaWnSQrQhii.png" /></p>
+<table class="struct-table">
+  <tr>
+    <th>图表类型</th>
+    <th>单组雷达图</th>
+  </tr>
+  <tr>
+    <td>适合的数据</td>
+    <td>两个分类字段，一个连续字段</td>
+  </tr>
+  <tr>
+    <td>功能</td>
+    <td>
+      <code>对比</code>分类数据的数值大小
+    </td>
+  </tr>
+  <tr>
+    <td>数据与图形的映射</td>
+    <td>一个分类字段映射到极坐标下角度标定的位置</br>另一个分类字段映射到颜色</br>连续字段映射到半径长度。
+    </td>
+  </tr>
+  <tr>
+    <td>适合的数据条数</td>
+    <td>不超过30*N条(N <= 8; N是雷达链分类数)</td>
+  </tr>
+</table>
+
+<div style="clear:both;"></div>
+
+<div class="hide">
+  ## 雷达图的应用场景
+  ### 表示覆盖力，多用于表示人员能力。
+
+  如下图所示，通过雷达图表达了测试团队中，员工 A 个人能力和团队能力的关系。个人与团队能力息息相关，自己在团队中扮演着什么角色？跟团队的差距在哪儿？作为测试经理，在把控团队上哪方面的能力是欠缺的？从下图即可一目了然。
+
+  |对比对象 |行业知识|产品知识|测试能力|基础理论|项目管理|企业文化|
+  |------|----
+  |基准分| 10 | 10 | 10 | 10 | 10 | 10 |
+  |员工 A| 7 | 8 | 8 | 5 | 6 | 8 |
+  |团队平均| 6| 8 | 7 |7 | 6 | 8 |
+
+  <div id="c2"></div>
+
+  <div class="code unvisiable-hide">
+    var data = [
+      {item: "行业知识", value: 10, obj: "基准分"},
+      {item: "产品知识", value: 10, obj: "基准分"},
+      {item: "测试能力", value: 10, obj: "基准分"},
+      {item: "基础理论", value: 10, obj: "基准分"},
+      {item: "项目管理", value: 10, obj: "基准分"},
+      {item: "企业文化", value: 10, obj: "基准分"},
+      {item: "行业知识", value: 7, obj: "员工A"},
+      {item: "产品知识", value: 8, obj: "员工A"},
+      {item: "测试能力", value: 8, obj: "员工A"},
+      {item: "基础理论", value: 5, obj: "员工A"},
+      {item: "项目管理", value: 6, obj: "员工A"},
+      {item: "企业文化", value: 8, obj: "员工A"},
+      {item: "行业知识", value: 6, obj: "团队平均"},
+      {item: "产品知识", value: 8, obj: "团队平均"},
+      {item: "测试能力", value: 7, obj: "团队平均"},
+      {item: "基础理论", value: 7, obj: "团队平均"},
+      {item: "项目管理", value: 6, obj: "团队平均"},
+      {item: "企业文化", value: 8, obj: "团队平均"}
+    ];
+
+    var chart = new G2.Chart({
+      id: 'c2',
+      width: 400,
+      height: 400
+    });
+    chart.source(data);
+    chart.legend('obj',{ // 配置具体字段对应的图例属性
+      title: null
+    });
+    chart.coord('polar');
+    chart.axis('value',{ // 设置坐标系栅格样式
+      grid: {
+        type: 'polygon' //圆形栅格，可以改成
+      }
+    });
+    chart.col('value', {
+      min: 0,
+      max: 10,
+      tickCount: 10
+    });
+    chart.legend('right', {
+      title: null
+    });
+    chart.axis('item',{ // 设置坐标系栅格样式
+      line: null
+    });
+    // chart.area().position('item*value').color('obj');
+    chart.line().position('item*value').color('obj').size(2.5);
+    chart.point().position('item*value').color('obj').shape('circle');
+    chart.render();
+  </div>
+</div>
+
+
+<h3 id="多维对比－单雷达链">多维对比－单雷达链</h3><p>世界经济论坛不久前还发布了全球竞争力指数报告，通过基本要求、效率增强器、创新与成熟因素等三个大方面对全球国家和地区进行竞争力评估。中国排名第28，得分4.89。通过雷达图，我们可以清晰看出中国在各个因素下的得分情况，进而进行分析。</p>
+<div id="c3"></div>
+
+<div class="code unvisiable-hide">
+  var data = [
+    {item: "创新", value: 3.9, level: 3},
+    {item: "商业成熟度", value: 4.4, level: 3},
+    {item: "创新与成熟因素", value: 4.1, level: 3},
+    {item: "市场大小", value: 6.9, level: 2},
+    {item: "技术准备", value: 3.5, level: 2},
+    {item: "金融市场发展", value: 4.3, level: 2},
+    {item: "劳动市场效率", value: 4.6, level: 2},
+    {item: "商品市场效率", value: 4.4, level: 2},
+    {item: "高等教育和训练", value: 4.4, level: 2},
+    {item: "效率增强器", value: 4.7, level: 2},
+    {item: "健康和基础教育", value: 6.1, level: 1},
+    {item: "宏观经济环境", value: 6.4, level: 1},
+    {item: "设施", value:4.7, level: 1},
+    {item: "机构", value: 4.2, level: 1},
+    {item: "基本要求", value: 5.3, level: 1}
+  ];
+
+  var chart = new G2.Chart({
+    id: 'c3',
+    width: 600,
+    height: 600
+  });
+
+  chart.source(data);
+  chart.legend('obj',{ // 配置具体字段对应的图例属性
+    title: null
+  });
+  chart.coord('polar');
+  chart.axis('value',{ // 设置坐标系栅格样式
+    grid: {
+      type: 'polygon' //圆形栅格，可以改成
+    }
+  });
+  chart.col('value', {
+    min: 0,
+    max: 10,
+    tickCount: 10
+  });
+  chart.legendVisible('level', false);
+  chart.axis('item',{ // 设置坐标系栅格样式
+    line: null
+  });
+  chart.line().position('item*value').color('#F15A24').label('value');
+  chart.point().position('item*value').color('level',['#FCDC21', '#FF931E', '#ED1C24']).shape('circle');
+  chart.render();
+</div>
+
+
+<h3 id="多组多维对比－多雷达链">多组多维对比－多雷达链</h3><p>常常表示由多个维度组成的能力衡量。</p>
+<p>如下图展示了华为 Mate 和 中兴 Grand Memo 两款手机的综合表现雷达图，分别从易用性、功能、拍照、跑分、续航这五个维度进行考核，可以看出两款手机在这个维度方面的性能都比较平衡，同时也可逐项对比。</p>
+<div id="c4"></div>
+
+<div class="code unvisiable-hide">
+    var data = [
+    {item: "易用性", value: 80, obj: "华为Mate"},
+    {item: "功能", value: 90, obj: "华为Mate"},
+    {item: "拍照", value: 80, obj: "华为Mate"},
+    {item: "跑分", value: 70, obj: "华为Mate"},
+    {item: "续航", value: 90, obj: "华为Mate"},
+    {item: "易用性", value: 70, obj: "中兴Grand Memo"},
+    {item: "功能", value: 82, obj: "中兴Grand Memo"},
+    {item: "拍照", value: 81, obj: "中兴Grand Memo"},
+    {item: "跑分", value: 82, obj: "中兴Grand Memo"},
+    {item: "续航", value: 78, obj: "中兴Grand Memo"}
+  ];
+
+  var chart = new G2.Chart({
+    id: 'c4',
+    width: 600,
+    height: 350,
+    plotCfg: {
+      margin: [20, 140, 60, 0]
+    }
+  });
+
+  chart.source(data);
+  chart.legend('obj',{ // 配置具体字段对应的图例属性
+    title: null
+  });
+  chart.coord('polar');
+  chart.axis('value',{ // 设置坐标系栅格样式
+    grid: {
+      type: 'polygon' //圆形栅格，可以改成
+    }
+  });
+  chart.col('value', {
+    min: 0,
+    max: 100,
+    tickCount: 5
+  });
+  chart.legend('right', {
+    title: null
+  });
+  chart.axis('item',{ // 设置坐标系栅格样式
+    line: null
+  });
+  chart.line().position('item*value').color('obj');
+  chart.point().position('item*value').color('obj');
+  chart.render();
+</div>
+
+<!-- ## 雷达图的扩展
+
+### 雷达图的交互任务
+
+#### 雷达链高亮
+
+当有多条雷达链在一张图上时，某条雷达链的高亮对用会非常有帮助。
+
+#### 雷达链数值显示
+
+有时需要雷达图的某条雷达链上的数据被显示出来。
+
+#### 雷达链所围面积高亮
+
+雷达链所围面积可以高亮。
+
+#### 雷达链所围面积计算
+
+#### 雷达链选择
+
+有时需要选择某条雷达链，雷达链所围面积也会被同时选择。例如：通过图例来进行选择。
+
+#### 坐标轴选择
+
+有时需要选中某个坐标轴。
+
+#### 雷达链过滤
+
+可以过滤某个雷达链，使之不显示。例如：通过图例激活的方式来过滤。
+ -->
+
+<div class="hide">
+// 画构成的代码
+  var data = [
+    {item: "类别一", value: 8, obj: "分组一"},
+    {item: "类别二", value: 9, obj: "分组一"},
+    {item: "类别三", value: 8, obj: "分组一"},
+    {item: "类别四", value: 7, obj: "分组一"},
+    {item: "类别五", value: 9, obj: "分组一"}
+  ];
+
+  var chart = new G2.Chart({
+    id: 'c4',
+    width: 600,
+    height: 350,
+    plotCfg: {
+      margin: [20, 140, 60, 0]
+    }
+  });
+
+  chart.source(data);
+  chart.legend('obj',{ // 配置具体字段对应的图例属性
+    title: null
+  });
+  chart.coord('polar');
+  chart.axis('value',{ // 设置坐标系栅格样式
+    grid: {
+      type: 'polygon' //圆形栅格，可以改成
+    }
+  });
+  chart.col('value', {
+    min: 0,
+    max: 10,
+    tickCount: 5
+  });
+  chart.legend('right', {
+    title: null
+  });
+  chart.axis('item',{ // 设置坐标系栅格样式
+    line: null
+  });
+  chart.line().position('item*value').color('obj');
+  chart.area().position('item*value').color('obj').opacity(0.5);
+  chart.point().position('item*value').color('obj');
+  chart.render();
+</div>
+
+        <h2 id="标签">标签</h2>
+        <div class="detail-tags-list">
+          <a href="../classify/compare.html">
+            <i class="iconfont">&#xe609;</i>
+            <span>比较类</span>
+          </a>
+          <a href="../classify/relation.html">
+            <i class="iconfont">&#xe60b;</i>
+            <span>关系类</span>
+          </a>
+        </div>
+
+      <h2 id="实现">实现</h2>
+      <a href="https://g2.alipay.com/demo/#雷达图" target="_blank">G2</a>
+    </div>
+  </div>
+
+	
+<script type="text/javascript">
+		function autoDir () {
+			var h2s = $('h2');
+			var catalogue = $('.catalogue');
+			for (var i = 0; i < h2s.length; i++) {
+				var h2 = $(h2s[i]);
+        var h2id = h2.attr('id');
+        if (h2id) {
+          var str = "<li><a href='#" + h2id + "'>" + h2id +"</a></li>";
+          catalogue.append(str);
+        };
+			};
+		}
+		autoDir();
+	</script>
+
+
+  </div><footer class="footer-detail">
+	<div class="footer-wrapper">
+		<ul>
+			<li>关于我们</li>
+			<li><a href="../../about/index.html">我们的链接</a></li>
+		</ul>
+		<ul>
+			<li>联系我们</li>
+			<li><a href="https://github.com/antvis/feedback/issues/new" target="_blank">问题与建议－Issues</a></li>
+		</ul>
+		<ul>
+			<li>©2016 蚂蚁金服体验技术部出品 &nbsp; 文档版本 1.0 </li>
+			<li>支付宝版权所有 2004-2016 ICP证: 沪B2-20150087</li>
+		</ul>
+	</div>
+</footer>
+  </body>
+<script type="text/javascript">
+var ANIMS = ['headShake','bounce','pulse','rubberBand','shake','swing','tada','wobble','jello','bounceIn','fadeIn','flipInX','hinge','rotateIn','zoomIn','rollIn','slideInUp'];
+$.prototype.inAnim = function (x, callBack) {
+	var self = this;
+  self.removeClass('hide invisible').addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    self.removeClass(x + ' animated');
+    if (callBack) {
+    	callBack();
+    }
+  });
+};
+window.requestAnimationFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
+$.fn.isOnScreen = function(){
+  var win = $(window);
+  var viewport = {
+      top : win.scrollTop(),
+      left : win.scrollLeft()
+  };
+  viewport.right = viewport.left + win.width();
+  viewport.bottom = viewport.top + win.height();
+  var bounds = this.offset();
+  bounds.right = bounds.left + this.outerWidth();
+  bounds.bottom = bounds.top + this.outerHeight();
+  return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+};
+function ReplaceAll(str, sptr, sptr1){
+  while (str.indexOf(sptr) >= 0){
+     str = str.replace(sptr, sptr1);
+  }
+  return str;
+}
+function lazyLoad(codes) {
+  var isrun = [];
+  tryRun();
+  $(document).on('mousewheel',function(e){
+    tryRun();
+  });
+  function tryRun(){
+    codes.each(function(index,ele){
+      if (isrun.indexOf(ele) === -1) {
+        var $ele = $(ele);
+        if ( $ele.isOnScreen() ) {
+          setTimeout(function(){
+            var t = $ele.html();
+            t = ReplaceAll(t, '&lt;', '<');
+            t = ReplaceAll(t, '&gt;', '>');
+            t = ReplaceAll(t, '&amp;', '&');
+            eval(t);
+            $ele.hide();
+          },500);
+          isrun.push(ele);
+        };
+      };
+    });
+  }
+}
+function isWrong(id,text) {
+  var container = $("#"+id);
+  container.css('position','relative');
+  container.append('<div class="wrong tip">'+ text +'</div>');
+}
+function isRight(id,text) {
+  var container = $("#"+id);
+  container.css('position','relative');
+  container.append('<div class="right tip">'+ text +'</div>');
+}
+
+var animDom = $('.inAnim');
+var codes = $('.code');
+if (animDom.length) {
+  animDom.inAnim("fadeIn");
+};
+lazyLoad(codes);
+
+var k;
+var words = [];
+var key;
+for (k in searchBook) {
+  words.push(searchBook[k].key + ' ' + searchBook[k].keyCN);
+};
+$(document).ready(function(){
+  $('#search').autocomplete({
+    hints: words,
+    placeholder: '搜索',
+    onSubmit: function(e){
+      key = e.split(' ')[0];
+      if (searchBook[key]) {
+        window.location.href = contentUrl + searchBook[key].url;
+      }
+    },
+    showButton: false
+  });
+});
+if (window.location.host.indexOf('antv.alipay.net') != -1) {
+	window.Tracker && Tracker.start && Tracker.start();
+	window.Smartracker && Smartracker.sow && Smartracker.sow();
+};
+</script>
+
+<div style="display: none;">
+
+</div>
+
+<!-- Mirrored from antv.alipay.com/chart/details/radar-chart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:49:24 GMT -->
+</html>

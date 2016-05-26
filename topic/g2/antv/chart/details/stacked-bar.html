@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from antv.alipay.com/chart/details/stacked-bar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:49:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <title>AntV</title>
+  <!-- normalize.min.css -->
+  <link rel="stylesheet" href="../../../os.alipayobjects.com/rmsportal/kCUUeaMNGufqiDT.css">
+  <!-- animate.min.css -->
+  <link rel="stylesheet" type="text/css" href="../../../os.alipayobjects.com/rmsportal/AiATVwcMTMRLdsC.css" />
+  <!-- style.css -->
+  <link rel="stylesheet" type="text/css" href="../../../os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy40b1.css?1463111516374" />
+  <!-- https://os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy.css?1463390317657 -->
+  <!-- https://os.alipayobjects.com/rmsportal/gSINRNOdIGZOoDy.css?1463111516372 -->
+  <title>AntV</title>
+  <link rel="icon" href="../../../os.alipayobjects.com/rmsportal/IhIZKOLdgNgzlaj.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../os.alipayobjects.com/rmsportal/IhIZKOLdgNgzlaj.png" type="image/x-icon">
+  
+<script type="text/javascript" src="../../../a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+  <!-- autocomplete.min.js -->
+  <script type="text/javascript" src="../../../os.alipayobjects.com/rmsportal/WXhljTcHlRAkjAu.js"></script>
+
+  
+<script src="../../../as.alipayobjects.com/g/datavis/g2/1.2.1/index.js"></script>
+  <!-- antv.min.js -->
+  <script type="text/javascript" src="../../../os.alipayobjects.com/rmsportal/fLJXnXtkilXPVeT.js"></script>
+
+  <!-- for filename -->
+  
+<script src="../../../a.alipayobjects.com/alipay-request/3.0.3/index.js"></script>
+  <meta name="keywords" content="AntV,专业数据可视化规范,数据可视化,Data Visualization,柱状图,层叠柱状图,分组柱状图,饼图,直方图,南丁格尔玫瑰图,玉玦图,面积图,层叠面积图,折线图,散点图,气泡图,雷达图,分级统计图,带气泡的地图,点描法地图,漏斗图,马赛克图,色块图,热力图,矩形树图,K 线图,股票图,仪表盘,回归曲线图,箱形图,茎叶图,Stemplot, Stem , Leaf Display,Box plot,K Chart,Candlestick Chart,Treemap, Rectangular Tree,Heatmap,color map,Mosaic Plot, Marimekko Chart,Funnel plot,Dot Map, Dot Distribution Map, Dot Density Map,Bubble Map,Choropleth Map,Radar chart, Spider Chart, Web Chart, Polar Chart, Star Plots,Bubble chart,Scatter graph, Point graph, X-Y plot, Scatter chart or Scattergram,Line chart,Stacked Area Graph,Area Graph,Radial bar chart,Nightingale Rose Chart, Coxcomb Chart, Polar Area Diagram,Histogram,Pie chart,Multi-set Bar Chart,,Radial bar chart,Stacked bar chart,Column chart,Bar chart"/>
+  <meta name="description" content="AntV是一套专业的数据可视化规范" />
+</head>
+<body>
+  <script type="text/javascript">
+    var searchBook = {"index":{"key":"index","keyCN":"设计规范","url":"/design/index.html","keyWords":"index设计规范"},"all-charts":{"key":"all-charts","keyCN":"全部","url":"/chart/classify/all-charts.html","keyWords":"all-charts全部关键词（用于搜索）"},"combine":{"key":"combine","keyCN":"聚合类","url":"/chart/classify/combine.html","keyWords":"combine聚合类关键词（用于搜索）"},"compare":{"key":"compare","keyCN":"比较类","url":"/chart/classify/compare.html","keyWords":"compare比较类关键词（用于搜索）"},"distribute":{"key":"distribute","keyCN":"分布类","url":"/chart/classify/distribute.html","keyWords":"distribute分布类关键词（用于搜索）"},"flow":{"key":"flow","keyCN":"流程类","url":"/chart/classify/flow.html","keyWords":"flow流程类"},"location":{"key":"location","keyCN":"地图类","url":"/chart/classify/location.html","keyWords":"location地图类地理信息"},"path":{"key":"path","keyCN":"路径类","url":"/chart/classify/path.html","keyWords":"path路径类关键词（用于搜索）"},"range":{"key":"range","keyCN":"区间类","url":"/chart/classify/range.html","keyWords":"range区间类关键词（用于搜索）"},"relation":{"key":"relation","keyCN":"关系类","url":"/chart/classify/relation.html","keyWords":"relation关系类关键词（用于搜索）"},"time":{"key":"time","keyCN":"时间类","url":"/chart/classify/time.html","keyWords":"time时间类关键词（用于搜索）"},"trend":{"key":"trend","keyCN":"趋势类","url":"/chart/classify/trend.html","keyWords":"trend趋势类关键词（用于搜索）"},"area":{"key":"area","keyCN":"面积图","url":"/chart/details/area.html","keyWords":"area面积图area 面积图 层叠"},"bar":{"key":"bar","keyCN":"柱状图","url":"/chart/details/bar.html","keyWords":"bar柱状图"},"boxplot":{"key":"boxplot","keyCN":"箱形图","url":"/chart/details/boxplot.html","keyWords":"boxplot箱形图箱形图 箱须图"},"bubble-chart":{"key":"bubble-chart","keyCN":"气泡图","url":"/chart/details/bubble-chart.html","keyWords":"bubble-chart气泡图bubble 气泡 气泡图"},"bubble-map":{"key":"bubble-map","keyCN":"带气泡的地图","url":"/chart/details/bubble-map.html","keyWords":"bubble-map带气泡的地图气泡图 地图"},"chord":{"key":"chord","keyCN":"和弦图","url":"/chart/details/chord.html","keyWords":"chord和弦图"},"choropleth-map":{"key":"choropleth-map","keyCN":"分级统计图","url":"/chart/details/choropleth-map.html","keyWords":"choropleth-map分级统计图地图 分级统计图"},"color-map":{"key":"color-map","keyCN":"色块图","url":"/chart/details/color-map.html","keyWords":"color-map色块图热力图"},"contourline":{"key":"contourline","keyCN":"等高线","url":"/chart/details/contourline.html","keyWords":"contourline等高线"},"distributioncurve":{"key":"distributioncurve","keyCN":"分布曲线图","url":"/chart/details/distributioncurve.html","keyWords":"distributioncurve分布曲线图分布曲线"},"donut-chart":{"key":"donut-chart","keyCN":"环图","url":"/chart/details/donut-chart.html","keyWords":"donut-chart环图圆形"},"dot-map":{"key":"dot-map","keyCN":"点描法地图","url":"/chart/details/dot-map.html","keyWords":"dot-map点描法地图点图 地图 点描法地图"},"funnel":{"key":"funnel","keyCN":"漏斗图","url":"/chart/details/funnel.html","keyWords":"funnel漏斗图流程 流量 单向"},"gauge":{"key":"gauge","keyCN":"仪表盘","url":"/chart/details/gauge.html","keyWords":"gauge仪表盘仪表盘"},"heatmap":{"key":"heatmap","keyCN":"热力图","url":"/chart/details/heatmap.html","keyWords":"heatmap热力图热力图"},"histogram":{"key":"histogram","keyCN":"直方图","url":"/chart/details/histogram.html","keyWords":"histogram直方图"},"k-chart":{"key":"k-chart","keyCN":"K 线图","url":"/chart/details/k-chart.html","keyWords":"k-chartK 线图k 股票 蜡烛"},"line":{"key":"line","keyCN":"折线图","url":"/chart/details/line.html","keyWords":"line折线图"},"mosaic":{"key":"mosaic","keyCN":"马赛克图","url":"/chart/details/mosaic.html","keyWords":"mosaic马赛克图马赛克图"},"multi-set-bar":{"key":"multi-set-bar","keyCN":"分组柱状图","url":"/chart/details/multi-set-bar.html","keyWords":"multi-set-bar分组柱状图"},"pie":{"key":"pie","keyCN":"饼图","url":"/chart/details/pie.html","keyWords":"pie饼图圆形 饼图"},"radar-chart":{"key":"radar-chart","keyCN":"雷达图","url":"/chart/details/radar-chart.html","keyWords":"radar-chart雷达图雷达 雷达图"},"regressioncurve":{"key":"regressioncurve","keyCN":"回归曲线图","url":"/chart/details/regressioncurve.html","keyWords":"regressioncurve回归曲线图回归曲线"},"rose":{"key":"rose","keyCN":"南丁格尔玫瑰图","url":"/chart/details/rose.html","keyWords":"rose南丁格尔玫瑰图玫瑰图"},"sankey":{"key":"sankey","keyCN":"桑基图","url":"/chart/details/sankey.html","keyWords":"sankey桑基图"},"scatter-plot":{"key":"scatter-plot","keyCN":"散点图","url":"/chart/details/scatter-plot.html","keyWords":"scatter-plot散点图散点 scatter X_Y"},"stacked-area":{"key":"stacked-area","keyCN":"层叠面积图","url":"/chart/details/stacked-area.html","keyWords":"stacked-area层叠面积图层叠 area 面积图"},"stacked-bar":{"key":"stacked-bar","keyCN":"层叠柱状图","url":"/chart/details/stacked-bar.html","keyWords":"stacked-bar层叠柱状图"},"stem-leaf":{"key":"stem-leaf","keyCN":"茎叶图","url":"/chart/details/stem-leaf.html","keyWords":"stem-leaf茎叶图"},"treemap":{"key":"treemap","keyCN":"矩形树图","url":"/chart/details/treemap.html","keyWords":"treemap矩形树图"},"venn":{"key":"venn","keyCN":"韦恩图","url":"/chart/details/venn.html","keyWords":"venn韦恩图韦恩图"},"color":{"key":"color","keyCN":"颜色使用原则","url":"/design/principle/color.html","keyWords":"color颜色使用原则"},"baseLine":{"key":"baseLine","keyCN":"基线","url":"/design/rule/assist/baseLine.html","keyWords":"baseLine基线"},"otherAssist":{"key":"otherAssist","keyCN":"其它","url":"/design/rule/assist/otherAssist.html","keyWords":"otherAssist其它"},"referLine":{"key":"referLine","keyCN":"参考线","url":"/design/rule/assist/referLine.html","keyWords":"referLine参考线"},"valueDisplayed":{"key":"valueDisplayed","keyCN":"值显示","url":"/design/rule/assist/valueDisplayed.html","keyWords":"valueDisplayed值显示"},"axis":{"key":"axis","keyCN":"坐标轴","url":"/design/rule/base/axis.html","keyWords":"axis坐标轴"},"grid":{"key":"grid","keyCN":"栅格","url":"/design/rule/base/grid.html","keyWords":"grid栅格"},"legend":{"key":"legend","keyCN":"图例","url":"/design/rule/base/legend.html","keyWords":"legend图例"},"title":{"key":"title","keyCN":"标题","url":"/design/rule/base/title.html","keyWords":"title标题"},"tooltip":{"key":"tooltip","keyCN":"提示信息","url":"/design/rule/base/tooltip.html","keyWords":"tooltip提示信息"},"liveUpdate":{"key":"liveUpdate","keyCN":"实时更新","url":"/design/rule/func/liveUpdate.html","keyWords":"liveUpdate实时更新"},"rangeSelect":{"key":"rangeSelect","keyCN":"值域选择","url":"/design/rule/func/rangeSelect.html","keyWords":"rangeSelect值域选择"},"responsive":{"key":"responsive","keyCN":"图表自适应","url":"/design/rule/func/responsive.html","keyWords":"responsive图表自适应"}};
+    var contentUrl = "../../index.html";
+    var g2Realm = "https://g2.alipay.com/";
+  </script>
+<header>
+  <div class="nav-wrapper">
+    <a class="logo" href="../../index.html"></a>
+    <ul class="nav">
+      <li class="float-left search-icon"></li>
+      <li class="float-left search"><div id="search"></div></li>
+      <li>
+          <a href="../../about/index.html">工作小组</a>
+      </li>
+      <li>
+          <a href="../../design/index.html">设计规范</a>
+      </li>
+      <li class="active">
+          <a href="../index.html">数据图表</a>
+      </li>
+    </ul>
+  </div>
+</header>
+  <div class="body-content
+  ">
+
+  <div class="doc-content detail-content">
+    <div class="doc-inner detail-doc">
+			<h1>层叠柱状图</h1>
+			<ul class="catalogue"></ul>
+
+    	<h2 id="层叠柱状图的简介">层叠柱状图的简介</h2><p><img src="../../../os.alipayobjects.com/rmsportal/CpBYrdxsYGIpnYq.jpg" class="article-img-2"></p>
+<p>与并排显示分类的<a href="https://www.alipay.com/404.html">分组柱状图</a>不同，层叠柱状图将每个柱子进行分割以显示相同类型下各个数据的大小情况。它可以形象得展示一个大分类包含的每个小分类的数据，以及各个小分类的占比，显示的是单个项目与整体之间的关系。我们将层叠柱状图分为两种类型：</p>
+<p>(1) 一般的层叠柱状图：每一根柱子上的值分别代表不同的数据大小，各层的数据总和代表整根柱子的高度。非常适用于比较每个分组的数据总量。</p>
+<p>(2) 百分比的层叠柱状图：柱子的各个层代表的是该类别数据占该分组总体数据的百分比。</p>
+<p>层叠柱状图的一个缺点是当柱子上的层叠太多时会导致数据很难区分对比，同时很难对比不同分类下相同维度的数据，因为它们不是按照同一基准线对齐的。</p>
+<p>英文名：Stacked bar chart</p>
+<h2 id="层叠柱状图的构成">层叠柱状图的构成</h2><h3 id="一般层叠柱状图">一般层叠柱状图</h3><p><img src="../../../os.alipayobjects.com/rmsportal/IRcNZGQBfHwTzRa.png" width="400px" class="constitute-img"></p>
+<table class="struct-table">
+  <tr>
+    <th>图表类型</th>
+    <th>层叠柱状图</th>
+  </tr>
+  <tr>
+    <td>适合的数据</td>
+    <td>列表：两个分类数据字段、一个连续数据字段</td>
+  </tr>
+  <tr>
+    <td>功能</td>
+    <td><code>对比</code>分类数据的数值大小，同时<code>对比</code>一个分类（分组）下数据的汇总值</td>
+  </tr>
+  <tr>
+    <td>数据与图形的映射</td>
+    <td>其中一个分类数据字段映射到坐标轴的位置用于分组， <br>另一个分类数据映射到图形的颜色<br>连续数据字段映射到矩形的长度</td>
+  </tr>
+  <tr>
+    <td>适合的数据条数</td>
+    <td>映射到位置的分类不超过12个，映射到颜色的分类不超过6个</td>
+  </tr>
+</table>
+
+<div style="clear: both;"></div>
+
+<p><img src="../../../os.alipayobjects.com/rmsportal/TRsMVRQJVBLOYfx.png" width="400px" class="constitute-img"></p>
+<h3 id="百分比柱状图">百分比柱状图</h3><table class="struct-table">
+  <tr>
+    <th>图表类型</th>
+    <th>百分比柱状图</th>
+  </tr>
+  <tr>
+    <td>适合的数据</td>
+    <td>列表：两个分类数据字段、一个连续数据字段</td>
+  </tr>
+  <tr>
+    <td>功能</td>
+    <td>对比同一个分组数据内不同分类的占比</td>
+  </tr>
+  <tr>
+    <td>数据与图形的映射</td>
+    <td>其中一个分类数据字段映射到坐标轴的位置用于分组， <br>另一个分类数据映射到图形的颜色<br>连续数据字段映射到矩形的长度</td>
+  </tr>
+  <tr>
+    <td>适合的数据条数</td>
+    <td>映射到位置的分类不超过12个 <br> 映射到颜色的分类不超过6个</td>
+  </tr>
+</table>
+
+<div style="clear: both;"></div>
+
+<h2 id="层叠柱状图的应用场景">层叠柱状图的应用场景</h2><h3 id="一般层叠柱状图">一般层叠柱状图</h3><p>如下图显示的是每种化妆品在各个城市的销售情况，通过层叠柱状图，我们可以很清晰对比同一种化妆品到底在哪个城市销售更好。</p>
+<table>
+<thead>
+<tr>
+<th>name（化妆品名称）</th>
+<th>city</th>
+<th>revenue(销售收入)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nailpolish</td>
+<td>Florida</td>
+<td>12814</td>
+</tr>
+<tr>
+<td>Eyebrowpencil</td>
+<td>Florida</td>
+<td>13012</td>
+</tr>
+<tr>
+<td>Rouge</td>
+<td>Texas</td>
+<td>9054</td>
+</tr>
+<tr>
+<td>。。。</td>
+<td>。。。</td>
+<td>。。。</td>
+</tr>
+</tbody>
+</table>
+<div id="c3"></div>
+
+<div class="code unvisiable-hide">
+  var data = [
+  {"name": "Nailpolish", "Florida": 12814, "Texas": 3054, "Arizona": 4376, "Nevada": 4229},
+  {"name": "Eyebrowpencil", "Florida": 13012, "Texas": 5067, "Arizona": 3987, "Nevada": 3932},
+  {"name": "Rouge", "Florida": 11624, "Texas": 7004, "Arizona": 3574, "Nevada": 5221},
+  {"name": "Pomade", "Florida": 8814,  "Texas":9054, "Arizona": 4376, "Nevada": 9256},
+  {"name": "Eyeshadows", "Florida": 12998, "Texas": 12043, "Arizona": 4572, "Nevada": 3308},
+  {"name": "Eyeliner", "Florida": 12321, "Texas": 15067, "Arizona": 3417, "Nevada": 5432},
+  {"name": "Foundation", "Florida": 10342, "Texas": 10119, "Arizona": 5231, "Nevada": 13701},
+  {"name": "Lipgloss", "Florida": 22998, "Texas": 12043, "Arizona": 4572, "Nevada": 4008},
+  {"name": "Mascara", "Florida": 11261, "Texas": 10419, "Arizona": 6134, "Nevada": 18712},
+  {"name": "Powder", "Florida": 10261, "Texas": 14419, "Arizona": 5134, "Nevada": 25712}
+  ];
+
+  data = data.reverse();
+  var Frame = G2.Frame;
+  var Stat = G2.Stat;
+  var frame = new Frame(data);
+  frame = Frame.combinColumns(frame,['Florida','Texas','Arizona','Nevada'],'Revenue','City','name');
+
+  var chart = new G2.Chart({
+      id: 'c3',
+      width: 800,
+      height: 400,
+      plotCfg:{
+        margin: [20,73,80,120]
+      }
+    });
+    chart.source(frame);
+    chart.axis('name', {title: null});
+    chart.axis('Revenue', {title: null});
+    chart.col('..percent',{
+      formatter: function(val) {
+        return parseInt(val*100) + '%';
+      }
+    });
+    chart.coord('rect')//.transpose();//Stat.summary.percent()
+    chart.intervalStack().position('name*Revenue').color('City');
+    chart.render();
+</div>
+
+<p>说明：</p>
+<ul>
+<li>name （化妆品名称）使用 <code>位置</code>区分不同的化妆品</li>
+<li>city (不同的城市) 使用不同的<code>颜色</code>区分</li>
+<li>revenue （销售收入）使用矩形的<code>长度</code>表示销售量的大小，将销售收入层叠起来，可以看到某个化妆品在所有城市的总销售额</li>
+</ul>
+<p><span class="warning">注意：对比不同化妆品在不同城市的销售量，此图不合适，除了最底层的城市（如：Florida）代表的矩形外，其他相同城市的矩形不对齐，对比效果不明显。</span></p>
+<h3 id="百分比层叠柱状图（观察分类占比情况）">百分比层叠柱状图（观察分类占比情况）</h3><p>下图表是一个游戏公司在不同年份的各类游戏的销量情况：</p>
+<table>
+<thead>
+<tr>
+<th>year（年份）</th>
+<th>genre（游戏类型）</th>
+<th>sold（销售量）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2001</td>
+<td>Sports</td>
+<td>27,500</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>Strategy</td>
+<td>11,500</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>Action</td>
+<td>6,000</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>Shooter</td>
+<td>3,500</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>Other</td>
+<td>1,500</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Sports</td>
+<td>29,500</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Strategy</td>
+<td>10,500</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Action</td>
+<td>8,000</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Shooter</td>
+<td>4,500</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Other</td>
+<td>1,800</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<div id="c2"></div>
+
+<div class="code unvisiable-hide">
+  var data = [
+    {year:2001,genre:'Sports',sold:27500},
+    {year:2001,genre:'Strategy',sold:11500},
+    {year:2001,genre:'Action',sold:6000},
+    {year:2001,genre:'Shooter',sold:3500},
+    {year:2001,genre:'Other',sold:1500},
+
+    {year:2002,genre:'Sports',sold:29500},
+    {year:2002,genre:'Strategy',sold:10500},
+    {year:2002,genre:'Action',sold:8000},
+    {year:2002,genre:'Shooter',sold:4500},
+    {year:2002,genre:'Other',sold:1800},
+
+    {year:2003,genre:'Sports',sold:30500},
+    {year:2003,genre:'Strategy',sold:12500},
+    {year:2003,genre:'Action',sold:4000},
+    {year:2003,genre:'Shooter',sold:6500},
+    {year:2003,genre:'Other',sold:2000},
+  ];
+
+  var Stat = G2.Stat;
+
+  var chart = new G2.Chart({
+    id: 'c2',
+    width: 800,
+    height: 400
+  });
+
+  chart.source(data);
+  chart.col('year',{type:'cat'});
+  chart.col('..percent',{
+    formatter: function(val) {
+      return parseInt(val*100) + '%';
+    }
+  });
+  chart.intervalStack().position(Stat.summary.percent('genre*sold')).color('year');
+  chart.render();
+
+</div>
+
+<p>说明：</p>
+<ul>
+<li>genre 使用横轴<code>位置</code>区分不同的游戏类型</li>
+<li>year 使用<code>颜色</code>区分不同年份的游戏</li>
+<li>sold 使用矩形的<code>长度</code>表示游戏销量</li>
+</ul>
+<p><span class="warning">注意：百分比层叠柱状图只能表示在一个分组内部数据各自的占比，无法对比不同分组内同个分类的数据大小。</span></p>
+<p><strong>当分类过多时，我们可以使用横向的层叠柱状图。</strong> <br>
+下图展示了美国几十个州不同年龄段的人口数据分布情况。</p>
+<table>
+<thead>
+<tr>
+<th>州名称</th>
+<th>年龄段</th>
+<th>人口数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;CA&quot;</td>
+<td>&quot;小于5岁&quot;</td>
+<td>2704659</td>
+</tr>
+</tbody>
+</table>
+<div id="c1"></div>
+
+<div class="code unvisiable-hide">
+  $.getJSON('/data.json?filename=populationsByage', function(data) {
+    var Stat = G2.Stat;
+    var Frame = G2.Frame;
+    var frame = new Frame(data);
+    frame = Frame.combinColumns(frame,["小于5岁","5至13岁","14至17岁","18至24岁","25至44岁","45至64岁","65岁及以上"],'人口数量','年龄段','State');
+
+    var chart = new G2.Chart({
+      id: 'c1',
+      width: 800,
+      height: 700,
+      plotCfg: {
+        margin: [10, 95, 60, 40]
+      }
+    });
+    chart.source(frame);
+    chart.coord('rect').transpose();
+    chart.axis('State', {
+      title: null
+    });
+    chart.axis('人口数量', {
+      titleOffset: 75
+    });
+    chart.intervalStack().position('State*人口数量').color('年龄段', ['#98ABC5', '#8A89A6', '#7B6888', '#6B486B', '#A05D56', '#D0743C', '#FF8C00']).size(9);
+    chart.render();
+  });
+</div>
+
+<p>说明：</p>
+<ul>
+<li>州名称，用纵轴方向的<code>位置</code>区分各个州</li>
+<li>年龄段，用不同的<code>颜色</code>区分不同年龄段的人口</li>
+<li>人口数量，用每个矩形的<code>长度</code>来表示人口数量的大小，每个州不同年龄段的人口层叠起来，可以看到整个州总的人口</li>
+</ul>
+<h2 id="层叠柱状图和其他图表的对比">层叠柱状图和其他图表的对比</h2><h3 id="层叠柱状图和一般柱状图">层叠柱状图和<a href="bar.html">一般柱状图</a></h3><ul>
+<li>层叠柱状图可以增加一个维度，用于对比一组数据内不同分类的数据值大小，可以表示3个数据字段（维度）的数据，而一般柱状图只能表示2个数据字段（维度）</li>
+</ul>
+<h3 id="层叠柱状图和层叠区域图">层叠柱状图和<a href="stacked-area.html">层叠区域图</a></h3><ul>
+<li>层叠柱状图主和层叠区域图都能表示3个维度的数据，</li>
+<li>层叠柱状图用于表示2个分类数据字段，一个连续数据字段，主要是对比分类之间的对比</li>
+<li>层叠区域图用于表示一个分类字段，2个连续字段，主要是观察在一个连续（有序）区间内不同分类大小（比例）的对比。</li>
+</ul>
+<h3 id="层叠柱状图和分组柱状图">层叠柱状图和分组柱状图</h3><ul>
+<li>分组柱状图，可以对比同一个分组内部不同分类的数据大小，也可以对比不同分组内相同分类的数据大小</li>
+<li>层叠柱状图，可以对比同一个分组内部不同分类的数据大小，但不适合对比不同分组内相同分类的数据大小</li>
+</ul>
+
+        <h2 id="变型">变型</h2>
+        <div class="detail-list">
+  			  <a href="bar.html">
+  			  	<i class="iconfont">&#xe612;</i>
+  			  	<span>柱状图</span>
+  			  </a>
+  			  <a href="multi-set-bar.html">
+  			  	<i class="iconfont">&#xe630;</i>
+  			  	<span>分组柱状图</span>
+  			  </a>
+        </div>
+        <h2 id="标签">标签</h2>
+        <div class="detail-tags-list">
+          <a href="../classify/compare.html">
+            <i class="iconfont">&#xe609;</i>
+            <span>比较类</span>
+          </a>
+          <a href="../classify/relation.html">
+            <i class="iconfont">&#xe60b;</i>
+            <span>关系类</span>
+          </a>
+        </div>
+
+      <h2 id="实现">实现</h2>
+      <a href="https://g2.alipay.com/demo/04-column/column-stack.html" target="_blank">G2</a>
+    </div>
+  </div>
+
+	
+<script type="text/javascript">
+		function autoDir () {
+			var h2s = $('h2');
+			var catalogue = $('.catalogue');
+			for (var i = 0; i < h2s.length; i++) {
+				var h2 = $(h2s[i]);
+        var h2id = h2.attr('id');
+        if (h2id) {
+          var str = "<li><a href='#" + h2id + "'>" + h2id +"</a></li>";
+          catalogue.append(str);
+        };
+			};
+		}
+		autoDir();
+	</script>
+
+
+  </div><footer class="footer-detail">
+	<div class="footer-wrapper">
+		<ul>
+			<li>关于我们</li>
+			<li><a href="../../about/index.html">我们的链接</a></li>
+		</ul>
+		<ul>
+			<li>联系我们</li>
+			<li><a href="https://github.com/antvis/feedback/issues/new" target="_blank">问题与建议－Issues</a></li>
+		</ul>
+		<ul>
+			<li>©2016 蚂蚁金服体验技术部出品 &nbsp; 文档版本 1.0 </li>
+			<li>支付宝版权所有 2004-2016 ICP证: 沪B2-20150087</li>
+		</ul>
+	</div>
+</footer>
+  </body>
+<script type="text/javascript">
+var ANIMS = ['headShake','bounce','pulse','rubberBand','shake','swing','tada','wobble','jello','bounceIn','fadeIn','flipInX','hinge','rotateIn','zoomIn','rollIn','slideInUp'];
+$.prototype.inAnim = function (x, callBack) {
+	var self = this;
+  self.removeClass('hide invisible').addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    self.removeClass(x + ' animated');
+    if (callBack) {
+    	callBack();
+    }
+  });
+};
+window.requestAnimationFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
+$.fn.isOnScreen = function(){
+  var win = $(window);
+  var viewport = {
+      top : win.scrollTop(),
+      left : win.scrollLeft()
+  };
+  viewport.right = viewport.left + win.width();
+  viewport.bottom = viewport.top + win.height();
+  var bounds = this.offset();
+  bounds.right = bounds.left + this.outerWidth();
+  bounds.bottom = bounds.top + this.outerHeight();
+  return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+};
+function ReplaceAll(str, sptr, sptr1){
+  while (str.indexOf(sptr) >= 0){
+     str = str.replace(sptr, sptr1);
+  }
+  return str;
+}
+function lazyLoad(codes) {
+  var isrun = [];
+  tryRun();
+  $(document).on('mousewheel',function(e){
+    tryRun();
+  });
+  function tryRun(){
+    codes.each(function(index,ele){
+      if (isrun.indexOf(ele) === -1) {
+        var $ele = $(ele);
+        if ( $ele.isOnScreen() ) {
+          setTimeout(function(){
+            var t = $ele.html();
+            t = ReplaceAll(t, '&lt;', '<');
+            t = ReplaceAll(t, '&gt;', '>');
+            t = ReplaceAll(t, '&amp;', '&');
+            eval(t);
+            $ele.hide();
+          },500);
+          isrun.push(ele);
+        };
+      };
+    });
+  }
+}
+function isWrong(id,text) {
+  var container = $("#"+id);
+  container.css('position','relative');
+  container.append('<div class="wrong tip">'+ text +'</div>');
+}
+function isRight(id,text) {
+  var container = $("#"+id);
+  container.css('position','relative');
+  container.append('<div class="right tip">'+ text +'</div>');
+}
+
+var animDom = $('.inAnim');
+var codes = $('.code');
+if (animDom.length) {
+  animDom.inAnim("fadeIn");
+};
+lazyLoad(codes);
+
+var k;
+var words = [];
+var key;
+for (k in searchBook) {
+  words.push(searchBook[k].key + ' ' + searchBook[k].keyCN);
+};
+$(document).ready(function(){
+  $('#search').autocomplete({
+    hints: words,
+    placeholder: '搜索',
+    onSubmit: function(e){
+      key = e.split(' ')[0];
+      if (searchBook[key]) {
+        window.location.href = contentUrl + searchBook[key].url;
+      }
+    },
+    showButton: false
+  });
+});
+if (window.location.host.indexOf('antv.alipay.net') != -1) {
+	window.Tracker && Tracker.start && Tracker.start();
+	window.Smartracker && Smartracker.sow && Smartracker.sow();
+};
+</script>
+
+<div style="display: none;">
+
+</div>
+
+<!-- Mirrored from antv.alipay.com/chart/details/stacked-bar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 May 2016 06:49:15 GMT -->
+</html>
