@@ -3,13 +3,12 @@ require.config({　　　　
 	paths: {　　　　　　
 		"jquery": "jquery.min",
 		"jquery-weui": "jquery-weui",
-		　　　　　　"jquery.fullPage": "jquery.fullPage.min"
+		"jquery.fullPage": "jquery.fullPage.min"
 	},
 	shim: {　　　　
 		'jquery.fullPage': {　　　　　　
 			deps: ['jquery']　　　
-		},
-		　
+		},		　
 		'jquery-weui': {　　　　　　
 			deps: ['jquery']　　　
 		}　
@@ -102,7 +101,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 		//只抽取maxAnswerNum个
 		quesLen = (quesLen <= exam.maxAnswerNum) ? quesLen : exam.maxAnswerNum;
-		$('[name="timeLatest"]').text((exam.timeLength/60/1000).toFixed(0));
+		$('[name="timeLatest"]').text((exam.timeLength / 60 / 1000).toFixed(0));
 		$('[name="nums"]').text(quesLen);
 		exam.eachScore = 100 / quesLen;
 		$('[name="scores"]').text(exam.eachScore.toFixed(0));
@@ -196,16 +195,16 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			}*/
 
 			//第一页简单颜色切换
-			if(direction == 'down'){
-				if (index % 2){
+			if (direction == 'down') {
+				if (index % 2) {
 					$('.iSlider-arrow').removeClass('iSlider-white');
-				}else if (nextIndex % 2){
+				} else if (nextIndex % 2) {
 					$('.iSlider-arrow').addClass('iSlider-white');
 				}
-			}else{
-				if (nextIndex % 2){
+			} else {
+				if (nextIndex % 2) {
 					$('.iSlider-arrow').addClass('iSlider-white');
-				}else{
+				} else {
 					$('.iSlider-arrow').removeClass('iSlider-white');
 				}
 			}
@@ -337,7 +336,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 							} else if (obj.status == -1) {
 								$('[name="sucessInfo"] .weui_msg_title').text('该用户已提交数据');
 							} else {
-								handleTotalScore(data.score,obj.uid);
+								handleTotalScore(data.score, obj.uid);
 							}
 
 							if (obj.status == 0) {
@@ -345,7 +344,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 							} else if (obj.status == -1) {
 								$('[name="sucessInfo"] h1').text('该用户已提交数据');
 							} else { //提交成功
-								handleTotalScore(data.score,obj.uid);
+								handleTotalScore(data.score, obj.uid);
 							}
 						},
 						error: function(obj) {
@@ -368,7 +367,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		});
 	};
 
-	/*var audioInit = function() {
+	var audioInit = function() {
 		var audio = document.getElementById('autoplay');
 		var controller = document.getElementById('musicBtn');
 		var controllerHint = document.getElementById('musicBtnTxt');
@@ -390,5 +389,5 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			}, 1000);
 
 		}, false);
-	};*/
+	};
 });

@@ -17,20 +17,22 @@ require.config({　　　　
 });
 /**
  * [exam 测试题目]
- * @type {总分、错误题目、答题数据、当前题目是否已答、时间有剩余、答题已开始、考试时间、原答题顺序}
  */
 var exam = {
-	total: 0,
-	error: [],
-	answerList: [],
-	isAnswered: [],
-	timeReleased: false,
-	isStarted: false,
+	total: 0, //总分
+	error: [], //错误题目（原顺序）
+	answerList: [], //乱序后的答案顺序
+	isAnswered: [], //题目回答状态
+	timeReleased: false, //时间用尽
+	isStarted: false, //活动是否开始
 	timeLength: 0, //10 * 1000,//启用时间限制 0为不限制
-	sourceList: [],
-	eachScore: 0,
-	isSubmit: false,
+	sourceList: [], //原题目顺序
+	scoresPerAnswer: 0, //每道题目分数
+	isSubmit: false, //数据是否提交
+	isLogin: false, //是否登录
+	loginData: {}, //用户登录信息
 	maxAnswerNum: 20, //最大抽取多少道题目
+	answerTimes: 20, //每个用户最多回答几次
 	examPaper: "safe" //试卷文件
 };
 
@@ -42,7 +44,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 	var secColor = [];
 	//testMode 0:默认，1，测试模式，2，安保
 	var testMode = (window.location.href.indexOf('?m=') == -1) ? 0 : window.location.href.split('?m=')[1].split('&')[0];
-	exam.maxAnswerNum = (testMode === 0) ? exam.maxAnswerNum : 5;
+	exam.maxAnswerNum = (testMode === 0) ? exam.maxAnswerNum : 2;
 	//隐藏提示信息
 	$('[name="sucessInfo"] .weui_msg_title').hide();
 
@@ -55,9 +57,9 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		arr.map(function(arrData, id) {
 			oldOrder[arrData] = id;
 		});
-		var str = '<div class="section ' + (i % 2 ? '' : 'background_dark') + '">';
-		str += '<h1 class="title answer-num ' + (i % 2 ? '' : 'white-font') + '">第<span>' + i + '</span>题</h1>';
-		str += '<div class="weui_cells_title ' + (i % 2 ? '' : 'white-font') + '">' + data.title + '</div>';
+		var str = '<div class="section ' + (i % 2 ? '' : 'background_dark_img') + '">';
+		str += '<h1 class="title answer-num ' + /*(i % 2 ? '' : 'white-font')+*/ '">第<span>' + i + '</span>题</h1>';
+		str += '<div class="weui_cells_title ' + /*(i % 2 ? '' : 'white-font')+*/ '">' + data.title + '</div>';
 		str += '<div class="weui_cells weui_cells_checkbox' + (i % 2 ? '' : ' weui_cells_dark') + '" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
 		data.question.map(function(qTitle, idx) {
@@ -78,7 +80,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		}
 		//选项乱序 -END
 
-		str += strQues + '</div>' + (i % 2 ? '' : '<img class="lg-component-img" src="./assets/img/bottom.png">') + '</div>';
+		str += strQues + '</div>' + /*(i % 2 ? '' : '<img class="lg-component-img" src="./assets/img/bottom.png">') +*/ '</div>';
 		return str;
 	}
 
@@ -103,7 +105,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		});
 
 		$('[name="user_dpt"]').picker({
-			title: "请选择您的部门",
+			title: "上下滑动选择您的部门",
 			cols: [{
 				textAlign: 'center',
 				values: dptName
@@ -121,16 +123,20 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 		quesLen = (quesLen <= exam.maxAnswerNum) ? quesLen : exam.maxAnswerNum;
 
 		$('[name="nums"]').text(quesLen);
-		exam.eachScore = 100 / quesLen;
-		$('[name="scores"]').text(exam.eachScore.toFixed(0));
+		exam.scoresPerAnswer = 100 / quesLen;
+		$('[name="scores"]').text(exam.scoresPerAnswer.toFixed(0));
 
 		for (var i = 0; i < quesLen; i++) {
-			$('[name="form"]').before(getExamTemplate(question[exam.sourceList[i]], i + 1));
+			$('[name="sucessInfo"]').before(getExamTemplate(question[exam.sourceList[i]], i + 1));
 			exam.isAnswered[i] = 0;
 		}
 
+
+		var str = '<div class="weui_opr_area"><p class="weui_btn_area"><a href="javascript:;" class="weui_btn weui_btn_primary" id="submit">交卷</a></p></div>';
+		$('.answer-num').last().parent().append(str);
+
 		//间隔背景
-		lastPage = quesLen + 2;
+		lastPage = quesLen + 3;
 		for (i = 0; i < lastPage; i++) {
 			secColor[i] = (i % 2) ? '#fff' : '#445';
 		}
@@ -196,38 +202,50 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				var answerPrnt = $(this).parents('.weui_cells');
 				var answerInfo = $(this).find('.weui_cell_primary');
 				var curScore = (answerInfo.data('value') + 1 == answerPrnt.data('answer')) ? 1 : 0;
-				exam.answerList[answerPrnt.data('id')] = curScore;
-				exam.isAnswered[answerPrnt.data('id')] = 1;
-				setTimeout(function() {
-					$.fn.fullpage.moveTo(answerPrnt.data('id') + 3);
-				}, 200);
+				var curID = answerPrnt.data('id');
+				exam.answerList[curID] = curScore;
+				exam.isAnswered[curID] = 1;
+				//未到最后一题
+				if (curID < exam.maxAnswerNum - 1) {
+					setTimeout(function() {
+						$.fn.fullpage.moveTo(curID + 4);
+					}, 300);
+				}
 			}
 		});
 
 		function pageChange(index, nextIndex, direction) {
-			var idx = index - 1;
-			if (direction == 'down' && !exam.timeReleased && idx > 0 && idx < lastPage - 1 && !exam.isAnswered[idx - 1]) {
+			var idx = index - 2;
+
+			if (direction == 'down' && !exam.isLogin && !exam.timeReleased) {
+				setTimeout(function() {
+					$.fn.fullpage.moveTo(2);
+				}, 200);
+				return;
+			}
+
+			if (direction == 'down' && !exam.timeReleased && idx > 0 && idx < lastPage - 2 && !exam.isAnswered[idx - 1]) {
 				$.alert("第" + idx + "题您还没有作答！", "警告！", function() {
-					$.fn.fullpage.moveTo(idx + 1);
+					$.fn.fullpage.moveTo(index);
 				});
 			}
 
 			//第一页简单颜色切换
-			if(direction == 'down'){
-				if (index % 2){
+			/*if (direction == 'down') {
+				if (index % 2) {
 					$('.iSlider-arrow').removeClass('iSlider-white');
-				}else if (nextIndex % 2){
+				} else if (nextIndex % 2) {
 					$('.iSlider-arrow').addClass('iSlider-white');
 				}
-			}else{
-				if (nextIndex % 2){
+			} else {
+				if (nextIndex % 2) {
 					$('.iSlider-arrow').addClass('iSlider-white');
-				}else{
+				} else {
 					$('.iSlider-arrow').removeClass('iSlider-white');
 				}
-			}
-			//最后两页隐藏箭头
-			if (index >= lastPage - 1 && (direction == 'down')) {
+			}*/
+			//最后一页隐藏箭头
+			if (index > lastPage && (direction == 'down')) {
 				$('.iSlider-arrow').hide();
 			}
 		}
@@ -261,10 +279,10 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			},
 			afterLoad: function(anchor, index) {
 				//最后两页隐藏箭头
-				if (index == lastPage) {
+				if (index == lastPage - 1) {
 					//console.log('进入倒数第二页');
 					$('.iSlider-arrow').hide();
-				} else if (index > lastPage) {
+				} else if (index == lastPage) {
 					//console.log('进入最后一页');
 					$('.iSlider-arrow').hide();
 					if (!exam.isSubmit) {
@@ -303,7 +321,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			return isPass;
 		}
 
-		$('[name="form"] input').on('focus', function() {
+		$('[name="login"] input').on('focus', function() {
 			$(this).parents('.weui_cell').find('label').attr('style', '');
 		});
 
@@ -312,6 +330,9 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			if (iScore >= 80) {
 				tipStr = '恭喜您获奖！请根据部门通知领取答题奖品！';
 			} else {
+				if (exam.loginData.iTimes == 1) {
+					tipStr = '您还有一次答题机台，退出页面重新进入即可，下次继续努力哦！';
+				}
 				tipStr = '下次继续努力哦！安全生产离不开您的参与！';
 			}
 
@@ -325,7 +346,97 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			$('[name="sucessInfo"] .weui_msg_title').text(tipStr).show();
 		}
 
-		$('[name="form"] .weui_btn').on('click', function(event) {
+		$('#login').on('click', function() {
+			var data = {
+				user_name: $('[name="userName"]').val().trim(),
+				user_id: $('[name="userCard"]').val().trim(),
+				user_dpt: $('[name="user_dpt"]').val()
+			};
+			data.user_firstname = data.user_name.substr(0, 1);
+
+			if (!validate(data)) {
+				$.toast("请输入个人用户信息", "cancel");
+			} else {
+				$.ajax({
+					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examSafeLogin',
+					data: data,
+					success: function(obj) {
+						//var obj = loginData[0];
+						if (obj.id == 0) { //查无此人
+							$.alert("登录失败，请检查您的卡号及部门", "警告！");
+						} else if (obj.first_name.trim() != data.user_firstname) {
+							$.alert("登录失败，您的姓名可能填写错误", "警告！");
+						} else { //登录成功
+							if (obj.answer_times >= exam.answerTimes) { //回答次数用完
+								$.alert("您已用完" + exam.answerTimes + "次答题机会", "警告！");
+							} else {
+								exam.isLogin = true;
+								exam.loginData = data;
+								exam.loginData.uid = obj.id;
+								//答题次数增1
+								exam.loginData.iTimes = Number.parseInt(obj.answer_times) + 1;
+
+								//上次分数
+								exam.loginData.oldScore = (exam.loginData.iTimes >= 1) ? Number.parseInt(obj.score) : 0;
+								exam.loginData.loginTime = today(1);
+
+								//隐藏页面，防止登录信息再次修改
+								$(this).parents('.section').hide();
+								$.fn.fullpage.moveSectionDown();
+							}
+						}
+					},
+					error: function(obj) {
+						$.alert("登录失败，请刷新重试", "警告！");
+					}
+				});
+			}
+		});
+
+		function isAllQuestionAnswered() {
+			var passed = true;
+			exam.isAnswered.map(function(isAnswered, i) {
+				if (!isAnswered) {
+					var j = i + 1;
+					$.toast("第" + j + "题尚未作答，请先填写完所有题目再交卷");
+					passed = false;
+				}
+			});
+		}
+
+		function submitPaper(data) {
+			$.ajax({
+					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setSafeExamData',
+					data: data,
+					success: function(obj) {
+						if (obj.status == 0) {
+							$('[name="sucessInfo"] .weui_msg_title').text('提交失败，请稍后重试');
+						} else if (obj.status == -1) {
+							$('[name="sucessInfo"] .weui_msg_title').text('该用户已提交数据');
+						} else { //提交成功
+							handleTotalScore(data.score, data.uid);
+							if (data.score == exam.loginData.oldScore) {
+								$.alert("本次得分" + data.score + "与上一次相同，系统将不保存此次得分", "警告！");
+							} else if (data.score < exam.loginData.oldScore) {
+								$.alert("系统检测到本次得分" + data.score + "比上次更低，系统将不保存此次得分", "警告！");
+							}
+						}
+
+						$.fn.fullpage.moveSectionDown();
+					},
+					error: function(obj) {
+						var tipStr = '提交失败，请退出页面重新进入';
+						$('[name="sucessInfo"] .weui_msg_title').text(tipStr).show();
+					}
+				})
+				.always(function() {
+					exam.isSubmit = true;
+					//隐藏提交按钮，防止二次提交数据
+					$('#submit').hide();
+				});
+		}
+
+		$('#submit').on('click', function(event) {
 			//清空错误数据
 			exam.error = [];
 			//得分清零
@@ -338,55 +449,50 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				}
 			});
 
+			//是否所有题目均答完
+			if (!isAllQuestionAnswered) {
+				return;
+			}
+
 			var errStr = '';
 			exam.error.map(function(elem) {
 				errStr += elem + ',';
 			});
+
 			errStr = (errStr.length) ? errStr.substring(0, errStr.length - 1) : '-1';
 
 			var data = {
-				user_name: $('[name="userName"]').val(),
-				user_id: $('[name="userCard"]').val(),
-				user_dpt: $('[name="user_dpt"]').val(),
-				score: (exam.total * exam.eachScore).toFixed(0),
+				score: (exam.total * exam.scoresPerAnswer).toFixed(0),
 				errors: errStr,
-				rec_time: today(1)
+				rec_time: today(1),
+				start_time: exam.loginData.loginTime,
+				uid: exam.loginData.uid,
+				iTimes: exam.loginData.iTimes,
+				oldScore: exam.loginData.oldScore
 			};
 
-			if (!validate(data)) {
-				$.toast("请输入个人用户信息", "cancel");
-			} else {
+			$.confirm("您确定要交卷吗?", "交卷", function() {
+				submitPaper(data);
+			}, function() {
+				$.fn.fullpage.moveTo(2);
+			});
 
-				//'http://cbpm.sinaapp.com/topic/exam/data/setExamData.php',
-				//testURL:http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setJZExamData&user_name=me&user_id=22333&score=95&errors=2&rec_time=test
-				$.ajax({
-						url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setSafeExamData',
-						data: data,
-						success: function(obj) {
-							if (obj.status == 0) {
-								$('[name="sucessInfo"] .weui_msg_title').text('提交失败，请稍后重试');
-							} else if (obj.status == -1) {
-								$('[name="sucessInfo"] .weui_msg_title').text('该用户已提交数据');
-							} else { //提交成功
-								handleTotalScore(data.score, obj.uid);
-							}
-						},
-						error: function(obj) {
-							var tipStr;
-							//显示提示信息
-							if (obj.status == 0) {
-								tipStr = '提交失败，请稍后重试';
-							} else if (obj.status == -1) {
-								tipStr = '该用户已提交数据';
-							}
-							$('[name="sucessInfo"] .weui_msg_title').text(tipStr).show();
-						}
-					})
-					.always(function() {
-						exam.isSubmit = true;
-						$.fn.fullpage.moveSectionDown();
-					});
-			}
+			$.modal({
+				title: "提示",
+				text: "您确定要交卷吗?",
+				buttons: [{
+					text: "交卷",
+					onClick: function() {
+						submitPaper(data);
+					}
+				}, {
+					text: "检查一遍",
+					onClick: function() {
+						$.fn.fullpage.moveTo(3);
+					}
+				}]
+			});
+
 
 		});
 	};
