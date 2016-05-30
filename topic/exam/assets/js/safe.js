@@ -33,7 +33,7 @@ var exam = {
 	loginData: {}, //用户登录信息
 	maxAnswerNum: 20, //最大抽取多少道题目
 	answerTimes: 20, //每个用户最多回答几次
-	examPaper: "safe" //试卷文件
+	examPaper: "test" //"safe" //试卷文件
 };
 
 //页面总数
@@ -295,6 +295,8 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				}
 			}
 		});
+
+		$('.weui_msg').removeClass('hidden');
 
 		function validate(data) {
 			var isPass = true;

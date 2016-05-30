@@ -229,3 +229,11 @@
     position: absolute;
     margin:0 auto;
 }
+
+.hidden{
+    display: none;
+}
+
+.weui_msg .weui_text_area {
+    margin-bottom: 10px;
+}
