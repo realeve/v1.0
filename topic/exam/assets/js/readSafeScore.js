@@ -411,7 +411,7 @@ require(['jquery', 'echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'
 
                         $('[name="dptMostScore"]').text(mostScore.score);
                         $('[name="dptMostScoreNum"]').text(mostScore.nums);
-                        $('[name="dptMostScoreDesc"]').text("他们想必是对安全规章制度是熟记于心了，");
+                        $('[name="dptMostScoreDesc"]').text("他们对安全规章制度一定是熟记于心了，");
                         gb.userInfo.dptScoreOrder = obj;
 
                         gb.myChart[index - 2].setOption(option);

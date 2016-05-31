@@ -382,9 +382,28 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 								exam.loginData.oldScore = (exam.loginData.iTimes >= 1) ? Number.parseInt(obj.score) : 0;
 								exam.loginData.loginTime = today(1);
 
-								//隐藏页面，防止登录信息再次修改
-								$(this).parents('.section').hide();
-								$.fn.fullpage.moveSectionDown();
+								//曾经登录过
+								if (exam.loginData.iTimes > 1) {
+
+									$.modal({
+										title: "提示",
+										text: "您已经提交过答案，是否继续作答?",
+										buttons: [{
+											text: "再做一遍",
+											onClick: function() {
+
+												//隐藏页面，防止登录信息再次修改
+												$(this).parents('.section').hide();
+												$.fn.fullpage.moveSectionDown();
+											}
+										}, {
+											text: "查看成绩",
+											onClick: function() {
+												window.location.href = './safeScore.html?uid=' + obj.id;
+											}
+										}]
+									});
+								}
 							}
 						}
 					},
