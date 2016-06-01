@@ -65,6 +65,15 @@
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="col-md-3 control-label">裁切机台</label>
+											<div class="col-md-9">
+												<select class="form-control select2" name="cut_machine_id">
+												</select>
+												<div class="form-control-focus">
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-md-3">判定结果
 												<span class="required"> * </span>
 											</label>

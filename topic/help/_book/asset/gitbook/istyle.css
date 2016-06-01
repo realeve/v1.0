@@ -1,0 +1,458 @@
+
+.book-summary .summary::-webkit-scrollbar {
+  width: 10px;
+}
+.book-summary .summary::-webkit-scrollbar-button {
+  display: none;
+}
+.book-summary .summary::-webkit-scrollbar-track {
+  background: white;
+}
+.book-summary .summary::-webkit-scrollbar-thumb {
+  min-height: 1rem;
+  background-color: #ccc;
+  background-clip: padding-box;
+  border: 3px solid #fdfdfd;
+  border-radius: 5px;
+}
+.book-summary .summary::-webkit-scrollbar-thumb:active {
+  background-color: #999;
+  border-width: 2px;
+}
+
+.x2_image{
+    zoom: 50%;
+}
+
+pre code{
+    border:none;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+.md_block{
+    margin-bottom: 1.5em;
+}
+
+.md_video, .md_audio{
+    max-width: 100%;
+}
+
+.post_title {
+  font-size: 2em;
+  margin-top: -1.5em;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1.2em; }
+
+  a {
+    outline: none; }
+
+    a:focus {
+      outline: none;
+      -moz-outline-style: none; }
+
+      .fa-align-justify:before {
+        content: '≡' !important;
+        font-size: 36px !important; }
+
+        .page-wrapper {
+          max-width: 94%;
+          margin: 0 auto; }
+
+          .book-body {
+            word-wrap: break-word;
+            overflow: hidden;
+            color: #333;
+            line-height: 1.7; }
+            .book-body .md_line_dom_embed {
+              text-indent: 0 !important; }
+              .book-body ul {
+                line-height: 2.1; }
+                .book-body img {
+                  max-width: 100%;
+                  overflow: hidden; }
+                  .book-body hr {
+                    margin: 38px 0;
+                    border: none;
+                    border-bottom: 1px dashed #e3e3e3;
+                    color: #e3e3e3;
+                    height: 1px;
+                    line-height: 1px;
+                    font-size: 1px;
+                    overflow: hidden; }
+                    .book-body a {
+                      color: #208d5f;
+                      text-decoration: none;
+                      border-bottom: 1px dashed #d9d9d9; }
+                      .book-body a:hover {
+                        border-bottom: 1px dashed #cfcfcf; }
+                        .book-body .toc {
+                          background: #fdfdfd;
+                          border-radius: 5px;
+                          border: 1px solid #e6e6e6;
+                          margin: 27px 0 47px 0;
+                          padding: 0 15px; }
+                          .book-body .toc ul {
+                            padding: 5px 42px; }
+                            .book-body .toc ul li {
+                              padding: 0;
+                              margin: 0; }
+                          .book-body .toc a {
+                            color: #3c3c3c; }
+
+.post_body h2 {
+  margin-top: 2em; }
+
+  .md_line {
+    margin-top: 0;
+    margin-bottom: 0.85em; }
+
+    blockquote .p_part p, li .p_part p {
+      text-indent: 0 !important; }
+
+      blockquote {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 1.6em 0;
+        padding: 0.1em 0.5em 0.1em 1.2em;
+        border-left: 0.4em solid #16b0ff;
+		background-color:#f8f8f8;
+		border-radius:0 2px;
+        color: #888888;
+        min-height: 20px; }
+        blockquote p {
+          margin: 0.8em 0; }
+          blockquote span.md_line {
+            margin-bottom: 0.25em;
+            margin-top: 0.25em; }
+            blockquote ul {
+              padding: 0 15px; }
+              blockquote small {
+                display: inline-block;
+                margin: 0.8em 0 0.8em 1.5em;
+                font-size: 0.9em;
+                color: #ccc; }
+
+table {
+  border: 1px solid #eee;
+  border-collapse: collapse; }
+
+  table {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 1em 0;
+    width: 100%;
+    max-width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent; }
+
+    table, table tr, table tr td, table tr th {
+      border-color: #e5e5e5; }
+
+      table th {
+        color: #666666;
+        background-color: #fdfdfd; }
+
+        tr th {
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          text-align: left; }
+
+          tr th, tr td {
+            padding: 10px 20px;
+            border-right: 1px solid;
+            border-bottom: 1px solid #efefef !important; }
+
+            tr th:last-child, tr td:last-child {
+              border-right: 0; }
+
+              table th {
+                font-weight: bold; }
+
+                table tbody > tr:nth-child(odd) > td, table tbody > tr:nth-child(odd) > th {
+                  background-color: #f9f9f9; }
+
+                  code {
+                    background: #fffecc;
+                    padding: 0 5px;
+                    margin: 0 2px; }
+
+                    pre {
+                      border: 1px solid #e6e6e6;
+                      border-left: none;
+                      border-right: none;
+                      margin-top: 1.2em;
+                      margin-bottom: 2.2em;
+                      padding: 15px 20px;
+                      display: block;
+                      overflow: auto; }
+
+                      .with_lines pre {
+                        border: none;
+                        margin-top: 0.2em;
+                        margin-bottom: 0.2em; }
+
+                        .todo_item {
+                          list-style: none;
+                          margin-left: -1.5em; }
+                          .todo_item input {
+                            margin-right: 0.5em; }
+
+.todo_item .todo_item {
+  margin-left: auto; }
+
+  .todo_done_item {
+    color: #999999; }
+
+    .todo_undone_item {
+      color: #c85a57; }
+
+      .linenos {
+        padding: 0 0 0 10px; }
+        .linenos pre {
+          background: transparent;
+          border: none;
+          padding: 0; }
+
+.codehilite {
+  background: transparent/*#f8f8f8*/ !important; 
+  border-radius:2px;
+  }
+
+  table.codehilitetable {
+    border: none; }
+
+    .codehilitetable td {
+      border: none;
+      padding: 0; }
+
+      .flow-graphic {
+        text-align: center; }
+
+        span.md_line {
+          margin-bottom: 0.5em;
+          display: block;
+          line-height: 2.06951; }
+
+          .md_line br {
+            display: none; }
+
+            .codehilite .hll {
+              background-color: #ffffcc; }
+
+              .codehilite {
+                background: #eeeedd; }
+
+                .codehilite .c {
+                  color: #999999; }
+
+                  .codehilite .err {
+                    color: #a61717;
+                    background-color: #e3d2d2; }
+
+                    .codehilite .k {
+                      color: #8B008B;
+                      font-weight: bold; }
+
+                      .codehilite .n {
+                        color: #555555; }
+
+                        .codehilite .o {
+                          color: #555555; }
+
+                          .codehilite .p {
+                            color: #555555; }
+
+                            .codehilite .cm {
+                              color: #999999; }
+
+                              .codehilite .cp {
+                                color: #1e889b; }
+
+                                .codehilite .c1 {
+                                  color: #999999; }
+
+                                  .codehilite .cs {
+                                    color: #8B008B;
+                                    font-weight: bold; }
+
+                                    .codehilite .gd {
+                                      color: #aa0000; }
+
+                                      .codehilite .ge {
+                                        font-style: italic; }
+
+                                        .codehilite .gr {
+                                          color: #aa0000; }
+
+                                          .codehilite .gh {
+                                            color: #000080;
+                                            font-weight: bold; }
+
+                                            .codehilite .gi {
+                                              color: #00aa00; }
+
+                                              .codehilite .go {
+                                                color: #888888; }
+
+                                                .codehilite .gp {
+                                                  color: #555555; }
+
+                                                  .codehilite .gs {
+                                                    font-weight: bold; }
+
+                                                    .codehilite .gu {
+                                                      color: #800080;
+                                                      font-weight: bold; }
+
+                                                      .codehilite .gt {
+                                                        color: #aa0000; }
+
+                                                        .codehilite .kc {
+                                                          color: #8B008B;
+                                                          font-weight: bold; }
+
+                                                          .codehilite .kd {
+                                                            color: #8B008B;
+                                                            font-weight: bold; }
+
+                                                            .codehilite .kn {
+                                                              color: #8B008B;
+                                                              font-weight: bold; }
+
+                                                              .codehilite .kp {
+                                                                color: #8B008B;
+                                                                font-weight: bold; }
+
+                                                                .codehilite .kr {
+                                                                  color: #8B008B;
+                                                                  font-weight: bold; }
+
+                                                                  .codehilite .kt {
+                                                                    color: #a7a7a7;
+                                                                    font-weight: bold; }
+
+                                                                    .codehilite .m {
+                                                                      color: #B452CD; }
+
+                                                                      .codehilite .s {
+                                                                        color: #CD5555; }
+
+                                                                        .codehilite .na {
+                                                                          color: #658b00; }
+
+                                                                          .codehilite .nb {
+                                                                            color: #658b00; }
+
+                                                                            .codehilite .nc {
+                                                                              color: #008b45;
+                                                                              font-weight: bold; }
+
+                                                                              .codehilite .no {
+                                                                                color: #00688B; }
+
+                                                                                .codehilite .nd {
+                                                                                  color: #707a7c; }
+
+                                                                                  .codehilite .ni {
+                                                                                    color: #555555; }
+
+                                                                                    .codehilite .ne {
+                                                                                      color: #008b45;
+                                                                                      font-weight: bold; }
+
+                                                                                      .codehilite .nf {
+                                                                                        color: #008b45; }
+
+                                                                                        .codehilite .nl {
+                                                                                          color: #555555; }
+
+                                                                                          .codehilite .nn {
+                                                                                            color: #008b45;
+                                                                                            text-decoration: underline; }
+
+                                                                                            .codehilite .nx {
+                                                                                              color: #555555; }
+
+                                                                                              .codehilite .py {
+                                                                                                color: #555555; }
+
+                                                                                                .codehilite .nt {
+                                                                                                  color: #8B008B;
+                                                                                                  font-weight: bold; }
+
+                                                                                                  .codehilite .nv {
+                                                                                                    color: #00688B; }
+
+                                                                                                    .codehilite .ow {
+                                                                                                      color: #8B008B; }
+
+                                                                                                      .codehilite .w {
+                                                                                                        color: #bbbbbb; }
+
+                                                                                                        .codehilite .mb {
+                                                                                                          color: #B452CD; }
+
+                                                                                                          .codehilite .mf {
+                                                                                                            color: #B452CD; }
+
+                                                                                                            .codehilite .mh {
+                                                                                                              color: #B452CD; }
+
+                                                                                                              .codehilite .mi {
+                                                                                                                color: #B452CD; }
+
+                                                                                                                .codehilite .mo {
+                                                                                                                  color: #B452CD; }
+
+                                                                                                                  .codehilite .sb {
+                                                                                                                    color: #CD5555; }
+
+                                                                                                                    .codehilite .sc {
+                                                                                                                      color: #CD5555; }
+
+                                                                                                                      .codehilite .sd {
+                                                                                                                        color: #CD5555; }
+
+                                                                                                                        .codehilite .s2 {
+                                                                                                                          color: #CD5555; }
+
+                                                                                                                          .codehilite .se {
+                                                                                                                            color: #CD5555; }
+
+                                                                                                                            .codehilite .sh {
+                                                                                                                              color: #1c7e71;
+                                                                                                                              font-style: italic; }
+
+                                                                                                                              .codehilite .si {
+                                                                                                                                color: #CD5555; }
+
+                                                                                                                                .codehilite .sx {
+                                                                                                                                  color: #cb6c20; }
+
+                                                                                                                                  .codehilite .sr {
+                                                                                                                                    color: #1c7e71; }
+
+                                                                                                                                    .codehilite .s1 {
+                                                                                                                                      color: #CD5555; }
+
+                                                                                                                                      .codehilite .ss {
+                                                                                                                                        color: #CD5555; }
+
+                                                                                                                                        .codehilite .bp {
+                                                                                                                                          color: #658b00; }
+
+                                                                                                                                          .codehilite .vc {
+                                                                                                                                            color: #00688B; }
+
+                                                                                                                                            .codehilite .vg {
+                                                                                                                                              color: #00688B; }
+
+                                                                                                                                              .codehilite .vi {
+                                                                                                                                                color: #00688B; }
+
+                                                                                                                                                .codehilite .il {
+                                                                                                                                                  color: #B452CD; }

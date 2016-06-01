@@ -451,7 +451,7 @@
 					//推送钞纸过程质量控制数据
 					var paperProcessInfo = getPaperProcessInfo();
 					var paperPackageInfo = getPackageInfo();
-					if (paperProcessInfo.status > 0) {
+					if (paperProcessInfo.status > 0 || paperPackageInfo.status>0) {
 						pushPaperProcessInfo(paperProcessInfo.msg + paperPackageInfo.msg);
 					}
 				} else {

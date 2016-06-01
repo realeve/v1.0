@@ -52,16 +52,16 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
   }
 
   var banknoteColorSheet = {
-    "9602A": "rgb(0,200,100)",
-    "103-G-2A": "rgb(0,200,100)",
+    "9602A": "#7ECF51",
+    "103-G-2A": "#7ECF51",
     "9603A": "rgb(189,66,175)",
     "103-G-3A": "rgb(189,66,175)",
-    "9604A": "rgb(138,148,184)",
-    "103-G-4A": "rgb(138,148,184)",
+    "9604A": "#61A5E8",
+    "103-G-4A": "#61A5E8",
     "9605A": "rgb(200,200,30)",
     "103-G-5A": "rgb(200,200,30)",
-    "9606A": "#148f47",
-    "103-G-6A": "#148f47",
+    "9606A": "#3D7F18",
+    "103-G-6A": "#3D7F18",
     "9607T": "rgb(255,127,104)",
     "103-G-7T": "rgb(255,127,104)"
   };
@@ -2324,7 +2324,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       legend: {
         data: Data.legend,
         x2: '5%',
-        y: 20,
+        y: 40,
         itemGap: 20,
         textStyle: {
           fontSize: 16,
@@ -2526,7 +2526,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       legend: {
         data: Data.legend,
         x2: '5%',
-        y: 20,
+        y: 40,
         itemGap: 20,
         textStyle: {
           fontSize: 16,
@@ -3441,12 +3441,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
     }
     //处理legend过长
-    if (typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
+    if (/*objRequest.type != 'themeRiver' && */typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
       outData.grid.right = '15%';
       outData.legend.orient = 'vertical';
+      outData.legend.x = 'right';
     }
 
-    
+
     return outData;
   };
 

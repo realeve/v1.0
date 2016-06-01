@@ -43,6 +43,10 @@ var PaperValidate = function() {
 		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_id", Data);
+		//select machine_id,machine_name from paper_machine_info where Proc_ID=1
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=1";
+		Data = ReadData(str);
+		InitSelect("cut_machine_id", Data);
 
 		$('[name=passed]').iCheck('check');
 

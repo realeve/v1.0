@@ -316,7 +316,7 @@
 			</div>
             <div class="clearfix">
 			</div>
-			<div class="row">
+			<!--div class="row">
 				<div class="col-md-4 col-sm-4">
 					<div class="portlet box blue-steel">
 						<div class="portlet-title">
@@ -467,7 +467,7 @@
 							<div class="task-content">
 								<div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="1">
 									<!-- START TASK LIST -->
-									<ul class="task-list">
+									<!--ul class="task-list">
 										<li>
 											<div class="task-checkbox">
 												<input type="hidden" value="1" name="test"/>
@@ -534,7 +534,7 @@
 										</li>
 									</ul>
 									<!-- END START TASK LIST -->
-								</div>
+								<!--/div>
 							</div>
 							<div class="task-footer">
 								<div class="btn-arrow-link pull-right">
@@ -547,7 +547,7 @@
 				</div>
 				<div class="col-md-4 col-sm-12">
 					<!-- BEGIN PORTLET-->
-					<div class="portlet light" style="height:400px;">
+					<!--div class="portlet light" style="height:400px;">
 						<div class="portlet-title">
 							<div class="caption caption-md">
 								<i class="icon-bar-chart theme-font-color hide"></i>
@@ -561,7 +561,7 @@
 									<div class="stat-left">
 										<div class="stat-chart">
 											<!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
-											<div id="sparkline_bar"></div>
+											<!--div id="sparkline_bar"></div>
 										</div>
 										<div class="stat-number">
 											<div class="title">
@@ -577,7 +577,7 @@
 									<div class="stat-right">
 										<div class="stat-chart">
 											<!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
-											<div id="sparkline_bar2"></div>
+											<!--div id="sparkline_bar2"></div>
 										</div>
 										<div class="stat-number">
 											<div class="title">
@@ -652,8 +652,8 @@
 						</div>
 					</div>
 					<!-- END PORTLET-->
-				</div>				
-			</div>
+				<!--/div>				
+			</div-->
             <div class="clearfix">
 			</div>
 			<div class="row">
@@ -704,16 +704,7 @@
 										</h3>
 										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 									</div>
-								</div>
-								<div class="widget-news margin-bottom-20">
-									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/04.jpg" alt="">
-									<div class="widget-news-right-body">
-										<h3 class="widget-news-right-body-title">New Workstation
-											<span class="label label-default"> March 16 </span>
-										</h3>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-									</div>
-								</div>								
+								</div>							
 							</div>
 							<div class="tab-pane fade" id="tab_1_2">
 								<div class="widget-news margin-bottom-20">
@@ -721,15 +712,6 @@
 									<div class="widget-news-right-body">
 										<h3 class="widget-news-right-body-title">New Workstation
 											<span class="label label-default"> March 16 </span>
-										</h3>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-									</div>
-								</div>
-								<div class="widget-news margin-bottom-20">
-									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/03.jpg" alt="">
-									<div class="widget-news-right-body">
-										<h3 class="widget-news-right-body-title">Wondering anyone did this
-											<span class="label label-default"> March 25 </span>
 										</h3>
 										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 									</div>
@@ -745,15 +727,6 @@
 										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 									</div>
 								</div>
-								<div class="widget-news margin-bottom-20">
-									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/07.jpg" alt="">
-									<div class="widget-news-right-body">
-										<h3 class="widget-news-right-body-title">San Francisco
-											<span class="label label-default"> March 10 </span>
-										</h3>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-									</div>
-								</div>
 							</div>
 							<div class="tab-pane fade" id="tab_1_4">
 								<div class="widget-news margin-bottom-20">
@@ -761,15 +734,6 @@
 									<div class="widget-news-right-body">
 										<h3 class="widget-news-right-body-title">San Francisco
 											<span class="label label-default"> March 10 </span>
-										</h3>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-									</div>
-								</div>
-								<div class="widget-news margin-bottom-20">
-									<img class="widget-news-left-elem rounded-3" src="../../assets/layouts/layout/img/04.jpg" alt="">
-									<div class="widget-news-right-body">
-										<h3 class="widget-news-right-body-title">New Workstation
-											<span class="label label-default"> March 16 </span>
 										</h3>
 										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 									</div>

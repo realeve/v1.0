@@ -92,7 +92,7 @@
 								<tr><td>splitarea</td><td>值域背景分割条</td><td>0，1</td></tr>
 								<tr><td>zoom</td><td>显示缩放控件</td><td>0(关闭),v(vertical 垂直),h(horizontal 水平),vh(同时打开)</td></tr>
 								<!--tr><td>blind</td><td>多表是否绑定，如果不绑定则各图表独立操作</td><td>0,1</td></tr-->
-								<tr><td>banknoteColor</td><td>使用钞券颜色</td><td>默认关闭，打开此项后，Legend序列中存在钞券代号时，将启用对应的颜色。打开后，部分主题可能失效。</td></tr>
+								<tr><td>banknoteColor</td><td>使用钞券颜色</td><td>默认打开，打开此项后，Legend序列中存在钞券代号时，将启用对应的颜色。打开后，部分主题可能失效。</td></tr>
 							</tbody>
 						</table>
 	                </div>          
