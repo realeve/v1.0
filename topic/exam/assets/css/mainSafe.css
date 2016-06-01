@@ -191,3 +191,7 @@ p{
     width:100%;
     height:60%;
 }
+
+.hidden{
+    display: none;
+}
