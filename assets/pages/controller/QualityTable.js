@@ -114,30 +114,40 @@ var dataTable = function() {
 			],*/
 			"lengthMenu": [
 				[5, 10, 15, 20, 50, 100, -1],
-				[5, 10, 15, 20, 50, 100, "All"] // change per page values here
+				[5, 10, 15, 20, 50, 100, "所有"] // change per page values here
 			],
 			// set the initial value
 			"pageLength": 15,
 			"dom": (bFixhead) ? "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>" : "<'clear'>R<'row tbTools' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
 			//"dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
 			//dom: "flBrtip",
-			buttons: [{
+			buttons: [ {
+				extend: 'share',
+				autoPrint: false,
+				text: '分享',
+				message: '统计时间:' + date.start + '~' + date.end + '<br>' + Data.source + '<br>©成都印钞有限公司 技术质量部',
+				title: Data.title,
+				exportOptions: {
+					columns: ':visible'
+				},
+				className: "btn blue sbold btn-outline"
+			}, {
 				extend: 'copyHtml5',
 				exportOptions: {
 					columns: ':visible'
 				},
 				text: '复制',
-				className: "btn red btn-outline"
+				className: "btn red sbold btn-outline"
 			}, {
 				extend: 'excelHtml5',
-				className: "btn yellow btn-outline ",
+				className: "btn yellow sbold btn-outline ",
 				exportOptions: {
 					columns: ':visible'
 				},
 				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 			}, {
 				extend: 'csvHtml5',
-				className: "btn purple btn-outline ",
+				className: "btn purple sbold btn-outline ",
 				exportOptions: {
 					columns: ':visible'
 				},
@@ -146,13 +156,13 @@ var dataTable = function() {
 				extend: 'pdfHtml5',
 				orientation: Data.cols > 10 ? 'landscape' : 'portrit',
 				pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
+				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n&copy;成都印钞有限公司 技术质量部',
 				download: 'download',
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
 				},
-				className: "btn dark btn-outline",
+				className: "btn dark sbold btn-outline",
 				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 					//Token:'成都印钞有限公司 技术质量部',
 					/* customize: function ( doc ) {
@@ -165,20 +175,20 @@ var dataTable = function() {
 							//margin: [ 0, 0, 0, 12 ]
 						} );
 					}*/
-			}, {
+			},{
 				extend: 'print',
-				autoPrint: false,
+				autoPrint: true,
 				text: '打印',
 				message: '统计时间:' + date.start + '~' + date.end + '<br>' + Data.source + '<br>©成都印钞有限公司 技术质量部',
 				title: Data.title,
 				exportOptions: {
 					columns: ':visible'
 				},
-				className: "btn green btn-outline"
-			}, {
+				className: "btn grey-mint sbold btn-outline"
+			},{
 				extend: 'colvis',
 				text: '隐藏数据列<i class="fa fa-angle-down"></i>',
-				className: "btn green-haze btn-outline",
+				className: "btn green-haze sbold btn-outline",
 				//className: 'btn-fit-height green-haze dropdown-toggle'
 			}],
 			"bDeferRender": true,
@@ -320,7 +330,7 @@ jQuery(document).ready(function() {
 	//ReadSettings();
 	dataTable.init();
 	//初始化表格
-
+	var clipboard = new Clipboard('#share button');
 	if (App.getURLParameter('debug') == 1 || App.getURLParameter('tid') === null) {
 		$('#Preview').show();
 	} else {

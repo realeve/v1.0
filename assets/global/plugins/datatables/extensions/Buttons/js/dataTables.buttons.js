@@ -1068,7 +1068,7 @@ Buttons.buttonSelector = function ( insts, selector )
  * @static
  */
 Buttons.defaults = {
-	buttons: [ '复制', 'Excel', 'csv', 'PDF', '打印' ],
+	buttons: [ 'copy', 'Excel', 'csv', 'PDF', 'Print','Share' ],
 	name: 'main',
 	tabIndex: 0,
 	dom: {

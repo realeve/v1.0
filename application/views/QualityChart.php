@@ -125,7 +125,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <!--button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button-->
-                            <h4 class="modal-title">图表共享</h4>
+                            <h4 class="modal-title">分享图表</h4>
                         </div>
                         <div class="modal-body"> 图表共享成功，按Ctrl+c复制以下链接即可访问数据：
 							<textarea style="width:100%;height:100px;margin-top:10px;" id="shareUrl"></textarea>

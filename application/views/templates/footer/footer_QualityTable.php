@@ -16,6 +16,7 @@
 <script src="../../assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 <script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/jquery.base64.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="../../assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
@@ -55,6 +56,7 @@
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/dataTables.buttons.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.html5.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.print.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.share.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.colVis.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/plugins/searchHighlight/dataTables.searchHighlight.min.js"></script>
@@ -68,6 +70,7 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <!--BEGIN MY LEVEL SCRIPT-->
 <script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/clipboard/clipboard.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/QualityTable.min.js"></script>
 <!--END MY LEVEL SCRIPT-->

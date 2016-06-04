@@ -1,6 +1,6 @@
 ﻿  //系统当前版本
-  var curVersion = 1.24;
-
+  var curVersion = 1.25;
+  moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
    */
@@ -121,7 +121,7 @@
   }
 
   function today(type) {
-    var date = new Date();
+    /*var date = new Date();
     var a = date.getFullYear();
     var b = jsRight(('0' + (date.getMonth() + 1)), 2);
     var c = jsRight(('0' + date.getDate()), 2);
@@ -150,6 +150,30 @@
         break;
       case 6:
         output = a + '-' + b + '-' + c;
+        break;
+    }*/
+    var output;
+    switch (type) {
+      case 0:
+        output = moment().format('LL');
+        break;
+      case 1:
+        output = moment().format('YYYY-MM-DD HH:MM:SS');
+        break;
+      case 2:
+        output = moment().format('YYYY年MM月DD日 HH时MM分SS秒');
+        break;
+      case 3:
+        output = moment().format('YYYY-MM-DD HH:MM');
+        break;
+      case 4:
+        output = moment().format('LLL');
+        break;
+      case 5:
+        output = moment().format('MM/DD/YYYY');
+        break;
+      case 6:
+        output = moment().format('YYYY-MM-DD');
         break;
     }
     return output;
@@ -317,12 +341,41 @@
     if (!jQuery().daterangepicker) {
       return;
     }
+    var rangeArr = [
+      [moment(), moment()],
+      [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      [moment().subtract(2, 'days'), moment()],
+      [moment().subtract(6, 'days'), moment()],
+      [moment().subtract(29, 'days'), moment()],
+      [moment().startOf('month'), moment().endOf('month')],
+      [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+      [moment().subtract(1, 'year').startOf('month'), moment().subtract(1, 'year').endOf('month')],
+      [moment().startOf('quarters'), moment()],
+      [moment().subtract(1, 'quarters').startOf('quarters'), moment().subtract(1, 'quarters').endOf('quarters')],
+      [moment().quarter(1).startOf('quarters'), moment().quarter(2).endOf('quarters')],
+      [moment().quarter(3).startOf('quarters'), moment().quarter(4).endOf('quarters')],
+      [moment().quarter(1).startOf('quarters'), moment()]
+    ];
+    var rangeStr = ['今天', '昨天', '过去三天', '过去一周', '过去30天', '本月', '上月', '去年同期', '本季度', '上季度', '上半年', '下半年','今年'];
+    var ranges = {};
+
+    rangeStr.map(function(day, i) {
+      ranges[day] = rangeArr[i];
+    })
+
+    var dateRange = function(mode) {
+      return rangeArr[mode][0].format(YearType) + ' ~ ' + rangeArr[mode][1].format(YearType);
+    }
+
+    //默认选择最近一周
+    var paramRange = getUrlParam('dateRange');
+    var defaultRange = (paramRange == null) ? 3 : Number.parseInt(paramRange);
 
     $('#dashboard-report-range').daterangepicker({
         opens: (App.isRTL() ? 'right' : 'left'),
-        startDate: moment().subtract(6, 'days'),
-        endDate: moment(),
-        minDate: '01/01/2000',
+        startDate: rangeArr[defaultRange][0],
+        endDate: rangeArr[defaultRange][1],
+        minDate: '01/01/2010',
         maxDate: '12/31/2099',
         dateLimit: {
           "months": 120
@@ -332,15 +385,7 @@
         timePicker: false,
         timePickerIncrement: 1,
         timePicker12Hour: false,
-        ranges: {
-          '今天': [moment(), moment()],
-          '昨天': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          '过去一周': [moment().subtract(6, 'days'), moment()],
-          '过去三天': [moment().subtract(2, 'days'), moment()],
-          '过去30天': [moment().subtract(29, 'days'), moment()],
-          '本月': [moment().startOf('month'), moment().endOf('month')],
-          '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
+        ranges: ranges,
         buttonClasses: ['btn btn-sm'],
         applyClass: ' green',
         cancelClass: ['btn btn-sm btn-danger'],
@@ -361,7 +406,7 @@
         $('#dashboard-report-range span').html(start.format(YearType) + ' ~ ' + end.format(YearType));
       }
     );
-    $('#dashboard-report-range span').html(moment().subtract(6, 'days').format(YearType) + ' ~ ' + moment().format(YearType));
+    $('#dashboard-report-range span').html(dateRange(defaultRange));
     $('#dashboard-report-range').show();
   }
 
@@ -861,6 +906,38 @@
       }
     }
     arr.length -= 1;
+  }
+
+  var shareTableExample = function(html) {
+    var filename = $.base64.encode(new Date().getTime());
+    $('#share textarea').text(' ');
+    var fixheader = getUrlParam('fixheader');
+    $.ajax({
+      url: getRootPath(0) + '/demo/tableShare.php',
+      type: 'POST',
+      async: false,
+      data: {
+        filename: filename + ".html",
+        contents: html
+      },
+      success: function(data) {
+        try {
+          var obj = $.parseJSON(data);
+          var url = getRootPath(0) + obj.url + ((fixheader == '0') ? '?fixheader=0' : '');
+          $('#share textarea').text(url);
+          $('#successShare').click();
+        } catch (e) {
+          console.log(e);
+          infoTips(data);
+          bsTips('报表分享失败，请稍后重试', 0);
+        }
+      },
+      error: function(e) {
+        console.log(e);
+        bsTips('报表分享失败，请稍后重试', 0);
+      }
+    });
+
   }
 
   var namedColors = {

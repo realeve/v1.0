@@ -836,7 +836,7 @@ var customizeMenu = function() {
                 function getData() {
                     return {
                         "tbl": TBL.SETTINGS_MENUDETAIL,
-                        "utf2gbk": ['name'],
+                        "utf2gbk": ['name','url'],
                         "name": $('#menuEdit [name="name"]').val(),
                         "url": $('#menuEdit [name="url"]').val().trim(),
                         "share": ($('#menuEdit [name="share"]').attr('checked') === 'checked') ? 1 : 0,

@@ -83,6 +83,25 @@
 					<hr>
 				</div>
 			</div>
+			<a data-toggle="modal" href="#share" id="successShare"></a>
+            <div class="modal fade" stype="top:50%;" id="share" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!--button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button-->
+                            <h4 class="modal-title">分享报表</h4>
+                        </div>
+                        <div class="modal-body"> 报表分享成功，按Ctrl+c复制以下链接即可访问数据：
+							<textarea style="width:100%;height:100px;margin-top:10px;" id="shareUrl"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn red" data-clipboard-action="copy" data-clipboard-target="#shareUrl" data-dismiss="modal"> <i class="fa fa-clipboard"></i>  点击复制 </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>	
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">

@@ -275,3 +275,28 @@ Notes
   /*padding:0;
   background-color:#eee;*/
 }
+
+
+::-webkit-scrollbar
+{
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track-piece
+{
+    background-color: #EEF1F5;
+    -webkit-border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:vertical
+{
+    height: 7px;
+    background-color: rgba(51,51,51,0.8);
+    -webkit-border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:horizontal
+{
+    width: 8px;
+    background-color: rgba(51,51,51,0.8);
+    -webkit-border-radius: 8px;
+}
+
