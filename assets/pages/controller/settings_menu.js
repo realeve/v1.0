@@ -1049,8 +1049,9 @@ var customizeMenu = function() {
                     //更新菜单列表内容
                     resetMenuList();
                     if (curVal == -1) {
-                        $('#menuPreviewList').html('<ol class="dd-list"></ol>');
-                        $('#menuPreviewDetail').html('');
+                        //$('#menuPreviewList').html('<ol class="dd-list"></ol>');
+                        //$('#menuPreviewDetail').html('');
+                        bsTips('复制当前调整区域菜单内容。');
                         return;
                     }
                     Serial2DOM('#menuPreviewList', obj.data('seg'), 1);
