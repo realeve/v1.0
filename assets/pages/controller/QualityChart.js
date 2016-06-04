@@ -96,7 +96,7 @@
          }
 
          $('[name="showTable"]').attr({
-           href: getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid")
+           href: getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid") + (getUrlParam('dateRange') == 'null' ? '' : '&dateRange=' + getUrlParam('dateRange'))
          });
          //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
          /*var dom = $('.eCharts-main');
@@ -217,7 +217,7 @@
          }
          var themeSelector = $(".actions select");
          var defaultTheme, str = "";
-         var themeList = ['default', 'ali_G2', 'ali_G2_2','real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'helianthus', 'blue', 'green', 'red', 'gray'];
+         var themeList = ['default', 'ali_G2', 'ali_G2_2', 'real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'helianthus', 'blue', 'green', 'red', 'gray'];
          themeList.map(function(elem, index) {
            str += '<option value="' + elem + '">' + elem + '</option>';
          });
