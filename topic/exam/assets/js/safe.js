@@ -19,6 +19,7 @@ require.config({　　　　
  * [exam 测试题目]
  */
 var exam = {
+	loadComplete: false,
 	total: 0, //总分
 	error: [], //错误题目（原顺序）
 	answerList: [], //乱序后的答案顺序
@@ -32,19 +33,19 @@ var exam = {
 	isLogin: false, //是否登录
 	loginData: {}, //用户登录信息
 	maxAnswerNum: 20, //最大抽取多少道题目
-	answerTimes: 20, //每个用户最多回答几次
-	examPaper: "test" //"safe" //试卷文件
+	answerTimes: 2, //每个用户最多回答几次
+	examPaper: "safe" //"safe" //试卷文件
 };
 
 //页面总数
 var lastPage;
 
-require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
+require(['jquery.fullPage', 'jquery-weui'], function() {
 
 	var secColor = [];
 	//testMode 0:默认，1，测试模式，2，安保
-	var testMode = (window.location.href.indexOf('?m=') == -1) ? 0 : window.location.href.split('?m=')[1].split('&')[0];
-	exam.maxAnswerNum = (testMode === 0) ? exam.maxAnswerNum : 2;
+	//var testMode = (window.location.href.indexOf('?m=') == -1) ? 0 : window.location.href.split('?m=')[1].split('&')[0];
+	//exam.maxAnswerNum = (testMode === 0) ? exam.maxAnswerNum : 2;
 	//隐藏提示信息
 	$('[name="sucessInfo"] .weui_msg_title').hide();
 
@@ -121,6 +122,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 
 		//只抽取maxAnswerNum个
 		quesLen = (quesLen <= exam.maxAnswerNum) ? quesLen : exam.maxAnswerNum;
+		exam.maxAnswerNum = quesLen;
 
 		$('[name="nums"]').text(quesLen);
 		exam.scoresPerAnswer = 100 / quesLen;
@@ -278,6 +280,7 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 				pageChange(index, nextIndex, direction);
 			},
 			afterLoad: function(anchor, index) {
+
 				//最后两页隐藏箭头
 				if (index == lastPage - 1) {
 					//console.log('进入倒数第二页');
@@ -296,6 +299,12 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 			}
 		});
 
+		//全屏加载完毕
+		if (!exam.loadComplete) {
+			$("#fakeLoader").hide();
+			exam.loadComplete = true;
+		}
+		
 		$('.weui_msg').removeClass('hidden');
 
 		function validate(data) {
@@ -403,6 +412,10 @@ require(['jquery', 'jquery.fullPage', 'jquery-weui'], function($) {
 											}
 										}]
 									});
+								} else {
+									//隐藏页面，防止登录信息再次修改
+									$(this).parents('.section').hide();
+									$.fn.fullpage.moveSectionDown();
 								}
 							}
 						}
