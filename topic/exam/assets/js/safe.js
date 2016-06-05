@@ -82,6 +82,9 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 		//选项乱序 -END
 
 		str += strQues + '</div>' + /*(i % 2 ? '' : '<img class="lg-component-img" src="./assets/img/bottom.png">') +*/ '</div>';
+		str = str.replace('不正确','<span class="white-font-red">不正确</span>');
+		str = str.replace('正确','<span class="white-font-red">正确</span>');
+		str = str.replace('不属于','<span class="white-font-red">不属于</span>');
 		return str;
 	}
 
@@ -379,7 +382,9 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 							$.alert("登录失败，您的姓名可能填写错误", "警告！");
 						} else { //登录成功
 							if (obj.answer_times >= exam.answerTimes) { //回答次数用完
-								$.alert("您已用完" + exam.answerTimes + "次答题机会", "警告！");
+								$.alert("您已用完" + exam.answerTimes + "次答题机会", "警告！",function(){
+									window.location.href = './safeScore.html?uid=' + obj.id;
+								});
 							} else {
 								exam.isLogin = true;
 								exam.loginData = data;

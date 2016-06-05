@@ -195,3 +195,7 @@ p{
 .hidden{
     display: none;
 }
+
+.white-font-red{
+    color:#eb0c2b;
+}
