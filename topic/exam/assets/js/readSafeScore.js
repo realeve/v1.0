@@ -43,7 +43,7 @@ var gb = {
 };
 
 //require(['jquery', 'echarts', 'fakeLoader', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], function($, echarts) {
-require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], function(echarts) {
+require(['echarts', 'waypoints', 'jquery.counterup', 'jquery.fullPage'], function(echarts) {
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
         var r = encodeURI(window.location.search).substr(1).match(reg); //匹配目标参数
@@ -126,16 +126,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         },
                         barBorderRadius: 2
                     }
+                },
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 200;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 200;
                 }
-                /*,
-                                animationEasing: 'cubicInOut',
-                                animationEasingUpdate: 'cubicInOut',
-                                animationDelay: function(idx) {
-                                    return idx * 50;
-                                },
-                                animationDelayUpdate: function(idx) {
-                                    return idx * 50;
-                                }*/
             }]
         };
         return option;
@@ -152,7 +151,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(1);
-            $('[name="progress"]').text('10%');
+            //$('[name="progress"]').text('10%');
             gb.userInfo.peopleNums = obj.allPeople;
             gb.userInfo.scoreOrder = obj.scoreOrder;
             gb.userInfo.scorePropt = (obj.scoreOrder == 1) ? 100 : obj.lessThan;
@@ -175,7 +174,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(2);
-            $('[name="progress"]').text('20%');
+            //$('[name="progress"]').text('20%');
             gb.userInfo.dpt = {};
             gb.userInfo.dpt.all = obj.dpt_people;
             gb.userInfo.dpt.peopleNums = obj.allPeople;
@@ -204,6 +203,8 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             time: time
         });
     };
+
+    //handleCounterup($('[name="progress"]'), 5000);
 
     //用户分数排名(在部门或在公司中排序)
     function getScoreRangeOption(obj, option) {
@@ -261,7 +262,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(3);
-            $('[name="progress"]').text('30%');
+            //$('[name="progress"]').text('30%');
             gb.userInfo.dptTime = obj.dptTime;
             gb.userInfo.ltdTime = obj.ltdTime;
 
@@ -285,7 +286,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(4);
-            $('[name="progress"]').text('40%');
+            //$('[name="progress"]').text('40%');
             //部门间比较信息
             //gb.userInfo.dptCompare = {};
             gb.userInfo.dptCompare.answerRatio = obj;
@@ -311,7 +312,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(5);
-            $('[name="progress"]').text('50%');
+            //$('[name="progress"]').text('50%');
             //部门间比较信息
             //gb.userInfo.dptCompare = {};
             gb.userInfo.dptCompare.scoreCompare = obj;
@@ -330,7 +331,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(6);
-            $('[name="progress"]').text('60%');
+            //$('[name="progress"]').text('60%');
             //部门间比较信息
             //gb.userInfo.dptCompare = {};
             gb.userInfo.dptCompare.prizeCompare = obj;
@@ -349,7 +350,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(7);
-            $('[name="progress"]').text('70%');
+            //$('[name="progress"]').text('70%');
             $('[name="2ndTimesPrpt"]').text(obj['2ndPassedRatio']);
             $('[name="1stTime"]').text(obj.moreChance);
 
@@ -361,7 +362,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             }).done(function(obj) {
                 //gb.userInfo.dptCompare = {};
                 //console.log(8);
-                $('[name="progress"]').text('80%');
+                //$('[name="progress"]').text('80%');
                 gb.userInfo.dptCompare.moreChancePassedCompare = obj;
                 getScoreRangeByDpt();
             });
@@ -377,7 +378,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             callback: "JsonCallback"
         }).done(function(obj) {
             //console.log(9);
-            $('[name="progress"]').text('90%');
+            //$('[name="progress"]').text('90%');
             var mostScore = obj[obj.length - 1];
             $('[name="dptMostScore"]').text(mostScore.score);
             $('[name="dptMostScoreNum"]').text(mostScore.nums);
@@ -400,7 +401,7 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
             for (var i = 2; i <= 9; i++) {
                 gb.option[i] = getOptions(i);
             }
-            $('[name="progress"]').text('99%');
+            //$('[name="progress"]').text('99%');
             initDom();
         });
     }
@@ -487,16 +488,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         },
                     }
                 },
-                data: []
-                    /*,
-                                    animationEasing: 'cubicInOut',
-                                    animationEasingUpdate: 'cubicInOut',
-                                    animationDelay: function(idx) {
-                                        return idx * 50;
-                                    },
-                                    animationDelayUpdate: function(idx) {
-                                        return idx * 50;
-                                    }*/
+                data: [],
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 100;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 100;
+                }
             }, {
                 name: '未参与',
                 type: 'bar',
@@ -519,16 +519,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         color: gb.colors.whiteMediumLight
                     }
                 },
-                data: []
-                    /*,
-                                    animationEasing: 'cubicInOut',
-                                    animationEasingUpdate: 'cubicInOut',
-                                    animationDelay: function(idx) {
-                                        return idx * 50;
-                                    },
-                                    animationDelayUpdate: function(idx) {
-                                        return idx * 50;
-                                    }*/
+                data: [],
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 100;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 100;
+                }
             }];
 
             gb.userInfo.dptCompare.answerRatio.map(function(data) {
@@ -587,13 +586,13 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                             }
                         }
                     },
-                    animationEasing: 'cubicInOut',
-                    animationEasingUpdate: 'cubicInOut',
+                    //animationEasing: 'cubicInOut',
+                    //animationEasingUpdate: 'cubicInOut',
                     animationDelay: function(idx) {
-                        return idx * 50;
+                        return idx * 100;
                     },
                     animationDelayUpdate: function(idx) {
-                        return idx * 50;
+                        return idx * 100;
                     }
                 }]
             };
@@ -612,7 +611,12 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
         } else if (index == 7 && !gb.optionRenderFlag[index - 2]) {
 
             option = initOption();
+            option.tooltip = {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} :{c}分"
+            };
             option.series = [{
+                name: '平均得分',
                 type: 'bar',
                 label: {
                     normal: {
@@ -631,16 +635,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         },
                     }
                 },
-                data: []
-                    /*,
-                                    animationEasing: 'cubicInOut',
-                                    animationEasingUpdate: 'cubicInOut',
-                                    animationDelay: function(idx) {
-                                        return idx * 50;
-                                    },
-                                    animationDelayUpdate: function(idx) {
-                                        return idx * 50;
-                                    }*/
+                data: [],
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 100;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 100;
+                }
             }];
 
             gb.userInfo.dptCompare.scoreCompare.map(function(data) {
@@ -658,6 +661,10 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
 
             option = initOption();
 
+            option.tooltip = {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c}%"
+            };
             option.series = [{
                 name: '获奖比例',
                 type: 'bar',
@@ -679,16 +686,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         },
                     }
                 },
-                data: []
-                    /*,
-                                    animationEasing: 'cubicInOut',
-                                    animationEasingUpdate: 'cubicInOut',
-                                    animationDelay: function(idx) {
-                                        return idx * 50;
-                                    },
-                                    animationDelayUpdate: function(idx) {
-                                        return idx * 50;
-                                    }*/
+                data: [],
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 100;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 100;
+                }
             }];
 
             gb.userInfo.dptCompare.prizeCompare.map(function(data) {
@@ -713,6 +719,10 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                 },
                 x: 'right',
                 y: 30
+            };
+            option.tooltip = {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c}%"
             };
             option.yAxis = [{
                 "type": "category",
@@ -745,16 +755,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         show: false
                     }
                 },
-                data: []
-                    /*,
-                                    animationEasing: 'cubicInOut',
-                                    animationEasingUpdate: 'cubicInOut',
-                                    animationDelay: function(idx) {
-                                        return idx * 50;
-                                    },
-                                    animationDelayUpdate: function(idx) {
-                                        return idx * 50;
-                                    }*/
+                data: [],
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 100;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 100;
+                }
             }, {
                 name: '第一次',
                 type: 'bar',
@@ -765,16 +774,15 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
                         show: false
                     }
                 },
-                data: []
-                    /*,
-                                    animationEasing: 'cubicInOut',
-                                    animationEasingUpdate: 'cubicInOut',
-                                    animationDelay: function(idx) {
-                                        return idx * 50;
-                                    },
-                                    animationDelayUpdate: function(idx) {
-                                        return idx * 50;
-                                    }*/
+                data: [],
+                //animationEasing: 'cubicInOut',
+                //animationEasingUpdate: 'cubicInOut',
+                animationDelay: function(idx) {
+                    return idx * 100;
+                },
+                animationDelayUpdate: function(idx) {
+                    return idx * 100;
+                }
             }];
             gb.userInfo.dptCompare.moreChancePassedCompare.map(function(data) {
                 option.yAxis[0].data.push(data.dpt);
@@ -842,7 +850,6 @@ require(['echarts', 'waypoints', 'jquery.fullPage', 'jquery.counterup'], functio
     };
 
     var refreshData = function() {
-
         $.ajax({
             url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getSafeExamData&uid=' + uid,
             async: false,

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<title>员工信息维护</title>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.fullPage.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery-weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/SentyZHAO.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/main.min.css"/>
+<script src="assets/js/require.min.js" data-main="assets/js/userinfo.min"></script>
+<meta name="apple-mobile-web-app-capable" container="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" container="black-translucent"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div id="fullpage">
+    <div class="section" name="login">
+		<div class="weui_msg">
+		    <!--div class="weui_icon_area"><i class="weui_icon_msg weui_icon_info"></i></div-->
+		    <div class="weui_text_area">
+		        <h2 class="weui_msg_title">员工信息维护</h2>
+		        <p class="weui_msg_desc">选择个人信息进行调整，确保卡号与员工姓氏对应。验证通过后，员工姓名及部门将同时更改故可用于姓名/部门调整</p>
+		    </div>
+		    <div class="bd">
+			    <div class="weui_cell">
+		            <div class="weui_cell_hd"><label class="weui_label">员工卡号</label></div>
+		            <div class="weui_cell_bd weui_cell_primary">
+		                <input class="weui_input" name="userCard" type="number" pattern="[0-9]*" placeholder="点击输入员工卡号中的数字部分">
+		            </div>
+		        </div>
+			    <div class="weui_cell">
+		            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+		            <div class="weui_cell_bd weui_cell_primary">
+		                <input class="weui_input" name="userName" type="text" placeholder="点击输入姓名">
+		            </div>
+		        </div>
+		      	<div class="weui_cell">
+			        <div class="weui_cell_hd"><label for="date" class="weui_label">部门</label></div>
+			        <div class="weui_cell_bd weui_cell_primary">
+			          <input class="weui_input" name="user_dpt" type="text" placeholder="点击选择部门" value="">
+			        </div>
+		      	</div>
+	        </div>
+		    <div class="weui_opr_area">
+		        <p class="weui_btn_area">
+		            <a href="javascript:;" class="weui_btn weui_btn_primary" id="login">修改</a>
+		        </p>
+		    </div>
+		    <!--div class="weui_extra_area">
+		        <a href="javascript:;">2016 &copy; 成都印钞有限公司 . 技术质量部.</a>
+		    </div-->
+		</div>
+    </div>
+</div>
+</body>
+</html>
