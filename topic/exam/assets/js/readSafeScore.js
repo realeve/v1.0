@@ -863,7 +863,7 @@ require(['echarts', 'waypoints', 'jquery.counterup', 'jquery.fullPage'], functio
                 gb.userInfo.dptCompare = {};
                 gb.userInfo.user_dpt = gb.userInfo.user_dpt.trim();
                 $('[name="userName"]').text(gb.userInfo.user_name);
-                $('[name="userOrder"]').text(Number.parseInt(gb.userInfo.id) - gb.dbSheetIdx);
+                $('[name ="userOrder"]').text(gb.userInfo.answerOrder);//Number.parseInt(gb.userInfo.id) - gb.dbSheetIdx
                 $('[name="userScore"]').text(gb.userInfo.score);
                 //所用时间
                 var minutes = Math.floor(Number.parseInt(gb.userInfo.timeUsed) / 60);
