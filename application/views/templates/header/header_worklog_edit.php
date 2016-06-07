@@ -38,6 +38,16 @@
 <link <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css"/>
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
 <!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="../../assets/global/plugins/codemirror/lib/codemirror.min.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/global/plugins/codemirror/theme/rubyblue.css" rel="stylesheet" type="text/css" />
+<script src="../../assets/global/plugins/codemirror/lib/codemirror.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/codemirror/lib/formatting.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/codemirror/lib/xml.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/codemirror/mode/javascript/javascript.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/codemirror/mode/htmlmixed/htmlmixed.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/codemirror/mode/css/css.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/select2/css/select2.min.css"/>

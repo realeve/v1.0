@@ -1989,7 +1989,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         subTitle: Data.source,
         rows: Data.rows,
         series: [{
-          type: 'themeRiver',//objRequest.type,
+          type: 'themeRiver', //objRequest.type,
           itemStyle: {
             emphasis: {
               shadowBlur: 20,
@@ -3441,8 +3441,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
     }
     //处理legend过长
-    if (/*objRequest.type != 'themeRiver' && */typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
-      outData.grid.right = '15%';
+    if ( /*objRequest.type != 'themeRiver' && */ typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
+      if (typeof outData.grid != 'undefined') {
+        outData.grid.right = '15%';
+      }
       outData.legend.orient = 'vertical';
       outData.legend.x = 'right';
     }

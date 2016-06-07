@@ -4,11 +4,87 @@ var worklogEdit = function() {
     iChechBoxInit();
     initSelect2();
 
+
+    var HelloButton = function(context) {
+      // create button
+      var button = ui.button({
+        contents: '<i class="fa fa-child"/> Hello',
+        tooltip: 'hello',
+        click: function() {
+          // invoke insertText method with 'hello' on editor module.
+          context.invoke('editor.insertText', 'hello');
+        }
+      });
+      return button.render(); // return button as jquery object 
+    }
+
     $('#ErrDesc').summernote({
       height: 300, // set editor height
       minHeight: null, // set minimum height of editor
       maxHeight: null, // set maximum height of editor
       focus: true, // set focus to editable area after initializing summernote
+      lang: 'zh-CN',
+      placeholder: '在这里填入机检日志信息',
+      dialogsInBody: true,
+      codemirror: { // codemirror options
+        theme: 'rubyblue',
+        //mode: 'text/html',
+        mode: "htmlmixed",
+        htmlMode: true,
+        lineNumbers: true
+      },
+      dialogsFade: true,
+      disableDragAndDrop: false,
+      fontNames: ["Microsoft JhengHei", "微软雅黑", "Arial", "黑体", "sans-serif", "Arial Black", "Comic Sans MS", "Courier New", "Helvetica", "Impact", "Tahoma", "Times New Roman", "Verdana"],
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'hr', 'iFrame' /*'Frameo'*/ ]],
+        ['insert', ['undo', 'redo']],
+        ['view', ['fullscreen', 'codeview', 'help']],
+      ],
+      fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36', '48', '72'],
+      tableClassName: 'table table-striped table-bordered table-hover',
+      insertTableMaxSize: {
+        col: 20,
+        row: 30
+      },
+      /*help: {
+        'insertParagraph': '插入段落',
+        'undo': '撤销',
+        'redo': '重做',
+        'tab': '制表符',
+        'untab': '返回制表符',
+        'bold': '加粗',
+        'italic': '斜体',
+        'underline': '下划线',
+        'strikethrough': '删除线',
+        'removeFormat': '清除样式',
+        'justifyLeft': '居左',
+        'justifyCenter': '居中',
+        'justifyRight': '居右',
+        'justifyFull': '填满',
+        'insertUnorderedList': '插入无序列表',
+        'insertOrderedList': '插入有序列表',
+        'outdent': '从左键入',
+        'indent': '从右键入',
+        'formatPara': '段落(p标签)',
+        'formatH1': '一级标题',
+        'formatH2': '二级标题',
+        'formatH3': '三级标题',
+        'formatH4': '四级标题',
+        'formatH5': '五级标题',
+        'formatH6': '六级标题',
+        'insertHorizontalRule': '插入分割符',
+        'linkDialog.show': '插入链接'
+      }*/
     });
 
     $(".form_advance_datetime").datetimepicker({

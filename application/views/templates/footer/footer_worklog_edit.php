@@ -50,6 +50,7 @@
 <script type="text/javascript" src="../../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="../../assets/global/plugins/icheck/icheck.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/bootstrap-summernote/summernote.min.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/select2/js/select2.full.min.js"></script>
 
