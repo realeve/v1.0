@@ -56,14 +56,20 @@
 	var title;
 
 	//信息推送
-	var sendMsgToUsers = function(msg, receiver) {
+	var sendMsgToUsers = function(msg, receiver,timeLength) {
+		if(typeof timeLength == 'undefined'){
+			timeLength = 60 * 60 * 1000;
+		}else{
+			timeLength = 0;
+		}
+
 		var sendMsg = function(msg, receiver) {
 			$.ajax({
 				url: "http://10.8.2.111:8012/sendnotify.cgi",
 				type: 'get',
 				async: false,
 				data: {
-					"delaytime": 60 * 60 * 1000, //30S延时
+					"delaytime": timeLength, //60S延时
 					"msg": msg,
 					"receiver": receiver, //10879",//多人用逗号或分号隔开
 					"title": "质量控制中心 " + today()
@@ -115,7 +121,8 @@
 	};
 
 	//获取每天推送的质量信息
-	var getLastDayInfo = function() {
+	var getLastDayInfo = function(type) {
+		type = 0 || type;
 		var url = "http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=109&M=3";
 		var lastDay = ")印码机检好品率:\n"; //昨天质量情况
 		//var theMonth = "当月好品率:\n"; //当月质量情况		
@@ -170,7 +177,7 @@
 							lastDay += elem + " : " + dataProdt['data'][elem]['lastDay'] + " (" + preStr + "%);\n";
 						}
 					});
-					msg = '昨日(' + dateName + lastDay; // + theMonth;
+					msg = (type ? '今日' : '昨日(') + dateName + lastDay; // + theMonth;
 					msg += '[(点击此处查看详情)|http://10.8.2.133/MonthStatic.asp]';
 				} else {
 					res.status = 0;
@@ -270,14 +277,15 @@
 		return userInfo;
 	};
 
-	var pushLastDayInfo = function(msg) {
+	var pushLastDayInfo = function(msg, mode) {
+		mode = 0 || mode;
 		$.ajax({
 			url: "./assets/data/all.json",
 			async: false,
 			success: function(json) {
 				json.dataPrint.map(function(elem, index) {
 					//json.dataTest.map(function(elem, index) {
-					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString());
+					sendMsgToUsers(elem[1] + (mode ? ",中午好!" : ",早上好!") + msg, elem[3].toString(),0);
 				})
 			}
 		});
@@ -324,14 +332,14 @@
 			async: false,
 			success: function(json) {
 				json.dataPaperGY.map(function(elem, index) {
-					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString());
+					sendMsgToUsers(elem[1] + ",早上好!" + msg, elem[3].toString(),0);
 				})
 			}
 		});
 	}
 
 	//处理用户组,返回处于在线状态的用户
-	var handleUserOnlineStatus = function(msg,userList) {
+	var handleUserOnlineStatus = function(msg, userList) {
 		var url = "http://10.8.2.111:8012/isonline.php?rtxid=" + userList;
 		var isOnline;
 		$.ajax({
@@ -385,6 +393,10 @@
 				if (hours != 7) {
 					isPass = 0;
 				}
+			} else if (mode == 2) { //每天推送1次消息 ,早上6点推送
+				if (hours != 12) {
+					isPass = 0;
+				}
 			}
 
 		}
@@ -434,7 +446,7 @@
 					});
 
 					//推送上个工作日质量信息
-					var lastDayInfo = getLastDayInfo();
+					var lastDayInfo = getLastDayInfo(0);
 					var uncheckInfo = getUncheckInfo();
 					var msg = '';
 					if (lastDayInfo.status > 0) {
@@ -444,21 +456,63 @@
 						msg += uncheckInfo.msg;
 					}
 					if (lastDayInfo.status + uncheckInfo.status > 0) {
-						pushLastDayInfo(msg);
+						pushLastDayInfo(msg, 0);
 					}
+
 					console.log(msg);
 
 					//推送钞纸过程质量控制数据
 					var paperProcessInfo = getPaperProcessInfo();
 					var paperPackageInfo = getPackageInfo();
-					if (paperProcessInfo.status > 0 || paperPackageInfo.status>0) {
+					if (paperProcessInfo.status + paperPackageInfo.status > 0) {
 						pushPaperProcessInfo(paperProcessInfo.msg + paperPackageInfo.msg);
 					}
 				} else {
 					console.log('当天已推送该信息:   ' + today(3));
 				}
 			}
-		}, 60 * 60 * 1000);
+
+			//1小时刷新一次
+			if (!dateValidate(2)) {
+				console.log('每天推送消息 时间校验未通过:     ' + today(3));
+			} else {
+				if (typeof localStorage.todayPushLog == 'undefined') {
+					localStorage.todayPushLog = '{"today":"0"}';
+				}
+				if ($.parseJSON(localStorage.todayPushLog).today < today(7)) {
+					localStorage.todayPushLog = JSON.stringify({
+						"today": today(7)
+					});
+
+					//推送今天质量信息
+					var lastDayInfo = getLastDayInfo(1);
+					var uncheckInfo = getUncheckInfo();
+					var msg = '';
+					if (lastDayInfo.status > 0) {
+						msg += lastDayInfo.msg;
+					}
+					if (uncheckInfo.status > 0) {
+						msg += uncheckInfo.msg;
+					}
+					if (lastDayInfo.status + uncheckInfo.status > 0) {
+						pushLastDayInfo(msg, 1);
+					}
+
+					console.log(msg);
+
+					//推送钞纸过程质量控制数据
+					/*var paperProcessInfo = getPaperProcessInfo();
+					var paperPackageInfo = getPackageInfo();
+					if (paperProcessInfo.status + paperPackageInfo.status>0) {
+						pushPaperProcessInfo(paperProcessInfo.msg + paperPackageInfo.msg);
+					}*/
+
+				} else {
+					console.log('当天已推送该信息:   ' + today(3));
+				}
+			}
+		}, 30 * 60 * 1000);
+
 	}();
 })();
 

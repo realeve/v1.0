@@ -262,6 +262,7 @@
                                                     <tr>
                                                         <th><i class="fa fa-calendar-plus-o"></i> 品种 </th>
                                                         <th><i class="fa fa-briefcase"></i> 机台 </th>
+                                                        <th><i class="fa fa-briefcase"></i> 裁切机台 </th>
                                                         <th><i class="fa fa-user"></i> 轴号</th>
                                                         <th><i class="fa fa-calendar-plus-o"></i> 检验时间 </th>
                                                         <th><i class="fa fa-cut"></i> 裁切轴重</th>

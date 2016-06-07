@@ -368,7 +368,7 @@
     }
 
     //默认选择最近一周
-    var paramRange = getUrlParam('dateRange');
+    var paramRange = getUrlParam('daterange');
     var defaultRange = (paramRange == null) ? 3 : Number.parseInt(paramRange);
 
     $('#dashboard-report-range').daterangepicker({

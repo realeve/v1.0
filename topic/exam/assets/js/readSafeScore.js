@@ -154,7 +154,7 @@ require(['echarts', 'waypoints', 'jquery.counterup', 'jquery.fullPage'], functio
             //$('[name="progress"]').text('10%');
             gb.userInfo.peopleNums = obj.allPeople;
             gb.userInfo.scoreOrder = obj.scoreOrder;
-            gb.userInfo.scorePropt = (obj.scoreOrder == 1) ? 100 : obj.lessThan;
+            gb.userInfo.scorePropt = obj.lessThan;
             //总人数
             $('[name="totals"]').text(gb.userInfo.peopleNums);
 
@@ -179,7 +179,7 @@ require(['echarts', 'waypoints', 'jquery.counterup', 'jquery.fullPage'], functio
             gb.userInfo.dpt.all = obj.dpt_people;
             gb.userInfo.dpt.peopleNums = obj.allPeople;
             gb.userInfo.dpt.scoreOrder = obj.scoreOrder;
-            gb.userInfo.dpt.scorePropt = (obj.scoreOrder == 1) ? 100 : obj.lessThan;
+            gb.userInfo.dpt.scorePropt = obj.lessThan;
 
             $('[name="dptName"]').text(gb.userInfo.user_dpt);
 

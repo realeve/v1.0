@@ -36,7 +36,7 @@ var PaperValidate = function() {
 		var Data = ReadData(str);
 		InitSelect("prod_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=0";
 		Data = ReadData(str);
 		InitSelect("machine_id", Data);
 
@@ -97,6 +97,7 @@ var PaperValidate = function() {
 		SetSelect2Val('oper_id', Data.data[0].oper_id);
 		SetSelect2Val('prod_id', Data.data[0].prod_id);
 		SetSelect2Val('machine_id', Data.data[0].machine_id);
+		SetSelect2Val('cut_machine_id', Data.data[0].cut_machine_id);
 		SetSelect2Val('number_right', Data.data[0].number_right);
 
 		SetiCheckChecked('passed', Data.data[0].passed);
@@ -411,7 +412,7 @@ var PaperValidate = function() {
 				var strTr = "";
 				if (Data.rows > 0) {
 					Data.data.map(function(elem) {
-						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;"' + bsConfirm + ' class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
+						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + '</td><td> ' + elem.cut_machine_name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;"' + bsConfirm + ' class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
 					});
 					$('table[name="unPassedList"] tbody').html(strTr);
 				} else {

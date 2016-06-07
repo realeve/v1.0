@@ -1989,7 +1989,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         subTitle: Data.source,
         rows: Data.rows,
         series: [{
-          type: objRequest.type,
+          type: 'themeRiver',//objRequest.type,
           itemStyle: {
             emphasis: {
               shadowBlur: 20,
@@ -2193,7 +2193,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       case 'graph':
         returnData = convertForceGraphData(objRes);
         break;
-      case 'themeRiver':
+      case 'themeriver':
         returnData = convertThemeRiverData(objRes);
         break;
     }
@@ -3432,7 +3432,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       case 'graph': //力导向布局图
         outData = getForceGraphOption(objRequest);
         break;
-      case 'themeRiver': //事件河流图
+      case 'themeriver': //事件河流图
         outData = getThemeRiverOption(objRequest);
         break;
     }

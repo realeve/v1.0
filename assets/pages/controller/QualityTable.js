@@ -272,7 +272,7 @@ var dataTable = function() {
 		table.parents('.portlet').find('[name="datasource"]').text('(' + Data.source + ')');
 
 		//$('.page-title [name="TableTitle"]').text(Data.title);
-		$('#today').text(Data.source);
+		//$('#today').text(Data.source);
 
 		if (Data.cols < 2) {
 			bsTips("请确保数据列在2列以上，当前为：" + Data.cols);
