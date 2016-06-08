@@ -62,7 +62,7 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 		arr.map(function(arrData, id) {
 			oldOrder[arrData] = id;
 		});
-		var str = '<div class="section ' + (i % 2 ? '' : 'background_dark_img') + '">' +
+		var str = '<div class="section background_main">' +
 			'<h1 class="title answer-num ' + /*(i % 2 ? '' : 'white-font')+*/ '">第<span>' + i + '</span>题</h1>';
 		if (mode) {
 			str += '<h3 class="weui_cells_title">错误人数：<span>' + obj.nums + '人 </span>( ' + obj.percent + '% )</h3>';
@@ -70,7 +70,7 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 
 		str += '<h3 class="weui_cells_title">正确答案:<span>' + answerAttr[Number.parseInt(oldOrder[data.answer - 1])] + '</h3>' +
 			'<div class="weui_cells_title ' + /*(i % 2 ? '' : 'white-font')+*/ '">' + data.title + '</div>' +
-			'<div class="weui_cells weui_cells_checkbox' + (i % 2 ? '' : ' weui_cells_dark') + '" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
+			'<div class="weui_cells weui_cells_checkbox weui_cells_dark weui_cells_dark_myerr" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
 		data.question.map(function(qTitle, idx) {
 			ques[idx] = '';
