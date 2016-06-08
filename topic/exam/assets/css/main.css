@@ -211,6 +211,13 @@
     box-sizing: border-box;
     vertical-align: top;
 }
+.background_welcome{
+    background-image: url(../img/welcome.png);
+    background-repeat:no-repeat;
+    background-position: center center;
+    box-sizing: border-box;
+    vertical-align: top;
+}
 
 .weui-picker-modal .picker-item.picker-selected {
   color: #10aeff;

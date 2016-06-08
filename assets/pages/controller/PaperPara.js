@@ -22,7 +22,7 @@ var PaperParam = function() {
 		var Data = ReadData(str);
 		InitSelect("Prod_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=0";
 		Data = ReadData(str);
 		InitSelect("machine_id", Data);
 
