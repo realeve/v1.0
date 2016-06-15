@@ -313,24 +313,30 @@ class CI_DB_result {
 	**/
 	function Conv($str)
 	{
-		//$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
-		//if($encode == "UTF-8")
-		//{
-			$str = iconv("UTF-8","GBK",$str);
-		//}
+		//$str = iconv("UTF-8","GBK",$str);
+
+		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
+		$encode = mb_detect_encoding($str,$encode_Arr);
+		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
+	
 		return $str;
 	}
 	
 	function reConv($str)
 	{	
-		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
+		/*$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
 		if($encode == "GBK")
 		{
 			$str = iconv($encode,"UTF-8",$str);
 		}elseif($encode="EUC-CN")
 		{
 			$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
-		}
+		}*/
+			
+		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
+		$encode = mb_detect_encoding($str,$encode_Arr);
+		$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
+		
 		return $str;
 	} 
 	  

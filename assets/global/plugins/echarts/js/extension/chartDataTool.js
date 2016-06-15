@@ -1388,7 +1388,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
         //子结点不存在为首次添加
         if (objTree[leafID].children == null) {
-          //不存在子结点 
+          //不存在子结点
           if (parentArr.length - 2 > obj.deepLevel) { //还没到最后一层
             objTree[leafID].children = [];
           }
@@ -1426,7 +1426,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     /**
      * [getRadarSeriesData 将arr转为radarMap的Series数据]
      * @param  {[type]} arr [arr]
-     * @return {[obj]}  
+     * @return {[obj]}
      */
     function getRadarSeriesData(arr) {
       var res = {};
@@ -1989,7 +1989,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         subTitle: Data.source,
         rows: Data.rows,
         series: [{
-          type: 'themeRiver', //objRequest.type,
+          type: 'themeRiver',//objRequest.type,
           itemStyle: {
             emphasis: {
               shadowBlur: 20,
@@ -3441,10 +3441,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
     }
     //处理legend过长
-    if ( /*objRequest.type != 'themeRiver' && */ typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
-      if (typeof outData.grid != 'undefined') {
-        outData.grid.right = '15%';
-      }
+    if (/*objRequest.type != 'themeRiver' && */typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
+      outData.grid.right = '15%';
       outData.legend.orient = 'vertical';
       outData.legend.x = 'right';
     }

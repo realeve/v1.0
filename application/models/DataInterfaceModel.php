@@ -64,27 +64,39 @@ class DataInterfaceModel extends CI_Model {
 	}
 
 	public function TransToUTF($str){
-		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
+		/*$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
 		if($encode == "GBK")
 		{
 			$str = iconv($encode,"UTF-8",$str);
 		}elseif($encode="EUC-CN")
 		{
-			$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
-		}
+			$str = mb_convert_encoding($str,"UTF-8",array('ASCII','UTF-8','GBK','GB2312','EUC-CN'));
+			//$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
+		}*/
+		
+		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
+		$encode = mb_detect_encoding($str,$encode_Arr);
+		$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
+		
 		return $str;
 	}
 	public function TransToGBK($str){
 		//$str = iconv("UTF-8","GBK",$str);
+	
+		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
+		$encode = mb_detect_encoding($str,$encode_Arr);
+		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
+		$encode = mb_detect_encoding($str,$encode_Arr);
+		
+/*
 		$str = mb_convert_encoding($str,"GBK",array('UTF-8'));
 		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
 		if($encode == 'CP936'){
-			//$str = iconv("UTF-8","GBK",$str);
 			$str = iconv("UTF-8","GBK//IGNORE",$str);
 			return $str;
-		}else{
-			return $str;
 		}
+*/	
+		return $str;
 	}
 
 	public function GetNewApiID($UserName)
@@ -94,8 +106,8 @@ class DataInterfaceModel extends CI_Model {
 		$query = $LOGINDB->query($StrSQL,array($UserName));
 		$strJson = $query->result_json();	
 		$strReturn = json_decode($strJson)->data[0]->NewID;
-		$query->free_result(); //清理内存
-		$LOGINDB->close();//关闭连接
+		//$query->free_result(); //清理内存
+		//$LOGINDB->close();//关闭连接
 		return $strReturn;
 	}
 
@@ -139,7 +151,7 @@ class DataInterfaceModel extends CI_Model {
 			$Logout['status'] = '0';
 			$Logout['NewID'] = $data['ApiID'];
 		}
-	  	$LOGINDB->close();//关闭连接
+	  	//$LOGINDB->close();//关闭连接
 		return $Logout;
 	}
 
@@ -155,10 +167,10 @@ class DataInterfaceModel extends CI_Model {
 		$query=$LOGINDB->query($SQLStr,array($data['Token']));
 		$strJson = $query->result_json();
 
-		//return $strJson ;//调试语句 
 		$ApiInfo = json_decode($strJson);
-		$query->free_result(); //清理内存
-		$LOGINDB->close();//关闭连接
+		//$query->free_result(); //清理内存
+		//$LOGINDB->close();//关闭连接
+		
 		if(!isset($ApiInfo->rows) || !$ApiInfo->rows){
 			return $strJson;
 		}
@@ -250,6 +262,9 @@ class DataInterfaceModel extends CI_Model {
 			case '8'://ORCAL
 				$LOGINDB=$this->load->database('OFFICEHELPER',TRUE);	
 				break;
+			case '9'://ORCAL
+				$LOGINDB=$this->load->database('CZUSER',TRUE);	
+				break;
 		}		
 
 		if ($mode == 0 ) {
@@ -286,11 +301,16 @@ class DataInterfaceModel extends CI_Model {
 			//不使用官方替换字符串的函数(在处理ORCAL的查询语句时会报错);
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
+				$query = $LOGINDB->query($SQLStr);
+			}else{
+				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+			}
+			
 			$strJson = $query->result_datatable_json();
 		}
-		$query->free_result(); //清理内存
-		$LOGINDB->close();//关闭连接
+		//$query->free_result(); //清理内存
+		//$LOGINDB->close();//关闭连接
 		return $strJson;
 	}
 	public function handleStr($str,$params)
@@ -333,8 +353,8 @@ class DataInterfaceModel extends CI_Model {
 		$SQLStr = "SELECT top 1 a.* from tblQualityTable_Settings a INNER JOIN tblUser b on a.UserID = b.ID WHERE b.UserName = ?";
 		$query=$LOGINDB->query($SQLStr,array($data['UserName']));
 		$strJson = $query->result_json();
-		$query->free_result(); //清理内存
-		$LOGINDB->close();//关闭连接
+		//$query->free_result(); //清理内存
+		//$LOGINDB->close();//关闭连接
 		return $strJson;	
 	}
 	
@@ -355,8 +375,8 @@ class DataInterfaceModel extends CI_Model {
 			$LOGINDB->update('tblDataInterface', $data,$where);*/
 			print_r(base64_decode($row->strSQL)."<br>");
 		}
-		$LOGINDB->close();//关闭连接
-		$query->free_result();
+		//$LOGINDB->close();//关闭连接
+		//$query->free_result();
 	}
 	
 	public function insert($data)

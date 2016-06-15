@@ -1066,7 +1066,7 @@
 
     /**
      * returns whether point is visible (can set cursor) or not.
-     * 
+     *
      * @param {BoundaryPoint} point
      * @return {Boolean}
      */
@@ -2523,7 +2523,7 @@
             if (dom.isVisiblePoint(point)) {
               return point;
             }
-            // reverse direction 
+            // reverse direction
             isLeftToRight = !isLeftToRight;
           }
 
@@ -3005,8 +3005,8 @@
       },
 
       /**
-       * @method 
-       * 
+       * @method
+       *
        * create WrappedRange from node
        *
        * @param {Node} node
@@ -3055,8 +3055,8 @@
       },
 
       /**
-       * @method 
-       * 
+       * @method
+       *
        * create WrappedRange from bookmark
        *
        * @param {Node} editable
@@ -3072,7 +3072,7 @@
       },
 
       /**
-       * @method 
+       * @method
        *
        * create WrappedRange from paraBookmark
        *
@@ -4782,7 +4782,7 @@
         }
 
         autoFormatSelection();
-        CodeMirror.commands["goLineStart"](cmEditor);
+        CodeMirror.commands["goLineStart$.isPlainObject('object');"](cmEditor);
       };
 
       // activate CodeMirror as codable

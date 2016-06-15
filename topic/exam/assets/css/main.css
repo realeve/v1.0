@@ -191,6 +191,9 @@
 .white-font-red{
     color:#eb0c2b;
 }
+.yellow-font{
+    color:#fdc942;
+}
 .light-blue{
     background-color: rgb(214, 238, 255);
 }
@@ -221,6 +224,9 @@
     background-image: url(../img/main.jpg);
 }
 
+.background_party_his_main{
+    background-image: url(../img/welcomePage.jpg);
+}
 .weui-picker-modal .picker-item.picker-selected {
   color: #10aeff;
   font-weight: bold;

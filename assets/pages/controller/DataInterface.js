@@ -455,6 +455,9 @@ var FormEditable = function() {
   }, {
     value: 8,
     text: '办公小助手'
+  }, {
+    value: 9,
+    text: '钞纸在线质量检测'
   }];
   var initAjaxMock = function() {
     //ajax mocks
@@ -480,11 +483,11 @@ var FormEditable = function() {
       $.fn.editable.defaults.mode = 'inline';
     }
 
-    //global settings 
+    //global settings
     $.fn.editable.defaults.inputclass = 'form-control';
     $.fn.editable.defaults.url = '/post';
 
-    //editables element samples 
+    //editables element samples
     $('#ApiName').editable({
       validate: function(value) {
         if ($.trim(value) === '') return '该字段不能为空';
@@ -576,7 +579,7 @@ $(this).html('<pre>' + value + '</pre>');
         $('#url').editable('disable');
         $('#ApiID').editable('disable');
       });
-      // init 
+      // init
       $('#InputInner').on('switchChange.bootstrapSwitch', function(e) {
         SaveSettings();
         window.location.reload();
@@ -636,23 +639,23 @@ $(this).html('<pre>' + value + '</pre>');
       $('#Reset').on('click', function() {
         $('#ApiName').editable('setValue', null) //clear values
           .editable('option', 'pk', null) //clear pk
-          .removeClass('editable-unsaved'); //remove bold css     
+          .removeClass('editable-unsaved'); //remove bold css
 
         $('#DataBaseID').editable('setValue', null) //clear values
           .editable('option', 'pk', null) //clear pk
-          .removeClass('editable-unsaved'); //remove bold css    
+          .removeClass('editable-unsaved'); //remove bold css
 
         $('#SQL').editable('setValue', null) //clear values
           .editable('option', 'pk', null) //clear pk
-          .removeClass('editable-unsaved'); //remove bold css    
+          .removeClass('editable-unsaved'); //remove bold css
         var strNote = '[功能说明]' + '<p style="text-indent:2em;">本接口主要用于 <i>XX</i> 信息的查询.</p>' + '[主要参数]';
         strNote += '<ul><li>TimeStart:开始时间；</li><li> TimeEnd:开始时间；</li><li> Cols:1/0,默认为空，设为1时返回查询语句的列用于表格初始化等操作；</li></ul>';
         $('#note').editable('setValue', strNote) //clear values
           .editable('option', 'pk', null) //clear pk
-          .removeClass('editable-unsaved'); //remove bold css    
+          .removeClass('editable-unsaved'); //remove bold css
       });
 
-      $('a[href="#portlet_tab1"]').on('click', function() { //查看接口列表 
+      $('a[href="#portlet_tab1"]').on('click', function() { //查看接口列表
         $('.portlet[name="api_View"]').hide();
         window.onscroll = function() {
           $('table[aria-describedby="apiList_info"] thead tr[role="row"]:nth(1)').show();
@@ -693,7 +696,7 @@ jQuery(document).ready(function() {
   initDom();
   $('.page-header .dropdown-quick-sidebar-toggler').hide();
   dataTable.init();
-  //initColStat('#sample');       
+  //initColStat('#sample');
   FormEditable.init();
 });
 jQuery(window).resize(function() {
