@@ -317,6 +317,9 @@ class CI_DB_result {
 
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
 		$encode = mb_detect_encoding($str,$encode_Arr);
+		if($encode == 'CP936'){
+			$encode = 'GBK';
+		}
 		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
 	
 		return $str;
@@ -335,6 +338,12 @@ class CI_DB_result {
 			
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
 		$encode = mb_detect_encoding($str,$encode_Arr);
+		if($encode == 'CP936'){
+			$encode = 'GBK';
+		}
+		if($encode == 'UTF-8'){
+			$str = iconv('GBK','UTF-8',$str);
+		}
 		$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
 		
 		return $str;
@@ -443,15 +452,16 @@ class CI_DB_result {
 			if ($strJSON != $strHead) {
 				$strJSON .= ",";
 			}	
-			//$iValue = trim($this->reConv($arr[$i]));
-			$encode = mb_detect_encoding($arr[$i],array('ASCII','EUC-CN','GBK','UTF-8'));
+			$iValue = trim($this->reConv($arr[$i]));
+			/*$encode = mb_detect_encoding($arr[$i],array('ASCII','EUC-CN','GBK','UTF-8'));
 			if($encode == "CP936")
 			{
 				$iValue = trim($arr[$i]);
 			}else
 			{
 				$iValue = trim($this->reConv($arr[$i]));
-			}
+			}*/
+			
 			$strName = 'title';
 			$strJSON .= '{"' .$strName.'":"' . $iValue . '"';
 			if ($i == $nums-1) $strJSON .= '}';

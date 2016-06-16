@@ -76,6 +76,9 @@ class DataInterfaceModel extends CI_Model {
 		
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
 		$encode = mb_detect_encoding($str,$encode_Arr);
+		if($encode == 'CP936'){
+			$encode = 'GBK';
+		}
 		$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
 		
 		return $str;
@@ -85,6 +88,9 @@ class DataInterfaceModel extends CI_Model {
 	
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
 		$encode = mb_detect_encoding($str,$encode_Arr);
+		if($encode == 'CP936'){
+			$encode = 'GBK';
+		}
 		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
 		$encode = mb_detect_encoding($str,$encode_Arr);
 		
