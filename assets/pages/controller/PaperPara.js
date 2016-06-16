@@ -80,7 +80,7 @@ var PaperParam = function() {
 		if (GetSelect2Text('Prod_id') === '103-G-7T') {
 			$('input[name="water_imbibition"]').parent().find('span').text('20~40 g/m^2');
 			$('input[name="basis_weight"]').parent().find('span').text('95±3%');
-			$('input[name="thickness"]').parent().find('span').text('105-121');
+			$('input[name="thickness"]').parent().find('span').text('107-118');
 			$('input[name="whiteness"]').parent().find('span').text('81-85');
 			$('input[name="crumpled_porosity_front"]').parent().find('span').text('<=150');
 			$('input[name="crumpled_porosity_back"]').parent().find('span').text('<=150');
@@ -273,6 +273,9 @@ var PaperParam = function() {
 		//取右边一位信息
 		var curVal = jsRight(obj.val(), 1);
 		if (obj.val().length == 2) {
+			if (curVal == 7) {
+				curVal = 8;
+			}
 			SetSelect2Val('Prod_id', curVal);
 		} else if (obj.val().length == 3) {
 			SetSelect2Val('machine_id', curVal);
