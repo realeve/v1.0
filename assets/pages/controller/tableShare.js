@@ -86,22 +86,23 @@ $(document).ready(function() {
           return;
         }
         //' + $('thead th:eq(' + i + ')').text() + '
-        var select = $('<select class="select2"><option value="">所有' + $('thead th:eq(' + i + ')').text() + '</option></select>')
-          .appendTo($(column.footer()).empty()) //.empty()
-          .on('change', function() {
-            var val = $.fn.dataTable.util.escapeRegex(
-              $(this).val()
-            );
-            column
-              .search(val ? '^' + val + '$' : '', true, false)
-              .draw();
-          });
+        var select = $('<select class="select2"><option value="">所有' + $('thead th[data-column-index="' + i + '"]').text() + '</option></select>')
+            .appendTo($(column.footer()).empty())
+            .on('change', function() {
+              var val = $.fn.dataTable.util.escapeRegex(
+                $(this).val()
+              );
+              column
+                .search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
+                .draw();
+            });
+
 
         column.data().unique().sort().each(function(d, j) {
           select.append('<option value="' + d + '">' + d + '</option>')
         });
 
-        var searchStr = oSettings.columns[i].search.search;
+        var searchStr = oSettings.columns[oSettings.ColReorder[i]].search.search;
         if (searchStr.length) {
           searchStr = searchStr.substring(1, searchStr.length - 1).replace('\\', '');
           select.val(searchStr);

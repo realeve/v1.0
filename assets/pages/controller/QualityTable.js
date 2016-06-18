@@ -278,14 +278,14 @@ var dataTable = function() {
 						return;
 					}
 
-					var select = $('<select class="select2"><option value="">所有'+ Data.header[i].title +'</option></select>')
+					var select = $('<select class="select2"><option value="">所有' + $('thead th[data-column-index="' + i + '"]').text() + '</option></select>')
 						.appendTo($(column.footer()).empty())
 						.on('change', function() {
 							var val = $.fn.dataTable.util.escapeRegex(
 								$(this).val()
 							);
 							column
-								.search(val ? '^' + val + '$' : '', true, false)
+								.search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
 								.draw();
 						});
 
@@ -293,7 +293,7 @@ var dataTable = function() {
 						select.append('<option value="' + d + '">' + d + '</option>')
 					});
 
-					var searchStr = oSettings.columns[i].search.search;
+					var searchStr = oSettings.columns[oSettings.ColReorder[i]].search.search;
 					if (searchStr.length) {
 						searchStr = searchStr.substring(1, searchStr.length - 1).replace('\\', '');
 						select.val(searchStr);
