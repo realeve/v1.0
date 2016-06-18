@@ -13,7 +13,7 @@
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="../../assets/global/plugins/respond.min.js"></script>
-<script src="../../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/jquery.base64.min.js" type="text/javascript"></script>
@@ -44,6 +44,8 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 
 <script src="../../assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="../../assets/global/plugins/select2/js/select2.full.min.js"></script>
 
 <script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/jszip.min.js"></script>

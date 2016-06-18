@@ -62,7 +62,7 @@ var dataTable = function() {
 		}
 	}
 	var oTable;
-	//生成表格头 
+	//生成表格头
 
 	function CreateTableHead(Data) {
 		var strHead = '<tr role="row">';
@@ -81,7 +81,7 @@ var dataTable = function() {
 		strHead += '</tr>';
 		return strHead;
 	}
-	//生成表格体 
+	//生成表格体
 
 	function CreateTableBody(Data) {
 		var strRow = '<tr role="row" class="odd">';
@@ -103,6 +103,15 @@ var dataTable = function() {
 	function initSettings(tableID, Data, bFixhead) {
 		var initData;
 		var date = getDateRange();
+		/*var idxColumn = [{
+			title: '序号'
+		}];
+		var convData = [];
+		Data.data.map(function(data) {
+			convData.push([''].concat(data));
+		});*/
+		var idList = getUrlParam('tid').split(',');
+
 		initData = {
 			//"bDestroy":true,
 			"bRetrieve": true,
@@ -121,7 +130,7 @@ var dataTable = function() {
 			"dom": (bFixhead) ? "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>" : "<'clear'>R<'row tbTools' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
 			//"dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
 			//dom: "flBrtip",
-			buttons: [ {
+			buttons: [{
 				extend: 'share',
 				autoPrint: false,
 				text: '分享',
@@ -175,7 +184,7 @@ var dataTable = function() {
 							//margin: [ 0, 0, 0, 12 ]
 						} );
 					}*/
-			},{
+			}, {
 				extend: 'print',
 				autoPrint: true,
 				text: '打印',
@@ -185,7 +194,7 @@ var dataTable = function() {
 					columns: ':visible'
 				},
 				className: "btn grey-mint sbold btn-outline"
-			},{
+			}, {
 				extend: 'colvis',
 				text: '隐藏数据列<i class="fa fa-angle-down"></i>',
 				className: "btn green-haze sbold btn-outline",
@@ -200,8 +209,13 @@ var dataTable = function() {
 			"bSortClasses": false,
 			//任意字段
 			"bScrollInfinite": true,
-			"aoColumns": Data.header,
-			"data": Data.data,
+			"aoColumns": Data.header, //idxColumn.concat(Data.header),
+			"data": Data.data, //convData,
+			/*"columnDefs": [{
+				"searchable": false,
+				"orderable": false,
+				"targets": 0
+			}],*/
 			searchHighlight: true, //高亮
 			colReorder: {
 				realtime: true,
@@ -213,13 +227,80 @@ var dataTable = function() {
 			},*/
 			scroolY: '70v',
 			scrollCollapse: true,
-			"initComplete": function() {
+			iStateDuration: 60 * 60 * 24 * 7, //状态默认保存一周
+			"fnStateSaveCallback": function(settings, data) {
+				var apiID = idList[settings.sInstance.replace('DataTables_Table_', '')];
+				try {
+					(settings.iStateDuration === -1 ? sessionStorage : localStorage).setItem(
+						'DataTables' + location.pathname + '/' + apiID,
+						JSON.stringify(data)
+					);
+				} catch (e) {}
+			},
+			"fnStateLoadCallback": function(settings) {
+				var apiID = idList[settings.sInstance.replace('DataTables_Table_', '')];
+				try {
+					return JSON.parse(
+						(settings.iStateDuration === -1 ? sessionStorage : localStorage).getItem(
+							'DataTables' + location.pathname + '/' + apiID
+						)
+					);
+				} catch (e) {}
+			},
+			"initComplete": function(settings) {
 				var api = this.api();
 				api.on("click", 'tbody td', function() {
 					api.search(this.innerText.trim()).draw();
 				});
 				$(tableID).parents('.portlet').find('.tools').append($(tableID).parents('.portlet').find('.tabletools-btn-group').clone(true));
 				$(tableID).parents('.portlet').find('.tbTools').remove();
+
+				/*api.on('order.dt search.dt', function() {
+					api.column(0, {
+						"search": 'applied',
+						"order": 'applied'
+					}).nodes().each(function(cell, i) {
+						cell.innerHTML = i + 1;
+					});
+					console.log(api.column(2, {
+						"search": 'applied',
+						"order": 'applied'
+					}).nodes());
+				}).draw();*/
+
+				var rowData = api.row(0).data();
+				var apiID = idList[settings.sInstance.replace('DataTables_Table_', '')];
+				var oSettings = $.parseJSON(localStorage.getItem('DataTables/qualitytable/' + apiID));
+
+				api.columns().indexes().flatten().each(function(i) {
+					var column = api.column(i);
+					if (!isNaN(rowData[i])) {
+						return;
+					}
+
+					var select = $('<select class="select2"><option value="">所有'+ Data.header[i].title +'</option></select>')
+						.appendTo($(column.footer()).empty())
+						.on('change', function() {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+							);
+							column
+								.search(val ? '^' + val + '$' : '', true, false)
+								.draw();
+						});
+
+					column.data().unique().sort().each(function(d, j) {
+						select.append('<option value="' + d + '">' + d + '</option>')
+					});
+
+					var searchStr = oSettings.columns[i].search.search;
+					if (searchStr.length) {
+						searchStr = searchStr.substring(1, searchStr.length - 1).replace('\\', '');
+						select.val(searchStr);
+					}
+				});
+
+				initSelect2();
 				//bsTips(JSON.stringify(Data), 2);
 				bsTips('数据加载完成', 2);
 			}
@@ -252,6 +333,13 @@ var dataTable = function() {
 		}
 		Data.fixedHeaderOffset = fixedHeaderOffset;
 		var initData = initSettings(tableID, Data, bFixhead);
+
+		var strFoot = '';
+		Data.header.map(function(footTD) {
+			strFoot += '<td>' /*+ footTD.title*/ + '</td>';
+		});
+		table.find('tfoot tr').html(strFoot);
+
 		//初始化表格
 		oTable = table.dataTable(initData);
 	}
@@ -295,6 +383,7 @@ var dataTable = function() {
 			oTable.oApi._fnAddData(oSettings, Data.data[i]);
 		}
 		oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+
 		oTable.fnDraw();
 		//bsTips(JSON.stringify(Data), 2);
 	}
@@ -318,7 +407,7 @@ var dataTable = function() {
 
 	};
 }();
-//记录选择状态  
+//记录选择状态
 jQuery(document).ready(function() {
 	RoundedTheme(0);
 	UIIdleTimeout.init();
@@ -326,7 +415,7 @@ jQuery(document).ready(function() {
 	initDom();
 	hideSidebarTool();
 	//修复顶部style="margin-top:-43px;"
-	//系统主题设置       
+	//系统主题设置
 	//ReadSettings();
 	dataTable.init();
 	//初始化表格

@@ -11,7 +11,7 @@
 						<i class="fa fa-circle"></i>
 					</li>
 				</ul>
-				
+
 				<div class="page-toolbar">
 					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
@@ -19,7 +19,7 @@
 						<i class="fa fa-angle-down"></i>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
@@ -42,7 +42,7 @@
 					 <i class="icon-heart"></i> 贴心保存：对于表单所做的所有设置操作都将会自动记录下来(包括各列顺序哟<i class="icon-emoticon-smile"></i>)，下次启动页面将不再设置.
 				</p>
 			</div-->
-			<div class="mt-element-ribbon bg-white">
+			<!--div class="mt-element-ribbon bg-white">
 				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
                 <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-info uppercase">
                     <div class="ribbon-sub ribbon-clip"></div> 小提示: </div>
@@ -61,9 +61,9 @@
 					</p>
 					<p>
 						 <i class="icon-heart"></i> 贴心保存：对于表单所做的所有设置操作都将会自动记录下来(包括各列顺序哟<i class="icon-emoticon-smile"></i>)，下次启动页面将不再设置.
-					</p>	
+					</p>
 				</p>
-            </div>
+            </div-->
 			<!-- END PAGE CONTENT-->
 			<!-- BEGIN PAGE CONTENT-->
 
@@ -101,7 +101,7 @@
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
-            </div>	
+            </div>
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">
@@ -112,9 +112,10 @@
 					</div>
 					<div class="tools"></div>
 				</div>
-				<div class="portlet-body form">	
+				<div class="portlet-body form">
 					<table class="table table-striped table-bordered table-hover table-header-fixed" width="100%" name="sampleTable">
-						<thead class="hidden-sm"></thead>						
+						<thead class="hidden-sm"></thead>
+						 <tfoot><tr></tr></tfoot>
 					</table>
 				</div>
 			</div>

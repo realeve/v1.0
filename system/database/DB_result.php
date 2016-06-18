@@ -457,7 +457,7 @@ class CI_DB_result {
 			
 			if($encode == "EUC-CN")
 			{
-				$iValue = iconv('GBK','UTF-8',$arr[i]);
+				$iValue = iconv('GBK','UTF-8',$arr[$i]);
 			}else
 			{
 				$iValue = trim($arr[$i]);

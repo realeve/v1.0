@@ -287,11 +287,11 @@
 			"w_max": 97.85
 		},
 		"thickness": {
-			"min": 105,
-			"max": 121,
+			"min": 107,
+			"max": 118,
 			"score": 0.5,
-			"w_min": 105,
-			"w_max": 121
+			"w_min": 107,
+			"w_max": 118
 		},
 		"horz_thickness_delta": {
 			"min": 0,

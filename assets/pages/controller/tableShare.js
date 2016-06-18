@@ -71,10 +71,46 @@ $(document).ready(function() {
     },
     scroolY: '70v',
     scrollCollapse: true,
-    "initComplete": function() {
+    "initComplete": function(settings) {
       var api = this.api();
       api.on("click", 'tbody td', function() {
         api.search(this.innerText.trim()).draw();
+      });
+
+      var rowData = api.row(0).data();
+      var oSettings = $.parseJSON(localStorage.getItem('DataTables_' + settings.sInstance + '_' + location.pathname));
+
+      api.columns().indexes().flatten().each(function(i) {
+        var column = api.column(i);
+        if (!isNaN(rowData[i])) {
+          return;
+        }
+        //' + $('thead th:eq(' + i + ')').text() + '
+        var select = $('<select class="select2"><option value="">所有' + $('thead th:eq(' + i + ')').text() + '</option></select>')
+          .appendTo($(column.footer()).empty()) //.empty()
+          .on('change', function() {
+            var val = $.fn.dataTable.util.escapeRegex(
+              $(this).val()
+            );
+            column
+              .search(val ? '^' + val + '$' : '', true, false)
+              .draw();
+          });
+
+        column.data().unique().sort().each(function(d, j) {
+          select.append('<option value="' + d + '">' + d + '</option>')
+        });
+
+        var searchStr = oSettings.columns[i].search.search;
+        if (searchStr.length) {
+          searchStr = searchStr.substring(1, searchStr.length - 1).replace('\\', '');
+          select.val(searchStr);
+        }
+      });
+
+      $.fn.select2.defaults.set("theme", "bootstrap");
+      $(".select2, .select2-multiple").select2({
+        width: null
       });
     }
   };
@@ -85,5 +121,9 @@ $(document).ready(function() {
       headerOffset: 0,
     };
   }
+
+  $('table').append('<tfoot>' + $('table thead').html() + '</tfoot>');
   $('table').DataTable(option);
+
+
 });

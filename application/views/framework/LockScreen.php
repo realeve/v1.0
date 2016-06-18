@@ -73,9 +73,10 @@
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="<?php echo base_url()?>assets/global/plugins/respond.min.js"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/excanvas.min.js"></script> 
+<script src="<?php echo base_url()?>assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>assets/global/plugins/moment.min.js" type="text/javascript"></script>
 
 <script src="<?php echo base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>

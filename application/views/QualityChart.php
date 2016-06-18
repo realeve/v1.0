@@ -16,7 +16,7 @@
 						<a href="<?php echo base_url()?>QualityTable">各品种质量汇总</a>
 					</li>
 				</ul>
-				
+
 				<div class="page-toolbar">
 					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
@@ -24,14 +24,14 @@
 						<i class="fa fa-angle-down"></i>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
 			<!--div class="note note-success">
 				<a href="javascript:;" id="HideTips"><i class="glyphicon glyphicon-remove pull-right"></i></a>
 				<h4 class="block"><i class="icon-info"></i> 小提示：</h4>
-				<div class="row"> 
+				<div class="row">
 					<div class="col-md-6">
 						<p>
 						 	<i class="icon-size-actual"></i> 数据拖拽.
@@ -58,11 +58,11 @@
 				</div>
 			</div-->
 
-			<div class="mt-element-ribbon bg-white">
+			<!--div class="mt-element-ribbon bg-white">
 				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
                 <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-success uppercase">
                     <div class="ribbon-sub ribbon-clip"></div> 小提示: </div>
-                <p class="ribbon-content">     
+                <p class="ribbon-content">
 	                <div class="table-responsive">
 	                	<table class="table table-striped table-bordered table-hover">
 							<thead><tr><th>参数名</th><th>参数说明</th><th>可选值</th></tr></thead>
@@ -91,19 +91,19 @@
 								<tr><td>barwidth</td><td>柱形宽度</td><td>数值型(默认100)</td></tr>
 								<tr><td>splitarea</td><td>值域背景分割条</td><td>0，1</td></tr>
 								<tr><td>zoom</td><td>显示缩放控件</td><td>0(关闭),v(vertical 垂直),h(horizontal 水平),vh(同时打开)</td></tr>
-								<!--tr><td>blind</td><td>多表是否绑定，如果不绑定则各图表独立操作</td><td>0,1</td></tr-->
+								<!--tr><td>blind</td><td>多表是否绑定，如果不绑定则各图表独立操作</td><td>0,1</td></tr>
 								<tr><td>banknoteColor</td><td>使用钞券颜色</td><td>默认打开，打开此项后，Legend序列中存在钞券代号时，将启用对应的颜色。打开后，部分主题可能失效。</td></tr>
 							</tbody>
 						</table>
-	                </div>          
+	                </div>
 					<p>注：<br>
 					   1.各图表可单独设置参数，以逗号隔开; <br>
 					   2.关于可视化图表的更多详情请<a href="../topic/doc/slide" target="_blank">点击这里</a></p>
 				</p>
-            </div>
+            </div-->
 
 			<!-- END PAGE CONTENT-->
-			<!-- BEGIN PAGE CONTENT-->		
+			<!-- BEGIN PAGE CONTENT-->
 
 			<div class="row" id="Preview">
 				<div class="col-md-12">
@@ -137,17 +137,17 @@
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
-            </div>		
+            </div>
 			<!-- BEGIN Portlet PORTLET-->
 			<div class="portlet light bordered">
 				<div class="portlet-title">
 					<div class="col-md-4">
-						<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>	
+						<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>
 						<a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>
 						<a class="btn btn-circle btn-default" name="showTable" data-chartid="0" target="_blank"><i class="fa fa-table"> </i> 报表 </a>
-						<a data-toggle="modal" href="#share" id="successShare"></a>	
+						<a data-toggle="modal" href="#share" id="successShare"></a>
 					</div>
-					<div class="col-md-2" style="margin-left:-55px;">	
+					<div class="col-md-2" style="margin-left:-55px;">
 						<select class="bs-select form-control" name="ratio" data-width="100px" data-size="10">
 							<option value="2.35">2.35:1</option>
 							<option value="2">2:1</option>
@@ -166,16 +166,16 @@
 							<option value="0.625">10:16</option>
 							<option value="0.5625">9:16</option>
 							<option value="0.5">1:2</option>
-						</select>	
-					</div>						
-					<div class="actions"> 					
+						</select>
+					</div>
+					<div class="actions">
 						<select class="bs-select form-control" name="theme" data-style="blue" data-width="125px">
-						</select>		 		
+						</select>
 						<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
 						</a>
 					</div>
 				</div>
-				<div class="portlet-body form">	
+				<div class="portlet-body form">
 					<div id="eChart-main0" class="eCharts-main margin-top-5"></div>
 				</div>
 			</div>

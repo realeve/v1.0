@@ -114,7 +114,8 @@
 			$('style, link').each(function() {
 				head += _relToAbs(this);
 			});
-
+			head += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/select2/css/select2.min.css"/>' +
+				'<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/select2/css/select2-bootstrap.min.css"/>';
 			/*$(win.document.head).html(head);
 			$(win.document.body).attr('style', 'background-color:#fafafa');
 			// Inject the table and other surrounding information
@@ -134,6 +135,7 @@
 			var scriptsHtml = '<script type="text/javascript" src="../../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>' +
 				'<script type="text/javascript" src="../../../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>' +
 				'<script type="text/javascript" src="../../../assets/global/plugins/datatables/media/js/jszip.min.js"></script>' +
+				'<script type="text/javascript" src="../../../assets/global/plugins/select2/js/select2.full.min.js"></script>' +
 				'<script type="text/javascript" src="../../../assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>' +
 				'<script type="text/javascript" src="../../../assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>' +
 				'<script type="text/javascript" src="../../../assets/global/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedheader.min.js"></script>' +

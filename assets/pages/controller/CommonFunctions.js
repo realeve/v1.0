@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.25;
+  var curVersion = 1.28;
   moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -51,7 +51,7 @@
     infoType = ['danger', 'success', 'info', 'warning'];
     App.alert({
       container: iContainer, // alerts parent container(by default placed after the page breadcrumbs)
-      place: "append", // append or prepent in container 
+      place: "append", // append or prepent in container
       type: infoType[Type], // alert's type
       message: strMes, // alert's message
       close: true, // make alert closable
@@ -189,30 +189,30 @@
     return (((isFloat) ? num.toFixed(2) : num) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
   }
 
-  /*function fmoney(s, n)   
-     { 
-        n = n <= 20 ? n : 2;   
-        s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";   
-        var l = s.split(".")[0].split("").reverse(),   
-        r = s.split(".")[1];   
-        t = "";   
-        for(i = 0; i < l.length; i ++ )   
-        {   
-           t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");   
-        }  
+  /*function fmoney(s, n)
+     {
+        n = n <= 20 ? n : 2;
+        s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+        var l = s.split(".")[0].split("").reverse(),
+        r = s.split(".")[1];
+        t = "";
+        for(i = 0; i < l.length; i ++ )
+        {
+           t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+        }
         var re =  t.split("").reverse().join("");
         if(n){
-         re = + "." + r; 
+         re = + "." + r;
        }
-        return re;   
-     }   
-     function rmoney(s)   
-     {   
-        return parseFloat(s.replace(/[^\d\.-]/g, ""));   
-     }   
-     function rdata(s)   
-     {   
-        return s.replace(',', '');   
+        return re;
+     }
+     function rmoney(s)
+     {
+        return parseFloat(s.replace(/[^\d\.-]/g, ""));
+     }
+     function rdata(s)
+     {
+        return s.replace(',', '');
      } */
 
   var dataConv = function() {
@@ -237,7 +237,7 @@
     var iSingle = []; //new Array();
     for (var i = 0; i < strJson.rows; i++) {
       iCol = 0;
-      iSingle[i] = []; //new Array();//定义多维数组    
+      iSingle[i] = []; //new Array();//定义多维数组
       for (var key in strJson.data[i]) {
         iSingle[i][iCol] = strJson.data[i][key];
         iCol++;
@@ -698,7 +698,7 @@
     return strRow;
   }
 
-  //生成表格体 
+  //生成表格体
 
   function CreateTableBody(Data, editMode) {
     var strRow = '',
@@ -792,7 +792,7 @@
 
   //顶部搜索框
   var initSearchBox = function() {
-    // handle search box expand/collapse        
+    // handle search box expand/collapse
     $('.page-header').on('click', '.search-form', function(e) {
       $(this).addClass("open");
       $(this).find('.form-control').focus();

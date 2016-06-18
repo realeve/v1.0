@@ -116,10 +116,8 @@ pre code{
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         margin: 1.6em 0;
-        padding: 0.1em 0.5em 0.1em 1.2em;
+        padding: 0 0 0 1.2em;
         border-left: 0.4em solid #16b0ff;
-		background-color:#f8f8f8;
-		border-radius:0 2px;
         color: #888888;
         min-height: 20px; }
         blockquote p {
@@ -218,9 +216,7 @@ table {
           padding: 0; }
 
 .codehilite {
-  background: transparent/*#f8f8f8*/ !important; 
-  border-radius:2px;
-  }
+  background: transparent !important; }
 
   table.codehilitetable {
     border: none; }

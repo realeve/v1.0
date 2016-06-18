@@ -118,9 +118,10 @@ var PaperParam = function() {
 
 	$('input[name="Reel_Code"]').on('blur', function(event) {
 		if ($(this).val().length > 1 && $('select[name="Prod_id"]').val() !== '-1') {
-			if (loadHisData());
-			$('.portlet button[type="submit"]').text('更新');
-			$('.amounts h4').html("<strong>评价总分:</strong> " + calcScore());
+			if (loadHisData()) {
+				$('.portlet button[type="submit"]').text('更新');
+				$('.amounts h4').html("<strong>评价总分:</strong> " + calcScore());
+			}
 		} else if ($('.portlet button[type="submit"]').text().trim() == '更新') {
 			//将上次载入的轴号记录
 			if ($(this).data('reelcode') != $(this).val()) {
@@ -134,7 +135,7 @@ var PaperParam = function() {
 		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=33&M=0&r=" + Reel_Code;
 		var Data = ReadData(strUrl);
 		//bsTips(JSON.stringify(Data));
-		if (Data.rows === "0") {
+		if (Data.rows == "0") {
 			return 0;
 		}
 		//将上次载入的轴号记录
@@ -402,7 +403,7 @@ var PaperParam = function() {
 			} else if (iData.score < 100) {
 				iData.remark = "扣分项:" + jsOnRight(deScoreText, 1);
 			}
-			bsTips((iData.isNormal == 1) ? '合格' : '不合格');
+			bsTips((iData.isNormal == 1) ? '合格' : '不合格', (iData.isNormal == 1) ? 1 : 0);
 
 			$.ajax({
 				url: strUrl,
@@ -422,6 +423,10 @@ var PaperParam = function() {
 					infoTips(JSON.stringify(data));
 				}
 			});
+
+			//状态还原
+			$('.normalPara input').removeAttr('disabled');
+			$('.portlet button[type="submit"]').html($('.portlet button[type="submit"]').html().replace('更新', '提交'));
 		}
 
 		$('button[type="submit"]').on('click', function() {

@@ -42,6 +42,9 @@
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/datatables/plugins/searchHighlight/dataTables.searchHighlight.css"/>
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/datatables/extensions/Buttons/css/buttons.dataTables.css"/>
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/select2/css/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/select2/css/select2-bootstrap.min.css"/>
+
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components.min.css' in the below style tag -->
