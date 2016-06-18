@@ -10,35 +10,35 @@
 	function __webpack_require__(moduleId) {
 
 	 // Check if module is in cache
-	
+
 		if (installedModules[moduleId])
-	
+
 		return installedModules[moduleId].exports;
 
 	 // Create a new module (and put it into the cache)
-	
+
 		var module = installedModules[moduleId] = {
-		
+
 			exports: {},
-		
+
 			id: moduleId,
-		
+
 			loaded: false
-		
+
 		};
 
 	 // Execute the module function
-	
+
 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
 	 // Flag the module as loaded
-	
+
 		module.loaded = true;
 
 	 // Return the exports of the module
-	
+
 		return module.exports;
-	
+
 	}
 
 
@@ -92,10 +92,10 @@
 
 			var defaultClientFonts = {
 				Roboto: {
-					normal: 'HYQiHei-35S.TTF',
-					bold: 'HYQiHei-35S.TTF',
-					italics: 'HYQiHei-35S.TTF',
-					bolditalics: 'HYQiHei-35S.TTF'
+					normal: 'HYQiHei-35S.ttf',
+					bold: 'HYQiHei-35S.ttf',
+					italics: 'HYQiHei-35S.ttf',
+					bolditalics: 'HYQiHei-35S.ttf'
 				}
 			};
 
@@ -180,7 +180,7 @@
 							type: 'application/pdf'
 						});
 					} catch (e) {
-						// Old browser which can't handle it without making it an byte array (ie10) 
+						// Old browser which can't handle it without making it an byte array (ie10)
 						if (e.name == "InvalidStateError") {
 							var byteArray = new Uint8Array(result);
 							blob = new Blob([byteArray.buffer], {
@@ -279,7 +279,7 @@
 			 *
 			 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
 			 *     incorrect length in some situations.
-			 
+
 			 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
 			 * get the Object implementation, which is slower but behaves correctly.
 			 */
@@ -68621,20 +68621,20 @@
 			/*
 	# MIT LICENSE
 	# Copyright (c) 2011 Devon Govett
-	# 
-	# Permission is hereby granted, free of charge, to any person obtaining a copy of this 
-	# software and associated documentation files (the "Software"), to deal in the Software 
-	# without restriction, including without limitation the rights to use, copy, modify, merge, 
-	# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons 
+	#
+	# Permission is hereby granted, free of charge, to any person obtaining a copy of this
+	# software and associated documentation files (the "Software"), to deal in the Software
+	# without restriction, including without limitation the rights to use, copy, modify, merge,
+	# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
 	# to whom the Software is furnished to do so, subject to the following conditions:
-	# 
-	# The above copyright notice and this permission notice shall be included in all copies or 
+	#
+	# The above copyright notice and this permission notice shall be included in all copies or
 	# substantial portions of the Software.
-	# 
-	# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING 
-	# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
-	# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
-	# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+	#
+	# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+	# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 	# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	*/
 

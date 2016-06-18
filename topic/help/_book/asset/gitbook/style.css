@@ -38,7 +38,7 @@ audio:not([controls]) {
 }
 
 html {
-    font-family: sans-serif
+    font-family: Arial, "Microsoft YaHei", "Î¢ÈíÑÅºÚ", sans-serif
 }
 
 body, figure {
@@ -78,7 +78,7 @@ hr {
 
 mark {
     background: #ff0;
-    color: #000
+    color: #2c3e50
 }
 
 code, kbd, pre, samp {
@@ -2463,7 +2463,9 @@ table {
 }
 
 .book .book-summary ul.summary li {
-    list-style: none
+    list-style: none;
+	line-height:1.8em;
+	font-size:15px;
 }
 
 .book .book-summary ul.summary li.divider {
@@ -2510,9 +2512,13 @@ table {
 }
 
 .book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active > a {
-    color: #008cff;
+    color: #42b983;
     background: 0 0;
-    text-decoration: none
+    text-decoration: none;
+}
+.book .book-summary ul.summary li.active > a {
+	font-weight: 600;	
+	/*border-bottom: 2px solid #42b983;*/
 }
 
 .book .book-summary ul.summary li ul {
@@ -2554,7 +2560,7 @@ table {
 }
 
 .book .book-body {
-    color: #000;
+    color: #34495e;
     background: #fff;
     -webkit-transition: left 250ms ease;
     -moz-transition: left 250ms ease;
@@ -2671,7 +2677,7 @@ table {
     display: block;
     word-wrap: break-word;
     overflow: hidden;
-    color: #333;
+    color: #2c3e50;
     line-height: 1.7;
     text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;

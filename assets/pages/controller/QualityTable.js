@@ -165,7 +165,7 @@ var dataTable = function() {
 				extend: 'pdfHtml5',
 				orientation: Data.cols > 10 ? 'landscape' : 'portrit',
 				pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n&copy;成都印钞有限公司 技术质量部',
+				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
 				download: 'download',
 				title: Data.title,
 				exportOptions: {
