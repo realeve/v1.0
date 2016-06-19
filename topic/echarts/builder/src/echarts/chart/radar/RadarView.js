@@ -134,7 +134,7 @@ define(function (require) {
                 group.add(itemGroup);
 
                 polyline.useStyle(
-                    zrUtil.extend(
+                    zrUtil.defaults(
                         itemModel.getModel('lineStyle.normal').getLineStyle(),
                         {
                             fill: 'none',
@@ -168,7 +168,7 @@ define(function (require) {
                 var labelModel = itemModel.getModel('label.normal');
                 var labelHoverModel = itemModel.getModel('label.emphasis');
                 symbolGroup.eachChild(function (symbolPath) {
-                    symbolPath.useStyle(itemStyle);
+                    symbolPath.setStyle(itemStyle);
                     symbolPath.hoverStyle = zrUtil.clone(itemHoverStyle);
 
                     var defaultText = data.get(data.dimensions[symbolPath.__dimIdx], idx);

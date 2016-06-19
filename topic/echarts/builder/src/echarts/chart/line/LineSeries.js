@@ -12,6 +12,12 @@ define(function(require) {
         dependencies: ['grid', 'polar'],
 
         getInitialData: function (option, ecModel) {
+            if (__DEV__) {
+                var coordSys = option.coordinateSystem;
+                if (coordSys !== 'polar' && coordSys !== 'cartesian2d') {
+                    throw new Error('Line not support coordinateSystem besides cartesian and polar');
+                }
+            }
             return createListFromArray(option.data, this, ecModel);
         },
 
@@ -47,7 +53,10 @@ define(function(require) {
                 }
             },
             // areaStyle: {},
+            // false, 'start', 'end', 'middle'
+            step: false,
 
+            // Disabled if step is true
             smooth: false,
             smoothMonotone: null,
             // 拐点图形类型
@@ -68,7 +77,11 @@ define(function(require) {
             // 数据过滤，'average', 'max', 'min', 'sum'
             sampling: 'none',
 
-            animationEasing: 'linear'
+            animationEasing: 'linear',
+
+            // Disable progressive
+            progressive: 0,
+            hoverLayerThreshold: Infinity
         }
     });
 });

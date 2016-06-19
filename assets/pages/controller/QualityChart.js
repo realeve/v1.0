@@ -122,6 +122,8 @@
            "smooth": (getUrlParam('smooth') === null) ? ['1'] : getUrlParam('smooth').split(','),
            "markLine": (getUrlParam('markline') === null) ? ['0'] : getUrlParam('markline').split(','),
            "markLineValue": (getUrlParam('marklinevalue') === null) ? ['0'] : getUrlParam('marklinevalue').split(','),
+           "markArea": (getUrlParam('markarea') === null) ? ['0'] : getUrlParam('markarea').split(','),
+           "markAreaValue": (getUrlParam('markareavalue') === null) ? ['0'] : getUrlParam('markareavalue').split(','),
            "markPoint": (getUrlParam('markpoint') === null) ? ['0'] : getUrlParam('markpoint').split(','),
            "barMaxWidth": (getUrlParam('barwidth') === null) ? ['100'] : getUrlParam('barwidth').split(','),
            "splitArea": (getUrlParam('splitarea') === null) ? ['0'] : getUrlParam('splitarea').split(','),
@@ -142,7 +144,8 @@
            "max": (getUrlParam('max') === null) ? ['0'] : getUrlParam('max').split(','),
            "min": (getUrlParam('min') === null) ? ['0'] : getUrlParam('min').split(','),
            "symbolSize": (getUrlParam('symbolsize') === null) ? ['10'] : getUrlParam('symbolsize').split(','),
-           "opacity": (getUrlParam('opacity') === null) ? ['0'] : getUrlParam('opacity').split(',')
+           "opacity": (getUrlParam('opacity') === null) ? ['0'] : getUrlParam('opacity').split(','),
+           "leafDepth": (getUrlParam('leafdepth') === null) ? ['0'] : getUrlParam('leafdepth').split(','),
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -153,6 +156,8 @@
              "toolbox": /*(objRequest.blind && i) ? false : */ true,
              "markLine": handleParam(objList.markLine, i, "average"),
              "markLineValue": handleParam(objList.markLineValue, i, "0"),
+             "markArea": handleParam(objList.markArea, i, ""),
+             "markAreaValue": handleParam(objList.markAreaValue, i, "0"),
              "markPoint": (handleParam(objList.markPoint, i, '0') === '1') ? true : false,
              "barMaxWidth": handleParam(objList.barMaxWidth, i, 100),
              "splitArea": (handleParam(objList.splitArea, i, '0') === '1') ? true : false,
@@ -172,7 +177,8 @@
              "max": handleParam(objList.max, i, "1"),
              "min": handleParam(objList.min, i, "1"),
              "symbolSize": handleParam(objList.symbolSize, i, "10"),
-             "opacity": handleParam(objList.opacity, i, 0.4)
+             "opacity": handleParam(objList.opacity, i, 0.4),
+             "leafDepth": handleParam(objList.leafDepth, i, 0)
            };
            //console.log(objRequest);
            //桑基图高度增加一倍
@@ -317,7 +323,7 @@
 
            //console.log(myChart[i].getDataURL());
            //console.log(myChart[i].getConnectedDataURL());
-           //console.log(myChart[i].getTheme());  
+           //console.log(myChart[i].getTheme());
            myChart[i].setOption(curTheme);
          }
        }*/

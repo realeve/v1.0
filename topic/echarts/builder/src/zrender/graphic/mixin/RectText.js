@@ -73,6 +73,21 @@ define(function (require) {
                 y = rect.y + parsePercent(textPosition[1], rect.height);
                 align = align || 'left';
                 baseline = baseline || 'top';
+
+                if (verticalAlign) {
+                    switch (verticalAlign) {
+                        case 'middle':
+                            y -= textRect.height / 2 - textRect.lineHeight / 2;
+                            break;
+                        case 'bottom':
+                            y -= textRect.height - textRect.lineHeight / 2;
+                            break;
+                        default:
+                            y += textRect.lineHeight / 2;
+                    }
+                    // Force bseline to be middle
+                    baseline = 'middle';
+                }
             }
             else {
                 var res = textContain.adjustTextPositionOnRect(
@@ -86,22 +101,7 @@ define(function (require) {
             }
 
             ctx.textAlign = align;
-            if (verticalAlign) {
-                switch (verticalAlign) {
-                    case 'middle':
-                        y -= textRect.height / 2;
-                        break;
-                    case 'bottom':
-                        y -= textRect.height;
-                        break;
-                    // 'top'
-                }
-                // Ignore baseline
-                ctx.textBaseline = 'top';
-            }
-            else {
-                ctx.textBaseline = baseline;
-            }
+            ctx.textBaseline = baseline;
 
             var textFill = style.textFill;
             var textStroke = style.textStroke;

@@ -200,7 +200,7 @@ define(function(require) {
     }
 
     function liftColor(color) {
-        return color instanceof Gradient ? color : colorTool.lift(color, -0.1);
+        return typeof color === 'string' ? colorTool.lift(color, -0.1) : color;
     }
 
     /**
@@ -241,8 +241,13 @@ define(function(require) {
 
         cacheElementStl(el);
 
-        el.setStyle(el.__hoverStl);
-        el.z2 += 1;
+        if (el.useHoverLayer) {
+            el.__zr && el.__zr.addHover(el, el.__hoverStl);
+        }
+        else {
+            el.setStyle(el.__hoverStl);
+            el.z2 += 1;
+        }
 
         el.__isHover = true;
     }
@@ -256,8 +261,13 @@ define(function(require) {
         }
 
         var normalStl = el.__normalStl;
-        normalStl && el.setStyle(normalStl);
-        el.z2 -= 1;
+        if (el.useHoverLayer) {
+            el.__zr && el.__zr.removeHover(el);
+        }
+        else {
+            normalStl && el.setStyle(normalStl);
+            el.z2 -= 1;
+        }
 
         el.__isHover = false;
     }
@@ -376,21 +386,33 @@ define(function(require) {
             cb = dataIndex;
             dataIndex = null;
         }
+        var animationEnabled = animatableModel
+            && (
+                animatableModel.ifEnableAnimation
+                ? animatableModel.ifEnableAnimation()
+                // Directly use animation property
+                : animatableModel.getShallow('animation')
+            );
 
-        var postfix = isUpdate ? 'Update' : '';
-        var duration = animatableModel
-            && animatableModel.getShallow('animationDuration' + postfix);
-        var animationEasing = animatableModel
-            && animatableModel.getShallow('animationEasing' + postfix);
-        var animationDelay = animatableModel
-            && animatableModel.getShallow('animationDelay' + postfix);
-        if (typeof animationDelay === 'function') {
-            animationDelay = animationDelay(dataIndex);
+        if (animationEnabled) {
+            var postfix = isUpdate ? 'Update' : '';
+            var duration = animatableModel
+                && animatableModel.getShallow('animationDuration' + postfix);
+            var animationEasing = animatableModel
+                && animatableModel.getShallow('animationEasing' + postfix);
+            var animationDelay = animatableModel
+                && animatableModel.getShallow('animationDelay' + postfix);
+            if (typeof animationDelay === 'function') {
+                animationDelay = animationDelay(dataIndex);
+            }
+            duration > 0
+                ? el.animateTo(props, duration, animationDelay || 0, animationEasing, cb)
+                : (el.attr(props), cb && cb());
         }
-
-        animatableModel && animatableModel.getShallow('animation')
-            ? el.animateTo(props, duration, animationDelay || 0, animationEasing, cb)
-            : (el.attr(props), cb && cb());
+        else {
+            el.attr(props);
+            cb && cb();
+        }
     }
     /**
      * Update graphic element properties with or without animation according to the configuration in series
@@ -408,16 +430,21 @@ define(function(require) {
      *         position: [100, 100]
      *     }, seriesModel, function () { console.log('Animation done!'); });
      */
-    graphic.updateProps = zrUtil.curry(animateOrSetProps, true);
+    graphic.updateProps = function (el, props, animatableModel, dataIndex, cb) {
+        animateOrSetProps(true, el, props, animatableModel, dataIndex, cb);
+    };
 
     /**
      * Init graphic element properties with or without animation according to the configuration in series
      * @param {module:zrender/Element} el
      * @param {Object} props
      * @param {module:echarts/model/Model} [animatableModel]
+     * @param {number} [dataIndex]
      * @param {Function} cb
      */
-    graphic.initProps = zrUtil.curry(animateOrSetProps, false);
+    graphic.initProps = function (el, props, animatableModel, dataIndex, cb) {
+        animateOrSetProps(false, el, props, animatableModel, dataIndex, cb);
+    };
 
     /**
      * Get transform matrix of target (param target),

@@ -64,7 +64,7 @@ define(function(require) {
      * @return {Array} [value] or value
      */
     modelUtil.normalizeToArray = function (value) {
-        return zrUtil.isArray(value)
+        return value instanceof Array
             ? value
             : value == null
             ? []
@@ -188,6 +188,15 @@ define(function(require) {
     };
 
     /**
+     * data could be [12, 2323, {value: 223}, [1221, 23], {value: [2, 23]}]
+     * This helper method determine if dataItem has extra option besides value
+     * @param {string|number|Date|Array|Object} dataItem
+     */
+    modelUtil.isDataItemOption = function (dataItem) {
+        return zrUtil.isObject(dataItem) && !(dataItem instanceof Array);
+    };
+
+    /**
      * This helper method convert value in data.
      * @param {string|number|Date} value
      * @param {Object|string} [dimInfo] If string (like 'x'), dimType defaults 'number'.
@@ -210,6 +219,7 @@ define(function(require) {
             ? NaN : +value; // If string (like '-'), using '+' parse to NaN
     };
 
+    // PENDING A little ugly
     modelUtil.dataFormatMixin = {
         /**
          * Get params for formatter
@@ -260,7 +270,7 @@ define(function(require) {
             var itemModel = data.getItemModel(dataIndex);
 
             var params = this.getDataParams(dataIndex, dataType);
-            if (dimIndex != null && zrUtil.isArray(params.value)) {
+            if (dimIndex != null && (params.value instanceof Array)) {
                 params.value = params.value[dimIndex];
             }
 
@@ -285,7 +295,7 @@ define(function(require) {
             var data = this.getData(dataType);
             var dataItem = data.getRawDataItem(idx);
             if (dataItem != null) {
-                return (zrUtil.isObject(dataItem) && !zrUtil.isArray(dataItem))
+                return (zrUtil.isObject(dataItem) && !(dataItem instanceof Array))
                     ? dataItem.value : dataItem;
             }
         },
@@ -388,6 +398,59 @@ define(function(require) {
         return zrUtil.isObject(cptOption)
             && cptOption.id
             && (cptOption.id + '').indexOf('\0_ec_\0') === 0;
+    };
+
+    /**
+     * A helper for removing duplicate items between batchA and batchB,
+     * and in themselves, and categorize by series.
+     *
+     * @param {Array.<Object>} batchA Like: [{seriesId: 2, dataIndex: [32, 4, 5]}, ...]
+     * @param {Array.<Object>} batchB Like: [{seriesId: 2, dataIndex: [32, 4, 5]}, ...]
+     * @return {Array.<Array.<Object>, Array.<Object>>} result: [resultBatchA, resultBatchB]
+     */
+    modelUtil.compressBatches = function (batchA, batchB) {
+        var mapA = {};
+        var mapB = {};
+
+        makeMap(batchA || [], mapA);
+        makeMap(batchB || [], mapB, mapA);
+
+        return [mapToArray(mapA), mapToArray(mapB)];
+
+        function makeMap(sourceBatch, map, otherMap) {
+            for (var i = 0, len = sourceBatch.length; i < len; i++) {
+                var seriesId = sourceBatch[i].seriesId;
+                var dataIndices = modelUtil.normalizeToArray(sourceBatch[i].dataIndex);
+                var otherDataIndices = otherMap && otherMap[seriesId];
+
+                for (var j = 0, lenj = dataIndices.length; j < lenj; j++) {
+                    var dataIndex = dataIndices[j];
+
+                    if (otherDataIndices && otherDataIndices[dataIndex]) {
+                        otherDataIndices[dataIndex] = null;
+                    }
+                    else {
+                        (map[seriesId] || (map[seriesId] = {}))[dataIndex] = 1;
+                    }
+                }
+            }
+        }
+
+        function mapToArray(map, isData) {
+            var result = [];
+            for (var i in map) {
+                if (map.hasOwnProperty(i) && map[i] != null) {
+                    if (isData) {
+                        result.push(+i);
+                    }
+                    else {
+                        var dataIndices = mapToArray(map[i], true);
+                        dataIndices.length && result.push({seriesId: i, dataIndex: dataIndices});
+                    }
+                };
+            }
+            return result;
+        }
     };
 
     return modelUtil;

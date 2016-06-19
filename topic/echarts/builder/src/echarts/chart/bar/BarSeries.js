@@ -12,13 +12,20 @@ define(function(require) {
         dependencies: ['grid', 'polar'],
 
         getInitialData: function (option, ecModel) {
+            if (__DEV__) {
+                var coordSys = option.coordinateSystem;
+                if (coordSys !== 'cartesian2d') {
+                    throw new Error('Bar only support cartesian2d coordinateSystem');
+                }
+            }
             return createListFromArray(option.data, this, ecModel);
         },
 
         getMarkerPosition: function (value) {
             var coordSys = this.coordinateSystem;
             if (coordSys) {
-                var pt = coordSys.dataToPoint(value);
+                // PENDING if clamp ?
+                var pt = coordSys.dataToPoint(value, true);
                 var data = this.getData();
                 var offset = data.getLayout('offset');
                 var size = data.getLayout('size');
@@ -28,6 +35,8 @@ define(function(require) {
             }
             return [NaN, NaN];
         },
+
+        brushSelector: 'rect',
 
         defaultOption: {
             zlevel: 0,                  // 一级层叠

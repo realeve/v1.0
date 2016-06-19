@@ -21,6 +21,9 @@ define(function(require) {
         _viewRoot: null,
 
         defaultOption: {
+            // Disable progressive rendering
+            progressive: 0,
+            hoverLayerThreshold: Infinity,
             // center: ['50%', '50%'],          // not supported in ec3.
             // size: ['80%', '80%'],            // deprecated, compatible with ec2.
             left: 'center',
@@ -35,6 +38,8 @@ define(function(require) {
             squareRatio: 0.5 * (1 + Math.sqrt(5)), // golden ratio
             leafDepth: null,                    // Nodes on depth from root are regarded as leaves.
                                                 // Count from zero (zero represents only view root).
+            drillDownIcon: '▶',                 // Use html character temporarily because it is complicated
+                                                // to align specialized icon. ▷▶❒❐▼✚
             visualDimension: 0,                 // Can be 0, 1, 2, 3.
             zoomToNodeRatio: 0.32 * 0.32,       // Be effective when using zoomToNode. Specify the proportion of the
                                                 // target node area in the view area.
@@ -255,7 +260,6 @@ define(function(require) {
 
         /**
          * @param {module:echarts/data/Tree~Node} [viewRoot]
-         * @return {string} direction 'drilldown' or 'rollup'
          */
         resetViewRoot: function (viewRoot) {
             viewRoot

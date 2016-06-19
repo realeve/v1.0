@@ -166,7 +166,7 @@ define(function (require) {
                     // ComponentModel.getAllClassMainTypes.
                     if (!newCptOption) {
                         componentModel.mergeOption({}, this);
-                        componentModel.optionUpdated(this);
+                        componentModel.optionUpdated({}, false);
                     }
                     else {
                         var ComponentModelClass = ComponentModel.getClass(
@@ -175,7 +175,7 @@ define(function (require) {
 
                         if (componentModel && componentModel instanceof ComponentModelClass) {
                             componentModel.mergeOption(newCptOption, this);
-                            componentModel.optionUpdated(this);
+                            componentModel.optionUpdated(newCptOption, false);
                         }
                         else {
                             // PENDING Global as parent ?
@@ -189,8 +189,11 @@ define(function (require) {
                                     resultItem.keyInfo
                                 )
                             );
-                            // Call optionUpdated after init
-                            componentModel.optionUpdated(this);
+                            // Call optionUpdated after init.
+                            // newCptOption has been used as componentModel.option
+                            // and may be merged with theme and default, so pass null
+                            // to avoid confusion.
+                            componentModel.optionUpdated(null, true);
                         }
                     }
 
@@ -743,10 +746,14 @@ define(function (require) {
     function assertSeriesInitialized(ecModel) {
         // Components that use _seriesIndices should depends on series component,
         // which make sure that their initialization is after series.
-        if (!ecModel._seriesIndices) {
-            throw new Error('Series has not been initialized yet.');
+        if (__DEV__) {
+            if (!ecModel._seriesIndices) {
+                throw new Error('Series has not been initialized yet.');
+            }
         }
     }
+
+    zrUtil.mixin(GlobalModel, require('./mixin/colorPalette'));
 
     return GlobalModel;
 });

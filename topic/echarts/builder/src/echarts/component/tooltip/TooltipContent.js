@@ -9,6 +9,7 @@ define(function (require) {
     var formatUtil = require('../../util/format');
     var each = zrUtil.each;
     var toCamelCase = formatUtil.toCamelCase;
+    var env = require('zrender/core/env');
 
     var vendors = ['', '-webkit-', '-moz-', '-o-'];
 
@@ -75,12 +76,16 @@ define(function (require) {
             cssText.push(assembleTransition(transitionDuration));
 
         if (backgroundColor) {
-            // for ie
-            cssText.push(
-                'background-Color:' + zrColor.toHex(backgroundColor)
-            );
-            cssText.push('filter:alpha(opacity=70)');
-            cssText.push('background-Color:' + backgroundColor);
+            if (env.canvasSupported) {
+                cssText.push('background-Color:' + backgroundColor);
+            }
+            else {
+                // for ie
+                cssText.push(
+                    'background-Color:#' + zrColor.toHex(backgroundColor)
+                );
+                cssText.push('filter:alpha(opacity=70)');
+            }
         }
 
         // Border style
@@ -206,11 +211,14 @@ define(function (require) {
 
         show: function (tooltipModel) {
             clearTimeout(this._hideTimeout);
+            var el = this.el;
 
-            this.el.style.cssText = gCssText + assembleCssText(tooltipModel)
+            el.style.cssText = gCssText + assembleCssText(tooltipModel)
                 // http://stackoverflow.com/questions/21125587/css3-transition-not-working-in-chrome-anymore
                 + ';left:' + this._x + 'px;top:' + this._y + 'px;'
                 + (tooltipModel.get('extraCssText') || '');
+
+            el.style.display = el.innerHTML ?  'block' : 'none';
 
             this._show = true;
         },

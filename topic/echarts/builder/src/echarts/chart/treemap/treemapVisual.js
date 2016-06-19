@@ -7,7 +7,7 @@ define(function (require) {
 
     var ITEM_STYLE_NORMAL = 'itemStyle.normal';
 
-    return function (ecModel, payload) {
+    return function (ecModel, api, payload) {
 
         var condition = {mainType: 'series', subType: 'treemap', query: payload};
         ecModel.eachComponent(condition, function (seriesModel) {
@@ -25,7 +25,7 @@ define(function (require) {
             });
 
             travelTree(
-                root,
+                root, // Visual should calculate from tree root but not view root.
                 {},
                 levelItemStyles,
                 seriesItemStyleModel,
@@ -43,7 +43,7 @@ define(function (require) {
         var nodeLayout = node.getLayout();
 
         // Optimize
-        if (nodeLayout.invisible) {
+        if (!nodeLayout || nodeLayout.invisible || !nodeLayout.isInView) {
             return;
         }
 

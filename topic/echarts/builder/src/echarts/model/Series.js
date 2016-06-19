@@ -6,6 +6,8 @@ define(function(require) {
     var formatUtil = require('../util/format');
     var modelUtil = require('../util/model');
     var ComponentModel = require('./Component');
+    var colorPaletteMixin = require('./mixin/colorPalette');
+    var env = require('zrender/core/env');
 
     var encodeHTML = formatUtil.encodeHTML;
     var addCommas = formatUtil.addCommas;
@@ -202,14 +204,42 @@ define(function(require) {
                 : (colorEl + encodeHTML(this.name) + ' : ' + formattedValue);
         },
 
+        /**
+         * @return {boolean}
+         */
+        ifEnableAnimation: function () {
+            if (env.node) {
+                return false;
+            }
+
+            var animationEnabled = this.getShallow('animation');
+            if (animationEnabled) {
+                if (this.getData().count() > this.getShallow('animationThreshold')) {
+                    animationEnabled = false;
+                }
+            }
+            return animationEnabled;
+        },
+
         restoreData: function () {
             this._data = this._dataBeforeProcessed.cloneShallow();
+        },
+
+        getColorFromPalette: function (name, scope) {
+            var ecModel = this.ecModel;
+            // PENDING
+            var color = colorPaletteMixin.getColorFromPalette.call(this, name, scope);
+            if (!color) {
+                color = ecModel.getColorFromPalette(name, scope);
+            }
+            return color;
         },
 
         getAxisTooltipDataIndex: null
     });
 
     zrUtil.mixin(SeriesModel, modelUtil.dataFormatMixin);
+    zrUtil.mixin(SeriesModel, colorPaletteMixin);
 
     return SeriesModel;
 });

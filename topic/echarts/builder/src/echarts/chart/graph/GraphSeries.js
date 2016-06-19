@@ -151,9 +151,6 @@ define(function (require) {
             zlevel: 0,
             z: 2,
 
-            color: ['#61a0a8', '#d14a61', '#fd9c35', '#675bba', '#fec42c',
-                    '#dd4444', '#fd9c35', '#cd4870'],
-
             coordinateSystem: 'view',
 
             // Default option for all coordinate systems
@@ -167,6 +164,8 @@ define(function (require) {
             hoverAnimation: true,
 
             layout: null,
+
+            focusNodeAdjacency: false,
 
             // Configuration of force
             force: {

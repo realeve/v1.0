@@ -338,9 +338,22 @@ class CI_DB_result {
 			
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
 		$encode = mb_detect_encoding($str,$encode_Arr);
-		if($encode == 'CP936'){
+		//echo $encode;//mb_detect_encoding('??',$encode_Arr);
+		if($encode == 'UTF-8'){
+			return iconv('GBK',"UTF-8",$str);
+		}elseif($encode == 'CP936'){
 			$encode = 'GBK';
 		}
+		
+		/*
+			if($encode == "EUC-CN")
+			{
+				$iValue = iconv('GBK','UTF-8',$arr[$i]);
+			}else
+			{
+				$iValue = trim($arr[$i]);
+			}
+		*/
 		/*if($encode == 'UTF-8'){
 			$str = iconv('GBK','UTF-8',$str);
 		}*/

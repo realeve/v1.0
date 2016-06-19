@@ -21,24 +21,29 @@ define(function(require) {
             align: 'auto',          // 'auto', 'left', 'right', 'top', 'bottom'
             calculable: false,      // This prop effect default component type determine,
                                     // See echarts/component/visualMap/typeDefaulter.
-            range: [-Infinity, Infinity], // selected range
+            range: null,            // selected range. In default case `range` is [min, max]
+                                    // and can auto change along with modification of min max,
+                                    // util use specifid a range.
             realtime: true,         // Whether realtime update.
             itemHeight: null,       // The length of the range control edge.
             itemWidth: null,        // The length of the other side.
-            hoverLink: true         // Enable hover highlight.
+            hoverLink: true,        // Enable hover highlight.
+            hoverLinkDataSize: null,// The size of hovered data.
+            hoverLinkOnHandle: true // Whether trigger hoverLink when hover handle.
         },
 
         /**
          * @override
          */
-        doMergeOption: function (newOption, isInit) {
-            ContinuousModel.superApply(this, 'doMergeOption', arguments);
+        optionUpdated: function (newOption, isInit) {
+            ContinuousModel.superApply(this, 'optionUpdated', arguments);
 
-            this.resetTargetSeries(newOption, isInit);
+            this.resetTargetSeries();
             this.resetExtent();
 
             this.resetVisual(function (mappingOption) {
                 mappingOption.mappingMethod = 'linear';
+                mappingOption.dataExtent = this.getExtent();
             });
 
             this._resetRange();
@@ -49,7 +54,7 @@ define(function(require) {
          * @override
          */
         resetItemSize: function () {
-            VisualMapModel.prototype.resetItemSize.apply(this, arguments);
+            ContinuousModel.superApply(this, 'resetItemSize', arguments);
 
             var itemSize = this.itemSize;
 
@@ -65,11 +70,20 @@ define(function(require) {
         _resetRange: function () {
             var dataExtent = this.getExtent();
             var range = this.option.range;
-            if (range[0] > range[1]) {
-                range.reverse();
+
+            if (!range || range.auto) {
+                // `range` should always be array (so we dont use other
+                // value like 'auto') for user-friend. (consider getOption).
+                dataExtent.auto = 1;
+                this.option.range = dataExtent;
             }
-            range[0] = Math.max(range[0], dataExtent[0]);
-            range[1] = Math.min(range[1], dataExtent[1]);
+            else if (zrUtil.isArray(range)) {
+                if (range[0] > range[1]) {
+                    range.reverse();
+                }
+                range[0] = Math.max(range[0], dataExtent[0]);
+                range[1] = Math.min(range[1], dataExtent[1]);
+            }
         },
 
         /**
@@ -147,7 +161,7 @@ define(function(require) {
                     range[0] <= value && value <= range[1] && dataIndices.push(dataIndex);
                 }, true, this);
 
-                result.push({seriesId: seriesModel.id, dataIndices: dataIndices});
+                result.push({seriesId: seriesModel.id, dataIndex: dataIndices});
             }, this);
 
             return result;

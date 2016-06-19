@@ -94,9 +94,7 @@ define(function(require) {
 
                 visualMapModel.option.hoverLink && this.api.dispatchAction({
                     type: method,
-                    batch: helper.convertDataIndicesToBatch(
-                        visualMapModel.findTargetDataIndices(pieceIndex)
-                    )
+                    batch: visualMapModel.findTargetDataIndices(pieceIndex)
                 });
             }
         },

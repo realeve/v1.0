@@ -2,12 +2,7 @@ define(function (require) {
 
     var zrUtil = require('zrender/core/util');
     var List = require('../../data/List');
-    var formatUtil = require('../../util/format');
-    var modelUtil = require('../../util/model');
     var numberUtil = require('../../util/number');
-
-    var addCommas = formatUtil.addCommas;
-    var encodeHTML = formatUtil.encodeHTML;
 
     var markerHelper = require('./markerHelper');
 
@@ -111,8 +106,9 @@ define(function (require) {
             //  }
             // }
             if (
-                ifMarkLineHasOnlyDim(1, fromCoord, toCoord, coordSys)
-                || ifMarkLineHasOnlyDim(0, fromCoord, toCoord, coordSys)
+                fromCoord && toCoord &&
+                (ifMarkLineHasOnlyDim(1, fromCoord, toCoord, coordSys)
+                || ifMarkLineHasOnlyDim(0, fromCoord, toCoord, coordSys))
             ) {
                 return true;
             }
@@ -122,7 +118,7 @@ define(function (require) {
     }
 
     function updateSingleMarkerEndLayout(
-        data, idx, isFrom, mlType, valueIndex, seriesModel, api
+        data, idx, isFrom, seriesModel, api
     ) {
         var coordSys = seriesModel.coordinateSystem;
         var itemModel = data.getItemModel(idx);
@@ -175,58 +171,9 @@ define(function (require) {
         data.setItemLayout(idx, point);
     }
 
-    var markLineFormatMixin = {
-        formatTooltip: function (dataIndex) {
-            var data = this._data;
-            var value = this.getRawValue(dataIndex);
-            var formattedValue = zrUtil.isArray(value)
-                ? zrUtil.map(value, addCommas).join(', ') : addCommas(value);
-            var name = data.getName(dataIndex);
-            return this.name + '<br />'
-                + ((name ? encodeHTML(name) + ' : ' : '') + formattedValue);
-        },
-
-        getData: function () {
-            return this._data;
-        },
-
-        setData: function (data) {
-            this._data = data;
-        }
-    };
-
-    zrUtil.defaults(markLineFormatMixin, modelUtil.dataFormatMixin);
-
-    require('../../echarts').extendComponentView({
+    require('./MarkerView').extend({
 
         type: 'markLine',
-
-        init: function () {
-            /**
-             * Markline grouped by series
-             * @private
-             * @type {Object}
-             */
-            this._markLineMap = {};
-        },
-
-        render: function (markLineModel, ecModel, api) {
-            var lineDrawMap = this._markLineMap;
-            for (var name in lineDrawMap) {
-                lineDrawMap[name].__keep = false;
-            }
-
-            ecModel.eachSeries(function (seriesModel) {
-                var mlModel = seriesModel.markLineModel;
-                mlModel && this._renderSeriesML(seriesModel, mlModel, ecModel, api);
-            }, this);
-
-            for (var name in lineDrawMap) {
-                if (!lineDrawMap[name].__keep) {
-                    this.group.remove(lineDrawMap[name].group);
-                }
-            }
-        },
 
         updateLayout: function (markLineModel, ecModel, api) {
             ecModel.eachSeries(function (seriesModel) {
@@ -237,11 +184,8 @@ define(function (require) {
                     var toData = mlModel.__to;
                     // Update visual and layout of from symbol and to symbol
                     fromData.each(function (idx) {
-                        var lineModel = mlData.getItemModel(idx);
-                        var mlType = lineModel.get('type');
-                        var valueIndex = lineModel.get('valueIndex');
-                        updateSingleMarkerEndLayout(fromData, idx, true, mlType, valueIndex, seriesModel, api);
-                        updateSingleMarkerEndLayout(toData, idx, false, mlType, valueIndex, seriesModel, api);
+                        updateSingleMarkerEndLayout(fromData, idx, true, seriesModel, api);
+                        updateSingleMarkerEndLayout(toData, idx, false, seriesModel, api);
                     });
                     // Update layout of line
                     mlData.each(function (idx) {
@@ -251,17 +195,18 @@ define(function (require) {
                         ]);
                     });
 
-                    this._markLineMap[seriesModel.name].updateLayout();
+                    this.markerGroupMap[seriesModel.name].updateLayout();
+
                 }
             }, this);
         },
 
-        _renderSeriesML: function (seriesModel, mlModel, ecModel, api) {
+        renderSeries: function (seriesModel, mlModel, ecModel, api) {
             var coordSys = seriesModel.coordinateSystem;
             var seriesName = seriesModel.name;
             var seriesData = seriesModel.getData();
 
-            var lineDrawMap = this._markLineMap;
+            var lineDrawMap = this.markerGroupMap;
             var lineDraw = lineDrawMap[seriesName];
             if (!lineDraw) {
                 lineDraw = lineDrawMap[seriesName] = new LineDraw();
@@ -277,7 +222,6 @@ define(function (require) {
             mlModel.__from = fromData;
             mlModel.__to = toData;
             // Line data for tooltip and formatter
-            zrUtil.extend(mlModel, markLineFormatMixin);
             mlModel.setData(lineData);
 
             var symbolType = mlModel.get('symbol');
@@ -291,11 +235,8 @@ define(function (require) {
 
             // Update visual and layout of from symbol and to symbol
             mlData.from.each(function (idx) {
-                var lineModel = lineData.getItemModel(idx);
-                var mlType = lineModel.get('type');
-                var valueIndex = lineModel.get('valueIndex');
-                updateDataVisualAndLayout(fromData, idx, true, mlType, valueIndex);
-                updateDataVisualAndLayout(toData, idx, false, mlType, valueIndex);
+                updateDataVisualAndLayout(fromData, idx, true);
+                updateDataVisualAndLayout(toData, idx, false);
             });
 
             // Update visual and layout of line
@@ -327,11 +268,11 @@ define(function (require) {
                 });
             });
 
-            function updateDataVisualAndLayout(data, idx, isFrom, mlType, valueIndex) {
+            function updateDataVisualAndLayout(data, idx, isFrom) {
                 var itemModel = data.getItemModel(idx);
 
                 updateSingleMarkerEndLayout(
-                    data, idx, isFrom, mlType, valueIndex, seriesModel, api
+                    data, idx, isFrom, seriesModel, api
                 );
 
                 data.setItemVisual(idx, {
@@ -342,6 +283,8 @@ define(function (require) {
             }
 
             lineDraw.__keep = true;
+
+            lineDraw.group.silent = mlModel.get('silent') || seriesModel.get('silent');
         }
     });
 

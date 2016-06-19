@@ -27,12 +27,12 @@ define(function (require) {
     var modelUtil = require('../util/model');
     var isObject = zrUtil.isObject;
 
-    var IMMUTABLE_PROPERTIES = [
-        'stackedOn', '_nameList', '_idList', '_rawData'
+    var TRANSFERABLE_PROPERTIES = [
+        'stackedOn', 'hasItemOption', '_nameList', '_idList', '_rawData'
     ];
 
-    var transferImmuProperties = function (a, b) {
-        zrUtil.each(IMMUTABLE_PROPERTIES.concat(b.__wrappedMethods || []), function (propName) {
+    var transferProperties = function (a, b) {
+        zrUtil.each(TRANSFERABLE_PROPERTIES.concat(b.__wrappedMethods || []), function (propName) {
             if (b.hasOwnProperty(propName)) {
                 a[propName] = b[propName];
             }
@@ -97,11 +97,6 @@ define(function (require) {
          * @type {module:echarts/model/Model}
          */
         this.dataType;
-
-        /**
-         * @type {boolean}
-         */
-        this.silent = false;
 
         /**
          * Indices stores the indices of data subset after filtered.
@@ -189,6 +184,11 @@ define(function (require) {
     var listProto = List.prototype;
 
     listProto.type = 'list';
+    /**
+     * If each data item has it's own option
+     * @type {boolean}
+     */
+    listProto.hasItemOption = true;
 
     /**
      * Get dimension name
@@ -222,8 +222,10 @@ define(function (require) {
     listProto.initData = function (data, nameList, dimValueGetter) {
         data = data || [];
 
-        if (!zrUtil.isArray(data)) {
-            throw new Error('Invalid data.');
+        if (__DEV__) {
+            if (!zrUtil.isArray(data)) {
+                throw new Error('Invalid data.');
+            }
         }
 
         this._rawData = data;
@@ -248,11 +250,19 @@ define(function (require) {
             storage[dimensions[i]] = new DataCtor(size);
         }
 
+        var self = this;
+        if (!dimValueGetter) {
+            self.hasItemOption = false;
+        }
         // Default dim value getter
         dimValueGetter = dimValueGetter || function (dataItem, dimName, dataIndex, dimIndex) {
             var value = modelUtil.getDataItemValue(dataItem);
+            // If any dataItem is like { value: 10 }
+            if (modelUtil.isDataItemOption(dataItem)) {
+                self.hasItemOption = true;
+            }
             return modelUtil.converDataValue(
-                zrUtil.isArray(value)
+                (value instanceof Array)
                     ? value[dimIndex]
                     // If value is a single number or something else not array.
                     : value,
@@ -422,7 +432,7 @@ define(function (require) {
                 value < min && (min = value);
                 value > max && (max = value);
             }
-            return (this._extent[dim + stack] = [min, max]);
+            return (this._extent[dim + !!stack] = [min, max]);
         }
         else {
             return [Infinity, -Infinity];
@@ -580,39 +590,41 @@ define(function (require) {
      *  list.each(['x', 'y'], function (x, y, idx) {});
      *  list.each(function (idx) {})
      */
-    listProto.each = function (dimensions, cb, stack, context) {
-        if (typeof dimensions === 'function') {
+    listProto.each = function (dims, cb, stack, context) {
+        if (typeof dims === 'function') {
             context = stack;
             stack = cb;
-            cb = dimensions;
-            dimensions = [];
+            cb = dims;
+            dims = [];
         }
 
-        dimensions = zrUtil.map(
-            normalizeDimensions(dimensions), this.getDimension, this
-        );
+        dims = zrUtil.map(normalizeDimensions(dims), this.getDimension, this);
 
         var value = [];
-        var dimSize = dimensions.length;
+        var dimSize = dims.length;
         var indices = this.indices;
 
         context = context || this;
 
         for (var i = 0; i < indices.length; i++) {
-            if (dimSize === 0) {
-                cb.call(context, i);
-            }
             // Simple optimization
-            else if (dimSize === 1) {
-                cb.call(context, this.get(dimensions[0], i, stack), i);
-            }
-            else {
-                for (var k = 0; k < dimSize; k++) {
-                    value[k] = this.get(dimensions[k], i, stack);
-                }
-                // Index
-                value[k] = i;
-                cb.apply(context, value);
+            switch (dimSize) {
+                case 0:
+                    cb.call(context, i);
+                    break;
+                case 1:
+                    cb.call(context, this.get(dims[0], i, stack), i);
+                    break;
+                case 2:
+                    cb.call(context, this.get(dims[0], i, stack), this.get(dims[1], i, stack), i);
+                    break;
+                default:
+                    for (var k = 0; k < dimSize; k++) {
+                        value[k] = this.get(dims[k], i, stack);
+                    }
+                    // Index
+                    value[k] = i;
+                    cb.apply(context, value);
             }
         }
     };
@@ -668,8 +680,6 @@ define(function (require) {
         // Reset data extent
         this._extent = {};
 
-        !this.silent && this.__onChange();
-
         return this;
     };
 
@@ -703,7 +713,7 @@ define(function (require) {
             original.hostModel
         );
         // FIXME If needs stackedOn, value may already been stacked
-        transferImmuProperties(list, original);
+        transferProperties(list, original);
 
         var storage = list._storage = {};
         var originalStorage = original._storage;
@@ -765,8 +775,6 @@ define(function (require) {
             }
         }, stack, context);
 
-        !this.silent && this.__onTransfer(list);
-
         return list;
     };
 
@@ -812,8 +820,6 @@ define(function (require) {
             dimStore[idx] = value;
             indices.push(idx);
         }
-
-        !this.silent && this.__onTransfer(list);
 
         return list;
     };
@@ -911,7 +917,7 @@ define(function (require) {
      */
     listProto.getItemLayout = function (idx) {
         return this._itemLayouts[idx];
-    },
+    };
 
     /**
      * Set layout of single data item
@@ -923,7 +929,14 @@ define(function (require) {
         this._itemLayouts[idx] = merge
             ? zrUtil.extend(this._itemLayouts[idx] || {}, layout)
             : layout;
-    },
+    };
+
+    /**
+     * Clear all layout of single data item
+     */
+    listProto.clearItemLayouts = function () {
+        this._itemLayouts.length = 0;
+    };
 
     /**
      * Get visual property of single data item
@@ -939,7 +952,7 @@ define(function (require) {
             return this.getVisual(key);
         }
         return val;
-    },
+    };
 
     /**
      * Set visual property of single data item
@@ -967,6 +980,14 @@ define(function (require) {
             return;
         }
         itemVisual[key] = value;
+    };
+
+    /**
+     * Clear itemVisuals and list visual.
+     */
+    listProto.clearAllVisual = function () {
+        this._visual = {};
+        this._itemVisuals = [];
     };
 
     var setItemDataAndSeriesIndex = function (child) {
@@ -1027,11 +1048,15 @@ define(function (require) {
         // FIXME
         list._storage = this._storage;
 
-        transferImmuProperties(list, this);
+        transferProperties(list, this);
 
+
+        // Clone will not change the data extent and indices
         list.indices = this.indices.slice();
 
-        !this.silent && this.__onTransfer(list);
+        if (this._extent) {
+            list._extent = zrUtil.extend({}, this._extent);
+        }
 
         return list;
     };
@@ -1054,7 +1079,11 @@ define(function (require) {
         };
     };
 
-    listProto.__onTransfer = listProto.__onChange = zrUtil.noop;
+    // Methods that create a new list based on this list should be listed here.
+    // Notice that those method should `RETURN` the new list.
+    listProto.TRANSFERABLE_METHODS = ['cloneShallow', 'downSample', 'map'];
+    // Methods that change indices of this list should be listed here.
+    listProto.CHANGABLE_METHODS = ['filterSelf'];
 
     return List;
 });

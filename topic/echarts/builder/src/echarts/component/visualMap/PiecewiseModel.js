@@ -60,8 +60,8 @@ define(function(require) {
         /**
          * @override
          */
-        doMergeOption: function (newOption, isInit) {
-            PiecewiseModel.superApply(this, 'doMergeOption', arguments);
+        optionUpdated: function (newOption, isInit) {
+            PiecewiseModel.superApply(this, 'optionUpdated', arguments);
 
             /**
              * The order is always [low, ..., high].
@@ -71,26 +71,28 @@ define(function(require) {
              */
             this._pieceList = [];
 
-            this.resetTargetSeries(newOption, isInit);
+            this.resetTargetSeries();
             this.resetExtent();
 
             /**
              * 'pieces', 'categories', 'splitNumber'
              * @type {string}
              */
-            var mode = this._mode = this._decideMode();
+            var mode = this._mode = this._determineMode();
 
             resetMethods[this._mode].call(this);
 
             this._resetSelected(newOption, isInit);
 
             var categories = this.option.categories;
+
             this.resetVisual(function (mappingOption, state) {
                 if (mode === 'categories') {
                     mappingOption.mappingMethod = 'category';
                     mappingOption.categories = zrUtil.clone(categories);
                 }
                 else {
+                    mappingOption.dataExtent = this.getExtent();
                     mappingOption.mappingMethod = 'piecewise';
                     mappingOption.pieceList = zrUtil.map(this._pieceList, function (piece) {
                         var piece = zrUtil.clone(piece);
@@ -154,7 +156,7 @@ define(function(require) {
          * @private
          * @return {string}
          */
-        _decideMode: function () {
+        _determineMode: function () {
             var option = this.option;
 
             return option.pieces && option.pieces.length > 0
@@ -204,7 +206,7 @@ define(function(require) {
                     pIdx === pieceIndex && dataIndices.push(dataIndex);
                 }, true, this);
 
-                result.push({seriesId: seriesModel.id, dataIndices: dataIndices});
+                result.push({seriesId: seriesModel.id, dataIndex: dataIndices});
             }, this);
 
             return result;

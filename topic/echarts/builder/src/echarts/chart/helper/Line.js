@@ -63,25 +63,6 @@ define(function (require) {
         }
     }
 
-    // function lineAfterUpdate() {
-        // Ignore scale
-        // var m = this.transform;
-        // if (m) {
-        //     var sx = Math.sqrt(m[0] * m[0] + m[1] * m[1]);
-        //     var sy = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
-        //     m[0] /= sx;
-        //     m[1] /= sx;
-        //     m[2] /= sy;
-        //     m[3] /= sy;
-
-        //     matrix.invert(this.invTransform, m);
-        // }
-    // }
-
-    // function isSymbolArrow(symbol) {
-    //     return symbol.type === 'symbol' && symbol.shape.symbolType === 'arrow';
-    // }
-
     function updateSymbolAndLabelBeforeLineUpdate () {
         var lineGroup = this;
         var symbolFrom = lineGroup.childOfName('fromSymbol');
@@ -108,8 +89,9 @@ define(function (require) {
             return;
         }
 
+        var percent = line.shape.percent;
         var fromPos = line.pointAt(0);
-        var toPos = line.pointAt(line.shape.percent);
+        var toPos = line.pointAt(percent);
 
         var d = vector.sub([], toPos, fromPos);
         vector.normalize(d, d);
@@ -117,10 +99,10 @@ define(function (require) {
         if (symbolFrom) {
             symbolFrom.attr('position', fromPos);
             var tangent = line.tangentAt(0);
-            symbolFrom.attr('rotation', -Math.PI / 2 - Math.atan2(
+            symbolFrom.attr('rotation', Math.PI / 2 - Math.atan2(
                 tangent[1], tangent[0]
             ));
-            symbolFrom.attr('scale', [invScale, invScale]);
+            symbolFrom.attr('scale', [invScale * percent, invScale * percent]);
         }
         if (symbolTo) {
             symbolTo.attr('position', toPos);
@@ -128,7 +110,7 @@ define(function (require) {
             symbolTo.attr('rotation', -Math.PI / 2 - Math.atan2(
                 tangent[1], tangent[0]
             ));
-            symbolTo.attr('scale', [invScale, invScale]);
+            symbolTo.attr('scale', [invScale * percent, invScale * percent]);
         }
 
         if (!label.ignore) {
@@ -147,7 +129,7 @@ define(function (require) {
             }
             // Middle
             else if (label.__position === 'middle') {
-                var halfPercent = line.shape.percent / 2;
+                var halfPercent = percent / 2;
                 var tangent = line.tangentAt(halfPercent);
                 var n = [tangent[1], -tangent[0]];
                 var cp = line.pointAt(halfPercent);
@@ -267,20 +249,21 @@ define(function (require) {
         var textStyleHoverModel = labelHoverModel.getModel('textStyle');
 
         var defaultText = numberUtil.round(seriesModel.getRawValue(idx));
+        var visualColor = lineData.getItemVisual(idx, 'color');
         if (isNaN(defaultText)) {
             // Use name
             defaultText = lineData.getName(idx);
         }
-        line.useStyle(zrUtil.extend(
+        line.useStyle(zrUtil.defaults(
             {
                 strokeNoScale: true,
                 fill: 'none',
-                stroke: lineData.getItemVisual(idx, 'color')
+                stroke: visualColor
             },
             itemModel.getModel('lineStyle.normal').getLineStyle()
         ));
         line.hoverStyle = itemModel.getModel('lineStyle.emphasis').getLineStyle();
-        var defaultColor = lineData.getItemVisual(idx, 'color') || '#000';
+        var defaultColor = visualColor || '#000';
         var label = this.childOfName('label');
         // label.afterUpdate = lineAfterUpdate;
         label.setStyle({
@@ -313,10 +296,7 @@ define(function (require) {
     };
 
     lineProto.updateLayout = function (lineData, idx) {
-        var points = lineData.getItemLayout(idx);
-        var linePath = this.childOfName('line');
-        setLinePoints(linePath.shape, points);
-        linePath.dirty(true);
+        this.setLinePoints(lineData.getItemLayout(idx));
     };
 
     lineProto.setLinePoints = function (points) {
