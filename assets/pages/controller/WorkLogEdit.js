@@ -15,7 +15,7 @@ var worklogEdit = function() {
           context.invoke('editor.insertText', 'hello');
         }
       });
-      return button.render(); // return button as jquery object 
+      return button.render(); // return button as jquery object
     }
 
     $('#ErrDesc').summernote({
@@ -221,7 +221,7 @@ var worklogEdit = function() {
     };
     var strUrl = getRootPath() + "/DataInterface/insert";
     //更新数据
-    if ((typeof $('#Save').data('sn')) !== 'undefined') {
+    if ((typeof $('#Save').data('sn')) != 'undefined') {
       strUrl = getRootPath() + "/DataInterface/update";
       iData.id = $('#Save').data('sn');
     }
@@ -235,7 +235,7 @@ var worklogEdit = function() {
         bsTips(obj.message, obj.type);
         $('#Reset').click();
 
-        if ((typeof $('#Save').data('sn')) !== 'undefined') {
+        if ((typeof $('#Save').data('sn')) != 'undefined') {
           $('#Save').removeAttr('data-sn');
           $('#Save').html($('#Save').html().replace('更新', '提交'));
         }

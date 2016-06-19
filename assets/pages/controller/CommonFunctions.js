@@ -121,7 +121,7 @@
   }
 
   function today(type) {
-    /*var date = new Date();
+    var date = new Date();
     var a = date.getFullYear();
     var b = jsRight(('0' + (date.getMonth() + 1)), 2);
     var c = jsRight(('0' + date.getDate()), 2);
@@ -151,8 +151,8 @@
       case 6:
         output = a + '-' + b + '-' + c;
         break;
-    }*/
-    var output;
+    }
+    /*var output;
     switch (type) {
       case 0:
         output = moment().format('LL');
@@ -175,7 +175,7 @@
       case 6:
         output = moment().format('YYYY-MM-DD');
         break;
-    }
+    }*/
     return output;
   }
 

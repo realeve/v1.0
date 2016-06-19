@@ -7,7 +7,7 @@ class Worklog extends CI_Controller {
 	  	parent::__construct();
 		$this->load->helper ( array (
 			'form',
-			'url' 
+			'url'
 		) );
 		$this->load->library('session');
 		$this->load->model('WorkLogModel');
@@ -22,13 +22,13 @@ class Worklog extends CI_Controller {
 			//$this->session->sess_destroy();//注销
 			if($this->session->userdata('logged_in')==true)
 			{
-				$logindata = $this->session->userdata;	
-				$this->load->view('templates/header/header_worklog', $logindata);  
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_worklog', $logindata);
 				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('worklog',$logindata);
-				$this->load->view('templates/footer/footer_worklog');				
-			}	
+				$this->load->view('templates/footer/footer_worklog');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -50,12 +50,12 @@ class Worklog extends CI_Controller {
 			{
 				$logindata = $this->session->userdata;
 				$logindata['curDate'] = date("Y-m-d G:i:s");
-				$this->load->view('templates/header/header_worklog_edit', $logindata); 
-				$this->load->view('templates/header/topmenu'); 
+				$this->load->view('templates/header/header_worklog_edit', $logindata);
+				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('worklog_edit',$logindata);
-				$this->load->view('templates/footer/footer_worklog_edit');				
-			}	
+				$this->load->view('templates/footer/footer_worklog_edit');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -69,7 +69,7 @@ class Worklog extends CI_Controller {
 	//日志主要信息查询
 	public function QueryLogInfo()
 	{
-		$qurayData = $this->input->post(NULL);
+		$qurayData = $this->input->get(NULL);
 		$LogData = $this->WorkLogModel->ShowWorkLog($qurayData);
 		$this->output->set_output($LogData);
 	}

@@ -4782,7 +4782,7 @@
         }
 
         autoFormatSelection();
-        CodeMirror.commands["goLineStart$.isPlainObject('object');"](cmEditor);
+        //CodeMirror.commands["goLineStart$.isPlainObject('object');"](cmEditor);
       };
 
       // activate CodeMirror as codable

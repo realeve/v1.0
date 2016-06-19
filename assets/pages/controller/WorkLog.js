@@ -85,7 +85,7 @@ var WorkLogInit = function() {
     if ($('.timeline-item ul').data('sn') === 0) {
       $('.timeline').html('');
     }
-    $.post(strUrl, iData, function(data, status) {
+    $.get(strUrl, iData, function(data, status) {
       var obj = jQuery.parseJSON(data);
       if (obj.rows > 0) {
         //bsTips('共查询出'+obj.rows+'条数据',1);
