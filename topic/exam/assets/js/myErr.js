@@ -1,4 +1,4 @@
-require.config({　　　　
+/*require.config({　　　　
 	baseUrl: "assets/js",
 	paths: {　　　　　　
 		"jquery": "jquery.min",
@@ -14,7 +14,7 @@ require.config({　　　　
 			deps: ['jquery']　　　
 		}　
 	}　　
-});
+});*/
 /**
  * [exam 测试题目]
  */
@@ -28,7 +28,7 @@ var exam = {
 	sourceList: [], //原题目顺序
 	scoresPerAnswer: 0, //每道题目分数
 	isSubmit: false, //数据是否提交
-	maxAnswerNum: 20, //最大抽取多少道题目
+	maxAnswerNum: 40, //最大抽取多少道题目
 	examPaper: "safe", //"safe" //试卷文件
 	answerNums: 0,
 	myErrNums: 0,
@@ -38,13 +38,14 @@ var exam = {
 //页面总数
 var lastPage;
 
-require(['jquery.fullPage', 'jquery-weui'], function() {
+//require(['jquery.fullPage', 'jquery-weui'], function() {
+(function() {
+
 	function getUrlParam(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 		var r = encodeURI(window.location.search).substr(1).match(reg); //匹配目标参数
 		if (r !== null) return decodeURI(r[2]);
-		return null; //返回参数值
-		//return App.getURLParameter(name);
+		return -1; //返回参数值
 	}
 
 	var uid = getUrlParam('uid');
@@ -90,10 +91,7 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 		}
 		//选项乱序 -END
 
-		str += strQues + '</div>' + /*(i % 2 ? '' : '<img class="lg-component-img" src="./assets/img/bottom.png">') +*/ '</div>';
-		/*str = str.replace('不正确', '<span class="white-font-red">不正确</span>');
-		str = str.replace('正确', '<span class="white-font-red">正确</span>');
-		str = str.replace('不属于', '<span class="white-font-red">不属于</span>');*/
+		str += strQues + '</div></div>';
 		return str;
 	}
 
@@ -133,9 +131,10 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 		//全屏加载完毕
 		if (!exam.loadComplete) {
 			$("#fakeLoader").hide();
+			document.getElementById('autoplay').play();
 		}
 
-	}
+	};
 
 	function renderPapers() {
 
@@ -145,16 +144,18 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 			//只抽取maxAnswerNum个
 			quesLen = (quesLen <= exam.maxAnswerNum) ? quesLen : exam.maxAnswerNum;
 			exam.maxAnswerNum = quesLen;
-
+			//所有人错题
 			for (var i = 0; i < quesLen; i++) {
 				$('#fullpage').append(getExamTemplateByObj(question[exam.error[i].id], 1, i + 1, exam.error[i]));
 			}
 
-			for (var i = 0; i < exam.myErrNums; i++) {
+			//我的错题
+			for (i = 0; i < exam.myErrNums; i++) {
 				$('[name="allErr"]').before(getExamTemplateByObj(question[exam.myError[i]], 0, i + 1));
 			}
-			//var str = '<div class="weui_opr_area"><p class="weui_btn_area"><a href="javascript:;" class="weui_btn weui_btn_primary" >查看错题统计</a></p></div>';
-			//$('.answer-num').last().parent().append(str);
+
+			var str = '<div class="weui_opr_area"><p class="weui_btn_area"><a href="javascript:$.fn.fullpage.moveTo(2);" class="weui_btn weui_btn_primary" >返回首页</a></p></div>';
+			$('.answer-num').last().parent().append(str);
 
 			//间隔背景
 			lastPage = quesLen + 1 + exam.myErrNums;
@@ -164,31 +165,11 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 
 		}).done(function() {
 			initDom();
-			document.getElementById('autoplay').play();
 		});
 	}
 
-	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getMyErrs&uid=' + uid,
-		async: false,
-		dataType: "jsonp",
-		callback: "JsonCallback"
-	}).done(function(obj) {
-		$('[name="username"]').text(obj.user_name);
-		$('[name="userscore"]').text(obj.score);
-		exam.myErrNums = (100 - Number.parseInt(obj.score)) / 5;
-		if (exam.myErrNums > 0) {
-			$('[name="errTips"]').text('做错' + exam.myErrNums + '道题,最终');
-			$('[name="myErrTips"]').text('接下来我们来看看这' + exam.myErrNums + '道题目的正确答案。');
-			exam.myError = obj.errors.split(',');
-		}
-
-		loadAllErrs();
-	});
-
 	//载入答题错误信息数据
 	function loadAllErrs() {
-
 		$.ajax({
 			url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getAllErrs',
 			async: false,
@@ -202,9 +183,10 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 
 			exam.answerNums = obj.nums;
 			var arrTemp = [];
+
 			obj.errors.map(function(data) {
 				arrTemp.push(data);
-			})
+			});
 
 			arrTemp.sort(function(a, b) {
 				return b - a;
@@ -212,19 +194,54 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 
 			for (var j = 0; j < exam.maxAnswerNum && exam.error.length < exam.maxAnswerNum; j++) {
 				obj.errors.map(function(data, i) {
-					if (data == arrTemp[j] && exam.isAnswered[i] == 0) {
+					//for(var i=0;i<40;i++){
+					if (obj.errors[i] == arrTemp[j] && exam.isAnswered[i] === 0) {
 						exam.error.push({
 							id: i,
-							nums: data,
+							nums: obj.errors[i],
 							percent: Number.parseFloat(data * 100 / obj.nums).toFixed(2)
 						});
 						exam.isAnswered[i] = 1;
-					};
+					}
 				});
 			}
+
 			renderPapers();
 		});
 	}
+
+	if (uid == -1) {
+		$('[name="wPage"]').html('<span name="username">尊敬的同事</span>，您好：<p>2016年6月是全国的第十五个安全生产月,感谢您对本次安全月活动的关注。</p>');
+		loadAllErrs();
+	} else {
+		$.ajax({
+			url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getMyErrs&uid=' + uid,
+			async: false,
+			dataType: "jsonp",
+			callback: "JsonCallback"
+		}).done(function(obj) {
+
+			$('[name="username"]').text(obj.user_name);
+
+			if (Number.parseInt(obj.score) > 100) {
+				$('[name="userscore"]').text('没有参与本次答题活动');
+			} else {
+				$('[name="userscore"]').text('获得了' + obj.score + '分。');
+			}
+
+			exam.myErrNums = (100 - Number.parseInt(obj.score)) / 5;
+			if (exam.myErrNums > 0) {
+				$('[name="errTips"]').text('做错' + exam.myErrNums + '道题,最终');
+				$('[name="myErrTips"]').text('接下来我们来看看这' + exam.myErrNums + '道题目的正确答案。');
+				exam.myError = obj.errors.split(',');
+			}
+
+
+			loadAllErrs();
+		});
+	}
+
+
 
 	var audioInit = function() {
 		var audio = document.getElementById('autoplay');
@@ -250,4 +267,5 @@ require(['jquery.fullPage', 'jquery-weui'], function() {
 		}, false);
 	}();
 
-});
+})();
+//});

@@ -1,4 +1,4 @@
-/**require.config({　　　　
+require.config({　　　　
 	baseUrl: "assets/js",
 	paths: {　　　　　　
 		"jquery": "jquery.min",
@@ -15,10 +15,9 @@
 		}　
 	}　　
 });
-
+/**
  * [exam 测试题目]
  */
-
 var exam = {
 	loadComplete: false,
 	total: 0, //总分
@@ -35,16 +34,13 @@ var exam = {
 	loginData: {}, //用户登录信息
 	maxAnswerNum: 20, //最大抽取多少道题目
 	answerTimes: 2, //每个用户最多回答几次
-	examPaper: "safe", //"safe" //试卷文件
-	endDate: '2016-06-20',
-	examEnd: 1
+	examPaper: "party" //"safe" //试卷文件
 };
 
 //页面总数
 var lastPage;
 
-//require(['jquery.fullPage', 'jquery-weui'],
-(function() {
+require(['jquery.fullPage', 'jquery-weui'], function() {
 
 	var secColor = [];
 	//testMode 0:默认，1，测试模式，2，安保
@@ -62,10 +58,10 @@ var lastPage;
 		arr.map(function(arrData, id) {
 			oldOrder[arrData] = id;
 		});
-		var str = '<div class="section ' + (i % 2 ? '' : 'background_dark_img') + '">';
+		var str = '<div class="section background_main">';
 		str += '<h1 class="title answer-num ' + /*(i % 2 ? '' : 'white-font')+*/ '">第<span>' + i + '</span>题</h1>';
-		str += '<div class="weui_cells_title ' + /*(i % 2 ? '' : 'white-font')+*/ '">' + data.title + '</div>';
-		str += '<div class="weui_cells weui_cells_checkbox' + (i % 2 ? '' : ' weui_cells_dark') + '" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
+		str += '<div class="weui_cells_title ' + /*(i % 2 ? '' : 'white-font')+*/ '">' + data.title + '</div>' +
+			'<div class="weui_cells weui_cells_checkbox weui_cells_dark weui_cells_dark_myerr" data-id=' + (i - 1) + ' data-answer=' + (oldOrder[data.answer - 1] + 1) + '>';
 
 		data.question.map(function(qTitle, idx) {
 			ques[idx] = '';
@@ -228,7 +224,7 @@ var lastPage;
 
 			if (direction == 'down' && !exam.isLogin && !exam.timeReleased) {
 				setTimeout(function() {
-					$.fn.fullpage.moveTo(2);
+					//$.fn.fullpage.moveTo(2);
 				}, 200);
 				return;
 			}
@@ -240,19 +236,19 @@ var lastPage;
 			}
 
 			//第一页简单颜色切换
-			/*if (direction == 'down') {
-				if (index % 2) {
-					$('.iSlider-arrow').removeClass('iSlider-white');
-				} else if (nextIndex % 2) {
-					$('.iSlider-arrow').addClass('iSlider-white');
+			if (direction == 'down') {
+				if (index > 2) {
+					$('.iSlider-arrow').removeClass('iSlider-yellow');
+				} else {
+					$('.iSlider-arrow').addClass('iSlider-yellow');
 				}
 			} else {
-				if (nextIndex % 2) {
-					$('.iSlider-arrow').addClass('iSlider-white');
+				if (nextIndex <= 2) {
+					$('.iSlider-arrow').addClass('iSlider-yellow');
 				} else {
-					$('.iSlider-arrow').removeClass('iSlider-white');
+					$('.iSlider-arrow').removeClass('iSlider-yellow');
 				}
-			}*/
+			}
 			//最后一页隐藏箭头
 			if (index > lastPage && (direction == 'down')) {
 				$('.iSlider-arrow').hide();
@@ -261,7 +257,7 @@ var lastPage;
 
 		$('#fullpage').fullpage({
 			//sectionsColor: secColor,
-			easingcss3: 'cubic-bezier(0.25, 0.5, 0.35, 1.15)', //'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
+			//easingcss3: 'cubic-bezier(0.25, 0.5, 0.35, 1.15)', //'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
 			onLeave: function(index, nextIndex, direction) {
 				//开始计时
 				if (exam.timeLength && index == 1 && !exam.timeReleased) {
@@ -372,68 +368,49 @@ var lastPage;
 			};
 			data.user_firstname = data.user_name.substr(0, 1);
 
-			var examEnd = exam.examEnd;
-
 			if (!validate(data)) {
 				$.toast("请输入个人用户信息", "cancel");
 			} else {
 				$.ajax({
-					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examSafeLogin',
+					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examPartyLogin',
 					data: data,
+					dataType: "jsonp",
+					callback: "JsonCallback",
 					success: function(obj) {
 						//var obj = loginData[0];
 						if (obj.id == 0) { //查无此人
-							$.modal({
-								title: "提示",
-								text: "登录失败，请检查您的卡号及部门！",
-								buttons: [{
-									text: "重新输入",
-									onClick: function() {
-										return;
-									}
-								}, {
-									text: "查看错题统计",
-									onClick: function() {
-										window.location.href = './myErr.html';
-										return;
-									}
-								}]
-							});
-							//$.alert("登录失败，请检查您的卡号及部门", "警告！");
+							$.alert("登录失败，请检查您的卡号及部门", "警告！");
 						} else if (obj.first_name.trim() != data.user_firstname) {
-							//$.alert("登录失败，您的姓名可能填写错误", "警告！");
-							$.modal({
-								title: "提示",
-								text: "登录失败，您的姓名可能填写错误！",
-								buttons: [{
-									text: "重新输入",
-									onClick: function() {
-										return;
-									}
-								}, {
-									text: "查看错题统计",
-									onClick: function() {
-										window.location.href = './myErr.html';
-										return;
-									}
-								}]
-							});
+							$.alert("登录失败，您的姓名可能填写错误", "警告！");
 						} else { //登录成功
+							if (obj.answer_times >= exam.answerTimes) { //回答次数用完
+								$.alert("您已用完" + exam.answerTimes + "次答题机会", "警告！", function() {
+									window.location.href = './safeScore.html?uid=' + obj.id;
+								});
+							} else {
+								exam.isLogin = true;
+								exam.loginData = data;
+								exam.loginData.uid = obj.id;
+								//答题次数增1
+								exam.loginData.iTimes = Number.parseInt(obj.answer_times) + 1;
 
-							if (examEnd) {
-								if (obj.answer_times == 0) {
-									$.alert("活动已结束", "警告！", function() {
-										window.location.href = './myErr.html';
-									});
-								} else {
+								//上次分数
+								exam.loginData.oldScore = (exam.loginData.iTimes >= 1) ? Number.parseInt(obj.score) : 0;
+								exam.loginData.loginTime = today(1);
+
+								//曾经登录过
+								if (exam.loginData.iTimes > 1) {
+
 									$.modal({
 										title: "提示",
-										text: examEnd ? "活动已结束，感谢您的参与！" : "您已经提交过答案，是否继续作答?",
+										text: "您已经提交过答案，是否继续作答?",
 										buttons: [{
-											text: examEnd ? '查看错题统计' : "再做一遍",
+											text: "再做一遍",
 											onClick: function() {
-												window.location.href = './myErr.html?uid=' + obj.id;
 
+												//隐藏页面，防止登录信息再次修改
+												$(this).parents('.section').hide();
+												$.fn.fullpage.moveSectionDown();
 											}
 										}, {
 											text: "查看成绩",
@@ -442,38 +419,12 @@ var lastPage;
 											}
 										}]
 									});
-								}
-							} else {
-
-								if (obj.answer_times >= exam.answerTimes) { //回答次数用完
-									$.alert("您已用完" + exam.answerTimes + "次答题机会", "警告！", function() {
-										window.location.href = './safeScore.html?uid=' + obj.id;
-										return;
-									});
 								} else {
-									exam.isLogin = true;
-									exam.loginData = data;
-									exam.loginData.uid = obj.id;
-									//答题次数增1
-									exam.loginData.iTimes = Number.parseInt(obj.answer_times) + 1;
-
-									//上次分数
-									exam.loginData.oldScore = (exam.loginData.iTimes >= 1) ? Number.parseInt(obj.score) : 0;
-									exam.loginData.loginTime = today(1);
-
-									//曾经登录过
-									if (exam.loginData.iTimes > 1) {
-										//隐藏页面，防止登录信息再次修改
-										$(this).parents('.section').hide();
-										$.fn.fullpage.moveSectionDown();
-									} else {
-										//隐藏页面，防止登录信息再次修改
-										$(this).parents('.section').hide();
-										$.fn.fullpage.moveSectionDown();
-									}
+									//隐藏页面，防止登录信息再次修改
+									$(this).parents('.section').hide();
+									$.fn.fullpage.moveSectionDown();
 								}
 							}
-
 						}
 					},
 					error: function(obj) {
@@ -496,7 +447,7 @@ var lastPage;
 
 		function submitPaper(data) {
 			$.ajax({
-					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setSafeExamData',
+					url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setPartyData',
 					data: data,
 					success: function(obj) {
 						if (obj.status == 0) {
@@ -591,7 +542,7 @@ var lastPage;
 		var audio = document.getElementById('autoplay');
 		var controller = document.getElementById('musicBtn');
 		var controllerHint = document.getElementById('musicBtnTxt');
-
+		audio.volume = 0.5;
 		document.getElementById('musicBtn').addEventListener('touchstart', function() {
 			controllerHint.style.display = '';
 			if (audio.paused) {
@@ -611,4 +562,4 @@ var lastPage;
 		}, false);
 	}();
 
-})();
+});

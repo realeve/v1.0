@@ -215,6 +215,15 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       return res;
     }
 
+    function handleLineStepMode(objRequest, series) {
+      if (objRequest.step != '0') {
+        series.map(function(data, i) {
+          series[i].step = objRequest.step;
+        });
+      }
+      return series;
+    }
+
     function handleMarkArea(objRequest, series) {
       //单个图表中，某项参数有多个值时用分号隔开
       var mkVal = objRequest.markAreaValue.split(';');
@@ -237,7 +246,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         },
         itemStyle: {
           normal: {
-            opacity: 0.25/series.length
+            opacity: 0.25 / series.length
           }
         },
         data: []
@@ -258,11 +267,14 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }]);
       });
 
-      series.map(function(data, i) {
+      /*series.map(function(data, i) {
         series[i].markArea = singleMarkArea;
-      });
+      });*/
+      series[0].markArea = singleMarkArea;
       return series;
     }
+
+
 
     /**
      * [convert 格式化图表用数据(曲线图，柱形图)]
@@ -285,8 +297,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             position: (objRequest.reverse) ? 'insideRight' : 'insideTop', //top//'insideRight' : 'insideTop'
             formatter: '{c}'
           },
-          barBorderRadius: (objRequest.reverse) ? [0, 2, 2, 0] : [2, 2, 0, 0]
-            //areaStyle: {type: 'default'},
+          barBorderRadius: (objRequest.reverse) ? [0, 2, 2, 0] : [2, 2, 0, 0],
+          borderColor: "rgba(255,255,255,0.85)",
+          borderWidth: 4,
+          lineStyle: {
+            width: 1
+          }
+          //areaStyle: {type: 'default'},
         }
       };
 
@@ -339,7 +356,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
             "itemStyle": itemStyle,
-            "symbolSize": objRequest.symbolSize
+            "symbolSize": objRequest.symbolSize,
+            symbol: 'circle',
+            symbol: 'circle'
           };
           //是否为面积图
           if (objRequest.lineAreaStyle) {
@@ -349,9 +368,15 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               }
             };
             //NewData['series'][i].symbolSize = 0;
+            objRequest.lineShadow = false;
+          }
+          if (objRequest.step != '0') {
+            objRequest.lineShadow = false;
+          }
+          if (!objRequest.lineShadow) {
             obj.lineStyle = {
               normal: {
-                width: 0,
+                width: objRequest.lineAreaStyle ? 0 : 3,
                 type: 'solid',
                 shadowColor: 'rgba(0,0,0,0)',
                 shadowBlur: 0,
@@ -360,6 +385,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               }
             };
           }
+
 
           if (!objRequest.reverse) {
 
@@ -461,7 +487,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             //"markLine": MLnStyle_avg,
             "itemStyle": itemStyle,
             "symbolSize": objRequest.symbolSize,
-            sampling: 'average'
+            sampling: 'average',
+            symbol: 'circle'
           };
           //是否为面积图
           if (objRequest.lineAreaStyle) {
@@ -471,9 +498,15 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               }
             };
             //NewData['series'][i].symbolSize = 0;
+            objRequest.lineShadow = false;
+          }
+          if (objRequest.step != '0') {
+            objRequest.lineShadow = false;
+          }
+          if (!objRequest.lineShadow) {
             NewData['series'][i].lineStyle = {
               normal: {
-                width: 0,
+                width: objRequest.lineAreaStyle ? 0 : 3,
                 type: 'solid',
                 shadowColor: 'rgba(0,0,0,0)',
                 shadowBlur: 0,
@@ -566,7 +599,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           //"markLine": MLnStyle_avg,
           "itemStyle": itemStyle,
           "symbolSize": objRequest.symbolSize,
-          sampling: 'average'
+          sampling: 'average',
+          symbol: 'circle'
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
@@ -576,9 +610,15 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             }
           };
           //NewData['series'][0].symbolSize = 0;
+          objRequest.lineShadow = false;
+        }
+        if (objRequest.step != '0') {
+          objRequest.lineShadow = false;
+        }
+        if (!objRequest.lineShadow) {
           NewData['series'][0].lineStyle = {
             normal: {
-              width: 0,
+              width: objRequest.lineAreaStyle ? 0 : 3,
               type: 'solid',
               shadowColor: 'rgba(0,0,0,0)',
               shadowBlur: 0,
@@ -675,7 +715,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           //"markLine": MLnStyle_avg,
           "itemStyle": itemStyle,
           "symbolSize": objRequest.symbolSize,
-          sampling: 'average'
+          sampling: 'average',
+          symbol: 'circle'
         };
         //是否为面积图
         if (objRequest.lineAreaStyle) {
@@ -684,10 +725,15 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               "opacity": objRequest.opacity != '0' ? objRequest.opacity : 0.4
             }
           };
-          //NewData['series'][0].symbolSize = 0;
+          objRequest.lineShadow = false;
+        }
+        if (objRequest.step != '0') {
+          objRequest.lineShadow = false;
+        }
+        if (!objRequest.lineShadow) {
           NewData['series'][0].lineStyle = {
             normal: {
-              width: 0,
+              width: objRequest.lineAreaStyle ? 0 : 3,
               type: 'solid',
               shadowColor: 'rgba(0,0,0,0)',
               shadowBlur: 0,
@@ -771,6 +817,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }
 
       NewData.series = handleMarkArea(objRequest, NewData.series);
+      NewData.series = handleLineStepMode(objRequest, NewData.series);
       return NewData;
     }
 
@@ -946,6 +993,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         };
 
       }
+      NewData.series = handleMarkArea(objRequest, NewData.series);
+      NewData.series = handleLineStepMode(objRequest, NewData.series);
       return NewData;
     }
 
@@ -1823,7 +1872,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           data: Data.data
         };
       }
-
+      NewData.series = handleMarkArea(objRequest, NewData.series);
+      NewData.series = handleLineStepMode(objRequest, NewData.series);
       return NewData;
     }
 
@@ -2126,7 +2176,21 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               }
             }
           };
+          if (!objRequest.lineShadow) {
+            NewData['series'][i].lineStyle = {
+              normal: {
+                width: objRequest.lineAreaStyle ? 0 : 3,
+                type: 'solid',
+                shadowColor: 'rgba(0,0,0,0)',
+                shadowBlur: 0,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0
+              }
+            };
+          }
         }
+
+
       } else if (Data.cols == 2) {
         NewData['xAxisTitle'] = Data.header[0].title;
         NewData['yAxisTitle'] = Data.header[1].title;
@@ -2151,6 +2215,18 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           }
         };
 
+        if (!objRequest.lineShadow) {
+          NewData['series'][0].lineStyle = {
+            normal: {
+              width: objRequest.lineAreaStyle ? 0 : 3,
+              type: 'solid',
+              shadowColor: 'rgba(0,0,0,0)',
+              shadowBlur: 0,
+              shadowOffsetX: 0,
+              shadowOffsetY: 0
+            }
+          };
+        }
       } else if (Data.cols == 1) {
         NewData['xAxisTitle'] = "数据编号";
         NewData['yAxisTitle'] = Data.header[0].title;
@@ -2177,6 +2253,19 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             }
           }
         };
+
+        if (!objRequest.lineShadow) {
+          NewData['series'][0].lineStyle = {
+            normal: {
+              width: objRequest.lineAreaStyle ? 0 : 3,
+              type: 'solid',
+              shadowColor: 'rgba(0,0,0,0)',
+              shadowBlur: 0,
+              shadowOffsetX: 0,
+              shadowOffsetY: 0
+            }
+          };
+        }
       }
 
       if (Data.cols <= 3) {
@@ -2214,7 +2303,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           };
         }
       }
-
+      NewData.series = handleMarkArea(objRequest, NewData.series);
+      NewData.series = handleLineStepMode(objRequest, NewData.series);
       return NewData;
     }
     var returnData;

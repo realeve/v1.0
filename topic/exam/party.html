@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<title>纪念中国共产党成立95周年知识问答</title>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.fullPage.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery-weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/SentyZHAO-embed.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/main.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/js/fakeLoader.js/fakeLoader.min.css"/>
+<script src="assets/js/require.min.js" data-main="assets/js/party.min"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/fakeLoader.js/fakeLoader.min.js"></script>
+<meta name="apple-mobile-web-app-capable" container="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" container="black-translucent"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div id="fakeLoader"></div>
+<script>
+//此处设置一个较长数值，数据载入完毕后再显示
+ $("#fakeLoader").fakeLoader({
+    timeToHide: 600000, //Time in milliseconds for fakeLoader disappear
+    bgColor:"#d7eefe",
+    spinner: "spinner3"
+});
+ $('.dot1').css('background-color','#d58a56');
+ $('.dot2').css('background-color','#56d58a');
+ $('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#445">载入中...</p>');
+</script>
+<aside class="media-wrap">
+    <span id="musicBtnTxt" style="display: none;">关闭</span>
+    <i id="musicBtn" class="music-btn on"></i>
+</aside>
+<audio src="http://cc.stream.qqmusic.qq.com/C2000036ClUB2CPjB3.m4a?vkey=BD323E1F63E300F488A6AA4CFB4FE24142F2C967E04E58BBE996CF2481D6B91E2AF7B9D71086C9076FE36975C2037F5A16497141FC34E0F4&guid=892389620&fromtag=30" autoplay="autoplay" loop="loop" id="autoplay"></audio>
+<div id="fullpage">
+    <div class="section center">
+    	<div style="position: absolute;top:65%;box-sizing: content-box;display: table-cell;width:100%;margin:0 auto;">
+	        <!--h1 class="white-font headerTitle" style="color:rgb(95, 166, 218);line-height: 1em;">成都印钞有限公司<p class="headerSubTitle">安全生产月有奖答题活动</p></h1-->
+	        <article class="weui_article yellow-font headerSubTitle" style="line-height: .5em;">
+	        	<h1>活动时间：6月6日至6月20日 <p>题目: <span name="nums" style="font-weight:bold"></span> 道单选，每题 <span name="scores" style="font-weight:bold"></span> 分。</p></h1>
+	        </article>
+        </div>
+    	<div style="position: absolute;top:90%;box-sizing: content-box;display: table-cell;width:100%;margin:0 auto;">
+	        <article class="weui_article yellow-font headerSubTitle" style="line-height: .5em; font-size:0.9em;">
+	        	主办单位：党委组织部  企业文化部  群工部
+	        </article>
+        </div>
+    	<img src="./assets/img/welcomePage.jpg" class="background_dark" style="height:100%;width:100%;display:block;margin:0 auto;"></img>
+        <!--img class="lg-component-img" src="./assets/img/bottom.png"-->
+    </div>
+    <div class="section center" name="login">
+	<div class="weui_msg">
+	    <!--div class="weui_icon_area"><i class="weui_icon_msg weui_icon_info"></i></div-->
+	    <div class="weui_text_area">
+	        <h2 class="weui_msg_title yellow-font" style="font-weight:bold;">登录</h2>
+	        <p class="weui_msg_desc" style="color:#fdc942">请先填写个人信息</p>
+	    </div>
+	    <div class="bd">
+	      	<div class="weui_cell">
+		        <div class="weui_cell_hd"><label for="date" class="weui_label yellow-font">部门</label></div>
+		        <div class="weui_cell_bd weui_cell_primary">
+		          <input class="weui_input yellow-font" name="user_dpt" type="text" placeholder="点击选择部门" value="">
+		        </div>
+	      	</div>
+		    <div class="weui_cell">
+	            <div class="weui_cell_hd"><label class="weui_label yellow-font">姓名</label></div>
+	            <div class="weui_cell_bd weui_cell_primary">
+	                <input class="weui_input yellow-font" name="userName" type="text" placeholder="点击输入姓名">
+	            </div>
+	        </div>
+		    <div class="weui_cell">
+	            <div class="weui_cell_hd"><label class="weui_label yellow-font">员工卡号</label></div>
+	            <div class="weui_cell_bd weui_cell_primary">
+	                <input class="weui_input yellow-font" name="userCard" type="number" pattern="[0-9]*" placeholder="点击输入员工卡号中的数字部分">
+	            </div>
+	        </div>
+	    </div>
+	    <div class="weui_opr_area">
+	        <p class="weui_btn_area">
+	            <a href="javascript:;" class="weui_btn weui_btn_primary weui_btn_primary_yellow" id="login">登录</a>
+	        </p>
+	    </div>
+	</div>
+    	<img src="./assets/img/highscorePage2.jpg" class="background_dark" style="height:100%;width:100%;display:block;margin:0 auto;"></img>
+    </div>
+
+    <div class="section" name="sucessInfo" style="background-color:#e4e4f4">
+		<div class="weui_msg hidden">
+		    <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_warn"></i></div>
+		    <div class="weui_text_area">
+		        <p class="weui_msg_desc">请先提交试卷</p>
+		        <h2 class="weui_msg_title"></h2>
+		    </div>
+		    <div class="weui_opr_area">
+		        <p class="weui_btn_area">
+		            <a name="scoreLink" class="weui_btn weui_btn_plain_primary">点击查看成绩统计</a>
+		        </p>
+		    </div>
+		</div>
+    </div>
+</div>
+<div class="iSlider-arrow iSlider-yellow"></div>
+</body>
+</html>

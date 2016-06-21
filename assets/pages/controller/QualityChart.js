@@ -131,6 +131,7 @@
            //箱线图上下边缘重置为最大值最小值
            "minMax": (getUrlParam('minmax') === null) ? ['0'] : getUrlParam('minmax').split(','),
            "lineAreaStyle": (getUrlParam('linearea') === null) ? ['0'] : getUrlParam('linearea').split(','),
+           "lineShadow": (getUrlParam('lineshadow') === null) ? ['0'] : getUrlParam('lineshadow').split(','),
            "reverse": (getUrlParam('reverse') === null) ? ['0'] : getUrlParam('reverse').split(','),
            "circle": (getUrlParam('circle') === null) ? ['0'] : getUrlParam('circle').split(','),
            "roseType": (getUrlParam('rose') === null) ? ['0'] : getUrlParam('rose').split(','),
@@ -143,9 +144,10 @@
            "stack": (getUrlParam('stack') === null) ? ['0'] : getUrlParam('stack').split(','),
            "max": (getUrlParam('max') === null) ? ['0'] : getUrlParam('max').split(','),
            "min": (getUrlParam('min') === null) ? ['0'] : getUrlParam('min').split(','),
-           "symbolSize": (getUrlParam('symbolsize') === null) ? ['10'] : getUrlParam('symbolsize').split(','),
+           "symbolSize": (getUrlParam('symbolsize') === null) ? ['12'] : getUrlParam('symbolsize').split(','),
            "opacity": (getUrlParam('opacity') === null) ? ['0'] : getUrlParam('opacity').split(','),
            "leafDepth": (getUrlParam('leafdepth') === null) ? ['0'] : getUrlParam('leafdepth').split(','),
+           "step": (getUrlParam('step') === null) ? ['0'] : getUrlParam('step').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -164,6 +166,7 @@
              "dataZoom": handleParam(objList.dataZoom, i, '0'),
              "minMax": (handleParam(objList.minMax, i, '0') === '1') ? true : false,
              "lineAreaStyle": (handleParam(objList.lineAreaStyle, i, '0') === '1') ? true : false,
+             "lineShadow": (handleParam(objList.lineShadow, i, '1') === '1') ? true : false,
              "reverse": (handleParam(objList.reverse, i, '0') === '1') ? true : false,
              "circle": (handleParam(objList.circle, i, '1') === '1') ? true : false,
              "roseType": handleParam(objList.roseType, i, '0'),
@@ -176,18 +179,11 @@
              "stack": (handleParam(objList.stack, i, '0') === '1') ? true : false,
              "max": handleParam(objList.max, i, "1"),
              "min": handleParam(objList.min, i, "1"),
-             "symbolSize": handleParam(objList.symbolSize, i, "10"),
+             "symbolSize": handleParam(objList.symbolSize, i, "12"),
              "opacity": handleParam(objList.opacity, i, 0.4),
-             "leafDepth": handleParam(objList.leafDepth, i, 0)
+             "leafDepth": handleParam(objList.leafDepth, i, 0),
+             "step": handleParam(objList.step, i, 0)
            };
-           //console.log(objRequest);
-           //桑基图高度增加一倍
-           /*if (objRequest.type == 'sankey') {
-             var dom = $("#eChart-main" + i);
-             var width = $('.portlet-body.form').width();
-             var height = width / 1.5;
-             dom.css('height', height);
-           }*/
 
            //数据处理
            if (typeof curTheme.valueAxis !== 'undefined') {
@@ -329,7 +325,6 @@
        }*/
 
        //初始化主题模块
-
        function initTheme() {
          var themeSelector = $(".actions select");
          if (themeSelector) {

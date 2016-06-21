@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<title>数说党史</title>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.fullPage.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/SourceHanSansCN-Regular-embed.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery-weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/mainSafe.min.css?v=0.1.0"/>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery-weui.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/js/fakeLoader.js/fakeLoader.min.css"/>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/fakeLoader.js/fakeLoader.min.js"></script>
+<script src="assets/js/require.min.js" data-main="assets/js/readSafeScore.min"></script>
+<meta name="apple-mobile-web-app-capable" container="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" container="black-translucent"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div id="fakeLoader"></div>
+<script>
+//此处设置一个较长数值，数据载入完毕后再显示
+ $("#fakeLoader").fakeLoader({
+    timeToHide: 600000, //Time in milliseconds for fakeLoader disappear
+    bgColor:"#9b59b6",
+    spinner: "spinner2"
+});
+ $('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#fff">载入中</p>');
+
+</script>
+<aside class="media-wrap">
+    <span id="musicBtnTxt" style="display: none;">关闭</span>
+    <i id="musicBtn" class="music-btn on"></i>
+</aside>
+<!--http://boscdn.bpc.baidu.com/v1/legend/75c7a88d11c3288160d2ce42352ffca01454053966476.mp3-->
+<audio autoplay="autoplay" loop="loop" id="autoplay"></audio>
+<div id="fullpage">
+    <div class="section  white-font-blue background-deepblue">
+    	   <h1 class="title center" style="font-size: 3em">数说</h1>
+    	   <p class="descTitle"><span name="userName"></span>，您好：</p>
+    	   <p class="descTitle">安全月有奖答题活动自2016年6月6日开始以来，我们一共收到了 <span class="white-font number" name="totals"></span> 份答卷，作为第 <span class="white-font number" name="userOrder"></span> 位交卷者，您在本次活动中<span name="answerTimes"></span>取得了 <span class="white-font number" name="userScore"></span> 分,<span name="scoreDesc"></span>。</p>
+    </div>
+    <div class="section  white-font background-orange hidden">
+    	<h1 class="title">你在公司的排名</h1>
+    	<p>在目前交卷的<span class="number" name="totals"></span>人中，您排名第<span class="number" name="ltdOrder"></span>位，击败了<span class="number" name="scorePropt"></span>%的人<span name="scoreProptDesc"></span>当然这个数据还在不断刷新，您可以随时回来观看。</p>
+    	<div id="chart1" class="chart"></div>
+    </div>
+    <div class="section  white-font background-purple hidden">
+    	<h1 class="title">你在部门的排名</h1>
+    	<p>您所在的<span name="dptName"></span> 一共有在职员工<span class="number" name="dptCrewNum"></span>人，目前有<span class="number" name="dptTotals"></span>名员工参与活动，在部门中您排名第<span class="number" name="dptOrder"></span>位，击败了<span class="number" name="dptScorePropt"></span>%的人。</p>
+    	<div id="chart2" class="chart"></div>
+    </div>
+    <div class="section  white-font background-lightBlue hidden">
+    	<h1 class="title">答题速度</h1>
+    	<p>天下武功，唯快不破！本次活动中您花了<span name="userMinuteLength"></span>分<span class="number" name="userSecondLength"></span>秒便完成所有的<span class="number">20</span>道题目，<span name="timeDesc1"></span><span name="dptName"></span>平均水平<span class="number" name="dptTimeLength"></span>分钟，<span name="timeDesc2"></span>公司平均水平<span class="number" name="ltdTimeLength"></span>分钟。</p>
+    	<div id="chart3" class="chart"></div>
+    </div>
+    <div class="section  white-font background-deepGreen hidden">
+    	<h1 class="title">活动参与度</h1>
+    	<p>截止目前， <span name="mostPeople"></span>的员工对本次活动更加热情，共有<span class="number" name="answeredPrpt"></span>%的员工提交了试卷<span name="answerRatioDesc"></span></p>
+    	<div id="chart4" class="chart"></div>
+    </div>
+    <div class="section  dark-font background-yellow hidden">
+    	<h1 class="title">本部门得分分布</h1>
+    	<p><span name="dptName"></span>目前参与活动的<span class="number" name="dptTotals"></span>名员工中，有<span class="number" name="dptMostScoreNum"></span>人获得了<span class="number" name="dptMostScore"></span>分，<span name="dptMostScoreDesc"></span>下面是其它分数的分布情况:</p>
+    	<div id="chart5" class="chart"></div>
+    </div>
+    <div class="section  white-font background-blue hidden">
+    	<h1 class="title">得分Top 6</h1>
+    	<p>截止目前，<span name="highestScore"></span> 的员工得分最高，他们的平均分达到了<span class="number" name="highestScorePrpt"></span>分:</p>
+    	<div id="chart6" class="chart"></div>
+    </div>
+    <div class="section  white-font background-purple hidden">
+    	<h1 class="title">获奖比例Top 6</h1>
+    	<p>截止目前，公司共有<span class="number" name="prizePrpt"></span>%的员工通过了本次测试，在活动结束之后能领到心仪的奖品。</p>
+    	<div id="chart7" class="chart"></div>
+    </div>
+    <div class="section  white-font background-blue hidden">
+    	<h1 class="title" style="font-size: 1.5em;">如果上天再给我一次机会</h1>
+    	<p>截止目前，共有<span class="number" name="2ndTimesPrpt"></span>%的员工利用第二次测试机会顺利拿到了80分，还有<span class="number" name="1stTime"></span>名员工虽然未通过，但他们还能再答一次呢，赶快分享告诉他们吧。</p>
+    	<div id="chart8" class="chart"></div>
+    </div>
+    <div class="section  center white-font background-orange hidden">
+    	<p style="font-size: 0.8em">本活动由安全保卫部、企业文化部联合举办</p>
+    	<h1 class="title">感谢您的参与！</h1>
+    	<p style="position:absolute;top:90%;text-align: center;width:100%;font-size:.8em">&copy;CBPC 2016 All Rights Reserved.</p>
+    </div>
+</div>
+<div class="iSlider-arrow iSlider-white"></div>
+</body>
+</html>

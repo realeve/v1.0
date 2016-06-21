@@ -74,6 +74,6 @@
 	}, {
 		"version": 1.29,
 		"date": "2016-06-18",
-		"html": "<p>1.eCharts更新至3.1.10；</p><p>2.TreeMap：更新外观样式，增加数据下钻功能（参考 <a href=\"http://10.8.2.133:70/qualitychart?tid=130&type=treemap&leafdepth=1\">这里</a>）</p> <p>2.直角坐标系：柱状图、曲线图、散点图、箱线图等直角坐标系图表增加区域标注功能，用于标注某个区域的值域说明参考<a href=\"http://10.8.2.133:70/qualitychart?tid=124&type=bar&markarea=优;良;中;不及格&markareavalue=90-100;80-90;70-80;60-70&max=100&min=40\">这里</a></p> "
+		"html": "<p>1.eCharts更新至3.1.10；</p><p>2.TreeMap：更新外观样式，增加数据下钻功能（参考 <a href=\"http://10.8.2.133:70/qualitychart?tid=130&type=treemap&leafdepth=1\">这里</a>）</p> <p>2.直角坐标系：柱状图、曲线图、散点图、箱线图等直角坐标系图表增加区域标注功能，用于标注某个区域的值域说明参考<a href=\"http://10.8.2.133:70/qualitychart?tid=124&type=bar&markarea=优;良;中;不及格&markareavalue=90-100;80-90;70-80;60-70&max=100&min=40\">这里</a></p> <p>3.增加STEP图：用于SPC质量过程控制图的制作中U型图的制作</p><p>4.折线图：标记样式更新，增加线型阴影开关</p>"
 	}]
 }
