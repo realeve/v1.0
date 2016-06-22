@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.28;
+  var curVersion = 1.29;
   moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
