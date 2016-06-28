@@ -25,8 +25,8 @@ var Index = function() {
 		Data.data[0].map(function(statData, idx) {
 			$('.dashboard-stat .number:nth(' + idx + ')').attr('data-value', data2ThousandSeparator(statData)).text(data2ThousandSeparator(statData));
 		});
-		
-		if(Data.data[0][4]){
+
+		if (Data.data[0][4]) {
 			bsTips('近期有机检异常产品，请注意!');
 		}
 
@@ -189,7 +189,7 @@ var Index = function() {
 				var x = item.datapoint[0].toFixed(fixedLen),
 					y = item.datapoint[1].toFixed(fixedLen),
 					xCat = item.series.data[item.datapoint[0]][0];
-				//label = item.series.label.trim() + '<br>'; 
+				//label = item.series.label.trim() + '<br>';
 				var tooltipInfo, offsetY = 0;
 				if (typeof plotData == 'undefined') {
 					tooltipInfo = xCat + " : " + item.datapoint[1].toFixed(fixedLen) + ' ' + strUnit;
@@ -708,7 +708,7 @@ var Index = function() {
 						fill: 0.9,
 						lineWidth: 0
 					},
-					color: ["#556"],//f89f9f
+					color: ["#556"], //f89f9f
 					label: '过程质量评分'
 				}, {
 					data: data,
@@ -785,7 +785,7 @@ var Index = function() {
 						isChart2Inited = true;
 					}
 				});
-				
+
 				$('#process_quality_offline_tab').on('shown.bs.tab', function(e) {
 					bsTips('即将添加');
 				});
@@ -808,13 +808,144 @@ var Index = function() {
 	};
 }();
 
+
+
+//配置图表库
+var mECharts = function() {
+	var myChart = []; //任意个数的图表
+	var echarts, chartDataTool;
+	var curTheme;
+	var option = [];
+	var i = 0;
+
+	function launchChart() {
+		require.config({
+			baseUrl: "assets/global/plugins/",
+			paths: {
+				"theme": "echarts/theme",
+				"echarts": "echarts/js/echarts.min",
+				"chartDataTool": "echarts/js/extension/chartDataTool.min"
+			}
+		});
+
+		require(["echarts", "chartDataTool"], function(ec, dt) {
+			var defaultTheme;
+			echarts = ec;
+			chartDataTool = dt;
+			if (typeof localStorage.eChartsTheme == 'undefined') {
+				defaultTheme = 'ali_G2';
+				localStorage.setItem("eChartsTheme", "ali_G2");
+			} else {
+				defaultTheme = localStorage.eChartsTheme;
+			}
+
+			require(["theme/" + defaultTheme], function(tarTheme) {
+				curTheme = tarTheme;
+				showChart(curTheme);
+			});
+		});
+	}
+
+	function showChart(curTheme) {
+		if (!echarts) {
+			return;
+		}
+
+		function getDate() {
+			var date = new Date();
+			var a = date.getFullYear();
+			var b = jsRight(('0' + (date.getMonth() + 1)), 2);
+			var c = jsRight(('0' + date.getDate()), 2);
+			return a + b + c;
+		};
+
+		var date = {
+			start: jsLeft(getDate(), 6) + '01',
+			end: jsLeft(getDate(), 6) + '31'
+		};
+
+		function getLastYear() {
+			var date = new Date();
+			var a = date.getFullYear() - 1;
+			var b = jsRight(('0' + (date.getMonth() + 1)), 2);
+			var c = jsRight(('0' + date.getDate()), 2);
+			return a + b + c;
+		};
+
+		var lastYear = {
+			start: jsLeft(getLastYear(), 6) + '01',
+			end: jsLeft(getLastYear(), 6) + '31'
+		}
+
+
+		i = 0;
+		//SELECT  '今年' as 月份, a.ProductTypeName as 品种, avg(a.OpenNum) as 开包量 FROM dbo.ManualVerifyData AS a where a.MahouID>0 and a.OpenNum>0 and CONVERT(varchar,ProduceTime,112) between ? and ? group by a.ProductTypeName,CONVERT(varchar(6),ProduceTime,112) union ALL SELECT  '去年同期' as 月份, a.ProductTypeName as 品种, avg(a.OpenNum) as 开包量 FROM dbo.ManualVerifyData AS a where a.MahouID>0 and a.OpenNum>0 and CONVERT(varchar,ProduceTime,112) between ? and ? group by a.ProductTypeName,CONVERT(varchar(6),ProduceTime,112)
+		var objRequest = {
+			url: getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=220&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + lastYear.start + "&tend2=" + lastYear.end,
+			background: 'default',
+			color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+			type: 'bar',
+			markAreaValue: 0,
+			markLine: 0
+		};
+		option[i] = chartDataTool.getOption(objRequest, echarts);
+		delete option[i].title;
+		delete option[i].toolbox;
+		delete option[i].dataZoom;
+		option[i].grid.bottom = '3%';
+		option[i].legend.y = 0;
+		delete option[i].xAxis[0].name;
+
+		i = 1;
+		objRequest = {
+			url: getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=181&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end,
+			background: 'default',
+			singleAxis: 'time',
+			color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+			type: 'themeriver'
+		};
+
+		option[i] = chartDataTool.getOption(objRequest, echarts);
+
+		delete option[i].toolbox;
+		option[i].title[2].x = 'center';
+		option[i].title[2].y = 40;
+		option[i].title[2].y2 = 0;
+		option[i].title[1].show = false;
+		option[i].title[3].show = false;
+		option[i].legend.orient = 'horizontal';
+
+		for (i = 0; i < 2; i++) {
+			if (option[i] !== false) {
+				myChart[i] = echarts.init(document.getElementById("nocheck_statistics_" + i), curTheme);
+				myChart[i].setOption(option[i]);
+				$('#nocheck_loading_' + i).addClass('display-none');
+				$('#nocheck_content_' + i).removeClass('display-none');
+			}
+		}
+
+	}
+	return {
+		resize: function() {
+			myChart[0].resize();
+			myChart[1].resize();
+		},
+		init: function() {
+			launchChart();
+		},
+	}
+}();
+
+
 jQuery(document).ready(function() {
 	UIIdleTimeout.init();
 	initDom();
 	//initDashboardDaterange('YYYY-MM-DD');
 	Index.init();
+	mECharts.init();
 });
+
 jQuery(window).resize(function() {
 	HeadFix();
+	mECharts.resize();
 });
-//插入工作日志

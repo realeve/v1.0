@@ -231,13 +231,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     }
 
     function handleMarkArea(objRequest, series) {
+      if (objRequest.markAreaValue == '0') {
+        return series;
+      }
       //单个图表中，某项参数有多个值时用分号隔开
       var mkVal = objRequest.markAreaValue.split(';');
       var mkName = objRequest.markArea.split(';');
 
-      if (objRequest.markAreaValue == '0') {
-        return series;
-      }
       //var color = ["#F33","#61A5E8", "#7ECF51", "#EECB5F", "#E4925D"];
       //单个MarkArea的设置
       var singleMarkArea = {
@@ -395,13 +395,12 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
           if (!objRequest.reverse) {
 
+            if (objRequest.markLine != '0') {
+
             //单个图表中，某项参数有多个值时用分号隔开
             mkVal = objRequest.markLineValue.split(';');
             mkName = objRequest.markLine.split(';');
             mkNameLen = mkName.length;
-
-            if (objRequest.markLine != '0') {
-
               obj.markLine = {
                 lineStyle: {
                   normal: {
@@ -524,12 +523,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
           if (!objRequest.reverse) {
 
-            //单个图表中，某项参数有多个值时用分号隔开
-            mkVal = objRequest.markLineValue.split(';');
-            mkName = objRequest.markLine.split(';');
-            mkNameLen = mkName.length;
 
             if (objRequest.markLine != '0') {
+
+              //单个图表中，某项参数有多个值时用分号隔开
+              mkVal = objRequest.markLineValue.split(';');
+              mkName = objRequest.markLine.split(';');
+              mkNameLen = mkName.length;
 
               NewData['series'][i].markLine = {
                 lineStyle: {
@@ -636,12 +636,12 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
         if (!objRequest.reverse) {
 
+          if (objRequest.markLine != '0') {
+
           //单个图表中，某项参数有多个值时用分号隔开
           mkVal = objRequest.markLineValue.split(';');
           mkName = objRequest.markLine.split(';');
           mkNameLen = mkName.length;
-
-          if (objRequest.markLine != '0') {
 
             NewData['series'][0].markLine = {
               lineStyle: {
@@ -751,11 +751,12 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
         if (!objRequest.reverse) {
 
+          if (objRequest.markLine != '0') {
+
           //单个图表中，某项参数有多个值时用分号隔开
           mkVal = objRequest.markLineValue.split(';');
           mkName = objRequest.markLine.split(';');
           mkNameLen = mkName.length;
-          if (objRequest.markLine != '0') {
 
             NewData['series'][0].markLine = {
               lineStyle: {
@@ -3642,7 +3643,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
   };
 
   var getThemeRiverOption = function(objRequest) {
-
     var outData = {
       title: [{
         text: Data.title,

@@ -13,7 +13,7 @@
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="../../assets/global/plugins/respond.min.js"></script>
-<script src="../../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/jquery.base64.min.js" type="text/javascript"></script>
@@ -55,6 +55,8 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <!--BEGIN MY LEVEL SCRIPT-->
 <script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/echarts/js/ThemeStyle.min.js"></script>
+<script src="../../assets/global/plugins/require.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/index.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/idletimeout.min.js"></script>

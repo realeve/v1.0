@@ -20,7 +20,7 @@
 					</div>
 				</div-->
 			</div>
-			<!-- END PAGE HEADER-->	
+			<!-- END PAGE HEADER-->
 			<!--h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
 			</h3-->
@@ -96,9 +96,9 @@
 				</div>
 			</div>
 			<!-- END DASHBOARD STATS -->
-			
+
 			<div class="row">
-				<div class="col-md-8 col-sm-12">
+				<div class="col-md-6 col-sm-12">
 					<!-- BEGIN PORTLET-->
 					<div class="portlet light" name="hisQuality">
 						<div class="portlet-title">
@@ -135,14 +135,14 @@
 					</div>
 					<!-- END PORTLET-->
 				</div>
-				<div class="col-md-4 col-sm-12">
+				<div class="col-md-6 col-sm-12">
 					<!-- BEGIN WIDGET BLOG -->
-					<div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 415px; padding-top: 10px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
+					<!-- <div class="widget-blog rounded-3 text-center margin-bottom-30 clearfix" style="height: 415px; padding-top: 10px; background-image: url(../../assets/layouts/layout/img/07.jpg);">
 						<div class="widget-blog-heading text-uppercase">
 							<div class="mt-widget-1" style="border:none;">
 								<div class="mt-img" style="margin:0 0 5px">
                             		<img src="./demo/avatar/MTVkZXZlbG9w.jpg" style="width:120px;height:120px;">
-                            	</div> 
+                            	</div>
                             </div>
 							<h3 class="widget-blog-title">马可</h3>
 							<span class="widget-blog-subtitle">印码机检组</span>
@@ -151,8 +151,24 @@
 						</p>
 						<br/>
 						<a class="btn btn-danger text-uppercase" href="#">标记为已读</a>
-					</div>
+					</div> -->
 					<!-- END WIDGET BLOG -->
+					<div class="portlet light bordered">
+	                        <div class="portlet-title">
+	                            <div class="caption">
+	                                <i class="icon-bar-chart font-green hide"></i>
+	                                <span class="caption-subject font-blue bold uppercase">机检开包量</span>
+	                            </div>
+	                        </div>
+	                        <div class="portlet-body" style="height:331px;">
+	                            <div id="nocheck_loading_0">
+	                                <img src="../assets/global/img/loading.gif" alt="loading" />
+	                            </div>
+	                            <div id="nocheck_content_0">
+	                                <div id="nocheck_statistics_0" class="chart"> </div>
+	                            </div>
+	                        </div>
+	                    </div>
 				</div>
 			</div>
 			<div class="clearfix">
@@ -283,20 +299,20 @@
                                     </a>
                                     <ul class="dropdown-menu pull-right">
                                         <li>
-                                            <a href="javascript:;"> 当前时间 
+                                            <a href="javascript:;"> 当前时间
                                             </a>
                                         </li>
                                         <li class="divider"> </li>
                                         <li>
-                                            <a href="javascript:;"> Q2 2014 
+                                            <a href="javascript:;"> Q2 2014
                                             </a>
                                         </li>
                                         <li class="active">
-                                            <a href="javascript:;"> Q3 2014 
+                                            <a href="javascript:;"> Q3 2014
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;"> Q4 2014 
+                                            <a href="javascript:;"> Q4 2014
                                             </a>
                                         </li>
                                     </ul>
@@ -652,13 +668,12 @@
 						</div>
 					</div>
 					<!-- END PORTLET-->
-				<!--/div>				
+				<!--/div>
 			</div-->
             <div class="clearfix">
 			</div>
 			<div class="row">
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<!-- BEGIN PORTLET-->
+				<!-- <div class="col-md-4 col-sm-6 col-xs-12">
 					<div class="portlet light tasks-widget widget-comments rounded-3">
 						<div class="portlet-title margin-bottom-20">
 							<div class="caption caption-md font-red-sunglo">
@@ -672,10 +687,8 @@
 							<button class="btn red-sunglo pull-right" type="button">提交</button>
 						</div>
 					</div>
-					<!-- END PORTLET-->
 				</div>
 				<div class="col-md-8 margin-bottom-30">
-					<!-- BEGIN WIDGET TAB -->
 					<div class="widget-bg-color-white widget-tab rounded-3">
 						<ul class="nav nav-tabs">
 							<li class="active">
@@ -704,7 +717,7 @@
 										</h3>
 										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonumy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 									</div>
-								</div>							
+								</div>
 							</div>
 							<div class="tab-pane fade" id="tab_1_2">
 								<div class="widget-news margin-bottom-20">
@@ -741,39 +754,35 @@
 							</div>
 						</div>
 					</div>
-					<!-- END WIDGET TAB -->
-				</div>
+				</div> -->
 
 				<div class="col-md-12 col-sm-12">
-                    <!-- BEGIN UNCHECKINFO-->
-                    <div class="portlet light bordered">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="icon-bar-chart font-green hide"></i>
-                                <span class="caption-subject font-green bold uppercase">机检未检</span>
-                                <span class="caption-helper">印码机检...</span>
-                            </div>
-
-                            <div class="actions">
-                                <div class="btn-group">
-                                    <a href="" class="btn blue btn-outline btn-circle btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 机台
-                                        <span class="fa fa-angle-down"> </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div id="nocheck_loading">
-                                <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
-                            <div id="nocheck_content" class="display-none">
-                                <div id="nocheck_statistics" class="chart"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END UNCHECKINFO-->
-                </div>
+	                    <div class="portlet light bordered">
+	                        <div class="portlet-title">
+	                            <div class="caption">
+	                                <i class="icon-bar-chart font-green hide"></i>
+	                                <span class="caption-subject font-green bold uppercase">本月机检未检</span>
+	                                <span class="caption-helper">印码机检...</span>
+	                            </div>
+	                            <!-- <div class="actions">
+	                                <div class="btn-group">
+	                                    <a href="" class="btn blue btn-outline btn-circle btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 机台
+	                                        <span class="fa fa-angle-down"> </span>
+	                                    </a>
+	                                </div>
+	                            </div> -->
+	                        </div>
+	                        <div class="portlet-body">
+	                            <div id="nocheck_loading_1">
+	                                <img src="../assets/global/img/loading.gif" alt="loading" />
+	                            </div>
+	                            <div id="nocheck_content_1">
+	                                <div id="nocheck_statistics_1" class="chart" style="min-Height:600px;"> </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
 			</div>
-			<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->

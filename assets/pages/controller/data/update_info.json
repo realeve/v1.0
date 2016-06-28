@@ -87,5 +87,9 @@
 		"version": 1.32,
 		"date": "2016-07-01",
 		"html": "<p>1.数据图表：更新至最新ECharts 3.2.0版.</p><p>2.数据图表：增加背景选项(默认/<a href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=gradiant&zoom=h\">渐变</a>/<a href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=img&zoom=h\">纹理</a>/<a href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=eee&zoom=h\">颜色(16进制)</a>)；调整数据缩放按钮样式；增加单数据轴；增加图刷功能；增加<a href=\"http://10.8.2..133:70/topic/echarts/theme-builder/\">主题在线编辑器</a>：散点图支持至最多4维</p>"
+	}, {
+		"version": 1.33,
+		"date": "2016-07-12",
+		"html": "<p>1.系统主页：读取后台真实数据，增加开包量，未检信息对比统计；</p>"
 	}]
 }
