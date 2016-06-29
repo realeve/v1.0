@@ -189,7 +189,7 @@ function getCid() {
 }
 
 function downloadExample() {
-	var e = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="'+ window.location.href.split('editor.html')[0] +'vendors/echarts/echarts-all-3.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar myChart = echarts.init(dom);\nvar app = {};\noption = null;\n' + gb.editor.getValue() + ';\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option, true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\n       </script>\n   </body>\n</html>',
+	var e = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="'+ window.location.href.split('editor.html')[0] +'vendors/echarts/echarts.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar myChart = echarts.init(dom);\nvar app = {};\noption = null;\n' + gb.editor.getValue() + ';\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option, true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\n       </script>\n   </body>\n</html>',
 		t = new Blob([e], {
 			type: "text/html;charset=UTF-8",
 			encoding: "UTF-8"

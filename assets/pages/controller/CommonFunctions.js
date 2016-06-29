@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.29;
+  var curVersion = 1.30;
   moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -356,7 +356,7 @@
       [moment().quarter(3).startOf('quarters'), moment().quarter(4).endOf('quarters')],
       [moment().quarter(1).startOf('quarters'), moment()]
     ];
-    var rangeStr = ['今天', '昨天', '过去三天', '过去一周', '过去30天', '本月', '上月', '去年同期', '本季度', '上季度', '上半年', '下半年','今年'];
+    var rangeStr = ['今天', '昨天', '过去三天', '过去一周', '过去30天', '本月', '上月', '去年同期', '本季度', '上季度', '上半年', '下半年', '今年'];
     var ranges = {};
 
     rangeStr.map(function(day, i) {

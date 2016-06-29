@@ -277,8 +277,8 @@ var dataTable = function() {
 					if (!isNaN(rowData[i])) {
 						return;
 					}
-
-					var select = $('<select class="select2"><option value="">所有' + $('thead th[data-column-index="' + i + '"]').text() + '</option></select>')
+					var strSelect = $(tableID).find('thead th[data-column-index="' + i + '"]').text();
+					var select = $('<select class="select2"><option value="">所有' + strSelect + '</option></select>')
 						.appendTo($(column.footer()).empty())
 						.on('change', function() {
 							var val = $.fn.dataTable.util.escapeRegex(

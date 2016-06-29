@@ -147,7 +147,8 @@
            "symbolSize": (getUrlParam('symbolsize') === null) ? ['12'] : getUrlParam('symbolsize').split(','),
            "opacity": (getUrlParam('opacity') === null) ? ['0'] : getUrlParam('opacity').split(','),
            "leafDepth": (getUrlParam('leafdepth') === null) ? ['0'] : getUrlParam('leafdepth').split(','),
-           "step": (getUrlParam('step') === null) ? ['0'] : getUrlParam('step').split(',')
+           "step": (getUrlParam('step') === null) ? ['0'] : getUrlParam('step').split(','),
+           "singleAxis": (getUrlParam('singleaxis') === null) ? ['time'] : getUrlParam('singleaxis').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -182,7 +183,8 @@
              "symbolSize": handleParam(objList.symbolSize, i, "12"),
              "opacity": handleParam(objList.opacity, i, 0.4),
              "leafDepth": handleParam(objList.leafDepth, i, 0),
-             "step": handleParam(objList.step, i, 0)
+             "step": handleParam(objList.step, i, 0),
+             "singleAxis": handleParam(objList.singleAxis, i, "time")
            };
 
            //数据处理

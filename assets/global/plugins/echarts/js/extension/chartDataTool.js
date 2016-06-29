@@ -1407,8 +1407,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
       var lineStyle = {
         normal: {
-          width: 1,
-          opacity: 0.5
+          width: 0.8,
+          opacity: 0.4
         }
       };
       var obj = {};
@@ -1431,8 +1431,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         seriesArr.push({
           name: '平行坐标',
           type: seriesType,
+          smooth: objRequest.smooth,
           lineStyle: lineStyle,
-          data: arr
+          data: arr,
+          blendMode: 'lighter'
         });
       }
       return seriesArr;
@@ -2884,13 +2886,20 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
       },
       parallel: {
-        left: '50',
-        right: '50',
+        left: objRequest.reverse ? 120 : 50,
+        right: 50,
         top: 120,
+        layout: objRequest.reverse ? 'vertical' : 'horizontal',
+        /*axisExpandable: true,
+        axisExpandCenter: 0,
+        axisExpandCount: 5,
+        axisExpandWidth: 50,*/
         parallelAxisDefault: {
           type: 'value',
           nameLocation: 'start',
           nameGap: 20,
+          //nameTruncateLength: 8, //名字缩写显示字符长度，中文除2
+          silent: false,
           nameTextStyle: {
             color: '#aaa',
             fontSize: 12
@@ -3518,7 +3527,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         axisTick: {},
         axisLabel: {},
         bottom: '10%',
-        type: 'time',
+        type: objRequest.singleAxis, //'time', //暂时支持value及category,其中category需要指定data序列,value需要指定MIN MAX
         splitLine: {
           show: true,
           lineStyle: {
@@ -3530,6 +3539,20 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       legend: Data.legend,
       series: Data.series
     };
+
+
+
+    switch (objRequest.singleAxis) {
+      case 'value':
+        var extremum = getMinMax(Data.data, 1);
+        outData.singleAxis.min = extremum.min;
+        outData.singleAxis.max = extremum.max;
+        break;
+      case 'category':
+        outData.data = getUniData(Data.data, 1);
+        break;
+    }
+
     return outData;
   };
 
