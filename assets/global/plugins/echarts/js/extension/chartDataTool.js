@@ -1401,7 +1401,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       return NewData;
     }
 
-    function getParallelSeries(arr, legend, seriesType) {
+    function getParallelSeries(arr, legend, objRequest) {
+      var seriesType = objRequest.type
       var seriesArr = [];
       var i = 0;
 
@@ -1705,7 +1706,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           color: ['#e92312', '#a2ca36', '#50a3ba'].reverse()
         }
       };
-      NewData['series'] = getParallelSeries(Data.data, NewData['legend'], objRequest.type);
+      NewData['series'] = getParallelSeries(Data.data, NewData['legend'], objRequest);
 
       return NewData;
     }

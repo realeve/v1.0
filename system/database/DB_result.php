@@ -340,7 +340,7 @@ class CI_DB_result {
 		$encode = mb_detect_encoding($str,$encode_Arr);
 		//echo $encode;//mb_detect_encoding('??',$encode_Arr);
 		if($encode == 'UTF-8'){
-			return iconv('GBK',"UTF-8",$str);
+			//return iconv('GBK',"UTF-8",$str);
 		}elseif($encode == 'CP936'){
 			$encode = 'GBK';
 		}
