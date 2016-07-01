@@ -32,7 +32,9 @@ option = {
         text:['High','Low'],
         realtime: false,
         calculable: true,
-        color: ['orangered','yellow','lightskyblue']
+        inRange: {
+            color: ['lightskyblue','yellow', 'orangered']
+        }
     },
     series: [
         {

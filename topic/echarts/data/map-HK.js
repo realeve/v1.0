@@ -33,7 +33,9 @@ $.get('data/asset/geo/HK.json', function (geoJson) {
             text:['High','Low'],
             realtime: false,
             calculable: true,
-            color: ['orangered','yellow','lightskyblue']
+            inRange: {
+                color: ['lightskyblue','yellow', 'orangered']
+            }
         },
         series: [
             {

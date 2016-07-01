@@ -178,9 +178,7 @@ option = {
         yAxis: [
             {
                 type: 'value',
-                name: 'GDP（亿元）',
-                // max: 53500
-                max: 30000
+                name: 'GDP（亿元）'
             }
         ],
         series: [

@@ -13,7 +13,7 @@ option = {
         data: (function (){
             var list = [];
             for (var i = 1; i <=28; i++) {
-                list.push(i + 2000);
+                list.push(i + 2000 + '');
             }
             return list;
         })()
@@ -56,7 +56,7 @@ option = {
                         i * 9,
                         i * i /2
                     ],
-                    name:i + 2000
+                    name: i + 2000 + ''
                   }
                 ]
             });

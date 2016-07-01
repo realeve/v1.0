@@ -167,13 +167,14 @@
            "force": (getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(','),
            "banknoteColor": (getUrlParam('banknoteColor') === null) ? ['1'] : getUrlParam('banknoteColor').split(','),
            "stack": (getUrlParam('stack') === null) ? ['0'] : getUrlParam('stack').split(','),
-           "max": (getUrlParam('max') === null) ? ['0'] : getUrlParam('max').split(','),
-           "min": (getUrlParam('min') === null) ? ['0'] : getUrlParam('min').split(','),
+           "max": (getUrlParam('max') === null) ? ['undefined'] : getUrlParam('max').split(','),
+           "min": (getUrlParam('min') === null) ? ['undefined'] : getUrlParam('min').split(','),
            "symbolSize": (getUrlParam('symbolsize') === null) ? ['12'] : getUrlParam('symbolsize').split(','),
            "opacity": (getUrlParam('opacity') === null) ? ['0'] : getUrlParam('opacity').split(','),
            "leafDepth": (getUrlParam('leafdepth') === null) ? ['0'] : getUrlParam('leafdepth').split(','),
            "step": (getUrlParam('step') === null) ? ['0'] : getUrlParam('step').split(','),
-           "singleAxis": (getUrlParam('singleaxis') === null) ? ['time'] : getUrlParam('singleaxis').split(',')
+           "singleAxis": (getUrlParam('singleaxis') === null) ? ['time'] : getUrlParam('singleaxis').split(','),
+           "background": (getUrlParam('background') === null) ? ['default'] : getUrlParam('background').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -209,7 +210,8 @@
              "opacity": handleParam(objList.opacity, i, 0.4),
              "leafDepth": handleParam(objList.leafDepth, i, 0),
              "step": handleParam(objList.step, i, 0),
-             "singleAxis": handleParam(objList.singleAxis, i, "time")
+             "singleAxis": handleParam(objList.singleAxis, i, "time"),
+             "background": handleParam(objList.background, i, "default")
            };
 
            objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
@@ -223,7 +225,7 @@
            //必须传颜色表，旭日图等自定义颜色的图表中需要使用
            objRequest.color = curTheme.color;
 
-           option[i] = chartDataTool.getOption(objRequest);
+           option[i] = chartDataTool.getOption(objRequest, echarts);
            //console.log("option = " + JSON.stringify(option[i]));
 
            if (option[i] !== false) {

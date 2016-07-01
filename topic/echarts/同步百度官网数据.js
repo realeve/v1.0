@@ -1,4 +1,3 @@
-$('.chart-link').map(function(elem, index) {
-	var str = "http://echarts.baidu.com/gallery/data/" + $(this).attr('href').split('=')[1] + ".js";
-	console.log(str);
+$('.chart-link').map(function(i, link) {
+	console.log(link.href.replace('editor.html?c=', 'data/') + '.js');
 });

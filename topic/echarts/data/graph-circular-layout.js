@@ -12,6 +12,7 @@ $.get('data/asset/data/les-miserables.gexf', function (xml) {
     graph.nodes.forEach(function (node) {
         node.itemStyle = null;
         node.value = node.symbolSize;
+        node.symbolSize /= 1.5;
         node.label = {
             normal: {
                 show: node.symbolSize > 30
@@ -53,6 +54,7 @@ $.get('data/asset/data/les-miserables.gexf', function (xml) {
                 },
                 lineStyle: {
                     normal: {
+                        color: 'source',
                         curveness: 0.3
                     }
                 }

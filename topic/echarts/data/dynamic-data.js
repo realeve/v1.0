@@ -55,7 +55,7 @@ option = {
             type: 'value',
             scale: true,
             name: '价格',
-            max: 20,
+            max: 30,
             min: 0,
             boundaryGap: [0.2, 0.2]
         },

@@ -231,11 +231,13 @@ option = {
             color: '#fff'
         }
     },
-    dataRange: {
+    visualMap: {
         min: 0,
         max: 200,
         calculable: true,
-        color: ['#d94e5d','#eac736','#50a3ba'],
+        inRange: {
+            color: ['#50a3ba', '#eac736', '#d94e5d']
+        },
         textStyle: {
             color: '#fff'
         }

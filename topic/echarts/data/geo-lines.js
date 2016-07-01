@@ -163,11 +163,11 @@ var convertData = function (data) {
         var fromCoord = geoCoordMap[dataItem[0].name];
         var toCoord = geoCoordMap[dataItem[1].name];
         if (fromCoord && toCoord) {
-            res.push([{
-                coord: fromCoord
-            }, {
-                coord: toCoord
-            }]);
+            res.push({
+                fromName: dataItem[0].name,
+                toName: dataItem[1].name,
+                coords: [fromCoord, toCoord]
+            });
         }
     }
     return res;

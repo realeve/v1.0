@@ -13,7 +13,7 @@ $.get('data/asset/data/weibo.json', function (weiboData) {
             var dy = serieData[i + 1] / 1000;
             var x = px + dx;
             var y = py + dy;
-            res.push([x, y, 1]);
+            res.push([x.toFixed(2), y.toFixed(2), 1]);
 
             px = x;
             py = y;
@@ -32,6 +32,7 @@ $.get('data/asset/data/weibo.json', function (weiboData) {
                 color: '#fff'
             }
         },
+        tooltip: {},
         legend: {
             left: 'left',
             data: ['强', '中', '弱'],
