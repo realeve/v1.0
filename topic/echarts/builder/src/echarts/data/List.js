@@ -292,13 +292,15 @@ define(function (require) {
 
         // Use the name in option and create id
         for (var i = 0; i < data.length; i++) {
-            var id = '';
             if (!nameList[i]) {
-                nameList[i] = data[i].name;
-                // Try using the id in option
-                id = data[i].id;
+                if (data[i] && data[i].name != null) {
+                    nameList[i] = data[i].name;
+                }
             }
             var name = nameList[i] || '';
+            // Try using the id in option
+            var id = data[i] && data[i].id;
+
             if (!id && name) {
                 // Use name as id and add counter to avoid same name
                 nameRepeatCount[name] = nameRepeatCount[name] || 0;
@@ -410,6 +412,7 @@ define(function (require) {
      * @param {boolean} stack
      */
     listProto.getDataExtent = function (dim, stack) {
+        dim = this.getDimension(dim);
         var dimData = this._storage[dim];
         var dimInfo = this.getDimensionInfo(dim);
         stack = (dimInfo && dimInfo.stackable) && stack;
@@ -498,6 +501,32 @@ define(function (require) {
             }
         }
 
+        return -1;
+    };
+
+    /**
+     * Retreive the index with given raw data index
+     * @param {number} idx
+     * @param {number} name
+     * @return {number}
+     */
+    listProto.indexOfRawIndex = function (rawIndex) {
+        // Indices are ascending
+        var indices = this.indices;
+        var left = 0;
+        var right = indices.length - 1;
+        while (left <= right) {
+            var mid = (left + right) / 2 | 0;
+            if (indices[mid] < rawIndex) {
+                left = mid + 1;
+            }
+            else if (indices[mid] > rawIndex) {
+                right = mid - 1;
+            }
+            else {
+                return mid;
+            }
+        }
         return -1;
     };
 

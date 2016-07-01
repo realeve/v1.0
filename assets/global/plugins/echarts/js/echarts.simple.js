@@ -1221,9 +1221,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @type {number}
 	         */
-	        version: '3.1.10',
+	        version: '3.2.0',
 	        dependencies: {
-	            zrender: '3.1.0'
+	            zrender: '3.1.1'
 	        }
 	    };
 
@@ -7614,7 +7614,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 33 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	/**
 	 * 事件扩展
@@ -7625,8 +7625,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var arrySlice = Array.prototype.slice;
-	    var zrUtil = __webpack_require__(4);
-	    var indexOf = zrUtil.indexOf;
 
 	    /**
 	     * 事件分发器
@@ -7659,8 +7657,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _h[event] = [];
 	            }
 
-	            if (indexOf(_h[event], event) >= 0) {
-	                return this;
+	            for (var i = 0; i < _h[event].length; i++) {
+	                if (_h[event][i].h === handler) {
+	                    return this;
+	                }
 	            }
 
 	            _h[event].push({
@@ -7687,6 +7687,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (!_h[event]) {
 	                _h[event] = [];
+	            }
+
+	            for (var i = 0; i < _h[event].length; i++) {
+	                if (_h[event][i].h === handler) {
+	                    return this;
+	                }
 	            }
 
 	            _h[event].push({
@@ -12030,6 +12036,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if ((firstDraw || style.opacity !== prevStyle.opacity)) {
 	                ctx.globalAlpha = style.opacity == null ? 1 : style.opacity;
 	            }
+
 	            if ((firstDraw || style.blend !== prevStyle.blend)) {
 	                ctx.globalCompositeOperation = style.blend || 'source-over';
 	            }
@@ -16121,7 +16128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @type {string}
 	     */
-	    zrender.version = '3.1.0';
+	    zrender.version = '3.1.1';
 
 	    /**
 	     * Initializing a zrender instance
@@ -21665,7 +21672,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Creaters for each coord system.
-	     * @return {Object} {dimensions, categoryAxisModel};
 	     */
 	    var creators = {
 
@@ -21790,9 +21796,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function createNameList(result, data) {
 	        var nameList = [];
 
-	        if (result && result.categoryAxisModel) {
+	        var categoryDim = result && result.dimensions[result.categoryIndex];
+	        var categoryAxisModel;
+	        if (categoryDim) {
+	            categoryAxisModel = result.categoryAxesModels[categoryDim.name];
+	        }
+
+	        if (categoryAxisModel) {
 	            // FIXME Two category axis
-	            var categories = result.categoryAxisModel.getCategories();
+	            var categories = categoryAxisModel.getCategories();
 	            if (categories) {
 	                var dataLen = data.length;
 	                // Ordered data is given explicitly like
@@ -26304,7 +26316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        name: '',
 	        // 坐标轴名字位置，支持'start' | 'middle' | 'end'
 	        nameLocation: 'end',
-	        // 坐标轴名字旋转，radian。
+	        // 坐标轴名字旋转，degree。
 	        nameRotate: null, // Adapt to axis rotate, when nameLocation is 'middle'.
 	        nameTruncateLength: null, // truncate text when characters more than the given number.
 	        nameTruncateEllipsis: '...',
@@ -26902,8 +26914,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var extent = this.axisModel.axis.getExtent();
 
 	            var matrix = this._transform;
-	            var pt1 = v2ApplyTransform([], [extent[0], 0], matrix);
-	            var pt2 = v2ApplyTransform([], [extent[1], 0], matrix);
+	            var pt1 = [extent[0], 0];
+	            var pt2 = [extent[1], 0];
+	            if (matrix) {
+	                v2ApplyTransform(pt1, pt1, matrix);
+	                v2ApplyTransform(pt2, pt2, matrix);
+	            }
 
 	            this.group.add(new graphic.Line(graphic.subPixelOptimizeLine({
 
@@ -26962,8 +26978,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                pt2[0] = tickCoord;
 	                pt2[1] = opt.tickDirection * tickLen;
 
-	                v2ApplyTransform(pt1, pt1, matrix);
-	                v2ApplyTransform(pt2, pt2, matrix);
+	                if (matrix) {
+	                    v2ApplyTransform(pt1, pt1, matrix);
+	                    v2ApplyTransform(pt2, pt2, matrix);
+	                }
 	                // Tick line, Not use group transform to have better line draw
 	                this.group.add(new graphic.Line(graphic.subPixelOptimizeLine({
 

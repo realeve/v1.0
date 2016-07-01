@@ -28,7 +28,7 @@ define(function(require) {
     /**
      * @type {string}
      */
-    zrender.version = '3.1.0';
+    zrender.version = '3.1.1';
 
     /**
      * Initializing a zrender instance
@@ -135,6 +135,9 @@ define(function(require) {
                     if (self._needsRefresh) {
                         self.refreshImmediately();
                     }
+                    if (self._needsRefreshHover) {
+                        self.refreshHoverImmediately();
+                    }
                 }
             }
         });
@@ -179,7 +182,7 @@ define(function(require) {
 
         /**
          * 添加元素
-         * @param  {string|module:zrender/Element} el
+         * @param  {module:zrender/Element} el
          */
         add: function (el) {
             this.storage.addRoot(el);
@@ -188,7 +191,7 @@ define(function(require) {
 
         /**
          * 删除元素
-         * @param  {string|module:zrender/Element} el
+         * @param  {module:zrender/Element} el
          */
         remove: function (el) {
             this.storage.delRoot(el);
@@ -227,6 +230,55 @@ define(function(require) {
          */
         refresh: function() {
             this._needsRefresh = true;
+        },
+
+        /**
+         * Add element to hover layer
+         * @param  {module:zrender/Element} el
+         * @param {Object} style
+         */
+        addHover: function (el, style) {
+            if (this.painter.addHover) {
+                this.painter.addHover(el, style);
+                this.refreshHover();
+            }
+        },
+
+        /**
+         * Add element from hover layer
+         * @param  {module:zrender/Element} el
+         */
+        removeHover: function (el) {
+            if (this.painter.removeHover) {
+                this.painter.removeHover(el);
+                this.refreshHover();
+            }
+        },
+
+        /**
+         * Clear all hover elements in hover layer
+         * @param  {module:zrender/Element} el
+         */
+        clearHover: function () {
+            if (this.painter.clearHover) {
+                this.painter.clearHover();
+                this.refreshHover();
+            }
+        },
+
+        /**
+         * Refresh hover in next frame
+         */
+        refreshHover: function () {
+            this._needsRefreshHover = true;
+        },
+
+        /**
+         * Refresh hover immediately
+         */
+        refreshHoverImmediately: function () {
+            this._needsRefreshHover = false;
+            this.painter.refreshHover && this.painter.refreshHover();
         },
 
         /**
@@ -285,10 +337,10 @@ define(function(require) {
 
         /**
          * Set default cursor
-         * @param {string} cursorStyle 例如 crosshair
+         * @param {string} [cursorStyle='default'] 例如 crosshair
          */
-        setDefaultCursorStyle: function (cursorStyle) {
-            this.handler.setDefaultCursorStyle(cursorStyle);
+        setCursorStyle: function (cursorStyle) {
+            this.handler && this.handler.setCursorStyle(cursorStyle);
         },
 
         /**

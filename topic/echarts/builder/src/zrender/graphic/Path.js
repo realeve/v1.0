@@ -10,17 +10,8 @@ define(function (require) {
     var PathProxy = require('../core/PathProxy');
     var pathContain = require('../contain/path');
 
-    var Gradient = require('./Gradient');
-
-    function pathHasFill(style) {
-        var fill = style.fill;
-        return fill != null && fill !== 'none';
-    }
-
-    function pathHasStroke(style) {
-        var stroke = style.stroke;
-        return stroke != null && stroke !== 'none' && style.lineWidth > 0;
-    }
+    var Pattern = require('./Pattern');
+    var getCanvasPattern = Pattern.prototype.getCanvasPattern;
 
     var abs = Math.abs;
 
@@ -50,35 +41,44 @@ define(function (require) {
 
         strokeContainThreshold: 5,
 
-        brush: function (ctx) {
-            ctx.save();
-
+        brush: function (ctx, prevEl) {
             var style = this.style;
             var path = this.path;
-            var hasStroke = pathHasStroke(style);
-            var hasFill = pathHasFill(style);
-            var hasFillGradient = hasFill && !!(style.fill.colorStops);
-            var hasStrokeGradient = hasStroke && !!(style.stroke.colorStops);
+            var hasStroke = style.hasStroke();
+            var hasFill = style.hasFill();
+            var fill = style.fill;
+            var stroke = style.stroke;
+            var hasFillGradient = hasFill && !!(fill.colorStops);
+            var hasStrokeGradient = hasStroke && !!(stroke.colorStops);
+            var hasFillPattern = hasFill && !!(fill.image);
+            var hasStrokePattern = hasStroke && !!(stroke.image);
 
-            style.bind(ctx, this);
+            style.bind(ctx, this, prevEl);
             this.setTransform(ctx);
 
-            if (this.__dirtyPath) {
+            if (this.__dirty) {
                 var rect = this.getBoundingRect();
                 // Update gradient because bounding rect may changed
                 if (hasFillGradient) {
-                    this._fillGradient = style.getGradient(ctx, style.fill, rect);
+                    this._fillGradient = style.getGradient(ctx, fill, rect);
                 }
                 if (hasStrokeGradient) {
-                    this._strokeGradient = style.getGradient(ctx, style.stroke, rect);
+                    this._strokeGradient = style.getGradient(ctx, stroke, rect);
                 }
             }
-            // Use the gradient
+            // Use the gradient or pattern
             if (hasFillGradient) {
+                // PENDING If may have affect the state
                 ctx.fillStyle = this._fillGradient;
+            }
+            else if (hasFillPattern) {
+                ctx.fillStyle = getCanvasPattern.call(fill, ctx);
             }
             if (hasStrokeGradient) {
                 ctx.strokeStyle = this._strokeGradient;
+            }
+            else if (hasStrokePattern) {
+                ctx.strokeStyle = getCanvasPattern.call(stroke, ctx);
             }
 
             var lineDash = style.lineDash;
@@ -106,7 +106,7 @@ define(function (require) {
                     path.setLineDashOffset(lineDashOffset);
                 }
 
-                this.buildPath(path, this.shape);
+                this.buildPath(path, this.shape, false);
 
                 // Clear path dirty flag
                 this.__dirtyPath = false;
@@ -126,16 +126,25 @@ define(function (require) {
 
             hasStroke && path.stroke(ctx);
 
+            if (lineDash && ctxLineDash) {
+                // PENDING
+                // Remove lineDash
+                ctx.setLineDash([]);
+            }
+
+
+            this.restoreTransform(ctx);
+
             // Draw rect text
-            if (style.text != null) {
+            if (style.text || style.text === 0) {
                 // var rect = this.getBoundingRect();
                 this.drawRectText(ctx, this.getBoundingRect());
             }
-
-            ctx.restore();
         },
 
-        buildPath: function (ctx, shapeCfg) {},
+        // When bundling path, some shape may decide if use moveTo to begin a new subpath or closePath
+        // Like in circle
+        buildPath: function (ctx, shapeCfg, inBundle) {},
 
         getBoundingRect: function () {
             var rect = this._rect;
@@ -145,13 +154,13 @@ define(function (require) {
                 var path = this.path;
                 if (this.__dirtyPath) {
                     path.beginPath();
-                    this.buildPath(path, this.shape);
+                    this.buildPath(path, this.shape, false);
                 }
                 rect = path.getBoundingRect();
             }
             this._rect = rect;
 
-            if (pathHasStroke(style)) {
+            if (style.hasStroke()) {
                 // Needs update rect with stroke lineWidth when
                 // 1. Element changes scale or lineWidth
                 // 2. Shape is changed
@@ -164,7 +173,7 @@ define(function (require) {
                     var lineScale = style.strokeNoScale ? this.getLineScale() : 1;
 
                     // Only add extra hover lineWidth when there are no fill
-                    if (!pathHasFill(style)) {
+                    if (!style.hasFill()) {
                         w = Math.max(w, this.strokeContainThreshold);
                     }
                     // Consider line width
@@ -193,13 +202,13 @@ define(function (require) {
 
             if (rect.contain(x, y)) {
                 var pathData = this.path.data;
-                if (pathHasStroke(style)) {
+                if (style.hasStroke()) {
                     var lineWidth = style.lineWidth;
                     var lineScale = style.strokeNoScale ? this.getLineScale() : 1;
                     // Line scale can't be 0;
                     if (lineScale > 1e-10) {
                         // Only add extra hover lineWidth when there are no fill
-                        if (!pathHasFill(style)) {
+                        if (!style.hasFill()) {
                             lineWidth = Math.max(lineWidth, this.strokeContainThreshold);
                         }
                         if (pathContain.containStroke(
@@ -209,7 +218,7 @@ define(function (require) {
                         }
                     }
                 }
-                if (pathHasFill(style)) {
+                if (style.hasFill()) {
                     return pathContain.contain(pathData, x, y);
                 }
             }
@@ -220,7 +229,7 @@ define(function (require) {
          * @param  {boolean} dirtyPath
          */
         dirty: function (dirtyPath) {
-            if (arguments.length ===0) {
+            if (dirtyPath == null) {
                 dirtyPath = true;
             }
             // Only mark dirty, not mark clean
@@ -252,6 +261,8 @@ define(function (require) {
             // FIXME
             if (key === 'shape') {
                 this.setShape(value);
+                this.__dirtyPath = true;
+                this._rect = null;
             }
             else {
                 Displayable.prototype.attrKV.call(this, key, value);

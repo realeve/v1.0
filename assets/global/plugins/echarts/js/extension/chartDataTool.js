@@ -2458,7 +2458,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             readOnly: false
           },
           dataZoom: {
-            show: true
+            show: true,
+            yAxisIndex: 'none'
           },
           magicType: {
             show: true,
@@ -2718,7 +2719,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             readOnly: false
           },
           dataZoom: {
-            show: true
+            show: true,
+            yAxisIndex: 'none'
           },
           restore: {
             show: true
@@ -3298,7 +3300,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             readOnly: false
           },
           dataZoom: {
-            show: true
+            show: true,
+            //yAxisIndex: 'none'
           },
           restore: {
             show: true

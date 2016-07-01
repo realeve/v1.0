@@ -29,36 +29,31 @@ define(function (require) {
 
         type: 'text',
 
-        brush: function (ctx) {
+        brush: function (ctx, prevEl) {
             var style = this.style;
             var x = style.x || 0;
             var y = style.y || 0;
             // Convert to string
             var text = style.text;
-            var textFill = style.fill;
-            var textStroke = style.stroke;
 
             // Convert to string
             text != null && (text += '');
 
-            if (text) {
-                ctx.save();
+            // Always bind style
+            style.bind(ctx, this, prevEl);
 
-                this.style.bind(ctx);
+            if (text) {
+
                 this.setTransform(ctx);
 
-                textFill && (ctx.fillStyle = textFill);
-                textStroke && (ctx.strokeStyle = textStroke);
-
-                ctx.font = style.textFont || style.font;
-                ctx.textAlign = style.textAlign;
-
+                var textBaseline;
+                var textAlign = style.textAlign;
                 if (style.textVerticalAlign) {
                     var rect = textContain.getBoundingRect(
                         text, ctx.font, style.textAlign, 'top'
                     );
                     // Ignore textBaseline
-                    ctx.textBaseline = 'middle';
+                    textBaseline = 'middle';
                     switch (style.textVerticalAlign) {
                         case 'middle':
                             y -= rect.height / 2 - rect.lineHeight / 2;
@@ -71,18 +66,31 @@ define(function (require) {
                     }
                 }
                 else {
-                    ctx.textBaseline = style.textBaseline;
+                    textBaseline = style.textBaseline;
                 }
+
+                ctx.font = style.textFont || style.font;
+                ctx.textAlign = textAlign || 'left';
+                // Use canvas default left textAlign. Giving invalid value will cause state not change
+                if (ctx.textAlign !== textAlign) {
+                    ctx.textAlign = 'left';
+                }
+                ctx.textBaseline = textBaseline || 'alphabetic';
+                // Use canvas default alphabetic baseline
+                if (ctx.textBaseline !== textBaseline) {
+                    ctx.textBaseline = 'alphabetic';
+                }
+
                 var lineHeight = textContain.measureText('国', ctx.font).width;
 
                 var textLines = text.split('\n');
                 for (var i = 0; i < textLines.length; i++) {
-                    textFill && ctx.fillText(textLines[i], x, y);
-                    textStroke && ctx.strokeText(textLines[i], x, y);
+                    style.hasFill() && ctx.fillText(textLines[i], x, y);
+                    style.hasStroke() && ctx.strokeText(textLines[i], x, y);
                     y += lineHeight;
                 }
 
-                ctx.restore();
+                this.restoreTransform(ctx);
             }
         },
 

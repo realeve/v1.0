@@ -5,38 +5,39 @@ define(function(require) {
 
     var echarts = require('../../echarts');
     var zrUtil = require('zrender/core/util');
+    var visualSolution = require('../../visual/visualSolution');
+    var Model = require('../../model/Model');
+
+    var DEFAULT_OUT_OF_BRUSH_COLOR = ['#ddd'];
 
     var BrushModel = echarts.extendComponentModel({
 
         type: 'brush',
 
-        dependencies: ['series'],
+        dependencies: ['geo', 'grid', 'xAxis', 'yAxis', 'parallel', 'series'],
 
         /**
          * @protected
          */
         defaultOption: {
-            inBrush: {
-            },
-            outOfBrush: {
-                color: '#ddd'
-            },
+            // inBrush: null,
+            // outOfBrush: null,
             toolbox: null,          // Default value see preprocessor.
             brushLink: null,        // Series indices array, broadcast using dataIndex.
-                                    // or 'all', which means all series.
+                                    // or 'all', which means all series. 'none' or null means no series.
             seriesIndex: 'all',     // seriesIndex array, specify series controlled by this brush component.
-            gridIndex: null,        //
             geoIndex: null,         //
-
-            brushRanges: null,      // Array.<Object>, Initial brushRanges, which is not persistent.
+            xAxisIndex: null,
+            yAxisIndex: null,
 
             brushType: 'rect',      // Default brushType, see BrushController.
             brushMode: 'single',    // Default brushMode, 'single' or 'multiple'
             transformable: true,    // Default transformable.
             brushStyle: {           // Default brushStyle
-                // lineWidth: 2,
-                // stroke: 'rgba(0,0,0,0.3)',
-                fill: 'rgba(0,0,0,0.15)'
+                borderWidth: 1,
+                color: 'rgba(120,140,180,0.3)',
+                borderColor: 'rgba(120,140,180,0.8)',
+                width: null         // do not use bursh width in line brush, but fetch from grid.
             },
 
             throttleType: 'fixRate',// Throttle in brushSelected event. 'fixRate' or 'debounce'.
@@ -50,9 +51,9 @@ define(function(require) {
 
         /**
          * @readOnly
-         * @type {Array.<Object>} ranges
+         * @type {Array.<Object>}
          */
-        brushRanges: [],
+        areas: [],
 
         /**
          * Current activated brush type.
@@ -72,31 +73,45 @@ define(function(require) {
         brushOption: {},
 
         /**
-         * @override
+         * @readOnly
+         * @type {Array.<Object>}
          */
+        coordInfoList: [],
+
         optionUpdated: function (newOption, isInit) {
             var thisOption = this.option;
-            var initBrushRanges = thisOption.brushRanges;
 
-            // Should not keep it, considering setOption next time.
-            thisOption.brushRanges = null;
+            !isInit && visualSolution.replaceVisualOption(
+                thisOption, newOption, ['inBrush', 'outOfBrush']
+            );
 
-            initBrushRanges && this.setBrushRanges(initBrushRanges);
+            thisOption.inBrush = thisOption.inBrush || {};
+            // Always give default visual, consider setOption at the second time.
+            thisOption.outOfBrush = thisOption.outOfBrush || {color: DEFAULT_OUT_OF_BRUSH_COLOR};
         },
 
         /**
-         * @param {Array.<Object>} ranges
+         * If ranges is null/undefined, range state remain.
+         *
+         * @param {Array.<Object>} [ranges]
          */
-        setBrushRanges: function (brushRanges) {
+        setAreas: function (areas) {
             if (__DEV__) {
-                zrUtil.assert(zrUtil.isArray(brushRanges));
-                zrUtil.each(brushRanges, function (brushRange) {
-                    zrUtil.assert(brushRange.brushType && brushRange.range, 'Illegal brushRanges');
+                zrUtil.assert(zrUtil.isArray(areas));
+                zrUtil.each(areas, function (area) {
+                    zrUtil.assert(area.brushType, 'Illegal areas');
                 });
             }
 
-            this.brushRanges = zrUtil.map(brushRanges, function (brushRange) {
-                return this._mergeBrushOption(brushRange);
+            // If ranges is null/undefined, range state remain.
+            // This helps user to dispatchAction({type: 'brush'}) with no areas
+            // set but just want to get the current brush select info from a `brush` event.
+            if (!areas) {
+                return;
+            }
+
+            this.areas = zrUtil.map(areas, function (area) {
+                return this._mergeBrushOption(area);
             }, this);
         },
 
@@ -119,7 +134,7 @@ define(function(require) {
                     brushType: option.brushType,
                     brushMode: option.brushMode,
                     transformable: option.transformable,
-                    brushStyle: option.brushStyle,
+                    brushStyle: new Model(option.brushStyle).getItemStyle(),
                     removeOnClick: option.removeOnClick
                 },
                 brushOption,

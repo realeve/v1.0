@@ -71,7 +71,7 @@ define(function (require) {
 
             this._hovered = hovered;
 
-            this.root.style.cursor = hovered ? hovered.cursor : this._defaultCursorStyle;
+            this.root.style.cursor = hovered ? hovered.cursor : 'default';
             // Mouse out on previous hovered element
             if (lastHovered && hovered !== lastHovered && lastHovered.__zr) {
                 this._dispatchProxy(lastHovered, 'mouseout', event);
@@ -221,7 +221,8 @@ define(function (require) {
 
         var gestureInfo = gestureMgr.recognize(
             event,
-            zrHandler.findHover(event.zrX, event.zrY, null)
+            zrHandler.findHover(event.zrX, event.zrY, null),
+            zrHandler.root
         );
 
         stage === 'end' && gestureMgr.clear();
@@ -301,12 +302,6 @@ define(function (require) {
          * @type {number}
          */
         this._lastY;
-
-        /**
-         * @private
-         * @type {string}
-         */
-        this._defaultCursorStyle = 'default';
 
         /**
          * @private
@@ -399,10 +394,10 @@ define(function (require) {
 
         /**
          * 设置默认的cursor style
-         * @param {string} cursorStyle 例如 crosshair
+         * @param {string} [cursorStyle='default'] 例如 crosshair
          */
-        setDefaultCursorStyle: function (cursorStyle) {
-            this._defaultCursorStyle = cursorStyle;
+        setCursorStyle: function (cursorStyle) {
+            this.root.style.cursor = cursorStyle || 'default';
         },
 
         /**

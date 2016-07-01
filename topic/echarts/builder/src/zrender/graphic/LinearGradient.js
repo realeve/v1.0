@@ -12,8 +12,9 @@ define(function(require) {
      * @param {number} [x2=1]
      * @param {number} [y2=0]
      * @param {Array.<Object>} colorStops
+     * @param {boolean} [globalCoord=false]
      */
-    var LinearGradient = function (x, y, x2, y2, colorStops) {
+    var LinearGradient = function (x, y, x2, y2, colorStops, globalCoord) {
         this.x = x == null ? 0 : x;
 
         this.y = y == null ? 0 : y;
@@ -22,14 +23,18 @@ define(function(require) {
 
         this.y2 = y2 == null ? 0 : y2;
 
+        // Can be cloned
+        this.type = 'linear';
+
+        // If use global coord
+        this.global = globalCoord || false;
+
         Gradient.call(this, colorStops);
     };
 
     LinearGradient.prototype = {
 
-        constructor: LinearGradient,
-
-        type: 'linear'
+        constructor: LinearGradient
     };
 
     zrUtil.inherits(LinearGradient, Gradient);

@@ -10,15 +10,23 @@ define(function (require) {
     'use strict';
 
     var util = require('./core/util');
+    var env = require('./core/env');
 
     var Group = require('./container/Group');
+
+    // Use timsort because in most case elements are partially sorted
+    // https://jsfiddle.net/pissang/jr4x7mdm/8/
+    var timsort = require('./core/timsort');
 
     function shapeCompareFunc(a, b) {
         if (a.zlevel === b.zlevel) {
             if (a.z === b.z) {
-                if (a.z2 === b.z2) {
-                    return a.__renderidx - b.__renderidx;
-                }
+                // if (a.z2 === b.z2) {
+                //     // FIXME Slow has renderidx compare
+                //     // http://stackoverflow.com/questions/20883421/sorting-in-javascript-should-every-compare-function-have-a-return-0-statement
+                //     // https://github.com/v8/v8/blob/47cce544a31ed5577ffe2963f67acb4144ee0232/src/js/array.js#L1012
+                //     return a.__renderidx - b.__renderidx;
+                // }
                 return a.z2 - b.z2;
             }
             return a.z - b.z;
@@ -44,6 +52,16 @@ define(function (require) {
     Storage.prototype = {
 
         constructor: Storage,
+
+        /**
+         * @param  {Function} cb
+         *
+         */
+        traverse: function (cb, context) {
+            for (var i = 0; i < this._roots.length; i++) {
+                this._roots[i].traverse(cb, context);
+            }
+        },
 
         /**
          * 返回所有图形的绘制队列
@@ -76,11 +94,12 @@ define(function (require) {
             }
             displayList.length = this._displayListLen;
 
-            for (var i = 0, len = displayList.length; i < len; i++) {
-                displayList[i].__renderidx = i;
-            }
+            // for (var i = 0, len = displayList.length; i < len; i++) {
+            //     displayList[i].__renderidx = i;
+            // }
 
-            displayList.sort(shapeCompareFunc);
+            // displayList.sort(shapeCompareFunc);
+            env.canvasSupported && timsort(displayList, shapeCompareFunc);
         },
 
         _updateAndAddDisplayable: function (el, clipPaths, includeIgnore) {
@@ -91,7 +110,11 @@ define(function (require) {
 
             el.beforeUpdate();
 
-            el.update();
+            if (el.__dirty) {
+
+                el.update();
+
+            }
 
             el.afterUpdate();
 
@@ -111,7 +134,7 @@ define(function (require) {
                 }
             }
 
-            if (el.type == 'group') {
+            if (el.isGroup) {
                 var children = el._children;
 
                 for (var i = 0; i < children.length; i++) {
@@ -119,7 +142,9 @@ define(function (require) {
 
                     // Force to mark as dirty if group is dirty
                     // FIXME __dirtyPath ?
-                    child.__dirty = el.__dirty || child.__dirty;
+                    if (el.__dirty) {
+                        child.__dirty = true;
+                    }
 
                     this._updateAndAddDisplayable(child, clipPaths, includeIgnore);
                 }
@@ -235,7 +260,9 @@ define(function (require) {
             this._elements =
             this._renderList =
             this._roots = null;
-        }
+        },
+
+        displayableSortFunc: shapeCompareFunc
     };
 
     return Storage;

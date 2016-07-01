@@ -44,6 +44,10 @@ define(function (require) {
             if (!text) {
                 return;
             }
+
+            // FIXME
+            ctx.save();
+
             var x;
             var y;
             var textPosition = style.textPosition;
@@ -57,13 +61,10 @@ define(function (require) {
 
             // Transform rect to view space
             var transform = this.transform;
-            var invTransform = this.invTransform;
             if (transform) {
                 tmpRect.copy(rect);
                 tmpRect.applyTransform(transform);
                 rect = tmpRect;
-                // Transform back
-                setTransform(ctx, invTransform);
             }
 
             // Text position represented by coord
@@ -100,8 +101,10 @@ define(function (require) {
                 baseline = baseline || res.textBaseline;
             }
 
-            ctx.textAlign = align;
-            ctx.textBaseline = baseline;
+            // Use canvas default left textAlign. Giving invalid value will cause state not change
+            ctx.textAlign = align || 'left';
+            // Use canvas default alphabetic baseline
+            ctx.textBaseline = baseline || 'alphabetic';
 
             var textFill = style.textFill;
             var textStroke = style.textStroke;
@@ -110,8 +113,9 @@ define(function (require) {
             ctx.font = font;
 
             // Text shadow
-            ctx.shadowColor = style.textShadowColor;
+            // Always set shadowBlur and shadowOffset to avoid leak from displayable
             ctx.shadowBlur = style.textShadowBlur;
+            ctx.shadowColor = style.textShadowColor || 'transparent';
             ctx.shadowOffsetX = style.textShadowOffsetX;
             ctx.shadowOffsetY = style.textShadowOffsetY;
 
@@ -122,8 +126,7 @@ define(function (require) {
                 y += textRect.lineHeight;
             }
 
-            // Transform again
-            transform && setTransform(ctx, transform);
+            ctx.restore();
         }
     };
 

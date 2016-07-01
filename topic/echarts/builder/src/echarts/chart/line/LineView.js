@@ -212,6 +212,93 @@ define(function(require) {
         return stepPoints;
     }
 
+    function clamp(number, extent) {
+        return Math.max(Math.min(number, extent[1]), extent[0]);
+    }
+
+    function getVisualGradient(data, coordSys) {
+        var visualMetaList = data.getVisual('visualMeta');
+        if (!visualMetaList || !visualMetaList.length) {
+            return;
+        }
+
+        var visualMeta;
+        for (var i = visualMetaList.length - 1; i >= 0; i--) {
+            // Can only be x or y
+            if (visualMetaList[i].dimension < 2) {
+                visualMeta = visualMetaList[i];
+                break;
+            }
+        }
+        if (!visualMeta || coordSys.type !== 'cartesian2d') {
+            if (__DEV__) {
+                console.warn('Visual map on line style only support x or y dimension.');
+            }
+            return;
+        }
+        var dimension = visualMeta.dimension;
+        var dimName = data.dimensions[dimension];
+        var dataExtent = data.getDataExtent(dimName);
+
+        var stops = visualMeta.stops;
+
+        var colorStops = [];
+        if (stops[0].interval) {
+            stops.sort(function (a, b) {
+                return a.interval[0] - b.interval[0];
+            });
+        }
+
+        var firstStop = stops[0];
+        var lastStop = stops[stops.length - 1];
+        // Interval can be infinity in piecewise case
+        var min = firstStop.interval ? clamp(firstStop.interval[0], dataExtent) : firstStop.value;
+        var max = lastStop.interval ? clamp(lastStop.interval[1], dataExtent) : lastStop.value;
+        var stopsSpan = max - min;
+        for (var i = 0; i < stops.length; i++) {
+            // Piecewise
+            if (stops[i].interval) {
+                if (stops[i].interval[1] === stops[i].interval[0]) {
+                    continue;
+                }
+                colorStops.push({
+                    // Make sure offset is between 0 and 1
+                    offset: (clamp(stops[i].interval[0], dataExtent) - min) / stopsSpan,
+                    color: stops[i].color
+                }, {
+                    offset: (clamp(stops[i].interval[1], dataExtent) - min) / stopsSpan,
+                    color: stops[i].color
+                });
+            }
+            // Continous
+            else {
+                // if (i > 0 && stops[i].value === stops[i - 1].value) {
+                //     continue;
+                // }
+                colorStops.push({
+                    offset: (stops[i].value - min) / stopsSpan,
+                    color: stops[i].color
+                });
+            }
+        }
+        var gradient = new graphic.LinearGradient(
+            0, 0, 0, 0, colorStops, true
+        );
+        var axis = coordSys.getAxis(dimName);
+
+        var start = Math.round(axis.toGlobalCoord(axis.dataToCoord(min)));
+        var end = Math.round(axis.toGlobalCoord(axis.dataToCoord(max)));
+        zrUtil.each(colorStops, function (colorStop) {
+            // Make sure each offset has rounded px to avoid not sharp edge
+            colorStop.offset = (Math.round(colorStop.offset * (end - start) + start) - start) / (end - start);
+        });
+
+        gradient[dimName] = start;
+        gradient[dimName + '2'] = end;
+
+        return gradient;
+    }
+
     return ChartView.extend({
 
         type: 'line',
@@ -342,12 +429,13 @@ define(function(require) {
                 }
             }
 
+            var visualColor = getVisualGradient(data, coordSys) || data.getVisual('color');
             polyline.useStyle(zrUtil.defaults(
                 // Use color in lineStyle first
                 lineStyleModel.getLineStyle(),
                 {
                     fill: 'none',
-                    stroke: data.getVisual('color'),
+                    stroke: visualColor,
                     lineJoin: 'bevel'
                 }
             ));
@@ -367,7 +455,7 @@ define(function(require) {
                 polygon.useStyle(zrUtil.defaults(
                     areaStyleModel.getAreaStyle(),
                     {
-                        fill: data.getVisual('color'),
+                        fill: visualColor,
                         opacity: 0.7,
                         lineJoin: 'bevel'
                     }
@@ -398,7 +486,7 @@ define(function(require) {
             var data = seriesModel.getData();
             var dataIndex = queryDataIndex(data, payload);
 
-            if (dataIndex != null && dataIndex >= 0) {
+            if (!(dataIndex instanceof Array) && dataIndex != null && dataIndex >= 0) {
                 var symbol = data.getItemGraphicEl(dataIndex);
                 if (!symbol) {
                     // Create a temporary symbol if it is not exists

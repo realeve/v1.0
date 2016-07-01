@@ -3,6 +3,7 @@ define(function (require) {
     var zrUtil = require('zrender/core/util');
     var AxisBuilder = require('./AxisBuilder');
     var BrushController = require('../helper/BrushController');
+    var graphic = require('../../util/graphic');
 
     var elementList = ['axisLine', 'axisLabel', 'axisTick', 'axisName'];
 
@@ -36,6 +37,10 @@ define(function (require) {
 
             this.group.removeAll();
 
+            var oldAxisGroup = this._axisGroup;
+            this._axisGroup = new graphic.Group();
+            this.group.add(this._axisGroup);
+
             if (!axisModel.get('show')) {
                 return;
             }
@@ -47,9 +52,29 @@ define(function (require) {
             var areaSelectStyle = axisModel.getAreaSelectStyle();
             var areaWidth = areaSelectStyle.width;
 
-            var axisLayout = coordSys.getAxisLayout(axisModel.axis.dim);
+            var dim = axisModel.axis.dim;
+            var axisLayout = coordSys.getAxisLayout(dim);
+
+            // Fetch from axisModel by default.
+            var axisNameTruncateLength;
+            var axisNameTruncateEllipsis;
+            var axisLabelShow;
+            var axisIndex = zrUtil.indexOf(coordSys.dimensions, dim);
+
+            var axisExpandWindow = axisLayout.axisExpandWindow;
+            if (axisExpandWindow
+                && (axisIndex <= axisExpandWindow[0] || axisIndex >= axisExpandWindow[1])
+            ) {
+                axisNameTruncateLength = axisModel.get('nameTruncateLengthOutExpand');
+                axisNameTruncateEllipsis = '';
+                axisLabelShow = false;
+            }
+
             var builderOpt = zrUtil.extend(
                 {
+                    axisLabelShow: axisLabelShow,
+                    axisNameTruncateLength: axisNameTruncateLength,
+                    axisNameTruncateEllipsis: axisNameTruncateEllipsis,
                     strokeContainThreshold: areaWidth,
                     // lineWidth === 0 or no value.
                     axisLineSilent: !(areaWidth > 0) // jshint ignore:line
@@ -61,19 +86,20 @@ define(function (require) {
 
             zrUtil.each(elementList, axisBuilder.add, axisBuilder);
 
-            var axisGroup = axisBuilder.getGroup();
+            this._axisGroup.add(axisBuilder.getGroup());
 
-            this.group.add(axisGroup);
+            this._refreshBrushController(builderOpt, areaSelectStyle, axisModel, areaWidth);
 
-            this._refreshBrushController(axisGroup, areaSelectStyle, axisModel);
+            graphic.groupTransition(oldAxisGroup, this._axisGroup, axisModel);
         },
 
-        _refreshBrushController: function (axisGroup, areaSelectStyle, axisModel) {
+        _refreshBrushController: function (builderOpt, areaSelectStyle, axisModel, areaWidth) {
             // After filtering, axis may change, select area needs to be update.
             var axis = axisModel.axis;
             var coverInfoList = zrUtil.map(axisModel.activeIntervals, function (interval) {
                 return {
-                    brushType: 'line',
+                    brushType: 'lineX',
+                    panelId: 'pl',
                     range: [
                         axis.dataToCoord(interval[0], true),
                         axis.dataToCoord(interval[1], true)
@@ -81,13 +107,34 @@ define(function (require) {
                 };
             });
 
+            var extent = axis.getExtent();
+            var extra = 30; // Arbitrary value.
+            var rect = {
+                x: extent[0] - extra,
+                y: -areaWidth / 2,
+                width: extent[1] - extent[0] + 2 * extra,
+                height: areaWidth
+            };
+
             this._brushController
-                .mount(axisGroup)
-                .enableBrush({brushType: 'line', brushStyle: areaSelectStyle})
+                .mount({
+                    enableGlobalPan: true,
+                    rotation: builderOpt.rotation,
+                    position: builderOpt.position
+                })
+                .setPanels([{
+                    panelId: 'pl',
+                    rect: rect
+                }])
+                .enableBrush({
+                    brushType: 'lineX',
+                    brushStyle: areaSelectStyle,
+                    removeOnClick: true
+                })
                 .updateCovers(coverInfoList);
         },
 
-        _onBrush: function (coverInfoList, isEnd) {
+        _onBrush: function (coverInfoList, opt) {
             // Do not cache these object, because the mey be changed.
             var axisModel = this.axisModel;
             var axis = axisModel.axis;
@@ -99,8 +146,10 @@ define(function (require) {
                 ];
             });
 
-            // Consider axisModel.option.realtime is null/undefined.
-            if (!(axisModel.option.realtime ^ !isEnd)) {
+            // If realtime is true, action is not dispatched on drag end, because
+            // the drag end emits the same params with the last drag move event,
+            // and may have some delay when using touch pad.
+            if (!axisModel.option.realtime === opt.isEnd || opt.removeOnClick) { // jshint ignore:line
                 this.api.dispatchAction({
                     type: 'axisAreaSelect',
                     parallelAxisId: axisModel.id,

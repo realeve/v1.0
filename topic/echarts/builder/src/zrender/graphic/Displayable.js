@@ -138,6 +138,13 @@ define(function (require) {
          */
         rectHover: false,
 
+        /**
+         * Render the element progressively when the value >= 0,
+         * usefull for large data.
+         * @type {number}
+         */
+        progressive: -1,
+
         beforeBrush: function (ctx) {},
 
         afterBrush: function (ctx) {},
@@ -147,7 +154,7 @@ define(function (require) {
          * @param {Canvas2DRenderingContext} ctx
          */
         // Interface
-        brush: function (ctx) {},
+        brush: function (ctx, prevEl) {},
 
         /**
          * 获取最小包围盒
