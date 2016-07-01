@@ -9,7 +9,7 @@ function initEditor() {
 function initEcharts() {
 	//mod by libin 20160315 增加DARK即为引用主题
 	//先引用JQUERY则可用$选择器选择DOM
-	gb.chart = echarts.init($("#chart-panel")[0],'dark'), gb.editor.setValue("var option = {\n    \n};\n"), gb.editor.selection.setSelectionRange({
+	gb.chart = echarts.init($("#chart-panel")[0]/*,'dark'*/), gb.editor.setValue("var option = {\n    \n};\n"), gb.editor.selection.setSelectionRange({
 		start: {
 			row: 1,
 			column: 4
@@ -147,6 +147,7 @@ function hasEditorError() {
 }
 
 function load() {
+	configs.c = window.location.href.split('#')[1];
 	if (IS_STATIC) return void(configs.c && $.ajax("./data/" + configs.c + ".js", {
 		dataType: "text",
 		success: function(e) {

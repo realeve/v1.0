@@ -48,6 +48,12 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         console.log(e.responseText);
       }
     });
+    //处理品种 参数 p
+    if (strUrl.indexOf('p=') != -1) {
+      var pdtName = strUrl.split('&p=')[1].split('&')[0];
+      Data.title = pdtName.toUpperCase() + Data.title;
+    }
+
     return Data;
   }
 
@@ -299,7 +305,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           },
           barBorderRadius: (objRequest.reverse) ? [0, 2, 2, 0] : [2, 2, 0, 0],
           borderColor: "rgba(255,255,255,0.85)",
-          borderWidth: 4,
+          borderWidth: objRequest.type == 'line' ? 4 : 0,
           lineStyle: {
             width: 1
           }
@@ -1424,6 +1430,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           seriesArr.push({
             name: elem,
             type: seriesType,
+            smooth: objRequest.smooth,
             lineStyle: lineStyle,
             data: obj[elem]
           });
@@ -2535,7 +2542,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     if (objRequest.max != '0') {
       outData.yAxis[0].max = Number.parseFloat(objRequest.max);
     }
-    if (objRequest.min != '0') {
+    if (objRequest.min != 'undefined') {
       outData.yAxis[0].min = Number.parseFloat(objRequest.min);
     }
 
@@ -3575,7 +3582,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     //处理起始时间
     var dateStr = objRequest.url.split('tstart=')[1];
-    var dateStart = jsLeft(dateStr, 8);
+    var pds = getUrlParam('tstart');
+    var dateStart = (pds != null) ? pds : jsLeft(dateStr, 8);
     var dateEnd = jsLeft(dateStr.split('tend=')[1], 8);
     staticDateRange = "     统计时间：" + dateStart + " - " + dateEnd;
     //console.log(staticDateRange);

@@ -421,7 +421,7 @@
 				pushPaperProcessInfo(paperProcessInfo.msg + paperPackageInfo.msg);
 			}
 
-		}, 5 * 1000);
+		}, 500 * 1000);
 	}();
 })();
 

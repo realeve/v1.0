@@ -11,6 +11,10 @@ var EXAMPLES = [{
 	title: "堆叠区域图",
 	type: "line"
 }, {
+	id: "fake-rate",
+	title: "fake-rate",
+	type: "bar"
+}, {
 	id: "bar-negative",
 	title: "bar-negative",
 	type: "bar"

@@ -5,13 +5,37 @@
 
      //获取url的JSON值
 
-     function GetJsonUrl(iID) {
+     function GetJsonUrl(iID, objRequest, index) {
        var date = getDateRange();
        var token = getUrlParam('token');
        if (token == null) {
          token = '79d84495ca776ccb523114a2120e273ca80b315b';
        }
        var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
+       var paramList = location.href.split('&');
+
+       for (var i = 1; i < paramList.length; i++) {
+         var key = paramList[i].split('=')[0];
+         var val = paramList[i].split('=')[1];
+         if (!isObjRequestParam(key)) {
+           if (val.indexOf(',') == '-1') {
+             strUrl += '&' + paramList[i];
+           } else {
+             strUrl += '&' + key + '=' + val.split(',')[index];
+           }
+         };
+       }
+
+       function isObjRequestParam(elem) {
+         var flag = false;
+         $.each(objRequest, function(key, val) {
+           if (key == elem) {
+             flag = true;
+           };
+         });
+         return flag;
+       }
+
        return strUrl;
      }
      //配置图表库
@@ -120,6 +144,7 @@
            "id": getUrlParam('tid').split(','),
            "type": (getUrlParam('type') === null) ? ['line'] : getUrlParam('type').split(','),
            "smooth": (getUrlParam('smooth') === null) ? ['1'] : getUrlParam('smooth').split(','),
+           "blind": (getUrlParam('blind') === null) ? ['0'] : getUrlParam('blind').split(','),
            "markLine": (getUrlParam('markline') === null) ? ['0'] : getUrlParam('markline').split(','),
            "markLineValue": (getUrlParam('marklinevalue') === null) ? ['0'] : getUrlParam('marklinevalue').split(','),
            "markArea": (getUrlParam('markarea') === null) ? ['0'] : getUrlParam('markarea').split(','),
@@ -152,7 +177,7 @@
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
-             "url": GetJsonUrl(objList.id[i]),
+             //"url": GetJsonUrl(objList.id[i]),
              "type": handleParam(objList.type, i, "line"),
              "smooth": (handleParam(objList.smooth, i, '1') === '1') ? true : false,
              "blind": (getUrlParam('blind') === "0" || getUrlParam('blind') === null) ? false : true,
@@ -186,6 +211,8 @@
              "step": handleParam(objList.step, i, 0),
              "singleAxis": handleParam(objList.singleAxis, i, "time")
            };
+
+           objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
 
            //数据处理
            if (typeof curTheme.valueAxis !== 'undefined') {
