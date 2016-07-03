@@ -460,7 +460,7 @@ $(document).ready(function() {
 		var p = EXAMPLES[a].title || "未命名图表",
 			r = $('<div class="col-lg-3 col-md-4 col-sm-6"></div>'),
 			d = $('<div class="chart"></div>');
-		$("#chart-row-" + EXAMPLES[a].type).append(r.append(d)), $link = $('<a class="chart-link" href="./editor.html?c=' + EXAMPLES[a].id + '"></a>'), d.append($link), $link.append('<h4 class="chart-title">' + p + "</h4>"), $chartArea = $('<img class="chart-area" src="data/thumb/' + EXAMPLES[a].id + '.png" />'), $link.append($chartArea)
+		$("#chart-row-" + EXAMPLES[a].type).append(r.append(d)), $link = $('<a class="chart-link" href="./editor.html#' + EXAMPLES[a].id + '"></a>'), d.append($link), $link.append('<h4 class="chart-title">' + p + "</h4>"), $chartArea = $('<img class="chart-area" src="data/thumb/' + EXAMPLES[a].id + '.png" />'), $link.append($chartArea)
 	}
 	$(".chart-type-head").waypoint(function(t) {
 		var e = this.element.id.split("-");
