@@ -59,23 +59,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	module.exports = __webpack_require__(1);
 
-	__webpack_require__(96);
-	__webpack_require__(130);
-	__webpack_require__(135);
-	__webpack_require__(144);
-	__webpack_require__(281);
-	__webpack_require__(275);
+	__webpack_require__(99);
+	__webpack_require__(133);
+	__webpack_require__(138);
+	__webpack_require__(147);
+	__webpack_require__(284);
+	__webpack_require__(278);
 
-	__webpack_require__(109);
-	__webpack_require__(306);
+	__webpack_require__(112);
+	__webpack_require__(302);
 
-	__webpack_require__(337);
-	__webpack_require__(343);
-	__webpack_require__(346);
-	__webpack_require__(307);
-	__webpack_require__(358);
+	__webpack_require__(333);
+	__webpack_require__(339);
+	__webpack_require__(342);
+	__webpack_require__(303);
+	__webpack_require__(354);
 
-	__webpack_require__(372);
+	__webpack_require__(368);
 
 /***/ },
 /* 1 */
@@ -113,22 +113,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var env = __webpack_require__(2);
 
 	    var GlobalModel = __webpack_require__(3);
-	    var ExtensionAPI = __webpack_require__(26);
-	    var CoordinateSystemManager = __webpack_require__(27);
-	    var OptionManager = __webpack_require__(28);
+	    var ExtensionAPI = __webpack_require__(25);
+	    var CoordinateSystemManager = __webpack_require__(26);
+	    var OptionManager = __webpack_require__(27);
 
-	    var ComponentModel = __webpack_require__(20);
-	    var SeriesModel = __webpack_require__(29);
+	    var ComponentModel = __webpack_require__(19);
+	    var SeriesModel = __webpack_require__(28);
 
-	    var ComponentView = __webpack_require__(30);
-	    var ChartView = __webpack_require__(43);
-	    var graphic = __webpack_require__(44);
+	    var ComponentView = __webpack_require__(29);
+	    var ChartView = __webpack_require__(42);
+	    var graphic = __webpack_require__(43);
 
-	    var zrender = __webpack_require__(80);
+	    var zrender = __webpack_require__(81);
 	    var zrUtil = __webpack_require__(4);
-	    var colorTool = __webpack_require__(40);
-	    var Eventful = __webpack_require__(34);
-	    var timsort = __webpack_require__(89);
+	    var colorTool = __webpack_require__(39);
+	    var Eventful = __webpack_require__(33);
+	    var timsort = __webpack_require__(85);
 
 	    var each = zrUtil.each;
 
@@ -674,7 +674,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this[IN_MAIN_PROCESS] = false;
 	    };
 
-	    var defaultLoadingEffect = __webpack_require__(90);
+	    var defaultLoadingEffect = __webpack_require__(93);
 	    /**
 	     * Show loading effect
 	     * @param  {string} [name='default']
@@ -1470,9 +1470,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    echarts.registerVisual(PRIORITY_VISUAL_GLOBAL, zrUtil.curry(
-	        __webpack_require__(91), '', 'itemStyle'
+	        __webpack_require__(94), '', 'itemStyle'
 	    ));
-	    echarts.registerPreprocessor(__webpack_require__(92));
+	    echarts.registerPreprocessor(__webpack_require__(95));
 
 	    // Default action
 	    echarts.registerAction({
@@ -1491,15 +1491,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Exports
 	    // --------
 	    //
-	    echarts.List = __webpack_require__(94);
-	    echarts.Model = __webpack_require__(9);
+	    echarts.List = __webpack_require__(97);
+	    echarts.Model = __webpack_require__(8);
 
-	    echarts.graphic = __webpack_require__(44);
-	    echarts.number = __webpack_require__(8);
-	    echarts.format = __webpack_require__(7);
-	    echarts.matrix = __webpack_require__(18);
-	    echarts.vector = __webpack_require__(17);
-	    echarts.color = __webpack_require__(40);
+	    echarts.graphic = __webpack_require__(43);
+	    echarts.number = __webpack_require__(7);
+	    echarts.format = __webpack_require__(6);
+	    echarts.matrix = __webpack_require__(17);
+	    echarts.vector = __webpack_require__(16);
+	    echarts.color = __webpack_require__(39);
 
 	    echarts.util = {};
 	    each([
@@ -1566,23 +1566,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function detect(ua) {
 	        var os = {};
 	        var browser = {};
-	        var webkit = ua.match(/Web[kK]it[\/]{0,1}([\d.]+)/);
-	        var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
-	        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
-	        var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
-	        var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
-	        var webos = ua.match(/(webOS|hpwOS)[\s\/]([\d.]+)/);
-	        var touchpad = webos && ua.match(/TouchPad/);
-	        var kindle = ua.match(/Kindle\/([\d.]+)/);
-	        var silk = ua.match(/Silk\/([\d._]+)/);
-	        var blackberry = ua.match(/(BlackBerry).*Version\/([\d.]+)/);
-	        var bb10 = ua.match(/(BB10).*Version\/([\d.]+)/);
-	        var rimtabletos = ua.match(/(RIM\sTablet\sOS)\s([\d.]+)/);
-	        var playbook = ua.match(/PlayBook/);
-	        var chrome = ua.match(/Chrome\/([\d.]+)/) || ua.match(/CriOS\/([\d.]+)/);
+	        // var webkit = ua.match(/Web[kK]it[\/]{0,1}([\d.]+)/);
+	        // var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+	        // var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+	        // var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+	        // var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+	        // var webos = ua.match(/(webOS|hpwOS)[\s\/]([\d.]+)/);
+	        // var touchpad = webos && ua.match(/TouchPad/);
+	        // var kindle = ua.match(/Kindle\/([\d.]+)/);
+	        // var silk = ua.match(/Silk\/([\d._]+)/);
+	        // var blackberry = ua.match(/(BlackBerry).*Version\/([\d.]+)/);
+	        // var bb10 = ua.match(/(BB10).*Version\/([\d.]+)/);
+	        // var rimtabletos = ua.match(/(RIM\sTablet\sOS)\s([\d.]+)/);
+	        // var playbook = ua.match(/PlayBook/);
+	        // var chrome = ua.match(/Chrome\/([\d.]+)/) || ua.match(/CriOS\/([\d.]+)/);
 	        var firefox = ua.match(/Firefox\/([\d.]+)/);
-	        var safari = webkit && ua.match(/Mobile\//) && !chrome;
-	        var webview = ua.match(/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/) && !chrome;
+	        // var safari = webkit && ua.match(/Mobile\//) && !chrome;
+	        // var webview = ua.match(/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/) && !chrome;
 	        var ie = ua.match(/MSIE\s([\d.]+)/)
 	            // IE 11 Trident/7.0; rv:11.0
 	            || ua.match(/Trident\/.+?rv:(([\d.]+))/);
@@ -1594,34 +1594,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // - Firefox on Android doesn't specify the Android version
 	        // - possibly devide in os, device and browser hashes
 
-	        if (browser.webkit = !!webkit) browser.version = webkit[1];
+	        // if (browser.webkit = !!webkit) browser.version = webkit[1];
 
-	        if (android) os.android = true, os.version = android[2];
-	        if (iphone && !ipod) os.ios = os.iphone = true, os.version = iphone[2].replace(/_/g, '.');
-	        if (ipad) os.ios = os.ipad = true, os.version = ipad[2].replace(/_/g, '.');
-	        if (ipod) os.ios = os.ipod = true, os.version = ipod[3] ? ipod[3].replace(/_/g, '.') : null;
-	        if (webos) os.webos = true, os.version = webos[2];
-	        if (touchpad) os.touchpad = true;
-	        if (blackberry) os.blackberry = true, os.version = blackberry[2];
-	        if (bb10) os.bb10 = true, os.version = bb10[2];
-	        if (rimtabletos) os.rimtabletos = true, os.version = rimtabletos[2];
-	        if (playbook) browser.playbook = true;
-	        if (kindle) os.kindle = true, os.version = kindle[1];
-	        if (silk) browser.silk = true, browser.version = silk[1];
-	        if (!silk && os.android && ua.match(/Kindle Fire/)) browser.silk = true;
-	        if (chrome) browser.chrome = true, browser.version = chrome[1];
+	        // if (android) os.android = true, os.version = android[2];
+	        // if (iphone && !ipod) os.ios = os.iphone = true, os.version = iphone[2].replace(/_/g, '.');
+	        // if (ipad) os.ios = os.ipad = true, os.version = ipad[2].replace(/_/g, '.');
+	        // if (ipod) os.ios = os.ipod = true, os.version = ipod[3] ? ipod[3].replace(/_/g, '.') : null;
+	        // if (webos) os.webos = true, os.version = webos[2];
+	        // if (touchpad) os.touchpad = true;
+	        // if (blackberry) os.blackberry = true, os.version = blackberry[2];
+	        // if (bb10) os.bb10 = true, os.version = bb10[2];
+	        // if (rimtabletos) os.rimtabletos = true, os.version = rimtabletos[2];
+	        // if (playbook) browser.playbook = true;
+	        // if (kindle) os.kindle = true, os.version = kindle[1];
+	        // if (silk) browser.silk = true, browser.version = silk[1];
+	        // if (!silk && os.android && ua.match(/Kindle Fire/)) browser.silk = true;
+	        // if (chrome) browser.chrome = true, browser.version = chrome[1];
 	        if (firefox) browser.firefox = true, browser.version = firefox[1];
-	        if (ie) browser.ie = true, browser.version = ie[1];
-	        if (safari && (ua.match(/Safari/) || !!os.ios)) browser.safari = true;
-	        if (webview) browser.webview = true;
-	        if (ie) browser.ie = true, browser.version = ie[1];
-	        if (edge) browser.edge = true, browser.version = edge[1];
+	        // if (safari && (ua.match(/Safari/) || !!os.ios)) browser.safari = true;
+	        // if (webview) browser.webview = true;
+	        if (ie) {
+	            browser.ie = true; browser.version = ie[1];
+	        }
+	        if (ie) {
+	            browser.ie = true;
+	            browser.version = ie[1];
+	        }
+	        if (edge) {
+	            browser.edge = true;
+	            browser.version = edge[1];
+	        }
 
-	        os.tablet = !!(ipad || playbook || (android && !ua.match(/Mobile/)) ||
-	            (firefox && ua.match(/Tablet/)) || (ie && !ua.match(/Phone/) && ua.match(/Touch/)));
-	        os.phone  = !!(!os.tablet && !os.ipod && (android || iphone || webos || blackberry || bb10 ||
-	            (chrome && ua.match(/Android/)) || (chrome && ua.match(/CriOS\/([\d.]+)/)) ||
-	            (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/))));
+	        // os.tablet = !!(ipad || playbook || (android && !ua.match(/Mobile/)) ||
+	        //     (firefox && ua.match(/Tablet/)) || (ie && !ua.match(/Phone/) && ua.match(/Touch/)));
+	        // os.phone  = !!(!os.tablet && !os.ipod && (android || iphone || webos ||
+	        //     (chrome && ua.match(/Android/)) || (chrome && ua.match(/CriOS\/([\d.]+)/)) ||
+	        //     (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/))));
 
 	        return {
 	            browser: browser,
@@ -1658,8 +1666,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var modelUtil = __webpack_require__(6);
-	    var Model = __webpack_require__(9);
+	    var modelUtil = __webpack_require__(5);
+	    var Model = __webpack_require__(8);
 	    var each = zrUtil.each;
 	    var filter = zrUtil.filter;
 	    var map = zrUtil.map;
@@ -1667,9 +1675,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var indexOf = zrUtil.indexOf;
 	    var isObject = zrUtil.isObject;
 
-	    var ComponentModel = __webpack_require__(20);
+	    var ComponentModel = __webpack_require__(19);
 
-	    var globalDefault = __webpack_require__(24);
+	    var globalDefault = __webpack_require__(23);
 
 	    var OPTION_INNER_KEY = '\0_ec_inner';
 
@@ -2403,27 +2411,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }
 
-	    zrUtil.mixin(GlobalModel, __webpack_require__(25));
+	    zrUtil.mixin(GlobalModel, __webpack_require__(24));
 
 	    module.exports = GlobalModel;
 
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	/**
 	 * @module zrender/core/util
 	 */
 
-	    var Gradient = __webpack_require__(5);
+
 	    // 用于处理merge时无法遍历Date等对象的问题
 	    var BUILTIN_OBJECT = {
 	        '[object Function]': 1,
 	        '[object RegExp]': 1,
 	        '[object Date]': 1,
 	        '[object Error]': 1,
-	        '[object CanvasGradient]': 1
+	        '[object CanvasGradient]': 1,
+	        '[object CanvasPattern]': 1,
+	        // In node-canvas Image can be Canvas.Image
+	        '[object Image]': 1
 	    };
 
 	    var objToString = Object.prototype.toString;
@@ -2820,8 +2831,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @return {boolean}
 	     */
 	    function isBuildInObject(value) {
-	        return !!BUILTIN_OBJECT[objToString.call(value)]
-	            || (value instanceof Gradient);
+	        return !!BUILTIN_OBJECT[objToString.call(value)];
 	    }
 
 	    /**
@@ -2905,43 +2915,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 5 */
-/***/ function(module, exports) {
-
-	
-
-	    /**
-	     * @param {Array.<Object>} colorStops
-	     */
-	    var Gradient = function (colorStops) {
-
-	        this.colorStops = colorStops || [];
-	    };
-
-	    Gradient.prototype = {
-
-	        constructor: Gradient,
-
-	        addColorStop: function (offset, color) {
-	            this.colorStops.push({
-
-	                offset: offset,
-
-	                color: color
-	            });
-	        }
-	    };
-
-	    module.exports = Gradient;
-
-
-/***/ },
-/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var formatUtil = __webpack_require__(7);
-	    var nubmerUtil = __webpack_require__(8);
+	    var formatUtil = __webpack_require__(6);
+	    var nubmerUtil = __webpack_require__(7);
 	    var zrUtil = __webpack_require__(4);
 
 	    var AXIS_DIMS = ['x', 'y', 'z', 'radius', 'angle'];
@@ -3397,13 +3376,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 
 	    /**
 	     * 每三位默认加,格式化
@@ -3564,7 +3543,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	/**
@@ -3801,7 +3780,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -3810,7 +3789,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var clazzUtil = __webpack_require__(10);
+	    var clazzUtil = __webpack_require__(9);
 
 	    /**
 	     * @alias module:echarts/model/Model
@@ -3954,16 +3933,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    clazzUtil.enableClassExtend(Model);
 
 	    var mixin = zrUtil.mixin;
-	    mixin(Model, __webpack_require__(11));
+	    mixin(Model, __webpack_require__(10));
+	    mixin(Model, __webpack_require__(12));
 	    mixin(Model, __webpack_require__(13));
-	    mixin(Model, __webpack_require__(14));
-	    mixin(Model, __webpack_require__(19));
+	    mixin(Model, __webpack_require__(18));
 
 	    module.exports = Model;
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4173,11 +4152,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	    var getLineStyle = __webpack_require__(12)(
+	    var getLineStyle = __webpack_require__(11)(
 	        [
 	            ['lineWidth', 'width'],
 	            ['stroke', 'color'],
@@ -4205,7 +4184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// TODO Parse shadow style
@@ -4238,12 +4217,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	    module.exports = {
-	        getAreaStyle: __webpack_require__(12)(
+	        getAreaStyle: __webpack_require__(11)(
 	            [
 	                ['fill', 'color'],
 	                ['shadowBlur'],
@@ -4257,12 +4236,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var textContain = __webpack_require__(15);
+	    var textContain = __webpack_require__(14);
 
 	    function getShallow(model, path) {
 	        return model && model.getShallow(path);
@@ -4314,7 +4293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4324,7 +4303,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var TEXT_CACHE_MAX = 5000;
 
 	    var util = __webpack_require__(4);
-	    var BoundingRect = __webpack_require__(16);
+	    var BoundingRect = __webpack_require__(15);
+	    var retrieve = util.retrieve;
 
 	    function getTextWidth(text, textFont) {
 	        var key = text + ':' + textFont;
@@ -4483,75 +4463,92 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Show ellipsis if overflow.
 	     *
 	     * @param  {string} text
-	     * @param  {string} textFont
 	     * @param  {string} containerWidth
+	     * @param  {string} textFont
+	     * @param  {number} [ellipsis='...']
 	     * @param  {Object} [options]
-	     * @param  {number} [options.ellipsis='...']
 	     * @param  {number} [options.maxIterations=3]
-	     * @param  {number} [options.minCharacters=3]
+	     * @param  {number} [options.minChar=0] If truncate result are less
+	     *                  then minChar, ellipsis will not show, which is
+	     *                  better for user hint in some cases.
+	     * @param  {number} [options.placeholder=''] When all truncated, use the placeholder.
 	     * @return {string}
 	     */
-	    function textEllipsis(text, textFont, containerWidth, options) {
+	    function truncateText(text, containerWidth, textFont, ellipsis, options) {
 	        if (!containerWidth) {
 	            return '';
 	        }
 
-	        options = util.defaults({
-	            ellipsis: '...',
-	            minCharacters: 3,
-	            maxIterations: 3,
-	            cnCharWidth: getTextWidth('国', textFont),
-	            // FIXME
-	            // 未考虑非等宽字体
-	            ascCharWidth: getTextWidth('a', textFont)
-	        }, options, true);
+	        options = options || {};
 
-	        containerWidth -= getTextWidth(options.ellipsis);
+	        ellipsis = retrieve(ellipsis, '...');
+	        var maxIterations = retrieve(options.maxIterations, 2);
+	        var minChar = retrieve(options.minChar, 0);
+	        // FIXME
+	        // Other languages?
+	        var cnCharWidth = getTextWidth('国', textFont);
+	        // FIXME
+	        // Consider proportional font?
+	        var ascCharWidth = getTextWidth('a', textFont);
+	        var placeholder = retrieve(options.placeholder, '');
+
+	        // Example 1: minChar: 3, text: 'asdfzxcv', truncate result: 'asdf', but not: 'a...'.
+	        // Example 2: minChar: 3, text: '维度', truncate result: '维', but not: '...'.
+	        var contentWidth = containerWidth = Math.max(0, containerWidth - 1); // Reserve some gap.
+	        for (var i = 0; i < minChar && contentWidth >= ascCharWidth; i++) {
+	            contentWidth -= ascCharWidth;
+	        }
+
+	        var ellipsisWidth = getTextWidth(ellipsis);
+	        if (ellipsisWidth > contentWidth) {
+	            ellipsis = '';
+	            ellipsisWidth = 0;
+	        }
+
+	        contentWidth = containerWidth - ellipsisWidth;
 
 	        var textLines = (text + '').split('\n');
 
 	        for (var i = 0, len = textLines.length; i < len; i++) {
-	            textLines[i] = textLineTruncate(
-	                textLines[i], textFont, containerWidth, options
-	            );
+	            var textLine = textLines[i];
+	            var lineWidth = getTextWidth(textLine, textFont);
+
+	            if (lineWidth <= containerWidth) {
+	                continue;
+	            }
+
+	            for (var j = 0;; j++) {
+	                if (lineWidth <= contentWidth || j >= maxIterations) {
+	                    textLine += ellipsis;
+	                    break;
+	                }
+
+	                var subLength = j === 0
+	                    ? estimateLength(textLine, contentWidth, ascCharWidth, cnCharWidth)
+	                    : lineWidth > 0
+	                    ? Math.floor(textLine.length * contentWidth / lineWidth)
+	                    : 0;
+
+	                textLine = textLine.substr(0, subLength);
+	                lineWidth = getTextWidth(textLine, textFont);
+	            }
+
+	            if (textLine === '') {
+	                textLine = placeholder;
+	            }
+
+	            textLines[i] = textLine;
 	        }
 
 	        return textLines.join('\n');
 	    }
 
-	    function textLineTruncate(text, textFont, containerWidth, options) {
-	        // FIXME
-	        // 粗糙得写的，尚未考虑性能和各种语言、字体的效果。
-	        for (var i = 0;; i++) {
-	            var lineWidth = getTextWidth(text, textFont);
-
-	            if (lineWidth < containerWidth || i >= options.maxIterations) {
-	                text += options.ellipsis;
-	                break;
-	            }
-
-	            var subLength = i === 0
-	                ? estimateLength(text, containerWidth, options)
-	                : Math.floor(text.length * containerWidth / lineWidth);
-
-	            if (subLength < options.minCharacters) {
-	                text = '';
-	                break;
-	            }
-
-	            text = text.substr(0, subLength);
-	        }
-
-	        return text;
-	    }
-
-	    function estimateLength(text, containerWidth, options) {
+	    function estimateLength(text, contentWidth, ascCharWidth, cnCharWidth) {
 	        var width = 0;
 	        var i = 0;
-	        for (var len = text.length; i < len && width < containerWidth; i++) {
+	        for (var len = text.length; i < len && width < contentWidth; i++) {
 	            var charCode = text.charCodeAt(i);
-	            width += (0 <= charCode && charCode <= 127)
-	                ? options.ascCharWidth : options.cnCharWidth;
+	            width += (0 <= charCode && charCode <= 127) ? ascCharWidth : cnCharWidth;
 	        }
 	        return i;
 	    }
@@ -4564,11 +4561,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        adjustTextPositionOnRect: adjustTextPositionOnRect,
 
-	        ellipsis: textEllipsis,
+	        truncateText: truncateText,
 
 	        measureText: function (text, textFont) {
 	            var ctx = util.getContext();
-	            ctx.font = textFont;
+	            ctx.font = textFont || '12px sans-serif';
 	            return ctx.measureText(text);
 	        }
 	    };
@@ -4577,7 +4574,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4586,8 +4583,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var vec2 = __webpack_require__(17);
-	    var matrix = __webpack_require__(18);
+	    var vec2 = __webpack_require__(16);
+	    var matrix = __webpack_require__(17);
 
 	    var v2ApplyTransform = vec2.applyTransform;
 	    var mathMin = Math.min;
@@ -4736,7 +4733,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	
@@ -4760,8 +4757,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        create: function (x, y) {
 	            var out = new ArrayCtor(2);
-	            out[0] = x || 0;
-	            out[1] = y || 0;
+	            if (x == null) {
+	                x = 0;
+	            }
+	            if (y == null) {
+	                y = 0;
+	            }
+	            out[0] = x;
+	            out[1] = y;
 	            return out;
 	        },
 
@@ -5016,7 +5019,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports) {
 
 	
@@ -5180,11 +5183,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	    var getItemStyle = __webpack_require__(12)(
+	    var getItemStyle = __webpack_require__(11)(
 	        [
 	            ['fill', 'color'],
 	            ['stroke', 'borderColor'],
@@ -5213,7 +5216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -5223,12 +5226,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var Model = __webpack_require__(9);
+	    var Model = __webpack_require__(8);
 	    var zrUtil = __webpack_require__(4);
 	    var arrayPush = Array.prototype.push;
-	    var componentUtil = __webpack_require__(21);
-	    var clazzUtil = __webpack_require__(10);
-	    var layout = __webpack_require__(22);
+	    var componentUtil = __webpack_require__(20);
+	    var clazzUtil = __webpack_require__(9);
+	    var layout = __webpack_require__(21);
 
 	    /**
 	     * @alias module:echarts/model/Component
@@ -5392,19 +5395,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    }
 
-	    zrUtil.mixin(ComponentModel, __webpack_require__(23));
+	    zrUtil.mixin(ComponentModel, __webpack_require__(22));
 
 	    module.exports = ComponentModel;
 
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var clazz = __webpack_require__(10);
+	    var clazz = __webpack_require__(9);
 
 	    var parseClassType = clazz.parseClassType;
 
@@ -5579,7 +5582,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5587,9 +5590,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var BoundingRect = __webpack_require__(16);
-	    var numberUtil = __webpack_require__(8);
-	    var formatUtil = __webpack_require__(7);
+	    var BoundingRect = __webpack_require__(15);
+	    var numberUtil = __webpack_require__(7);
+	    var formatUtil = __webpack_require__(6);
 	    var parsePercent = numberUtil.parsePercent;
 	    var each = zrUtil.each;
 
@@ -5984,7 +5987,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	
@@ -6004,7 +6007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	
@@ -6055,7 +6058,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports) {
 
 	
@@ -6089,7 +6092,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6112,7 +6115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6161,7 +6164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6173,8 +6176,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var modelUtil = __webpack_require__(6);
-	    var ComponentModel = __webpack_require__(20);
+	    var modelUtil = __webpack_require__(5);
+	    var ComponentModel = __webpack_require__(19);
 	    var each = zrUtil.each;
 	    var clone = zrUtil.clone;
 	    var map = zrUtil.map;
@@ -6601,17 +6604,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var formatUtil = __webpack_require__(7);
-	    var modelUtil = __webpack_require__(6);
-	    var ComponentModel = __webpack_require__(20);
-	    var colorPaletteMixin = __webpack_require__(25);
+	    var formatUtil = __webpack_require__(6);
+	    var modelUtil = __webpack_require__(5);
+	    var ComponentModel = __webpack_require__(19);
+	    var colorPaletteMixin = __webpack_require__(24);
 	    var env = __webpack_require__(2);
 
 	    var encodeHTML = formatUtil.encodeHTML;
@@ -6850,14 +6853,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var Group = __webpack_require__(31);
-	    var componentUtil = __webpack_require__(21);
-	    var clazzUtil = __webpack_require__(10);
+	    var Group = __webpack_require__(30);
+	    var componentUtil = __webpack_require__(20);
+	    var clazzUtil = __webpack_require__(9);
 
 	    var Component = function () {
 	        /**
@@ -6901,7 +6904,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6925,8 +6928,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var Element = __webpack_require__(32);
-	    var BoundingRect = __webpack_require__(16);
+	    var Element = __webpack_require__(31);
+	    var BoundingRect = __webpack_require__(15);
 
 	    /**
 	     * @alias module:zrender/graphic/Group
@@ -6954,6 +6957,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Group.prototype = {
 
 	        constructor: Group,
+
+	        isGroup: true,
 
 	        /**
 	         * @type {string}
@@ -7213,7 +7218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7222,10 +7227,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var guid = __webpack_require__(33);
-	    var Eventful = __webpack_require__(34);
-	    var Transformable = __webpack_require__(35);
-	    var Animatable = __webpack_require__(36);
+	    var guid = __webpack_require__(32);
+	    var Eventful = __webpack_require__(33);
+	    var Transformable = __webpack_require__(34);
+	    var Animatable = __webpack_require__(35);
 	    var zrUtil = __webpack_require__(4);
 
 	    /**
@@ -7313,7 +7318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            m[5] += dy;
 
 	            this.decomposeTransform();
-	            this.dirty();
+	            this.dirty(false);
 	        },
 
 	        /**
@@ -7388,7 +7393,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	            }
-	            this.dirty();
+
+	            this.dirty(false);
 
 	            return this;
 	        },
@@ -7411,7 +7417,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            clipPath.__zr = zr;
 	            clipPath.__clipTarget = this;
 
-	            this.dirty();
+	            this.dirty(false);
 	        },
 
 	        /**
@@ -7427,7 +7433,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                clipPath.__clipTarget = null;
 	                this.clipPath = null;
 
-	                this.dirty();
+	                this.dirty(false);
 	            }
 	        },
 
@@ -7480,7 +7486,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports) {
 
 	/**
@@ -7490,17 +7496,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	        var idStart = 0x0907;
+	    var idStart = 0x0907;
 
-	        module.exports = function () {
-	            return 'zr_' + (idStart++);
-	        };
-	    
+	    module.exports = function () {
+	        return idStart++;
+	    };
+
 
 
 /***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
+/* 33 */
+/***/ function(module, exports) {
 
 	/**
 	 * 事件扩展
@@ -7511,8 +7517,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var arrySlice = Array.prototype.slice;
-	    var zrUtil = __webpack_require__(4);
-	    var indexOf = zrUtil.indexOf;
 
 	    /**
 	     * 事件分发器
@@ -7545,8 +7549,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _h[event] = [];
 	            }
 
-	            if (indexOf(_h[event], event) >= 0) {
-	                return this;
+	            for (var i = 0; i < _h[event].length; i++) {
+	                if (_h[event][i].h === handler) {
+	                    return this;
+	                }
 	            }
 
 	            _h[event].push({
@@ -7573,6 +7579,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (!_h[event]) {
 	                _h[event] = [];
+	            }
+
+	            for (var i = 0; i < _h[event].length; i++) {
+	                if (_h[event][i].h === handler) {
+	                    return this;
+	                }
 	            }
 
 	            _h[event].push({
@@ -7796,7 +7808,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7807,8 +7819,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var matrix = __webpack_require__(18);
-	    var vector = __webpack_require__(17);
+	    var matrix = __webpack_require__(17);
+	    var vector = __webpack_require__(16);
 	    var mIdentity = matrix.identity;
 
 	    var EPSILON = 5e-5;
@@ -7947,6 +7959,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 
+	    transformableProto.restoreTransform = function (ctx) {
+	        var m = this.invTransform;
+	        if (m) {
+	            ctx.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
+	        }
+	    }
+
 	    var tmpTransform = [];
 
 	    /**
@@ -8042,7 +8061,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8051,12 +8070,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var Animator = __webpack_require__(37);
+	    var Animator = __webpack_require__(36);
 	    var util = __webpack_require__(4);
 	    var isString = util.isString;
 	    var isFunction = util.isFunction;
 	    var isObject = util.isObject;
-	    var log = __webpack_require__(41);
+	    var log = __webpack_require__(40);
 
 	    /**
 	     * @alias modue:zrender/mixin/Animatable
@@ -8312,7 +8331,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8320,8 +8339,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var Clip = __webpack_require__(38);
-	    var color = __webpack_require__(40);
+	    var Clip = __webpack_require__(37);
+	    var color = __webpack_require__(39);
 	    var util = __webpack_require__(4);
 	    var isArrayLike = util.isArrayLike;
 
@@ -8633,12 +8652,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var frame;
 	            if (percent < lastFramePercent) {
 	                // Start from next key
+	                // PENDING start from lastFrame ?
 	                start = Math.min(lastFrame + 1, trackLen - 1);
 	                for (frame = start; frame >= 0; frame--) {
 	                    if (kfPercents[frame] <= percent) {
 	                        break;
 	                    }
 	                }
+	                // PENDING really need to do this ?
 	                frame = Math.min(frame, trackLen - 2);
 	            }
 	            else {
@@ -8935,7 +8956,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8954,7 +8975,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var easingFuncs = __webpack_require__(39);
+	    var easingFuncs = __webpack_require__(38);
 
 	    function Clip(options) {
 
@@ -9048,7 +9069,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 39 */
+/* 38 */
 /***/ function(module, exports) {
 
 	/**
@@ -9399,7 +9420,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 40 */
+/* 39 */
 /***/ function(module, exports) {
 
 	/**
@@ -9860,10 +9881,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @return {string} Result color.
 	     */
 	    function stringify(arrColor, type) {
-	        if (type === 'rgb' || type === 'hsv' || type === 'hsl') {
-	            arrColor = arrColor.slice(0, 3);
+	        var colorStr = arrColor[0] + ',' + arrColor[1] + ',' + arrColor[2];
+	        if (type === 'rgba' || type === 'hsva' || type === 'hsla') {
+	            colorStr += ',' + arrColor[3];
 	        }
-	        return type + '(' + arrColor.join(',') + ')';
+	        return type + '(' + colorStr + ')';
 	    }
 
 	    module.exports = {
@@ -9881,11 +9903,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 41 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	        var config = __webpack_require__(42);
+	        var config = __webpack_require__(41);
 
 	        /**
 	         * @exports zrender/tool/log
@@ -9919,7 +9941,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 42 */
+/* 41 */
 /***/ function(module, exports) {
 
 	
@@ -9951,14 +9973,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 43 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var Group = __webpack_require__(31);
-	    var componentUtil = __webpack_require__(21);
-	    var clazzUtil = __webpack_require__(10);
+	    var Group = __webpack_require__(30);
+	    var componentUtil = __webpack_require__(20);
+	    var clazzUtil = __webpack_require__(9);
 
 	    function Chart() {
 
@@ -10097,7 +10119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 44 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10105,19 +10127,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var zrUtil = __webpack_require__(4);
 
-	    var pathTool = __webpack_require__(45);
+	    var pathTool = __webpack_require__(44);
 	    var round = Math.round;
-	    var Path = __webpack_require__(46);
-	    var colorTool = __webpack_require__(40);
-	    var matrix = __webpack_require__(18);
-	    var vector = __webpack_require__(17);
-	    var Gradient = __webpack_require__(5);
+	    var Path = __webpack_require__(45);
+	    var colorTool = __webpack_require__(39);
+	    var matrix = __webpack_require__(17);
+	    var vector = __webpack_require__(16);
+	    var Gradient = __webpack_require__(61);
 
 	    var graphic = {};
 
-	    graphic.Group = __webpack_require__(31);
+	    graphic.Group = __webpack_require__(30);
 
-	    graphic.Image = __webpack_require__(61);
+	    graphic.Image = __webpack_require__(62);
 
 	    graphic.Text = __webpack_require__(64);
 
@@ -10133,19 +10155,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    graphic.Rect = __webpack_require__(73);
 
-	    graphic.Line = __webpack_require__(74);
+	    graphic.Line = __webpack_require__(75);
 
-	    graphic.BezierCurve = __webpack_require__(75);
+	    graphic.BezierCurve = __webpack_require__(76);
 
-	    graphic.Arc = __webpack_require__(76);
+	    graphic.Arc = __webpack_require__(77);
 
-	    graphic.CompoundPath = __webpack_require__(77);
+	    graphic.CompoundPath = __webpack_require__(78);
 
-	    graphic.LinearGradient = __webpack_require__(78);
+	    graphic.LinearGradient = __webpack_require__(79);
 
-	    graphic.RadialGradient = __webpack_require__(79);
+	    graphic.RadialGradient = __webpack_require__(80);
 
-	    graphic.BoundingRect = __webpack_require__(16);
+	    graphic.BoundingRect = __webpack_require__(15);
 
 	    /**
 	     * Extend shape with parameters
@@ -10609,15 +10631,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 45 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var Path = __webpack_require__(46);
-	    var PathProxy = __webpack_require__(50);
+	    var Path = __webpack_require__(45);
+	    var PathProxy = __webpack_require__(49);
 	    var transformPath = __webpack_require__(60);
-	    var matrix = __webpack_require__(18);
+	    var matrix = __webpack_require__(17);
 
 	    // command chars
 	    var cc = [
@@ -10992,12 +11014,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        mergePath: function (pathEls, opts) {
 	            var pathList = [];
 	            var len = pathEls.length;
-	            var pathEl;
-	            var i;
-	            for (i = 0; i < len; i++) {
-	                pathEl = pathEls[i];
+	            for (var i = 0; i < len; i++) {
+	                var pathEl = pathEls[i];
 	                if (pathEl.__dirty) {
-	                    pathEl.buildPath(pathEl.path, pathEl.shape);
+	                    pathEl.buildPath(pathEl.path, pathEl.shape, true);
 	                }
 	                pathList.push(pathEl.path);
 	            }
@@ -11018,7 +11038,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 46 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11028,22 +11048,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var Displayable = __webpack_require__(47);
+	    var Displayable = __webpack_require__(46);
 	    var zrUtil = __webpack_require__(4);
-	    var PathProxy = __webpack_require__(50);
-	    var pathContain = __webpack_require__(53);
+	    var PathProxy = __webpack_require__(49);
+	    var pathContain = __webpack_require__(52);
 
-	    var Gradient = __webpack_require__(5);
-
-	    function pathHasFill(style) {
-	        var fill = style.fill;
-	        return fill != null && fill !== 'none';
-	    }
-
-	    function pathHasStroke(style) {
-	        var stroke = style.stroke;
-	        return stroke != null && stroke !== 'none' && style.lineWidth > 0;
-	    }
+	    var Pattern = __webpack_require__(59);
+	    var getCanvasPattern = Pattern.prototype.getCanvasPattern;
 
 	    var abs = Math.abs;
 
@@ -11073,35 +11084,44 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        strokeContainThreshold: 5,
 
-	        brush: function (ctx) {
-	            ctx.save();
-
+	        brush: function (ctx, prevEl) {
 	            var style = this.style;
 	            var path = this.path;
-	            var hasStroke = pathHasStroke(style);
-	            var hasFill = pathHasFill(style);
-	            var hasFillGradient = hasFill && !!(style.fill.colorStops);
-	            var hasStrokeGradient = hasStroke && !!(style.stroke.colorStops);
+	            var hasStroke = style.hasStroke();
+	            var hasFill = style.hasFill();
+	            var fill = style.fill;
+	            var stroke = style.stroke;
+	            var hasFillGradient = hasFill && !!(fill.colorStops);
+	            var hasStrokeGradient = hasStroke && !!(stroke.colorStops);
+	            var hasFillPattern = hasFill && !!(fill.image);
+	            var hasStrokePattern = hasStroke && !!(stroke.image);
 
-	            style.bind(ctx, this);
+	            style.bind(ctx, this, prevEl);
 	            this.setTransform(ctx);
 
-	            if (this.__dirtyPath) {
+	            if (this.__dirty) {
 	                var rect = this.getBoundingRect();
 	                // Update gradient because bounding rect may changed
 	                if (hasFillGradient) {
-	                    this._fillGradient = style.getGradient(ctx, style.fill, rect);
+	                    this._fillGradient = style.getGradient(ctx, fill, rect);
 	                }
 	                if (hasStrokeGradient) {
-	                    this._strokeGradient = style.getGradient(ctx, style.stroke, rect);
+	                    this._strokeGradient = style.getGradient(ctx, stroke, rect);
 	                }
 	            }
-	            // Use the gradient
+	            // Use the gradient or pattern
 	            if (hasFillGradient) {
+	                // PENDING If may have affect the state
 	                ctx.fillStyle = this._fillGradient;
+	            }
+	            else if (hasFillPattern) {
+	                ctx.fillStyle = getCanvasPattern.call(fill, ctx);
 	            }
 	            if (hasStrokeGradient) {
 	                ctx.strokeStyle = this._strokeGradient;
+	            }
+	            else if (hasStrokePattern) {
+	                ctx.strokeStyle = getCanvasPattern.call(stroke, ctx);
 	            }
 
 	            var lineDash = style.lineDash;
@@ -11129,7 +11149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    path.setLineDashOffset(lineDashOffset);
 	                }
 
-	                this.buildPath(path, this.shape);
+	                this.buildPath(path, this.shape, false);
 
 	                // Clear path dirty flag
 	                this.__dirtyPath = false;
@@ -11149,16 +11169,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            hasStroke && path.stroke(ctx);
 
+	            if (lineDash && ctxLineDash) {
+	                // PENDING
+	                // Remove lineDash
+	                ctx.setLineDash([]);
+	            }
+
+
+	            this.restoreTransform(ctx);
+
 	            // Draw rect text
-	            if (style.text != null) {
+	            if (style.text || style.text === 0) {
 	                // var rect = this.getBoundingRect();
 	                this.drawRectText(ctx, this.getBoundingRect());
 	            }
-
-	            ctx.restore();
 	        },
 
-	        buildPath: function (ctx, shapeCfg) {},
+	        // When bundling path, some shape may decide if use moveTo to begin a new subpath or closePath
+	        // Like in circle
+	        buildPath: function (ctx, shapeCfg, inBundle) {},
 
 	        getBoundingRect: function () {
 	            var rect = this._rect;
@@ -11168,13 +11197,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var path = this.path;
 	                if (this.__dirtyPath) {
 	                    path.beginPath();
-	                    this.buildPath(path, this.shape);
+	                    this.buildPath(path, this.shape, false);
 	                }
 	                rect = path.getBoundingRect();
 	            }
 	            this._rect = rect;
 
-	            if (pathHasStroke(style)) {
+	            if (style.hasStroke()) {
 	                // Needs update rect with stroke lineWidth when
 	                // 1. Element changes scale or lineWidth
 	                // 2. Shape is changed
@@ -11187,8 +11216,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var lineScale = style.strokeNoScale ? this.getLineScale() : 1;
 
 	                    // Only add extra hover lineWidth when there are no fill
-	                    if (!pathHasFill(style)) {
-	                        w = Math.max(w, this.strokeContainThreshold);
+	                    if (!style.hasFill()) {
+	                        w = Math.max(w, this.strokeContainThreshold || 4);
 	                    }
 	                    // Consider line width
 	                    // Line scale can't be 0;
@@ -11216,13 +11245,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (rect.contain(x, y)) {
 	                var pathData = this.path.data;
-	                if (pathHasStroke(style)) {
+	                if (style.hasStroke()) {
 	                    var lineWidth = style.lineWidth;
 	                    var lineScale = style.strokeNoScale ? this.getLineScale() : 1;
 	                    // Line scale can't be 0;
 	                    if (lineScale > 1e-10) {
 	                        // Only add extra hover lineWidth when there are no fill
-	                        if (!pathHasFill(style)) {
+	                        if (!style.hasFill()) {
 	                            lineWidth = Math.max(lineWidth, this.strokeContainThreshold);
 	                        }
 	                        if (pathContain.containStroke(
@@ -11232,7 +11261,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }
 	                    }
 	                }
-	                if (pathHasFill(style)) {
+	                if (style.hasFill()) {
 	                    return pathContain.contain(pathData, x, y);
 	                }
 	            }
@@ -11243,7 +11272,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param  {boolean} dirtyPath
 	         */
 	        dirty: function (dirtyPath) {
-	            if (arguments.length ===0) {
+	            if (dirtyPath == null) {
 	                dirtyPath = true;
 	            }
 	            // Only mark dirty, not mark clean
@@ -11275,6 +11304,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // FIXME
 	            if (key === 'shape') {
 	                this.setShape(value);
+	                this.__dirtyPath = true;
+	                this._rect = null;
 	            }
 	            else {
 	                Displayable.prototype.attrKV.call(this, key, value);
@@ -11370,7 +11401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 47 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11383,10 +11414,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var zrUtil = __webpack_require__(4);
 
-	    var Style = __webpack_require__(48);
+	    var Style = __webpack_require__(47);
 
-	    var Element = __webpack_require__(32);
-	    var RectText = __webpack_require__(49);
+	    var Element = __webpack_require__(31);
+	    var RectText = __webpack_require__(48);
 	    // var Stateful = require('./mixin/Stateful');
 
 	    /**
@@ -11513,6 +11544,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        rectHover: false,
 
+	        /**
+	         * Render the element progressively when the value >= 0,
+	         * usefull for large data.
+	         * @type {number}
+	         */
+	        progressive: -1,
+
 	        beforeBrush: function (ctx) {},
 
 	        afterBrush: function (ctx) {},
@@ -11522,7 +11560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {Canvas2DRenderingContext} ctx
 	         */
 	        // Interface
-	        brush: function (ctx) {},
+	        brush: function (ctx, prevEl) {},
 
 	        /**
 	         * 获取最小包围盒
@@ -11637,7 +11675,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 48 */
+/* 47 */
 /***/ function(module, exports) {
 
 	/**
@@ -11645,15 +11683,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-
-	    var STYLE_LIST_COMMON = [
-	        'lineCap', 'lineJoin', 'miterLimit',
-	        'shadowBlur', 'shadowOffsetX', 'shadowOffsetY', 'shadowColor'
+	    var STYLE_COMMON_PROPS = [
+	        ['shadowBlur', 0], ['shadowOffsetX', 0], ['shadowOffsetY', 0], ['shadowColor', '#000'],
+	        ['lineCap', 'butt'], ['lineJoin', 'miter'], ['miterLimit', 10]
 	    ];
+
+	    // var SHADOW_PROPS = STYLE_COMMON_PROPS.slice(0, 4);
+	    // var LINE_PROPS = STYLE_COMMON_PROPS.slice(4);
 
 	    var Style = function (opts) {
 	        this.extendFrom(opts);
 	    };
+
+	    function createLinearGradient(ctx, obj, rect) {
+	        // var size =
+	        var x = obj.x;
+	        var x2 = obj.x2;
+	        var y = obj.y;
+	        var y2 = obj.y2;
+
+	        if (!obj.global) {
+	            x = x * rect.width + rect.x;
+	            x2 = x2 * rect.width + rect.x;
+	            y = y * rect.height + rect.y;
+	            y2 = y2 * rect.height + rect.y;
+	        }
+
+	        var canvasGradient = ctx.createLinearGradient(x, y, x2, y2);
+
+	        return canvasGradient;
+	    }
+
+	    function createRadialGradient(ctx, obj, rect) {
+	        var width = rect.width;
+	        var height = rect.height;
+	        var min = Math.min(width, height);
+
+	        var x = obj.x;
+	        var y = obj.y;
+	        var r = obj.r;
+	        if (!obj.global) {
+	            x = x * width + rect.x;
+	            y = y * height + rect.y;
+	            r = r * min;
+	        }
+
+	        var canvasGradient = ctx.createRadialGradient(x, y, 0, x, y, r);
+
+	        return canvasGradient;
+	    }
+
 
 	    Style.prototype = {
 
@@ -11771,33 +11850,58 @@ return /******/ (function(modules) { // webpackBootstrap
 	        textShadowOffsetY: 0,
 
 	        /**
+	         * @type {string}
+	         * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+	         */
+	        blend: null,
+
+	        /**
 	         * @param {CanvasRenderingContext2D} ctx
 	         */
-	        bind: function (ctx, el) {
-	            var fill = this.fill;
-	            var stroke = this.stroke;
-	            for (var i = 0; i < STYLE_LIST_COMMON.length; i++) {
-	                var styleName = STYLE_LIST_COMMON[i];
+	        bind: function (ctx, el, prevEl) {
+	            var style = this;
+	            var prevStyle = prevEl && prevEl.style;
+	            var firstDraw = !prevStyle;
 
-	                if (this[styleName] != null) {
-	                    ctx[styleName] = this[styleName];
+	            for (var i = 0; i < STYLE_COMMON_PROPS.length; i++) {
+	                var prop = STYLE_COMMON_PROPS[i];
+	                var styleName = prop[0];
+
+	                if (firstDraw || style[styleName] !== prevStyle[styleName]) {
+	                    // FIXME Invalid property value will cause style leak from previous element.
+	                    ctx[styleName] = style[styleName] || prop[1];
 	                }
 	            }
-	            if (stroke != null) {
-	                var lineWidth = this.lineWidth;
+
+	            if ((firstDraw || style.fill !== prevStyle.fill)) {
+	                ctx.fillStyle = style.fill;
+	            }
+	            if ((firstDraw || style.stroke !== prevStyle.stroke)) {
+	                ctx.strokeStyle = style.stroke;
+	            }
+	            if ((firstDraw || style.opacity !== prevStyle.opacity)) {
+	                ctx.globalAlpha = style.opacity == null ? 1 : style.opacity;
+	            }
+
+	            if ((firstDraw || style.blend !== prevStyle.blend)) {
+	                ctx.globalCompositeOperation = style.blend || 'source-over';
+	            }
+	            if (this.hasStroke()) {
+	                var lineWidth = style.lineWidth;
 	                ctx.lineWidth = lineWidth / (
 	                    (this.strokeNoScale && el && el.getLineScale) ? el.getLineScale() : 1
 	                );
 	            }
-	            // Gradient will be created and set in Path#brush. So ignore it here
-	            if (fill != null && fill !== 'none' && !fill.colorStops) {
-	                ctx.fillStyle = fill;
-	            }
-	            if (stroke != null && stroke !== 'none' && !stroke.colorStops) {
-	                 // Use canvas gradient if has
-	                ctx.strokeStyle = stroke;
-	            }
-	            this.opacity != null && (ctx.globalAlpha = this.opacity);
+	        },
+
+	        hasFill: function () {
+	            var fill = this.fill;
+	            return fill != null && fill !== 'none';
+	        },
+
+	        hasStroke: function () {
+	            var stroke = this.stroke;
+	            return stroke != null && stroke !== 'none' && this.lineWidth > 0;
 	        },
 
 	        /**
@@ -11842,35 +11946,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return newStyle;
 	        },
 
-	        createLinearGradient: function (ctx, obj, rect) {
-	            // var size =
-	            var x = obj.x * rect.width + rect.x;
-	            var x2 = obj.x2 * rect.width + rect.x;
-	            var y = obj.y * rect.height + rect.y;
-	            var y2 = obj.y2 * rect.height + rect.y;
-
-	            var canvasGradient = ctx.createLinearGradient(x, y, x2, y2);
-
-	            return canvasGradient;
-	        },
-
-	        createRadialGradient: function (ctx, obj, rect) {
-	            var width = rect.width;
-	            var height = rect.height;
-	            var min = Math.min(width, height);
-
-	            var x = obj.x * width + rect.x;
-	            var y = obj.y * height + rect.y;
-	            var r = obj.r * min;
-
-	            var canvasGradient = ctx.createRadialGradient(x, y, 0, x, y, r);
-
-	            return canvasGradient;
-	        },
-
 	        getGradient: function (ctx, obj, rect) {
-	            var method = obj.type === 'radial' ? 'createRadialGradient' : 'createLinearGradient';
-	            var canvasGradient = this[method](ctx, obj, rect);
+	            var method = obj.type === 'radial' ? createRadialGradient : createLinearGradient;
+	            var canvasGradient = method(ctx, obj, rect);
 	            var colorStops = obj.colorStops;
 	            for (var i = 0; i < colorStops.length; i++) {
 	                canvasGradient.addColorStop(
@@ -11882,20 +11960,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    var styleProto = Style.prototype;
-	    var name;
-	    var i;
-	    for (i = 0; i < STYLE_LIST_COMMON.length; i++) {
-	        name = STYLE_LIST_COMMON[i];
-	        if (!(name in styleProto)) {
-	            styleProto[name] = null;
+	    for (var i = 0; i < STYLE_COMMON_PROPS.length; i++) {
+	        var prop = STYLE_COMMON_PROPS[i];
+	        if (!(prop[0] in styleProto)) {
+	            styleProto[prop[0]] = prop[1];
 	        }
 	    }
+
+	    // Provide for others
+	    Style.getGradient = styleProto.getGradient;
 
 	    module.exports = Style;
 
 
 /***/ },
-/* 49 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11905,8 +11984,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var textContain = __webpack_require__(15);
-	    var BoundingRect = __webpack_require__(16);
+	    var textContain = __webpack_require__(14);
+	    var BoundingRect = __webpack_require__(15);
 
 	    var tmpRect = new BoundingRect();
 
@@ -11944,6 +12023,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!text) {
 	                return;
 	            }
+
+	            // FIXME
+	            ctx.save();
+
 	            var x;
 	            var y;
 	            var textPosition = style.textPosition;
@@ -11957,13 +12040,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            // Transform rect to view space
 	            var transform = this.transform;
-	            var invTransform = this.invTransform;
 	            if (transform) {
 	                tmpRect.copy(rect);
 	                tmpRect.applyTransform(transform);
 	                rect = tmpRect;
-	                // Transform back
-	                setTransform(ctx, invTransform);
 	            }
 
 	            // Text position represented by coord
@@ -12000,8 +12080,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                baseline = baseline || res.textBaseline;
 	            }
 
-	            ctx.textAlign = align;
-	            ctx.textBaseline = baseline;
+	            // Use canvas default left textAlign. Giving invalid value will cause state not change
+	            ctx.textAlign = align || 'left';
+	            // Use canvas default alphabetic baseline
+	            ctx.textBaseline = baseline || 'alphabetic';
 
 	            var textFill = style.textFill;
 	            var textStroke = style.textStroke;
@@ -12010,8 +12092,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ctx.font = font;
 
 	            // Text shadow
-	            ctx.shadowColor = style.textShadowColor;
+	            // Always set shadowBlur and shadowOffset to avoid leak from displayable
 	            ctx.shadowBlur = style.textShadowBlur;
+	            ctx.shadowColor = style.textShadowColor || 'transparent';
 	            ctx.shadowOffsetX = style.textShadowOffsetX;
 	            ctx.shadowOffsetY = style.textShadowOffsetY;
 
@@ -12022,8 +12105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                y += textRect.lineHeight;
 	            }
 
-	            // Transform again
-	            transform && setTransform(ctx, transform);
+	            ctx.restore();
 	        }
 	    };
 
@@ -12031,7 +12113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 50 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12046,11 +12128,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 // TODO getTotalLength, getPointAtLength
 
 
-	    var curve = __webpack_require__(51);
-	    var vec2 = __webpack_require__(17);
-	    var bbox = __webpack_require__(52);
-	    var BoundingRect = __webpack_require__(16);
-	    var dpr = __webpack_require__(42).devicePixelRatio;
+	    var curve = __webpack_require__(50);
+	    var vec2 = __webpack_require__(16);
+	    var bbox = __webpack_require__(51);
+	    var BoundingRect = __webpack_require__(15);
+	    var dpr = __webpack_require__(41).devicePixelRatio;
 
 	    var CMD = {
 	        M: 1,
@@ -12183,7 +12265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var exceedUnit = mathAbs(x - this._xi) > this._ux
 	                || mathAbs(y - this._yi) > this._uy
 	                // Force draw the first segment
-	                || this._len === 0;
+	                || this._len < 5;
 
 	            this.addData(CMD.L, x, y);
 
@@ -12459,14 +12541,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            x -= offset * dx;
 	            y -= offset * dy;
 
-	            while ((dx >= 0 && x <= x1) || (dx < 0 && x > x1)) {
+	            while ((dx > 0 && x <= x1) || (dx < 0 && x >= x1)
+	            || (dx == 0 && ((dy > 0 && y <= y1) || (dy < 0 && y >= y1)))) {
 	                idx = this._dashIdx;
 	                dash = lineDash[idx];
 	                x += dx * dash;
 	                y += dy * dash;
 	                this._dashIdx = (idx + 1) % nDash;
 	                // Skip positive offset
-	                if ((dx > 0 && x < x0) || (dx < 0 && x > x0)) {
+	                if ((dx > 0 && x < x0) || (dx < 0 && x > x0) || (dy > 0 && y < y0) || (dy < 0 && y > y0)) {
 	                    continue;
 	                }
 	                ctx[idx % 2 ? 'moveTo' : 'lineTo'](
@@ -12802,7 +12885,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 51 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12813,7 +12896,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var vec2 = __webpack_require__(17);
+	    var vec2 = __webpack_require__(16);
 	    var v2Create = vec2.create;
 	    var v2DistSquare = vec2.distSquare;
 	    var mathPow = Math.pow;
@@ -13348,7 +13431,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 52 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13356,8 +13439,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var vec2 = __webpack_require__(17);
-	    var curve = __webpack_require__(51);
+	    var vec2 = __webpack_require__(16);
+	    var curve = __webpack_require__(50);
 
 	    var bbox = {};
 	    var mathMin = Math.min;
@@ -13584,21 +13667,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 53 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var CMD = __webpack_require__(50).CMD;
-	    var line = __webpack_require__(54);
-	    var cubic = __webpack_require__(55);
-	    var quadratic = __webpack_require__(56);
-	    var arc = __webpack_require__(57);
-	    var normalizeRadian = __webpack_require__(58).normalizeRadian;
-	    var curve = __webpack_require__(51);
+	    var CMD = __webpack_require__(49).CMD;
+	    var line = __webpack_require__(53);
+	    var cubic = __webpack_require__(54);
+	    var quadratic = __webpack_require__(55);
+	    var arc = __webpack_require__(56);
+	    var normalizeRadian = __webpack_require__(57).normalizeRadian;
+	    var curve = __webpack_require__(50);
 
-	    var windingLine = __webpack_require__(59);
+	    var windingLine = __webpack_require__(58);
 
 	    var containStroke = line.containStroke;
 
@@ -13638,6 +13721,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var y0_, y1_;
 	            for (var i = 0; i < nRoots; i++) {
 	                var t = roots[i];
+
+	                // Avoid winding error when intersection point is the connect point of two line of polygon
+	                var unit = (t === 0 || t === 1) ? 0.5 : 1;
+
 	                var x_ = curve.cubicAt(x0, x1, x2, x3, t);
 	                if (x_ < x) { // Quick reject
 	                    continue;
@@ -13655,22 +13742,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (nExtrema == 2) {
 	                    // 分成三段单调函数
 	                    if (t < extrema[0]) {
-	                        w += y0_ < y0 ? 1 : -1;
+	                        w += y0_ < y0 ? unit : -unit;
 	                    }
 	                    else if (t < extrema[1]) {
-	                        w += y1_ < y0_ ? 1 : -1;
+	                        w += y1_ < y0_ ? unit : -unit;
 	                    }
 	                    else {
-	                        w += y3 < y1_ ? 1 : -1;
+	                        w += y3 < y1_ ? unit : -unit;
 	                    }
 	                }
 	                else {
 	                    // 分成两段单调函数
 	                    if (t < extrema[0]) {
-	                        w += y0_ < y0 ? 1 : -1;
+	                        w += y0_ < y0 ? unit : -unit;
 	                    }
 	                    else {
-	                        w += y3 < y0_ ? 1 : -1;
+	                        w += y3 < y0_ ? unit : -unit;
 	                    }
 	                }
 	            }
@@ -13696,25 +13783,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var w = 0;
 	                var y_ = curve.quadraticAt(y0, y1, y2, t);
 	                for (var i = 0; i < nRoots; i++) {
+	                    // Remove one endpoint.
+	                    var unit = (roots[i] === 0 || roots[i] === 1) ? 0.5 : 1;
+
 	                    var x_ = curve.quadraticAt(x0, x1, x2, roots[i]);
 	                    if (x_ < x) {   // Quick reject
 	                        continue;
 	                    }
 	                    if (roots[i] < t) {
-	                        w += y_ < y0 ? 1 : -1;
+	                        w += y_ < y0 ? unit : -unit;
 	                    }
 	                    else {
-	                        w += y2 < y_ ? 1 : -1;
+	                        w += y2 < y_ ? unit : -unit;
 	                    }
 	                }
 	                return w;
 	            }
 	            else {
+	                // Remove one endpoint.
+	                var unit = (roots[0] === 0 || roots[0] === 1) ? 0.5 : 1;
+
 	                var x_ = curve.quadraticAt(x0, x1, x2, roots[0]);
 	                if (x_ < x) {   // Quick reject
 	                    return 0;
 	                }
-	                return y2 < y0 ? 1 : -1;
+	                return y2 < y0 ? unit : -unit;
 	            }
 	        }
 	    }
@@ -13800,9 +13893,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    w += windingLine(xi, yi, x0, y0, x, y);
 	                }
 	                // 如果被任何一个 subpath 包含
-	                if (w !== 0) {
-	                    return true;
-	                }
+	                // if (w !== 0) {
+	                //     return true;
+	                // }
 	            }
 
 	            if (i == 1) {
@@ -13929,7 +14022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        if (containStroke(x0, y0, x1, y0, lineWidth, x, y)
 	                          || containStroke(x1, y0, x1, y1, lineWidth, x, y)
 	                          || containStroke(x1, y1, x0, y1, lineWidth, x, y)
-	                          || containStroke(x0, y1, x1, y1, lineWidth, x, y)
+	                          || containStroke(x0, y1, x0, y0, lineWidth, x, y)
 	                        ) {
 	                            return true;
 	                        }
@@ -13952,9 +14045,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        // Close a subpath
 	                        w += windingLine(xi, yi, x0, y0, x, y);
 	                        // 如果被任何一个 subpath 包含
-	                        if (w !== 0) {
-	                            return true;
-	                        }
+	                        // FIXME subpaths may overlap
+	                        // if (w !== 0) {
+	                        //     return true;
+	                        // }
 	                    }
 	                    xi = x0;
 	                    yi = y0;
@@ -13979,7 +14073,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports) {
 
 	
@@ -14027,12 +14121,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 55 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var curve = __webpack_require__(51);
+	    var curve = __webpack_require__(50);
 
 	    module.exports = {
 	        /**
@@ -14074,12 +14168,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 56 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var curve = __webpack_require__(51);
+	    var curve = __webpack_require__(50);
 
 	    module.exports = {
 	        /**
@@ -14119,12 +14213,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 57 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var normalizeRadian = __webpack_require__(58).normalizeRadian;
+	    var normalizeRadian = __webpack_require__(57).normalizeRadian;
 	    var PI2 = Math.PI * 2;
 
 	    module.exports = {
@@ -14185,7 +14279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 58 */
+/* 57 */
 /***/ function(module, exports) {
 
 	
@@ -14203,7 +14297,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports) {
 
 	
@@ -14211,15 +14305,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if ((y > y0 && y > y1) || (y < y0 && y < y1)) {
 	            return 0;
 	        }
+	        // Ignore horizontal line
 	        if (y1 === y0) {
 	            return 0;
 	        }
 	        var dir = y1 < y0 ? 1 : -1;
 	        var t = (y - y0) / (y1 - y0);
+
+	        // Avoid winding error when intersection point is the connect point of two line of polygon
+	        if (t === 1 || t === 0) {
+	            dir = y1 < y0 ? 0.5 : -0.5;
+	        }
+
 	        var x_ = t * (x1 - x0) + x0;
 
 	        return x_ > x ? dir : 0;
 	    };
+
+
+/***/ },
+/* 59 */
+/***/ function(module, exports) {
+
+	
+
+	    var Pattern = function (image, repeat) {
+	        this.image = image;
+	        this.repeat = repeat;
+
+	        // Can be cloned
+	        this.type = 'pattern';
+	    };
+
+	    Pattern.prototype.getCanvasPattern = function (ctx) {
+
+	        return this._canvasPattern
+	            || (this._canvasPattern = ctx.createPattern(this.image, this.repeat));
+	    };
+
+	    module.exports = Pattern;
 
 
 /***/ },
@@ -14228,8 +14352,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	
 
-	    var CMD = __webpack_require__(50).CMD;
-	    var vec2 = __webpack_require__(17);
+	    var CMD = __webpack_require__(49).CMD;
+	    var vec2 = __webpack_require__(16);
 	    var v2ApplyTransform = vec2.applyTransform;
 
 	    var points = [[], [], []];
@@ -14325,6 +14449,37 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 61 */
+/***/ function(module, exports) {
+
+	
+
+	    /**
+	     * @param {Array.<Object>} colorStops
+	     */
+	    var Gradient = function (colorStops) {
+
+	        this.colorStops = colorStops || [];
+	    };
+
+	    Gradient.prototype = {
+
+	        constructor: Gradient,
+
+	        addColorStop: function (offset, color) {
+	            this.colorStops.push({
+
+	                offset: offset,
+
+	                color: color
+	            });
+	        }
+	    };
+
+	    module.exports = Gradient;
+
+
+/***/ },
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14334,10 +14489,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var Displayable = __webpack_require__(47);
-	    var BoundingRect = __webpack_require__(16);
+	    var Displayable = __webpack_require__(46);
+	    var BoundingRect = __webpack_require__(15);
 	    var zrUtil = __webpack_require__(4);
-	    var roundRectHelper = __webpack_require__(62);
 
 	    var LRU = __webpack_require__(63);
 	    var globalImageCache = new LRU(50);
@@ -14357,10 +14511,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        type: 'image',
 
-	        brush: function (ctx) {
+	        brush: function (ctx, prevEl) {
 	            var style = this.style;
 	            var src = style.image;
 	            var image;
+
+	            // Must bind each time
+	            style.bind(ctx, this, prevEl);
 
 	            // style.image is a url string
 	            if (typeof src === 'string') {
@@ -14421,20 +14578,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    return;
 	                }
 
-	                ctx.save();
-
-	                style.bind(ctx);
-
 	                // 设置transform
 	                this.setTransform(ctx);
 
-	                if (style.r) {
-	                    // Border radius clipping
-	                    // FIXME
-	                    ctx.beginPath();
-	                    roundRectHelper.buildPath(ctx, style);
-	                    ctx.clip();
-	                }
 
 	                if (style.sWidth && style.sHeight) {
 	                    var sx = style.sx || 0;
@@ -14468,12 +14614,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    style.height = height;
 	                }
 
+	                this.restoreTransform(ctx);
+
 	                // Draw rect text
 	                if (style.text != null) {
 	                    this.drawRectText(ctx, this.getBoundingRect());
 	                }
 
-	                ctx.restore();
 	            }
 	        },
 
@@ -14491,101 +14638,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    zrUtil.inherits(ZImage, Displayable);
 
 	    module.exports = ZImage;
-
-
-/***/ },
-/* 62 */
-/***/ function(module, exports) {
-
-	
-
-	    module.exports = {
-	        buildPath: function (ctx, shape) {
-	            var x = shape.x;
-	            var y = shape.y;
-	            var width = shape.width;
-	            var height = shape.height;
-	            var r = shape.r;
-	            var r1;
-	            var r2;
-	            var r3;
-	            var r4;
-
-	            // Convert width and height to positive for better borderRadius
-	            if (width < 0) {
-	                x = x + width;
-	                width = -width;
-	            }
-	            if (height < 0) {
-	                y = y + height;
-	                height = -height;
-	            }
-
-	            if (typeof r === 'number') {
-	                r1 = r2 = r3 = r4 = r;
-	            }
-	            else if (r instanceof Array) {
-	                if (r.length === 1) {
-	                    r1 = r2 = r3 = r4 = r[0];
-	                }
-	                else if (r.length === 2) {
-	                    r1 = r3 = r[0];
-	                    r2 = r4 = r[1];
-	                }
-	                else if (r.length === 3) {
-	                    r1 = r[0];
-	                    r2 = r4 = r[1];
-	                    r3 = r[2];
-	                }
-	                else {
-	                    r1 = r[0];
-	                    r2 = r[1];
-	                    r3 = r[2];
-	                    r4 = r[3];
-	                }
-	            }
-	            else {
-	                r1 = r2 = r3 = r4 = 0;
-	            }
-
-	            var total;
-	            if (r1 + r2 > width) {
-	                total = r1 + r2;
-	                r1 *= width / total;
-	                r2 *= width / total;
-	            }
-	            if (r3 + r4 > width) {
-	                total = r3 + r4;
-	                r3 *= width / total;
-	                r4 *= width / total;
-	            }
-	            if (r2 + r3 > height) {
-	                total = r2 + r3;
-	                r2 *= height / total;
-	                r3 *= height / total;
-	            }
-	            if (r1 + r4 > height) {
-	                total = r1 + r4;
-	                r1 *= height / total;
-	                r4 *= height / total;
-	            }
-	            ctx.moveTo(x + r1, y);
-	            ctx.lineTo(x + width - r2, y);
-	            r2 !== 0 && ctx.quadraticCurveTo(
-	                x + width, y, x + width, y + r2
-	            );
-	            ctx.lineTo(x + width, y + height - r3);
-	            r3 !== 0 && ctx.quadraticCurveTo(
-	                x + width, y + height, x + width - r3, y + height
-	            );
-	            ctx.lineTo(x + r4, y + height);
-	            r4 !== 0 && ctx.quadraticCurveTo(
-	                x, y + height, x, y + height - r4
-	            );
-	            ctx.lineTo(x, y + r1);
-	            r1 !== 0 && ctx.quadraticCurveTo(x, y, x + r1, y);
-	        }
-	    };
 
 
 /***/ },
@@ -14778,9 +14830,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var Displayable = __webpack_require__(47);
+	    var Displayable = __webpack_require__(46);
 	    var zrUtil = __webpack_require__(4);
-	    var textContain = __webpack_require__(15);
+	    var textContain = __webpack_require__(14);
 
 	    /**
 	     * @alias zrender/graphic/Text
@@ -14798,36 +14850,32 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        type: 'text',
 
-	        brush: function (ctx) {
+	        brush: function (ctx, prevEl) {
 	            var style = this.style;
 	            var x = style.x || 0;
 	            var y = style.y || 0;
 	            // Convert to string
 	            var text = style.text;
-	            var textFill = style.fill;
-	            var textStroke = style.stroke;
 
 	            // Convert to string
 	            text != null && (text += '');
 
-	            if (text) {
-	                ctx.save();
+	            // Always bind style
+	            style.bind(ctx, this, prevEl);
 
-	                this.style.bind(ctx);
+	            if (text) {
+
 	                this.setTransform(ctx);
 
-	                textFill && (ctx.fillStyle = textFill);
-	                textStroke && (ctx.strokeStyle = textStroke);
-
-	                ctx.font = style.textFont || style.font;
-	                ctx.textAlign = style.textAlign;
-
+	                var textBaseline;
+	                var textAlign = style.textAlign;
+	                var font = style.textFont || style.font;
 	                if (style.textVerticalAlign) {
 	                    var rect = textContain.getBoundingRect(
-	                        text, ctx.font, style.textAlign, 'top'
+	                        text, font, style.textAlign, 'top'
 	                    );
 	                    // Ignore textBaseline
-	                    ctx.textBaseline = 'middle';
+	                    textBaseline = 'middle';
 	                    switch (style.textVerticalAlign) {
 	                        case 'middle':
 	                            y -= rect.height / 2 - rect.lineHeight / 2;
@@ -14840,18 +14888,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	                else {
-	                    ctx.textBaseline = style.textBaseline;
+	                    textBaseline = style.textBaseline;
 	                }
+
+	                ctx.font = font;
+	                ctx.textAlign = textAlign || 'left';
+	                // Use canvas default left textAlign. Giving invalid value will cause state not change
+	                if (ctx.textAlign !== textAlign) {
+	                    ctx.textAlign = 'left';
+	                }
+	                ctx.textBaseline = textBaseline || 'alphabetic';
+	                // Use canvas default alphabetic baseline
+	                if (ctx.textBaseline !== textBaseline) {
+	                    ctx.textBaseline = 'alphabetic';
+	                }
+
 	                var lineHeight = textContain.measureText('国', ctx.font).width;
 
 	                var textLines = text.split('\n');
 	                for (var i = 0; i < textLines.length; i++) {
-	                    textFill && ctx.fillText(textLines[i], x, y);
-	                    textStroke && ctx.strokeText(textLines[i], x, y);
+	                    style.hasFill() && ctx.fillText(textLines[i], x, y);
+	                    style.hasStroke() && ctx.strokeText(textLines[i], x, y);
 	                    y += lineHeight;
 	                }
 
-	                ctx.restore();
+	                this.restoreTransform(ctx);
 	            }
 	        },
 
@@ -14896,8 +14957,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    module.exports = __webpack_require__(46).extend({
-	        
+	    module.exports = __webpack_require__(45).extend({
+
 	        type: 'circle',
 
 	        shape: {
@@ -14906,11 +14967,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            r: 0
 	        },
 
-	        buildPath : function (ctx, shape) {
+
+	        buildPath : function (ctx, shape, inBundle) {
 	            // Better stroking in ShapeBundle
-	            ctx.moveTo(shape.cx + shape.r, shape.cy);
+	            // Always do it may have performence issue ( fill may be 2x more cost)
+	            if (inBundle) {
+	                ctx.moveTo(shape.cx + shape.r, shape.cy);
+	            }
+	            // Better stroking in ShapeBundle
+	            // ctx.moveTo(shape.cx + shape.r, shape.cy);
 	            ctx.arc(shape.cx, shape.cy, shape.r, 0, Math.PI * 2, true);
-	            return;
 	        }
 	    });
 
@@ -14928,7 +14994,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// FIXME clockwise seems wrong
 
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 
 	        type: 'sector',
 
@@ -14993,7 +15059,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 
 	        type: 'ring',
 
@@ -15029,7 +15095,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var polyHelper = __webpack_require__(69);
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 	        
 	        type: 'polygon',
 
@@ -15106,7 +15172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *         errorrik (errorrik@gmail.com)
 	 */
 
-	    var vec2 = __webpack_require__(17);
+	    var vec2 = __webpack_require__(16);
 
 	    /**
 	     * @inner
@@ -15183,7 +15249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var vec2 = __webpack_require__(17);
+	    var vec2 = __webpack_require__(16);
 	    var v2Min = vec2.min;
 	    var v2Max = vec2.max;
 	    var v2Scale = vec2.scale;
@@ -15288,7 +15354,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var polyHelper = __webpack_require__(69);
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 	        
 	        type: 'polyline',
 
@@ -15322,9 +15388,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var roundRectHelper = __webpack_require__(62);
+	    var roundRectHelper = __webpack_require__(74);
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 
 	        type: 'rect',
 
@@ -15362,6 +15428,101 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 74 */
+/***/ function(module, exports) {
+
+	
+
+	    module.exports = {
+	        buildPath: function (ctx, shape) {
+	            var x = shape.x;
+	            var y = shape.y;
+	            var width = shape.width;
+	            var height = shape.height;
+	            var r = shape.r;
+	            var r1;
+	            var r2;
+	            var r3;
+	            var r4;
+
+	            // Convert width and height to positive for better borderRadius
+	            if (width < 0) {
+	                x = x + width;
+	                width = -width;
+	            }
+	            if (height < 0) {
+	                y = y + height;
+	                height = -height;
+	            }
+
+	            if (typeof r === 'number') {
+	                r1 = r2 = r3 = r4 = r;
+	            }
+	            else if (r instanceof Array) {
+	                if (r.length === 1) {
+	                    r1 = r2 = r3 = r4 = r[0];
+	                }
+	                else if (r.length === 2) {
+	                    r1 = r3 = r[0];
+	                    r2 = r4 = r[1];
+	                }
+	                else if (r.length === 3) {
+	                    r1 = r[0];
+	                    r2 = r4 = r[1];
+	                    r3 = r[2];
+	                }
+	                else {
+	                    r1 = r[0];
+	                    r2 = r[1];
+	                    r3 = r[2];
+	                    r4 = r[3];
+	                }
+	            }
+	            else {
+	                r1 = r2 = r3 = r4 = 0;
+	            }
+
+	            var total;
+	            if (r1 + r2 > width) {
+	                total = r1 + r2;
+	                r1 *= width / total;
+	                r2 *= width / total;
+	            }
+	            if (r3 + r4 > width) {
+	                total = r3 + r4;
+	                r3 *= width / total;
+	                r4 *= width / total;
+	            }
+	            if (r2 + r3 > height) {
+	                total = r2 + r3;
+	                r2 *= height / total;
+	                r3 *= height / total;
+	            }
+	            if (r1 + r4 > height) {
+	                total = r1 + r4;
+	                r1 *= height / total;
+	                r4 *= height / total;
+	            }
+	            ctx.moveTo(x + r1, y);
+	            ctx.lineTo(x + width - r2, y);
+	            r2 !== 0 && ctx.quadraticCurveTo(
+	                x + width, y, x + width, y + r2
+	            );
+	            ctx.lineTo(x + width, y + height - r3);
+	            r3 !== 0 && ctx.quadraticCurveTo(
+	                x + width, y + height, x + width - r3, y + height
+	            );
+	            ctx.lineTo(x + r4, y + height);
+	            r4 !== 0 && ctx.quadraticCurveTo(
+	                x, y + height, x, y + height - r4
+	            );
+	            ctx.lineTo(x, y + r1);
+	            r1 !== 0 && ctx.quadraticCurveTo(x, y, x + r1, y);
+	        }
+	    };
+
+
+/***/ },
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15369,7 +15530,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @module zrender/graphic/shape/Line
 	 */
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 
 	        type: 'line',
 
@@ -15426,7 +15587,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15436,8 +15597,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var curveTool = __webpack_require__(51);
-	    var vec2 = __webpack_require__(17);
+	    var curveTool = __webpack_require__(50);
+	    var vec2 = __webpack_require__(16);
 	    var quadraticSubdivide = curveTool.quadraticSubdivide;
 	    var cubicSubdivide = curveTool.cubicSubdivide;
 	    var quadraticAt = curveTool.quadraticAt;
@@ -15463,7 +15624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ];
 	        }
 	    }
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 
 	        type: 'bezier-curve',
 
@@ -15567,7 +15728,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15576,7 +15737,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	 
 
-	    module.exports = __webpack_require__(46).extend({
+	    module.exports = __webpack_require__(45).extend({
 
 	        type: 'arc',
 
@@ -15621,13 +15782,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// CompoundPath to improve performance
 
 
-	    var Path = __webpack_require__(46);
+	    var Path = __webpack_require__(45);
 	    module.exports = Path.extend({
 
 	        type: 'compound',
@@ -15661,7 +15822,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        buildPath: function (ctx, shape) {
 	            var paths = shape.paths || [];
 	            for (var i = 0; i < paths.length; i++) {
-	                paths[i].buildPath(ctx, paths[i].shape);
+	                paths[i].buildPath(ctx, paths[i].shape, true);
 	            }
 	        },
 
@@ -15680,49 +15841,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 78 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-
-	    var zrUtil = __webpack_require__(4);
-
-	    var Gradient = __webpack_require__(5);
-
-	    /**
-	     * x, y, x2, y2 are all percent from 0 to 1
-	     * @param {number} [x=0]
-	     * @param {number} [y=0]
-	     * @param {number} [x2=1]
-	     * @param {number} [y2=0]
-	     * @param {Array.<Object>} colorStops
-	     */
-	    var LinearGradient = function (x, y, x2, y2, colorStops) {
-	        this.x = x == null ? 0 : x;
-
-	        this.y = y == null ? 0 : y;
-
-	        this.x2 = x2 == null ? 1 : x2;
-
-	        this.y2 = y2 == null ? 0 : y2;
-
-	        Gradient.call(this, colorStops);
-	    };
-
-	    LinearGradient.prototype = {
-
-	        constructor: LinearGradient,
-
-	        type: 'linear'
-	    };
-
-	    zrUtil.inherits(LinearGradient, Gradient);
-
-	    module.exports = LinearGradient;
-
-
-/***/ },
 /* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -15731,7 +15849,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var zrUtil = __webpack_require__(4);
 
-	    var Gradient = __webpack_require__(5);
+	    var Gradient = __webpack_require__(61);
+
+	    /**
+	     * x, y, x2, y2 are all percent from 0 to 1
+	     * @param {number} [x=0]
+	     * @param {number} [y=0]
+	     * @param {number} [x2=1]
+	     * @param {number} [y2=0]
+	     * @param {Array.<Object>} colorStops
+	     * @param {boolean} [globalCoord=false]
+	     */
+	    var LinearGradient = function (x, y, x2, y2, colorStops, globalCoord) {
+	        this.x = x == null ? 0 : x;
+
+	        this.y = y == null ? 0 : y;
+
+	        this.x2 = x2 == null ? 1 : x2;
+
+	        this.y2 = y2 == null ? 0 : y2;
+
+	        // Can be cloned
+	        this.type = 'linear';
+
+	        // If use global coord
+	        this.global = globalCoord || false;
+
+	        Gradient.call(this, colorStops);
+	    };
+
+	    LinearGradient.prototype = {
+
+	        constructor: LinearGradient
+	    };
+
+	    zrUtil.inherits(LinearGradient, Gradient);
+
+	    module.exports = LinearGradient;
+
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+
+	    var zrUtil = __webpack_require__(4);
+
+	    var Gradient = __webpack_require__(61);
 
 	    /**
 	     * x, y, r are all percent from 0 to 1
@@ -15739,22 +15905,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {number} [y=0.5]
 	     * @param {number} [r=0.5]
 	     * @param {Array.<Object>} [colorStops]
+	     * @param {boolean} [globalCoord=false]
 	     */
-	    var RadialGradient = function (x, y, r, colorStops) {
+	    var RadialGradient = function (x, y, r, colorStops, globalCoord) {
 	        this.x = x == null ? 0.5 : x;
 
 	        this.y = y == null ? 0.5 : y;
 
 	        this.r = r == null ? 0.5 : r;
 
+	        // Can be cloned
+	        this.type = 'radial';
+
+	        // If use global coord
+	        this.global = globalCoord || false;
+
 	        Gradient.call(this, colorStops);
 	    };
 
 	    RadialGradient.prototype = {
 
-	        constructor: RadialGradient,
-
-	        type: 'radial'
+	        constructor: RadialGradient
 	    };
 
 	    zrUtil.inherits(RadialGradient, Gradient);
@@ -15763,7 +15934,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -15777,17 +15948,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	// Global defines
 
-	    var guid = __webpack_require__(33);
+	    var guid = __webpack_require__(32);
 	    var env = __webpack_require__(2);
 
-	    var Handler = __webpack_require__(81);
-	    var Storage = __webpack_require__(85);
+	    var Handler = __webpack_require__(82);
+	    var Storage = __webpack_require__(84);
 	    var Animation = __webpack_require__(86);
+	    var HandlerProxy = __webpack_require__(89);
 
 	    var useVML = !env.canvasSupported;
 
 	    var painterCtors = {
-	        canvas: __webpack_require__(87)
+	        canvas: __webpack_require__(91)
 	    };
 
 	    var instances = {};    // ZRender实例map索引
@@ -15796,7 +15968,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @type {string}
 	     */
-	    zrender.version = '3.1.0';
+	    zrender.version = '3.1.2';
 
 	    /**
 	     * Initializing a zrender instance
@@ -15890,9 +16062,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.storage = storage;
 	        this.painter = painter;
-	        if (!env.node) {
-	            this.handler = new Handler(painter.getViewportRoot(), storage, painter);
-	        }
+
+	        var handerProxy = !env.node ? new HandlerProxy(painter.getViewportRoot()) : null;
+	        this.handler = new Handler(storage, painter, handerProxy);
 
 	        /**
 	         * @type {module:zrender/animation/Animation}
@@ -15902,6 +16074,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                update: function () {
 	                    if (self._needsRefresh) {
 	                        self.refreshImmediately();
+	                    }
+	                    if (self._needsRefreshHover) {
+	                        self.refreshHoverImmediately();
 	                    }
 	                }
 	            }
@@ -15947,7 +16122,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * 添加元素
-	         * @param  {string|module:zrender/Element} el
+	         * @param  {module:zrender/Element} el
 	         */
 	        add: function (el) {
 	            this.storage.addRoot(el);
@@ -15956,7 +16131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * 删除元素
-	         * @param  {string|module:zrender/Element} el
+	         * @param  {module:zrender/Element} el
 	         */
 	        remove: function (el) {
 	            this.storage.delRoot(el);
@@ -15998,12 +16173,61 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
+	         * Add element to hover layer
+	         * @param  {module:zrender/Element} el
+	         * @param {Object} style
+	         */
+	        addHover: function (el, style) {
+	            if (this.painter.addHover) {
+	                this.painter.addHover(el, style);
+	                this.refreshHover();
+	            }
+	        },
+
+	        /**
+	         * Add element from hover layer
+	         * @param  {module:zrender/Element} el
+	         */
+	        removeHover: function (el) {
+	            if (this.painter.removeHover) {
+	                this.painter.removeHover(el);
+	                this.refreshHover();
+	            }
+	        },
+
+	        /**
+	         * Clear all hover elements in hover layer
+	         * @param  {module:zrender/Element} el
+	         */
+	        clearHover: function () {
+	            if (this.painter.clearHover) {
+	                this.painter.clearHover();
+	                this.refreshHover();
+	            }
+	        },
+
+	        /**
+	         * Refresh hover in next frame
+	         */
+	        refreshHover: function () {
+	            this._needsRefreshHover = true;
+	        },
+
+	        /**
+	         * Refresh hover immediately
+	         */
+	        refreshHoverImmediately: function () {
+	            this._needsRefreshHover = false;
+	            this.painter.refreshHover && this.painter.refreshHover();
+	        },
+
+	        /**
 	         * Resize the canvas.
 	         * Should be invoked when container size is changed
 	         */
 	        resize: function() {
 	            this.painter.resize();
-	            this.handler && this.handler.resize();
+	            this.handler.resize();
 	        },
 
 	        /**
@@ -16053,10 +16277,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * Set default cursor
-	         * @param {string} cursorStyle 例如 crosshair
+	         * @param {string} [cursorStyle='default'] 例如 crosshair
 	         */
-	        setDefaultCursorStyle: function (cursorStyle) {
-	            this.handler.setDefaultCursorStyle(cursorStyle);
+	        setCursorStyle: function (cursorStyle) {
+	            this.handler.setCursorStyle(cursorStyle);
 	        },
 
 	        /**
@@ -16067,7 +16291,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {Object} [context] Context object
 	         */
 	        on: function(eventName, eventHandler, context) {
-	            this.handler && this.handler.on(eventName, eventHandler, context);
+	            this.handler.on(eventName, eventHandler, context);
 	        },
 
 	        /**
@@ -16076,7 +16300,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {Function} [eventHandler] Handler function
 	         */
 	        off: function(eventName, eventHandler) {
-	            this.handler && this.handler.off(eventName, eventHandler);
+	            this.handler.off(eventName, eventHandler);
 	        },
 
 	        /**
@@ -16086,7 +16310,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {event=} event Event object
 	         */
 	        trigger: function (eventName, event) {
-	            this.handler && this.handler.trigger(eventName, event);
+	            this.handler.trigger(eventName, event);
 	        },
 
 
@@ -16107,7 +16331,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.clear();
 	            this.storage.dispose();
 	            this.painter.dispose();
-	            this.handler && this.handler.dispose();
+	            this.handler.dispose();
 
 	            this.animation =
 	            this.storage =
@@ -16123,7 +16347,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16136,34 +16360,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var env = __webpack_require__(2);
-	    var eventTool = __webpack_require__(82);
 	    var util = __webpack_require__(4);
 	    var Draggable = __webpack_require__(83);
-	    var GestureMgr = __webpack_require__(84);
 
-	    var Eventful = __webpack_require__(34);
-
-	    var mouseHandlerNames = [
-	        'click', 'dblclick', 'mousewheel', 'mouseout'
-	    ];
-	    !usePointerEvent() && mouseHandlerNames.push(
-	        'mouseup', 'mousedown', 'mousemove'
-	    );
-
-	    var touchHandlerNames = [
-	        'touchstart', 'touchend', 'touchmove'
-	    ];
-
-	    var pointerHandlerNames = [
-	        'pointerdown', 'pointerup', 'pointermove'
-	    ];
-
-	    var TOUCH_CLICK_DELAY = 300;
-
-	    var addEventListener = eventTool.addEventListener;
-	    var removeEventListener = eventTool.removeEventListener;
-	    var normalizeEvent = eventTool.normalizeEvent;
+	    var Eventful = __webpack_require__(33);
 
 	    function makeEventPacket(eveType, target, event) {
 	        return {
@@ -16181,215 +16381,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    }
 
-	    var domHandlers = {
-	        /**
-	         * Mouse move handler
-	         * @inner
-	         * @param {Event} event
-	         */
-	        mousemove: function (event) {
-	            event = normalizeEvent(this.root, event);
+	    function EmptyProxy () {}
+	    EmptyProxy.prototype.dispose = function () {};
 
-	            var x = event.zrX;
-	            var y = event.zrY;
-
-	            var hovered = this.findHover(x, y, null);
-	            var lastHovered = this._hovered;
-
-	            this._hovered = hovered;
-
-	            this.root.style.cursor = hovered ? hovered.cursor : this._defaultCursorStyle;
-	            // Mouse out on previous hovered element
-	            if (lastHovered && hovered !== lastHovered && lastHovered.__zr) {
-	                this._dispatchProxy(lastHovered, 'mouseout', event);
-	            }
-
-	            // Mouse moving on one element
-	            this._dispatchProxy(hovered, 'mousemove', event);
-
-	            // Mouse over on a new element
-	            if (hovered && hovered !== lastHovered) {
-	                this._dispatchProxy(hovered, 'mouseover', event);
-	            }
-	        },
-
-	        /**
-	         * Mouse out handler
-	         * @inner
-	         * @param {Event} event
-	         */
-	        mouseout: function (event) {
-	            event = normalizeEvent(this.root, event);
-
-	            var element = event.toElement || event.relatedTarget;
-	            if (element != this.root) {
-	                while (element && element.nodeType != 9) {
-	                    // 忽略包含在root中的dom引起的mouseOut
-	                    if (element === this.root) {
-	                        return;
-	                    }
-
-	                    element = element.parentNode;
-	                }
-	            }
-
-	            this._dispatchProxy(this._hovered, 'mouseout', event);
-
-	            this.trigger('globalout', {
-	                event: event
-	            });
-	        },
-
-	        /**
-	         * Touch开始响应函数
-	         * @inner
-	         * @param {Event} event
-	         */
-	        touchstart: function (event) {
-	            // Default mouse behaviour should not be disabled here.
-	            // For example, page may needs to be slided.
-	            // eventTool.stop(event);
-	            event = normalizeEvent(this.root, event);
-
-	            this._lastTouchMoment = new Date();
-
-	            processGesture(this, event, 'start');
-
-	            // 平板补充一次findHover
-	            // this._mobileFindFixed(event);
-	            // Trigger mousemove and mousedown
-	            domHandlers.mousemove.call(this, event);
-
-	            domHandlers.mousedown.call(this, event);
-
-	            setTouchTimer(this);
-	        },
-
-	        /**
-	         * Touch移动响应函数
-	         * @inner
-	         * @param {Event} event
-	         */
-	        touchmove: function (event) {
-	            // eventTool.stop(event);// 阻止浏览器默认事件，重要
-	            event = normalizeEvent(this.root, event);
-
-	            processGesture(this, event, 'change');
-
-	            // Mouse move should always be triggered no matter whether
-	            // there is gestrue event, because mouse move and pinch may
-	            // be used at the same time.
-	            domHandlers.mousemove.call(this, event);
-
-	            setTouchTimer(this);
-	        },
-
-	        /**
-	         * Touch结束响应函数
-	         * @inner
-	         * @param {Event} event
-	         */
-	        touchend: function (event) {
-	            // eventTool.stop(event);// 阻止浏览器默认事件，重要
-	            event = normalizeEvent(this.root, event);
-
-	            processGesture(this, event, 'end');
-
-	            domHandlers.mouseup.call(this, event);
-
-	            // click event should always be triggered no matter whether
-	            // there is gestrue event. System click can not be prevented.
-	            if (+new Date() - this._lastTouchMoment < TOUCH_CLICK_DELAY) {
-	                // this._mobileFindFixed(event);
-	                domHandlers.click.call(this, event);
-	            }
-
-	            setTouchTimer(this);
-	        }
-	    };
-
-	    // Common handlers
-	    util.each(['click', 'mousedown', 'mouseup', 'mousewheel', 'dblclick'], function (name) {
-	        domHandlers[name] = function (event) {
-	            event = normalizeEvent(this.root, event);
-	            // Find hover again to avoid click event is dispatched manually. Or click is triggered without mouseover
-	            var hovered = this.findHover(event.zrX, event.zrY, null);
-
-	            if (name === 'mousedown') {
-	                this._downel = hovered;
-	                // In case click triggered before mouseup
-	                this._upel = hovered;
-	            }
-	            else if (name === 'mosueup') {
-	                this._upel = hovered;
-	            }
-	            else if (name === 'click') {
-	                if (this._downel !== this._upel) {
-	                    return;
-	                }
-	            }
-
-	            this._dispatchProxy(hovered, name, event);
-	        };
-	    });
-
-	    // Pointer event handlers
-	    // util.each(['pointerdown', 'pointermove', 'pointerup'], function (name) {
-	    //     domHandlers[name] = function (event) {
-	    //         var mouseName = name.replace('pointer', 'mouse');
-	    //         domHandlers[mouseName].call(this, event);
-	    //     };
-	    // });
-
-	    function processGesture(zrHandler, event, stage) {
-	        var gestureMgr = zrHandler._gestureMgr;
-
-	        stage === 'start' && gestureMgr.clear();
-
-	        var gestureInfo = gestureMgr.recognize(
-	            event,
-	            zrHandler.findHover(event.zrX, event.zrY, null)
-	        );
-
-	        stage === 'end' && gestureMgr.clear();
-
-	        if (gestureInfo) {
-	            // eventTool.stop(event);
-	            var type = gestureInfo.type;
-	            event.gestureEvent = type;
-
-	            zrHandler._dispatchProxy(gestureInfo.target, type, gestureInfo.event);
-	        }
-	    }
-
-	    /**
-	     * 为控制类实例初始化dom 事件处理函数
-	     *
-	     * @inner
-	     * @param {module:zrender/Handler} instance 控制类实例
-	     */
-	    function initDomHandler(instance) {
-	        var handlerNames = touchHandlerNames.concat(pointerHandlerNames);
-	        for (var i = 0; i < handlerNames.length; i++) {
-	            var name = handlerNames[i];
-	            instance._handlers[name] = util.bind(domHandlers[name], instance);
-	        }
-
-	        for (var i = 0; i < mouseHandlerNames.length; i++) {
-	            var name = mouseHandlerNames[i];
-	            instance._handlers[name] = makeMouseHandler(domHandlers[name], instance);
-	        }
-
-	        function makeMouseHandler(fn, instance) {
-	            return function () {
-	                if (instance._touching) {
-	                    return;
-	                }
-	                return fn.apply(instance, arguments);
-	            };
-	        }
-	    }
-
+	    var handlerNames = [
+	        'click', 'dblclick', 'mousewheel', 'mouseout',
+	        'mouseup', 'mousedown', 'mousemove'
+	    ];
 	    /**
 	     * @alias module:zrender/Handler
 	     * @constructor
@@ -16398,12 +16396,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {module:zrender/Storage} storage Storage instance.
 	     * @param {module:zrender/Painter} painter Painter instance.
 	     */
-	    var Handler = function(root, storage, painter) {
+	    var Handler = function(storage, painter, proxy) {
 	        Eventful.call(this);
 
-	        this.root = root;
 	        this.storage = storage;
+
 	        this.painter = painter;
+
+	        proxy = proxy || new EmptyProxy();
+	        /**
+	         * Proxy of event. can be Dom, WebGLSurface, etc.
+	         */
+	        this.proxy = proxy;
+
+	        // Attach handler
+	        proxy.handler = this;
 
 	        /**
 	         * @private
@@ -16429,65 +16436,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        this._lastY;
 
-	        /**
-	         * @private
-	         * @type {string}
-	         */
-	        this._defaultCursorStyle = 'default';
-
-	        /**
-	         * @private
-	         * @type {module:zrender/core/GestureMgr}
-	         */
-	        this._gestureMgr = new GestureMgr();
-
-	        /**
-	         * @private
-	         * @type {Array.<Function>}
-	         */
-	        this._handlers = [];
-
-	        /**
-	         * @private
-	         * @type {boolean}
-	         */
-	        this._touching = false;
-
-	        /**
-	         * @private
-	         * @type {number}
-	         */
-	        this._touchTimer;
-
-	        initDomHandler(this);
-
-	        if (usePointerEvent()) {
-	            mountHandlers(pointerHandlerNames, this);
-	        }
-	        else if (useTouchEvent()) {
-	            mountHandlers(touchHandlerNames, this);
-
-	            // Handler of 'mouseout' event is needed in touch mode, which will be mounted below.
-	            // addEventListener(root, 'mouseout', this._mouseoutHandler);
-	        }
-
-	        // Considering some devices that both enable touch and mouse event (like MS Surface
-	        // and lenovo X240, @see #2350), we make mouse event be always listened, otherwise
-	        // mouse event can not be handle in those devices.
-	        mountHandlers(mouseHandlerNames, this);
 
 	        Draggable.call(this);
 
-	        function mountHandlers(handlerNames, instance) {
-	            util.each(handlerNames, function (name) {
-	                addEventListener(root, eventNameFix(name), instance._handlers[name]);
-	            }, instance);
-	        }
+	        util.each(handlerNames, function (name) {
+	            proxy.on && proxy.on(name, this[name], this);
+	        }, this);
 	    };
 
 	    Handler.prototype = {
 
 	        constructor: Handler,
+
+	        mousemove: function (event) {
+	            var x = event.zrX;
+	            var y = event.zrY;
+
+	            var hovered = this.findHover(x, y, null);
+	            var lastHovered = this._hovered;
+	            var proxy = this.proxy;
+
+	            this._hovered = hovered;
+
+	            proxy.setCursor && proxy.setCursor(hovered ? hovered.cursor : 'default');
+
+	            // Mouse out on previous hovered element
+	            if (lastHovered && hovered !== lastHovered && lastHovered.__zr) {
+	                this.dispatchToElement(lastHovered, 'mouseout', event);
+	            }
+
+	            // Mouse moving on one element
+	            this.dispatchToElement(hovered, 'mousemove', event);
+
+	            // Mouse over on a new element
+	            if (hovered && hovered !== lastHovered) {
+	                this.dispatchToElement(hovered, 'mouseover', event);
+	            }
+	        },
+
+	        mouseout: function (event) {
+	            this.dispatchToElement(this._hovered, 'mouseout', event);
+
+	            this.trigger('globalout', {
+	                event: event
+	            });
+	        },
 
 	        /**
 	         * Resize
@@ -16502,7 +16495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {event=} eventArgs
 	         */
 	        dispatch: function (eventName, eventArgs) {
-	            var handler = this._handlers[eventName];
+	            var handler = this[eventName];
 	            handler && handler.call(this, eventArgs);
 	        },
 
@@ -16510,26 +16503,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Dispose
 	         */
 	        dispose: function () {
-	            var root = this.root;
 
-	            var handlerNames = mouseHandlerNames.concat(touchHandlerNames);
+	            this.proxy.dispose();
 
-	            for (var i = 0; i < handlerNames.length; i++) {
-	                var name = handlerNames[i];
-	                removeEventListener(root, eventNameFix(name), this._handlers[name]);
-	            }
-
-	            this.root =
 	            this.storage =
+	            this.proxy =
 	            this.painter = null;
 	        },
 
 	        /**
 	         * 设置默认的cursor style
-	         * @param {string} cursorStyle 例如 crosshair
+	         * @param {string} [cursorStyle='default'] 例如 crosshair
 	         */
-	        setDefaultCursorStyle: function (cursorStyle) {
-	            this._defaultCursorStyle = cursorStyle;
+	        setCursorStyle: function (cursorStyle) {
+	            var proxy = this.proxy;
+	            proxy.setCursor && proxy.setCursor(cursorStyle);
 	        },
 
 	        /**
@@ -16540,7 +16528,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {string} eventName 事件名称
 	         * @param {Object} event 事件对象
 	         */
-	        _dispatchProxy: function (targetEl, eventName, event) {
+	        dispatchToElement: function (targetEl, eventName, event) {
 	            var eventHandler = 'on' + eventName;
 	            var eventPacket = makeEventPacket(eventName, targetEl, event);
 
@@ -16596,6 +16584,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 
+	    // Common handlers
+	    util.each(['click', 'mousedown', 'mouseup', 'mousewheel', 'dblclick'], function (name) {
+	        Handler.prototype[name] = function (event) {
+	            // Find hover again to avoid click event is dispatched manually. Or click is triggered without mouseover
+	            var hovered = this.findHover(event.zrX, event.zrY, null);
+
+	            if (name === 'mousedown') {
+	                this._downel = hovered;
+	                // In case click triggered before mouseup
+	                this._upel = hovered;
+	            }
+	            else if (name === 'mosueup') {
+	                this._upel = hovered;
+	            }
+	            else if (name === 'click') {
+	                if (this._downel !== this._upel) {
+	                    return;
+	                }
+	            }
+
+	            this.dispatchToElement(hovered, name, event);
+	        };
+	    });
+
 	    function isHover(displayable, x, y) {
 	        if (displayable[displayable.rectHover ? 'rectContain' : 'contain'](x, y)) {
 	            var el = displayable;
@@ -16612,151 +16624,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return false;
 	    }
 
-	    /**
-	     * Prevent mouse event from being dispatched after Touch Events action
-	     * @see <https://github.com/deltakosh/handjs/blob/master/src/hand.base.js>
-	     * 1. Mobile browsers dispatch mouse events 300ms after touchend.
-	     * 2. Chrome for Android dispatch mousedown for long-touch about 650ms
-	     * Result: Blocking Mouse Events for 700ms.
-	     */
-	    function setTouchTimer(instance) {
-	        instance._touching = true;
-	        clearTimeout(instance._touchTimer);
-	        instance._touchTimer = setTimeout(function () {
-	            instance._touching = false;
-	        }, 700);
-	    }
-
-	    /**
-	     * Althought MS Surface support screen touch, IE10/11 do not support
-	     * touch event and MS Edge supported them but not by default (but chrome
-	     * and firefox do). Thus we use Pointer event on MS browsers to handle touch.
-	     */
-	    function usePointerEvent() {
-	        // TODO
-	        // pointermove event dont trigger when using finger.
-	        // We may figger it out latter.
-	        return false;
-	        // return env.pointerEventsSupported
-	            // In no-touch device we dont use pointer evnets but just
-	            // use mouse event for avoiding problems.
-	            // && window.navigator.maxTouchPoints;
-	    }
-
-	    function useTouchEvent() {
-	        return env.touchEventsSupported;
-	    }
-
-	    function eventNameFix(name) {
-	        return (name === 'mousewheel' && env.browser.firefox) ? 'DOMMouseScroll' : name;
-	    }
-
 	    util.mixin(Handler, Eventful);
 	    util.mixin(Handler, Draggable);
 
 	    module.exports = Handler;
-
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	/**
-	 * 事件辅助类
-	 * @module zrender/core/event
-	 * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
-	 */
-
-
-	    var Eventful = __webpack_require__(34);
-
-	    var isDomLevel2 = (typeof window !== 'undefined') && !!window.addEventListener;
-
-	    function getBoundingClientRect(el) {
-	        // BlackBerry 5, iOS 3 (original iPhone) don't have getBoundingRect
-	        return el.getBoundingClientRect ? el.getBoundingClientRect() : { left: 0, top: 0};
-	    }
-	    /**
-	     * 如果存在第三方嵌入的一些dom触发的事件，或touch事件，需要转换一下事件坐标
-	     */
-	    function normalizeEvent(el, e) {
-
-	        e = e || window.event;
-
-	        if (e.zrX != null) {
-	            return e;
-	        }
-
-	        var eventType = e.type;
-	        var isTouch = eventType && eventType.indexOf('touch') >= 0;
-
-	        if (!isTouch) {
-	            var box = getBoundingClientRect(el);
-	            e.zrX = e.clientX - box.left;
-	            e.zrY = e.clientY - box.top;
-	            e.zrDelta = (e.wheelDelta) ? e.wheelDelta / 120 : -(e.detail || 0) / 3;
-	        }
-	        else {
-	            var touch = eventType != 'touchend'
-	                            ? e.targetTouches[0]
-	                            : e.changedTouches[0];
-	            if (touch) {
-	                var rBounding = getBoundingClientRect(el);
-	                // touch事件坐标是全屏的~
-	                e.zrX = touch.clientX - rBounding.left;
-	                e.zrY = touch.clientY - rBounding.top;
-	            }
-	        }
-
-	        return e;
-	    }
-
-	    function addEventListener(el, name, handler) {
-	        if (isDomLevel2) {
-	            el.addEventListener(name, handler);
-	        }
-	        else {
-	            el.attachEvent('on' + name, handler);
-	        }
-	    }
-
-	    function removeEventListener(el, name, handler) {
-	        if (isDomLevel2) {
-	            el.removeEventListener(name, handler);
-	        }
-	        else {
-	            el.detachEvent('on' + name, handler);
-	        }
-	    }
-
-	    /**
-	     * 停止冒泡和阻止默认行为
-	     * @memberOf module:zrender/core/event
-	     * @method
-	     * @param {Event} e : event对象
-	     */
-	    var stop = isDomLevel2
-	        ? function (e) {
-	            e.preventDefault();
-	            e.stopPropagation();
-	            e.cancelBubble = true;
-	        }
-	        : function (e) {
-	            e.returnValue = false;
-	            e.cancelBubble = true;
-	        };
-
-	    module.exports = {
-	        normalizeEvent: normalizeEvent,
-	        addEventListener: addEventListener,
-	        removeEventListener: removeEventListener,
-
-	        stop: stop,
-	        // 做向上兼容
-	        Dispatcher: Eventful
-	    };
-
 
 
 /***/ },
@@ -16791,7 +16662,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this._x = e.offsetX;
 	                this._y = e.offsetY;
 
-	                this._dispatchProxy(draggingTarget, 'dragstart', e.event);
+	                this.dispatchToElement(draggingTarget, 'dragstart', e.event);
 	            }
 	        },
 
@@ -16808,7 +16679,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this._y = y;
 
 	                draggingTarget.drift(dx, dy, e);
-	                this._dispatchProxy(draggingTarget, 'drag', e.event);
+	                this.dispatchToElement(draggingTarget, 'drag', e.event);
 
 	                var dropTarget = this.findHover(x, y, draggingTarget);
 	                var lastDropTarget = this._dropTarget;
@@ -16816,10 +16687,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                if (draggingTarget !== dropTarget) {
 	                    if (lastDropTarget && dropTarget !== lastDropTarget) {
-	                        this._dispatchProxy(lastDropTarget, 'dragleave', e.event);
+	                        this.dispatchToElement(lastDropTarget, 'dragleave', e.event);
 	                    }
 	                    if (dropTarget && dropTarget !== lastDropTarget) {
-	                        this._dispatchProxy(dropTarget, 'dragenter', e.event);
+	                        this.dispatchToElement(dropTarget, 'dragenter', e.event);
 	                    }
 	                }
 	            }
@@ -16832,10 +16703,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                draggingTarget.dragging = false;
 	            }
 
-	            this._dispatchProxy(draggingTarget, 'dragend', e.event);
+	            this.dispatchToElement(draggingTarget, 'dragend', e.event);
 
 	            if (this._dropTarget) {
-	                this._dispatchProxy(this._dropTarget, 'drop', e.event);
+	                this.dispatchToElement(this._dropTarget, 'drop', e.event);
 	            }
 
 	            this._draggingTarget = null;
@@ -16849,129 +16720,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 84 */
-/***/ function(module, exports) {
-
-	'use strict';
-	/**
-	 * Only implements needed gestures for mobile.
-	 */
-
-
-	    var GestureMgr = function () {
-
-	        /**
-	         * @private
-	         * @type {Array.<Object>}
-	         */
-	        this._track = [];
-	    };
-
-	    GestureMgr.prototype = {
-
-	        constructor: GestureMgr,
-
-	        recognize: function (event, target) {
-	            this._doTrack(event, target);
-	            return this._recognize(event);
-	        },
-
-	        clear: function () {
-	            this._track.length = 0;
-	            return this;
-	        },
-
-	        _doTrack: function (event, target) {
-	            var touches = event.touches;
-
-	            if (!touches) {
-	                return;
-	            }
-
-	            var trackItem = {
-	                points: [],
-	                touches: [],
-	                target: target,
-	                event: event
-	            };
-
-	            for (var i = 0, len = touches.length; i < len; i++) {
-	                var touch = touches[i];
-	                trackItem.points.push([touch.clientX, touch.clientY]);
-	                trackItem.touches.push(touch);
-	            }
-
-	            this._track.push(trackItem);
-	        },
-
-	        _recognize: function (event) {
-	            for (var eventName in recognizers) {
-	                if (recognizers.hasOwnProperty(eventName)) {
-	                    var gestureInfo = recognizers[eventName](this._track, event);
-	                    if (gestureInfo) {
-	                        return gestureInfo;
-	                    }
-	                }
-	            }
-	        }
-	    };
-
-	    function dist(pointPair) {
-	        var dx = pointPair[1][0] - pointPair[0][0];
-	        var dy = pointPair[1][1] - pointPair[0][1];
-
-	        return Math.sqrt(dx * dx + dy * dy);
-	    }
-
-	    function center(pointPair) {
-	        return [
-	            (pointPair[0][0] + pointPair[1][0]) / 2,
-	            (pointPair[0][1] + pointPair[1][1]) / 2
-	        ];
-	    }
-
-	    var recognizers = {
-
-	        pinch: function (track, event) {
-	            var trackLen = track.length;
-
-	            if (!trackLen) {
-	                return;
-	            }
-
-	            var pinchEnd = (track[trackLen - 1] || {}).points;
-	            var pinchPre = (track[trackLen - 2] || {}).points || pinchEnd;
-
-	            if (pinchPre
-	                && pinchPre.length > 1
-	                && pinchEnd
-	                && pinchEnd.length > 1
-	            ) {
-	                var pinchScale = dist(pinchEnd) / dist(pinchPre);
-	                !isFinite(pinchScale) && (pinchScale = 1);
-
-	                event.pinchScale = pinchScale;
-
-	                var pinchCenter = center(pinchEnd);
-	                event.pinchX = pinchCenter[0];
-	                event.pinchY = pinchCenter[1];
-
-	                return {
-	                    type: 'pinch',
-	                    target: track[0].target,
-	                    event: event
-	                };
-	            }
-	        }
-
-	        // Only pinch currently.
-	    };
-
-	    module.exports = GestureMgr;
-
-
-
-/***/ },
-/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16985,15 +16733,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var util = __webpack_require__(4);
+	    var env = __webpack_require__(2);
 
-	    var Group = __webpack_require__(31);
+	    var Group = __webpack_require__(30);
+
+	    // Use timsort because in most case elements are partially sorted
+	    // https://jsfiddle.net/pissang/jr4x7mdm/8/
+	    var timsort = __webpack_require__(85);
 
 	    function shapeCompareFunc(a, b) {
 	        if (a.zlevel === b.zlevel) {
 	            if (a.z === b.z) {
-	                if (a.z2 === b.z2) {
-	                    return a.__renderidx - b.__renderidx;
-	                }
+	                // if (a.z2 === b.z2) {
+	                //     // FIXME Slow has renderidx compare
+	                //     // http://stackoverflow.com/questions/20883421/sorting-in-javascript-should-every-compare-function-have-a-return-0-statement
+	                //     // https://github.com/v8/v8/blob/47cce544a31ed5577ffe2963f67acb4144ee0232/src/js/array.js#L1012
+	                //     return a.__renderidx - b.__renderidx;
+	                // }
 	                return a.z2 - b.z2;
 	            }
 	            return a.z - b.z;
@@ -17019,6 +16775,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Storage.prototype = {
 
 	        constructor: Storage,
+
+	        /**
+	         * @param  {Function} cb
+	         *
+	         */
+	        traverse: function (cb, context) {
+	            for (var i = 0; i < this._roots.length; i++) {
+	                this._roots[i].traverse(cb, context);
+	            }
+	        },
 
 	        /**
 	         * 返回所有图形的绘制队列
@@ -17051,11 +16817,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            displayList.length = this._displayListLen;
 
-	            for (var i = 0, len = displayList.length; i < len; i++) {
-	                displayList[i].__renderidx = i;
-	            }
+	            // for (var i = 0, len = displayList.length; i < len; i++) {
+	            //     displayList[i].__renderidx = i;
+	            // }
 
-	            displayList.sort(shapeCompareFunc);
+	            // displayList.sort(shapeCompareFunc);
+	            env.canvasSupported && timsort(displayList, shapeCompareFunc);
 	        },
 
 	        _updateAndAddDisplayable: function (el, clipPaths, includeIgnore) {
@@ -17066,7 +16833,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            el.beforeUpdate();
 
-	            el.update();
+	            if (el.__dirty) {
+
+	                el.update();
+
+	            }
 
 	            el.afterUpdate();
 
@@ -17086,7 +16857,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 
-	            if (el.type == 'group') {
+	            if (el.isGroup) {
 	                var children = el._children;
 
 	                for (var i = 0; i < children.length; i++) {
@@ -17094,7 +16865,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                    // Force to mark as dirty if group is dirty
 	                    // FIXME __dirtyPath ?
-	                    child.__dirty = el.__dirty || child.__dirty;
+	                    if (el.__dirty) {
+	                        child.__dirty = true;
+	                    }
 
 	                    this._updateAndAddDisplayable(child, clipPaths, includeIgnore);
 	                }
@@ -17210,7 +16983,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._elements =
 	            this._renderList =
 	            this._roots = null;
-	        }
+	        },
+
+	        displayableSortFunc: shapeCompareFunc
 	    };
 
 	    module.exports = Storage;
@@ -17218,1196 +16993,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 86 */
-/***/ function(module, exports, __webpack_require__) {
+/* 85 */
+/***/ function(module, exports) {
 
-	'use strict';
-	/**
-	 * 动画主类, 调度和管理所有动画控制器
-	 *
-	 * @module zrender/animation/Animation
-	 * @author pissang(https://github.com/pissang)
-	 */
-	// TODO Additive animation
-	// http://iosoteric.com/additive-animations-animatewithduration-in-ios-8/
-	// https://developer.apple.com/videos/wwdc2014/#236
+	// https://github.com/mziccard/node-timsort
 
-
-	    var util = __webpack_require__(4);
-	    var Dispatcher = __webpack_require__(82).Dispatcher;
-
-	    var requestAnimationFrame = (typeof window !== 'undefined' &&
-	                                    (window.requestAnimationFrame
-	                                    || window.msRequestAnimationFrame
-	                                    || window.mozRequestAnimationFrame
-	                                    || window.webkitRequestAnimationFrame))
-	                                || function (func) {
-	                                    setTimeout(func, 16);
-	                                };
-
-	    var Animator = __webpack_require__(37);
-	    /**
-	     * @typedef {Object} IZRenderStage
-	     * @property {Function} update
-	     */
-
-	    /**
-	     * @alias module:zrender/animation/Animation
-	     * @constructor
-	     * @param {Object} [options]
-	     * @param {Function} [options.onframe]
-	     * @param {IZRenderStage} [options.stage]
-	     * @example
-	     *     var animation = new Animation();
-	     *     var obj = {
-	     *         x: 100,
-	     *         y: 100
-	     *     };
-	     *     animation.animate(node.position)
-	     *         .when(1000, {
-	     *             x: 500,
-	     *             y: 500
-	     *         })
-	     *         .when(2000, {
-	     *             x: 100,
-	     *             y: 100
-	     *         })
-	     *         .start('spline');
-	     */
-	    var Animation = function (options) {
-
-	        options = options || {};
-
-	        this.stage = options.stage || {};
-
-	        this.onframe = options.onframe || function() {};
-
-	        // private properties
-	        this._clips = [];
-
-	        this._running = false;
-
-	        this._time = 0;
-
-	        Dispatcher.call(this);
-	    };
-
-	    Animation.prototype = {
-
-	        constructor: Animation,
-	        /**
-	         * 添加 clip
-	         * @param {module:zrender/animation/Clip} clip
-	         */
-	        addClip: function (clip) {
-	            this._clips.push(clip);
-	        },
-	        /**
-	         * 添加 animator
-	         * @param {module:zrender/animation/Animator} animator
-	         */
-	        addAnimator: function (animator) {
-	            animator.animation = this;
-	            var clips = animator.getClips();
-	            for (var i = 0; i < clips.length; i++) {
-	                this.addClip(clips[i]);
-	            }
-	        },
-	        /**
-	         * 删除动画片段
-	         * @param {module:zrender/animation/Clip} clip
-	         */
-	        removeClip: function(clip) {
-	            var idx = util.indexOf(this._clips, clip);
-	            if (idx >= 0) {
-	                this._clips.splice(idx, 1);
-	            }
-	        },
-
-	        /**
-	         * 删除动画片段
-	         * @param {module:zrender/animation/Animator} animator
-	         */
-	        removeAnimator: function (animator) {
-	            var clips = animator.getClips();
-	            for (var i = 0; i < clips.length; i++) {
-	                this.removeClip(clips[i]);
-	            }
-	            animator.animation = null;
-	        },
-
-	        _update: function() {
-
-	            var time = new Date().getTime();
-	            var delta = time - this._time;
-	            var clips = this._clips;
-	            var len = clips.length;
-
-	            var deferredEvents = [];
-	            var deferredClips = [];
-	            for (var i = 0; i < len; i++) {
-	                var clip = clips[i];
-	                var e = clip.step(time);
-	                // Throw out the events need to be called after
-	                // stage.update, like destroy
-	                if (e) {
-	                    deferredEvents.push(e);
-	                    deferredClips.push(clip);
-	                }
-	            }
-
-	            // Remove the finished clip
-	            for (var i = 0; i < len;) {
-	                if (clips[i]._needsRemove) {
-	                    clips[i] = clips[len - 1];
-	                    clips.pop();
-	                    len--;
-	                }
-	                else {
-	                    i++;
-	                }
-	            }
-
-	            len = deferredEvents.length;
-	            for (var i = 0; i < len; i++) {
-	                deferredClips[i].fire(deferredEvents[i]);
-	            }
-
-	            this._time = time;
-
-	            this.onframe(delta);
-
-	            this.trigger('frame', delta);
-
-	            if (this.stage.update) {
-	                this.stage.update();
-	            }
-	        },
-	        /**
-	         * 开始运行动画
-	         */
-	        start: function () {
-	            var self = this;
-
-	            this._running = true;
-
-	            function step() {
-	                if (self._running) {
-
-	                    requestAnimationFrame(step);
-
-	                    self._update();
-	                }
-	            }
-
-	            this._time = new Date().getTime();
-	            requestAnimationFrame(step);
-	        },
-	        /**
-	         * 停止运行动画
-	         */
-	        stop: function () {
-	            this._running = false;
-	        },
-	        /**
-	         * 清除所有动画片段
-	         */
-	        clear: function () {
-	            this._clips = [];
-	        },
-	        /**
-	         * 对一个目标创建一个animator对象，可以指定目标中的属性使用动画
-	         * @param  {Object} target
-	         * @param  {Object} options
-	         * @param  {boolean} [options.loop=false] 是否循环播放动画
-	         * @param  {Function} [options.getter=null]
-	         *         如果指定getter函数，会通过getter函数取属性值
-	         * @param  {Function} [options.setter=null]
-	         *         如果指定setter函数，会通过setter函数设置属性值
-	         * @return {module:zrender/animation/Animation~Animator}
-	         */
-	        animate: function (target, options) {
-	            options = options || {};
-	            var animator = new Animator(
-	                target,
-	                options.loop,
-	                options.getter,
-	                options.setter
-	            );
-
-	            return animator;
-	        }
-	    };
-
-	    util.mixin(Animation, Dispatcher);
-
-	    module.exports = Animation;
-
-
-
-/***/ },
-/* 87 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	/**
-	 * Default canvas painter
-	 * @module zrender/Painter
-	 * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
-	 *         errorrik (errorrik@gmail.com)
-	 *         pissang (https://www.github.com/pissang)
-	 */
-	 
-
-	    var config = __webpack_require__(42);
-	    var util = __webpack_require__(4);
-	    var log = __webpack_require__(41);
-	    var BoundingRect = __webpack_require__(16);
-
-	    var Layer = __webpack_require__(88);
-
-	    function parseInt10(val) {
-	        return parseInt(val, 10);
-	    }
-
-	    function isLayerValid(layer) {
-	        if (!layer) {
-	            return false;
-	        }
-
-	        if (layer.isBuildin) {
-	            return true;
-	        }
-
-	        if (typeof(layer.resize) !== 'function'
-	            || typeof(layer.refresh) !== 'function'
-	        ) {
-	            return false;
-	        }
-
-	        return true;
-	    }
-
-	    function preProcessLayer(layer) {
-	        layer.__unusedCount++;
-	    }
-
-	    function postProcessLayer(layer) {
-	        layer.__dirty = false;
-	        if (layer.__unusedCount == 1) {
-	            layer.clear();
-	        }
-	    }
-
-	    var tmpRect = new BoundingRect(0, 0, 0, 0);
-	    var viewRect = new BoundingRect(0, 0, 0, 0);
-	    function isDisplayableCulled(el, width, height) {
-	        tmpRect.copy(el.getBoundingRect());
-	        if (el.transform) {
-	            tmpRect.applyTransform(el.transform);
-	        }
-	        viewRect.width = width;
-	        viewRect.height = height;
-	        return !tmpRect.intersect(viewRect);
-	    }
-
-	    function isClipPathChanged(clipPaths, prevClipPaths) {
-	        if (!clipPaths || !prevClipPaths || (clipPaths.length !== prevClipPaths.length)) {
-	            return true;
-	        }
-	        for (var i = 0; i < clipPaths.length; i++) {
-	            if (clipPaths[i] !== prevClipPaths[i]) {
-	                return true;
-	            }
-	        }
-	    }
-
-	    function doClip(clipPaths, ctx) {
-	        for (var i = 0; i < clipPaths.length; i++) {
-	            var clipPath = clipPaths[i];
-	            var m;
-	            if (clipPath.transform) {
-	                m = clipPath.transform;
-	                ctx.transform(
-	                    m[0], m[1],
-	                    m[2], m[3],
-	                    m[4], m[5]
-	                );
-	            }
-	            var path = clipPath.path;
-	            path.beginPath(ctx);
-	            clipPath.buildPath(path, clipPath.shape);
-	            ctx.clip();
-	            // Transform back
-	            if (clipPath.transform) {
-	                m = clipPath.invTransform;
-	                ctx.transform(
-	                    m[0], m[1],
-	                    m[2], m[3],
-	                    m[4], m[5]
-	                );
-	            }
-	        }
-	    }
-
-	    /**
-	     * @alias module:zrender/Painter
-	     * @constructor
-	     * @param {HTMLElement} root 绘图容器
-	     * @param {module:zrender/Storage} storage
-	     * @param {Ojbect} opts
-	     */
-	    var Painter = function (root, storage, opts) {
-	        var singleCanvas = !root.nodeName // In node ?
-	            || root.nodeName.toUpperCase() === 'CANVAS';
-
-	        opts = opts || {};
-
-	        /**
-	         * @type {number}
-	         */
-	        this.dpr = opts.devicePixelRatio || config.devicePixelRatio;
-	        /**
-	         * @type {boolean}
-	         * @private
-	         */
-	        this._singleCanvas = singleCanvas;
-	        /**
-	         * 绘图容器
-	         * @type {HTMLElement}
-	         */
-	        this.root = root;
-
-	        var rootStyle = root.style;
-
-	        // In node environment using node-canvas
-	        if (rootStyle) {
-	            rootStyle['-webkit-tap-highlight-color'] = 'transparent';
-	            rootStyle['-webkit-user-select'] = 'none';
-	            rootStyle['user-select'] = 'none';
-	            rootStyle['-webkit-touch-callout'] = 'none';
-
-	            root.innerHTML = '';
-	        }
-
-	        /**
-	         * @type {module:zrender/Storage}
-	         */
-	        this.storage = storage;
-
-	        if (!singleCanvas) {
-	            var width = this._getWidth();
-	            var height = this._getHeight();
-	            this._width = width;
-	            this._height = height;
-
-	            var domRoot = document.createElement('div');
-	            this._domRoot = domRoot;
-	            var domRootStyle = domRoot.style;
-
-	            // domRoot.onselectstart = returnFalse; // 避免页面选中的尴尬
-	            domRootStyle.position = 'relative';
-	            domRootStyle.overflow = 'hidden';
-	            domRootStyle.width = this._width + 'px';
-	            domRootStyle.height = this._height + 'px';
-	            root.appendChild(domRoot);
-
-	            /**
-	             * @type {Object.<key, module:zrender/Layer>}
-	             * @private
-	             */
-	            this._layers = {};
-	            /**
-	             * @type {Array.<number>}
-	             * @private
-	             */
-	            this._zlevelList = [];
-	        }
-	        else {
-	            // Use canvas width and height directly
-	            var width = root.width;
-	            var height = root.height;
-	            this._width = width;
-	            this._height = height;
-
-	            // Create layer if only one given canvas
-	            // Device pixel ratio is fixed to 1 because given canvas has its specified width and height
-	            var mainLayer = new Layer(root, this, 1);
-	            mainLayer.initContext();
-	            // FIXME Use canvas width and height
-	            // mainLayer.resize(width, height);
-	            this._layers = {
-	                0: mainLayer
-	            };
-	            this._zlevelList = [0];
-	        }
-
-	        this._layerConfig = {};
-
-	        this.pathToImage = this._createPathToImage();
-	    };
-
-	    Painter.prototype = {
-
-	        constructor: Painter,
-
-	        /**
-	         * If painter use a single canvas
-	         * @return {boolean}
-	         */
-	        isSingleCanvas: function () {
-	            return this._singleCanvas;
-	        },
-	        /**
-	         * @return {HTMLDivElement}
-	         */
-	        getViewportRoot: function () {
-	            return this._singleCanvas ? this._layers[0].dom : this._domRoot;
-	        },
-
-	        /**
-	         * 刷新
-	         * @param {boolean} [paintAll=false] 强制绘制所有displayable
-	         */
-	        refresh: function (paintAll) {
-	            var list = this.storage.getDisplayList(true);
-	            var zlevelList = this._zlevelList;
-
-	            this._paintList(list, paintAll);
-
-	            // Paint custum layers
-	            for (var i = 0; i < zlevelList.length; i++) {
-	                var z = zlevelList[i];
-	                var layer = this._layers[z];
-	                if (!layer.isBuildin && layer.refresh) {
-	                    layer.refresh();
-	                }
-	            }
-
-	            return this;
-	        },
-
-	        _paintList: function (list, paintAll) {
-
-	            if (paintAll == null) {
-	                paintAll = false;
-	            }
-
-	            this._updateLayerStatus(list);
-
-	            var currentLayer;
-	            var currentZLevel;
-	            var ctx;
-
-	            var viewWidth = this._width;
-	            var viewHeight = this._height;
-
-	            this.eachBuildinLayer(preProcessLayer);
-
-	            // var invTransform = [];
-	            var prevElClipPaths = null;
-
-	            for (var i = 0, l = list.length; i < l; i++) {
-	                var el = list[i];
-	                var elZLevel = this._singleCanvas ? 0 : el.zlevel;
-	                // Change draw layer
-	                if (currentZLevel !== elZLevel) {
-	                    // Only 0 zlevel if only has one canvas
-	                    currentZLevel = elZLevel;
-	                    currentLayer = this.getLayer(currentZLevel);
-
-	                    if (!currentLayer.isBuildin) {
-	                        log(
-	                            'ZLevel ' + currentZLevel
-	                            + ' has been used by unkown layer ' + currentLayer.id
-	                        );
-	                    }
-
-	                    ctx = currentLayer.ctx;
-
-	                    // Reset the count
-	                    currentLayer.__unusedCount = 0;
-
-	                    if (currentLayer.__dirty || paintAll) {
-	                        currentLayer.clear();
-	                    }
-	                }
-
-	                if (
-	                    (currentLayer.__dirty || paintAll)
-	                    // Ignore invisible element
-	                    && !el.invisible
-	                    // Ignore transparent element
-	                    && el.style.opacity !== 0
-	                    // Ignore scale 0 element, in some environment like node-canvas
-	                    // Draw a scale 0 element can cause all following draw wrong
-	                    && el.scale[0] && el.scale[1]
-	                    // Ignore culled element
-	                    && !(el.culling && isDisplayableCulled(el, viewWidth, viewHeight))
-	                ) {
-	                    var clipPaths = el.__clipPaths;
-
-	                    // Optimize when clipping on group with several elements
-	                    if (isClipPathChanged(clipPaths, prevElClipPaths)) {
-	                        // If has previous clipping state, restore from it
-	                        if (prevElClipPaths) {
-	                            ctx.restore();
-	                        }
-	                        // New clipping state
-	                        if (clipPaths) {
-	                            ctx.save();
-	                            doClip(clipPaths, ctx);
-	                        }
-	                        prevElClipPaths = clipPaths;
-	                    }
-	                    el.beforeBrush && el.beforeBrush(ctx);
-	                    el.brush(ctx, false);
-	                    el.afterBrush && el.afterBrush(ctx);
-	                }
-
-	                el.__dirty = false;
-	            }
-
-	            // If still has clipping state
-	            if (prevElClipPaths) {
-	                ctx.restore();
-	            }
-
-	            this.eachBuildinLayer(postProcessLayer);
-	        },
-
-	        /**
-	         * 获取 zlevel 所在层，如果不存在则会创建一个新的层
-	         * @param {number} zlevel
-	         * @return {module:zrender/Layer}
-	         */
-	        getLayer: function (zlevel) {
-	            if (this._singleCanvas) {
-	                return this._layers[0];
-	            }
-
-	            var layer = this._layers[zlevel];
-	            if (!layer) {
-	                // Create a new layer
-	                layer = new Layer('zr_' + zlevel, this, this.dpr);
-	                layer.isBuildin = true;
-
-	                if (this._layerConfig[zlevel]) {
-	                    util.merge(layer, this._layerConfig[zlevel], true);
-	                }
-
-	                this.insertLayer(zlevel, layer);
-
-	                // Context is created after dom inserted to document
-	                // Or excanvas will get 0px clientWidth and clientHeight
-	                layer.initContext();
-	            }
-
-	            return layer;
-	        },
-
-	        insertLayer: function (zlevel, layer) {
-
-	            var layersMap = this._layers;
-	            var zlevelList = this._zlevelList;
-	            var len = zlevelList.length;
-	            var prevLayer = null;
-	            var i = -1;
-	            var domRoot = this._domRoot;
-
-	            if (layersMap[zlevel]) {
-	                log('ZLevel ' + zlevel + ' has been used already');
-	                return;
-	            }
-	            // Check if is a valid layer
-	            if (!isLayerValid(layer)) {
-	                log('Layer of zlevel ' + zlevel + ' is not valid');
-	                return;
-	            }
-
-	            if (len > 0 && zlevel > zlevelList[0]) {
-	                for (i = 0; i < len - 1; i++) {
-	                    if (
-	                        zlevelList[i] < zlevel
-	                        && zlevelList[i + 1] > zlevel
-	                    ) {
-	                        break;
-	                    }
-	                }
-	                prevLayer = layersMap[zlevelList[i]];
-	            }
-	            zlevelList.splice(i + 1, 0, zlevel);
-
-	            if (prevLayer) {
-	                var prevDom = prevLayer.dom;
-	                if (prevDom.nextSibling) {
-	                    domRoot.insertBefore(
-	                        layer.dom,
-	                        prevDom.nextSibling
-	                    );
-	                }
-	                else {
-	                    domRoot.appendChild(layer.dom);
-	                }
-	            }
-	            else {
-	                if (domRoot.firstChild) {
-	                    domRoot.insertBefore(layer.dom, domRoot.firstChild);
-	                }
-	                else {
-	                    domRoot.appendChild(layer.dom);
-	                }
-	            }
-
-	            layersMap[zlevel] = layer;
-	        },
-
-	        // Iterate each layer
-	        eachLayer: function (cb, context) {
-	            var zlevelList = this._zlevelList;
-	            var z;
-	            var i;
-	            for (i = 0; i < zlevelList.length; i++) {
-	                z = zlevelList[i];
-	                cb.call(context, this._layers[z], z);
-	            }
-	        },
-
-	        // Iterate each buildin layer
-	        eachBuildinLayer: function (cb, context) {
-	            var zlevelList = this._zlevelList;
-	            var layer;
-	            var z;
-	            var i;
-	            for (i = 0; i < zlevelList.length; i++) {
-	                z = zlevelList[i];
-	                layer = this._layers[z];
-	                if (layer.isBuildin) {
-	                    cb.call(context, layer, z);
-	                }
-	            }
-	        },
-
-	        // Iterate each other layer except buildin layer
-	        eachOtherLayer: function (cb, context) {
-	            var zlevelList = this._zlevelList;
-	            var layer;
-	            var z;
-	            var i;
-	            for (i = 0; i < zlevelList.length; i++) {
-	                z = zlevelList[i];
-	                layer = this._layers[z];
-	                if (! layer.isBuildin) {
-	                    cb.call(context, layer, z);
-	                }
-	            }
-	        },
-
-	        /**
-	         * 获取所有已创建的层
-	         * @param {Array.<module:zrender/Layer>} [prevLayer]
-	         */
-	        getLayers: function () {
-	            return this._layers;
-	        },
-
-	        _updateLayerStatus: function (list) {
-
-	            var layers = this._layers;
-
-	            var elCounts = {};
-
-	            this.eachBuildinLayer(function (layer, z) {
-	                elCounts[z] = layer.elCount;
-	                layer.elCount = 0;
-	            });
-
-	            for (var i = 0, l = list.length; i < l; i++) {
-	                var el = list[i];
-	                var zlevel = this._singleCanvas ? 0 : el.zlevel;
-	                var layer = layers[zlevel];
-	                if (layer) {
-	                    layer.elCount++;
-	                    // 已经被标记为需要刷新
-	                    if (layer.__dirty) {
-	                        continue;
-	                    }
-	                    layer.__dirty = el.__dirty;
-	                }
-	            }
-
-	            // 层中的元素数量有发生变化
-	            this.eachBuildinLayer(function (layer, z) {
-	                if (elCounts[z] !== layer.elCount) {
-	                    layer.__dirty = true;
-	                }
-	            });
-	        },
-
-	        /**
-	         * 清除hover层外所有内容
-	         */
-	        clear: function () {
-	            this.eachBuildinLayer(this._clearLayer);
-	            return this;
-	        },
-
-	        _clearLayer: function (layer) {
-	            layer.clear();
-	        },
-
-	        /**
-	         * 修改指定zlevel的绘制参数
-	         *
-	         * @param {string} zlevel
-	         * @param {Object} config 配置对象
-	         * @param {string} [config.clearColor=0] 每次清空画布的颜色
-	         * @param {string} [config.motionBlur=false] 是否开启动态模糊
-	         * @param {number} [config.lastFrameAlpha=0.7]
-	         *                 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
-	         */
-	        configLayer: function (zlevel, config) {
-	            if (config) {
-	                var layerConfig = this._layerConfig;
-	                if (!layerConfig[zlevel]) {
-	                    layerConfig[zlevel] = config;
-	                }
-	                else {
-	                    util.merge(layerConfig[zlevel], config, true);
-	                }
-
-	                var layer = this._layers[zlevel];
-
-	                if (layer) {
-	                    util.merge(layer, layerConfig[zlevel], true);
-	                }
-	            }
-	        },
-
-	        /**
-	         * 删除指定层
-	         * @param {number} zlevel 层所在的zlevel
-	         */
-	        delLayer: function (zlevel) {
-	            var layers = this._layers;
-	            var zlevelList = this._zlevelList;
-	            var layer = layers[zlevel];
-	            if (!layer) {
-	                return;
-	            }
-	            layer.dom.parentNode.removeChild(layer.dom);
-	            delete layers[zlevel];
-
-	            zlevelList.splice(util.indexOf(zlevelList, zlevel), 1);
-	        },
-
-	        /**
-	         * 区域大小变化后重绘
-	         */
-	        resize: function (width, height) {
-	            var domRoot = this._domRoot;
-	            // FIXME Why ?
-	            domRoot.style.display = 'none';
-
-	            width = width || this._getWidth();
-	            height = height || this._getHeight();
-
-	            domRoot.style.display = '';
-
-	            // 优化没有实际改变的resize
-	            if (this._width != width || height != this._height) {
-	                domRoot.style.width = width + 'px';
-	                domRoot.style.height = height + 'px';
-
-	                for (var id in this._layers) {
-	                    this._layers[id].resize(width, height);
-	                }
-
-	                this.refresh(true);
-	            }
-
-	            this._width = width;
-	            this._height = height;
-
-	            return this;
-	        },
-
-	        /**
-	         * 清除单独的一个层
-	         * @param {number} zlevel
-	         */
-	        clearLayer: function (zlevel) {
-	            var layer = this._layers[zlevel];
-	            if (layer) {
-	                layer.clear();
-	            }
-	        },
-
-	        /**
-	         * 释放
-	         */
-	        dispose: function () {
-	            this.root.innerHTML = '';
-
-	            this.root =
-	            this.storage =
-
-	            this._domRoot =
-	            this._layers = null;
-	        },
-
-	        /**
-	         * Get canvas which has all thing rendered
-	         * @param {Object} opts
-	         * @param {string} [opts.backgroundColor]
-	         */
-	        getRenderedCanvas: function (opts) {
-	            opts = opts || {};
-	            if (this._singleCanvas) {
-	                return this._layers[0].dom;
-	            }
-
-	            var imageLayer = new Layer('image', this, opts.pixelRatio || this.dpr);
-	            imageLayer.initContext();
-
-	            var ctx = imageLayer.ctx;
-	            imageLayer.clearColor = opts.backgroundColor;
-	            imageLayer.clear();
-
-	            var displayList = this.storage.getDisplayList(true);
-
-	            for (var i = 0; i < displayList.length; i++) {
-	                var el = displayList[i];
-	                if (!el.invisible) {
-	                    el.beforeBrush && el.beforeBrush(ctx);
-	                    // TODO Check image cross origin
-	                    el.brush(ctx, false);
-	                    el.afterBrush && el.afterBrush(ctx);
-	                }
-	            }
-
-	            return imageLayer.dom;
-	        },
-	        /**
-	         * 获取绘图区域宽度
-	         */
-	        getWidth: function () {
-	            return this._width;
-	        },
-
-	        /**
-	         * 获取绘图区域高度
-	         */
-	        getHeight: function () {
-	            return this._height;
-	        },
-
-	        _getWidth: function () {
-	            var root = this.root;
-	            var stl = document.defaultView.getComputedStyle(root);
-
-	            // FIXME Better way to get the width and height when element has not been append to the document
-	            return ((root.clientWidth || parseInt10(stl.width) || parseInt10(root.style.width))
-	                    - (parseInt10(stl.paddingLeft) || 0)
-	                    - (parseInt10(stl.paddingRight) || 0)) | 0;
-	        },
-
-	        _getHeight: function () {
-	            var root = this.root;
-	            var stl = document.defaultView.getComputedStyle(root);
-
-	            return ((root.clientHeight || parseInt10(stl.height) || parseInt10(root.style.height))
-	                    - (parseInt10(stl.paddingTop) || 0)
-	                    - (parseInt10(stl.paddingBottom) || 0)) | 0;
-	        },
-
-	        _pathToImage: function (id, path, width, height, dpr) {
-	            var canvas = document.createElement('canvas');
-	            var ctx = canvas.getContext('2d');
-
-	            canvas.width = width * dpr;
-	            canvas.height = height * dpr;
-
-	            ctx.clearRect(0, 0, width * dpr, height * dpr);
-
-	            var pathTransform = {
-	                position: path.position,
-	                rotation: path.rotation,
-	                scale: path.scale
-	            };
-	            path.position = [0, 0, 0];
-	            path.rotation = 0;
-	            path.scale = [1, 1];
-	            if (path) {
-	                path.brush(ctx);
-	            }
-
-	            var ImageShape = __webpack_require__(61);
-	            var imgShape = new ImageShape({
-	                id: id,
-	                style: {
-	                    x: 0,
-	                    y: 0,
-	                    image: canvas
-	                }
-	            });
-
-	            if (pathTransform.position != null) {
-	                imgShape.position = path.position = pathTransform.position;
-	            }
-
-	            if (pathTransform.rotation != null) {
-	                imgShape.rotation = path.rotation = pathTransform.rotation;
-	            }
-
-	            if (pathTransform.scale != null) {
-	                imgShape.scale = path.scale = pathTransform.scale;
-	            }
-
-	            return imgShape;
-	        },
-
-	        _createPathToImage: function () {
-	            var me = this;
-
-	            return function (id, e, width, height) {
-	                return me._pathToImage(
-	                    id, e, width, height, me.dpr
-	                );
-	            };
-	        }
-	    };
-
-	    module.exports = Painter;
-
-
-
-/***/ },
-/* 88 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * @module zrender/Layer
-	 * @author pissang(https://www.github.com/pissang)
-	 */
-
-
-	    var util = __webpack_require__(4);
-	    var config = __webpack_require__(42);
-
-	    function returnFalse() {
-	        return false;
-	    }
-
-	    /**
-	     * 创建dom
-	     *
-	     * @inner
-	     * @param {string} id dom id 待用
-	     * @param {string} type dom type，such as canvas, div etc.
-	     * @param {Painter} painter painter instance
-	     * @param {number} number
-	     */
-	    function createDom(id, type, painter, dpr) {
-	        var newDom = document.createElement(type);
-	        var width = painter.getWidth();
-	        var height = painter.getHeight();
-
-	        var newDomStyle = newDom.style;
-	        // 没append呢，请原谅我这样写，清晰~
-	        newDomStyle.position = 'absolute';
-	        newDomStyle.left = 0;
-	        newDomStyle.top = 0;
-	        newDomStyle.width = width + 'px';
-	        newDomStyle.height = height + 'px';
-	        newDom.width = width * dpr;
-	        newDom.height = height * dpr;
-
-	        // id不作为索引用，避免可能造成的重名，定义为私有属性
-	        newDom.setAttribute('data-zr-dom-id', id);
-	        return newDom;
-	    }
-
-	    /**
-	     * @alias module:zrender/Layer
-	     * @constructor
-	     * @extends module:zrender/mixin/Transformable
-	     * @param {string} id
-	     * @param {module:zrender/Painter} painter
-	     * @param {number} [dpr]
-	     */
-	    var Layer = function(id, painter, dpr) {
-	        var dom;
-	        dpr = dpr || config.devicePixelRatio;
-	        if (typeof id === 'string') {
-	            dom = createDom(id, 'canvas', painter, dpr);
-	        }
-	        // Not using isDom because in node it will return false
-	        else if (util.isObject(id)) {
-	            dom = id;
-	            id = dom.id;
-	        }
-	        this.id = id;
-	        this.dom = dom;
-
-	        var domStyle = dom.style;
-	        if (domStyle) { // Not in node
-	            dom.onselectstart = returnFalse; // 避免页面选中的尴尬
-	            domStyle['-webkit-user-select'] = 'none';
-	            domStyle['user-select'] = 'none';
-	            domStyle['-webkit-touch-callout'] = 'none';
-	            domStyle['-webkit-tap-highlight-color'] = 'rgba(0,0,0,0)';
-	        }
-
-	        this.domBack = null;
-	        this.ctxBack = null;
-
-	        this.painter = painter;
-
-	        this.config = null;
-
-	        // Configs
-	        /**
-	         * 每次清空画布的颜色
-	         * @type {string}
-	         * @default 0
-	         */
-	        this.clearColor = 0;
-	        /**
-	         * 是否开启动态模糊
-	         * @type {boolean}
-	         * @default false
-	         */
-	        this.motionBlur = false;
-	        /**
-	         * 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
-	         * @type {number}
-	         * @default 0.7
-	         */
-	        this.lastFrameAlpha = 0.7;
-
-	        /**
-	         * Layer dpr
-	         * @type {number}
-	         */
-	        this.dpr = dpr;
-	    };
-
-	    Layer.prototype = {
-
-	        constructor: Layer,
-
-	        elCount: 0,
-
-	        __dirty: true,
-
-	        initContext: function () {
-	            this.ctx = this.dom.getContext('2d');
-
-	            var dpr = this.dpr;
-	            if (dpr != 1) {
-	                this.ctx.scale(dpr, dpr);
-	            }
-	        },
-
-	        createBackBuffer: function () {
-	            var dpr = this.dpr;
-
-	            this.domBack = createDom('back-' + this.id, 'canvas', this.painter, dpr);
-	            this.ctxBack = this.domBack.getContext('2d');
-
-	            if (dpr != 1) {
-	                this.ctxBack.scale(dpr, dpr);
-	            }
-	        },
-
-	        /**
-	         * @param  {number} width
-	         * @param  {number} height
-	         */
-	        resize: function (width, height) {
-	            var dpr = this.dpr;
-
-	            var dom = this.dom;
-	            var domStyle = dom.style;
-	            var domBack = this.domBack;
-
-	            domStyle.width = width + 'px';
-	            domStyle.height = height + 'px';
-
-	            dom.width = width * dpr;
-	            dom.height = height * dpr;
-
-	            if (dpr != 1) {
-	                this.ctx.scale(dpr, dpr);
-	            }
-
-	            if (domBack) {
-	                domBack.width = width * dpr;
-	                domBack.height = height * dpr;
-
-	                if (dpr != 1) {
-	                    this.ctxBack.scale(dpr, dpr);
-	                }
-	            }
-	        },
-
-	        /**
-	         * 清空该层画布
-	         * @param {boolean} clearAll Clear all with out motion blur
-	         */
-	        clear: function (clearAll) {
-	            var dom = this.dom;
-	            var ctx = this.ctx;
-	            var width = dom.width;
-	            var height = dom.height;
-
-	            var haveClearColor = this.clearColor;
-	            var haveMotionBLur = this.motionBlur && !clearAll;
-	            var lastFrameAlpha = this.lastFrameAlpha;
-
-	            var dpr = this.dpr;
-
-	            if (haveMotionBLur) {
-	                if (!this.domBack) {
-	                    this.createBackBuffer();
-	                }
-
-	                this.ctxBack.globalCompositeOperation = 'copy';
-	                this.ctxBack.drawImage(
-	                    dom, 0, 0,
-	                    width / dpr,
-	                    height / dpr
-	                );
-	            }
-
-	            ctx.clearRect(0, 0, width / dpr, height / dpr);
-	            if (haveClearColor) {
-	                ctx.save();
-	                ctx.fillStyle = this.clearColor;
-	                ctx.fillRect(0, 0, width / dpr, height / dpr);
-	                ctx.restore();
-	            }
-
-	            if (haveMotionBLur) {
-	                var domBack = this.domBack;
-	                ctx.save();
-	                ctx.globalAlpha = lastFrameAlpha;
-	                ctx.drawImage(domBack, 0, 0, width / dpr, height / dpr);
-	                ctx.restore();
-	            }
-	        }
-	    };
-
-	    module.exports = Layer;
-
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;// https://github.com/mziccard/node-timsort
-	!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 	    var DEFAULT_MIN_MERGE = 32;
 
 	    var DEFAULT_MIN_GALLOPING = 7;
@@ -19080,16 +17670,2065 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ts.forceMergeRuns();
 	    }
 
-	    return sort;
-	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    module.exports = sort;
+
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	/**
+	 * 动画主类, 调度和管理所有动画控制器
+	 *
+	 * @module zrender/animation/Animation
+	 * @author pissang(https://github.com/pissang)
+	 */
+	// TODO Additive animation
+	// http://iosoteric.com/additive-animations-animatewithduration-in-ios-8/
+	// https://developer.apple.com/videos/wwdc2014/#236
+
+
+	    var util = __webpack_require__(4);
+	    var Dispatcher = __webpack_require__(87).Dispatcher;
+
+	    var requestAnimationFrame = __webpack_require__(88);
+
+	    var Animator = __webpack_require__(36);
+	    /**
+	     * @typedef {Object} IZRenderStage
+	     * @property {Function} update
+	     */
+
+	    /**
+	     * @alias module:zrender/animation/Animation
+	     * @constructor
+	     * @param {Object} [options]
+	     * @param {Function} [options.onframe]
+	     * @param {IZRenderStage} [options.stage]
+	     * @example
+	     *     var animation = new Animation();
+	     *     var obj = {
+	     *         x: 100,
+	     *         y: 100
+	     *     };
+	     *     animation.animate(node.position)
+	     *         .when(1000, {
+	     *             x: 500,
+	     *             y: 500
+	     *         })
+	     *         .when(2000, {
+	     *             x: 100,
+	     *             y: 100
+	     *         })
+	     *         .start('spline');
+	     */
+	    var Animation = function (options) {
+
+	        options = options || {};
+
+	        this.stage = options.stage || {};
+
+	        this.onframe = options.onframe || function() {};
+
+	        // private properties
+	        this._clips = [];
+
+	        this._running = false;
+
+	        this._time = 0;
+
+	        Dispatcher.call(this);
+	    };
+
+	    Animation.prototype = {
+
+	        constructor: Animation,
+	        /**
+	         * 添加 clip
+	         * @param {module:zrender/animation/Clip} clip
+	         */
+	        addClip: function (clip) {
+	            this._clips.push(clip);
+	        },
+	        /**
+	         * 添加 animator
+	         * @param {module:zrender/animation/Animator} animator
+	         */
+	        addAnimator: function (animator) {
+	            animator.animation = this;
+	            var clips = animator.getClips();
+	            for (var i = 0; i < clips.length; i++) {
+	                this.addClip(clips[i]);
+	            }
+	        },
+	        /**
+	         * 删除动画片段
+	         * @param {module:zrender/animation/Clip} clip
+	         */
+	        removeClip: function(clip) {
+	            var idx = util.indexOf(this._clips, clip);
+	            if (idx >= 0) {
+	                this._clips.splice(idx, 1);
+	            }
+	        },
+
+	        /**
+	         * 删除动画片段
+	         * @param {module:zrender/animation/Animator} animator
+	         */
+	        removeAnimator: function (animator) {
+	            var clips = animator.getClips();
+	            for (var i = 0; i < clips.length; i++) {
+	                this.removeClip(clips[i]);
+	            }
+	            animator.animation = null;
+	        },
+
+	        _update: function() {
+
+	            var time = new Date().getTime();
+	            var delta = time - this._time;
+	            var clips = this._clips;
+	            var len = clips.length;
+
+	            var deferredEvents = [];
+	            var deferredClips = [];
+	            for (var i = 0; i < len; i++) {
+	                var clip = clips[i];
+	                var e = clip.step(time);
+	                // Throw out the events need to be called after
+	                // stage.update, like destroy
+	                if (e) {
+	                    deferredEvents.push(e);
+	                    deferredClips.push(clip);
+	                }
+	            }
+
+	            // Remove the finished clip
+	            for (var i = 0; i < len;) {
+	                if (clips[i]._needsRemove) {
+	                    clips[i] = clips[len - 1];
+	                    clips.pop();
+	                    len--;
+	                }
+	                else {
+	                    i++;
+	                }
+	            }
+
+	            len = deferredEvents.length;
+	            for (var i = 0; i < len; i++) {
+	                deferredClips[i].fire(deferredEvents[i]);
+	            }
+
+	            this._time = time;
+
+	            this.onframe(delta);
+
+	            this.trigger('frame', delta);
+
+	            if (this.stage.update) {
+	                this.stage.update();
+	            }
+	        },
+	        /**
+	         * 开始运行动画
+	         */
+	        start: function () {
+	            var self = this;
+
+	            this._running = true;
+
+	            function step() {
+	                if (self._running) {
+
+	                    requestAnimationFrame(step);
+
+	                    self._update();
+	                }
+	            }
+
+	            this._time = new Date().getTime();
+	            requestAnimationFrame(step);
+	        },
+	        /**
+	         * 停止运行动画
+	         */
+	        stop: function () {
+	            this._running = false;
+	        },
+	        /**
+	         * 清除所有动画片段
+	         */
+	        clear: function () {
+	            this._clips = [];
+	        },
+	        /**
+	         * 对一个目标创建一个animator对象，可以指定目标中的属性使用动画
+	         * @param  {Object} target
+	         * @param  {Object} options
+	         * @param  {boolean} [options.loop=false] 是否循环播放动画
+	         * @param  {Function} [options.getter=null]
+	         *         如果指定getter函数，会通过getter函数取属性值
+	         * @param  {Function} [options.setter=null]
+	         *         如果指定setter函数，会通过setter函数设置属性值
+	         * @return {module:zrender/animation/Animation~Animator}
+	         */
+	        animate: function (target, options) {
+	            options = options || {};
+	            var animator = new Animator(
+	                target,
+	                options.loop,
+	                options.getter,
+	                options.setter
+	            );
+
+	            return animator;
+	        }
+	    };
+
+	    util.mixin(Animation, Dispatcher);
+
+	    module.exports = Animation;
+
+
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	/**
+	 * 事件辅助类
+	 * @module zrender/core/event
+	 * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+	 */
+
+
+	    var Eventful = __webpack_require__(33);
+
+	    var isDomLevel2 = (typeof window !== 'undefined') && !!window.addEventListener;
+
+	    function getBoundingClientRect(el) {
+	        // BlackBerry 5, iOS 3 (original iPhone) don't have getBoundingRect
+	        return el.getBoundingClientRect ? el.getBoundingClientRect() : {left: 0, top: 0};
+	    }
+
+	    function clientToLocal(el, e, out) {
+	        // clientX/clientY is according to view port.
+	        var box = getBoundingClientRect(el);
+	        out = out || {};
+	        out.zrX = e.clientX - box.left;
+	        out.zrY = e.clientY - box.top;
+	        return out;
+	    }
+
+	    /**
+	     * 如果存在第三方嵌入的一些dom触发的事件，或touch事件，需要转换一下事件坐标
+	     */
+	    function normalizeEvent(el, e) {
+
+	        e = e || window.event;
+
+	        if (e.zrX != null) {
+	            return e;
+	        }
+
+	        var eventType = e.type;
+	        var isTouch = eventType && eventType.indexOf('touch') >= 0;
+
+	        if (!isTouch) {
+	            clientToLocal(el, e, e);
+	            e.zrDelta = (e.wheelDelta) ? e.wheelDelta / 120 : -(e.detail || 0) / 3;
+	        }
+	        else {
+	            var touch = eventType != 'touchend'
+	                ? e.targetTouches[0]
+	                : e.changedTouches[0];
+	            touch && clientToLocal(el, touch, e);
+	        }
+
+	        return e;
+	    }
+
+	    function addEventListener(el, name, handler) {
+	        if (isDomLevel2) {
+	            el.addEventListener(name, handler);
+	        }
+	        else {
+	            el.attachEvent('on' + name, handler);
+	        }
+	    }
+
+	    function removeEventListener(el, name, handler) {
+	        if (isDomLevel2) {
+	            el.removeEventListener(name, handler);
+	        }
+	        else {
+	            el.detachEvent('on' + name, handler);
+	        }
+	    }
+
+	    /**
+	     * 停止冒泡和阻止默认行为
+	     * @memberOf module:zrender/core/event
+	     * @method
+	     * @param {Event} e : event对象
+	     */
+	    var stop = isDomLevel2
+	        ? function (e) {
+	            e.preventDefault();
+	            e.stopPropagation();
+	            e.cancelBubble = true;
+	        }
+	        : function (e) {
+	            e.returnValue = false;
+	            e.cancelBubble = true;
+	        };
+
+	    module.exports = {
+	        clientToLocal: clientToLocal,
+	        normalizeEvent: normalizeEvent,
+	        addEventListener: addEventListener,
+	        removeEventListener: removeEventListener,
+
+	        stop: stop,
+	        // 做向上兼容
+	        Dispatcher: Eventful
+	    };
+
+
+
+/***/ },
+/* 88 */
+/***/ function(module, exports) {
+
+	
+
+	    module.exports = (typeof window !== 'undefined' &&
+	                                    (window.requestAnimationFrame
+	                                    || window.msRequestAnimationFrame
+	                                    || window.mozRequestAnimationFrame
+	                                    || window.webkitRequestAnimationFrame))
+	                                || function (func) {
+	                                    setTimeout(func, 16);
+	                                };
+
+
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+
+	    var eventTool = __webpack_require__(87);
+	    var zrUtil = __webpack_require__(4);
+	    var Eventful = __webpack_require__(33);
+	    var env = __webpack_require__(2);
+	    var GestureMgr = __webpack_require__(90);
+
+	    var addEventListener = eventTool.addEventListener;
+	    var removeEventListener = eventTool.removeEventListener;
+	    var normalizeEvent = eventTool.normalizeEvent;
+
+	    var TOUCH_CLICK_DELAY = 300;
+
+	    var mouseHandlerNames = [
+	        'click', 'dblclick', 'mousewheel', 'mouseout',
+	        'mouseup', 'mousedown', 'mousemove'
+	    ];
+
+	    var touchHandlerNames = [
+	        'touchstart', 'touchend', 'touchmove'
+	    ];
+
+	    function eventNameFix(name) {
+	        return (name === 'mousewheel' && env.browser.firefox) ? 'DOMMouseScroll' : name;
+	    }
+
+	    function processGesture(proxy, event, stage) {
+	        var gestureMgr = proxy._gestureMgr;
+
+	        stage === 'start' && gestureMgr.clear();
+
+	        var gestureInfo = gestureMgr.recognize(
+	            event,
+	            proxy.handler.findHover(event.zrX, event.zrY, null),
+	            proxy.dom
+	        );
+
+	        stage === 'end' && gestureMgr.clear();
+
+	        if (gestureInfo) {
+	            // eventTool.stop(event);
+	            var type = gestureInfo.type;
+	            event.gestureEvent = type;
+
+	            proxy.handler.dispatchToElement(gestureInfo.target, type, gestureInfo.event);
+	        }
+	    }
+
+	    /**
+	     * Prevent mouse event from being dispatched after Touch Events action
+	     * @see <https://github.com/deltakosh/handjs/blob/master/src/hand.base.js>
+	     * 1. Mobile browsers dispatch mouse events 300ms after touchend.
+	     * 2. Chrome for Android dispatch mousedown for long-touch about 650ms
+	     * Result: Blocking Mouse Events for 700ms.
+	     */
+	    function setTouchTimer(instance) {
+	        instance._touching = true;
+	        clearTimeout(instance._touchTimer);
+	        instance._touchTimer = setTimeout(function () {
+	            instance._touching = false;
+	        }, 700);
+	    }
+
+	    function useTouchEvent() {
+	        return env.touchEventsSupported;
+	    }
+
+	    var domHandlers = {
+	        /**
+	         * Mouse move handler
+	         * @inner
+	         * @param {Event} event
+	         */
+	        mousemove: function (event) {
+	            event = normalizeEvent(this.dom, event);
+
+	            this.trigger('mousemove', event);
+	        },
+
+	        /**
+	         * Mouse out handler
+	         * @inner
+	         * @param {Event} event
+	         */
+	        mouseout: function (event) {
+	            event = normalizeEvent(this.dom, event);
+
+	            var element = event.toElement || event.relatedTarget;
+	            if (element != this.dom) {
+	                while (element && element.nodeType != 9) {
+	                    // 忽略包含在root中的dom引起的mouseOut
+	                    if (element === this.dom) {
+	                        return;
+	                    }
+
+	                    element = element.parentNode;
+	                }
+	            }
+
+	            this.trigger('mouseout', event);
+	        },
+
+	        /**
+	         * Touch开始响应函数
+	         * @inner
+	         * @param {Event} event
+	         */
+	        touchstart: function (event) {
+	            // Default mouse behaviour should not be disabled here.
+	            // For example, page may needs to be slided.
+
+	            event = normalizeEvent(this.dom, event);
+
+	            this._lastTouchMoment = new Date();
+
+	            processGesture(this, event, 'start');
+
+	            // 平板补充一次findHover
+	            // this._mobileFindFixed(event);
+	            // Trigger mousemove and mousedown
+	            domHandlers.mousemove.call(this, event);
+
+	            domHandlers.mousedown.call(this, event);
+
+	            setTouchTimer(this);
+	        },
+
+	        /**
+	         * Touch移动响应函数
+	         * @inner
+	         * @param {Event} event
+	         */
+	        touchmove: function (event) {
+
+	            event = normalizeEvent(this.dom, event);
+
+	            processGesture(this, event, 'change');
+
+	            // Mouse move should always be triggered no matter whether
+	            // there is gestrue event, because mouse move and pinch may
+	            // be used at the same time.
+	            domHandlers.mousemove.call(this, event);
+
+	            setTouchTimer(this);
+	        },
+
+	        /**
+	         * Touch结束响应函数
+	         * @inner
+	         * @param {Event} event
+	         */
+	        touchend: function (event) {
+
+	            event = normalizeEvent(this.dom, event);
+
+	            processGesture(this, event, 'end');
+
+	            domHandlers.mouseup.call(this, event);
+
+	            // click event should always be triggered no matter whether
+	            // there is gestrue event. System click can not be prevented.
+	            if (+new Date() - this._lastTouchMoment < TOUCH_CLICK_DELAY) {
+	                domHandlers.click.call(this, event);
+	            }
+
+	            setTouchTimer(this);
+	        }
+	    };
+
+	    // Common handlers
+	    zrUtil.each(['click', 'mousedown', 'mouseup', 'mousewheel', 'dblclick'], function (name) {
+	        domHandlers[name] = function (event) {
+	            event = normalizeEvent(this.dom, event);
+	            this.trigger(name, event);
+	        };
+	    });
+
+	    /**
+	     * 为控制类实例初始化dom 事件处理函数
+	     *
+	     * @inner
+	     * @param {module:zrender/Handler} instance 控制类实例
+	     */
+	    function initDomHandler(instance) {
+	        for (var i = 0; i < touchHandlerNames.length; i++) {
+	            var name = touchHandlerNames[i];
+	            instance._handlers[name] = zrUtil.bind(domHandlers[name], instance);
+	        }
+
+	        for (var i = 0; i < mouseHandlerNames.length; i++) {
+	            var name = mouseHandlerNames[i];
+	            instance._handlers[name] = makeMouseHandler(domHandlers[name], instance);
+	        }
+
+	        function makeMouseHandler(fn, instance) {
+	            return function () {
+	                if (instance._touching) {
+	                    return;
+	                }
+	                return fn.apply(instance, arguments);
+	            };
+	        }
+	    }
+
+
+	    function HandlerDomProxy(dom) {
+	        Eventful.call(this);
+
+	        this.dom = dom;
+
+	        /**
+	         * @private
+	         * @type {boolean}
+	         */
+	        this._touching = false;
+
+	        /**
+	         * @private
+	         * @type {number}
+	         */
+	        this._touchTimer;
+
+	        /**
+	         * @private
+	         * @type {module:zrender/core/GestureMgr}
+	         */
+	        this._gestureMgr = new GestureMgr();
+
+	        this._handlers = {};
+
+	        initDomHandler(this);
+
+	        if (useTouchEvent()) {
+	            mountHandlers(touchHandlerNames, this);
+
+	            // Handler of 'mouseout' event is needed in touch mode, which will be mounted below.
+	            // addEventListener(root, 'mouseout', this._mouseoutHandler);
+	        }
+
+	        // Considering some devices that both enable touch and mouse event (like MS Surface
+	        // and lenovo X240, @see #2350), we make mouse event be always listened, otherwise
+	        // mouse event can not be handle in those devices.
+	        mountHandlers(mouseHandlerNames, this);
+
+	        function mountHandlers(handlerNames, instance) {
+	            zrUtil.each(handlerNames, function (name) {
+	                addEventListener(dom, eventNameFix(name), instance._handlers[name]);
+	            }, instance);
+	        }
+	    }
+
+	    var handlerDomProxyProto = HandlerDomProxy.prototype;
+	    handlerDomProxyProto.dispose = function () {
+	        var handlerNames = mouseHandlerNames.concat(touchHandlerNames);
+
+	        for (var i = 0; i < handlerNames.length; i++) {
+	            var name = handlerNames[i];
+	            removeEventListener(this.dom, eventNameFix(name), this._handlers[name]);
+	        }
+	    };
+
+	    handlerDomProxyProto.setCursor = function (cursorStyle) {
+	        this.dom.style.cursor = cursorStyle || 'default';
+	    };
+
+	    zrUtil.mixin(HandlerDomProxy, Eventful);
+
+	    module.exports = HandlerDomProxy;
+
 
 /***/ },
 /* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	/**
+	 * Only implements needed gestures for mobile.
+	 */
+
+
+	    var eventUtil = __webpack_require__(87);
+
+	    var GestureMgr = function () {
+
+	        /**
+	         * @private
+	         * @type {Array.<Object>}
+	         */
+	        this._track = [];
+	    };
+
+	    GestureMgr.prototype = {
+
+	        constructor: GestureMgr,
+
+	        recognize: function (event, target, root) {
+	            this._doTrack(event, target, root);
+	            return this._recognize(event);
+	        },
+
+	        clear: function () {
+	            this._track.length = 0;
+	            return this;
+	        },
+
+	        _doTrack: function (event, target, root) {
+	            var touches = event.touches;
+
+	            if (!touches) {
+	                return;
+	            }
+
+	            var trackItem = {
+	                points: [],
+	                touches: [],
+	                target: target,
+	                event: event
+	            };
+
+	            for (var i = 0, len = touches.length; i < len; i++) {
+	                var touch = touches[i];
+	                var pos = eventUtil.clientToLocal(root, touch);
+	                trackItem.points.push([pos.zrX, pos.zrY]);
+	                trackItem.touches.push(touch);
+	            }
+
+	            this._track.push(trackItem);
+	        },
+
+	        _recognize: function (event) {
+	            for (var eventName in recognizers) {
+	                if (recognizers.hasOwnProperty(eventName)) {
+	                    var gestureInfo = recognizers[eventName](this._track, event);
+	                    if (gestureInfo) {
+	                        return gestureInfo;
+	                    }
+	                }
+	            }
+	        }
+	    };
+
+	    function dist(pointPair) {
+	        var dx = pointPair[1][0] - pointPair[0][0];
+	        var dy = pointPair[1][1] - pointPair[0][1];
+
+	        return Math.sqrt(dx * dx + dy * dy);
+	    }
+
+	    function center(pointPair) {
+	        return [
+	            (pointPair[0][0] + pointPair[1][0]) / 2,
+	            (pointPair[0][1] + pointPair[1][1]) / 2
+	        ];
+	    }
+
+	    var recognizers = {
+
+	        pinch: function (track, event) {
+	            var trackLen = track.length;
+
+	            if (!trackLen) {
+	                return;
+	            }
+
+	            var pinchEnd = (track[trackLen - 1] || {}).points;
+	            var pinchPre = (track[trackLen - 2] || {}).points || pinchEnd;
+
+	            if (pinchPre
+	                && pinchPre.length > 1
+	                && pinchEnd
+	                && pinchEnd.length > 1
+	            ) {
+	                var pinchScale = dist(pinchEnd) / dist(pinchPre);
+	                !isFinite(pinchScale) && (pinchScale = 1);
+
+	                event.pinchScale = pinchScale;
+
+	                var pinchCenter = center(pinchEnd);
+	                event.pinchX = pinchCenter[0];
+	                event.pinchY = pinchCenter[1];
+
+	                return {
+	                    type: 'pinch',
+	                    target: track[0].target,
+	                    event: event
+	                };
+	            }
+	        }
+
+	        // Only pinch currently.
+	    };
+
+	    module.exports = GestureMgr;
+
+
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	/**
+	 * Default canvas painter
+	 * @module zrender/Painter
+	 * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+	 *         errorrik (errorrik@gmail.com)
+	 *         pissang (https://www.github.com/pissang)
+	 */
+	 
+
+	    var config = __webpack_require__(41);
+	    var util = __webpack_require__(4);
+	    var log = __webpack_require__(40);
+	    var BoundingRect = __webpack_require__(15);
+	    var timsort = __webpack_require__(85);
+
+	    var Layer = __webpack_require__(92);
+
+	    var requestAnimationFrame = __webpack_require__(88);
+
+	    // PENDIGN
+	    // Layer exceeds MAX_PROGRESSIVE_LAYER_NUMBER may have some problem when flush directly second time.
+	    //
+	    // Maximum progressive layer. When exceeding this number. All elements will be drawed in the last layer.
+	    var MAX_PROGRESSIVE_LAYER_NUMBER = 5;
+
+	    function parseInt10(val) {
+	        return parseInt(val, 10);
+	    }
+
+	    function isLayerValid(layer) {
+	        if (!layer) {
+	            return false;
+	        }
+
+	        if (layer.isBuildin) {
+	            return true;
+	        }
+
+	        if (typeof(layer.resize) !== 'function'
+	            || typeof(layer.refresh) !== 'function'
+	        ) {
+	            return false;
+	        }
+
+	        return true;
+	    }
+
+	    function preProcessLayer(layer) {
+	        layer.__unusedCount++;
+	    }
+
+	    function postProcessLayer(layer) {
+	        if (layer.__unusedCount == 1) {
+	            layer.clear();
+	        }
+	    }
+
+	    var tmpRect = new BoundingRect(0, 0, 0, 0);
+	    var viewRect = new BoundingRect(0, 0, 0, 0);
+	    function isDisplayableCulled(el, width, height) {
+	        tmpRect.copy(el.getBoundingRect());
+	        if (el.transform) {
+	            tmpRect.applyTransform(el.transform);
+	        }
+	        viewRect.width = width;
+	        viewRect.height = height;
+	        return !tmpRect.intersect(viewRect);
+	    }
+
+	    function isClipPathChanged(clipPaths, prevClipPaths) {
+	        if (clipPaths == prevClipPaths) { // Can both be null or undefined
+	            return false;
+	        }
+
+	        if (!clipPaths || !prevClipPaths || (clipPaths.length !== prevClipPaths.length)) {
+	            return true;
+	        }
+	        for (var i = 0; i < clipPaths.length; i++) {
+	            if (clipPaths[i] !== prevClipPaths[i]) {
+	                return true;
+	            }
+	        }
+	    }
+
+	    function doClip(clipPaths, ctx) {
+	        for (var i = 0; i < clipPaths.length; i++) {
+	            var clipPath = clipPaths[i];
+	            var m;
+	            if (clipPath.transform) {
+	                m = clipPath.transform;
+	                ctx.transform(
+	                    m[0], m[1],
+	                    m[2], m[3],
+	                    m[4], m[5]
+	                );
+	            }
+	            var path = clipPath.path;
+	            path.beginPath(ctx);
+	            clipPath.buildPath(path, clipPath.shape);
+	            ctx.clip();
+	            // Transform back
+	            if (clipPath.transform) {
+	                m = clipPath.invTransform;
+	                ctx.transform(
+	                    m[0], m[1],
+	                    m[2], m[3],
+	                    m[4], m[5]
+	                );
+	            }
+	        }
+	    }
+
+	    function createRoot(width, height) {
+	        var domRoot = document.createElement('div');
+	        var domRootStyle = domRoot.style;
+
+	        // domRoot.onselectstart = returnFalse; // 避免页面选中的尴尬
+	        domRootStyle.position = 'relative';
+	        domRootStyle.overflow = 'hidden';
+	        domRootStyle.width = width + 'px';
+	        domRootStyle.height = height + 'px';
+	        return domRoot;
+	    }
+
+	    /**
+	     * @alias module:zrender/Painter
+	     * @constructor
+	     * @param {HTMLElement} root 绘图容器
+	     * @param {module:zrender/Storage} storage
+	     * @param {Ojbect} opts
+	     */
+	    var Painter = function (root, storage, opts) {
+	        // In node environment using node-canvas
+	        var singleCanvas = !root.nodeName // In node ?
+	            || root.nodeName.toUpperCase() === 'CANVAS';
+
+	        opts = opts || {};
+
+	        /**
+	         * @type {number}
+	         */
+	        this.dpr = opts.devicePixelRatio || config.devicePixelRatio;
+	        /**
+	         * @type {boolean}
+	         * @private
+	         */
+	        this._singleCanvas = singleCanvas;
+	        /**
+	         * 绘图容器
+	         * @type {HTMLElement}
+	         */
+	        this.root = root;
+
+	        var rootStyle = root.style;
+
+	        if (rootStyle) {
+	            rootStyle['-webkit-tap-highlight-color'] = 'transparent';
+	            rootStyle['-webkit-user-select'] =
+	            rootStyle['user-select'] =
+	            rootStyle['-webkit-touch-callout'] = 'none';
+
+	            root.innerHTML = '';
+	        }
+
+	        /**
+	         * @type {module:zrender/Storage}
+	         */
+	        this.storage = storage;
+
+	        /**
+	         * @type {Array.<number>}
+	         * @private
+	         */
+	        var zlevelList = this._zlevelList = [];
+
+	        /**
+	         * @type {Object.<string, module:zrender/Layer>}
+	         * @private
+	         */
+	        var layers = this._layers = {};
+
+	        /**
+	         * @type {Object.<string, Object>}
+	         * @type {private}
+	         */
+	        this._layerConfig = {};
+
+	        if (!singleCanvas) {
+	            this._width = this._getWidth();
+	            this._height = this._getHeight();
+
+	            var domRoot = this._domRoot = createRoot(
+	                this._width, this._height
+	            );
+	            root.appendChild(domRoot);
+	        }
+	        else {
+	            // Use canvas width and height directly
+	            var width = root.width;
+	            var height = root.height;
+	            this._width = width;
+	            this._height = height;
+
+	            // Create layer if only one given canvas
+	            // Device pixel ratio is fixed to 1 because given canvas has its specified width and height
+	            var mainLayer = new Layer(root, this, 1);
+	            mainLayer.initContext();
+	            // FIXME Use canvas width and height
+	            // mainLayer.resize(width, height);
+	            layers[0] = mainLayer;
+	            zlevelList.push(0);
+	        }
+
+	        this.pathToImage = this._createPathToImage();
+
+	        // Layers for progressive rendering
+	        this._progressiveLayers = [];
+
+	        /**
+	         * @type {module:zrender/Layer}
+	         * @private
+	         */
+	        this._hoverlayer;
+
+	        this._hoverElements = [];
+	    };
+
+	    Painter.prototype = {
+
+	        constructor: Painter,
+
+	        /**
+	         * If painter use a single canvas
+	         * @return {boolean}
+	         */
+	        isSingleCanvas: function () {
+	            return this._singleCanvas;
+	        },
+	        /**
+	         * @return {HTMLDivElement}
+	         */
+	        getViewportRoot: function () {
+	            return this._singleCanvas ? this._layers[0].dom : this._domRoot;
+	        },
+
+	        /**
+	         * 刷新
+	         * @param {boolean} [paintAll=false] 强制绘制所有displayable
+	         */
+	        refresh: function (paintAll) {
+
+	            var list = this.storage.getDisplayList(true);
+
+	            var zlevelList = this._zlevelList;
+
+	            this._paintList(list, paintAll);
+
+	            // Paint custum layers
+	            for (var i = 0; i < zlevelList.length; i++) {
+	                var z = zlevelList[i];
+	                var layer = this._layers[z];
+	                if (!layer.isBuildin && layer.refresh) {
+	                    layer.refresh();
+	                }
+	            }
+
+	            this.refreshHover();
+
+	            if (this._progressiveLayers.length) {
+	                this._startProgessive();
+	            }
+
+	            return this;
+	        },
+
+	        addHover: function (el, hoverStyle) {
+	            if (el.__hoverMir) {
+	                return;
+	            }
+	            var elMirror = new el.constructor({
+	                style: el.style,
+	                shape: el.shape
+	            });
+	            elMirror.__from = el;
+	            el.__hoverMir = elMirror;
+	            elMirror.setStyle(hoverStyle);
+	            this._hoverElements.push(elMirror);
+	        },
+
+	        removeHover: function (el) {
+	            var elMirror = el.__hoverMir;
+	            var hoverElements = this._hoverElements;
+	            var idx = util.indexOf(hoverElements, elMirror);
+	            if (idx >= 0) {
+	                hoverElements.splice(idx, 1);
+	            }
+	            el.__hoverMir = null;
+	        },
+
+	        clearHover: function (el) {
+	            var hoverElements = this._hoverElements;
+	            for (var i = 0; i < hoverElements.length; i++) {
+	                var from = hoverElements[i].__from;
+	                if (from) {
+	                    from.__hoverMir = null;
+	                }
+	            }
+	            hoverElements.length = 0;
+	        },
+
+	        refreshHover: function () {
+	            var hoverElements = this._hoverElements;
+	            var len = hoverElements.length;
+	            var hoverLayer = this._hoverlayer;
+	            hoverLayer && hoverLayer.clear();
+
+	            if (!len) {
+	                return;
+	            }
+	            timsort(hoverElements, this.storage.displayableSortFunc);
+
+	            // Use a extream large zlevel
+	            // FIXME?
+	            if (!hoverLayer) {
+	                hoverLayer = this._hoverlayer = this.getLayer(1e5);
+	            }
+
+	            var scope = {};
+	            hoverLayer.ctx.save();
+	            for (var i = 0; i < len;) {
+	                var el = hoverElements[i];
+	                var originalEl = el.__from;
+	                // Original el is removed
+	                // PENDING
+	                if (!(originalEl && originalEl.__zr)) {
+	                    hoverElements.splice(i, 1);
+	                    originalEl.__hoverMir = null;
+	                    len--;
+	                    continue;
+	                }
+	                i++;
+
+	                // Use transform
+	                // FIXME style and shape ?
+	                if (!originalEl.invisible) {
+	                    el.transform = originalEl.transform;
+	                    el.invTransform = originalEl.invTransform;
+	                    el.__clipPaths = originalEl.__clipPaths;
+	                    // el.
+	                    this._doPaintEl(el, hoverLayer, true, scope);
+	                }
+	            }
+	            hoverLayer.ctx.restore();
+	        },
+
+	        _startProgessive: function () {
+	            var self = this;
+
+	            if (!self._furtherProgressive) {
+	                return;
+	            }
+
+	            // Use a token to stop progress steps triggered by
+	            // previous zr.refresh calling.
+	            var token = self._progressiveToken = +new Date();
+
+	            self._progress++;
+	            requestAnimationFrame(step);
+
+	            function step() {
+	                // In case refreshed or disposed
+	                if (token === self._progressiveToken && self.storage) {
+
+	                    self._doPaintList(self.storage.getDisplayList());
+
+	                    if (self._furtherProgressive) {
+	                        self._progress++;
+	                        requestAnimationFrame(step);
+	                    }
+	                    else {
+	                        self._progressiveToken = -1;
+	                    }
+	                }
+	            }
+	        },
+
+	        _clearProgressive: function () {
+	            this._progressiveToken = -1;
+	            this._progress = 0;
+	            util.each(this._progressiveLayers, function (layer) {
+	                layer.__dirty && layer.clear();
+	            });
+	        },
+
+	        _paintList: function (list, paintAll) {
+
+	            if (paintAll == null) {
+	                paintAll = false;
+	            }
+
+	            this._updateLayerStatus(list);
+
+	            this._clearProgressive();
+
+	            this.eachBuildinLayer(preProcessLayer);
+
+	            this._doPaintList(list, paintAll);
+
+	            this.eachBuildinLayer(postProcessLayer);
+	        },
+
+	        _doPaintList: function (list, paintAll) {
+	            var currentLayer;
+	            var currentZLevel;
+	            var ctx;
+
+	            // var invTransform = [];
+	            var scope;
+
+	            var progressiveLayerIdx = 0;
+	            var currentProgressiveLayer;
+
+	            var width = this._width;
+	            var height = this._height;
+	            var layerProgress;
+	            var frame = this._progress;
+	            function flushProgressiveLayer(layer) {
+	                ctx.save();
+	                ctx.globalAlpha = 1;
+	                ctx.shadowBlur = 0;
+	                // Avoid layer don't clear in next progressive frame
+	                currentLayer.__dirty = true;
+	                ctx.drawImage(layer.dom, 0, 0, width, height);
+	                ctx.restore();
+
+	                currentLayer.ctx.restore();
+	            }
+
+	            for (var i = 0, l = list.length; i < l; i++) {
+	                var el = list[i];
+	                var elZLevel = this._singleCanvas ? 0 : el.zlevel;
+
+	                var elFrame = el.__frame;
+
+	                // Flush at current context
+	                // PENDING
+	                if (elFrame < 0 && currentProgressiveLayer) {
+	                    flushProgressiveLayer(currentProgressiveLayer);
+	                    currentProgressiveLayer = null;
+	                }
+
+	                // Change draw layer
+	                if (currentZLevel !== elZLevel) {
+	                    if (ctx) {
+	                        ctx.restore();
+	                    }
+
+	                    // Reset scope
+	                    scope = {};
+
+	                    // Only 0 zlevel if only has one canvas
+	                    currentZLevel = elZLevel;
+	                    currentLayer = this.getLayer(currentZLevel);
+
+	                    if (!currentLayer.isBuildin) {
+	                        log(
+	                            'ZLevel ' + currentZLevel
+	                            + ' has been used by unkown layer ' + currentLayer.id
+	                        );
+	                    }
+
+	                    ctx = currentLayer.ctx;
+	                    ctx.save();
+
+	                    // Reset the count
+	                    currentLayer.__unusedCount = 0;
+
+	                    if (currentLayer.__dirty || paintAll) {
+	                        currentLayer.clear();
+	                    }
+	                }
+
+	                if (!(currentLayer.__dirty || paintAll)) {
+	                    continue;
+	                }
+	                if (elFrame >= 0) {
+	                    // Progressive layer changed
+	                    if (!currentProgressiveLayer) {
+	                        currentProgressiveLayer = this._progressiveLayers[
+	                            Math.min(progressiveLayerIdx++, MAX_PROGRESSIVE_LAYER_NUMBER - 1)
+	                        ];
+
+	                        currentProgressiveLayer.ctx.save();
+	                        currentProgressiveLayer.renderScope = {};
+
+	                        if (currentProgressiveLayer
+	                            && (currentProgressiveLayer.__progress > currentProgressiveLayer.__maxProgress)
+	                        ) {
+	                            // flushProgressiveLayer(currentProgressiveLayer);
+	                            // Quick jump all progressive elements
+	                            // All progressive element are not dirty, jump over and flush directly
+	                            i = currentProgressiveLayer.__nextIdxNotProg - 1;
+	                            // currentProgressiveLayer = null;
+	                            continue;
+	                        }
+
+	                        layerProgress = currentProgressiveLayer.__progress;
+
+	                        if (!currentProgressiveLayer.__dirty) {
+	                            // Keep rendering
+	                            frame = layerProgress;
+	                        }
+
+	                        currentProgressiveLayer.__progress = frame + 1;
+	                    }
+
+	                    if (elFrame === frame) {
+	                        this._doPaintEl(el, currentProgressiveLayer, true, currentProgressiveLayer.renderScope);
+	                    }
+	                }
+	                else {
+	                    this._doPaintEl(el, currentLayer, paintAll, scope);
+	                }
+
+	                el.__dirty = false;
+	            }
+
+	            if (currentProgressiveLayer) {
+	                flushProgressiveLayer(currentProgressiveLayer);
+	            }
+
+	            // Restore the lastLayer ctx
+	            ctx && ctx.restore();
+	            // If still has clipping state
+	            // if (scope.prevElClipPaths) {
+	            //     ctx.restore();
+	            // }
+
+	            this._furtherProgressive = false;
+	            util.each(this._progressiveLayers, function (layer) {
+	                if (layer.__maxProgress >= layer.__progress) {
+	                    this._furtherProgressive = true;
+	                }
+	            }, this);
+	        },
+
+	        _doPaintEl: function (el, currentLayer, forcePaint, scope) {
+	            var ctx = currentLayer.ctx;
+
+	            if (
+	                (currentLayer.__dirty || forcePaint)
+	                // Ignore invisible element
+	                && !el.invisible
+	                // Ignore transparent element
+	                && el.style.opacity !== 0
+	                // Ignore scale 0 element, in some environment like node-canvas
+	                // Draw a scale 0 element can cause all following draw wrong
+	                && el.scale[0] && el.scale[1]
+	                // Ignore culled element
+	                && !(el.culling && isDisplayableCulled(el, this._width, this._height))
+	            ) {
+
+	                var clipPaths = el.__clipPaths;
+
+	                // Optimize when clipping on group with several elements
+	                if (scope.prevClipLayer !== currentLayer
+	                    || isClipPathChanged(clipPaths, scope.prevElClipPaths)
+	                ) {
+	                    // If has previous clipping state, restore from it
+	                    if (scope.prevElClipPaths) {
+	                        scope.prevClipLayer.ctx.restore();
+	                        scope.prevClipLayer = scope.prevElClipPaths = null;
+
+	                        // Reset prevEl since context has been restored
+	                        scope.prevEl = null;
+	                    }
+	                    // New clipping state
+	                    if (clipPaths) {
+	                        ctx.save();
+	                        doClip(clipPaths, ctx);
+	                        scope.prevClipLayer = currentLayer;
+	                        scope.prevElClipPaths = clipPaths;
+	                    }
+	                }
+	                el.beforeBrush && el.beforeBrush(ctx);
+
+	                el.brush(ctx, scope.prevEl || null);
+	                scope.prevEl = el;
+
+	                el.afterBrush && el.afterBrush(ctx);
+	            }
+	        },
+
+	        /**
+	         * 获取 zlevel 所在层，如果不存在则会创建一个新的层
+	         * @param {number} zlevel
+	         * @return {module:zrender/Layer}
+	         */
+	        getLayer: function (zlevel) {
+	            if (this._singleCanvas) {
+	                return this._layers[0];
+	            }
+
+	            var layer = this._layers[zlevel];
+	            if (!layer) {
+	                // Create a new layer
+	                layer = new Layer('zr_' + zlevel, this, this.dpr);
+	                layer.isBuildin = true;
+
+	                if (this._layerConfig[zlevel]) {
+	                    util.merge(layer, this._layerConfig[zlevel], true);
+	                }
+
+	                this.insertLayer(zlevel, layer);
+
+	                // Context is created after dom inserted to document
+	                // Or excanvas will get 0px clientWidth and clientHeight
+	                layer.initContext();
+	            }
+
+	            return layer;
+	        },
+
+	        insertLayer: function (zlevel, layer) {
+
+	            var layersMap = this._layers;
+	            var zlevelList = this._zlevelList;
+	            var len = zlevelList.length;
+	            var prevLayer = null;
+	            var i = -1;
+	            var domRoot = this._domRoot;
+
+	            if (layersMap[zlevel]) {
+	                log('ZLevel ' + zlevel + ' has been used already');
+	                return;
+	            }
+	            // Check if is a valid layer
+	            if (!isLayerValid(layer)) {
+	                log('Layer of zlevel ' + zlevel + ' is not valid');
+	                return;
+	            }
+
+	            if (len > 0 && zlevel > zlevelList[0]) {
+	                for (i = 0; i < len - 1; i++) {
+	                    if (
+	                        zlevelList[i] < zlevel
+	                        && zlevelList[i + 1] > zlevel
+	                    ) {
+	                        break;
+	                    }
+	                }
+	                prevLayer = layersMap[zlevelList[i]];
+	            }
+	            zlevelList.splice(i + 1, 0, zlevel);
+
+	            if (prevLayer) {
+	                var prevDom = prevLayer.dom;
+	                if (prevDom.nextSibling) {
+	                    domRoot.insertBefore(
+	                        layer.dom,
+	                        prevDom.nextSibling
+	                    );
+	                }
+	                else {
+	                    domRoot.appendChild(layer.dom);
+	                }
+	            }
+	            else {
+	                if (domRoot.firstChild) {
+	                    domRoot.insertBefore(layer.dom, domRoot.firstChild);
+	                }
+	                else {
+	                    domRoot.appendChild(layer.dom);
+	                }
+	            }
+
+	            layersMap[zlevel] = layer;
+	        },
+
+	        // Iterate each layer
+	        eachLayer: function (cb, context) {
+	            var zlevelList = this._zlevelList;
+	            var z;
+	            var i;
+	            for (i = 0; i < zlevelList.length; i++) {
+	                z = zlevelList[i];
+	                cb.call(context, this._layers[z], z);
+	            }
+	        },
+
+	        // Iterate each buildin layer
+	        eachBuildinLayer: function (cb, context) {
+	            var zlevelList = this._zlevelList;
+	            var layer;
+	            var z;
+	            var i;
+	            for (i = 0; i < zlevelList.length; i++) {
+	                z = zlevelList[i];
+	                layer = this._layers[z];
+	                if (layer.isBuildin) {
+	                    cb.call(context, layer, z);
+	                }
+	            }
+	        },
+
+	        // Iterate each other layer except buildin layer
+	        eachOtherLayer: function (cb, context) {
+	            var zlevelList = this._zlevelList;
+	            var layer;
+	            var z;
+	            var i;
+	            for (i = 0; i < zlevelList.length; i++) {
+	                z = zlevelList[i];
+	                layer = this._layers[z];
+	                if (! layer.isBuildin) {
+	                    cb.call(context, layer, z);
+	                }
+	            }
+	        },
+
+	        /**
+	         * 获取所有已创建的层
+	         * @param {Array.<module:zrender/Layer>} [prevLayer]
+	         */
+	        getLayers: function () {
+	            return this._layers;
+	        },
+
+	        _updateLayerStatus: function (list) {
+
+	            var layers = this._layers;
+	            var progressiveLayers = this._progressiveLayers;
+
+	            var elCountsLastFrame = {};
+	            var progressiveElCountsLastFrame = {};
+
+	            this.eachBuildinLayer(function (layer, z) {
+	                elCountsLastFrame[z] = layer.elCount;
+	                layer.elCount = 0;
+	                layer.__dirty = false;
+	            });
+
+	            util.each(progressiveLayers, function (layer, idx) {
+	                progressiveElCountsLastFrame[idx] = layer.elCount;
+	                layer.elCount = 0;
+	                layer.__dirty = false;
+	            });
+
+	            var progressiveLayerCount = 0;
+	            var currentProgressiveLayer;
+	            var lastProgressiveKey;
+	            var frameCount = 0;
+	            for (var i = 0, l = list.length; i < l; i++) {
+	                var el = list[i];
+	                var zlevel = this._singleCanvas ? 0 : el.zlevel;
+	                var layer = layers[zlevel];
+	                var elProgress = el.progressive;
+	                if (layer) {
+	                    layer.elCount++;
+	                    layer.__dirty = layer.__dirty || el.__dirty;
+	                }
+
+	                /////// Update progressive
+	                if (elProgress >= 0) {
+	                    // Fix wrong progressive sequence problem.
+	                    if (lastProgressiveKey !== elProgress) {
+	                        lastProgressiveKey = elProgress;
+	                        frameCount++;
+	                    }
+	                    var elFrame = el.__frame = frameCount - 1;
+	                    if (!currentProgressiveLayer) {
+	                        var idx = Math.min(progressiveLayerCount, MAX_PROGRESSIVE_LAYER_NUMBER - 1);
+	                        currentProgressiveLayer = progressiveLayers[idx];
+	                        if (!currentProgressiveLayer) {
+	                            currentProgressiveLayer = progressiveLayers[idx] = new Layer(
+	                                'progressive', this, this.dpr
+	                            );
+	                            currentProgressiveLayer.initContext();
+	                        }
+	                        currentProgressiveLayer.__maxProgress = 0;
+	                    }
+	                    currentProgressiveLayer.__dirty = currentProgressiveLayer.__dirty || el.__dirty;
+	                    currentProgressiveLayer.elCount++;
+
+	                    currentProgressiveLayer.__maxProgress = Math.max(
+	                        currentProgressiveLayer.__maxProgress, elFrame
+	                    );
+
+	                    if (currentProgressiveLayer.__maxProgress >= currentProgressiveLayer.__progress) {
+	                        // Should keep rendering this  layer because progressive rendering is not finished yet
+	                        layer.__dirty = true;
+	                    }
+	                }
+	                else {
+	                    el.__frame = -1;
+
+	                    if (currentProgressiveLayer) {
+	                        currentProgressiveLayer.__nextIdxNotProg = i;
+	                        progressiveLayerCount++;
+	                        currentProgressiveLayer = null;
+	                    }
+	                }
+	            }
+
+	            if (currentProgressiveLayer) {
+	                progressiveLayerCount++;
+	                currentProgressiveLayer.__nextIdxNotProg = i;
+	            }
+
+	            // 层中的元素数量有发生变化
+	            this.eachBuildinLayer(function (layer, z) {
+	                if (elCountsLastFrame[z] !== layer.elCount) {
+	                    layer.__dirty = true;
+	                }
+	            });
+
+	            progressiveLayers.length = Math.min(progressiveLayerCount, MAX_PROGRESSIVE_LAYER_NUMBER);
+	            util.each(progressiveLayers, function (layer, idx) {
+	                if (progressiveElCountsLastFrame[idx] !== layer.elCount) {
+	                    el.__dirty = true;
+	                }
+	                if (layer.__dirty) {
+	                    layer.__progress = 0;
+	                }
+	            });
+	        },
+
+	        /**
+	         * 清除hover层外所有内容
+	         */
+	        clear: function () {
+	            this.eachBuildinLayer(this._clearLayer);
+	            return this;
+	        },
+
+	        _clearLayer: function (layer) {
+	            layer.clear();
+	        },
+
+	        /**
+	         * 修改指定zlevel的绘制参数
+	         *
+	         * @param {string} zlevel
+	         * @param {Object} config 配置对象
+	         * @param {string} [config.clearColor=0] 每次清空画布的颜色
+	         * @param {string} [config.motionBlur=false] 是否开启动态模糊
+	         * @param {number} [config.lastFrameAlpha=0.7]
+	         *                 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
+	         */
+	        configLayer: function (zlevel, config) {
+	            if (config) {
+	                var layerConfig = this._layerConfig;
+	                if (!layerConfig[zlevel]) {
+	                    layerConfig[zlevel] = config;
+	                }
+	                else {
+	                    util.merge(layerConfig[zlevel], config, true);
+	                }
+
+	                var layer = this._layers[zlevel];
+
+	                if (layer) {
+	                    util.merge(layer, layerConfig[zlevel], true);
+	                }
+	            }
+	        },
+
+	        /**
+	         * 删除指定层
+	         * @param {number} zlevel 层所在的zlevel
+	         */
+	        delLayer: function (zlevel) {
+	            var layers = this._layers;
+	            var zlevelList = this._zlevelList;
+	            var layer = layers[zlevel];
+	            if (!layer) {
+	                return;
+	            }
+	            layer.dom.parentNode.removeChild(layer.dom);
+	            delete layers[zlevel];
+
+	            zlevelList.splice(util.indexOf(zlevelList, zlevel), 1);
+	        },
+
+	        /**
+	         * 区域大小变化后重绘
+	         */
+	        resize: function (width, height) {
+	            var domRoot = this._domRoot;
+	            // FIXME Why ?
+	            domRoot.style.display = 'none';
+
+	            width = width || this._getWidth();
+	            height = height || this._getHeight();
+
+	            domRoot.style.display = '';
+
+	            // 优化没有实际改变的resize
+	            if (this._width != width || height != this._height) {
+	                domRoot.style.width = width + 'px';
+	                domRoot.style.height = height + 'px';
+
+	                for (var id in this._layers) {
+	                    this._layers[id].resize(width, height);
+	                }
+
+	                this.refresh(true);
+	            }
+
+	            this._width = width;
+	            this._height = height;
+
+	            return this;
+	        },
+
+	        /**
+	         * 清除单独的一个层
+	         * @param {number} zlevel
+	         */
+	        clearLayer: function (zlevel) {
+	            var layer = this._layers[zlevel];
+	            if (layer) {
+	                layer.clear();
+	            }
+	        },
+
+	        /**
+	         * 释放
+	         */
+	        dispose: function () {
+	            this.root.innerHTML = '';
+
+	            this.root =
+	            this.storage =
+
+	            this._domRoot =
+	            this._layers = null;
+	        },
+
+	        /**
+	         * Get canvas which has all thing rendered
+	         * @param {Object} opts
+	         * @param {string} [opts.backgroundColor]
+	         */
+	        getRenderedCanvas: function (opts) {
+	            opts = opts || {};
+	            if (this._singleCanvas) {
+	                return this._layers[0].dom;
+	            }
+
+	            var imageLayer = new Layer('image', this, opts.pixelRatio || this.dpr);
+	            imageLayer.initContext();
+
+	            imageLayer.clearColor = opts.backgroundColor;
+	            imageLayer.clear();
+
+	            var displayList = this.storage.getDisplayList(true);
+
+	            var scope = {};
+	            for (var i = 0; i < displayList.length; i++) {
+	                var el = displayList[i];
+	                this._doPaintEl(el, imageLayer, true, scope);
+	            }
+
+	            return imageLayer.dom;
+	        },
+	        /**
+	         * 获取绘图区域宽度
+	         */
+	        getWidth: function () {
+	            return this._width;
+	        },
+
+	        /**
+	         * 获取绘图区域高度
+	         */
+	        getHeight: function () {
+	            return this._height;
+	        },
+
+	        _getWidth: function () {
+	            var root = this.root;
+	            var stl = document.defaultView.getComputedStyle(root);
+
+	            // FIXME Better way to get the width and height when element has not been append to the document
+	            return ((root.clientWidth || parseInt10(stl.width) || parseInt10(root.style.width))
+	                    - (parseInt10(stl.paddingLeft) || 0)
+	                    - (parseInt10(stl.paddingRight) || 0)) | 0;
+	        },
+
+	        _getHeight: function () {
+	            var root = this.root;
+	            var stl = document.defaultView.getComputedStyle(root);
+
+	            return ((root.clientHeight || parseInt10(stl.height) || parseInt10(root.style.height))
+	                    - (parseInt10(stl.paddingTop) || 0)
+	                    - (parseInt10(stl.paddingBottom) || 0)) | 0;
+	        },
+
+	        _pathToImage: function (id, path, width, height, dpr) {
+	            var canvas = document.createElement('canvas');
+	            var ctx = canvas.getContext('2d');
+
+	            canvas.width = width * dpr;
+	            canvas.height = height * dpr;
+
+	            ctx.clearRect(0, 0, width * dpr, height * dpr);
+
+	            var pathTransform = {
+	                position: path.position,
+	                rotation: path.rotation,
+	                scale: path.scale
+	            };
+	            path.position = [0, 0, 0];
+	            path.rotation = 0;
+	            path.scale = [1, 1];
+	            if (path) {
+	                path.brush(ctx);
+	            }
+
+	            var ImageShape = __webpack_require__(62);
+	            var imgShape = new ImageShape({
+	                id: id,
+	                style: {
+	                    x: 0,
+	                    y: 0,
+	                    image: canvas
+	                }
+	            });
+
+	            if (pathTransform.position != null) {
+	                imgShape.position = path.position = pathTransform.position;
+	            }
+
+	            if (pathTransform.rotation != null) {
+	                imgShape.rotation = path.rotation = pathTransform.rotation;
+	            }
+
+	            if (pathTransform.scale != null) {
+	                imgShape.scale = path.scale = pathTransform.scale;
+	            }
+
+	            return imgShape;
+	        },
+
+	        _createPathToImage: function () {
+	            var me = this;
+
+	            return function (id, e, width, height) {
+	                return me._pathToImage(
+	                    id, e, width, height, me.dpr
+	                );
+	            };
+	        }
+	    };
+
+	    module.exports = Painter;
+
+
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * @module zrender/Layer
+	 * @author pissang(https://www.github.com/pissang)
+	 */
+
+
+	    var util = __webpack_require__(4);
+	    var config = __webpack_require__(41);
+	    var Style = __webpack_require__(47);
+	    var Pattern = __webpack_require__(59);
+
+	    function returnFalse() {
+	        return false;
+	    }
+
+	    /**
+	     * 创建dom
+	     *
+	     * @inner
+	     * @param {string} id dom id 待用
+	     * @param {string} type dom type，such as canvas, div etc.
+	     * @param {Painter} painter painter instance
+	     * @param {number} number
+	     */
+	    function createDom(id, type, painter, dpr) {
+	        var newDom = document.createElement(type);
+	        var width = painter.getWidth();
+	        var height = painter.getHeight();
+
+	        var newDomStyle = newDom.style;
+	        // 没append呢，请原谅我这样写，清晰~
+	        newDomStyle.position = 'absolute';
+	        newDomStyle.left = 0;
+	        newDomStyle.top = 0;
+	        newDomStyle.width = width + 'px';
+	        newDomStyle.height = height + 'px';
+	        newDom.width = width * dpr;
+	        newDom.height = height * dpr;
+
+	        // id不作为索引用，避免可能造成的重名，定义为私有属性
+	        newDom.setAttribute('data-zr-dom-id', id);
+	        return newDom;
+	    }
+
+	    /**
+	     * @alias module:zrender/Layer
+	     * @constructor
+	     * @extends module:zrender/mixin/Transformable
+	     * @param {string} id
+	     * @param {module:zrender/Painter} painter
+	     * @param {number} [dpr]
+	     */
+	    var Layer = function(id, painter, dpr) {
+	        var dom;
+	        dpr = dpr || config.devicePixelRatio;
+	        if (typeof id === 'string') {
+	            dom = createDom(id, 'canvas', painter, dpr);
+	        }
+	        // Not using isDom because in node it will return false
+	        else if (util.isObject(id)) {
+	            dom = id;
+	            id = dom.id;
+	        }
+	        this.id = id;
+	        this.dom = dom;
+
+	        var domStyle = dom.style;
+	        if (domStyle) { // Not in node
+	            dom.onselectstart = returnFalse; // 避免页面选中的尴尬
+	            domStyle['-webkit-user-select'] = 'none';
+	            domStyle['user-select'] = 'none';
+	            domStyle['-webkit-touch-callout'] = 'none';
+	            domStyle['-webkit-tap-highlight-color'] = 'rgba(0,0,0,0)';
+	        }
+
+	        this.domBack = null;
+	        this.ctxBack = null;
+
+	        this.painter = painter;
+
+	        this.config = null;
+
+	        // Configs
+	        /**
+	         * 每次清空画布的颜色
+	         * @type {string}
+	         * @default 0
+	         */
+	        this.clearColor = 0;
+	        /**
+	         * 是否开启动态模糊
+	         * @type {boolean}
+	         * @default false
+	         */
+	        this.motionBlur = false;
+	        /**
+	         * 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
+	         * @type {number}
+	         * @default 0.7
+	         */
+	        this.lastFrameAlpha = 0.7;
+
+	        /**
+	         * Layer dpr
+	         * @type {number}
+	         */
+	        this.dpr = dpr;
+	    };
+
+	    Layer.prototype = {
+
+	        constructor: Layer,
+
+	        elCount: 0,
+
+	        __dirty: true,
+
+	        initContext: function () {
+	            this.ctx = this.dom.getContext('2d');
+
+	            var dpr = this.dpr;
+	            if (dpr != 1) {
+	                this.ctx.scale(dpr, dpr);
+	            }
+	        },
+
+	        createBackBuffer: function () {
+	            var dpr = this.dpr;
+
+	            this.domBack = createDom('back-' + this.id, 'canvas', this.painter, dpr);
+	            this.ctxBack = this.domBack.getContext('2d');
+
+	            if (dpr != 1) {
+	                this.ctxBack.scale(dpr, dpr);
+	            }
+	        },
+
+	        /**
+	         * @param  {number} width
+	         * @param  {number} height
+	         */
+	        resize: function (width, height) {
+	            var dpr = this.dpr;
+
+	            var dom = this.dom;
+	            var domStyle = dom.style;
+	            var domBack = this.domBack;
+
+	            domStyle.width = width + 'px';
+	            domStyle.height = height + 'px';
+
+	            dom.width = width * dpr;
+	            dom.height = height * dpr;
+
+	            if (dpr != 1) {
+	                this.ctx.scale(dpr, dpr);
+	            }
+
+	            if (domBack) {
+	                domBack.width = width * dpr;
+	                domBack.height = height * dpr;
+
+	                if (dpr != 1) {
+	                    this.ctxBack.scale(dpr, dpr);
+	                }
+	            }
+	        },
+
+	        /**
+	         * 清空该层画布
+	         * @param {boolean} clearAll Clear all with out motion blur
+	         */
+	        clear: function (clearAll) {
+	            var dom = this.dom;
+	            var ctx = this.ctx;
+	            var width = dom.width;
+	            var height = dom.height;
+
+	            var clearColor = this.clearColor;
+	            var haveMotionBLur = this.motionBlur && !clearAll;
+	            var lastFrameAlpha = this.lastFrameAlpha;
+
+	            var dpr = this.dpr;
+
+	            if (haveMotionBLur) {
+	                if (!this.domBack) {
+	                    this.createBackBuffer();
+	                }
+
+	                this.ctxBack.globalCompositeOperation = 'copy';
+	                this.ctxBack.drawImage(
+	                    dom, 0, 0,
+	                    width / dpr,
+	                    height / dpr
+	                );
+	            }
+
+	            ctx.clearRect(0, 0, width / dpr, height / dpr);
+	            if (clearColor) {
+	                var clearColorGradientOrPattern;
+	                // Gradient
+	                if (clearColor.colorStops) {
+	                    // Cache canvas gradient
+	                    clearColorGradientOrPattern = clearColor.__canvasGradient || Style.getGradient(ctx, clearColor, {
+	                        x: 0,
+	                        y: 0,
+	                        width: width / dpr,
+	                        height: height / dpr
+	                    });
+
+	                    clearColor.__canvasGradient = clearColorGradientOrPattern;
+	                }
+	                // Pattern
+	                else if (clearColor.image) {
+	                    clearColorGradientOrPattern = Pattern.prototype.getCanvasPattern.call(clearColor, ctx);
+	                }
+	                ctx.save();
+	                ctx.fillStyle = clearColorGradientOrPattern || clearColor;
+	                ctx.fillRect(0, 0, width / dpr, height / dpr);
+	                ctx.restore();
+	            }
+
+	            if (haveMotionBLur) {
+	                var domBack = this.domBack;
+	                ctx.save();
+	                ctx.globalAlpha = lastFrameAlpha;
+	                ctx.drawImage(domBack, 0, 0, width / dpr, height / dpr);
+	                ctx.restore();
+	            }
+	        }
+	    };
+
+	    module.exports = Layer;
+
+
+/***/ },
+/* 93 */
+/***/ function(module, exports, __webpack_require__) {
+
 	
 
-	    var graphic = __webpack_require__(44);
+	    var graphic = __webpack_require__(43);
 	    var zrUtil = __webpack_require__(4);
 	    var PI = Math.PI;
 	    /**
@@ -19187,11 +19826,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 91 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	    var Gradient = __webpack_require__(5);
+	    var Gradient = __webpack_require__(61);
 	    module.exports = function (seriesType, styleType, ecModel) {
 	        function encodeColor(seriesModel) {
 	            var colorAccessPath = [styleType, 'normal', 'color'];
@@ -19228,14 +19867,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 92 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Compatitable with 2.0
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var compatStyle = __webpack_require__(93);
+	    var compatStyle = __webpack_require__(96);
 
 	    function get(opt, path) {
 	        path = path.split(',');
@@ -19338,7 +19977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 93 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -19419,7 +20058,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 94 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -19444,11 +20083,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'time': Array
 	    };
 
-	    var Model = __webpack_require__(9);
-	    var DataDiffer = __webpack_require__(95);
+	    var Model = __webpack_require__(8);
+	    var DataDiffer = __webpack_require__(98);
 
 	    var zrUtil = __webpack_require__(4);
-	    var modelUtil = __webpack_require__(6);
+	    var modelUtil = __webpack_require__(5);
 	    var isObject = zrUtil.isObject;
 
 	    var TRANSFERABLE_PROPERTIES = [
@@ -20514,7 +21153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 95 */
+/* 98 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20639,7 +21278,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 96 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -20648,34 +21287,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var echarts = __webpack_require__(1);
 	    var PRIORITY = echarts.PRIORITY;
 
-	    __webpack_require__(97);
 	    __webpack_require__(100);
+	    __webpack_require__(103);
 
 	    echarts.registerVisual(zrUtil.curry(
-	        __webpack_require__(106), 'line', 'circle', 'line'
+	        __webpack_require__(109), 'line', 'circle', 'line'
 	    ));
 	    echarts.registerLayout(zrUtil.curry(
-	        __webpack_require__(107), 'line'
+	        __webpack_require__(110), 'line'
 	    ));
 
 	    // Down sample after filter
 	    echarts.registerProcessor(PRIORITY.PROCESSOR.STATISTIC, zrUtil.curry(
-	        __webpack_require__(108), 'line'
+	        __webpack_require__(111), 'line'
 	    ));
 
 	    // In case developer forget to include grid component
-	    __webpack_require__(109);
+	    __webpack_require__(112);
 
 
 /***/ },
-/* 97 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var createListFromArray = __webpack_require__(98);
-	    var SeriesModel = __webpack_require__(29);
+	    var createListFromArray = __webpack_require__(101);
+	    var SeriesModel = __webpack_require__(28);
 
 	    module.exports = SeriesModel.extend({
 
@@ -20759,17 +21398,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 98 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var List = __webpack_require__(94);
-	    var completeDimensions = __webpack_require__(99);
+	    var List = __webpack_require__(97);
+	    var completeDimensions = __webpack_require__(102);
 	    var zrUtil = __webpack_require__(4);
-	    var modelUtil = __webpack_require__(6);
-	    var CoordinateSystem = __webpack_require__(27);
+	    var modelUtil = __webpack_require__(5);
+	    var CoordinateSystem = __webpack_require__(26);
 	    var getDataItemValue = modelUtil.getDataItemValue;
 	    var converDataValue = modelUtil.converDataValue;
 
@@ -21017,7 +21656,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 99 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21087,7 +21726,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 100 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21095,14 +21734,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var SymbolDraw = __webpack_require__(101);
-	    var Symbol = __webpack_require__(102);
-	    var lineAnimationDiff = __webpack_require__(104);
-	    var graphic = __webpack_require__(44);
+	    var SymbolDraw = __webpack_require__(104);
+	    var Symbol = __webpack_require__(105);
+	    var lineAnimationDiff = __webpack_require__(107);
+	    var graphic = __webpack_require__(43);
 
-	    var polyHelper = __webpack_require__(105);
+	    var polyHelper = __webpack_require__(108);
 
-	    var ChartView = __webpack_require__(43);
+	    var ChartView = __webpack_require__(42);
 
 	    function isPointsSame(points1, points2) {
 	        if (points1.length !== points2.length) {
@@ -21705,7 +22344,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 101 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21713,8 +22352,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var graphic = __webpack_require__(44);
-	    var Symbol = __webpack_require__(102);
+	    var graphic = __webpack_require__(43);
+	    var Symbol = __webpack_require__(105);
 
 	    /**
 	     * @constructor
@@ -21833,7 +22472,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 102 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21842,9 +22481,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var symbolUtil = __webpack_require__(103);
-	    var graphic = __webpack_require__(44);
-	    var numberUtil = __webpack_require__(8);
+	    var symbolUtil = __webpack_require__(106);
+	    var graphic = __webpack_require__(43);
+	    var numberUtil = __webpack_require__(7);
 
 	    function normalizeSymbolSize(symbolSize) {
 	        if (!(symbolSize instanceof Array)) {
@@ -22121,15 +22760,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 103 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// Symbol factory
 
 
-	    var graphic = __webpack_require__(44);
-	    var BoundingRect = __webpack_require__(16);
+	    var graphic = __webpack_require__(43);
+	    var BoundingRect = __webpack_require__(15);
 
 	    /**
 	     * Triangle shape
@@ -22479,7 +23118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 104 */
+/* 107 */
 /***/ function(module, exports) {
 
 	
@@ -22693,14 +23332,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 105 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Poly path support NaN point
 
 
-	    var Path = __webpack_require__(46);
-	    var vec2 = __webpack_require__(17);
+	    var Path = __webpack_require__(45);
+	    var vec2 = __webpack_require__(16);
 
 	    var vec2Min = vec2.min;
 	    var vec2Max = vec2.max;
@@ -22948,7 +23587,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 106 */
+/* 109 */
 /***/ function(module, exports) {
 
 	
@@ -22997,7 +23636,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 107 */
+/* 110 */
 /***/ function(module, exports) {
 
 	
@@ -23030,7 +23669,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 108 */
+/* 111 */
 /***/ function(module, exports) {
 
 	
@@ -23113,18 +23752,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 109 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var graphic = __webpack_require__(44);
+	    var graphic = __webpack_require__(43);
 	    var zrUtil = __webpack_require__(4);
 
-	    __webpack_require__(110);
+	    __webpack_require__(113);
 
-	    __webpack_require__(127);
+	    __webpack_require__(130);
 
 	    // Grid view
 	    __webpack_require__(1).extendComponentView({
@@ -23147,7 +23786,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 110 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23157,12 +23796,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var factory = exports;
 
-	    var layout = __webpack_require__(22);
-	    var axisHelper = __webpack_require__(111);
+	    var layout = __webpack_require__(21);
+	    var axisHelper = __webpack_require__(114);
 
 	    var zrUtil = __webpack_require__(4);
-	    var Cartesian2D = __webpack_require__(117);
-	    var Axis2D = __webpack_require__(119);
+	    var Cartesian2D = __webpack_require__(120);
+	    var Axis2D = __webpack_require__(122);
 
 	    var each = zrUtil.each;
 
@@ -23170,7 +23809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var niceScaleExtent = axisHelper.niceScaleExtent;
 
 	    // 依赖 GridModel, AxisModel 做预处理
-	    __webpack_require__(122);
+	    __webpack_require__(125);
 
 	    /**
 	     * Check if the axis is used in the specified grid
@@ -23570,26 +24209,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // For deciding which dimensions to use when creating list data
 	    Grid.dimensions = Cartesian2D.prototype.dimensions;
 
-	    __webpack_require__(27).register('cartesian2d', Grid);
+	    __webpack_require__(26).register('cartesian2d', Grid);
 
 	    module.exports = Grid;
 
 
 /***/ },
-/* 111 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var OrdinalScale = __webpack_require__(112);
-	    var IntervalScale = __webpack_require__(114);
-	    __webpack_require__(115);
-	    __webpack_require__(116);
-	    var Scale = __webpack_require__(113);
+	    var OrdinalScale = __webpack_require__(115);
+	    var IntervalScale = __webpack_require__(117);
+	    __webpack_require__(118);
+	    __webpack_require__(119);
+	    var Scale = __webpack_require__(116);
 
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var zrUtil = __webpack_require__(4);
-	    var textContain = __webpack_require__(15);
+	    var textContain = __webpack_require__(14);
 	    var axisHelper = {};
 
 	    /**
@@ -23804,7 +24443,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 112 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23818,7 +24457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var Scale = __webpack_require__(113);
+	    var Scale = __webpack_require__(116);
 
 	    var scaleProto = Scale.prototype;
 
@@ -23904,7 +24543,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 113 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23913,7 +24552,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var clazzUtil = __webpack_require__(10);
+	    var clazzUtil = __webpack_require__(9);
 
 	    function Scale() {
 	        /**
@@ -24032,7 +24671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 114 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24042,9 +24681,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var numberUtil = __webpack_require__(8);
-	    var formatUtil = __webpack_require__(7);
-	    var Scale = __webpack_require__(113);
+	    var numberUtil = __webpack_require__(7);
+	    var formatUtil = __webpack_require__(6);
+	    var Scale = __webpack_require__(116);
 
 	    var mathFloor = Math.floor;
 	    var mathCeil = Math.ceil;
@@ -24239,7 +24878,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 115 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24250,10 +24889,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
-	    var formatUtil = __webpack_require__(7);
+	    var numberUtil = __webpack_require__(7);
+	    var formatUtil = __webpack_require__(6);
 
-	    var IntervalScale = __webpack_require__(114);
+	    var IntervalScale = __webpack_require__(117);
 
 	    var intervalScaleProto = IntervalScale.prototype;
 
@@ -24405,7 +25044,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 116 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24415,11 +25054,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var Scale = __webpack_require__(113);
-	    var numberUtil = __webpack_require__(8);
+	    var Scale = __webpack_require__(116);
+	    var numberUtil = __webpack_require__(7);
 
 	    // Use some method of IntervalScale
-	    var IntervalScale = __webpack_require__(114);
+	    var IntervalScale = __webpack_require__(117);
 
 	    var scaleProto = Scale.prototype;
 	    var intervalScaleProto = IntervalScale.prototype;
@@ -24540,14 +25179,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 117 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var Cartesian = __webpack_require__(118);
+	    var Cartesian = __webpack_require__(121);
 
 	    function Cartesian2D(name) {
 
@@ -24656,7 +25295,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 118 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24774,14 +25413,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 119 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var Axis = __webpack_require__(120);
-	    var axisLabelInterval = __webpack_require__(121);
+	    var Axis = __webpack_require__(123);
+	    var axisLabelInterval = __webpack_require__(124);
 
 	    /**
 	     * Extend axis 2d
@@ -24896,12 +25535,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 120 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var linearMap = numberUtil.linearMap;
 	    var zrUtil = __webpack_require__(4);
 
@@ -25133,7 +25772,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 121 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25144,7 +25783,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var axisHelper = __webpack_require__(111);
+	    var axisHelper = __webpack_require__(114);
 
 	    module.exports = function (axis) {
 	        var axisModel = axis.model;
@@ -25164,7 +25803,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 122 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25172,8 +25811,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	// 所以这里也要被 Cartesian2D 依赖
 
 
-	    __webpack_require__(123);
-	    var ComponentModel = __webpack_require__(20);
+	    __webpack_require__(126);
+	    var ComponentModel = __webpack_require__(19);
 
 	    module.exports = ComponentModel.extend({
 
@@ -25208,15 +25847,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 123 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var ComponentModel = __webpack_require__(20);
+	    var ComponentModel = __webpack_require__(19);
 	    var zrUtil = __webpack_require__(4);
-	    var axisModelCreator = __webpack_require__(124);
+	    var axisModelCreator = __webpack_require__(127);
 
 	    var AxisModel = ComponentModel.extend({
 
@@ -25304,7 +25943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return option.type || (option.data ? 'category' : 'value');
 	    }
 
-	    zrUtil.merge(AxisModel.prototype, __webpack_require__(126));
+	    zrUtil.merge(AxisModel.prototype, __webpack_require__(129));
 
 	    var extraOption = {
 	        gridIndex: 0
@@ -25317,15 +25956,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 124 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var axisDefault = __webpack_require__(125);
+	    var axisDefault = __webpack_require__(128);
 	    var zrUtil = __webpack_require__(4);
-	    var ComponentModel = __webpack_require__(20);
-	    var layout = __webpack_require__(22);
+	    var ComponentModel = __webpack_require__(19);
+	    var layout = __webpack_require__(21);
 
 	    // FIXME axisType is fixed ?
 	    var AXIS_TYPES = ['value', 'category', 'time', 'log'];
@@ -25380,7 +26019,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 125 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -25519,13 +26158,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 126 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var axisHelper = __webpack_require__(111);
+	    var axisHelper = __webpack_require__(114);
 
 	    function getName(obj) {
 	        if (zrUtil.isObject(obj) && obj.value != null) {
@@ -25563,27 +26202,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 127 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// TODO boundaryGap
 
 
-	    __webpack_require__(123);
+	    __webpack_require__(126);
 
-	    __webpack_require__(128);
+	    __webpack_require__(131);
 
 
 /***/ },
-/* 128 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var graphic = __webpack_require__(44);
-	    var AxisBuilder = __webpack_require__(129);
+	    var graphic = __webpack_require__(43);
+	    var AxisBuilder = __webpack_require__(132);
 	    var ifIgnoreOnTick = AxisBuilder.ifIgnoreOnTick;
 	    var getInterval = AxisBuilder.getInterval;
 
@@ -25855,15 +26494,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 129 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var graphic = __webpack_require__(44);
-	    var Model = __webpack_require__(9);
-	    var numberUtil = __webpack_require__(8);
+	    var graphic = __webpack_require__(43);
+	    var Model = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var remRadian = numberUtil.remRadian;
 	    var isRadianAroundZero = numberUtil.isRadianAroundZero;
 
@@ -26323,19 +26962,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 130 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
 
-	    __webpack_require__(110);
+	    __webpack_require__(113);
 
-	    __webpack_require__(131);
-	    __webpack_require__(132);
+	    __webpack_require__(134);
+	    __webpack_require__(135);
 
-	    var barLayoutGrid = __webpack_require__(134);
+	    var barLayoutGrid = __webpack_require__(137);
 	    var echarts = __webpack_require__(1);
 
 	    echarts.registerLayout(zrUtil.curry(barLayoutGrid, 'bar'));
@@ -26348,18 +26987,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 
 	    // In case developer forget to include grid component
-	    __webpack_require__(109);
+	    __webpack_require__(112);
 
 
 /***/ },
-/* 131 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var SeriesModel = __webpack_require__(29);
-	    var createListFromArray = __webpack_require__(98);
+	    var SeriesModel = __webpack_require__(28);
+	    var createListFromArray = __webpack_require__(101);
 
 	    module.exports = SeriesModel.extend({
 
@@ -26441,16 +27080,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 132 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var graphic = __webpack_require__(44);
+	    var graphic = __webpack_require__(43);
 
-	    zrUtil.extend(__webpack_require__(9).prototype, __webpack_require__(133));
+	    zrUtil.extend(__webpack_require__(8).prototype, __webpack_require__(136));
 
 	    function fixLayoutWithLineWidth(layout, lineWidth) {
 	        var signX = layout.width > 0 ? 1 : -1;
@@ -26660,12 +27299,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 133 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	    module.exports = {
-	        getBarItemStyle: __webpack_require__(12)(
+	        getBarItemStyle: __webpack_require__(11)(
 	            [
 	                ['fill', 'color'],
 	                ['stroke', 'borderColor'],
@@ -26684,14 +27323,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 134 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var parsePercent = numberUtil.parsePercent;
 
 	    function getSeriesStackId(seriesModel) {
@@ -26905,7 +27544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 135 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -26913,10 +27552,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var zrUtil = __webpack_require__(4);
 	    var echarts = __webpack_require__(1);
 
-	    __webpack_require__(136);
-	    __webpack_require__(138);
+	    __webpack_require__(139);
+	    __webpack_require__(141);
 
-	    __webpack_require__(139)('pie', [{
+	    __webpack_require__(142)('pie', [{
 	        type: 'pieToggleSelect',
 	        event: 'pieselectchanged',
 	        method: 'toggleSelected'
@@ -26930,28 +27569,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        method: 'unSelect'
 	    }]);
 
-	    echarts.registerVisual(zrUtil.curry(__webpack_require__(140), 'pie'));
+	    echarts.registerVisual(zrUtil.curry(__webpack_require__(143), 'pie'));
 
 	    echarts.registerLayout(zrUtil.curry(
-	        __webpack_require__(141), 'pie'
+	        __webpack_require__(144), 'pie'
 	    ));
 
-	    echarts.registerProcessor(zrUtil.curry(__webpack_require__(143), 'pie'));
+	    echarts.registerProcessor(zrUtil.curry(__webpack_require__(146), 'pie'));
 
 
 /***/ },
-/* 136 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var List = __webpack_require__(94);
+	    var List = __webpack_require__(97);
 	    var zrUtil = __webpack_require__(4);
-	    var modelUtil = __webpack_require__(6);
-	    var completeDimensions = __webpack_require__(99);
+	    var modelUtil = __webpack_require__(5);
+	    var completeDimensions = __webpack_require__(102);
 
-	    var dataSelectableMixin = __webpack_require__(137);
+	    var dataSelectableMixin = __webpack_require__(140);
 
 	    var PieSeries = __webpack_require__(1).extendSeriesModel({
 
@@ -27084,7 +27723,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 137 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27154,12 +27793,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 138 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var graphic = __webpack_require__(44);
+	    var graphic = __webpack_require__(43);
 	    var zrUtil = __webpack_require__(4);
 
 	    /**
@@ -27422,7 +28061,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    // Pie view
-	    var Pie = __webpack_require__(43).extend({
+	    var Pie = __webpack_require__(42).extend({
 
 	        type: 'pie',
 
@@ -27522,7 +28161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 139 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -27562,7 +28201,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 140 */
+/* 143 */
 /***/ function(module, exports) {
 
 	// Pick color from palette for each data item
@@ -27605,16 +28244,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 141 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// TODO minAngle
 
 
 
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var parsePercent = numberUtil.parsePercent;
-	    var labelLayout = __webpack_require__(142);
+	    var labelLayout = __webpack_require__(145);
 	    var zrUtil = __webpack_require__(4);
 
 	    var PI2 = Math.PI * 2;
@@ -27733,14 +28372,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 142 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// FIXME emphasis label position is not same with normal label position
 
 
-	    var textContain = __webpack_require__(15);
+	    var textContain = __webpack_require__(14);
 
 	    function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight) {
 	        list.sort(function (a, b) {
@@ -27964,7 +28603,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 143 */
+/* 146 */
 /***/ function(module, exports) {
 
 	
@@ -27992,7 +28631,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 144 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -28000,29 +28639,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var zrUtil = __webpack_require__(4);
 	    var echarts = __webpack_require__(1);
 
-	    __webpack_require__(145);
-	    __webpack_require__(146);
+	    __webpack_require__(148);
+	    __webpack_require__(149);
 
 	    echarts.registerVisual(zrUtil.curry(
-	        __webpack_require__(106), 'scatter', 'circle', null
+	        __webpack_require__(109), 'scatter', 'circle', null
 	    ));
 	    echarts.registerLayout(zrUtil.curry(
-	        __webpack_require__(107), 'scatter'
+	        __webpack_require__(110), 'scatter'
 	    ));
 
 	    // In case developer forget to include grid component
-	    __webpack_require__(109);
+	    __webpack_require__(112);
 
 
 /***/ },
-/* 145 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var createListFromArray = __webpack_require__(98);
-	    var SeriesModel = __webpack_require__(29);
+	    var createListFromArray = __webpack_require__(101);
+	    var SeriesModel = __webpack_require__(28);
 
 	    module.exports = SeriesModel.extend({
 
@@ -28084,13 +28723,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 146 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var SymbolDraw = __webpack_require__(101);
-	    var LargeSymbolDraw = __webpack_require__(147);
+	    var SymbolDraw = __webpack_require__(104);
+	    var LargeSymbolDraw = __webpack_require__(150);
 
 	    __webpack_require__(1).extendChartView({
 
@@ -28131,15 +28770,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 147 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// TODO Batch by color
 
 
 
-	    var graphic = __webpack_require__(44);
-	    var symbolUtil = __webpack_require__(103);
+	    var graphic = __webpack_require__(43);
+	    var symbolUtil = __webpack_require__(106);
 
 	    var LargeSymbolPath = graphic.extendShape({
 	        shape: {
@@ -28281,9 +28920,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 148 */,
-/* 149 */,
-/* 150 */,
 /* 151 */,
 /* 152 */,
 /* 153 */,
@@ -28304,7 +28940,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 168 */,
 /* 169 */,
 /* 170 */,
-/* 171 */
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -28313,10 +28952,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var Eventful = __webpack_require__(34);
+	    var Eventful = __webpack_require__(33);
 	    var zrUtil = __webpack_require__(4);
-	    var eventTool = __webpack_require__(82);
-	    var interactionMutex = __webpack_require__(172);
+	    var eventTool = __webpack_require__(87);
+	    var interactionMutex = __webpack_require__(175);
 
 	    function mousedown(e) {
 	        if (e.target && e.target.draggable) {
@@ -28529,7 +29168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 172 */
+/* 175 */
 /***/ function(module, exports) {
 
 	
@@ -28572,9 +29211,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 173 */,
-/* 174 */,
-/* 175 */,
 /* 176 */,
 /* 177 */,
 /* 178 */,
@@ -28595,7 +29231,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 193 */,
 /* 194 */,
 /* 195 */,
-/* 196 */
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -28603,8 +29242,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var graphic = __webpack_require__(44);
-	    var LineGroup = __webpack_require__(197);
+	    var graphic = __webpack_require__(43);
+	    var LineGroup = __webpack_require__(200);
 
 
 	    function isPointNaN(pt) {
@@ -28685,7 +29324,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 197 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -28693,13 +29332,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var symbolUtil = __webpack_require__(103);
-	    var vector = __webpack_require__(17);
+	    var symbolUtil = __webpack_require__(106);
+	    var vector = __webpack_require__(16);
 	    // var matrix = require('zrender/lib/core/matrix');
-	    var LinePath = __webpack_require__(198);
-	    var graphic = __webpack_require__(44);
+	    var LinePath = __webpack_require__(201);
+	    var graphic = __webpack_require__(43);
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 
 	    var SYMBOL_CATEGORIES = ['fromSymbol', 'toSymbol'];
 	    function makeSymbolTypeKey(symbolCategory) {
@@ -29001,15 +29640,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 198 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Line path for bezier and straight line draw
 	 */
 
-	    var graphic = __webpack_require__(44);
-	    var vec2 = __webpack_require__(17);
+	    var graphic = __webpack_require__(43);
+	    var vec2 = __webpack_require__(16);
 
 	    var straightLineProto = graphic.Line.prototype;
 	    var bezierCurveProto = graphic.BezierCurve.prototype;
@@ -29058,9 +29697,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 199 */,
-/* 200 */,
-/* 201 */,
 /* 202 */,
 /* 203 */,
 /* 204 */,
@@ -29089,7 +29725,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 227 */,
 /* 228 */,
 /* 229 */,
-/* 230 */
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29100,11 +29739,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var Eventful = __webpack_require__(34);
+	    var Eventful = __webpack_require__(33);
 	    var zrUtil = __webpack_require__(4);
-	    var graphic = __webpack_require__(44);
-	    var interactionMutex = __webpack_require__(172);
-	    var DataDiffer = __webpack_require__(95);
+	    var graphic = __webpack_require__(43);
+	    var interactionMutex = __webpack_require__(175);
+	    var DataDiffer = __webpack_require__(98);
 
 	    var bind = zrUtil.bind;
 	    var each = zrUtil.each;
@@ -29828,9 +30467,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 231 */,
-/* 232 */,
-/* 233 */,
 /* 234 */,
 /* 235 */,
 /* 236 */,
@@ -29869,7 +30505,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 269 */,
 /* 270 */,
 /* 271 */,
-/* 272 */
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -29969,9 +30608,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 273 */,
-/* 274 */,
-/* 275 */
+/* 276 */,
+/* 277 */,
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29979,24 +30618,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    __webpack_require__(276);
-	    __webpack_require__(277);
-	    __webpack_require__(278);
+	    __webpack_require__(279);
+	    __webpack_require__(280);
+	    __webpack_require__(281);
 
 	    var echarts = __webpack_require__(1);
 	    // Series Filter
-	    echarts.registerProcessor(__webpack_require__(280));
+	    echarts.registerProcessor(__webpack_require__(283));
 
 
 /***/ },
-/* 276 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var Model = __webpack_require__(9);
+	    var Model = __webpack_require__(8);
 
 	    var LegendModel = __webpack_require__(1).extendComponentModel({
 
@@ -30180,7 +30819,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 277 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -30267,15 +30906,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 278 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var symbolCreator = __webpack_require__(103);
-	    var graphic = __webpack_require__(44);
-	    var listComponentHelper = __webpack_require__(279);
+	    var symbolCreator = __webpack_require__(106);
+	    var graphic = __webpack_require__(43);
+	    var listComponentHelper = __webpack_require__(282);
 
 	    var curry = zrUtil.curry;
 
@@ -30515,14 +31154,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 279 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	    // List layout
-	    var layout = __webpack_require__(22);
-	    var formatUtil = __webpack_require__(7);
-	    var graphic = __webpack_require__(44);
+	    var layout = __webpack_require__(21);
+	    var formatUtil = __webpack_require__(6);
+	    var graphic = __webpack_require__(43);
 
 	    function positionGroup(group, model, api) {
 	        layout.positionGroup(
@@ -30585,7 +31224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 280 */
+/* 283 */
 /***/ function(module, exports) {
 
 	
@@ -30609,15 +31248,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 281 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// FIXME Better way to pack data in graphic element
 
 
-	    __webpack_require__(282);
+	    __webpack_require__(285);
 
-	    __webpack_require__(283);
+	    __webpack_require__(286);
 
 	    // Show tip action
 	    /**
@@ -30650,7 +31289,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 282 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -30759,16 +31398,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 283 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var TooltipContent = __webpack_require__(284);
-	    var graphic = __webpack_require__(44);
+	    var TooltipContent = __webpack_require__(287);
+	    var graphic = __webpack_require__(43);
 	    var zrUtil = __webpack_require__(4);
-	    var formatUtil = __webpack_require__(7);
-	    var numberUtil = __webpack_require__(8);
+	    var formatUtil = __webpack_require__(6);
+	    var numberUtil = __webpack_require__(7);
 	    var parsePercent = numberUtil.parsePercent;
 	    var env = __webpack_require__(2);
 
@@ -31910,7 +32549,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 284 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31919,9 +32558,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var zrColor = __webpack_require__(40);
-	    var eventUtil = __webpack_require__(82);
-	    var formatUtil = __webpack_require__(7);
+	    var zrColor = __webpack_require__(39);
+	    var eventUtil = __webpack_require__(87);
+	    var formatUtil = __webpack_require__(6);
 	    var each = zrUtil.each;
 	    var toCamelCase = formatUtil.toCamelCase;
 	    var env = __webpack_require__(2);
@@ -32183,9 +32822,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 285 */,
-/* 286 */,
-/* 287 */,
 /* 288 */,
 /* 289 */,
 /* 290 */,
@@ -32200,19 +32836,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 299 */,
 /* 300 */,
 /* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var echarts = __webpack_require__(1);
-	    var graphic = __webpack_require__(44);
-	    var layout = __webpack_require__(22);
+	    var graphic = __webpack_require__(43);
+	    var layout = __webpack_require__(21);
 
 	    // Model
 	    echarts.extendComponentModel({
@@ -32402,7 +33034,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 307 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -32410,29 +33042,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    __webpack_require__(308);
+	    __webpack_require__(304);
 
+	    __webpack_require__(305);
+	    __webpack_require__(307);
+
+	    __webpack_require__(308);
 	    __webpack_require__(309);
-	    __webpack_require__(311);
 
 	    __webpack_require__(312);
 	    __webpack_require__(313);
 
+	    __webpack_require__(315);
 	    __webpack_require__(316);
-	    __webpack_require__(317);
-
-	    __webpack_require__(319);
-	    __webpack_require__(320);
 
 
 
 /***/ },
-/* 308 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    __webpack_require__(20).registerSubTypeDefaulter('dataZoom', function (option) {
+	    __webpack_require__(19).registerSubTypeDefaulter('dataZoom', function (option) {
 	        // Default 'slider' when no type specified.
 	        return 'slider';
 	    });
@@ -32440,7 +33072,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 309 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -32451,8 +33083,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var zrUtil = __webpack_require__(4);
 	    var env = __webpack_require__(2);
 	    var echarts = __webpack_require__(1);
-	    var modelUtil = __webpack_require__(6);
-	    var AxisProxy = __webpack_require__(310);
+	    var modelUtil = __webpack_require__(5);
+	    var AxisProxy = __webpack_require__(306);
 	    var each = zrUtil.each;
 	    var eachAxisDim = modelUtil.eachAxisDim;
 
@@ -32903,7 +33535,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 310 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -32912,7 +33544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var each = zrUtil.each;
 	    var asc = numberUtil.asc;
 
@@ -33265,12 +33897,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 311 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var ComponentView = __webpack_require__(30);
+	    var ComponentView = __webpack_require__(29);
 
 	    module.exports = ComponentView.extend({
 
@@ -33354,7 +33986,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 312 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -33362,7 +33994,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var DataZoomModel = __webpack_require__(309);
+	    var DataZoomModel = __webpack_require__(305);
 
 	    var SliderZoomModel = DataZoomModel.extend({
 
@@ -33433,20 +34065,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 313 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var graphic = __webpack_require__(44);
-	    var throttle = __webpack_require__(314);
-	    var DataZoomView = __webpack_require__(311);
+	    var graphic = __webpack_require__(43);
+	    var throttle = __webpack_require__(310);
+	    var DataZoomView = __webpack_require__(307);
 	    var Rect = graphic.Rect;
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var linearMap = numberUtil.linearMap;
-	    var layout = __webpack_require__(22);
-	    var sliderMove = __webpack_require__(315);
+	    var layout = __webpack_require__(21);
+	    var sliderMove = __webpack_require__(311);
 	    var asc = numberUtil.asc;
 	    var bind = zrUtil.bind;
 	    // var mathMax = Math.max;
@@ -34172,7 +34804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 314 */
+/* 310 */
 /***/ function(module, exports) {
 
 	
@@ -34316,7 +34948,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 315 */
+/* 311 */
 /***/ function(module, exports) {
 
 	
@@ -34375,7 +35007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 316 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -34383,7 +35015,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    module.exports = __webpack_require__(309).extend({
+	    module.exports = __webpack_require__(305).extend({
 
 	        type: 'dataZoom.inside',
 
@@ -34397,15 +35029,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 317 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var DataZoomView = __webpack_require__(311);
+	    var DataZoomView = __webpack_require__(307);
 	    var zrUtil = __webpack_require__(4);
-	    var sliderMove = __webpack_require__(315);
-	    var roams = __webpack_require__(318);
+	    var sliderMove = __webpack_require__(311);
+	    var roams = __webpack_require__(314);
 	    var bind = zrUtil.bind;
 
 	    var InsideZoomView = DataZoomView.extend({
@@ -34597,7 +35229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 318 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -34612,8 +35244,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // components.
 
 	    var zrUtil = __webpack_require__(4);
-	    var RoamController = __webpack_require__(171);
-	    var throttle = __webpack_require__(314);
+	    var RoamController = __webpack_require__(174);
+	    var throttle = __webpack_require__(310);
 	    var curry = zrUtil.curry;
 
 	    var ATTR = '\0_ec_dataZoom_roams';
@@ -34794,7 +35426,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 319 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -34857,7 +35489,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 320 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -34866,7 +35498,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var modelUtil = __webpack_require__(6);
+	    var modelUtil = __webpack_require__(5);
 	    var echarts = __webpack_require__(1);
 
 
@@ -34905,6 +35537,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
 /* 321 */,
 /* 322 */,
 /* 323 */,
@@ -34917,18 +35553,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 330 */,
 /* 331 */,
 /* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// HINT Markpoint can't be used too much
 
 
-	    __webpack_require__(338);
-	    __webpack_require__(340);
+	    __webpack_require__(334);
+	    __webpack_require__(336);
 
 	    __webpack_require__(1).registerPreprocessor(function (opt) {
 	        // Make sure markPoint component is enabled
@@ -34937,12 +35569,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 338 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    module.exports = __webpack_require__(339).extend({
+	    module.exports = __webpack_require__(335).extend({
 
 	        type: 'markPoint',
 
@@ -34975,16 +35607,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 339 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var modelUtil = __webpack_require__(6);
+	    var modelUtil = __webpack_require__(5);
 	    var zrUtil = __webpack_require__(4);
 	    var env = __webpack_require__(2);
 
-	    var formatUtil = __webpack_require__(7);
+	    var formatUtil = __webpack_require__(6);
 	    var addCommas = formatUtil.addCommas;
 	    var encodeHTML = formatUtil.encodeHTML;
 
@@ -35110,18 +35742,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 340 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var SymbolDraw = __webpack_require__(101);
+	    var SymbolDraw = __webpack_require__(104);
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 
-	    var List = __webpack_require__(94);
+	    var List = __webpack_require__(97);
 
-	    var markerHelper = __webpack_require__(341);
+	    var markerHelper = __webpack_require__(337);
 
 	    function updateMarkerLayout(mpData, seriesModel, api) {
 	        var coordSys = seriesModel.coordinateSystem;
@@ -35159,7 +35791,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    }
 
-	    __webpack_require__(342).extend({
+	    __webpack_require__(338).extend({
 
 	        type: 'markPoint',
 
@@ -35271,13 +35903,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 341 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
+	    var numberUtil = __webpack_require__(7);
 	    var indexOf = zrUtil.indexOf;
 
 	    function hasXOrY(item) {
@@ -35475,7 +36107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 342 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -35517,13 +36149,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 343 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    __webpack_require__(344);
-	    __webpack_require__(345);
+	    __webpack_require__(340);
+	    __webpack_require__(341);
 
 	    __webpack_require__(1).registerPreprocessor(function (opt) {
 	        // Make sure markLine component is enabled
@@ -35532,12 +36164,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 344 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    module.exports = __webpack_require__(339).extend({
+	    module.exports = __webpack_require__(335).extend({
 
 	        type: 'markLine',
 
@@ -35577,18 +36209,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 345 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
 	    var zrUtil = __webpack_require__(4);
-	    var List = __webpack_require__(94);
-	    var numberUtil = __webpack_require__(8);
+	    var List = __webpack_require__(97);
+	    var numberUtil = __webpack_require__(7);
 
-	    var markerHelper = __webpack_require__(341);
+	    var markerHelper = __webpack_require__(337);
 
-	    var LineDraw = __webpack_require__(196);
+	    var LineDraw = __webpack_require__(199);
 
 	    var markLineTransform = function (seriesModel, coordSys, mlModel, item) {
 	        var data = seriesModel.getData();
@@ -35753,7 +36385,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        data.setItemLayout(idx, point);
 	    }
 
-	    __webpack_require__(342).extend({
+	    __webpack_require__(338).extend({
 
 	        type: 'markLine',
 
@@ -35931,13 +36563,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 346 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    __webpack_require__(347);
-	    __webpack_require__(348);
+	    __webpack_require__(343);
+	    __webpack_require__(344);
 
 	    __webpack_require__(1).registerPreprocessor(function (opt) {
 	        // Make sure markArea component is enabled
@@ -35946,12 +36578,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 347 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    module.exports = __webpack_require__(339).extend({
+	    module.exports = __webpack_require__(335).extend({
 
 	        type: 'markArea',
 
@@ -35987,19 +36619,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 348 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// TODO Better on polar
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var List = __webpack_require__(94);
-	    var numberUtil = __webpack_require__(8);
-	    var graphic = __webpack_require__(44);
-	    var colorUtil = __webpack_require__(40);
+	    var List = __webpack_require__(97);
+	    var numberUtil = __webpack_require__(7);
+	    var graphic = __webpack_require__(43);
+	    var colorUtil = __webpack_require__(39);
 
-	    var markerHelper = __webpack_require__(341);
+	    var markerHelper = __webpack_require__(337);
 
 	    var markAreaTransform = function (seriesModel, coordSys, maModel, item) {
 	        var lt = markerHelper.dataTransform(seriesModel, item[0]);
@@ -36114,7 +36746,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var dimPermutations = [['x0', 'y0'], ['x1', 'y0'], ['x1', 'y1'], ['x0', 'y1']];
 
-	    __webpack_require__(342).extend({
+	    __webpack_require__(338).extend({
 
 	        type: 'markArea',
 
@@ -36292,38 +36924,38 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
 /* 349 */,
 /* 350 */,
 /* 351 */,
 /* 352 */,
 /* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    __webpack_require__(359);
-	    __webpack_require__(361);
+	    __webpack_require__(355);
+	    __webpack_require__(357);
 
-	    __webpack_require__(362);
-	    __webpack_require__(363);
-	    __webpack_require__(364);
-	    __webpack_require__(365);
-	    __webpack_require__(370);
-	    __webpack_require__(371);
+	    __webpack_require__(358);
+	    __webpack_require__(359);
+	    __webpack_require__(360);
+	    __webpack_require__(361);
+	    __webpack_require__(366);
+	    __webpack_require__(367);
 
 
 /***/ },
-/* 359 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    var featureManager = __webpack_require__(360);
+	    var featureManager = __webpack_require__(356);
 	    var zrUtil = __webpack_require__(4);
 
 	    var ToolboxModel = __webpack_require__(1).extendComponentModel({
@@ -36394,7 +37026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 360 */
+/* 356 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -36414,18 +37046,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 361 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
 
-	    var featureManager = __webpack_require__(360);
+	    var featureManager = __webpack_require__(356);
 	    var zrUtil = __webpack_require__(4);
-	    var graphic = __webpack_require__(44);
-	    var Model = __webpack_require__(9);
-	    var DataDiffer = __webpack_require__(95);
-	    var listComponentHelper = __webpack_require__(279);
-	    var textContain = __webpack_require__(15);
+	    var graphic = __webpack_require__(43);
+	    var Model = __webpack_require__(8);
+	    var DataDiffer = __webpack_require__(98);
+	    var listComponentHelper = __webpack_require__(282);
+	    var textContain = __webpack_require__(14);
 
 	    module.exports = __webpack_require__(1).extendComponentView({
 
@@ -36652,10 +37284,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(272)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(275)))
 
 /***/ },
-/* 362 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -36719,7 +37351,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 
-	    __webpack_require__(360).register(
+	    __webpack_require__(356).register(
 	        'saveAsImage', SaveAsImage
 	    );
 
@@ -36727,7 +37359,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 363 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36895,13 +37527,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ecModel.mergeOption(payload.newOption);
 	    });
 
-	    __webpack_require__(360).register('magicType', MagicType);
+	    __webpack_require__(356).register('magicType', MagicType);
 
 	    module.exports = MagicType;
 
 
 /***/ },
-/* 364 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -36911,7 +37543,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var eventTool = __webpack_require__(82);
+	    var eventTool = __webpack_require__(87);
 
 
 	    var BLOCK_SPLITER = new Array(60).join('-');
@@ -37348,7 +37980,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    }
 
-	    __webpack_require__(360).register('dataView', DataView);
+	    __webpack_require__(356).register('dataView', DataView);
 
 	    __webpack_require__(1).registerAction({
 	        type: 'changeDataView',
@@ -37384,24 +38016,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 365 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
 	    var zrUtil = __webpack_require__(4);
-	    var numberUtil = __webpack_require__(8);
-	    var BrushController = __webpack_require__(230);
-	    var BoundingRect = __webpack_require__(16);
-	    var Group = __webpack_require__(31);
-	    var history = __webpack_require__(366);
+	    var numberUtil = __webpack_require__(7);
+	    var BrushController = __webpack_require__(233);
+	    var BoundingRect = __webpack_require__(15);
+	    var Group = __webpack_require__(30);
+	    var history = __webpack_require__(362);
 
 	    var each = zrUtil.each;
 	    var asc = numberUtil.asc;
 
 	    // Use dataZoomSelect
-	    __webpack_require__(367);
+	    __webpack_require__(363);
 
 	    // Spectial component id start with \0ec\0, see echarts/model/Global.js~hasInnerId
 	    var DATA_ZOOM_ID_BASE = '\0_ec_\0toolbox-dataZoom_';
@@ -37638,7 +38270,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 
-	    __webpack_require__(360).register('dataZoom', DataZoom);
+	    __webpack_require__(356).register('dataZoom', DataZoom);
 
 
 	    // Create special dataZoom option for select
@@ -37709,7 +38341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 366 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37823,7 +38455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 367 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37831,21 +38463,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    __webpack_require__(308);
+	    __webpack_require__(304);
 
-	    __webpack_require__(309);
-	    __webpack_require__(311);
+	    __webpack_require__(305);
+	    __webpack_require__(307);
 
-	    __webpack_require__(368);
-	    __webpack_require__(369);
+	    __webpack_require__(364);
+	    __webpack_require__(365);
 
-	    __webpack_require__(319);
-	    __webpack_require__(320);
+	    __webpack_require__(315);
+	    __webpack_require__(316);
 
 
 
 /***/ },
-/* 368 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37853,7 +38485,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 
-	    var DataZoomModel = __webpack_require__(309);
+	    var DataZoomModel = __webpack_require__(305);
 
 	    module.exports = DataZoomModel.extend({
 
@@ -37864,12 +38496,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 369 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 
-	    module.exports = __webpack_require__(311).extend({
+	    module.exports = __webpack_require__(307).extend({
 
 	        type: 'dataZoom.select'
 
@@ -37878,13 +38510,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 370 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var history = __webpack_require__(366);
+	    var history = __webpack_require__(362);
 
 	    function Restore(model) {
 	        this.model = model;
@@ -37908,7 +38540,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 
-	    __webpack_require__(360).register('restore', Restore);
+	    __webpack_require__(356).register('restore', Restore);
 
 
 	    __webpack_require__(1).registerAction(
@@ -37922,13 +38554,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 371 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 
-	    var featureManager = __webpack_require__(360);
+	    var featureManager = __webpack_require__(356);
 	    var zrUtil = __webpack_require__(4);
 
 	    function Brush(model, ecModel, api) {
@@ -38035,16 +38667,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 372 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	    __webpack_require__(373);
-	    __webpack_require__(80).registerPainter('vml', __webpack_require__(375));
+	    __webpack_require__(369);
+	    __webpack_require__(81).registerPainter('vml', __webpack_require__(371));
 
 
 /***/ },
-/* 373 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// http://www.w3.org/TR/NOTE-VML
@@ -38052,20 +38684,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	if (!__webpack_require__(2).canvasSupported) {
-	    var vec2 = __webpack_require__(17);
-	    var BoundingRect = __webpack_require__(16);
-	    var CMD = __webpack_require__(50).CMD;
-	    var colorTool = __webpack_require__(40);
-	    var textContain = __webpack_require__(15);
-	    var RectText = __webpack_require__(49);
-	    var Displayable = __webpack_require__(47);
-	    var ZImage = __webpack_require__(61);
+	    var vec2 = __webpack_require__(16);
+	    var BoundingRect = __webpack_require__(15);
+	    var CMD = __webpack_require__(49).CMD;
+	    var colorTool = __webpack_require__(39);
+	    var textContain = __webpack_require__(14);
+	    var RectText = __webpack_require__(48);
+	    var Displayable = __webpack_require__(46);
+	    var ZImage = __webpack_require__(62);
 	    var Text = __webpack_require__(64);
-	    var Path = __webpack_require__(46);
+	    var Path = __webpack_require__(45);
 
-	    var Gradient = __webpack_require__(5);
+	    var Gradient = __webpack_require__(61);
 
-	    var vmlCore = __webpack_require__(374);
+	    var vmlCore = __webpack_require__(370);
 
 	    var round = Math.round;
 	    var sqrt = Math.sqrt;
@@ -38263,15 +38895,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    var updateStrokeNode = function (el, style) {
-	        if (style.lineJoin != null) {
-	            el.joinstyle = style.lineJoin;
-	        }
-	        if (style.miterLimit != null) {
-	            el.miterlimit = style.miterLimit * Z;
-	        }
-	        if (style.lineCap != null) {
-	            el.endcap = style.lineCap;
-	        }
+	        // if (style.lineJoin != null) {
+	        //     el.joinstyle = style.lineJoin;
+	        // }
+	        // if (style.miterLimit != null) {
+	        //     el.miterlimit = style.miterLimit * Z;
+	        // }
+	        // if (style.lineCap != null) {
+	        //     el.endcap = style.lineCap;
+	        // }
 	        if (style.lineDash != null) {
 	            el.dashstyle = style.lineDash.join(' ');
 	        }
@@ -38881,6 +39513,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // FIXME encodeHtmlAttribute ?
 	        var font = fontStyle.style + ' ' + fontStyle.variant + ' ' + fontStyle.weight + ' '
 	            + fontStyle.size + 'px "' + fontStyle.family + '"';
+
 	        var baseline = style.textBaseline;
 	        var verticalAlign = style.textVerticalAlign;
 
@@ -39101,7 +39734,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 374 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -39154,7 +39787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 375 */
+/* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -39165,8 +39798,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 
-	    var zrLog = __webpack_require__(41);
-	    var vmlCore = __webpack_require__(374);
+	    var zrLog = __webpack_require__(40);
+	    var vmlCore = __webpack_require__(370);
 
 	    function parseInt10(val) {
 	        return parseInt(val, 10);
@@ -39305,6 +39938,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        getHeight: function () {
 	            return this._height;
+	        },
+
+	        clear: function () {
+	            this.root.removeChild(this.vmlViewport);
 	        },
 
 	        _getWidth: function () {

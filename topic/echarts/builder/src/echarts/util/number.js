@@ -123,6 +123,7 @@ define(function (require) {
      * @param {number} val
      */
     number.getPrecision = function (val) {
+        val = +val;
         if (isNaN(val)) {
             return 0;
         }
@@ -178,16 +179,23 @@ define(function (require) {
 
     /**
      * @param {string|Date|number} value
-     * @return {number} timestamp
+     * @return {Date} date
      */
     number.parseDate = function (value) {
-        return value instanceof Date
-            ? value
-            : new Date(
-                typeof value === 'string'
-                    ? (new Date(value.replace(/-/g, '/')) - new Date('1970/01/01'))
-                    : Math.round(value)
-            );
+        if (value instanceof Date) {
+            return value;
+        }
+        else if (typeof value === 'string') {
+            // Treat as ISO format. See issue #3623
+            var ret = new Date(value);
+            if (isNaN(+ret)) {
+                // FIXME new Date('1970-01-01') is UTC, new Date('1970/01/01') is local
+                ret = new Date(new Date(value.replace(/-/g, '/')) - new Date('1970/01/01'));
+            }
+            return ret;
+        }
+
+        return new Date(Math.round(value));
     };
 
     /**

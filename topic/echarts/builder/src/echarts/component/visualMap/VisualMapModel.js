@@ -19,8 +19,6 @@ define(function(require) {
     var linearMap = numberUtil.linearMap;
     var noop = zrUtil.noop;
 
-    var DEFAULT_COLOR = ['#f6efa6', '#d88273', '#bf444c'];
-
     var VisualMapModel = echarts.extendComponentModel({
 
         type: 'visualMap',
@@ -97,7 +95,7 @@ define(function(require) {
                                        // 接受数组分别设定上右下左边距，同css
             textGap: 10,               //
             precision: 0,              // 小数精度，默认为0，无小数点
-            color: null,               //颜色（deprecated，兼容ec2，顺序同pieces，不同于inRange/outOfRange）
+            color: ['#bf444c', '#d88273', '#f6efa6'], //颜色（deprecated，兼容ec2，顺序同pieces，不同于inRange/outOfRange）
 
             formatter: null,
             text: null,                // 文本，如['高', '低']，兼容ec2，text[0]对应高值，text[1]对应低值
@@ -156,7 +154,7 @@ define(function(require) {
             }
 
             !isInit && visualSolution.replaceVisualOption(
-                thisOption, newOption, this.replacableOptionKeys
+                this.option, newOption, this.replacableOptionKeys
             );
 
             this.textStyleModel = this.getModel('textStyle');
@@ -206,17 +204,6 @@ define(function(require) {
         },
 
         /**
-         * @pubilc
-         */
-        isTargetSeries: function (seriesModel) {
-            var is = false;
-            this.eachTargetSeries(function (model) {
-                model === seriesModel && (is = true);
-            });
-            return is;
-        },
-
-        /**
          * @example
          * this.formatValueText(someVal); // format single numeric value to text.
          * this.formatValueText(someVal, true); // format single category value to text.
@@ -226,18 +213,16 @@ define(function(require) {
          *
          * @param {number|Array.<number>} value Real value, or this.dataBound[0 or 1].
          * @param {boolean} [isCategory=false] Only available when value is number.
-         * @param {Array.<string>} edgeSymbols Open-close symbol when value is interval.
          * @return {string}
          * @protected
          */
-        formatValueText: function(value, isCategory, edgeSymbols) {
+        formatValueText: function(value, isCategory) {
             var option = this.option;
             var precision = option.precision;
             var dataBound = this.dataBound;
             var formatter = option.formatter;
             var isMinMax;
             var textValue;
-            edgeSymbols = edgeSymbols || ['<', '>'];
 
             if (zrUtil.isArray(value)) {
                 value = value.slice();
@@ -264,10 +249,10 @@ define(function(require) {
 
             if (isMinMax) {
                 if (value[0] === dataBound[0]) {
-                    return edgeSymbols[0] + ' ' + textValue[1];
+                    return '< ' + textValue[1];
                 }
                 else if (value[1] === dataBound[1]) {
-                    return edgeSymbols[1] + ' ' + textValue[0];
+                    return '> ' + textValue[0];
                 }
                 else {
                     return textValue[0] + ' - ' + textValue[1];
@@ -339,7 +324,7 @@ define(function(require) {
             completeSingle.call(this, target);
             completeSingle.call(this, controller);
             completeInactive.call(this, target, 'inRange', 'outOfRange');
-            // completeInactive.call(this, target, 'outOfRange', 'inRange');
+            completeInactive.call(this, target, 'outOfRange', 'inRange');
             completeController.call(this, controller);
 
             function completeSingle(base) {
@@ -354,14 +339,6 @@ define(function(require) {
                 ) {
                     base.inRange = {color: thisOption.color.slice().reverse()};
                 }
-
-                // Compatible with previous logic, always give a defautl color, otherwise
-                // simple config with no inRange and outOfRange will not work.
-                // Originally we use visualMap.color as the default color, but setOption at
-                // the second time the default color will be erased. So we change to use
-                // constant DEFAULT_COLOR.
-                // If user do not want the defualt color, set inRange: {color: null}.
-                base.inRange = base.inRange || {color: DEFAULT_COLOR};
 
                 // If using shortcut like: {inRange: 'symbol'}, complete default value.
                 each(this.stateList, function (state) {

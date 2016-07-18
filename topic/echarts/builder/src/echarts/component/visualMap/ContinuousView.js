@@ -296,18 +296,15 @@ define(function(require) {
 
             this._dragging = !isEnd;
 
-            if (!isEnd) {
-                // Transform dx, dy to bar coordination.
-                var vertex = this._applyTransform([dx, dy], this._shapes.barGroup, true);
-                this._updateInterval(handleIndex, vertex[1]);
+            // Transform dx, dy to bar coordination.
+            var vertex = this._applyTransform([dx, dy], this._shapes.barGroup, true);
+            this._updateInterval(handleIndex, vertex[1]);
 
-                // Considering realtime, update view should be executed
-                // before dispatch action.
-                this._updateView();
-            }
+            // Considering realtime, update view should be executed
+            // before dispatch action.
+            this._updateView();
 
-            // dragEnd do not dispatch action when realtime.
-            if (isEnd === !this.visualMapModel.get('realtime')) { // jshint ignore:line
+            if (isEnd || this.visualMapModel.get('realtime')) {
                 this.api.dispatchAction({
                     type: 'selectDataRange',
                     from: this.uid,
@@ -316,8 +313,8 @@ define(function(require) {
                 });
             }
 
-            if (isEnd) {
-                !this._hovering && this._clearHoverLinkToSeries();
+            if (isEnd && !this._hovering) {
+                this._clearHoverLinkToSeries();
             }
             else if (useHoverLinkOnHandle(this.visualMapModel)) {
                 this._doHoverLinkToSeries(this._handleEnds[handleIndex], false);
@@ -418,7 +415,7 @@ define(function(require) {
             var barPoints = this._createBarPoints(handleEnds, symbolSizes);
 
             return {
-                barColor: new LinearGradient(0, 0, 1, 1, colorStops),
+                barColor: new LinearGradient(0, 0, 0, 1, colorStops),
                 barPoints: barPoints,
                 handlesColor: [
                     colorStops[0].color,
@@ -705,7 +702,9 @@ define(function(require) {
             var dim = data.getDimension(this.visualMapModel.getDataDimension(data));
             var value = data.get(dim, el.dataIndex, true);
 
-            this._showIndicator(value, value);
+            if (!isNaN(value)) {
+                this._showIndicator(value, value);
+            }
         },
 
         /**

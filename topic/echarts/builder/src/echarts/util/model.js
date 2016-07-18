@@ -2,7 +2,6 @@ define(function(require) {
 
     var formatUtil = require('./format');
     var nubmerUtil = require('./number');
-    var Model = require('../model/Model');
     var zrUtil = require('zrender/core/util');
 
     var AXIS_DIMS = ['x', 'y', 'z', 'radius', 'angle'];
@@ -194,10 +193,7 @@ define(function(require) {
      * @param {string|number|Date|Array|Object} dataItem
      */
     modelUtil.isDataItemOption = function (dataItem) {
-        return zrUtil.isObject(dataItem)
-            && !(dataItem instanceof Array);
-            // // markLine data can be array
-            // && !(dataItem[0] && zrUtil.isObject(dataItem[0]) && !(dataItem[0] instanceof Array));
+        return zrUtil.isObject(dataItem) && !(dataItem instanceof Array);
     };
 
     /**
@@ -221,29 +217,6 @@ define(function(require) {
         // parse to NaN.
         return (value == null || value === '')
             ? NaN : +value; // If string (like '-'), using '+' parse to NaN
-    };
-
-    /**
-     * Create a model proxy to be used in tooltip for edge data, markLine data, markPoint data.
-     * @param {module:echarts/data/List} data
-     * @param {Object} opt
-     * @param {string} [opt.seriesIndex]
-     * @param {Object} [opt.name]
-     * @param {Object} [opt.mainType]
-     * @param {Object} [opt.subType]
-     */
-    modelUtil.createDataFormatModel = function (data, opt) {
-        var model = new Model();
-        zrUtil.mixin(model, modelUtil.dataFormatMixin);
-        model.seriesIndex = opt.seriesIndex;
-        model.name = opt.name || '';
-        model.mainType = opt.mainType;
-        model.subType = opt.subType;
-
-        model.getData = function () {
-            return data;
-        };
-        return model;
     };
 
     // PENDING A little ugly
@@ -365,22 +338,31 @@ define(function(require) {
                 return;
             }
 
+            // id has highest priority.
             for (var i = 0; i < result.length; i++) {
-                var exist = result[i].exist;
                 if (!result[i].option // Consider name: two map to one.
-                    && (
-                        // id has highest priority.
-                        (cptOption.id != null && exist.id === cptOption.id + '')
-                        || (cptOption.name != null
-                            && !modelUtil.isIdInner(cptOption)
-                            && !modelUtil.isIdInner(exist)
-                            && exist.name === cptOption.name + ''
-                        )
-                    )
+                    && cptOption.id != null
+                    && result[i].exist.id === cptOption.id + ''
                 ) {
                     result[i].option = cptOption;
                     newCptOptions[index] = null;
-                    break;
+                    return;
+                }
+            }
+
+            for (var i = 0; i < result.length; i++) {
+                var exist = result[i].exist;
+                if (!result[i].option // Consider name: two map to one.
+                    // Can not match when both ids exist but different.
+                    && (exist.id == null || cptOption.id == null)
+                    && cptOption.name != null
+                    && !modelUtil.isIdInner(cptOption)
+                    && !modelUtil.isIdInner(exist)
+                    && exist.name === cptOption.name + ''
+                ) {
+                    result[i].option = cptOption;
+                    newCptOptions[index] = null;
+                    return;
                 }
             }
         });
@@ -425,33 +407,6 @@ define(function(require) {
         return zrUtil.isObject(cptOption)
             && cptOption.id
             && (cptOption.id + '').indexOf('\0_ec_\0') === 0;
-    };
-
-    /**
-     * Truncate text, if overflow.
-     * If not ASCII, count as tow ASCII length.
-     * Notice case: truncate('是', 1) => '是', not ''.
-     *
-     * @public
-     * @param {string} str
-     * @param {number} length Over the length, truncate.
-     * @param {string} [ellipsis='...']
-     * @return {string} Result string.
-     */
-    modelUtil.truncate = function (str, length, ellipsis) {
-        if (!str) {
-            return str;
-        }
-
-        var count = 0;
-        for(var i = 0, l = str.length; i < l && count < length; i++) {
-            count += str.charCodeAt(i) > 255 ? 2 : 1;
-        }
-        if (i < l) {
-            str = str.slice(0, i) + (ellipsis || '');
-        }
-
-        return str;
     };
 
     /**
@@ -501,7 +456,7 @@ define(function(require) {
                         var dataIndices = mapToArray(map[i], true);
                         dataIndices.length && result.push({seriesId: i, dataIndex: dataIndices});
                     }
-                }
+                };
             }
             return result;
         }

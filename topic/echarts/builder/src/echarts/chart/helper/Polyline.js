@@ -5,21 +5,22 @@ define(function (require) {
 
     var graphic = require('../../util/graphic');
     var zrUtil = require('zrender/core/util');
+    var numberUtil = require('../../util/number');
 
     /**
      * @constructor
      * @extends {module:zrender/graphic/Group}
      * @alias {module:echarts/chart/helper/Polyline}
      */
-    function Polyline(lineData, idx, seriesScope) {
+    function Polyline(lineData, idx) {
         graphic.Group.call(this);
 
-        this._createPolyline(lineData, idx, seriesScope);
+        this._createPolyline(lineData, idx);
     }
 
     var polylineProto = Polyline.prototype;
 
-    polylineProto._createPolyline = function (lineData, idx, seriesScope) {
+    polylineProto._createPolyline = function (lineData, idx) {
         // var seriesModel = lineData.hostModel;
         var points = lineData.getItemLayout(idx);
 
@@ -31,10 +32,10 @@ define(function (require) {
 
         this.add(line);
 
-        this._updateCommonStl(lineData, idx, seriesScope);
+        this._updateCommonStl(lineData, idx);
     };
 
-    polylineProto.updateData = function (lineData, idx, seriesScope) {
+    polylineProto.updateData = function (lineData, idx) {
         var seriesModel = lineData.hostModel;
 
         var line = this.childAt(0);
@@ -45,31 +46,24 @@ define(function (require) {
         };
         graphic.updateProps(line, target, seriesModel, idx);
 
-        this._updateCommonStl(lineData, idx, seriesScope);
+        this._updateCommonStl(lineData, idx);
     };
 
-    polylineProto._updateCommonStl = function (lineData, idx, seriesScope) {
+    polylineProto._updateCommonStl = function (lineData, idx) {
         var line = this.childAt(0);
         var itemModel = lineData.getItemModel(idx);
 
         var visualColor = lineData.getItemVisual(idx, 'color');
 
-        var lineStyle = seriesScope && seriesScope.lineStyle;
-        var hoverLineStyle = seriesScope && seriesScope.hoverLineStyle;
-
-        if (!seriesScope || lineData.hasItemOption) {
-            lineStyle = itemModel.getModel('lineStyle.normal').getLineStyle();
-            hoverLineStyle = itemModel.getModel('lineStyle.emphasis').getLineStyle();
-        }
         line.useStyle(zrUtil.defaults(
             {
                 strokeNoScale: true,
                 fill: 'none',
                 stroke: visualColor
             },
-            lineStyle
+            itemModel.getModel('lineStyle.normal').getLineStyle()
         ));
-        line.hoverStyle = hoverLineStyle;
+        line.hoverStyle = itemModel.getModel('lineStyle.emphasis').getLineStyle();
 
         graphic.setHoverStyle(this);
     };

@@ -10,8 +10,6 @@ define(function (require) {
     require('./brush/visualEncoding');
     require('./brush/BrushModel');
     require('./brush/BrushView');
-    require('./brush/brushAction');
-
-    require('./toolbox/feature/Brush');
+    require('./brush/BrushAction');
 
 });

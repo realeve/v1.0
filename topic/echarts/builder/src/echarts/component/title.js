@@ -40,14 +40,9 @@ define(function(require) {
             top: 0,
 
             // 水平对齐
-            // 'auto' | 'left' | 'right' | 'center'
-            // 默认根据 left 的位置判断是左对齐还是右对齐
-            // textAlign: null
-            //
-            // 垂直对齐
-            // 'auto' | 'top' | 'bottom' | 'middle'
-            // 默认根据 top 位置判断是上对齐还是下对齐
-            // textBaseline: null
+            // 'auto' | 'left' | 'right'
+            // 默认根据 x 的位置判断是左对齐还是右对齐
+            //textAlign: null
 
             backgroundColor: 'rgba(0,0,0,0)',
 
@@ -66,9 +61,11 @@ define(function(require) {
             textStyle: {
                 fontSize: 18,
                 fontWeight: 'bolder',
+                // 主标题文字颜色
                 color: '#333'
             },
             subtextStyle: {
+                // 副标题文字颜色
                 color: '#aaa'
             }
         }
@@ -92,13 +89,13 @@ define(function(require) {
             var subtextStyleModel = titleModel.getModel('subtextStyle');
 
             var textAlign = titleModel.get('textAlign');
-            var textBaseline = titleModel.get('textBaseline');
 
             var textEl = new graphic.Text({
                 style: {
                     text: titleModel.get('text'),
                     textFont: textStyleModel.getFont(),
-                    fill: textStyleModel.getTextColor()
+                    fill: textStyleModel.getTextColor(),
+                    textBaseline: 'top'
                 },
                 z2: 10
             });
@@ -155,6 +152,11 @@ define(function(require) {
                 if (textAlign === 'middle') {
                     textAlign = 'center';
                 }
+                // If textAlign is illegal, canvas render text with textAlign 'left' and 'right'
+                // alternatively (after optimized that ctx.save/restore are not called if no change).
+                if (textAlign !== 'left' && textAlign !== 'right' && textAlign !== 'center') {
+                    textAlign = 'left';
+                }
                 // Adjust layout by text align
                 if (textAlign === 'right') {
                     layoutRect.x += layoutRect.width;
@@ -163,28 +165,10 @@ define(function(require) {
                     layoutRect.x += layoutRect.width / 2;
                 }
             }
-            if (!textBaseline) {
-                textBaseline = titleModel.get('top') || titleModel.get('bottom');
-                if (textBaseline === 'center') {
-                    textBaseline = 'middle';
-                }
-                if (textBaseline === 'bottom') {
-                    layoutRect.y += layoutRect.height;
-                }
-                else if (textBaseline === 'middle') {
-                    layoutRect.y += layoutRect.height / 2;
-                }
-
-                textBaseline = textBaseline || 'top';
-            }
 
             group.attr('position', [layoutRect.x, layoutRect.y]);
-            var alignStyle = {
-                textAlign: textAlign,
-                textVerticalAlign: textBaseline
-            };
-            textEl.setStyle(alignStyle);
-            subTextEl.setStyle(alignStyle);
+            textEl.setStyle('textAlign', textAlign);
+            subTextEl.setStyle('textAlign', textAlign);
 
             // Render background
             // Get groupRect again because textAlign has been changed

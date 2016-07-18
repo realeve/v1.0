@@ -103,16 +103,8 @@ define(function(require) {
 
                 }
             },
-            color: [],                  // + treemapSeries.color should not be modified. Please only modified
-                                        // level[n].color (if necessary).
-                                        // + Specify color list of each level. level[0].color would be global
-                                        // color list if not specified. (see method `setDefault`).
-                                        // + But set as a empty array to forbid fetch color from global palette
-                                        // when using nodeModel.get('color'), otherwise nodes on deep level
-                                        // will always has color palette set and are not able to inherit color
-                                        // from parent node.
-                                        // + TreemapSeries.color can not be set as 'none', otherwise effect
-                                        // legend color fetching (see seriesColor.js).
+            color: 'none',              // Array. Specify color list of each level.
+                                        // level[0].color would be global color list.
             colorAlpha: null,           // Array. Specify color alpha range of each level, like [0.2, 0.8]
             colorSaturation: null,      // Array. Specify color saturation of each level, like [0.2, 0.5]
             colorMappingBy: 'index',    // 'value' or 'index' or 'id'.
@@ -342,7 +334,6 @@ define(function(require) {
         zrUtil.each(levels, function (levelDefine) {
             var model = new Model(levelDefine);
             var modelColor = model.get('color');
-
             if (model.get('itemStyle.normal.color')
                 || (modelColor && modelColor !== 'none')
             ) {

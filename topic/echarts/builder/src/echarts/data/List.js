@@ -292,15 +292,13 @@ define(function (require) {
 
         // Use the name in option and create id
         for (var i = 0; i < data.length; i++) {
+            var id = '';
             if (!nameList[i]) {
-                if (data[i] && data[i].name != null) {
-                    nameList[i] = data[i].name;
-                }
+                nameList[i] = data[i].name;
+                // Try using the id in option
+                id = data[i].id;
             }
             var name = nameList[i] || '';
-            // Try using the id in option
-            var id = data[i] && data[i].id;
-
             if (!id && name) {
                 // Use name as id and add counter to avoid same name
                 nameRepeatCount[name] = nameRepeatCount[name] || 0;
@@ -412,7 +410,6 @@ define(function (require) {
      * @param {boolean} stack
      */
     listProto.getDataExtent = function (dim, stack) {
-        dim = this.getDimension(dim);
         var dimData = this._storage[dim];
         var dimInfo = this.getDimensionInfo(dim);
         stack = (dimInfo && dimInfo.stackable) && stack;
@@ -505,61 +502,42 @@ define(function (require) {
     };
 
     /**
-     * Retreive the index with given raw data index
-     * @param {number} idx
-     * @param {number} name
-     * @return {number}
-     */
-    listProto.indexOfRawIndex = function (rawIndex) {
-        // Indices are ascending
-        var indices = this.indices;
-        var left = 0;
-        var right = indices.length - 1;
-        while (left <= right) {
-            var mid = (left + right) / 2 | 0;
-            if (indices[mid] < rawIndex) {
-                left = mid + 1;
-            }
-            else if (indices[mid] > rawIndex) {
-                right = mid - 1;
-            }
-            else {
-                return mid;
-            }
-        }
-        return -1;
-    };
-
-    /**
      * Retreive the index of nearest value
      * @param {string} dim
      * @param {number} value
      * @param {boolean} stack If given value is after stacked
+     * @param {number} [maxDistance=Infinity]
      * @return {number}
      */
-    listProto.indexOfNearest = function (dim, value, stack) {
+    listProto.indexOfNearest = function (dim, value, stack, maxDistance) {
         var storage = this._storage;
         var dimData = storage[dim];
 
+        if (maxDistance == null) {
+            maxDistance = Infinity;
+        }
+
+        var nearestIdx = -1;
         if (dimData) {
             var minDist = Number.MAX_VALUE;
-            var nearestIdx = -1;
             for (var i = 0, len = this.count(); i < len; i++) {
                 var diff = value - this.get(dim, i, stack);
                 var dist = Math.abs(diff);
-                if (dist < minDist
-                    // For the case of two data are same on xAxis, which has sequence data.
-                    // Show the nearest index
-                    // https://github.com/ecomfe/echarts/issues/2869
-                    || (dist === minDist && diff > 0)
+                if (
+                    diff <= maxDistance
+                    && (dist < minDist
+                        // For the case of two data are same on xAxis, which has sequence data.
+                        // Show the nearest index
+                        // https://github.com/ecomfe/echarts/issues/2869
+                        || (dist === minDist && diff > 0)
+                    )
                 ) {
                     minDist = dist;
                     nearestIdx = i;
                 }
             }
-            return nearestIdx;
         }
-        return -1;
+        return nearestIdx;
     };
 
     /**

@@ -204,13 +204,12 @@ define(function (require) {
                         numberUtil.round(i / splitNumber * (maxVal - minVal) + minVal),
                         labelModel.get('formatter')
                     );
-                    var distance = labelModel.get('distance');
 
                     var text = new graphic.Text({
                         style: {
                             text: label,
-                            x: unitX * (r - splitLineLen - distance) + cx,
-                            y: unitY * (r - splitLineLen - distance) + cy,
+                            x: unitX * (r - splitLineLen - 5) + cx,
+                            y: unitY * (r - splitLineLen - 5) + cy,
                             fill: textStyleModel.getTextColor(),
                             textFont: textStyleModel.getFont(),
                             textVerticalAlign: unitY < -0.4 ? 'top' : (unitY > 0.4 ? 'bottom' : 'middle'),

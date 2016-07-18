@@ -199,20 +199,8 @@ define(function(require, factory) {
     };
 
     gridProto.getCartesian = function (xAxisIndex, yAxisIndex) {
-        if (xAxisIndex != null && yAxisIndex != null) {
-            var key = 'x' + xAxisIndex + 'y' + yAxisIndex;
-            return this._coordsMap[key];
-        }
-        else {
-            // When only xAxisIndex or yAxisIndex given, find its first cartesian.
-            for (var i = 0, coordList = this._coordsList; i < coordList.length; i++) {
-                if (coordList[i].getAxis('x').index === xAxisIndex
-                    || coordList[i].getAxis('y').index === yAxisIndex
-                ) {
-                    return coordList[i];
-                }
-            }
-        }
+        var key = 'x' + xAxisIndex + 'y' + yAxisIndex;
+        return this._coordsMap[key];
     };
 
     /**
@@ -277,9 +265,9 @@ define(function(require, factory) {
                     if (axisPosition !== 'top' && axisPosition !== 'bottom') {
                         // Default bottom of X
                         axisPosition = 'bottom';
-                    }
-                    if (axisPositionUsed[axisPosition]) {
-                        axisPosition = axisPosition === 'top' ? 'bottom' : 'top';
+                        if (axisPositionUsed[axisPosition]) {
+                            axisPosition = axisPosition === 'top' ? 'bottom' : 'top';
+                        }
                     }
                 }
                 else {
@@ -287,9 +275,9 @@ define(function(require, factory) {
                     if (axisPosition !== 'left' && axisPosition !== 'right') {
                         // Default left of Y
                         axisPosition = 'left';
-                    }
-                    if (axisPositionUsed[axisPosition]) {
-                        axisPosition = axisPosition === 'left' ? 'right' : 'left';
+                        if (axisPositionUsed[axisPosition]) {
+                            axisPosition = axisPosition === 'left' ? 'right' : 'left';
+                        }
                     }
                 }
                 axisPositionUsed[axisPosition] = true;
@@ -312,9 +300,6 @@ define(function(require, factory) {
 
                 // Inject axisModel into axis
                 axis.model = axisModel;
-
-                // Inject grid info axis
-                axis.grid = this;
 
                 // Index of axis, can be used as key
                 axis.index = idx;

@@ -51,8 +51,7 @@ define(function(require) {
 
         _updateData: function (ecModel) {
             var legendData = zrUtil.map(this.get('data') || [], function (dataItem) {
-                // Can be string or number
-                if (typeof dataItem === 'string' || typeof dataItem === 'number') {
+                if (typeof dataItem === 'string') {
                     dataItem = {
                         name: dataItem
                     };
@@ -176,11 +175,16 @@ define(function(require) {
             },
             // formatter: '',
             // 选择模式，默认开启图例开关
-            selectedMode: true
+            selectedMode: true,
             // 配置默认选中状态，可配合LEGEND.SELECTED事件做动态数据载入
             // selected: null,
             // 图例内容（详见legend.data，数组中每一项代表一个item
             // data: [],
+
+            // Tooltip 相关配置
+            tooltip: {
+                show: false
+            }
         }
     });
 

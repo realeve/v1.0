@@ -1,8 +1,8 @@
 define(function (require) {
     var Gradient = require('zrender/graphic/Gradient');
-    return function (ecModel) {
+    return function (seriesType, styleType, ecModel) {
         function encodeColor(seriesModel) {
-            var colorAccessPath = (seriesModel.visualColorAccessPath || 'itemStyle.normal.color').split('.');
+            var colorAccessPath = [styleType, 'normal', 'color'];
             var data = seriesModel.getData();
             var color = seriesModel.get(colorAccessPath) // Set in itemStyle
                 || seriesModel.getColorFromPalette(seriesModel.get('name'));  // Default color
@@ -30,6 +30,7 @@ define(function (require) {
                 });
             }
         }
-        ecModel.eachRawSeries(encodeColor);
+        seriesType ? ecModel.eachRawSeriesByType(seriesType, encodeColor)
+            : ecModel.eachRawSeries(encodeColor);
     };
 });

@@ -803,7 +803,7 @@ var Index = function() {
 			processQCDashboard.init();
 			Tasks.initDashboardWidget();
 			initMiniCharts();
-			bsTips('本页功能尚未添加', 1);
+			bsTips('本页功能所有数据读取功能已更新', 1);
 		}
 	};
 }();

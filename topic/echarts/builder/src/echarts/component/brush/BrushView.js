@@ -1,15 +1,16 @@
 define(function (require) {
 
     var zrUtil = require('zrender/core/util');
+    var graphic = require('../../util/graphic');
     var BrushController = require('../helper/BrushController');
     var echarts = require('../../echarts');
-    var brushHelper = require('../helper/brushHelper');
 
     return echarts.extendComponentView({
 
         type: 'brush',
 
         init: function (ecModel, api) {
+            var zr = api.getZr();
 
             /**
              * @readOnly
@@ -31,11 +32,18 @@ define(function (require) {
 
             /**
              * @private
+             * @type {module:zrender/container/Group}
+             */
+            var controllerGroup = this._controllerGroup = new graphic.Group();
+            zr.add(controllerGroup);
+
+            /**
+             * @private
              * @type {module:echarts/component/helper/BrushController}
              */
-            (this._brushController = new BrushController(api.getZr()))
+            (this._brushController = new BrushController(zr))
                 .on('brush', zrUtil.bind(this._onBrush, this))
-                .mount();
+                .mount(controllerGroup, false);
         },
 
         /**
@@ -43,23 +51,20 @@ define(function (require) {
          */
         render: function (brushModel) {
             this.model = brushModel;
-            return updateController.apply(this, arguments);
+            this._brushController
+                .enableBrush(brushModel.brushOption)
+                .updateCovers(brushModel.brushRanges);
         },
 
         /**
          * @override
          */
-        updateView: updateController,
-
-        /**
-         * @override
-         */
-        updateLayout: updateController,
-
-        /**
-         * @override
-         */
-        updateVisual: updateController,
+        updateView: function (brushModel, ecModel, api, payload) {
+            // Do not update controller when drawing.
+            payload.$from !== this.model.id && this._brushController
+                .enableBrush(brushModel.brushOption)
+                .updateCovers(brushModel.brushRanges);
+        },
 
         /**
          * @override
@@ -71,31 +76,16 @@ define(function (require) {
         /**
          * @private
          */
-        _onBrush: function (areas, opt) {
+        _onBrush: function (brushRanges, isEnd) {
             var modelId = this.model.id;
-
-            brushHelper.parseOutputRanges(areas, this.model.coordInfoList, this.ecModel);
-
-            // Action is not dispatched on drag end, because the drag end
-            // emits the same params with the last drag move event, and
-            // may have some delay when using touch pad, which makes
-            // animation not smooth (when using debounce).
-            (!opt.isEnd || opt.removeOnClick) && this.api.dispatchAction({
+            this.api.dispatchAction({
                 type: 'brush',
                 brushId: modelId,
-                areas: zrUtil.clone(areas),
+                brushRanges: zrUtil.clone(brushRanges),
                 $from: modelId
             });
         }
 
     });
-
-    function updateController(brushModel, ecModel, api, payload) {
-        // Do not update controller when drawing.
-        (!payload || payload.$from !== brushModel.id) && this._brushController
-            .setPanels(brushHelper.makePanelOpts(brushModel.coordInfoList))
-            .enableBrush(brushModel.brushOption)
-            .updateCovers(brushModel.areas.slice());
-    }
 
 });

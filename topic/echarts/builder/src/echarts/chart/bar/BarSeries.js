@@ -66,13 +66,23 @@ define(function(require) {
             // },
             itemStyle: {
                 normal: {
+<<<<<<< HEAD
                     // color: '各异',
                     // 柱条边线
-                    borderColor: '#fff',
+                    barBorderColor: '#fff',
                     // 柱条边线线宽，单位px，默认为1
-                    borderWidth: 0
+                    barBorderWidth: 0
+=======
+                    // color: '各异'
+>>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
                 },
-                emphasis: {}
+                emphasis: {
+                    // color: '各异',
+                    // 柱条边线
+                    barBorderColor: '#fff',
+                    // 柱条边线线宽，单位px，默认为1
+                    barBorderWidth: 0
+                }
             }
         }
     });

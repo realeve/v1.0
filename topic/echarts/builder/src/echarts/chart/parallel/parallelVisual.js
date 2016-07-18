@@ -5,11 +5,9 @@ define(function (require) {
         ecModel.eachSeriesByType('parallel', function (seriesModel) {
 
             var itemStyleModel = seriesModel.getModel('itemStyle.normal');
-            var lineStyleModel = seriesModel.getModel('lineStyle.normal');
             var globalColors = ecModel.get('color');
 
-            var color = lineStyleModel.get('color')
-                || itemStyleModel.get('color')
+            var color = itemStyleModel.get('color')
                 || globalColors[seriesModel.seriesIndex % globalColors.length];
             var inactiveOpacity = seriesModel.get('inactiveOpacity');
             var activeOpacity = seriesModel.get('activeOpacity');

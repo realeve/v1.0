@@ -17,7 +17,24 @@ define(function(require) {
          {type: 'brush', event: 'brush', update: 'updateView'},
         function (payload, ecModel) {
             ecModel.eachComponent({mainType: 'brush', query: payload}, function (brushModel) {
-                brushModel.setAreas(payload.areas);
+                brushModel.setBrushRanges(payload.brushRanges);
+            });
+        }
+    );
+
+    /**
+     * payload: {
+     *      brushIndex: number, or,
+     *      brushId: string, or,
+     *      brushName: string,
+     *      brushOption: Object
+     * }
+     */
+    echarts.registerAction(
+         {type: 'enableBrush', event: 'brushEnabled', update: 'update'},
+        function (payload, ecModel) {
+            ecModel.eachComponent({mainType: 'brush', query: payload}, function (brushModel) {
+                brushModel.setBrushOption(payload.brushOption);
             });
         }
     );

@@ -74,7 +74,6 @@ define(function (require) {
             },
             axisLabel: {
                 show: true,
-                distance: 5,
                 // formatter: null,
                 textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                     color: 'auto'

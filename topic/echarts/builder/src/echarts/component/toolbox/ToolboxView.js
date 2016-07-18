@@ -12,7 +12,7 @@ define(function (require) {
 
         type: 'toolbox',
 
-        render: function (toolboxModel, ecModel, api, payload) {
+        render: function (toolboxModel, ecModel, api) {
             var group = this.group;
             group.removeAll();
 
@@ -95,7 +95,7 @@ define(function (require) {
                 };
 
                 if (feature.render) {
-                    feature.render(featureModel, ecModel, api, payload);
+                    feature.render(featureModel, ecModel, api);
                 }
             }
 
@@ -211,18 +211,6 @@ define(function (require) {
                         hoverStyle.textAlign = 'left';
                     }
                 }
-            });
-        },
-
-        updateView: function (toolboxModel, ecModel, api, payload) {
-            zrUtil.each(this._features, function (feature) {
-                feature.updateView && feature.updateView(feature.model, ecModel, api, payload);
-            });
-        },
-
-        updateLayout: function (toolboxModel, ecModel, api, payload) {
-            zrUtil.each(this._features, function (feature) {
-                feature.updateLayout && feature.updateLayout(feature.model, ecModel, api, payload);
             });
         },
 

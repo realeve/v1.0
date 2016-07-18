@@ -82,12 +82,7 @@ define(function (require) {
             });
             this.group.add(graphic.mergePath(
                 lines, {
-                    style: zrUtil.defaults(
-                        tickModel.getModel('lineStyle').getLineStyle(),
-                        {
-                            stroke: angleAxisModel.get('axisLine.lineStyle.color')
-                        }
-                    )
+                    style: tickModel.getModel('lineStyle').getLineStyle()
                 }
             ));
         },
@@ -130,7 +125,7 @@ define(function (require) {
                     style: {
                         x: p[0],
                         y: p[1],
-                        fill: textStyleModel.getTextColor() || angleAxisModel.get('axisLine.lineStyle.color'),
+                        fill: textStyleModel.getTextColor(),
                         text: labels[i],
                         textAlign: labelTextAlign,
                         textVerticalAlign: labelTextBaseline,

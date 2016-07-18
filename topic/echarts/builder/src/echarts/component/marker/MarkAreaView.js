@@ -82,10 +82,13 @@ define(function (require) {
         var itemModel = data.getItemModel(idx);
 
         var point;
-        var xPx = numberUtil.parsePercent(itemModel.get(dims[0]), api.getWidth());
-        var yPx = numberUtil.parsePercent(itemModel.get(dims[1]), api.getHeight());
-        if (!isNaN(xPx) && !isNaN(yPx)) {
-            point = [xPx, yPx];
+        var xPx = itemModel.get(dims[0]);
+        var yPx = itemModel.get(dims[1]);
+        if (xPx != null && yPx != null) {
+            point = [
+                numberUtil.parsePercent(xPx, api.getWidth()),
+                numberUtil.parsePercent(yPx, api.getHeight())
+            ];
         }
         else {
             // Chart like bar may have there own marker positioning logic
@@ -111,14 +114,6 @@ define(function (require) {
                 else if (isInifinity(y)) {
                     point[1] = yAxis.toGlobalCoord(yAxis.getExtent()[dims[1] === 'y0' ? 0 : 1]);
                 }
-            }
-
-            // Use x, y if has any
-            if (!isNaN(xPx)) {
-                point[0] = xPx;
-            }
-            if (!isNaN(yPx)) {
-                point[1] = yPx;
             }
         }
 
@@ -300,7 +295,6 @@ define(function (require) {
             return item.value;
         };
         areaData.initData(optData, null, dimValueGetter);
-        areaData.hasItemOption = true;
         return areaData;
     }
 });

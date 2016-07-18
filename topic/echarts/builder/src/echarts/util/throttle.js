@@ -100,8 +100,8 @@ define(function () {
     lib.createOrUpdate = function (obj, fnAttr, rate, throttleType) {
         var fn = obj[fnAttr];
 
-        if (!fn) {
-            return;
+        if (!fn || rate == null || !throttleType) {
+            return fn;
         }
 
         var originFn = fn[ORIGIN_METHOD] || fn;
@@ -109,10 +109,6 @@ define(function () {
         var lastRate = fn[RATE];
 
         if (lastRate !== rate || lastThrottleType !== throttleType) {
-            if (rate == null || !throttleType) {
-                return (obj[fnAttr] = originFn);
-            }
-
             fn = obj[fnAttr] = lib.throttle(
                 originFn, rate, throttleType === 'debounce'
             );

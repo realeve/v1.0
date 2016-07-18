@@ -33,21 +33,12 @@ define(function (require) {
         var group = this.group;
         var LineCtor = this._ctor;
 
-        var hostModel = lineData.hostModel;
-
-        var seriesScope = {
-            lineStyle: hostModel.getModel('lineStyle.normal').getLineStyle(),
-            hoverLineStyle: hostModel.getModel('lineStyle.emphasis').getLineStyle(),
-            labelModel: hostModel.getModel('label.normal'),
-            hoverLabelModel: hostModel.getModel('label.emphasis')
-        };
-
         lineData.diff(oldLineData)
             .add(function (idx) {
                 if (!lineNeedsDraw(lineData.getItemLayout(idx))) {
                     return;
                 }
-                var lineGroup = new LineCtor(lineData, idx, seriesScope);
+                var lineGroup = new LineCtor(lineData, idx);
 
                 lineData.setItemGraphicEl(idx, lineGroup);
 
@@ -61,10 +52,10 @@ define(function (require) {
                 }
 
                 if (!lineGroup) {
-                    lineGroup = new LineCtor(lineData, newIdx, seriesScope);
+                    lineGroup = new LineCtor(lineData, newIdx);
                 }
                 else {
-                    lineGroup.updateData(lineData, newIdx, seriesScope);
+                    lineGroup.updateData(lineData, newIdx);
                 }
 
                 lineData.setItemGraphicEl(newIdx, lineGroup);

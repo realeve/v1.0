@@ -9,29 +9,27 @@ define(function(require) {
     // function param:
     //      {Object} itemLayout fetch from data.getItemLayout(dataIndex)
     //      {Object} selectors {point: selector, rect: selector, ...}
-    //      {Object} area {range: [[], [], ..], boudingRect}
+    //      {Object} brushRange {range: [[], [], ..], boudingRect}
     // function return:
     //      {boolean} Whether in the given brush.
     var selector = {
-        lineX: getLineSelectors(0),
-        lineY: getLineSelectors(1),
         rect: {
-            point: function (itemLayout, selectors, area) {
-                return area.boundingRect.contain(itemLayout[0], itemLayout[1]);
+            point: function (itemLayout, selectors, brushRange) {
+                return brushRange.boundingRect.contain(itemLayout[0], itemLayout[1]);
             },
-            rect: function (itemLayout, selectors, area) {
-                return area.boundingRect.intersect(makeBoundingRect(itemLayout));
+            rect: function (itemLayout, selectors, brushRange) {
+                return brushRange.boundingRect.intersect(makeBoundingRect(itemLayout));
             }
         },
         polygon: {
-            point: function (itemLayout, selectors, area) {
-                return area.boundingRect.contain(itemLayout[0], itemLayout[1])
-                    && polygonContain(area.range, itemLayout[0], itemLayout[1]);
+            point: function (itemLayout, selectors, brushRange) {
+                return brushRange.boundingRect.contain(itemLayout[0], itemLayout[1])
+                    && polygonContain(brushRange.range, itemLayout[0], itemLayout[1]);
             },
-            rect: function (itemLayout, selectors, area) {
+            rect: function (itemLayout, selectors, brushRange) {
                 // FIXME
                 // 随意写的，没有考察过效率。
-                var points = area.range;
+                var points = brushRange.range;
 
                 if (points.length <= 1) {
                     return false;
@@ -58,28 +56,6 @@ define(function(require) {
             }
         }
     };
-
-    function getLineSelectors(xyIndex) {
-        var xy = ['x', 'y'];
-        var wh = ['width', 'height'];
-
-        return {
-            point: function (itemLayout, selectors, area) {
-                var range = area.range;
-                var p = itemLayout[xyIndex];
-                return inLineRange(p, range);
-            },
-            rect: function (itemLayout, selectors, area) {
-                var range = area.range;
-                return inLineRange(itemLayout[xy[xyIndex]], range)
-                    || inLineRange(itemLayout[xy[xyIndex]] + itemLayout[wh[xyIndex]], range);
-            }
-        };
-    }
-
-    function inLineRange(p, range) {
-        return range[0] <= p && p <= range[1];
-    }
 
     // FIXME
     // 随意写的，没考察过效率。

@@ -212,6 +212,8 @@ define(function(require) {
         return stepPoints;
     }
 
+<<<<<<< HEAD
+=======
     function clamp(number, extent) {
         return Math.max(Math.min(number, extent[1]), extent[0]);
     }
@@ -255,6 +257,12 @@ define(function(require) {
         var min = firstStop.interval ? clamp(firstStop.interval[0], dataExtent) : firstStop.value;
         var max = lastStop.interval ? clamp(lastStop.interval[1], dataExtent) : lastStop.value;
         var stopsSpan = max - min;
+
+        // In the piecewise case data out of visual range
+        // ----dataMin----dataMax-----visualMin----visualMax
+        if (stopsSpan === 0) {
+            return data.getItemVisual(0, 'color');
+        }
         for (var i = 0; i < stops.length; i++) {
             // Piecewise
             if (stops[i].interval) {
@@ -288,10 +296,10 @@ define(function(require) {
 
         var start = Math.round(axis.toGlobalCoord(axis.dataToCoord(min)));
         var end = Math.round(axis.toGlobalCoord(axis.dataToCoord(max)));
-        zrUtil.each(colorStops, function (colorStop) {
-            // Make sure each offset has rounded px to avoid not sharp edge
-            colorStop.offset = (Math.round(colorStop.offset * (end - start) + start) - start) / (end - start);
-        });
+        // zrUtil.each(colorStops, function (colorStop) {
+        //     // Make sure each offset has rounded px to avoid not sharp edge
+        //     colorStop.offset = (Math.round(colorStop.offset * (end - start) + start) - start) / (end - start);
+        // });
 
         gradient[dimName] = start;
         gradient[dimName + '2'] = end;
@@ -299,6 +307,7 @@ define(function(require) {
         return gradient;
     }
 
+>>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
     return ChartView.extend({
 
         type: 'line',
@@ -418,6 +427,13 @@ define(function(require) {
                         );
                     }
                     else {
+                        // Not do it in update with animation
+                        if (step) {
+                            // TODO If stacked series is not step
+                            points = turnPointsIntoStep(points, coordSys, step);
+                            stackedOnPoints = turnPointsIntoStep(stackedOnPoints, coordSys, step);
+                        }
+
                         polyline.setShape({
                             points: points
                         });
@@ -429,13 +445,12 @@ define(function(require) {
                 }
             }
 
-            var visualColor = getVisualGradient(data, coordSys) || data.getVisual('color');
             polyline.useStyle(zrUtil.defaults(
                 // Use color in lineStyle first
                 lineStyleModel.getLineStyle(),
                 {
                     fill: 'none',
-                    stroke: visualColor,
+                    stroke: data.getVisual('color'),
                     lineJoin: 'bevel'
                 }
             ));
@@ -455,7 +470,7 @@ define(function(require) {
                 polygon.useStyle(zrUtil.defaults(
                     areaStyleModel.getAreaStyle(),
                     {
-                        fill: visualColor,
+                        fill: data.getVisual('color'),
                         opacity: 0.7,
                         lineJoin: 'bevel'
                     }
@@ -486,7 +501,7 @@ define(function(require) {
             var data = seriesModel.getData();
             var dataIndex = queryDataIndex(data, payload);
 
-            if (!(dataIndex instanceof Array) && dataIndex != null && dataIndex >= 0) {
+            if (dataIndex != null && dataIndex >= 0) {
                 var symbol = data.getItemGraphicEl(dataIndex);
                 if (!symbol) {
                     // Create a temporary symbol if it is not exists

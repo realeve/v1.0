@@ -2,6 +2,7 @@ define(function (require) {
 
     var zrUtil = require('zrender/core/util');
     var numberUtil = require('./number');
+    var textContain = require('zrender/contain/text');
 
     /**
      * 每三位默认加,格式化
@@ -79,7 +80,7 @@ define(function (require) {
             return '';
         }
 
-        var $vars = paramsList[0].$vars;
+        var $vars = paramsList[0].$vars || [];
         for (var i = 0; i < $vars.length; i++) {
             var alias = TPL_VAR_ALIAS[i];
             tpl = tpl.replace(wrapVar(alias),  wrapVar(alias, 0));
@@ -157,6 +158,8 @@ define(function (require) {
 
         formatTpl: formatTpl,
 
-        formatTime: formatTime
+        formatTime: formatTime,
+
+        truncateText: textContain.truncateText
     };
 });
