@@ -212,8 +212,6 @@ define(function(require) {
         return stepPoints;
     }
 
-<<<<<<< HEAD
-=======
     function clamp(number, extent) {
         return Math.max(Math.min(number, extent[1]), extent[0]);
     }
@@ -307,7 +305,6 @@ define(function(require) {
         return gradient;
     }
 
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
     return ChartView.extend({
 
         type: 'line',
@@ -445,12 +442,13 @@ define(function(require) {
                 }
             }
 
+            var visualColor = getVisualGradient(data, coordSys) || data.getVisual('color');
             polyline.useStyle(zrUtil.defaults(
                 // Use color in lineStyle first
                 lineStyleModel.getLineStyle(),
                 {
                     fill: 'none',
-                    stroke: data.getVisual('color'),
+                    stroke: visualColor,
                     lineJoin: 'bevel'
                 }
             ));
@@ -470,7 +468,7 @@ define(function(require) {
                 polygon.useStyle(zrUtil.defaults(
                     areaStyleModel.getAreaStyle(),
                     {
-                        fill: data.getVisual('color'),
+                        fill: visualColor,
                         opacity: 0.7,
                         lineJoin: 'bevel'
                     }
@@ -501,7 +499,7 @@ define(function(require) {
             var data = seriesModel.getData();
             var dataIndex = queryDataIndex(data, payload);
 
-            if (dataIndex != null && dataIndex >= 0) {
+            if (!(dataIndex instanceof Array) && dataIndex != null && dataIndex >= 0) {
                 var symbol = data.getItemGraphicEl(dataIndex);
                 if (!symbol) {
                     // Create a temporary symbol if it is not exists

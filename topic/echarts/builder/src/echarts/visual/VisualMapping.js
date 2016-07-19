@@ -26,8 +26,8 @@ define(function (require) {
      *                                            Visual for only each piece can be specified.
      * @param {Array.<string|Object>=} [option.categories] ['cate1', 'cate2']
      *                                            required when mappingMethod is 'category'.
-     *                                            If no option.categories, it represents
-     *                                            categories is [0, 1, 2, ...].
+     *                                            If no option.categories, categories is set
+     *                                            as [0, 1, 2, ...].
      * @param {boolean} [option.loop=false] Whether loop mapping when mappingMethod is 'category'.
      * @param {(Array|Object|*)} [option.visual]  Visual data.
      *                                            when mappingMethod is 'category',
@@ -286,7 +286,7 @@ define(function (require) {
             visualArr.push(visual);
         }
 
-        var doNotNeedPair = {'color': 1, 'symbol': 1};
+        var doNotNeedPair = {color: 1, symbol: 1};
 
         if (!isCategory
             && visualArr.length === 1
@@ -377,7 +377,7 @@ define(function (require) {
 
         piecewise: function (value) {
             var pieceList = this.option.pieceList;
-            var pieceIndex = VisualMapping.findPieceIndex(value, pieceList);
+            var pieceIndex = VisualMapping.findPieceIndex(value, pieceList, true);
             if (pieceIndex != null) {
                 return linearMap(pieceIndex, [0, pieceList.length - 1], [0, 1], true);
             }
@@ -508,41 +508,75 @@ define(function (require) {
     };
 
     /**
-     * @public {Array.<Object>} [{value: ..., interval: [min, max]}, ...]
+     * @param {number} value
+     * @param {Array.<Object>} pieceList [{value: ..., interval: [min, max]}, ...]
+     *                         Always from small to big.
+     * @param {boolean} [findClosestWhenOutside=false]
      * @return {number} index
      */
-    VisualMapping.findPieceIndex = function (value, pieceList) {
-        // value has high priority.
+    VisualMapping.findPieceIndex = function (value, pieceList, findClosestWhenOutside) {
+        var possibleI;
+        var abs = Infinity;
+
+        // value has the higher priority.
         for (var i = 0, len = pieceList.length; i < len; i++) {
-            var piece = pieceList[i];
-            if (piece.value != null && piece.value === value) {
-                return i;
+            var pieceValue = pieceList[i].value;
+            if (pieceValue != null) {
+                if (pieceValue === value) {
+                    return i;
+                }
+                findClosestWhenOutside && updatePossible(pieceValue, i);
             }
         }
 
         for (var i = 0, len = pieceList.length; i < len; i++) {
             var piece = pieceList[i];
             var interval = piece.interval;
+            var close = piece.close;
+
             if (interval) {
                 if (interval[0] === -Infinity) {
-                    if (value < interval[1]) {
+                    if (littleThan(close[1], value, interval[1])) {
                         return i;
                     }
                 }
                 else if (interval[1] === Infinity) {
-                    if (interval[0] < value) {
+                    if (littleThan(close[0], interval[0], value)) {
                         return i;
                     }
                 }
                 else if (
-                    piece.interval[0] <= value
-                    && value <= piece.interval[1]
+                    littleThan(close[0], interval[0], value)
+                    && littleThan(close[1], value, interval[1])
                 ) {
                     return i;
                 }
+                findClosestWhenOutside && updatePossible(interval[0], i);
+                findClosestWhenOutside && updatePossible(interval[1], i);
             }
         }
+
+        if (findClosestWhenOutside) {
+            return value === Infinity
+                ? pieceList.length - 1
+                : value === -Infinity
+                ? 0
+                : possibleI;
+        }
+
+        function updatePossible(val, index) {
+            var newAbs = Math.abs(val - value);
+            if (newAbs < abs) {
+                abs = newAbs;
+                possibleI = index;
+            }
+        }
+
     };
+
+    function littleThan(close, a, b) {
+        return close ? a <= b : a < b;
+    }
 
     return VisualMapping;
 

@@ -1,5 +1,5 @@
 /**
- * @file Data range visual coding.
+ * @file Brush visual coding.
  */
 define(function (require) {
 
@@ -9,15 +9,33 @@ define(function (require) {
     var BoundingRect = require('zrender/core/BoundingRect');
     var selector = require('./selector');
     var throttle = require('../../util/throttle');
+    var brushHelper = require('../helper/brushHelper');
 
     var STATE_LIST = ['inBrush', 'outOfBrush'];
     var DISPATCH_METHOD = '__ecBrushSelect';
     var DISPATCH_FLAG = '__ecInBrushSelectEvent';
+    var PRIORITY_BRUSH = echarts.PRIORITY.VISUAL.BRUSH;
+
+    /**
+     * Layout for visual, the priority higher than other layout, and before brush visual.
+     */
+    echarts.registerLayout(PRIORITY_BRUSH, function (ecModel, api, payload) {
+        ecModel.eachComponent({mainType: 'brush'}, function (brushModel) {
+
+            payload && payload.type === 'takeGlobalCursor' && brushModel.setBrushOption(
+                payload.key === 'brush' ? payload.brushOption : {brushType: false}
+            );
+
+            brushModel.coordInfoList = brushHelper.makeCoordInfoList(brushModel.option, ecModel);
+
+            brushHelper.parseInputRanges(brushModel, ecModel);
+        });
+    });
 
     /**
      * Register the visual encoding if this modules required.
      */
-    echarts.registerVisual(echarts.PRIORITY.VISUAL.BRUSH, function (ecModel, api, payload) {
+    echarts.registerVisual(PRIORITY_BRUSH, function (ecModel, api, payload) {
 
         var brushSelected = [];
         var throttleType;
@@ -25,32 +43,35 @@ define(function (require) {
 
         ecModel.eachComponent({mainType: 'brush'}, function (brushModel, brushIndex) {
 
+            var thisBrushSelected = {
+                brushId: brushModel.id,
+                brushIndex: brushIndex,
+                brushName: brushModel.name,
+                areas: zrUtil.clone(brushModel.areas),
+                selected: []
+            };
+            // Every brush component exists in event params, convenient
+            // for user to find by index.
+            brushSelected.push(thisBrushSelected);
+
             var brushOption = brushModel.option;
             var brushLink = brushOption.brushLink;
             var linkedSeriesMap = [];
             var selectedDataIndexForLink = [];
             var rangeInfoBySeries = [];
+            var hasBrushExists = 0;
 
             if (!brushIndex) { // Only the first throttle setting works.
                 throttleType = brushOption.throttleType;
                 throttleDelay = brushOption.throttleDelay;
             }
 
-            var thisBrushSelected = {
-                brushId: brushModel.id,
-                brushIndex: brushIndex,
-                brushName: brushModel.name,
-                brushRanges: zrUtil.clone(brushModel.brushRanges),
-                series: []
-            };
-            brushSelected.push(thisBrushSelected);
-
             // Add boundingRect and selectors to range.
-            var brushRanges = zrUtil.map(brushModel.brushRanges, function (brushRange) {
+            var areas = zrUtil.map(brushModel.areas, function (area) {
                 return bindSelector(
-                    zrUtil.extend(
-                        {boundingRect: boundingRectBuilders[brushRange.brushType](brushRange)},
-                        brushRange
+                    zrUtil.defaults(
+                        {boundingRect: boundingRectBuilders[area.brushType](area)},
+                        area
                     )
                 );
             });
@@ -65,78 +86,126 @@ define(function (require) {
                 linkedSeriesMap[seriesIndex] = 1;
             });
 
-            function useLink(seriesIndex) {
+            function linkOthers(seriesIndex) {
                 return brushLink === 'all' || linkedSeriesMap[seriesIndex];
             }
 
+            // If no supported brush or no brush on the series,
+            // all visuals should be in original state.
+            function brushed(rangeInfoList) {
+                return !!rangeInfoList.length;
+            }
+
+            /**
+             * Logic for each series: (If the logic has to be modified one day, do it carefully!)
+             *
+             * ( brushed ┬ && ┬hasBrushExist ┬ && linkOthers  ) => StepA: ┬record, ┬ StepB: ┬visualByRecord.
+             *   !brushed┘    ├hasBrushExist ┤                            └nothing,┘        ├visualByRecord.
+             *                └!hasBrushExist┘                                              └nothing.
+             * ( !brushed  && ┬hasBrushExist ┬ && linkOthers  ) => StepA:  nothing,  StepB: ┬visualByRecord.
+             *                └!hasBrushExist┘                                              └nothing.
+             * ( brushed ┬ &&                     !linkOthers ) => StepA:  nothing,  StepB: ┬visualByCheck.
+             *   !brushed┘                                                                  └nothing.
+             * ( !brushed  &&                     !linkOthers ) => StepA:  nothing,  StepB:  nothing.
+             */
+
+            // Step A
             ecModel.eachSeries(function (seriesModel, seriesIndex) {
-                var selectorsByBrushType = getSelectorsByBrushType(seriesModel);
-                if (!selectorsByBrushType || isNotControlledSeries(brushModel, seriesIndex)) {
-                    return;
-                }
                 var rangeInfoList = rangeInfoBySeries[seriesIndex] = [];
 
-                zrUtil.each(brushRanges, function (brushRange) {
-                    selectorsByBrushType[brushRange.brushType] && rangeInfoList.push(brushRange);
+                seriesModel.subType === 'parallel'
+                    ? stepAParallel(seriesModel, seriesIndex, rangeInfoList)
+                    : stepAOthers(seriesModel, seriesIndex, rangeInfoList);
+            });
+
+            function stepAParallel(seriesModel, seriesIndex) {
+                var coordSys = seriesModel.coordinateSystem;
+                hasBrushExists |= coordSys.hasAxisbrushed();
+
+                linkOthers(seriesIndex) && coordSys.eachActiveState(
+                    seriesModel.getData(),
+                    function (activeState, dataIndex) {
+                        activeState === 'active' && (selectedDataIndexForLink[dataIndex] = 1);
+                    }
+                );
+            }
+
+            function stepAOthers(seriesModel, seriesIndex, rangeInfoList) {
+                var selectorsByBrushType = getSelectorsByBrushType(seriesModel);
+                if (!selectorsByBrushType || brushModelNotControll(brushModel, seriesIndex)) {
+                    return;
+                }
+
+                zrUtil.each(areas, function (area) {
+                    selectorsByBrushType[area.brushType]
+                        && brushHelper.controlSeries(area, brushModel, seriesModel)
+                        && rangeInfoList.push(area);
+                    hasBrushExists |= brushed(rangeInfoList);
                 });
 
-                if (useLink(seriesIndex)) {
+                if (linkOthers(seriesIndex) && brushed(rangeInfoList)) {
                     var data = seriesModel.getData();
-                    rangeInfoList.length && data.each(function (dataIndex) {
+                    data.each(function (dataIndex) {
                         if (checkInRange(selectorsByBrushType, rangeInfoList, data, dataIndex)) {
                             selectedDataIndexForLink[dataIndex] = 1;
                         }
                     });
                 }
-            });
+            }
 
+            // Step B
             ecModel.eachSeries(function (seriesModel, seriesIndex) {
-                var selectorsByBrushType = getSelectorsByBrushType(seriesModel);
-                if (!selectorsByBrushType || isNotControlledSeries(brushModel, seriesIndex)) {
-                    return;
-                }
-                var data = seriesModel.getData();
-                var rangeInfoList = rangeInfoBySeries[seriesIndex];
-                var getValueState = useLink(seriesIndex)
-                    ? function (dataIndex) {
-                        return selectedDataIndexForLink[dataIndex]
-                            ? (seriesBrushSelected.rawIndices.push(data.getRawIndex(dataIndex)), 'inBrush')
-                            : 'outOfBrush';
-                    }
-                    : function (dataIndex) {
-                        return checkInRange(selectorsByBrushType, rangeInfoList, data, dataIndex)
-                            ? (seriesBrushSelected.rawIndices.push(data.getRawIndex(dataIndex)), 'inBrush')
-                            : 'outOfBrush';
-                    };
-
                 var seriesBrushSelected = {
                     seriesId: seriesModel.id,
                     seriesIndex: seriesIndex,
                     seriesName: seriesModel.name,
-                    rawIndices: []
+                    dataIndex: []
                 };
-                thisBrushSelected.series.push(seriesBrushSelected);
+                // Every series exists in event params, convenient
+                // for user to find series by seriesIndex.
+                thisBrushSelected.selected.push(seriesBrushSelected);
 
-                // If no supported brush, all visuals are in original state.
-                rangeInfoList.length && visualSolution.applyVisual(
-                    STATE_LIST, visualMappings, data, getValueState
-                );
+                var selectorsByBrushType = getSelectorsByBrushType(seriesModel);
+                var rangeInfoList = rangeInfoBySeries[seriesIndex];
+
+                var data = seriesModel.getData();
+                var getValueState = linkOthers(seriesIndex)
+                    ? function (dataIndex) {
+                        return selectedDataIndexForLink[dataIndex]
+                            ? (seriesBrushSelected.dataIndex.push(data.getRawIndex(dataIndex)), 'inBrush')
+                            : 'outOfBrush';
+                    }
+                    : function (dataIndex) {
+                        return checkInRange(selectorsByBrushType, rangeInfoList, data, dataIndex)
+                            ? (seriesBrushSelected.dataIndex.push(data.getRawIndex(dataIndex)), 'inBrush')
+                            : 'outOfBrush';
+                    };
+
+                // If no supported brush or no brush, all visuals are in original state.
+                (linkOthers(seriesIndex) ? hasBrushExists : brushed(rangeInfoList))
+                    && visualSolution.applyVisual(
+                        STATE_LIST, visualMappings, data, getValueState
+                    );
             });
 
         });
 
-        dispatchAction(api, throttleType, throttleDelay, brushSelected);
+        dispatchAction(api, throttleType, throttleDelay, brushSelected, payload);
     });
 
-    function dispatchAction(api, throttleType, throttleDelay, brushSelected) {
-        // This event is always triggered, rather than triggered only when selected
-        // changed. The latter way might help user to reduce unnecessary view update
-        // in listener of this event and improve performance, but sometimes it is not
-        // obvious (always has changes when data dense), and probably it is difficult
-        // to diff the selected data precisely only by dataIndex records. For
-        // example, considering this event will be triggered when setOption called,
-        // user may change values in series.data, but keep dataIndex the same. So
-        // the diff work is left to user, if it is necessary.
+    function dispatchAction(api, throttleType, throttleDelay, brushSelected, payload) {
+        // This event will not be triggered when `setOpion`, otherwise dead lock may
+        // triggered when do `setOption` in event listener, which we do not find
+        // satisfactory way to solve yet. Some considered resolutions:
+        // (a) Diff with prevoius selected data ant only trigger event when changed.
+        // But store previous data and diff precisely (i.e., not only by dataIndex, but
+        // also detect value changes in selected data) might bring complexity or fragility.
+        // (b) Use spectial param like `silent` to suppress event triggering.
+        // But such kind of volatile param may be weird in `setOption`.
+        if (!payload) {
+            return;
+        }
+
         var zr = api.getZr();
         if (zr[DISPATCH_FLAG]) {
             return;
@@ -147,19 +216,18 @@ define(function (require) {
         }
 
         var fn = throttle.createOrUpdate(zr, DISPATCH_METHOD, throttleDelay, throttleType);
-        // If throttleDelay is 0 or null or undefined, dispatchAction will also be
-        // called asynchronously, otherwise break the rule that main process should
-        // not be nested.
-        setTimeout(function () {
-            fn(api, brushSelected);
-        }, 0);
+
+        fn(api, brushSelected);
     }
 
     function doDispatch(api, brushSelected) {
         if (!api.isDisposed()) {
             var zr = api.getZr();
             zr[DISPATCH_FLAG] = true;
-            api.dispatchAction({type: 'brushSelect', brushComponents: brushSelected});
+            api.dispatchAction({
+                type: 'brushSelect',
+                batch: brushSelected
+            });
             zr[DISPATCH_FLAG] = false;
         }
     }
@@ -167,9 +235,9 @@ define(function (require) {
     function checkInRange(selectorsByBrushType, rangeInfoList, data, dataIndex) {
         var itemLayout = data.getItemLayout(dataIndex);
         for (var i = 0, len = rangeInfoList.length; i < len; i++) {
-            var brushRange = rangeInfoList[i];
-            if (selectorsByBrushType[brushRange.brushType](
-                itemLayout, brushRange.selectors, brushRange
+            var area = rangeInfoList[i];
+            if (selectorsByBrushType[area.brushType](
+                itemLayout, area.selectors, area
             )) {
                 return true;
             }
@@ -185,10 +253,17 @@ define(function (require) {
             });
             return sels;
         }
+        else if (zrUtil.isFunction(brushSelector)) {
+            var bSelector = {};
+            zrUtil.each(selector, function (sel, brushType) {
+                bSelector[brushType] = brushSelector;
+            });
+            return bSelector;
+        }
         return brushSelector;
     }
 
-    function isNotControlledSeries(brushModel, seriesIndex) {
+    function brushModelNotControll(brushModel, seriesIndex) {
         var seriesIndices = brushModel.option.seriesIndex;
         return seriesIndices != null
             && seriesIndices !== 'all'
@@ -199,28 +274,30 @@ define(function (require) {
             );
     }
 
-    function bindSelector(brushRange) {
-        var selectors = brushRange.selectors = {};
-        zrUtil.each(selector[brushRange.brushType], function (selFn, elType) {
+    function bindSelector(area) {
+        var selectors = area.selectors = {};
+        zrUtil.each(selector[area.brushType], function (selFn, elType) {
             // Do not use function binding or curry for performance.
             selectors[elType] = function (itemLayout) {
-                return selFn(itemLayout, selectors, brushRange);
+                return selFn(itemLayout, selectors, area);
             };
         });
-        return brushRange;
+        return area;
     }
 
     var boundingRectBuilders = {
 
-        line: zrUtil.noop,
+        lineX: zrUtil.noop,
 
-        rect: function (brushRange) {
-            return getBoundingRectFromMinMax(brushRange.range);
+        lineY: zrUtil.noop,
+
+        rect: function (area) {
+            return getBoundingRectFromMinMax(area.range);
         },
 
-        polygon: function (brushRange) {
+        polygon: function (area) {
             var minMax;
-            var range = brushRange.range;
+            var range = area.range;
 
             for (var i = 0, len = range.length; i < len; i++) {
                 minMax = minMax || [[Infinity, -Infinity], [Infinity, -Infinity]];

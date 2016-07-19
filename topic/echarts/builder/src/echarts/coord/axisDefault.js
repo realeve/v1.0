@@ -8,12 +8,11 @@ define(function (require) {
         z: 0,                       // 二级层叠
         // 反向坐标轴
         inverse: false,
+
         // 坐标轴名字，默认为空
         name: '',
         // 坐标轴名字位置，支持'start' | 'middle' | 'end'
         nameLocation: 'end',
-<<<<<<< HEAD
-=======
         // 坐标轴名字旋转，degree。
         nameRotate: null, // Adapt to axis rotate, when nameLocation is 'middle'.
         nameTruncate: {
@@ -21,15 +20,10 @@ define(function (require) {
             ellipsis: '...',
             placeholder: '.'
         },
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
         // 坐标轴文字样式，默认取全局样式
         nameTextStyle: {},
         // 文字与轴线距离
         nameGap: 15,
-<<<<<<< HEAD
-        // 是否能触发鼠标事件
-        silent: true,
-=======
 
         silent: false, // Default false to support tooltip.
         triggerEvent: false, // Default false to avoid legacy user event listener fail.
@@ -38,7 +32,6 @@ define(function (require) {
             show: false
         },
 
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
         // 坐标轴线
         axisLine: {
             // 默认显示，属性show控制显示与否
@@ -61,7 +54,6 @@ define(function (require) {
             length: 5,
             // 属性lineStyle控制线条样式
             lineStyle: {
-                color: '#333',
                 width: 1
             }
         },
@@ -75,7 +67,6 @@ define(function (require) {
             // formatter: null,
             // 其余属性默认使用全局文本样式，详见TEXTSTYLE
             textStyle: {
-                color: '#333',
                 fontSize: 12
             }
         },

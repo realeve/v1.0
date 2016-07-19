@@ -16,11 +16,6 @@ define(function (require) {
     function resizeGeo (geoModel, api) {
         var rect = this.getBoundingRect();
 
-<<<<<<< HEAD
-        var boxLayoutOption = geoModel.getBoxLayoutParams();
-        // 0.75 rate
-        boxLayoutOption.aspect = rect.width / rect.height * 0.75;
-=======
         var boxLayoutOption;
 
         var center = geoModel.get('layoutCenter');
@@ -49,7 +44,6 @@ define(function (require) {
                 }
             }
         }
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
 
         var viewRect;
         if (useCenterAndSize) {

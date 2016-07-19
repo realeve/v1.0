@@ -65,6 +65,7 @@ define(function (require) {
     // This flag is used to carry out this rule.
     // All events will be triggered out side main process (i.e. when !this[IN_MAIN_PROCESS]).
     var IN_MAIN_PROCESS = '__flag_in_main_process';
+    var HAS_GRADIENT_OR_PATTERN_BG = '_hasGradientOrPatternBg';
 
     function createRegisterEventWithLowercaseName(method) {
         return function (eventName, handler, context) {
@@ -173,7 +174,8 @@ define(function (require) {
         // In case some people write `window.onresize = chart.resize`
         this.resize = zrUtil.bind(this.resize, this);
 
-
+        // Can't dispatch action during rendering procedure
+        this._pendingActions = [];
         // Sort on demand
         function prioritySortFunc(a, b) {
             return a.prio - b.prio;
@@ -248,15 +250,9 @@ define(function (require) {
             this._zr.refreshImmediately();
         }
 
-<<<<<<< HEAD
-        !notRefreshImmediately && this._zr.refreshImmediately();
-
-        this[IN_MAIN_PROCESS] = false;
-=======
         this[IN_MAIN_PROCESS] = false;
 
         this._flushPendingActions();
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
     };
 
     /**
@@ -425,6 +421,7 @@ define(function (require) {
 
     var updateMethods = {
 
+
         /**
          * @param {Object} payload
          * @private
@@ -435,6 +432,7 @@ define(function (require) {
             var ecModel = this._model;
             var api = this._api;
             var coordSysMgr = this._coordSysMgr;
+            var zr = this._zr;
             // update before setOption
             if (!ecModel) {
                 return;
@@ -464,10 +462,10 @@ define(function (require) {
             // Set background
             var backgroundColor = ecModel.get('backgroundColor') || 'transparent';
 
-            var painter = this._zr.painter;
+            var painter = zr.painter;
             // TODO all use clearColor ?
             if (painter.isSingleCanvas && painter.isSingleCanvas()) {
-                this._zr.configLayer(0, {
+                zr.configLayer(0, {
                     clearColor: backgroundColor
                 });
             }
@@ -480,8 +478,26 @@ define(function (require) {
                         backgroundColor = 'transparent';
                     }
                 }
-                backgroundColor = backgroundColor;
-                this._dom.style.backgroundColor = backgroundColor;
+                if (backgroundColor.colorStops || backgroundColor.image) {
+                    // Gradient background
+                    // FIXME Fixed layer？
+                    zr.configLayer(0, {
+                        clearColor: backgroundColor
+                    });
+                    this[HAS_GRADIENT_OR_PATTERN_BG] = true;
+
+                    this._dom.style.background = 'transparent';
+                }
+                else {
+                    if (this[HAS_GRADIENT_OR_PATTERN_BG]) {
+                        zr.configLayer(0, {
+                            clearColor: null
+                        });
+                    }
+                    this[HAS_GRADIENT_OR_PATTERN_BG] = false;
+
+                    this._dom.style.background = backgroundColor;
+                }
             }
 
             // console.time && console.timeEnd('update');
@@ -623,6 +639,8 @@ define(function (require) {
         this._loadingFX && this._loadingFX.resize();
 
         this[IN_MAIN_PROCESS] = false;
+
+        this._flushPendingActions();
     };
 
     /**
@@ -682,12 +700,18 @@ define(function (require) {
         var actionInfo = actionWrap.actionInfo;
         var updateMethod = actionInfo.update || 'update';
 
-        if (__DEV__) {
-            zrUtil.assert(
-                !this[IN_MAIN_PROCESS],
-                '`dispatchAction` should not be called during main process.'
-                + 'unless updateMathod is "none".'
-            );
+        // if (__DEV__) {
+        //     zrUtil.assert(
+        //         !this[IN_MAIN_PROCESS],
+        //         '`dispatchAction` should not be called during main process.'
+        //         + 'unless updateMathod is "none".'
+        //     );
+        // }
+
+        // May dispatchAction in rendering procedure
+        if (this[IN_MAIN_PROCESS]) {
+            this._pendingActions.push(payload);
+            return;
         }
 
         this[IN_MAIN_PROCESS] = true;
@@ -738,6 +762,17 @@ define(function (require) {
         this[IN_MAIN_PROCESS] = false;
 
         !silent && this._messageCenter.trigger(eventObj.type, eventObj);
+
+        this._flushPendingActions();
+
+    };
+
+    echartsProto._flushPendingActions = function () {
+        var pendingActions = this._pendingActions;
+        while (pendingActions.length) {
+            var payload = pendingActions.shift();
+            this.dispatchAction(payload);
+        }
     };
 
     /**
@@ -769,8 +804,12 @@ define(function (require) {
             chart[methodName](seriesModel, ecModel, api, payload);
 
             updateZ(seriesModel, chart);
+
+            updateProgressiveAndBlend(seriesModel, chart);
         }, this);
 
+        // If use hover layer
+        updateHoverLayerStatus(this._zr, ecModel);
     }
 
     /**
@@ -919,7 +958,6 @@ define(function (require) {
             chart.__alive = false;
         }, this);
 
-        var elCountAll = 0;
         // Render all charts
         ecModel.eachSeries(function (seriesModel, idx) {
             var chartView = this._chartsMap[seriesModel.__viewId];
@@ -930,39 +968,13 @@ define(function (require) {
 
             updateZ(seriesModel, chartView);
 
-            // Progressive configuration
-            var elCount = 0;
-            chartView.group.traverse(function (el) {
-                if (el.type !== 'group' && !el.ignore) {
-                    elCount++;
-                }
-            });
-            elCountAll += elCount;
+            updateProgressiveAndBlend(seriesModel, chartView);
 
-            var frameDrawNum = +seriesModel.get('progressive');
-            var needProgressive = elCount > seriesModel.get('progressiveThreshold') && frameDrawNum && !env.node;
-            if (needProgressive) {
-                chartView.group.traverse(function (el) {
-                    // FIXME marker and other components
-                    if (el.type !== 'group') {
-                        el.progressive = needProgressive ?
-                            Math.floor(elCount++ / frameDrawNum) : -1;
-                        if (needProgressive) {
-                            el.stopAnimation(true);
-                        }
-                    }
-                });
-            }
         }, this);
 
         // If use hover layer
-        if (elCountAll > ecModel.get('hoverLayerThreshold') && !env.node) {
-            this._zr.storage.traverse(function (el) {
-                if (el.type !== 'group') {
-                    el.useHoverLayer = true;
-                }
-            });
-        }
+        updateHoverLayerStatus(this._zr, ecModel);
+
         // Remove groups of unrendered charts
         each(this._chartsViews, function (chart) {
             if (!chart.__alive) {
@@ -1046,10 +1058,67 @@ define(function (require) {
 
     zrUtil.mixin(ECharts, Eventful);
 
+    function updateHoverLayerStatus(zr, ecModel) {
+        var storage = zr.storage;
+        var elCount = 0;
+        storage.traverse(function (el) {
+            if (!el.isGroup) {
+                elCount++;
+            }
+        });
+        if (elCount > ecModel.get('hoverLayerThreshold') && !env.node) {
+            storage.traverse(function (el) {
+                if (!el.isGroup) {
+                    el.useHoverLayer = true;
+                }
+            });
+        }
+    }
+    /**
+     * Update chart progressive and blend.
+     * @param {module:echarts/model/Series|module:echarts/model/Component} model
+     * @param {module:echarts/view/Component|module:echarts/view/Chart} view
+     */
+    function updateProgressiveAndBlend(seriesModel, chartView) {
+        // Progressive configuration
+        var elCount = 0;
+        chartView.group.traverse(function (el) {
+            if (el.type !== 'group' && !el.ignore) {
+                elCount++;
+            }
+        });
+        var frameDrawNum = +seriesModel.get('progressive');
+        var needProgressive = elCount > seriesModel.get('progressiveThreshold') && frameDrawNum && !env.node;
+        if (needProgressive) {
+            chartView.group.traverse(function (el) {
+                // FIXME marker and other components
+                if (!el.isGroup) {
+                    el.progressive = needProgressive ?
+                        Math.floor(elCount++ / frameDrawNum) : -1;
+                    if (needProgressive) {
+                        el.stopAnimation(true);
+                    }
+                }
+            });
+        }
+
+        // Blend configration
+        var blendMode = seriesModel.get('blendMode') || null;
+        if (__DEV__) {
+            if (!env.canvasSupported && blendMode && blendMode !== 'source-over') {
+                console.warn('Only canvas support blendMode');
+            }
+        }
+        chartView.group.traverse(function (el) {
+            // FIXME marker and other components
+            if (!el.isGroup) {
+                el.setStyle('blend', blendMode);
+            }
+        });
+    }
     /**
      * @param {module:echarts/model/Series|module:echarts/model/Component} model
      * @param {module:echarts/view/Component|module:echarts/view/Chart} view
-     * @return {string}
      */
     function updateZ(model, view) {
         var z = model.get('z');
@@ -1117,15 +1186,9 @@ define(function (require) {
         /**
          * @type {number}
          */
-<<<<<<< HEAD
-        version: '3.1.10',
-        dependencies: {
-            zrender: '3.1.0'
-=======
         version: '3.2.2',
         dependencies: {
             zrender: '3.1.2'
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
         }
     };
 
@@ -1470,9 +1533,7 @@ define(function (require) {
         zrUtil.createCanvas = creator;
     };
 
-    echarts.registerVisual(PRIORITY_VISUAL_GLOBAL, zrUtil.curry(
-        require('./visual/seriesColor'), '', 'itemStyle'
-    ));
+    echarts.registerVisual(PRIORITY_VISUAL_GLOBAL, require('./visual/seriesColor'));
     echarts.registerPreprocessor(require('./preprocessor/backwardCompat'));
     echarts.registerLoading('default', require('./loading/default'));
 

@@ -5,16 +5,14 @@ define(function (require) {
 
     var echarts = require('../../echarts');
     var visualSolution = require('../../visual/visualSolution');
-<<<<<<< HEAD
-    var zrUtil = require('zrender/core/util');
-=======
     var VisualMapping = require('../../visual/VisualMapping');
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
 
     echarts.registerVisual(echarts.PRIORITY.VISUAL.COMPONENT, function (ecModel) {
         ecModel.eachComponent('visualMap', function (visualMapModel) {
             processSingleVisualMap(visualMapModel, ecModel);
         });
+
+        prepareVisualMeta(ecModel);
     });
 
     function processSingleVisualMap(visualMapModel, ecModel) {
@@ -32,8 +30,6 @@ define(function (require) {
         });
     }
 
-<<<<<<< HEAD
-=======
     // Only support color.
     function prepareVisualMeta(ecModel) {
         ecModel.eachSeries(function (seriesModel) {
@@ -80,5 +76,4 @@ define(function (require) {
         }
     }
 
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
 });

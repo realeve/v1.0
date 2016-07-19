@@ -60,6 +60,7 @@
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.print.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.share.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.colVis.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/plugins/searchHighlight/dataTables.searchHighlight.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/plugins/searchHighlight/jquery.highlight.js"></script>

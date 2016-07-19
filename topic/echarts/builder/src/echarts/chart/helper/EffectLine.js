@@ -17,18 +17,18 @@ define(function (require) {
      * @extends {module:zrender/graphic/Group}
      * @alias {module:echarts/chart/helper/Line}
      */
-    function EffectLine(lineData, idx) {
+    function EffectLine(lineData, idx, seriesScope) {
         graphic.Group.call(this);
 
-        this.add(this.createLine(lineData, idx));
+        this.add(this.createLine(lineData, idx, seriesScope));
 
         this._updateEffectSymbol(lineData, idx);
     }
 
     var effectLineProto = EffectLine.prototype;
 
-    effectLineProto.createLine = function (lineData, idx) {
-        return new Line(lineData, idx);
+    effectLineProto.createLine = function (lineData, idx, seriesScope) {
+        return new Line(lineData, idx, seriesScope);
     };
 
     effectLineProto._updateEffectSymbol = function (lineData, idx) {
@@ -49,7 +49,6 @@ define(function (require) {
             symbol = symbolUtil.createSymbol(
                 symbolType, -0.5, -0.5, 1, 1, color
             );
-            symbol.ignore = true;
             symbol.z2 = 100;
             symbol.culling = true;
 
@@ -89,8 +88,13 @@ define(function (require) {
         var period = effectModel.get('period') * 1000;
         var loop = effectModel.get('loop');
         var constantSpeed = effectModel.get('constantSpeed');
-        var delayExpr = effectModel.get('delay') || 0;
+        var delayExpr = effectModel.get('delay') || function (idx) {
+            return idx / lineData.count() * period / 3;
+        };
         var isDelayFunc = typeof delayExpr === 'function';
+
+        // Ignore when updating
+        symbol.ignore = true;
 
         this.updateAnimationPoints(symbol, points);
 
@@ -99,6 +103,7 @@ define(function (require) {
         }
 
         if (period !== this._period || loop !== this._loop) {
+
             symbol.stopAnimation();
 
             var delay = delayExpr;
@@ -118,7 +123,6 @@ define(function (require) {
                     self.updateSymbolPosition(symbol);
                 });
             if (!loop) {
-                var self = this;
                 animator.done(function () {
                     self.remove(symbol);
                 });
@@ -145,8 +149,8 @@ define(function (require) {
         ];
     };
 
-    effectLineProto.updateData = function (lineData, idx) {
-        this.childAt(0).updateData(lineData, idx);
+    effectLineProto.updateData = function (lineData, idx, seriesScope) {
+        this.childAt(0).updateData(lineData, idx, seriesScope);
         this._updateEffectSymbol(lineData, idx);
     };
 

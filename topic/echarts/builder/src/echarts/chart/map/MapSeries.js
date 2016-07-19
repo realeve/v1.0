@@ -92,15 +92,16 @@ define(function (require) {
          * @param {number} dataIndex
          */
         formatTooltip: function (dataIndex) {
-            var data = this._data;
+            // FIXME orignalData and data is a bit confusing
+            var data = this.getData();
             var formattedValue = addCommas(this.getRawValue(dataIndex));
             var name = data.getName(dataIndex);
 
             var seriesGroup = this.seriesGroup;
             var seriesNames = [];
             for (var i = 0; i < seriesGroup.length; i++) {
-                var otherIndex = seriesGroup[i].getData().indexOfName(name);
-                if (!isNaN(seriesGroup[i].getRawValue(otherIndex))) {
+                var otherIndex = seriesGroup[i].originalData.indexOfName(name);
+                if (!isNaN(seriesGroup[i].originalData.get('value', otherIndex))) {
                     seriesNames.push(
                         encodeHTML(seriesGroup[i].name)
                     );
@@ -127,9 +128,6 @@ define(function (require) {
             // right
             // bottom
             // width:
-<<<<<<< HEAD
-            // height   // 自适应
-=======
             // height
 
             // Aspect is width / height. Inited to be geoJson bbox aspect
@@ -142,7 +140,6 @@ define(function (require) {
             // layoutCenter: [50%, 50%]
             // layoutSize: 100
 
->>>>>>> d5026a11bb912bb6f74802919ec7813726a46307
 
             // 数值合并方式，默认加和，可选为：
             // 'sum' | 'average' | 'max' | 'min'
