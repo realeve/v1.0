@@ -74,22 +74,26 @@
 	}, {
 		"version": 1.29,
 		"date": "2016-06-18",
-		"html": "<p>1.eCharts更新至3.1.10；</p><p>2.TreeMap：更新外观样式，增加数据下钻功能（参考 <a href=\"http://10.8.2.133:70/qualitychart?tid=130&type=treemap&leafdepth=1\">这里</a>）</p> <p>2.直角坐标系：柱状图、曲线图、散点图、箱线图等直角坐标系图表增加区域标注功能，用于标注某个区域的值域说明参考<a href=\"http://10.8.2.133:70/qualitychart?tid=124&type=bar&markarea=优;良;中;不及格&markareavalue=90-100;80-90;70-80;60-70&max=100&min=40\">这里</a></p> <p>3.增加STEP图：用于SPC质量过程控制图的制作中U型图的制作</p><p>4.折线图：标记样式更新，增加线型阴影开关</p>"
+		"html": "<p>1.eCharts更新至3.1.10；</p><p>2.TreeMap：更新外观样式，增加数据下钻功能（参考 <a target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=130&type=treemap&leafdepth=1\">这里</a>）</p> <p>2.直角坐标系：柱状图、曲线图、散点图、箱线图等直角坐标系图表增加区域标注功能，用于标注某个区域的值域说明参考<a href=\"http://10.8.2.133:70/qualitychart?tid=124&type=bar&markarea=优;良;中;不及格&markareavalue=90-100;80-90;70-80;60-70&max=100&min=40\">这里</a></p> <p>3.增加STEP图：用于SPC质量过程控制图的制作中U型图的制作</p><p>4.折线图：标记样式更新，增加线型阴影开关</p>"
 	}, {
 		"version": 1.30,
 		"date": "2016-06-29",
-		"html": "<p>1.数据报表；增加单独查询钞纸封包率功能，增加钞纸封包率按新线/老线分组查询(参考<a href=\"http://10.8.2.133:70/qualitytable?tid=116,219&fixheader=0\">这里</a>)</p > <p>2.平行坐标系图表：更新平行坐标系样式，增加数据筛选，列收缩等功能；增加线型平滑选项，例子可参考 <a href=\"http://10.8.2.133:70/topic/share/chart/parallel1.html\">钞纸表面强度与全相物理指标关系图</a>和 <a href=\"http://10.8.2.133:70/topic/share/chart/parallel2.html\">钞纸表面强度与全相物理指标关系图2</a></p><p>平行坐标系增加水平及垂直布局两种选项</p><p>3.主题河流图：增加坐标轴属性配置（时间，数值，类别）。</p><p>4.数据图表：更新至百度github最新源码</p>"
+		"html": "<p>1.数据报表；增加单独查询钞纸封包率功能，增加钞纸封包率按新线/老线分组查询(参考<a target=\"_blank\" href=\"http://10.8.2.133:70/qualitytable?tid=116,219&fixheader=0\">这里</a>)</p > <p>2.平行坐标系图表：更新平行坐标系样式，增加数据筛选，列收缩等功能；增加线型平滑选项，例子可参考 <a  target=\"_blank\" href=\"http://10.8.2.133:70/topic/share/chart/parallel1.html\">钞纸表面强度与全相物理指标关系图</a>和 <a  target=\"_blank\" href=\"http://10.8.2.133:70/topic/share/chart/parallel2.html\">钞纸表面强度与全相物理指标关系图2</a></p><p>平行坐标系增加水平及垂直布局两种选项</p><p>3.主题河流图：增加坐标轴属性配置（时间，数值，类别）。</p><p>4.数据图表：更新至百度github最新源码</p>"
 	}, {
 		"version": 1.31,
 		"date": "2016-07-01",
-		"html": "<p>1.数据可视化统计中增加质量总结相关图表,包含指定时间范围内当月质量及同比质量数据.详情查看<a href=\"http://10.8.2.133:70/qualitychart?tid=220,220,220,220,220&type=bar&p=9602a,9603a,9604a,9606a,9607t&p2=9602a,9603a,9604a,9606a,9607t&markarea=%E4%BC%98;%E8%89%AF;%E4%B8%AD;%E4%BD%8E;%E5%B7%AE&markareavalue=86-89;85-86;82-85;80-82,83-86;80-83;78-80;76-78,86-89;84-86;82-84;80-82\">码后核查各品种同比好品率对比</a>以及<a href=\"http://10.8.2.133:70/qualitychart?tid=221,221,221,221,221&type=bar&p=9602a,9603a,9604a,9606a,9607t&p2=9602a,9603a,9604a,9606a,9607t&min=0\">码后核查各品种同比开包量对比</a>,<a href=\"http://10.8.2.133:70/topic/echarts/editor.html#fake-rate2a\">02a印钞作废率对比</a></p><p>2.数据图表:支持地址栏中设置参数以简化接口数量(某些情况当需要按各品种统计产品质量时,3维度不足以展示柱状图,详情可参考第1条中前两项统计),现在起,地址栏参数支持强置设置起始时间.</p>"
+		"html": "<p>1.数据可视化统计中增加质量总结相关图表,包含指定时间范围内当月质量及同比质量数据.详情查看<a target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=220,220,220,220,220&type=bar&p=9602a,9603a,9604a,9606a,9607t&p2=9602a,9603a,9604a,9606a,9607t&markarea=%E4%BC%98;%E8%89%AF;%E4%B8%AD;%E4%BD%8E;%E5%B7%AE&markareavalue=86-89;85-86;82-85;80-82,83-86;80-83;78-80;76-78,86-89;84-86;82-84;80-82\">码后核查各品种同比好品率对比</a>以及<a  target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=221,221,221,221,221&type=bar&p=9602a,9603a,9604a,9606a,9607t&p2=9602a,9603a,9604a,9606a,9607t&min=0\">码后核查各品种同比开包量对比</a>,<a  target=\"_blank\" href=\"http://10.8.2.133:70/topic/echarts/editor.html#fake-rate2a\">02a印钞作废率对比</a></p><p>2.数据图表:支持地址栏中设置参数以简化接口数量(某些情况当需要按各品种统计产品质量时,3维度不足以展示柱状图,详情可参考第1条中前两项统计),现在起,地址栏参数支持强置设置起始时间.</p>"
 	}, {
 		"version": 1.32,
 		"date": "2016-07-01",
-		"html": "<p>1.数据图表：更新至最新ECharts 3.2.0版.</p><p>2.数据图表：增加背景选项(默认/<a href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=gradiant&zoom=h\">渐变</a>/<a href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=img&zoom=h\">纹理</a>/<a href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=eee&zoom=h\">颜色(16进制)</a>)；调整数据缩放按钮样式；增加单数据轴；增加图刷功能；增加<a href=\"http://10.8.2..133:70/topic/echarts/theme-builder/\">主题在线编辑器</a>：散点图支持至最多4维</p>"
+		"html": "<p>1.数据图表：更新至最新ECharts 3.2.0版.</p><p>2.数据图表：增加背景选项(默认/<a target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=gradiant&zoom=h\">渐变</a>/<a  target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=img&zoom=h\">纹理</a>/<a  target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=137&type=bar&background=eee&zoom=h\">颜色(16进制)</a>)；调整数据缩放按钮样式；增加单数据轴；增加图刷功能；增加<a href=\"http://10.8.2..133:70/topic/echarts/theme-builder/\">主题在线编辑器</a>：散点图支持至最多4维</p>"
 	}, {
 		"version": 1.33,
 		"date": "2016-07-12",
 		"html": "<p>1.系统主页：读取后台真实数据，增加开包量，未检信息对比统计；</p>"
+	}, {
+		"version": 1.34,
+		"date": "2016-07-24",
+		"html": "<p>1.数据图表：增加数据下钻功能以扩充数据交互效果。演示地址请<a target=\"_blank\" href=\"http://10.8.2.133:70/qualitychart?tid=149&type=bar&drill=187;188&banknoteColor=0&daterange=9&drillchart=line;bar\">点击这里</a></p>"
 	}]
 }

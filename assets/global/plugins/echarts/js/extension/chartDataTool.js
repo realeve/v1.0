@@ -397,10 +397,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
             if (objRequest.markLine != '0') {
 
-            //单个图表中，某项参数有多个值时用分号隔开
-            mkVal = objRequest.markLineValue.split(';');
-            mkName = objRequest.markLine.split(';');
-            mkNameLen = mkName.length;
+              //单个图表中，某项参数有多个值时用分号隔开
+              mkVal = objRequest.markLineValue.split(';');
+              mkName = objRequest.markLine.split(';');
+              mkNameLen = mkName.length;
               obj.markLine = {
                 lineStyle: {
                   normal: {
@@ -638,10 +638,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
           if (objRequest.markLine != '0') {
 
-          //单个图表中，某项参数有多个值时用分号隔开
-          mkVal = objRequest.markLineValue.split(';');
-          mkName = objRequest.markLine.split(';');
-          mkNameLen = mkName.length;
+            //单个图表中，某项参数有多个值时用分号隔开
+            mkVal = objRequest.markLineValue.split(';');
+            mkName = objRequest.markLine.split(';');
+            mkNameLen = mkName.length;
 
             NewData['series'][0].markLine = {
               lineStyle: {
@@ -753,10 +753,10 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
           if (objRequest.markLine != '0') {
 
-          //单个图表中，某项参数有多个值时用分号隔开
-          mkVal = objRequest.markLineValue.split(';');
-          mkName = objRequest.markLine.split(';');
-          mkNameLen = mkName.length;
+            //单个图表中，某项参数有多个值时用分号隔开
+            mkVal = objRequest.markLineValue.split(';');
+            mkName = objRequest.markLine.split(';');
+            mkNameLen = mkName.length;
 
             NewData['series'][0].markLine = {
               lineStyle: {
@@ -2591,7 +2591,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           lineStyle: { // 属性lineStyle控制线条样式
             color: '#aaa',
             width: 2
-          }
+          },
+          alignWithLabel: true
         }, //隐藏标记线,
         axisLabel: {
           textStyle: {
@@ -2839,7 +2840,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontSize: 16
         },
         axisTick: {
-          show: false
+          show: false,
+          alignWithLabel: true
         }, //隐藏标记线,
         type: 'category',
         boundaryGap: (objRequest.type == 'line') ? false : true,
@@ -3415,7 +3417,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         name: Data.xAxisName,
         type: 'value',
         axisTick: {
-          show: false
+          show: false,
+          alignWithLabel: true
         },
         boundaryGap: false,
         scale: true,
@@ -3760,6 +3763,18 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return bankNoteLegend.concat(color);
   }
 
+  function handleParams(option, objRequest) {
+    //dataZoom
+    /*if (objRequest.dataZoom == 0) {
+      delete option.dataZoom;
+    }*/
+
+    if (option.legend.data.length < 2) {
+      delete option.legend;
+    }
+    return option;
+  }
+
   var Data;
   var staticDateRange;
   var getOption = function(objRequest, echarts) {
@@ -3856,6 +3871,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     //全局padding
     outData.title[0].top = 10;
     outData.toolbox.top = 10;
+
+    //处理参数
+    outData = handleParams(outData, objRequest);
 
     return outData;
   };

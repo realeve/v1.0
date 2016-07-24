@@ -139,8 +139,16 @@
                 <!-- /.modal-dialog -->
             </div>
 			<!-- BEGIN Portlet PORTLET-->
-			<div class="portlet light bordered">
-				<div class="portlet-title">
+			<div class="portlet light bordered" data-chartid = "0">
+					<div class="portlet-title">
+						<div class="page-bar hidden">
+							<ul class="page-breadcrumb" name="drillName">
+								<li>
+									<i class="icon-home"></i> <a href="javascript:;" data-level="1"></a>
+									<i class="fa fa-circle"></i>
+								</li>
+							</ul>
+						</div>
 					<div class="col-md-4">
 						<a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>
 						<a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>

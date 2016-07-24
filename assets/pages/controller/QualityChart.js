@@ -8,7 +8,7 @@
      function GetJsonUrl(iID, objRequest, index) {
        var date = getDateRange();
        var token = getUrlParam('token');
-       if (token == null) {
+       if (token === null) {
          token = '79d84495ca776ccb523114a2120e273ca80b315b';
        }
        var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
@@ -23,7 +23,7 @@
            } else {
              strUrl += '&' + key + '=' + val.split(',')[index];
            }
-         };
+         }
        }
 
        function isObjRequestParam(elem) {
@@ -31,19 +31,31 @@
          $.each(objRequest, function(key, val) {
            if (key == elem) {
              flag = true;
-           };
+           }
          });
          return flag;
        }
 
        return strUrl;
      }
+
+     var isInited = [];
+
      //配置图表库
      var mECharts = function() {
        var myChart = []; //任意个数的图表
        var echarts, chartDataTool, Clipboard;
        var iChartNums = (getUrlParam('tid') === null) ? 0 : getUrlParam('tid').split(',').length;
        var curTheme;
+       var drillComponents = {
+         obj: [],
+         curLevel: [],
+         nameLength: [],
+         id: [],
+         maxDrillLevel: [],
+         chartType: []
+           //param: []
+       };
        var option = [];
 
        function launchChart() {
@@ -112,15 +124,30 @@
        function initEchartDom() {
          var domParent = $('.page-content');
          for (i = 1; i < iChartNums; i++) {
-           var html = '<div class="portlet light bordered">\n  <div class="portlet-title">\n    <button class="btn blue btn-circle" name="downloadExample" data-clipboard-action="copy" data-clipboard-target="#share textarea"  data-chartid="' + i + '"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</button>\n  <a class="btn red btn-circle" name="shareExample" data-chartid="' + i + '"><i class="fa fa-share-alt"> </i> 分享 </a>';
-           html += '\n   <div class="actions">          \n              <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">\n              </a>\n            </div>\n          </div>\n          <div class="portlet-body form">';
-           html += '\n      <div id="eChart-main' + i + '" optionKey="Line" class="eCharts-main margin-top-5"></div>';
-           html += '\n          </div>\n        </div>';
+           var html = '<div class="portlet light bordered" data-chartid = "' + i + '">' +
+             '  <div class="portlet-title">' +
+             '    <div class="page-bar hidden">' +
+             '      <ul class="page-breadcrumb" name="drillName">' +
+             '        <li><i class="icon-home"></i> <a href="javascript:;" data-level="1"></a><i class="fa fa-circle"></i></li>' +
+             '      </ul>' +
+             '    </div>' +
+             '    <button class="btn blue btn-circle" name="downloadExample" data-clipboard-action="copy" data-clipboard-target="#share textarea" data-chartid="' + i + '"><i class="glyphicon glyphicon-download-alt"></i> 下载图表</button>' +
+             '    <a class="btn red btn-circle" name="shareExample" data-chartid="' + i + '"><i class="fa fa-share-alt"></i> 分享 </a>' +
+             '    <div class="actions">' +
+             '      <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>' +
+             '    </div>' +
+             '  </div>' +
+             '  <div class="portlet-body form">' +
+             '    <div id="eChart-main' + i + '" optionkey="Line" class="eCharts-main margin-top-5">' +
+             '    </div>' +
+             '  </div>' +
+             '</div>';
            domParent.append(html);
          }
 
+         var date = getDateRange();
          $('[name="showTable"]').attr({
-           href: getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid") + (getUrlParam('dateRange') == 'null' ? '' : '&dateRange=' + getUrlParam('dateRange'))
+           href: getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid") + (getUrlParam('daterange') == 'null' ? ("&tstart=" + date.start + "&tend=" + date.end) : ('&daterange=' + getUrlParam('daterange')))
          });
          //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
          /*var dom = $('.eCharts-main');
@@ -174,7 +201,14 @@
            "leafDepth": (getUrlParam('leafdepth') === null) ? ['0'] : getUrlParam('leafdepth').split(','),
            "step": (getUrlParam('step') === null) ? ['0'] : getUrlParam('step').split(','),
            "singleAxis": (getUrlParam('singleaxis') === null) ? ['time'] : getUrlParam('singleaxis').split(','),
-           "background": (getUrlParam('background') === null) ? ['default'] : getUrlParam('background').split(',')
+           "background": (getUrlParam('background') === null) ? ['default'] : getUrlParam('background').split(','),
+           //数据下钻
+           "drillID": (getUrlParam('drill') === null) ? ['none'] : getUrlParam('drill').split(','),
+           //最后一层数据类型：轴号或车号
+           "drillType": (getUrlParam('drilltype') === null) ? ['none'] : getUrlParam('drilltype').split(','),
+           //下钻图表类型
+           "drillChart": (getUrlParam('drillchart') === null) ? ['none'] : getUrlParam('drillchart').split(','),
+           //"drillParam": (getUrlParam('drillparam') === null) ? ['legend;axis'] : getUrlParam('drillparam').split(',')
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -211,7 +245,11 @@
              "leafDepth": handleParam(objList.leafDepth, i, 0),
              "step": handleParam(objList.step, i, 0),
              "singleAxis": handleParam(objList.singleAxis, i, "time"),
-             "background": handleParam(objList.background, i, "default")
+             "background": handleParam(objList.background, i, "default"),
+             "drillID": handleParam(objList.drillID, i, "none"),
+             "drillType": handleParam(objList.drillType, i, "none"),
+             "drillChart": handleParam(objList.drillChart, i, "none"),
+             //"drillParam": handleParam(objList.drillParam, i, "legend;axis")
            };
 
            objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
@@ -225,12 +263,105 @@
            //必须传颜色表，旭日图等自定义颜色的图表中需要使用
            objRequest.color = curTheme.color;
 
-           option[i] = chartDataTool.getOption(objRequest, echarts);
-           //console.log("option = " + JSON.stringify(option[i]));
+           //存储多级charts的参数
 
-           if (option[i] !== false) {
+           option[i] = [];
+           option[i][0] = chartDataTool.getOption(objRequest, echarts);
+
+           //console.log("option = " + JSON.stringify(option[i]));
+           if (option[i][0] !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
-             myChart[i].setOption(option[i]);
+             myChart[i].setOption(option[i][0]);
+
+             if (objRequest.drillID != 'none') {
+               $('.eCharts-main').parents('.portlet').find('.page-bar').removeClass('hidden');
+               //默认以LEGEND和AXIS同时作为参数搜索
+               drillComponents.id[i] = objRequest.drillID.split(';');
+               drillComponents.maxDrillLevel[i] = drillComponents.id[i].length;
+               //drillComponents.param[i] = objRequest.drillParam;
+
+               //数据下钻：添加点击事件
+               drillComponents.obj[i] = $('[name="drillName"]:nth(' + i + ')');
+
+               if (isInited[i]) {
+                 drillComponents.obj[i].html('<li>' + drillComponents.obj[i].find('li').html() + '</li>');
+               } else {
+                 isInited[i] = true;
+               }
+
+               drillComponents.curLevel[i] = 1;
+               drillComponents.nameLength[i] = 0;
+               myChart[i].chartID = i;
+
+               //示例URL：SELECT a.[品种], a.[生产日期], round(avg(a.[好品率]),2) as 平均好品率 FROM dbo.view_print_hecha AS a where left(a.生产日期,6) = 201605 group by a.[品种], a.[生产日期] order by 1,2
+
+               //第二级：SELECT a.车号, a.[好品率] FROM dbo.view_print_hecha AS a where a.生产日期 = ? and a.品种= ?
+
+               myChart[i].on('click', function(params) {
+
+                 var curChartID = $(this)[0].chartID;
+                 //console.table(drillComponents);
+                 if (drillComponents.curLevel[curChartID] > drillComponents.maxDrillLevel[curChartID]) {
+                   //infoTips('系列名：' + params.seriesName + '\n数据名:' + params.name);
+                   switch (objRequest.drillType) {
+                     case 'cart':
+                       infoTips('查询车号:' + params.name);
+                       break;
+                     case 'paper':
+                       infoTips('查询轴号:' + params.name);
+                       break;
+                   }
+                   return;
+                 }
+                 //清除数据
+                 myChart[curChartID].clear();
+
+                 var urlParam = {
+                   legend: params.seriesName,
+                   axis: params.name
+                 };
+
+                 //处理请求参数
+                 objRequest.url = GetJsonUrl(drillComponents.id[curChartID][drillComponents.curLevel[curChartID] - 1], objRequest, curChartID);
+                 objRequest.url += '&axis=' + urlParam.axis + "&legend=" + urlParam.legend;
+
+                 if (objRequest.drillChart != 'none') {
+                   drillComponents.chartType[curChartID] = objRequest.drillChart.split(';');
+                   if (drillComponents.chartType[curChartID].length < drillComponents.curLevel[curChartID]) {
+                     objRequest.type = drillComponents.chartType[curChartID][0];
+                   } else {
+                     objRequest.type = drillComponents.chartType[curChartID][drillComponents.curLevel[curChartID] - 1];
+                   }
+                 }
+
+                 option[curChartID][drillComponents.curLevel[curChartID]] = chartDataTool.getOption(objRequest, echarts);
+                 myChart[curChartID].setOption(option[curChartID][drillComponents.curLevel[curChartID]]);
+
+                 //console.log(option);
+                 //是否需要增加层级显示
+                 if (drillComponents.nameLength[curChartID] < drillComponents.curLevel[curChartID]) {
+                   drillComponents.nameLength[curChartID]++;
+                   drillComponents.obj[curChartID].append('<li><a href="javascript:;" data-level="' + (drillComponents.curLevel[curChartID] + 1) + '">' + params.name + '</a><i class="fa fa-circle"></i></li>');
+                 } else {
+                   drillComponents.obj[curChartID].find('a:nth(' + drillComponents.curLevel[curChartID] + ')').text(params.name);
+                 }
+                 //数据下钻层级
+                 drillComponents.curLevel[curChartID]++;
+                 //drillComponents.obj[curChartID].find('a:nth('+ (drillComponents.curLevel[curChartID]-1) +')').data('option','test');
+               });
+
+               $('[name="drillName"]').on('click', 'a', function() {
+                 var level = $(this).data('level');
+                 var chartID = $(this).parents('.portlet').data('chartid');
+                 myChart[chartID].clear();
+
+                 drillComponents.curLevel[chartID] = level;
+                 myChart[chartID].setOption(option[chartID][level - 1]);
+
+               });
+             }
+
+             drillComponents.obj[i].find('a').first().text(option[i][0].title[0].text);
 
              //$('[name="chartTitle"]:nth('+ i +')').text(option.title[0].text);
              //$('[name="chartSource"]:nth('+ i +')').text(option.title[0].subtext);
@@ -337,11 +468,11 @@
          //}
 
          //EC3不再支持实时更换THEME
-         /*myChart[0].showLoading();
-         require(['theme/' + theme], function(tarTheme) {
-           curTheme = tarTheme;
-           setTimeout(refreshTheme(), 500);
-         });*/
+         myChart[0].showLoading();
+         /*require(['theme/' + theme], function(tarTheme) {
+                curTheme = tarTheme;
+                setTimeout(refreshTheme(), 500);
+              });*/
        }
        /*
        function refreshTheme() {
@@ -386,17 +517,20 @@
          });
 
        function downloadExample(id) {
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>',
+         var curLevel = (drillComponents.id.length === 0) ? 0 : drillComponents.curLevel[id] - 1;
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id][curLevel]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>',
            file = new Blob([html], {
              type: "text/html;charset=UTF-8",
              encoding: "UTF-8"
            }),
            n = document.createElement("a");
-         n.href = URL.createObjectURL(file), n.download = option[id].title[0].text + ".html", n.click();
+         n.href = URL.createObjectURL(file), n.download = option[id][curLevel].title[0].text + ".html", n.click();
        }
 
        function shareExample(id) {
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>';
+         var curLevel = (drillComponents.id.length === 0) ? 0 : drillComponents.curLevel[id] - 1;
+         console.log(option[id][curLevel]);
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id][curLevel]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>';
          var filename = $.base64.encode(new Date().getTime());
          $('#share textarea').text(' ');
          $.ajax({
