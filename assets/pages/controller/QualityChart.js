@@ -145,15 +145,22 @@
            domParent.append(html);
          }
 
-         var date = getDateRange();
-         $('[name="showTable"]').attr({
-           href: getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid") + (getUrlParam('daterange') == 'null' ? ("&tstart=" + date.start + "&tend=" + date.end) : ('&daterange=' + getUrlParam('daterange')))
-         });
+         updateTableUrl();
+
          //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
          /*var dom = $('.eCharts-main');
          var width = domParent.width();
          var height = width / 1.3;
          dom.css('height', height.toFixed(0));*/
+       }
+
+       function updateTableUrl() {
+         var date = getDateRange();
+         //var url = getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid") + (getUrlParam('daterange') == 'null' ? ("&tstart=" + date.start + "&tend=" + date.end) : ('&daterange=' + getUrlParam('daterange')));
+         var url = getRootPath(0) + '/QualityTable?tid=' + getUrlParam("tid") + "&tstart=" + date.start + "&tend=" + date.end;
+         $('[name="showTable"]').attr({
+           href: url
+         });
        }
 
        function showChart(curTheme, url) {
@@ -503,6 +510,7 @@
            curTheme = tarTheme;
            setTimeout(showChart(curTheme), 500);
          });
+         updateTableUrl();
        });
 
        //接口预览
