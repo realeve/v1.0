@@ -366,9 +366,10 @@
                  myChart[chartID].setOption(option[chartID][level - 1]);
 
                });
-             }
 
-             drillComponents.obj[i].find('a').first().text(option[i][0].title[0].text);
+               drillComponents.obj[i].find('a').first().text(option[i][0].title[0].text);
+
+             }
 
              //$('[name="chartTitle"]:nth('+ i +')').text(option.title[0].text);
              //$('[name="chartSource"]:nth('+ i +')').text(option.title[0].subtext);

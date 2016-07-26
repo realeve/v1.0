@@ -2417,7 +2417,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 10
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -2678,7 +2678,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -2885,7 +2885,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -3185,7 +3185,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -3263,7 +3263,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -3467,7 +3467,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -3561,7 +3561,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
@@ -3658,7 +3658,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           fontWeight: 'normal'
         },
         x: 5,
-        y2: 5
+        y2: 0
       }, {
         text: staticDateRange.trim(),
         borderWidth: 0,
