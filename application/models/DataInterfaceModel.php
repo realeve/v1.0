@@ -64,44 +64,25 @@ class DataInterfaceModel extends CI_Model {
 	}
 
 	public function TransToUTF($str){
-		/*$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
-		if($encode == "GBK")
-		{
-			$str = iconv($encode,"UTF-8",$str);
-		}elseif($encode="EUC-CN")
-		{
-			$str = mb_convert_encoding($str,"UTF-8",array('ASCII','UTF-8','GBK','GB2312','EUC-CN'));
-			//$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
-		}*/
-		
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
-		$encode = mb_detect_encoding($str,$encode_Arr);
+		/*$encode = mb_detect_encoding($str,$encode_Arr);
 		if($encode == 'CP936'){
 			$encode = 'GBK';
-		}
+			$str = iconv('GBK','UTF-8',$str);
+		}*/
 		$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
 		
 		return $str;
 	}
 	public function TransToGBK($str){
-		//$str = iconv("UTF-8","GBK",$str);
-	
+
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
-		$encode = mb_detect_encoding($str,$encode_Arr);
+		/*$encode = mb_detect_encoding($str,$encode_Arr);
 		if($encode == 'CP936'){
 			$encode = 'GBK';
-		}
-		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
-		$encode = mb_detect_encoding($str,$encode_Arr);
-		
-/*
-		$str = mb_convert_encoding($str,"GBK",array('UTF-8'));
-		$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
-		if($encode == 'CP936'){
-			$str = iconv("UTF-8","GBK//IGNORE",$str);
 			return $str;
-		}
-*/	
+		}*/
+		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
 		return $str;
 	}
 
@@ -276,8 +257,12 @@ class DataInterfaceModel extends CI_Model {
 		if ($mode == 0 ) {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
-			$strJson = $query->result_json();	
+			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
+				$query = $LOGINDB->query($SQLStr);
+			}else{
+				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+			}
+			$strJson = $query->result_json($ApiInfo->DBID);	
 		}
 		else if($mode == 1 ) {
 			if($ApiInfo->DBID == 0 || $ApiInfo->DBID== 5){ //MS SQL SERVER
@@ -287,7 +272,11 @@ class DataInterfaceModel extends CI_Model {
 			}
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
+				$query = $LOGINDB->query($SQLStr);
+			}else{
+				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+			}
 			$strJson = $query->result_json();
 			$strFileds = $query->list_fields();
 			$strJson = $query->Array2Head($strFileds);
@@ -300,8 +289,12 @@ class DataInterfaceModel extends CI_Model {
 			}
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
-			$query = $LOGINDB->query($this->TransToGBK($SQLStr));
-			$strJson = $query->result_json();
+			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
+				$query = $LOGINDB->query($SQLStr);
+			}else{
+				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+			}
+			$strJson = $query->result_json($ApiInfo->DBID);
 		}		
 		else if ($mode == 3 ) {
 			//不使用官方替换字符串的函数(在处理ORCAL的查询语句时会报错);
@@ -313,7 +306,7 @@ class DataInterfaceModel extends CI_Model {
 				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			}
 			
-			$strJson = $query->result_datatable_json();
+			$strJson = $query->result_datatable_json($ApiInfo->DBID);
 		}
 		//$query->free_result(); //清理内存
 		//$LOGINDB->close();//关闭连接

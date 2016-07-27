@@ -308,16 +308,15 @@ class CI_DB_result {
 	}
 
 		/**
-	*×Ö·û´®×ª»»
-	*Mod by Àî±ö@20150305
+	*å­—ç¬¦ä¸²è½¬æ¢
+	*Mod by æå®¾@20150305
 	**/
 	function Conv($str)
 	{
-		//$str = iconv("UTF-8","GBK",$str);
-
-		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
+		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
 		$encode = mb_detect_encoding($str,$encode_Arr);
 		if($encode == 'CP936'){
+			return $str;
 			$encode = 'GBK';
 		}
 		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
@@ -325,41 +324,25 @@ class CI_DB_result {
 		return $str;
 	}
 	
-	function reConv($str)
+	function reConv($str,$dbID)
 	{	
-		/*$encode = mb_detect_encoding($str,array('ASCII','EUC-CN','GBK','UTF-8'));
-		if($encode == "GBK")
-		{
-			$str = iconv($encode,"UTF-8",$str);
-		}elseif($encode="EUC-CN")
-		{
-			$str = mb_convert_encoding($str,"UTF-8",array('EUC-CN','GBK','UTF-8'));
-		}*/
-			
-		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');
+		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
 		$encode = mb_detect_encoding($str,$encode_Arr);
-		//echo $encode;//mb_detect_encoding('??',$encode_Arr);
-		if($encode == 'UTF-8'){
-			//return iconv('GBK',"UTF-8",$str);
+		//echo mb_detect_encoding('È¨ï¿½ï¿½',$encode_Arr);
+		if($encode == 'UTF-8'){		
+			//$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
+			if($dbID == 9){
+				return $str;			
+			}else{
+				return iconv('GBK','UTF-8',$str);
+			}
 		}elseif($encode == 'CP936'){
 			$encode = 'GBK';
+			return iconv('GBK','UTF-8',$str);
+		}else{
+			return iconv('GBK','UTF-8',$str);
 		}
-		
-		/*
-			if($encode == "EUC-CN")
-			{
-				$iValue = iconv('GBK','UTF-8',$arr[$i]);
-			}else
-			{
-				$iValue = trim($arr[$i]);
-			}
-		*/
-		/*if($encode == 'UTF-8'){
-			$str = iconv('GBK','UTF-8',$str);
-		}*/
-		$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
-		
-		return $str;
+		return mb_convert_encoding($str,'UTF-8',$encode_Arr);				
 	} 
 	  
 	/**
@@ -367,9 +350,9 @@ class CI_DB_result {
 	 *
 	 * @access	public
 	 * @return	json
-	 * Mod by Àî±ö@20150305
+	 * Mod by æå®¾@20150305
 	 */
-	public function result_json()
+	public function result_json($dbID=0)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -386,26 +369,26 @@ class CI_DB_result {
 		}
 
 		$strHead = '{"rows": '. $nums.',';
-		//ÏÈ¹¹Ôì±íÍ·
+		//å…ˆæ„é€ è¡¨å¤´
 		$strFields = $this->list_fields();
 		$strCols = $this->Array2Head($strFields);
-		//¹¹ÔìJSONÓï¾ä
+		//æ„é€ JSONè¯­å¥
 		if (!$nums) {			
-			return '{"rows":0,'. $strCols . '}';//Îª¿ÕÊ±Ö±½Ó·µ»Ø
-			//2015-12-31 ĞèÒª¼ÓÌ×½Ó×Ö·û
+			return '{"rows":0,'. $strCols . '}';//ä¸ºç©ºæ—¶ç›´æ¥è¿”å›
+			//2015-12-31 éœ€è¦åŠ å¥—æ¥å­—ç¬¦
 		}	
 		$strHead .= $strCols.',"data":[';			
 		//$this->_data_seek(0);		
 		$strJSON = $strHead;
-		$iCols = $this->num_fields();	   //»ñÈ¡ÁĞÊı
+		$iCols = $this->num_fields();	   //è·å–åˆ—æ•°
 		//while ($row = $this->_fetch_assoc())
 		foreach ($this->result_array() as $row){
 			if ($strJSON != $strHead) {$strJSON .= ",";}	
 			for ($i=0; $i < $iCols; $i++) { 
 				//return $strFields[$i];
 				$str = $strFields[$i];
-				$iValue = trim($this->reConv($row[$str]));
-				$strName = trim($this->reConv($str));
+				$iValue = trim($this->reConv($row[$str],$dbID));
+				$strName = trim($this->reConv($str,$dbID));
 				if ($i == 0 ) $strJSON .= '{';
 				$strJSON .= '"' .$strName.'":"' . $iValue . '"';
 				if ($i == $iCols-1) $strJSON .= '}';
@@ -423,9 +406,9 @@ class CI_DB_result {
 	 *
 	 * @access	public
 	 * @return	json
-	 * Mod by Àî±ö@20150305
+	 * Mod by æå®¾@20150305
 	 */
-	public function result_jsonp()
+	/*public function result_jsonp()
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -448,16 +431,16 @@ class CI_DB_result {
     	return '{"data":[' .$data . ']}';
 		//return $this->result_array();
         //print_r(json_decode( json_encode( $data),true));		
-	}
+	}*/
 
-	//Array2Head_ÖĞÎÄÖ§³Ö,Î´Êä³öÍ·Î²µÄ»¨À¨ºÅ,ÓÃÓÚÆäËü×Ö·û´®Æ´½Ó
+	//Array2Head_ä¸­æ–‡æ”¯æŒ,æœªè¾“å‡ºå¤´å°¾çš„èŠ±æ‹¬å·,ç”¨äºå…¶å®ƒå­—ç¬¦ä¸²æ‹¼æ¥
 	public function Array2Head($arr)
 	{
 		$nums = count($arr);
 		$strHead = '"cols": '. $nums.',"header":['; 
 		if (!$nums) {
 			$strHead .="]";
-			return $strHead;//Îª¿ÕÊ±Ö±½Ó·µ»Ø
+			return $strHead;//ä¸ºç©ºæ—¶ç›´æ¥è¿”å›
 		}
 		$strJSON = $strHead;
 		for($i=0;$i<$nums;$i++)
@@ -486,8 +469,8 @@ class CI_DB_result {
 		return $strJSON;
 	}
 
-	//·µ»ØdatatablesËùÓÃÊı¾İ¸ñÊ½
-	public function result_datatable_json()
+	//è¿”å›datatablesæ‰€ç”¨æ•°æ®æ ¼å¼
+	public function result_datatable_json($dbID=0)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -504,22 +487,22 @@ class CI_DB_result {
 		}
 
 		$strHead = '{"rows": '. $nums.',';
-		//ÏÈ¹¹Ôì±íÍ·
+		//å…ˆæ„é€ è¡¨å¤´
 		$strFields = $this->list_fields();
 		$strCols = $this->Array2Head($strFields);
 		$strHead .= $strCols.',"data":[';
-		//¹¹ÔìJSONÓï¾ä
+		//æ„é€ JSONè¯­å¥
 		if (!$nums) {
 			$strHead .="]}";
-			return $strHead;//Îª¿ÕÊ±Ö±½Ó·µ»Ø
+			return $strHead;//ä¸ºç©ºæ—¶ç›´æ¥è¿”å›
 		}
 		
 		//$this->_data_seek(0);		
 		$strJSON = $strHead;
 
-		$iCols = $this->num_fields();	   //»ñÈ¡ÁĞÊı
+		$iCols = $this->num_fields();	   //è·å–åˆ—æ•°
 		
-		//2016¸üĞÂ£¬¼æÈİorcalÊı¾İ¿â
+		//2016æ›´æ–°ï¼Œå…¼å®¹orcalæ•°æ®åº“
 		/*$curRow = 0;
 		$result = $this->result_array();
 		while ($curRow < $nums)
@@ -529,8 +512,8 @@ class CI_DB_result {
 			if ($strJSON != $strHead) {$strJSON .= ",";}	
 			for ($i=0; $i < $iCols; $i++) {
 				$str = $strFields[$i];
-				$iValue = trim($this->reConv($row[$str]));
-				$strName = trim($this->reConv($str));
+				$iValue = trim($this->reConv($row[$str],$dbID));
+				$strName = trim($this->reConv($str,$dbID));
 				if ($i == 0 ) $strJSON .= '[';
 				$strJSON .= '"' . $iValue . '"';
 				if ($i == $iCols-1)
