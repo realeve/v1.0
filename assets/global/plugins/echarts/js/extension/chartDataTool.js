@@ -2360,7 +2360,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       NewData.series = handleLineStepMode(objRequest, NewData.series);
       return NewData;
     }
+
     var returnData;
+
     switch (objRes.type) {
       case 'bar':
       case 'line':
@@ -3769,7 +3771,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       delete option.dataZoom;
     }*/
 
-    if (option.legend.data.length < 2) {
+    if (typeof option.legend != 'undefined' && option.legend.data.length < 2) {
       delete option.legend;
     }
     return option;
