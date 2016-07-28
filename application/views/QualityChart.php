@@ -155,8 +155,22 @@
 						<a class="btn btn-circle btn-default" name="showTable" data-chartid="0" target="_blank"><i class="fa fa-table"> </i> 报表 </a>
 						<a data-toggle="modal" href="#share" id="successShare"></a>
 					</div>
-					<div class="col-md-2" style="margin-left:-55px;">
-						<select class="bs-select form-control" name="ratio" data-width="100px" data-size="10">
+					<div class="actions">
+						<select class="bs-select form-control" name="poly" data-style="" data-width="100px">
+							<option>多项式顺序</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+						</select>
+						<select class="bs-select form-control" name="regression" data-style="blue" data-width="140px">
+						</select>
+						<select class="bs-select form-control" name="ratio" data-width="125px" data-size="10">
+							<option>图表宽高比</option>
 							<option value="2.35">2.35:1</option>
 							<option value="2">2:1</option>
 							<option value="1.78">16:9</option>
@@ -175,8 +189,6 @@
 							<option value="0.5625">9:16</option>
 							<option value="0.5">1:2</option>
 						</select>
-					</div>
-					<div class="actions">
 						<select class="bs-select form-control" name="theme" data-style="blue" data-width="125px">
 						</select>
 						<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">

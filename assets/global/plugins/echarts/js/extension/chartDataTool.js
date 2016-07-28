@@ -72,7 +72,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     "103-G-7T": "rgb(255,127,104)"
   };
 
-  var convertData = function(objRes) {
+  var convertData = function(objRes, echarts) {
     //数组去重
     function sortNumber(a, b) {
       return a - b;
@@ -1822,13 +1822,13 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           shadowBlur: 10,
           shadowColor: 'rgba(25, 100, 150, 0.5)',
           shadowOffsetY: 5,
-          color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+          /*color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
             offset: 0,
             color: 'rgb(129, 227, 238)'
           }, {
             offset: 1,
             color: 'rgb(25, 183, 207)'
-          }])
+          }])*/
         }
       };
       arr.data.map(function(elem) {
@@ -1873,7 +1873,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       if (0 === Data.rows || 1 === Data.cols || (Data.cols <= 2 && isNaN(Data.data[0][0]))) {
         return false;
       }
-
       var haveLegendCol = isNaN(Data.data[0][0]);
 
       var NewData = {
@@ -1883,7 +1882,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         xAxisName: haveLegendCol ? Data.header[1].title : Data.header[0].title,
         yAxisName: haveLegendCol ? Data.header[2].title : Data.header[1].title
       };
-      var itemStyle = {
+      /*var itemStyle = {
         normal: {
           shadowBlur: 10,
           shadowColor: 'rgba(25, 100, 150, 0.5)',
@@ -1896,7 +1895,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             color: 'rgb(25, 183, 207)'
           }])
         }
-      };
+      };*/
       if (haveLegendCol) {
         NewData.legend = {
           data: getUniData(Data.data, 0),
@@ -1916,7 +1915,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             return scSize.toFixed(0);
           },
           data: Data.data,
-          itemStyle: itemStyle,
+          //itemStyle: itemStyle,
           label: {
             emphasis: {
               show: true,
@@ -3780,8 +3779,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
   var Data;
   var staticDateRange;
   var getOption = function(objRequest, echarts) {
-    Data = convertData(objRequest);
-
+    Data = convertData(objRequest, echarts);
     //处理起始时间
     var dateStr = objRequest.url.split('tstart=')[1];
     var pds = getUrlParam('tstart');
@@ -3830,10 +3828,21 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         outData = getThemeRiverOption(objRequest);
         break;
     }
+
     //处理钞券颜色
     if (objRequest.banknoteColor == 1 && typeof outData.legend != 'undefined') {
-      outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
+      if (objRequest.type == 'scatter') {
+        var colorList = [];
+        for (var i = 0; i < outData.series.length; i++) {
+          var legendName = outData.series[i].name;
+          colorList.push(banknoteColorSheet[legendName]);
+        }
+        outData.color = colorList.concat(objRequest.color);
+      } else {
+        outData.color = handleBankNoteColors(outData.legend.data, objRequest.color);
+      }
     }
+
     //处理legend过长
     if ( /*objRequest.type != 'themeRiver' && */ typeof outData.legend != 'undefined' && outData.legend.data.length > 4) {
       if (typeof outData.grid != 'undefined') {
@@ -3841,6 +3850,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }
       outData.legend.orient = 'vertical';
       outData.legend.x = 'right';
+      outData.legend.left = 'right';
+      outData.legend.y = 40;
     }
 
     //gradiant/value /img
@@ -3855,7 +3866,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         };
         break;
       case 'gradiant':
-        outData.backgroundColor = new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        outData.backgroundColor = new echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
           offset: 0,
           color: '#f7f8fa'
         }, {

@@ -57,6 +57,8 @@
            //param: []
        };
        var option = [];
+       var regressionTag = [];
+       var objRequest = {};
 
        function launchChart() {
          require.config({
@@ -65,11 +67,12 @@
              "theme": "echarts/theme",
              "echarts": "echarts/js/echarts.min",
              "chartDataTool": "echarts/js/extension/chartDataTool.min",
-             "Clipboard": "clipboard/clipboard.min"
+             "Clipboard": "clipboard/clipboard.min",
+             "regression": "echarts/js/extension/regression-js/regression.min"
            }
          });
 
-         require(["echarts", "chartDataTool", "Clipboard"], function(ec, dt, cp) {
+         require(["echarts", "chartDataTool", "Clipboard", "regression"], function(ec, dt, cp, regression) {
            var defaultTheme;
            echarts = ec;
            chartDataTool = dt;
@@ -108,19 +111,6 @@
          });
        }
 
-       /* function initEchartDom() {
-          var domParent = $('.portlet-body.form');
-          for (i = 0; i < iChartNums; i++) {
-            var html = '<div id="eChart-main' + i + '" optionKey="Line" class="eCharts-main margin-top-5"></div>';
-            domParent.append(html);
-          }
-          var dom = $('.eCharts-main');
-          var width = domParent.width();
-          var height = width / ((dom.length === 1) ? 1.3 : 1.5);
-          dom.css('width', width);
-          dom.css('height', height);
-        }*/
-
        function initEchartDom() {
          var domParent = $('.page-content');
          for (i = 1; i < iChartNums; i++) {
@@ -147,11 +137,6 @@
 
          updateTableUrl();
 
-         //$('.portlet').first().find('.actions a').prepend('<select class="bs-select form-control" data-style="blue" data-width="125px"></select>');
-         /*var dom = $('.eCharts-main');
-         var width = domParent.width();
-         var height = width / 1.3;
-         dom.css('height', height.toFixed(0));*/
        }
 
        function updateTableUrl() {
@@ -173,7 +158,6 @@
            return;
          } //如果未加载则去掉
          var i;
-         var objRequest = {};
          var objList = {
            "id": getUrlParam('tid').split(','),
            "type": (getUrlParam('type') === null) ? ['line'] : getUrlParam('type').split(','),
@@ -199,7 +183,7 @@
            "shape": (getUrlParam('shape') === null) ? ['polygon'] : getUrlParam('shape').split(','),
            "scatterSize": (getUrlParam('scattersize') === null) ? ['20'] : getUrlParam('scattersize').split(','),
            "force": (getUrlParam('force') === null) ? ['1'] : getUrlParam('force').split(','),
-           "banknoteColor": (getUrlParam('banknoteColor') === null) ? ['1'] : getUrlParam('banknoteColor').split(','),
+           "banknoteColor": (getUrlParam('banknotecolor') === null) ? ['1'] : getUrlParam('banknotecolor').split(','),
            "stack": (getUrlParam('stack') === null) ? ['0'] : getUrlParam('stack').split(','),
            "max": (getUrlParam('max') === null) ? ['undefined'] : getUrlParam('max').split(','),
            "min": (getUrlParam('min') === null) ? ['undefined'] : getUrlParam('min').split(','),
@@ -216,6 +200,8 @@
            //下钻图表类型
            "drillChart": (getUrlParam('drillchart') === null) ? ['none'] : getUrlParam('drillchart').split(','),
            //"drillParam": (getUrlParam('drillparam') === null) ? ['legend;axis'] : getUrlParam('drillparam').split(',')
+           //regression 数据回归
+           "regression": (getUrlParam('regression') === null) ? ['none'] : getUrlParam('regression').split(','),
          };
          for (i = 0; i < iChartNums; i++) {
            objRequest = {
@@ -257,6 +243,7 @@
              "drillType": handleParam(objList.drillType, i, "none"),
              "drillChart": handleParam(objList.drillChart, i, "none"),
              //"drillParam": handleParam(objList.drillParam, i, "legend;axis")
+             "regression": handleParam(objList.regression, i, "none"),
            };
 
            objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
@@ -279,6 +266,8 @@
            if (option[i][0] !== false) {
              myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
              myChart[i].setOption(option[i][0]);
+
+             regressionTag[i] = false;
 
              if (objRequest.drillID != 'none') {
                $('.eCharts-main').parents('.portlet').find('.page-bar').removeClass('hidden');
@@ -343,7 +332,7 @@
 
                  option[curChartID][drillComponents.curLevel[curChartID]] = chartDataTool.getOption(objRequest, echarts);
                  myChart[curChartID].setOption(option[curChartID][drillComponents.curLevel[curChartID]]);
-
+                 regressionTag[i] = false;
                  //console.log(option);
                  //是否需要增加层级显示
                  if (drillComponents.nameLength[curChartID] < drillComponents.curLevel[curChartID]) {
@@ -364,7 +353,7 @@
 
                  drillComponents.curLevel[chartID] = level;
                  myChart[chartID].setOption(option[chartID][level - 1]);
-
+                 regressionTag[i] = false;
                });
 
                drillComponents.obj[i].find('a').first().text(option[i][0].title[0].text);
@@ -387,7 +376,7 @@
          if ($('.actions select opotion').length) {
            return false;
          }
-         var themeSelector = $(".actions select");
+         var themeSelector = $('[name="theme"]');
          var defaultTheme, str = "";
          var themeList = ['default', 'ali_G2', 'ali_G2_2', 'real', 'real2', 'real3', 'powerBI', 'darkColor', 'whiteDark', 'magzin', 'magzin2', 'colorful', 'helianthus', 'blue', 'green', 'red', 'gray'];
          themeList.map(function(elem, index) {
@@ -396,13 +385,24 @@
          themeSelector.html(str);
 
          if (typeof localStorage.eChartsTheme == 'undefined') {
-           defaultTheme = 'real2';
-           localStorage.setItem("eChartsTheme", "real2");
+           defaultTheme = 'ali_G2';
+           localStorage.setItem("eChartsTheme", "ali_G2");
          } else {
            defaultTheme = localStorage.eChartsTheme;
          }
 
-         $('.bs-select[name="ratio"]').find('option').data('icon', 'fa fa-desktop');
+         $('.bs-select[name="theme"]').find('option').data('icon', 'fa fa-paint-brush');
+
+         $('[name="regression"]').html(
+           '<option>回归分析</option>' +
+           '<option value="linear">线性回归</option>' +
+           '<option value="linearThroughOrigin">过原点的线性回归</option>' +
+           '<option value="exponential">指数回归</option>' +
+           '<option value="logarithmic">对数回归</option>' +
+           '<option value="power">幂回归</option>' +
+           '<option value="polynomial">多项式回归</option>'
+         )
+
          $('.bs-select').selectpicker({
            iconBase: 'fa',
            tickIcon: 'fa-check',
@@ -496,7 +496,7 @@
 
        //初始化主题模块
        function initTheme() {
-         var themeSelector = $(".actions select");
+         var themeSelector = $('[name="theme"]');
          if (themeSelector) {
            $(themeSelector).change(function() {
              selectChange($(this).val()); //更新图表主题
@@ -504,9 +504,92 @@
          }
        }
 
+       function initRegression() {
+         var regSelector = $('[name="regression"]');
+         $(regSelector).change(function() {
+           var type = $(this).val();
+           for (i = 0; i < iChartNums; i++) {
+             handleRegression(i, type);
+           }
+         });
+       }
+
+       function convertArrData(arr, i) {
+         if (typeof i == 'undefined') {
+           i = 0;
+         }
+         var sourceData = [];
+         arr.map(function(data) {
+           sourceData.push([
+             Number.parseFloat(data[i]), Number.parseFloat(data[i + 1])
+           ]);
+         })
+         return sourceData;
+       }
+
+       function handleRegression(chartID, type) {
+         var curOption = option[chartID][0];
+         var regID = handleParam(objRequest.regression, chartID, "none");
+         var seriesID = -1;
+         //legend的顺序可能与Series中对应的顺序不符
+         for (var i = 0; i < curOption.series.length; i++) {
+           if (curOption.legend.data[regID] == curOption.series[i].name) {
+             seriesID = i;
+             i = curOption.series.length;
+           }
+         }
+
+         var sourceData = convertArrData(curOption.series[seriesID].data);
+
+         var prevData = regression(type, sourceData, 4);
+
+         var prevLegendName = curOption.legend.data[regID] + ' 回归曲线';
+
+         var prevSeries = {
+           data: prevData.points,
+           name: prevLegendName,
+           type: 'line',
+           symbolSize: 8,
+           lineStyle: {
+             normal: {
+               width: 2,
+               type: 'solid',
+               shadowColor: 'rgba(0,0,0,0)',
+               shadowBlur: 0,
+               shadowOffsetX: 0,
+               shadowOffsetY: 0
+             }
+           }
+         };
+
+         var tipText = '回归序列:' + curOption.legend.data[regID] + '\n\n回归函数: ' + prevData.string + '\n\nr^2 : ' + prevData.r2.toFixed(3)
+         if (!regressionTag[chartID]) {
+           regressionTag[chartID] = true;
+           option[chartID][0].legend.data.push(prevLegendName);
+           option[chartID][0].series.push(prevSeries);
+           option[chartID][0].title.push({
+             text: tipText,
+             borderColor: '#999',
+             borderWidth: 1,
+             textStyle: {
+               fontSize: 14
+             },
+             x2: '1%',
+             y2: '20%'
+           });
+         } else {
+           var len = option[chartID][0].series.length - 1;
+           option[chartID][0].legend.data[len] = prevLegendName;
+           option[chartID][0].series[len] = prevSeries;
+           option[chartID][0].title[option[chartID][0].title.length - 1].text = tipText;
+         }
+
+         myChart[chartID].clear();
+         myChart[chartID].setOption(option[chartID][0]);
+       }
+
        $(document).on("click", ".ranges li:not(:last),button.applyBtn", function() {
-         var themeSelector;
-         themeSelector = $(".actions select");
+         var themeSelector = $('[name="theme"]');
          require(['theme/' + themeSelector.val()], function(tarTheme) {
            curTheme = tarTheme;
            setTimeout(showChart(curTheme), 500);
@@ -518,7 +601,7 @@
        $("#Preview a").on('click',
          function() {
            var strUrl = $('#Preview input').val();
-           var themeSelector = $(".actions select");
+           var themeSelector = $('[name="theme"]');
            require(['theme/' + themeSelector.val()], function(tarTheme) {
              curTheme = tarTheme;
              setTimeout(showChart(curTheme, strUrl + '&chartType=line'), 500);
@@ -586,6 +669,7 @@
            initThemeOption();
            launchChart();
            initTheme();
+           initRegression();
          },
          resize: function() {
            /* var domParent = $('.portlet-body.form');
@@ -597,7 +681,8 @@
            for (i = 0; i < iChartNums; i++) {
              myChart[i].resize();
            }
-         }
+         },
+         option: option
        };
 
      }();
@@ -622,4 +707,9 @@
      jQuery(window).resize(function() {
        HeadFix();
        mECharts.resize();
+     });
+     $('.fullscreen').on('click', function() {
+       setTimeout(function() {
+         mECharts.resize();
+       }, 50);
      });
