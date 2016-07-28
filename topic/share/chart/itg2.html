@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://10.8.2.133:70/topic/echarts/vendors/echarts/echarts-all-3.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var data1days = [
+    ['1K', '2K', '3K', '4K', '5K', '6K', '7K', '8K', '9K', '10K', '11K', '12K', '13K', '14K', '15K', '16K', '17K', '18K', '19K', '20K', '21K', '22K', '23K', '24K', '25K', '26K', '27K', '28K', '29K', '30K', '31K', '32K', '33K', '34K', '35K'],
+    [5, 5, 4.5, 5, 3, 5, 4.5, 5, 5, 4.5, 5, 5, 5, 5, 4, 5, 5, 4.5, 5, 4.5, 5, 3.5, 4.5, 3.5, 5, 5, 4.5, 5, 4, 3.5, 3.5, 4, 4, 3, 4.5],
+    [4, 5, 4.5, 5, 4, 3.5, 4, 4, 3.5, 3, 4.5, 5, 3, 4.5, 4.5, 2.5, 5, 2.5, 5, 5, 5, 4.5, 4.5, 5, 3, 5, 5, 5, 2.5, 2.5, 2.5, 5, 2.5, 2, 3],
+    [3.5, 3.5, 5, 5, 4.5, 4.5, 2.5, 5, 2.5, 3, 2.5, 5, 3.5, 3.5, 5, 5, 4.5, 5, 3.5, 5, 4, 4.5, 2.5, 5, 4.5, 5, 4, 5, 3, 5, 4.5, 5, 3.5, 3.5, 4.5],
+    [5, 2.5, 3, 2, 3, 2, 5, 2, 2, 5, 5, 5, 4, 4.5, 3, 1, 4.5, 5, 2, 5, 5, 2.5, 3, 5, 2, 5, 2, 5, 2.5, 3, 3, 2.5, 3.5, 2.5, 2.5],
+    [4.5, 4.5, 4.5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 5, 5, 3.5, 5, 5, 5, 5, 4.5, 5, 4.5, 5, 4, 5, 5],
+    [3, 5, 5, 4.5, 5, 4, 5, 3, 5, 5, 5, 5, 5, 3, 4.5, 5, 5, 5, 4, 4.5, 5, 4.5, 5, 5, 5, 4, 5, 4, 5, 3, 4, 5, 5, 4, 5],
+    [4, 4.5, 4, 4.5, 4.5, 4.5, 4, 4.5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 4.5, 4, 5, 5, 4.5],
+    [5, 4.5, 5, 5, 4, 5, 4.5, 4, 3, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 4, 5, 4, 5, 5, 4.5, 5, 4.5, 4.5, 5, 3.5, 4.5, 5],
+    [5, 5, 5, 5, 5, 4.5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5]
+];
+
+var data7days = [
+    [4.5, 5, 4, 4, 3, 4.5, 5, 3, 4.5, 3, 5, 3, 5, 5, 4.5, 4, 5, 5, 5, 4, 5, 2.5, 3, 3, 5, 5, 4.5, 3, 2.5, 2.5, 4.5, 2.5, 2.5, 2.5, 5],
+    [4, 5, 5, 4.5, 3, 2.5, 2.5, 5, 5, 5, 2.5, 4, 5, 5, 3.5, 2.5, 3, 4, 5, 3, 5, 5, 3, 5, 4, 4.5, 3, 2.5, 5, 5, 5, 3, 3, 4.5, 5],
+    [3, 5, 5, 5, 5, 4, 2.5, 3, 4, 2, 2.5, 2.5, 5, 5, 5, 2.5, 5, 5, 4, 2.5, 3, 4.5, 5, 5, 2.5, 3, 3, 5, 4, 2, 4.5, 3, 4, 4, 4],
+    [2.5, 5, 2.5, 2, 5, 5, 4.5, 2.5, 3.5, 4, 5, 5, 3.5, 5, 2.5, 5, 3, 3, 5, 5, 2.5, 2.5, 2.5, 4.5, 5, 3.5, 5, 3.5, 2, 4.5, 1, 5, 2.5, 4, 4.5],
+    [2.5, 3.5, 4.5, 3.5, 3.5, 5, 4, 5, 5, 5, 5, 2.5, 5, 2.5, 2, 5, 2.5, 2.5, 3, 5, 5, 4, 4.5, 5, 2.5, 5, 2.5, 4, 4, 4.5, 5, 3, 2.5, 3, 2.5],
+    [3.5, 2.5, 2.5, 3, 2.5, 5, 2.5, 2, 5, 4, 5, 4, 2, 4, 2, 2.5, 4.5, 5, 5, 5, 5, 3, 5, 4.5, 5, 5, 3, 5, 2.5, 2.5, 3.5, 3, 4.5, 5, 3.5],
+    [4.5, 5, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 4.5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4.5, 5],
+    [2.5, 3.5, 5, 2, 5, 5, 3, 2.5, 5, 3, 4, 3, 5, 5, 3.5, 5, 3, 2.5, 4.5, 3.5, 2.5, 2.5, 3, 5, 3, 4, 4.5, 3, 2, 2.5, 5, 4.5, 2.5, 4, 5],
+    [0, 0, 5, 0, 5, 0, 0, 5, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 4, 5, 0, 0, 0, 0, 0, 5, 0]
+];
+
+var data30days = [
+    [4.5, 4, 2.5, 5, 5, 2.5, 4.5, 3, 2.5, 5, 2.5, 5, 4.5, 5, 5, 5, 5, 5, 2.5, 2.5, 5, 2.5, 5, 5, 5, 5, 3, 2, 5, 2.5, 2.5, 3, 2.5, 5, 2.5],
+    [4.5, 5, 4.5, 5, 3, 5, 5, 2.5, 4, 2.5, 3.5, 2.5, 2.5, 5, 2.5, 5, 3, 5, 2.5, 5, 2.5, 3, 2.5, 2.5, 3, 2, 3, 3, 2.5, 2.5, 3.5, 4.5, 2.5, 2.5, 5],
+    [3, 5, 2.5, 3, 4.5, 3, 2, 2, 2.5, 2, 2.5, 2.5, 5, 5, 3, 5, 2.5, 5, 5, 5, 3, 3, 2.5, 5, 4, 5, 4, 3, 4.5, 2.5, 3, 5, 2, 3, 0],
+    [5, 2, 2.5, 5, 3, 4, 5, 5, 2, 5, 5, 2.5, 3, 5, 5, 4, 2.5, 2.5, 5, 3.5, 2.5, 2.5, 3, 2.5, 3, 5, 4, 5, 2, 3, 4, 2, 3, 3, 2.5],
+    [2.5, 5, 4.5, 5, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2.5, 5, 5, 5, 5, 5, 4.5, 4, 2.5, 5, 5, 4],
+    [5, 4.5, 2.5, 4.5, 5, 5, 4, 5, 3, 5, 5, 5, 5, 5, 3, 5, 5, 4, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 4.5, 4.5, 3, 5, 4, 2.5, 4],
+    [4.5, 5, 4.5, 4.5, 4.5, 4.5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 4.5, 5, 4.5, 5, 5, 5, 4.5, 5, 4.5, 5, 5, 4.5, 4.5, 5, 4.5, 5, 4.5, 4.5, 5],
+    [4.5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 4.5, 5, 4, 4.5, 5, 4, 4.5, 5, 5, 4.5, 5, 4, 4.5, 5, 5, 3.5, 4, 3.5],
+    [5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+];
+
+var dataFinals = [
+    [5, 5, 5, 5, 5, 4.5, 5, 4, 5, 5, 5, 5, 5, 4, 2.5, 5, 5, 4.5, 5, 5, 4.5, 4.5, 5, 5, 5, 4.5, 4, 4, 2, 4.5, 4.5, 4.5, 5, 4.5, 5],
+    [5, 4, 4.5, 5, 5, 5, 5, 5, 5, 5, 4, 4.5, 5, 4.5, 4, 5, 5, 4, 4.5, 4.5, 4.5, 5, 5, 5, 4.5, 5, 5, 5, 4.5, 5, 4.5, 4.5, 5, 5, 5],
+    [5, 4, 5, 5, 4.5, 2, 3.5, 4.5, 3, 3.5, 5, 5, 5, 4.5, 4.5, 2.5, 5, 5, 5, 5, 5, 2, 2.5, 5, 4.5, 5, 4.5, 5, 5, 4.5, 5, 5, 4, 4, 4.5],
+    [5, 5, 5, 4.5, 4.5, 5, 4.5, 4.5, 5, 4, 5, 4.5, 5, 4.5, 4, 5, 4.5, 4.5, 4.5, 5, 5, 5, 4.5, 5, 5, 4.5, 5, 5, 4.5, 4.5, 4.5, 5, 5, 4.5, 5],
+    [5, 5, 3, 5, 5, 4, 4, 4, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4.5],
+    [5, 5, 4.5, 5, 5, 4.5, 5, 4.5, 5, 4.5, 5, 4, 4.5, 4, 5, 4, 5, 5, 4, 5, 4, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 4.5, 4.5, 5, 4.5, 4.5],
+    [5, 4.5, 5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+    [5, 3, 4.5, 4.5, 5, 4.5, 4.5, 4.5, 5, 5, 5, 5, 5, 4.5, 5, 5, 5, 4.5, 5, 5, 5, 5, 5, 4.5, 5, 5, 4.5, 5, 5, 4.5, 4.5, 5, 5, 4.5, 5],
+    [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4.5, 5, 4.5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 5, 4.5]
+];
+
+var axisNameList = ['方案2', '方案3', '方案4', '方案6', '方案7', '方案9', '方案10', '方案11', '方案14'];
+var legendData = ['一天', '七天', '30天', '技术中心'];
+var seriesData = [],
+    xAxisData = [],
+    yAxisData = [],
+    gridData = [],
+    data1day = [],
+    data7day = [],
+    data30day = [],
+    dataFinal = [];
+
+axisNameList.map(function(data, i) {
+    data1day = [],
+    data7day = [],
+    data30day = [],
+    dataFinal = [];
+
+    for (var k = 0; k < 5; k++) {
+        for (var j = 0; j < 7; j++) {
+            data1day.push(
+                [k, j, data1days[i + 1][k * 7 + j]]
+            );
+            data7day.push(
+                [k, j, data7days[i][k * 7 + j]]
+            );
+            data30day.push(
+                [k, j, data30days[i][k * 7 + j]]
+            );
+            dataFinal.push(
+                [k, j, dataFinals[i][k * 7 + j]]
+            );
+        }
+    }
+
+    seriesData.push({
+        name: legendData[0],
+        type: 'heatmap',
+        xAxisIndex: i,
+        yAxisIndex: i,
+        //symbolSize: 8,
+        data: data1day,
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        }
+    });
+
+    seriesData.push({
+        name: legendData[1],
+        type: 'heatmap',
+        xAxisIndex: i,
+        yAxisIndex: i,
+        //symbolSize: 8,
+        data: data7day,
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        }
+    });
+
+    seriesData.push({
+        name: legendData[2],
+        type: 'heatmap',
+        xAxisIndex: i,
+        yAxisIndex: i,
+        //symbolSize: 8,
+        data: data30day,
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        }
+    });
+
+    seriesData.push({
+        name: legendData[3],
+        type: 'heatmap',
+        xAxisIndex: i,
+        yAxisIndex: i,
+        //symbolSize: 8,
+        data: dataFinal,
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        }
+    });
+
+    xAxisData.push({
+        type: 'category',
+        gridIndex: i,
+        data: [1, 2, 3, 4, 5].reverse(),
+        axisLabel: {
+            show: Math.floor(i / 3) == 2 ? true : false,
+            textStyle: {
+                //color:'#fff'
+            }
+        },
+        axisLine: {
+
+            show: false
+
+        },
+        axisTick: {
+            show: false
+        }
+    });
+    yAxisData.push({
+        gridIndex: i,
+        type: 'category',
+        name: data,
+        data: [1, 2, 3, 4, 5, 6, 7].reverse(),
+        nameLocation: 'middle',
+        nameTextStyle: {
+            //color:'#fff'
+        },
+        nameGap: i % 3 === 0 ? 20 : 2,
+        axisLine: {
+
+            show: false
+
+        },
+        axisLabel: {
+            show: i % 3 === 0 ? true : false,
+            textStyle: {
+                //color:'#fff'
+            }
+        },
+        axisTick: {
+            show: false
+        }
+    });
+    gridData.push({
+        left: (i % 3) * 30 + 5 + '%',
+        height: '28%',
+        width: '28%',
+        top: (Math.floor(i / 3)) * 30 + 7 + '%'
+    })
+});
+
+option = {
+    backgroundColor: '#fff',
+    title: {
+        text: '凹后丝凸试印机剥方案对比',
+        x: 'center',
+        textStyle: {
+            //color:'#fff'
+        }
+    },
+    visualMap: {
+        min: 0,
+        max: 5,
+        precision:1,
+        calculable: true,
+        orient: 'verticle',
+        right: '0',
+        color: ["#45527a", "#f44"],
+        textStyle: {
+            //color:'#fff'
+        }
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {
+                show: true,
+                readOnly: false
+            },
+            restore: {
+                show: true
+            },
+            saveAsImage: {
+                show: true
+            }
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            animation: false
+        },
+        formatter:function(param){
+            var str = '下机时间: ' +  param.seriesName + '<br>开位： 第' +
+            ((4-param.data[0])*7+ (7- param.data[1])) +'开<br>抗剥离等级：' + param.data[2] + '级';
+            return str;
+        }
+    },
+    legend: {
+        data: legendData,
+        x: 'left',
+        top: 'top',
+        width: 150,
+        selectedMode: 'single',
+        textStyle: {
+            //color:'#fff'
+        }
+    },
+    grid: gridData,
+    xAxis: xAxisData,
+    yAxis: yAxisData,
+    series: seriesData
+};;
+if (option && typeof option === "object") {
+    var startTime = +new Date();
+    myChart.setOption(option, true);
+    var endTime = +new Date();
+    var updateTime = endTime - startTime;
+    console.log("Time used:", updateTime);
+}
+       </script>
+   </body>
+</html>
