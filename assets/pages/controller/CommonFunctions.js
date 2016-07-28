@@ -614,8 +614,17 @@
   function initDom() {
     //sideBarHack();
     HeadFix();
-    if ($("#today") !== 'undefined') {
-      $("#today").text(today(0));
+    if ($("#today") !== 'undefined') {;
+      var strDate = today(0);
+      if (getUrlParam('drill') != null) {
+      strDate += ' <span class="badge badge-info"> 数据钻取 </span>';
+      }
+
+      /*if (getUrlParam('banknotecolor') != null) {
+        strDate += ' <span class="badge badge-danger"> 钞券 </span>';
+      }*/
+
+      $("#today").html(strDate);
     }
     loadMenuSettings();
     handleCurSubMenu();

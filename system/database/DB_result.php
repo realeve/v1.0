@@ -328,7 +328,6 @@ class CI_DB_result {
 	{	
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
 		$encode = mb_detect_encoding($str,$encode_Arr);
-		//echo mb_detect_encoding('Ȩ��',$encode_Arr);
 		if($encode == 'UTF-8'){		
 			//$str = mb_convert_encoding($str,'UTF-8',$encode_Arr);
 			if($dbID == 9){
