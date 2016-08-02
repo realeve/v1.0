@@ -899,7 +899,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               textStyle: {
                 color: '#333'
               },
-              extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+              //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+              extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
               formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
             }
           };
@@ -947,7 +948,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "data": iConvData.boxData,
           "tooltip": {
             backgroundColor: 'rgba(255,255,255,0.85)',
-            extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
             textStyle: {
               color: '#333'
             },
@@ -985,7 +987,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "data": iConvData.boxData,
           "tooltip": {
             backgroundColor: 'rgba(255,255,255,0.85)',
-            extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
+            //extraCssText: 'background:#fff;padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
             textStyle: {
               color: '#333'
             },
@@ -1899,17 +1903,31 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       if (haveLegendCol) {
         NewData.legend = {
           data: getUniData(Data.data, 0),
-          left: 'left'
+          x: 'center',
+          y: 70,
+          itemGap: 20,
+          textStyle: {
+            fontSize: 16,
+          }
         };
         var objMinMax = getMinMax(Data.data, 2);
         var scale = objRequest.scatterSize / objMinMax.max;
         NewData.series = getScatterSeriesData(Data, scale);
-
       } else {
         var objMinMax = getMinMax(Data.data, 1);
         var scale = objRequest.scatterSize / objMinMax.max;
-        NewData.series = {
+        NewData.legend = {
+          data: [Data.header[1].title],
+          x: 'center',
+          y: 70,
+          itemGap: 20,
+          textStyle: {
+            fontSize: 16,
+          }
+        };
+        NewData.series = [{
           type: 'scatter',
+          name: Data.header[1].title,
           symbolSize: function(val) {
             var scSize = scale * val[1];
             return scSize.toFixed(0);
@@ -1922,7 +1940,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               position: 'top'
             }
           }
-        };
+        }];
       }
       NewData.series = handleMarkArea(objRequest, NewData.series);
       NewData.series = handleLineStepMode(objRequest, NewData.series);
@@ -2478,7 +2496,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       calculable: true,
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -2736,7 +2755,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       calculable: true,
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -2909,7 +2929,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }],
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3146,7 +3167,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },*/
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3219,7 +3241,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3310,6 +3333,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           restore: {
             show: true
           },
+          magicType: {
+            type: ['line', 'bar']
+          },
           saveAsImage: {
             show: true
           }
@@ -3320,7 +3346,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         showDelay: 0,
 
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3517,7 +3544,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         triggerOn: 'mousemove',
 
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3616,7 +3644,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         }
@@ -3714,7 +3743,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           }
         },
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         }
@@ -3776,6 +3806,21 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return option;
   }
 
+  function handleLegendStyle(option, objRequest) {
+    if (typeof option.legend == 'undefined' || objRequest.type == 'line') {
+      return option;
+    }
+    var legendData = [];
+    option.legend.data.map(function(data) {
+      legendData.push({
+        name: data,
+        icon: 'pin'
+      });
+    });
+    option.legend.data = legendData;
+    return option
+  }
+
   var Data;
   var staticDateRange;
   var getOption = function(objRequest, echarts) {
@@ -3829,13 +3874,22 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         break;
     }
 
+    function isBankNote(objLegend) {
+      var legendName = objLegend.data[0];
+      if (typeof banknoteColorSheet[legendName] != 'undefined') {
+        return true;
+      }
+      return false;
+    }
     //处理钞券颜色
     if (objRequest.banknoteColor == 1 && typeof outData.legend != 'undefined') {
       if (objRequest.type == 'scatter') {
         var colorList = [];
-        for (var i = 0; i < outData.series.length; i++) {
-          var legendName = outData.series[i].name;
-          colorList.push(banknoteColorSheet[legendName]);
+        if (typeof outData.legend != 'undefined' && isBankNote(outData.legend)) {
+          for (var i = 0; i < outData.series.length; i++) {
+            var legendName = outData.series[i].name;
+            colorList.push(banknoteColorSheet[legendName]);
+          }
         }
         outData.color = colorList.concat(objRequest.color);
       } else {
@@ -3886,8 +3940,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     outData.toolbox.top = 10;
 
     //处理参数
-    outData = handleParams(outData, objRequest);
-
+    //outData = handleParams(outData, objRequest);
+    //处理Legend样式
+    outData = handleLegendStyle(outData, objRequest);
     return outData;
   };
 
