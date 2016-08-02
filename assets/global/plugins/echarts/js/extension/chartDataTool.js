@@ -28,7 +28,7 @@
  * }
  * @输出参数：对应echarts 相关图形所需配置项
  */
-define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/statisticsTool.min'], function(dataTool, statTool) {
+define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/statisticsTool.min', '../plugins/echarts/js/extension/echarts-wordcloud.min'], function(dataTool, statTool) {
 
   //读取指定URL的JSON数据
   function getJsonFromUrl(strUrl, Type) {
@@ -1947,6 +1947,62 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       return NewData;
     }
 
+    function getWordCloudSeriesData(obj) {
+
+      var wordCloudData = [];
+
+      var series = {
+        nodes: [],
+        data: []
+      };
+
+      var len = obj.header.length;
+      //获取除最后一列之外所有列的Nodes，默认均为Category,此处不做数据类型校验
+      for (var i = 0; i < len - 1; i++) {
+        series.nodes = series.nodes.concat(getUniData(obj.data, i));
+      }
+
+      series.nodes.map(function(data) {
+        series.data[data] = 0;
+      });
+
+      //处理数据为通用数组格式
+      obj.data.map(function(elem) {
+        for (var i = 0; i < len - 1; i++) {
+          series.data[elem[i]] += Number.parseFloat(elem[len - 1]);
+        }
+      });
+
+      series.nodes.map(function(data) {
+        wordCloudData.push({
+          name: data,
+          value: series.data[data]
+        })
+      });
+
+      return wordCloudData;
+    }
+
+    //桑基图
+    function convertWordCloudData(objRequest) {
+
+      var Data = getJsonFromUrl(objRequest.url);
+      //必须3列以上
+      if (0 === Data.rows || Data.cols < 2) {
+        return false;
+      }
+      var series = getWordCloudSeriesData(Data);
+
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        series: series
+      };
+
+      return NewData;
+    }
+
     /**
      * [getSankeySeriesData 数据接口数据转桑基图数据结构]
      * @param  {[type]} arr [输入多维数组]
@@ -2418,6 +2474,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         break;
       case 'themeriver':
         returnData = convertThemeRiverData(objRes);
+        break;
+      case 'wordcloud':
+        returnData = convertWordCloudData(objRes);
         break;
     }
     return returnData;
@@ -3675,6 +3734,95 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return outData;
   };
 
+
+  var getWordCloudOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 0
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 'right',
+        y2: 3
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '8%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      series: {
+        type: 'wordCloud',
+        sizeRange: [20, 120],
+        rotationRange: [-90, 90],
+        rotationStep: 1,
+        //'circle', 'cardioid', 'diamond', 'triangle-forward', 'triangle', 'pentagon', 'star'
+        shape: 'circle',
+        textStyle: {
+          normal: {
+            //color: objRequest.color
+            color: function(param) {
+              // console.log(param.dataIndex);
+              // return 'rgb(' + [
+              //   Math.round(Math.random() * 180),
+              //   Math.round(Math.random() * 120),
+              //   Math.round(Math.random() * 180)
+              // ].join(',') + ')';
+              var len = objRequest.color.length % param.dataIndex;
+              return objRequest.color[len];
+            }
+          }
+        },
+        //data: Data.series
+      }
+    };
+    if (typeof Data.series != 'undefined') {
+      outData.series.data = Data.series;
+    }
+    return outData;
+  };
+
   var getThemeRiverOption = function(objRequest) {
     var outData = {
       title: [{
@@ -3871,6 +4019,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         break;
       case 'themeriver': //事件河流图
         outData = getThemeRiverOption(objRequest);
+        break;
+      case 'wordcloud':
+        outData = getWordCloudOption(objRequest);
         break;
     }
 
