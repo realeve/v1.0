@@ -391,7 +391,7 @@
            defaultTheme = localStorage.eChartsTheme;
          }
 
-         $('.bs-select[name="theme"]').find('option').data('icon', 'fa fa-paint-brush');
+         themeSelector.find('option').data('icon', 'fa fa-paint-brush');
 
          $('[name="regression"]').html(
            '<option>回归分析</option>' +
@@ -505,13 +505,33 @@
        }
 
        function initRegression() {
-         var regSelector = $('[name="regression"]');
-         $(regSelector).change(function() {
-           var type = $(this).val();
+         if (getUrlParam('regression') != null) {
+           if (getUrlParam('type') != 'scatter') {
+             bsTips('回归分析时请将图表类型设为散点图scatter');
+             return;
+           }
+         } else {
+           $('.bs-select:nth(0)').selectpicker().hide();
+           $('.bs-select:nth(2)').selectpicker().hide();
+           return;
+         }
+
+         function refreshRegression() {
+           if (getUrlParam('type') != 'scatter') {
+             bsTips('回归分析时请将图表类型设为散点图scatter');
+             return;
+           }
+
+           var type = $('[name="regression"]').val();
            for (i = 0; i < iChartNums; i++) {
              handleRegression(i, type);
            }
+         }
+
+         $('[name="regression"],[name="poly"]').change(function() {
+           refreshRegression();
          });
+
        }
 
        function convertArrData(arr, i) {
@@ -532,18 +552,26 @@
          var regID = handleParam(objRequest.regression, chartID, "none");
          var seriesID = -1;
          //legend的顺序可能与Series中对应的顺序不符
-         for (var i = 0; i < curOption.series.length; i++) {
-           if (curOption.legend.data[regID] == curOption.series[i].name) {
-             seriesID = i;
-             i = curOption.series.length;
+         if (regressionTag[chartID] || curOption.legend.data.length == 1) {
+           seriesID = 0;
+           regID = 0;
+         } else {
+           for (var i = 0; i < curOption.series.length; i++) {
+             if (curOption.legend.data[regID] == curOption.series[i].name) {
+               seriesID = i;
+               i = curOption.series.length;
+             }
            }
          }
 
          var sourceData = convertArrData(curOption.series[seriesID].data);
+         var polyNum = Number.parseInt($('[name="poly"]').val());
+         if (polyNum == 1) {
+           polyNum = 2;
+         }
+         var prevData = regression(type, sourceData, polyNum);
 
-         var prevData = regression(type, sourceData, 4);
-
-         var prevLegendName = curOption.legend.data[regID] + ' 回归曲线';
+         var prevLegendName = curOption.legend.data[regID].name + ' 回归曲线';
 
          var prevSeries = {
            data: prevData.points,
@@ -562,7 +590,7 @@
            }
          };
 
-         var tipText = '回归序列:' + curOption.legend.data[regID] + '\n\n回归函数: ' + prevData.string + '\n\nr^2 : ' + prevData.r2.toFixed(3)
+         var tipText = '回归序列:' + curOption.legend.data[regID].name + '\n\n回归函数: ' + prevData.string + '\n\nr^2 : ' + prevData.r2.toFixed(3)
          if (!regressionTag[chartID]) {
            regressionTag[chartID] = true;
            option[chartID][0].legend.data.push(prevLegendName);
@@ -610,7 +638,7 @@
 
        function downloadExample(id) {
          var curLevel = (drillComponents.id.length === 0) ? 0 : drillComponents.curLevel[id] - 1;
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id][curLevel]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>',
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/extension/echarts-wordcloud.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id][curLevel]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>',
            file = new Blob([html], {
              type: "text/html;charset=UTF-8",
              encoding: "UTF-8"
@@ -621,8 +649,7 @@
 
        function shareExample(id) {
          var curLevel = (drillComponents.id.length === 0) ? 0 : drillComponents.curLevel[id] - 1;
-         console.log(option[id][curLevel]);
-         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n       <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id][curLevel]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>';
+         var html = '<!DOCTYPE html>\n<html style="height: 100%">\n   <head>\n       <meta charset="utf-8">\n   </head>\n   <body style="height: 100%; margin: 0">\n       <div id="container" style="height: 100%"></div>\n       <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/echarts.min.js"></script>\n <script type="text/javascript" src="' + getRootPath(1) + '/assets/global/plugins/echarts/js/extension/echarts-wordcloud.min.js"></script>\n      <script type="text/javascript">\nvar dom = document.getElementById("container");\nvar theme = ' + JSON.stringify(curTheme) + ';\nvar myChart = echarts.init(dom,theme);\nvar app = {};\noption = null;\noption = ' + JSON.stringify(option[id][curLevel]).replace(/null/g, NaN) + '\nif (option && typeof option === "object") {\n    var startTime = +new Date();\n    myChart.setOption(option,true);\n    var endTime = +new Date();\n    var updateTime = endTime - startTime;\n    console.log("Time used:", updateTime);\n}\nwindow.onresize = function(){myChart.resize();};       </script>\n   </body>\n</html>';
          var filename = $.base64.encode(new Date().getTime());
          $('#share textarea').text(' ');
          $.ajax({
@@ -682,7 +709,8 @@
              myChart[i].resize();
            }
          },
-         option: option
+         option: option,
+         echarts:myChart
        };
 
      }();

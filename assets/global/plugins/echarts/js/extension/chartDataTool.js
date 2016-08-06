@@ -28,7 +28,7 @@
  * }
  * @输出参数：对应echarts 相关图形所需配置项
  */
-define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/statisticsTool.min'], function(dataTool, statTool) {
+define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/statisticsTool.min', '../plugins/echarts/js/extension/echarts-wordcloud.min'], function(dataTool, statTool) {
 
   //读取指定URL的JSON数据
   function getJsonFromUrl(strUrl, Type) {
@@ -899,7 +899,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               textStyle: {
                 color: '#333'
               },
-              extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+              //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+              extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
               formatter: (objRequest.minMax) ? boxMinMaxFormatter : boxFormatter
             }
           };
@@ -947,7 +948,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "data": iConvData.boxData,
           "tooltip": {
             backgroundColor: 'rgba(255,255,255,0.85)',
-            extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
             textStyle: {
               color: '#333'
             },
@@ -985,7 +987,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "data": iConvData.boxData,
           "tooltip": {
             backgroundColor: 'rgba(255,255,255,0.85)',
-            extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+            extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
+            //extraCssText: 'background:#fff;padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
             textStyle: {
               color: '#333'
             },
@@ -1899,17 +1903,31 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       if (haveLegendCol) {
         NewData.legend = {
           data: getUniData(Data.data, 0),
-          left: 'left'
+          x: 'center',
+          y: 70,
+          itemGap: 20,
+          textStyle: {
+            fontSize: 16,
+          }
         };
         var objMinMax = getMinMax(Data.data, 2);
         var scale = objRequest.scatterSize / objMinMax.max;
         NewData.series = getScatterSeriesData(Data, scale);
-
       } else {
         var objMinMax = getMinMax(Data.data, 1);
         var scale = objRequest.scatterSize / objMinMax.max;
-        NewData.series = {
+        NewData.legend = {
+          data: [Data.header[1].title],
+          x: 'center',
+          y: 70,
+          itemGap: 20,
+          textStyle: {
+            fontSize: 16,
+          }
+        };
+        NewData.series = [{
           type: 'scatter',
+          name: Data.header[1].title,
           symbolSize: function(val) {
             var scSize = scale * val[1];
             return scSize.toFixed(0);
@@ -1922,10 +1940,66 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
               position: 'top'
             }
           }
-        };
+        }];
       }
       NewData.series = handleMarkArea(objRequest, NewData.series);
       NewData.series = handleLineStepMode(objRequest, NewData.series);
+      return NewData;
+    }
+
+    function getWordCloudSeriesData(obj) {
+
+      var wordCloudData = [];
+
+      var series = {
+        nodes: [],
+        data: []
+      };
+
+      var len = obj.header.length;
+      //获取除最后一列之外所有列的Nodes，默认均为Category,此处不做数据类型校验
+      for (var i = 0; i < len - 1; i++) {
+        series.nodes = series.nodes.concat(getUniData(obj.data, i));
+      }
+
+      series.nodes.map(function(data) {
+        series.data[data] = 0;
+      });
+
+      //处理数据为通用数组格式
+      obj.data.map(function(elem) {
+        for (var i = 0; i < len - 1; i++) {
+          series.data[elem[i]] += Number.parseFloat(elem[len - 1]);
+        }
+      });
+
+      series.nodes.map(function(data) {
+        wordCloudData.push({
+          name: data,
+          value: series.data[data]
+        })
+      });
+
+      return wordCloudData;
+    }
+
+    //桑基图
+    function convertWordCloudData(objRequest) {
+
+      var Data = getJsonFromUrl(objRequest.url);
+      //必须3列以上
+      if (0 === Data.rows || Data.cols < 2) {
+        return false;
+      }
+      var series = getWordCloudSeriesData(Data);
+
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        series: series
+      };
+
       return NewData;
     }
 
@@ -2401,6 +2475,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       case 'themeriver':
         returnData = convertThemeRiverData(objRes);
         break;
+      case 'wordcloud':
+        returnData = convertWordCloudData(objRes);
+        break;
     }
     return returnData;
   };
@@ -2478,7 +2555,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       calculable: true,
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -2736,7 +2814,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       calculable: true,
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -2909,7 +2988,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }],
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3146,7 +3226,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },*/
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3219,7 +3300,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3310,6 +3392,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           restore: {
             show: true
           },
+          magicType: {
+            type: ['line', 'bar']
+          },
           saveAsImage: {
             show: true
           }
@@ -3320,7 +3405,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         showDelay: 0,
 
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3517,7 +3603,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         triggerOn: 'mousemove',
 
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         },
@@ -3616,7 +3703,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         }
@@ -3643,6 +3731,95 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         links: Data.series.links
       }
     };
+    return outData;
+  };
+
+
+  var getWordCloudOption = function(objRequest) {
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        x: 'center',
+      }, {
+        text: Data.subTitle,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 0
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 'right',
+        y2: 3
+      }],
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '8%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      series: {
+        type: 'wordCloud',
+        sizeRange: [20, 120],
+        rotationRange: [-90, 90],
+        rotationStep: 1,
+        //'circle', 'cardioid', 'diamond', 'triangle-forward', 'triangle', 'pentagon', 'star'
+        shape: 'circle',
+        textStyle: {
+          normal: {
+            //color: objRequest.color
+            color: function(param) {
+              // console.log(param.dataIndex);
+              // return 'rgb(' + [
+              //   Math.round(Math.random() * 180),
+              //   Math.round(Math.random() * 120),
+              //   Math.round(Math.random() * 180)
+              // ].join(',') + ')';
+              var len = objRequest.color.length % param.dataIndex;
+              return objRequest.color[len];
+            }
+          }
+        },
+        //data: Data.series
+      }
+    };
+    if (typeof Data.series != 'undefined') {
+      outData.series.data = Data.series;
+    }
     return outData;
   };
 
@@ -3714,7 +3891,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           }
         },
         backgroundColor: 'rgba(255,255,255,0.85)',
-        extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
           color: '#333'
         }
@@ -3776,6 +3954,21 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return option;
   }
 
+  function handleLegendStyle(option, objRequest) {
+    if (typeof option.legend == 'undefined' || objRequest.type == 'line') {
+      return option;
+    }
+    var legendData = [];
+    option.legend.data.map(function(data) {
+      legendData.push({
+        name: data,
+        icon: 'pin'
+      });
+    });
+    option.legend.data = legendData;
+    return option
+  }
+
   var Data;
   var staticDateRange;
   var getOption = function(objRequest, echarts) {
@@ -3827,15 +4020,27 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       case 'themeriver': //事件河流图
         outData = getThemeRiverOption(objRequest);
         break;
+      case 'wordcloud':
+        outData = getWordCloudOption(objRequest);
+        break;
     }
 
+    function isBankNote(objLegend) {
+      var legendName = objLegend.data[0];
+      if (typeof banknoteColorSheet[legendName] != 'undefined') {
+        return true;
+      }
+      return false;
+    }
     //处理钞券颜色
     if (objRequest.banknoteColor == 1 && typeof outData.legend != 'undefined') {
       if (objRequest.type == 'scatter') {
         var colorList = [];
-        for (var i = 0; i < outData.series.length; i++) {
-          var legendName = outData.series[i].name;
-          colorList.push(banknoteColorSheet[legendName]);
+        if (typeof outData.legend != 'undefined' && isBankNote(outData.legend)) {
+          for (var i = 0; i < outData.series.length; i++) {
+            var legendName = outData.series[i].name;
+            colorList.push(banknoteColorSheet[legendName]);
+          }
         }
         outData.color = colorList.concat(objRequest.color);
       } else {
@@ -3886,8 +4091,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     outData.toolbox.top = 10;
 
     //处理参数
-    outData = handleParams(outData, objRequest);
-
+    //outData = handleParams(outData, objRequest);
+    //处理Legend样式
+    outData = handleLegendStyle(outData, objRequest);
     return outData;
   };
 
