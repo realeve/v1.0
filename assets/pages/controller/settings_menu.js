@@ -280,12 +280,8 @@ var customizeMenu = function() {
                     InitSettingSelect("menu_list", Data);
 
                     $('.page-header .dropdown-quick-sidebar-toggler').hide();
-                    $.fn.select2.defaults.set("theme", "bootstrap");
-                    $(".select2").select2({
-                        width: null,
-                        placeholder: '请选择要编辑的菜单'
-                    });
 
+                    initSelect2();
                     //载入菜单项
                     loadAllMenu();
                 }();

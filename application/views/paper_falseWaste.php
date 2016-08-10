@@ -131,22 +131,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="icon-bar-chart font-green hide"></i>
-                        <span class="caption-subject font-blue bold uppercase"> 损纸误废率曲线图 </span>
-                    </div>
-                </div>
-                <div class="portlet-body">
-                    <div id="chart_loading_0">
-                        <img src="../assets/global/img/loading.gif" alt="loading" />
-                    </div>
-                    <div id="chart_content_0">
-                        <div id="chart_0" class="chart" style="height:500px;"> </div>
-                    </div>
-                </div>
-            </div>
+			<div name="singleChart"></div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>

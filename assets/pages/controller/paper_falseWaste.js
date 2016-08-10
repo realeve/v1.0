@@ -170,51 +170,6 @@ var FakePiece = function() {
 		objTbody.html(tBody);
 	}
 
-	return {
-		init: function() {
-			handleDatePickers();
-			initDOM();
-			loadHisData();
-		}
-	};
-}();
-
-
-//配置图表库
-var mECharts = function() {
-	var myChart = []; //任意个数的图表
-	var echarts, chartDataTool;
-	var curTheme;
-	var option = [];
-	var i = 0;
-
-	function launchChart() {
-		require.config({
-			baseUrl: "../assets/global/plugins/",
-			paths: {
-				"theme": "echarts/theme",
-				"echarts": "echarts/js/echarts.min",
-				"chartDataTool": "echarts/js/extension/chartDataTool.min"
-			}
-		});
-
-		require(["echarts", "chartDataTool"], function(ec, dt) {
-			var defaultTheme;
-			echarts = ec;
-			chartDataTool = dt;
-			if (typeof localStorage.eChartsTheme == 'undefined') {
-				defaultTheme = 'ali_G2';
-				localStorage.setItem("eChartsTheme", "ali_G2");
-			} else {
-				defaultTheme = localStorage.eChartsTheme;
-			}
-
-			require(["theme/" + defaultTheme], function(tarTheme) {
-				curTheme = tarTheme;
-				showChart(curTheme);
-			});
-		});
-	}
 
 	function getstr() {
 		//损纸误废率图表
@@ -225,56 +180,31 @@ var mECharts = function() {
 		return str;
 	}
 
-	function showChart(curTheme) {
-		if (!echarts) {
-			return;
-		}
-
-		i = 0;
+	function initChart() {
 		var objRequest = {
 			url: getstr(),
-			type: 'line'
+			type: 'line',
+			background: 'img'
 		};
-		if (typeof curTheme.color != 'undefined') {
-			objRequest.color = curTheme.color;
-		}
-
-		option[i] = chartDataTool.getOption(objRequest, echarts);
-		if (option[i] !== false) {
-			delete option[i].title;
-			//delete option[i].toolbox;
-			delete option[i].dataZoom;
-			option[i].grid.bottom = '3%';
-			option[i].legend.y = 0;
-			delete option[i].xAxis[0].name;
-			option[i].toolbox.top = 0;
-			option[i].toolbox.left = 'right';
-		}
-
-		if (option[i] !== false) {
-			myChart[i] = echarts.init(document.getElementById("chart_" + i), curTheme);
-			myChart[i].setOption(option[i]);
-			$('#chart_loading_' + i).addClass('display-none');
-			$('#chart_content_' + i).removeClass('display-none');
-		}
+		var charts = require(["../assets/pages/controller/singleChart.min"], function(charts) {
+			charts.init(objRequest, $('[name="singleChart"]'));
+		});
 	}
+
 	return {
-		resize: function() {
-			myChart[0].resize();
-		},
 		init: function() {
-			launchChart();
-		},
+			handleDatePickers();
+			initDOM();
+			loadHisData();
+			initChart();
+		}
 	};
 }();
-
 
 jQuery(document).ready(function() {
 	initDom();
 	FakePiece.init();
-	mECharts.init();
 });
 jQuery(window).resize(function() {
 	HeadFix();
-	mECharts.resize();
 });

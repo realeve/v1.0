@@ -42,6 +42,7 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL PLUGINS  -->
 <script type="text/javascript" src="../../assets/global/plugins/select2/js/select2.full.min.js"></script>
+<!-- <script type="text/javascript" src="../../assets/global/plugins/select2/js/select2_locale_zh-CN.js"></script> -->
 <script src="../../assets/global/plugins/icheck/icheck.min.js"></script>
 <script src="../../assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
@@ -53,7 +54,7 @@
 <script src="../../assets/global/plugins/require.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/idletimeout.min.js"></script>
-<script type="text/javascript" src="../../assets/pages/controller/paper_batchwaste.min.js"></script>
+<script type="text/javascript" src="../../assets/pages/controller/paper_penalty.min.js"></script>
 <!--END MY LEVEL SCRIPT-->
 <!-- END JAVASCRIPTS -->
 </body>

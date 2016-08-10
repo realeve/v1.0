@@ -131,7 +131,6 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-
 	}
 
 	//钞纸误废
@@ -156,7 +155,6 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-
 	}
 
 	//批量报废
@@ -181,7 +179,30 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
+	}
 
+	//考核记录
+	public function penalty()
+	{
+		if ($this->session->userdata('userrole')>0)
+		{
+			if($this->session->userdata('logged_in')==true)
+			{
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
+				$this->load->view('templates/sidebar');
+				$this->load->view('paper_penalty',$logindata);
+				$this->load->view('templates/footer/footer_paper_penalty');
+			}
+		}
+		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
+		{
+			$this->load->view('framework/lockscreen');
+		}
+		else{
+			$this->load->view('login');
+		}
 	}
 }
 

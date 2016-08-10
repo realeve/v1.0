@@ -18,6 +18,7 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_PRINT_FAKEPIECE	= 'FakePieceData';	 //9 印钞大张废
 	const TBL_PAPER_FALSEWASTE = "Paper_False_Waste"; //10 	钞纸损纸误废
 	const TBL_PAPER_BATCHWASTE = "Paper_Batch_Waste"; //11 	钞纸批量报废
+	const TBL_PAPER_PENALTY = "Paper_Penalty"; //12 	考核记录
 
 	const TBL_USR		= 'tblUser';				 //20 用户信息
 	const TBL_DPMT		= 'tblDepartMent';			 //21 用户所在部门/分组
@@ -53,6 +54,7 @@ class DataInterfaceModel extends CI_Model {
 			9 =>self::TBL_PRINT_FAKEPIECE,
 			10=>self::TBL_PAPER_FALSEWASTE,
 			11=>self::TBL_PAPER_BATCHWASTE,
+			12=>self::TBL_PAPER_PENALTY,
 
 			20=>self::TBL_USR,
 			21=>self::TBL_DPMT,

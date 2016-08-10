@@ -1322,7 +1322,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "name": Data.header[0].title,
           "type": objRequest.type,
           "selectedMode": 'single',
-          "radius": [0, '30%'],
+          "radius": ['40%', '80%'],
           "data": getRadiusSeries(Data.data, 0, 1),
           "itemStyle": {
             "emphasis": {
@@ -1335,7 +1335,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
         //扇形图
         if (!objRequest.circle) {
-          NewData['series'][0].radius = [0, "60%"];
+          NewData['series'][0].radius = [0, "80%"];
           NewData['series'][0].center = ['50%', '50%'];
         }
 
@@ -3982,7 +3982,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       markLine: 0,
       splitArea: 0,
       lineAreaStyle: 0,
-      barMaxWidth: 100
+      barMaxWidth: 100,
+      circle: 0
     }
 
     //遍历obj的KEY

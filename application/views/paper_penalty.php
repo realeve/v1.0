@@ -13,7 +13,7 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="#">批量报废</a>
+						<a href="#">完成车间质量考核记录</a>
 					</li>
 				</ul>
 			</div>
@@ -23,7 +23,7 @@
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 
-			<form role="form" name="theForm" class="form-horizontal">
+			<form role="form" name="theForm" class="form-vertical">
 				<div class="portlet box blue-hoki">
 					<div class="portlet-title">
 						<div class="caption">
@@ -33,13 +33,30 @@
 					</div>
 					<div class="portlet-body form">
 						<div class="form-body row">
-							<div class="col-md-6 form-group has-success">
-								<label class="col-md-3 control-label" for="cartnumber">轴号</label>
+							<div class="col-md-6 form-group">
+								<label class="control-label col-md-3">人员类型
+									<span class="required"> * </span>
+								</label>
 								<div class="col-md-9">
-									<input type="text" id="cartnumber" class="form-control uppercase" maxlength="8" placeholder="请在此输入轴号信息" name="reel_code">
+									<div class="input-group">
+										<div class="icheck-inline">
+											<label>
+												<input type="radio" name="user_type" class="icheck"> 正式工
+											</label>
+											<label>
+												<input type="radio" name="user_type" class="icheck"> 临时工
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label">考核人员</label>
+								<div class="col-md-9">
+									<select class="form-control select2" name="oper_id">
+									</select>
 									<div class="form-control-focus">
 									</div>
-									<label class="hide">轴号</label>
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
@@ -51,10 +68,17 @@
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">品种</label>
+								<label class="col-md-3 control-label">用户反馈</label>
 								<div class="col-md-9">
-									<select class="form-control select2" name="prod_id">
-									</select>
+									<input type="text" class="form-control" placeholder="请在此输入用户反馈信息" name="user_feedback">
+									<div class="form-control-focus">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label">车间反馈</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control" placeholder="请在此输入车间反馈信息" name="dpt_feedback">
 									<div class="form-control-focus">
 									</div>
 								</div>
@@ -65,16 +89,6 @@
 									<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
 									<div class="form-control-focus">
 									</div>
-									<label class="hide">备注</label>
-								</div>
-							</div>
-							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">机台</label>
-								<div class="col-md-9">
-									<select class="form-control select2" name="machine_id">
-									</select>
-									<div class="form-control-focus">
-									</div>
 								</div>
 							</div>
 						</div>
@@ -82,29 +96,41 @@
 				</div>
 				<div class="portlet light bordered">
 					<div class="portlet-title">
-						<div class="caption font-green">
-							<i class="icon-pin font-green"></i>
-							<span class="caption-subject bold uppercase"> 批量报废信息 </span>
+						<div class="caption font-blue">
+							<i class="icon-pin font-blue"></i>
+							<span class="caption-subject bold uppercase"> 考核信息 <small>请录入考核张数</small></span>
 						</div>
 					</div>
 					<div class="portlet-body form">
 						<div class="form-body row detail">
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label" for="cartnumber">纸病情况</label>
+								<label class="col-md-3 control-label" for="cartnumber">严重废品</label>
 								<div class="col-md-9">
-									<input type="text" name="fake_reason" class="form-control" placeholder="纸病情况">
-									<span class="help-block">  </span>
+									<input type="text" name="serious_fake" class="form-control" placeholder="严重废品考核张数" value="0">
+									<span class="help-block">( 考核标准:100元/张 )</span>
 									<div class="form-control-focus">
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label" for="cartnumber">报废数量</label>
+								<label class="col-md-3 control-label" for="cartnumber">一般废品</label>
 								<div class="col-md-9">
-									<input type="text" name="fake_num" class="form-control" placeholder="报废数量" value="0">
-									<span class="help-block">  </span>
+									<input type="text" name="normal_fake" class="form-control" placeholder="一般废品考核张数" value="0">
+									<span class="help-block">( 考核标准:10元/张 )</span>
 									<div class="form-control-focus">
 									</div>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">严重废考核金额</label>
+								<div class="col-md-9">
+									<input type="text" name="serious_fake_money" class="form-control" disabled value="0">
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">一般废考核金额</label>
+								<div class="col-md-9">
+									<input type="text" name="normal_fake_money" class="form-control" disabled value="0">
 								</div>
 							</div>
 						</div>
@@ -129,12 +155,13 @@
 							<thead>
 								<tr>
 									<th><i class="fa fa-calendar-plus-o"></i> 序号 </th>
-									<th><i class="fa fa-briefcase"></i> 轴号 </th>
-									<th><i class="fa fa-user"></i> 品种</th>
-									<th><i class="fa fa-calendar-plus-o"></i> 机台 </th>
-									<th><i class="fa fa-calendar-plus-o"></i> 录入日期 </th>
-									<th><i class="fa fa-cut"></i> 纸病情况</th>
-									<th><i class="fa fa-dedent"></i> 报废数量</th>
+									<th><i class="fa fa-briefcase"></i> 人员 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 考核日期 </th>
+									<th><i class="fa fa-user"></i> 严重废</th>
+									<th><i class="fa fa-calendar-plus-o"></i> 一般废 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 考核金额 </th>
+									<th><i class="fa fa-cut"></i> 用户反馈</th>
+									<th><i class="fa fa-dedent"></i> 车间考核</th>
 									<th><i class="fa fa-pencil"></i> 备注 </th>
 								</tr>
 							</thead>

@@ -169,14 +169,38 @@ var FakePiece = function() {
 		objTbody.html(tBody);
 	}
 
+	function getstr() {
+		//月度批量报废原因分布
+		//SELECT a.fake_reason AS 报废原因, sum(a.fake_num) AS 报废数量 FROM dbo.Paper_Batch_Waste a WHERE CONVERT (VARCHAR(6), a.rec_date, 112) = left(?,6) group by a.fake_reason order by 2 desc
+		var date = $("input[name='rec_date']").val();
+		date = date.replace(/-/g, '');
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=194&M=3&tstart=" + date;
+		return str;
+	}
+
+	function initChart() {
+		var objRequest = {
+			url: getstr(),
+			type: 'pie',
+			background: 'img',
+			circle: 1
+		};
+		var charts = require(["../assets/pages/controller/singleChart.min"], function(charts) {
+			charts.init(objRequest, $('[name="singleChart"]'));
+		});
+	}
+
 	return {
 		init: function() {
 			handleDatePickers();
 			initDOM();
 			loadHisData();
+			initChart();
 		}
 	};
+
 }();
+
 
 jQuery(document).ready(function() {
 	initDom();
@@ -184,4 +208,5 @@ jQuery(document).ready(function() {
 });
 jQuery(window).resize(function() {
 	HeadFix();
+	//mECharts.resize();
 });
