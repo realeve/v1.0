@@ -7,7 +7,7 @@ class PaperPara extends CI_Controller {
 	  	parent::__construct();
 		$this->load->helper ( array (
 			'form',
-			'url' 
+			'url'
 		) );
 		$this->load->library('session');
 	}
@@ -21,12 +21,12 @@ class PaperPara extends CI_Controller {
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
-				$this->load->view('templates/header/header_paperpara', $logindata); 
-				$this->load->view('templates/header/topmenu'); 
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('PaperPara_Psc',$logindata);
-				$this->load->view('templates/footer/footer_paper_para');				
-			}	
+				$this->load->view('templates/footer/footer_paper_para');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -35,7 +35,6 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-		
 	}
 
 	//外观指标
@@ -46,12 +45,12 @@ class PaperPara extends CI_Controller {
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
-				$this->load->view('templates/header/header_paperpara', $logindata);  
+				$this->load->view('templates/header/header_paperpara', $logindata);
 				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('PaperPara_surface',$logindata);
-				$this->load->view('templates/footer/footer_paper_para_surface');				
-			}	
+				$this->load->view('templates/footer/footer_paper_para_surface');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -60,7 +59,6 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-		
 	}
 
 	//化验站
@@ -71,12 +69,12 @@ class PaperPara extends CI_Controller {
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
-				$this->load->view('templates/header/header_paperpara', $logindata);  
+				$this->load->view('templates/header/header_paperpara', $logindata);
 				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('PaperPara_Chemy',$logindata);
-				$this->load->view('templates/footer/footer_paper_para_chemy');				
-			}	
+				$this->load->view('templates/footer/footer_paper_para_chemy');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -85,7 +83,6 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-		
 	}
 
 	//机检验证
@@ -96,12 +93,12 @@ class PaperPara extends CI_Controller {
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
-				$this->load->view('templates/header/header_paperpara', $logindata); 
-				$this->load->view('templates/header/topmenu'); 
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('PaperPara_validate',$logindata);
-				$this->load->view('templates/footer/footer_paper_validate');			
-			}	
+				$this->load->view('templates/footer/footer_paper_validate');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -110,8 +107,81 @@ class PaperPara extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-		
 	}
 
+	//大张废录入
+	public function fakepiece()
+	{
+		if ($this->session->userdata('userrole')>0)
+		{
+			if($this->session->userdata('logged_in')==true)
+			{
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
+				$this->load->view('templates/sidebar');
+				$this->load->view('print_fakepiece',$logindata);
+				$this->load->view('templates/footer/footer_print_fakepiece');
+			}
+		}
+		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
+		{
+			$this->load->view('framework/lockscreen');
+		}
+		else{
+			$this->load->view('login');
+		}
+
+	}
+
+	//钞纸误废
+	public function falsewaste()
+	{
+		if ($this->session->userdata('userrole')>0)
+		{
+			if($this->session->userdata('logged_in')==true)
+			{
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
+				$this->load->view('templates/sidebar');
+				$this->load->view('paper_falsewaste',$logindata);
+				$this->load->view('templates/footer/footer_paper_falsewaste');
+			}
+		}
+		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
+		{
+			$this->load->view('framework/lockscreen');
+		}
+		else{
+			$this->load->view('login');
+		}
+
+	}
+
+	//批量报废
+	public function batchwaste()
+	{
+		if ($this->session->userdata('userrole')>0)
+		{
+			if($this->session->userdata('logged_in')==true)
+			{
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
+				$this->load->view('templates/sidebar');
+				$this->load->view('paper_batchwaste',$logindata);
+				$this->load->view('templates/footer/footer_paper_batchwaste');
+			}
+		}
+		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
+		{
+			$this->load->view('framework/lockscreen');
+		}
+		else{
+			$this->load->view('login');
+		}
+
+	}
 }
 

@@ -9,7 +9,7 @@
        var date = getDateRange();
        var token = getUrlParam('token');
        if (token === null) {
-         token = '79d84495ca776ccb523114a2120e273ca80b315b';
+         token = config.TOKEN;
        }
        var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
        var paramList = location.href.split('&');
@@ -710,7 +710,7 @@
            }
          },
          option: option,
-         echarts:myChart
+         echarts: myChart
        };
 
      }();

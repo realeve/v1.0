@@ -1,8 +1,8 @@
 var FormWizard = function() {
 
     var loadUserBasicInfo = function() {
-        //SELECT a.FullName, b.DepartMentName, a.Phone, a.Email FROM dbo.tblUser AS a INNER JOIN dbo.tblDepartMent AS b ON b.DptID = a.DepartMent where username=? 
-        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=164&M=3&u=" + $('.username').text().trim();
+        //SELECT a.FullName, b.DepartMentName, a.Phone, a.Email FROM dbo.tblUser AS a INNER JOIN dbo.tblDepartMent AS b ON b.DptID = a.DepartMent where username=?
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=164&M=3&u=" + $('.username').text().trim();
         var Data = ReadData(str);
         var userInfo = Data.data[0];
         $('.profile-usertitle-name').text(userInfo[0]);
@@ -53,7 +53,7 @@ var FormWizard = function() {
                     }
                 },
 
-                invalidHandler: function(event, validator) { //display error alert on form submit   
+                invalidHandler: function(event, validator) { //display error alert on form submit
                     bsTips('请检查输入数据的有效性');
                 },
 
@@ -291,7 +291,7 @@ var FormWizard = function() {
 
 var handleSelect2 = function() {
     function initDOM() {
-        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=34&M=3";
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=34&M=3";
         var Data = ReadData(str);
         InitSelect("select_cat", Data);
         var i = 1;

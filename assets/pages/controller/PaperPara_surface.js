@@ -12,12 +12,12 @@ var PaperParam = function() {
 
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=24&M=3&t=1";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
 		var Data = ReadData(str);
 		InitSelect("prod_ID", Data);
 
 		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_ID", Data);
 		$("input[name='rec_date']").val(today(6));
@@ -104,9 +104,9 @@ var PaperParam = function() {
 		var startMonth = $("input[name='rec_date']").val();
 		startMonth = startMonth.substr(0, 4) + startMonth.substr(5, 2);
 		var prod = $('select[name="prod_ID"]').val();
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataPsc = ReadData(str);
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataSur = ReadData(str);
 		$('.grey-cascade').html('物理指标得分：' + xround(DataPsc.data[0][0], 2) + '，外观指标得分：' + xround(DataSur.data[0][0], 2));
 		var curScore = parseInt(DataSur.data[0][0], 10) + parseInt(DataPsc.data[0][0], 10) - 100;

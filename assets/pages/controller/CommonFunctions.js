@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.35;
+  var curVersion = 1.37;
   moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -15,6 +15,9 @@
     "PRT_PROD": 6, //'ProductData', //6 印钞品种
     "PRT_MCH": 7, //'MachineData', //7 印钞机台
     "PPR_VALIDATE": 8, //机检验证
+    "PRINT_FAKEPIECE": 9, //大张废录入
+    "PPR_FALSEWASTE": 10, //损纸误废
+    "PPR_BATCHWASTE": 11, //批量报废
 
     "USR": 20, //'tblUser', //20  用户信息
     "DPMT": 21, //'tblDepartMent', //21  用户所在部门/分组
@@ -31,6 +34,11 @@
     "SETTINGS_MENULIST": 33, //菜单列表
     "SETTINGS_MENUDETAIL": 34, //菜单详情
   }; //表单定义
+
+  //全局配置
+  var config = {
+    "TOKEN": '79d84495ca776ccb523114a2120e273ca80b315b'
+  };
 
   //信息提示框
   /**
@@ -150,6 +158,12 @@
         break;
       case 6:
         output = a + '-' + b + '-' + c;
+        break;
+      case 7:
+        output = a + '-' + b;
+        break;
+      case 8:
+        output = a + b + c;
         break;
     }
     /*var output;
@@ -493,7 +507,7 @@
       str += '"' + $(this).attr("name") + '":{"required":true,"number":true},';
     });
     $('form[name="' + theForm + '"] select').map(function(elem) {
-      str += '"' + $(this).attr("name") + '":{"required":true},';
+      str += '"' + $(this).attr("name") + '":{"required":true,"min":0},';
     });
     str = '{' + jsOnRight(str, 1) + '}';
     rule = $.parseJSON(str);
@@ -610,6 +624,19 @@
     }
   }
 
+  function extendValidateRule() {
+    //验证是否为车号
+    jQuery.validator.addMethod("isCartNumber", function(value, element) {
+      var num = /^\d{4}[A-Za-z]{1}\d{3}$/;
+      return this.optional(element) || (num.test(value));
+    }, "请检查车号信息是否正确，第4位应为字母");
+
+    //验证是否为轴号
+    jQuery.validator.addMethod("isReelCode", function(value, element) {
+      var num = /^\d{7}[A-Za-c]{1}$/;
+      return this.optional(element) || (num.test(value));
+    }, "请检查轴号格式是否正确，最后一位应为幅(字母)");
+  }
 
   function initDom() {
     //sideBarHack();
@@ -617,7 +644,7 @@
     if ($("#today") !== 'undefined') {;
       var strDate = today(0);
       if (getUrlParam('drill') != null) {
-      strDate += ' <span class="badge badge-info"> 数据钻取 </span>';
+        strDate += ' <span class="badge badge-info"> 数据钻取 </span>';
       }
 
       /*if (getUrlParam('banknotecolor') != null) {
@@ -625,7 +652,33 @@
       }*/
 
       $("#today").html(strDate);
+
+      if (jQuery().datepicker && typeof $.fn.datepicker.dates != 'undefined') {
+        $.fn.datepicker.dates.en = {
+          days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+          daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+          daysMin: ["日", "一", "二", "三", "四", "五", "六"],
+          months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+          monthsShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+          today: "今日",
+          clear: "清除",
+          //format: "yyyy年mm月dd日",
+          format: "yyyy-mm-dd",
+          titleFormat: "yyyy年mm月",
+          weekStart: 1
+        };
+
+        $('.date-picker').datepicker({
+          language: 'en'
+        });
+      }
+
     }
+
+    $('input').on('focus', function() {
+      $(this).select();
+    });
+
     loadMenuSettings();
     handleCurSubMenu();
     setLocationUrl();
@@ -869,7 +922,7 @@
    */
   $('form input[type="text"]').keydown(function(event) {
     var key = event.keyCode;
-    var obj = $('form input[type="text"]:enabled');
+    var obj = $('input[type="text"]:not(.date-picker,[name="query"]):enabled');
     var nxtIdx;
     switch (key) {
       case 37: //左
@@ -949,7 +1002,7 @@
 
   }
 
-  var namedColors = {
+  var gbColors = {
     aliceblue: [240, 248, 255],
     antiquewhite: [250, 235, 215],
     aqua: [0, 255, 255],

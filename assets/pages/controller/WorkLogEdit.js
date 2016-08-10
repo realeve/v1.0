@@ -116,7 +116,7 @@ var worklogEdit = function() {
   //载入历史信息时，接口信息的模式为2.用Data.data[0].keys取得对应的值
 
   function loadHisData(id) {
-    var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=42&M=0&id=" + id;
+    var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=42&M=0&id=" + id;
     var Data = ReadData(strUrl);
 
     //基础数据
@@ -164,12 +164,12 @@ var worklogEdit = function() {
     var type = GetiCheckChecked('proc_id');
     switch (type) {
       case "0": //钞纸
-        str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=24&M=3";
-        str2 = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3";
+        str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3";
+        str2 = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3";
         break;
       default:
-        str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=35&M=3";
-        str2 = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=36&M=3&p=" + type;
+        str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3";
+        str2 = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=36&M=3&p=" + type;
         break;
     }
 
@@ -179,7 +179,7 @@ var worklogEdit = function() {
     Data = ReadData(str2);
     InitSelect("machine_id", Data);
 
-    str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=38&M=3&p=" + type;
+    str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=38&M=3&p=" + type;
     Data = ReadData(str);
     InitSelect("oper_name", Data);
   }
@@ -188,13 +188,13 @@ var worklogEdit = function() {
 
   /*function resetErrDescSelectData() {
     var str, Data;
-    str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=39&M=3";
+    str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=39&M=3";
     Data = ReadData(str);
     InitSelect("main_err", Data);
   }
 
   $('select[name="main_err"]').on('change', function() {
-    str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=40&M=3&p=" + $(this).val();
+    str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=40&M=3&p=" + $(this).val();
     Data = ReadData(str);
     InitSelect("sub_err", Data);
   });*/

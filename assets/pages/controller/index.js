@@ -20,7 +20,7 @@ var Index = function() {
 	var handleDashBoardNums = function() {
 		//api:
 		//SELECT a.当月质量, a.上传大万数, b.实时质量, a.异常产品 FROM ( SELECT SUM ( CASE WHEN 好品率 < 70 THEN 1 ELSE 0 END ) AS 当月质量, COUNT (*) 上传大万数, SUM ( CASE WHEN ( 正面1缺陷数 = 0 OR 正2 = 0 OR 正3 = 0 OR 正4 = 0 OR 正5 = 0 OR 背精1缺陷数 = 0 OR 精2 = 0 OR 精3 = 0 OR 精4 = 0 ) THEN 1 ELSE 0 END ) AS 异常产品 FROM dbo.view_print_hecha WHERE 生产日期 / 100 = convert(varchar(6),GETDATE(),112) ) a, ( SELECT COUNT (*) AS 实时质量 FROM dbo.view_print_online_quality WHERE 好品率 < 80 AND CONVERT (VARCHAR, 上传时间, 112) = convert(varchar,GETDATE(),112) ) b
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=168&M=3";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=168&M=3";
 		var Data = ReadData(str);
 		Data.data[0].map(function(statData, idx) {
 			$('.dashboard-stat .number:nth(' + idx + ')').attr('data-value', data2ThousandSeparator(statData)).text(data2ThousandSeparator(statData));
@@ -50,7 +50,7 @@ var Index = function() {
 		};
 
 		function loadHisQuaData(apiID) {
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=" + apiID + "&M=3";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + apiID + "&M=3";
 			var Data = ReadData(str);
 			var prodHtml = '';
 
@@ -87,7 +87,7 @@ var Index = function() {
 
 		var initQualityCharts = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=172&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=172&M=0";
 			var Data = ReadData(str);
 
 			var lineData = {
@@ -112,7 +112,7 @@ var Index = function() {
 				resize: true
 			};
 
-			if (Morris.EventEmitter) {
+			if (Morris.EventEmitter && Data.rows > 0) {
 				// Use Morris.Area instead of Morris.Line
 				dashboardMainChart = Morris.Area(lineData);
 			}
@@ -210,7 +210,7 @@ var Index = function() {
 		var olInfo;
 
 		var loadOLInfo = function() {
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=173&M=3";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=173&M=3";
 			var Data = ReadData(str);
 			olInfo = {
 				hardDisk: [],
@@ -265,7 +265,7 @@ var Index = function() {
 			}*/
 
 			var getQualityByMachine = function(machineName) {
-				var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=174&M=3&machine=" + machineName;
+				var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=174&M=3&machine=" + machineName;
 				var Data = ReadData(str);
 				return getFlotSeries(Data.data, 1);
 			};
@@ -622,7 +622,7 @@ var Index = function() {
 
 		var initNoteAnanyCharts = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=175&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=175&M=0";
 			var Data = ReadData(str);
 
 			var flotData = {
@@ -644,7 +644,7 @@ var Index = function() {
 				resize: true
 			};
 
-			if (Morris.EventEmitter) {
+			if (Morris.EventEmitter && Data.rows > 0) {
 				// Use Morris.Area instead of Morris.Line
 				dashboardMainChart = Morris.Bar(flotData);
 			}
@@ -653,7 +653,7 @@ var Index = function() {
 		var isChart2Inited = false;
 		var initNoteAnanyCharts2 = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=175&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=175&M=0";
 			var Data = ReadData(str);
 
 			var flotData = {
@@ -671,7 +671,7 @@ var Index = function() {
 				resize: true
 			};
 
-			if (Morris.EventEmitter) {
+			if (Morris.EventEmitter && Data.rows > 0) {
 				// Use Morris.Area instead of Morris.Line
 				dashboardMainChart = Morris.Bar(flotData);
 			}
@@ -679,7 +679,7 @@ var Index = function() {
 
 		var initChart2 = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=176&M=3";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=176&M=3";
 			var Data = ReadData(str);
 			var data = [];
 			Data.data.map(function(plotData) {
@@ -803,7 +803,6 @@ var Index = function() {
 			processQCDashboard.init();
 			Tasks.initDashboardWidget();
 			initMiniCharts();
-			bsTips('本页功能所有数据读取功能已更新', 1);
 		}
 	};
 }();
@@ -881,39 +880,43 @@ var mECharts = function() {
 		i = 0;
 		//SELECT  '今年' as 月份, a.ProductTypeName as 品种, avg(a.OpenNum) as 开包量 FROM dbo.ManualVerifyData AS a where a.MahouID>0 and a.OpenNum>0 and CONVERT(varchar,ProduceTime,112) between ? and ? group by a.ProductTypeName,CONVERT(varchar(6),ProduceTime,112) union ALL SELECT  '去年同期' as 月份, a.ProductTypeName as 品种, avg(a.OpenNum) as 开包量 FROM dbo.ManualVerifyData AS a where a.MahouID>0 and a.OpenNum>0 and CONVERT(varchar,ProduceTime,112) between ? and ? group by a.ProductTypeName,CONVERT(varchar(6),ProduceTime,112)
 		var objRequest = {
-			url: getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=222&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + lastYear.start + "&tend2=" + lastYear.end,
-			background: 'default',
-			color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-			type: 'bar',
-			markAreaValue: 0,
-			markLine: 0
+			url: getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=222&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + lastYear.start + "&tend2=" + lastYear.end,
+			type: 'bar'
 		};
+		if (typeof curTheme.color != 'undefined') {
+			objRequest.color = curTheme.color;
+		}
 		option[i] = chartDataTool.getOption(objRequest, echarts);
-		delete option[i].title;
-		delete option[i].toolbox;
-		delete option[i].dataZoom;
-		option[i].grid.bottom = '3%';
-		option[i].legend.y = 0;
-		delete option[i].xAxis[0].name;
+		if (option[i] !== false) {
+			delete option[i].title;
+			delete option[i].toolbox;
+			delete option[i].dataZoom;
+			option[i].grid.bottom = '3%';
+			option[i].legend.y = 0;
+			delete option[i].xAxis[0].name;
+		}
 
 		i = 1;
 		objRequest = {
-			url: getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=181&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end,
-			background: 'default',
+			url: getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=181&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end,
 			singleAxis: 'time',
-			color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
 			type: 'themeriver'
 		};
+		if (typeof curTheme.color != 'undefined') {
+			objRequest.color = curTheme.color;
+		}
 
 		option[i] = chartDataTool.getOption(objRequest, echarts);
+		if (typeof option[i].series !== 'undefined') {
+			delete option[i].toolbox;
+			option[i].title[2].x = 'center';
+			option[i].title[2].y = 40;
+			option[i].title[2].y2 = 0;
+			option[i].title[1].show = false;
+			option[i].title[3].show = false;
+			option[i].legend.orient = 'horizontal';
+		}
 
-		delete option[i].toolbox;
-		option[i].title[2].x = 'center';
-		option[i].title[2].y = 40;
-		option[i].title[2].y2 = 0;
-		option[i].title[1].show = false;
-		option[i].title[3].show = false;
-		option[i].legend.orient = 'horizontal';
 
 		for (i = 0; i < 2; i++) {
 			if (option[i] !== false) {

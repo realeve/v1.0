@@ -26,7 +26,7 @@ var Login = function() {
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function(event, validator) { //display error alert on form submit
                 $('.alert-danger', $('.login-form')).show();
             },
 
@@ -39,7 +39,7 @@ var Login = function() {
                 label.remove();
             },
             errorPlacement: function(error, element) {
-                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
+                if (element.attr("name") == "tnc") { // insert checkbox errors after the container
                     error.insertAfter($('#forget-password'));
                 } else if (element.closest('.input-icon').size() === 1) {
                     error.insertAfter(element.closest('.input-icon'));
@@ -121,7 +121,7 @@ var Login = function() {
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function(event, validator) { //display error alert on form submit
 
             },
 
@@ -136,7 +136,7 @@ var Login = function() {
             },
 
             errorPlacement: function(error, element) {
-                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
+                if (element.attr("name") == "tnc") { // insert checkbox errors after the container
                     error.insertAfter($('#register_tnc_error'));
                 } else if (element.closest('.input-icon').size() === 1) {
                     error.insertAfter(element.closest('.input-icon'));
@@ -203,8 +203,8 @@ var Login = function() {
     };
 
     var handleRegister = function() {
-        //SELECT a.DptID, a.DepartMentName FROM dbo.tblDepartMent AS a 
-        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=163&M=3";
+        //SELECT a.DptID, a.DepartMentName FROM dbo.tblDepartMent AS a
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=163&M=3";
         var Data = ReadData(str);
         InitSelect("department", Data);
         SetSelectVal("department", 0);
@@ -240,7 +240,7 @@ var Login = function() {
                 },
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function(event, validator) { //display error alert on form submit
 
             },
 
@@ -255,7 +255,7 @@ var Login = function() {
             },
 
             errorPlacement: function(error, element) {
-                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
+                if (element.attr("name") == "tnc") { // insert checkbox errors after the container
                     error.insertAfter($('#register_tnc_error'));
                 } else if (element.closest('.input-icon').size() === 1) {
                     error.insertAfter(element.closest('.input-icon'));
@@ -333,7 +333,7 @@ var Login = function() {
     };
 
 }();
-//记录选择状态  
+//记录选择状态
 jQuery(document).ready(function() {
     Login.init();
 });

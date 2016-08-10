@@ -14,7 +14,7 @@ function GetJsonUrl(id) {
 	});
 	var token = getUrlParam('token');
 	if (token == null) {
-		token = '79d84495ca776ccb523114a2120e273ca80b315b';
+		token = config.TOKEN;
 	}
 	var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + "&t=" + Math.random();
 	return strUrl;

@@ -18,15 +18,15 @@ var PaperParam = function() {
 	}
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=24&M=3&t=1";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
 		var Data = ReadData(str);
 		InitSelect("Prod_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=0";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0";
 		Data = ReadData(str);
 		InitSelect("machine_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=1";
 		Data = ReadData(str);
 		InitSelect("oper_id", Data);
 		$("input[name='rec_date']").val(today(6));
@@ -132,7 +132,7 @@ var PaperParam = function() {
 
 	function loadHisData() {
 		var Reel_Code = $('select[name="Prod_id"]').val() + $('input[name="Reel_Code"]').val();
-		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=33&M=0&r=" + Reel_Code;
+		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=33&M=0&r=" + Reel_Code;
 		var Data = ReadData(strUrl);
 		//bsTips(JSON.stringify(Data));
 		if (Data.rows == "0") {
@@ -169,9 +169,9 @@ var PaperParam = function() {
 		var startMonth = $("input[name='rec_date']").val();
 		startMonth = startMonth.substr(0, 4) + startMonth.substr(5, 2);
 		var prod = $('select[name="Prod_id"]').val();
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataPsc = ReadData(str);
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataSur = ReadData(str);
 		$('.grey-cascade').html('物理指标：' + xround(DataPsc.data[0][0], 2) + '，外观指标：' + xround(DataSur.data[0][0], 2) + '，总分：' + xround(parseFloat(DataPsc.data[0][0]) + parseFloat(DataSur.data[0][0]) - 100, 2));
 	}

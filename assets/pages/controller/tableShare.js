@@ -87,15 +87,15 @@ $(document).ready(function() {
         }
         //' + $('thead th:eq(' + i + ')').text() + '
         var select = $('<select class="select2"><option value="">所有' + $('thead th[data-column-index="' + i + '"]').text() + '</option></select>')
-            .appendTo($(column.footer()).empty())
-            .on('change', function() {
-              var val = $.fn.dataTable.util.escapeRegex(
-                $(this).val()
-              );
-              column
-                .search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
-                .draw();
-            });
+          .appendTo($(column.footer()).empty())
+          .on('change', function() {
+            var val = $.fn.dataTable.util.escapeRegex(
+              $(this).val()
+            );
+            column
+              .search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
+              .draw();
+          });
 
 
         column.data().unique().sort().each(function(d, j) {

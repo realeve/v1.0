@@ -99,7 +99,7 @@ var handleAvatar = function() {
                 success: function(data) {
                     var obj = $.parseJSON(data);
                     bsTips(obj.message, obj.type);
-                    setTimeout(reLogin,3000);
+                    setTimeout(reLogin, 3000);
                 },
                 error: function(data) {
                     bsTips("更新数据失败，请稍后重试或联系管理员!");
@@ -215,15 +215,15 @@ var handleAvatar = function() {
 var handleBasicInfo = function() {
 
     var loadDepartmentInfo = function() {
-        //SELECT a.DptID, a.DepartMentName FROM dbo.tblDepartMent AS a 
-        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=163&M=3";
+        //SELECT a.DptID, a.DepartMentName FROM dbo.tblDepartMent AS a
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=163&M=3";
         var Data = ReadData(str);
         InitSelect("department", Data);
     }();
 
     function loadUserBasicInfo() {
-        //SELECT a.FullName, b.DepartMentName, b.DptID,a.Phone, a.Email FROM dbo.tblUser AS a INNER JOIN dbo.tblDepartMent AS b ON b.DptID = a.DepartMent where username=? 
-        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=164&M=3&u=" + $('.username').text().trim();
+        //SELECT a.FullName, b.DepartMentName, b.DptID,a.Phone, a.Email FROM dbo.tblUser AS a INNER JOIN dbo.tblDepartMent AS b ON b.DptID = a.DepartMent where username=?
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=164&M=3&u=" + $('.username').text().trim();
         var Data = ReadData(str);
         var userInfo = Data.data[0];
         $('.profile-usertitle-name').text(userInfo[0]);
@@ -316,9 +316,9 @@ var handleBasicInfo = function() {
     };
 }();
 
-    function reLogin() {
-        window.location.href = getRootPath() + "/welcome/lockscreen";
-    }
+function reLogin() {
+    window.location.href = getRootPath() + "/welcome/lockscreen";
+}
 
 var handleUserPassword = function(psw) {
     //用户密码校验
@@ -326,7 +326,7 @@ var handleUserPassword = function(psw) {
         //PSW Validate:
         //SELECT a.ID FROM dbo.tblUser AS a where a.ID = ? and UserPassword=?
 
-        var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=165&M=3&uid=" + $('.username').data('uid') + "&psw=" + psw;
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=165&M=3&uid=" + $('.username').data('uid') + "&psw=" + psw;
         var Data = ReadData(str);
         return Data.rows;
     }

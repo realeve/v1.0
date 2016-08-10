@@ -304,7 +304,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             formatter: '{c}'
           },
           barBorderRadius: (objRequest.reverse) ? [0, 2, 2, 0] : [2, 2, 0, 0],
-          borderColor: "rgba(255,255,255,0.85)",
+          borderColor: "rgba(255,255,255,0.95)",
           borderWidth: objRequest.type == 'line' ? 4 : 0,
           lineStyle: {
             width: 1
@@ -895,7 +895,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             "type": objRequest.type,
             "data": iConvData.boxData,
             "tooltip": {
-              backgroundColor: 'rgba(255,255,255,0.85)',
+              backgroundColor: 'rgba(255,255,255,0.95)',
               textStyle: {
                 color: '#333'
               },
@@ -947,7 +947,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
-            backgroundColor: 'rgba(255,255,255,0.85)',
+            backgroundColor: 'rgba(255,255,255,0.95)',
             //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
             extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
             textStyle: {
@@ -986,7 +986,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "data": iConvData.boxData,
           "tooltip": {
-            backgroundColor: 'rgba(255,255,255,0.85)',
+            backgroundColor: 'rgba(255,255,255,0.95)',
             //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
             extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
             //extraCssText: 'background:#fff;padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
@@ -2554,7 +2554,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       calculable: true,
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -2678,6 +2678,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             fontSize: 16,
           }
         },
+        splitArea: {
+          show: objRequest.splitArea
+        },
         type: 'category',
         boundaryGap: (objRequest.type == 'line') ? false : true,
         data: Data.xAxis,
@@ -2702,6 +2705,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         },
         axisTick: {
           show: false
+        },
+        splitArea: {
+          show: objRequest.splitArea
         }
       }],
       series: Data.series
@@ -2813,7 +2819,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       },
       calculable: true,
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -2987,7 +2993,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         y2: 3
       }],
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3225,7 +3231,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             }
       },*/
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3299,7 +3305,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
       },
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3404,7 +3410,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         trigger: 'axis',
         showDelay: 0,
 
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3602,7 +3608,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         trigger: 'item',
         triggerOn: 'mousemove',
 
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3702,7 +3708,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         }
       },
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3890,7 +3896,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             type: 'solid'
           }
         },
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(255,255,255,0.95)',
         //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
         extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
         textStyle: {
@@ -3954,6 +3960,39 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return option;
   }
 
+  function setDefaultValue(obj, keys, defaultValue) {
+    if (typeof obj[keys] == 'undefined') {
+      obj[keys] = defaultValue;
+    }
+    return obj;
+  }
+
+  function handleObjReauest(obj) {
+
+    var defaultList = {
+      symbolSize: 12,
+      step: 0,
+      toolbox: true,
+      max: 'undefined',
+      min: 'undefined',
+      background: 'default',
+      color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+      smooth: true,
+      markAreaValue: 0,
+      markLine: 0,
+      splitArea: 0,
+      lineAreaStyle: 0,
+      barMaxWidth: 100
+    }
+
+    //遍历obj的KEY
+    for (var key in defaultList) {
+      obj = setDefaultValue(obj, key, defaultList[key]);
+    }
+
+    return obj;
+  }
+
   function handleLegendStyle(option, objRequest) {
     if (typeof option.legend == 'undefined' || objRequest.type == 'line') {
       return option;
@@ -3970,14 +4009,22 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
   }
 
   var Data;
-  var staticDateRange;
+  var staticDateRange = '';
+
   var getOption = function(objRequest, echarts) {
+    //处理默认数据
+    objRequest = handleObjReauest(objRequest);
+
     Data = convertData(objRequest, echarts);
     //处理起始时间
     var dateStr = objRequest.url.split('tstart=')[1];
     var pds = getUrlParam('tstart');
     var dateStart = (pds != null) ? pds : jsLeft(dateStr, 8);
-    var dateEnd = jsLeft(dateStr.split('tend=')[1], 8);
+    var dateEnd = dateStr.split('tend=')[1];
+    if (typeof dateEnd != 'undefined') {
+      dateEnd = jsLeft(dateEnd, 8);
+    }
+
     staticDateRange = "     统计时间：" + dateStart + " - " + dateEnd;
     //console.log(staticDateRange);
 

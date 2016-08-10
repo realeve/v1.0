@@ -1,4 +1,4 @@
-   $("#HideTips").on('click',function() {
+   $("#HideTips").on('click', function() {
      $(".note.note-success").addClass('hide');
    });
 
@@ -17,7 +17,7 @@
      var InputToggle = ($("#InputToggle").bootstrapSwitch('state') === true) ? 1 : 0;
      var InputInner = ($("#InputInner").bootstrapSwitch('state') === true) ? 1 : 0;
      var strUrl = getRootUrl('QualityTable') + "/SaveSettings";
-     //infoTips(RefreshTime +AutoRefresh,0); 
+     //infoTips(RefreshTime +AutoRefresh,0);
      //获取各控制值完毕
      //向服务器请求数据
      $.post(strUrl, {
@@ -64,7 +64,7 @@
 
    var dataTable = function() {
      var oTable;
-     //生成表格头 
+     //生成表格头
 
      function CreateTableHead(Data) {
        var strHead = '<tr role="row">';
@@ -83,7 +83,7 @@
        strHead += '</tr>';
        return strHead;
      }
-     //生成表格体 
+     //生成表格体
 
      function CreateTableBody(Data) {
        var strRow = '<tr role="row" class="odd">';
@@ -183,7 +183,7 @@
          //"data" : Data.data,
          "processing": true,
          //"serverSide": true,
-         "ajax": "http://localhost/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=22&M=3&tstart=20130101&tend=20151102",
+         "ajax": "http://localhost/DataInterface/Api?Token=" + config.TOKEN + "&ID=22&M=3&tstart=20130101&tend=20151102",
          //任意字段
          "bScrollInfinite": true,
          //"borderMulti": true,
@@ -242,7 +242,7 @@
        }
        oTable.destroy();
        table.empty();
-       //return;	
+       //return;
        $('#sample thead').html(CreateTableHead(Data));
        CreateTable(tableID, Data);
        //return;
@@ -275,7 +275,7 @@
    }();
 
 
-    //初始化列状态
+   //初始化列状态
    /*
   function initColStat(tableID,Data){
     var iColInput = $(tableID+'_column_toggler');
@@ -285,14 +285,14 @@
         strInput += '<li><a href="javascript:;"><input type="checkbox" checked class="icheck" data-column="'+ i +'">'+ Data.header[i].title +'</a></li>' ;
     }
     iColInput.html(strInput);
-    
-    //iCheck样式初始化    
+
+    //iCheck样式初始化
    var iColToggler = $(tableID+'_column_toggler input');
    iColToggler.iCheck({
       checkboxClass: 'iradio_square-green',//'icheckbox_square-red'
       radioClass: 'iradio_square-green',
       increaseArea: '10' // optional
-    }); 
+    });
     $(tableID+'_column_container').removeClass('hide');
     $(tableID + "_column_toggler a").click(
         function(){
@@ -351,11 +351,11 @@
          $.fn.editable.defaults.mode = 'inline';
        }
 
-       //global settings 
+       //global settings
        $.fn.editable.defaults.inputclass = 'form-control';
        $.fn.editable.defaults.url = '/post';
 
-       //editables element samples 
+       //editables element samples
        $('#ApiName').editable({
          validate: function(value) {
            if ($.trim(value) === '') return '该字段不能为空';
@@ -485,12 +485,12 @@
          initEditables();
 
          // init editable toggler
-         $('#edit').on('click',function() {
+         $('#edit').on('click', function() {
            $('#user .editable').editable('toggleDisabled');
            $('#url').editable('disable');
            $('#ApiID').editable('disable');
          });
-         // init 
+         // init
          $('#InputInner').on('switchChange.bootstrapSwitch', function(e) {
            SaveSettings();
            window.location.reload();
@@ -509,7 +509,7 @@
            }
          });
 
-         $("#SaveAPI").on('click',function() {
+         $("#SaveAPI").on('click', function() {
            var strUrl = getRootUrl('DataInterface') + "SaveAPI";
            var APIData = $('#user .editable').editable('getValue');
            if (APIData.ApiName === '' || APIData.SQL === '' || APIData.params === '') {
@@ -536,23 +536,23 @@
            );
          });
 
-         $('#Reset').on('click',function() {
+         $('#Reset').on('click', function() {
            $('#ApiName').editable('setValue', null) //clear values
-           .editable('option', 'pk', null) //clear pk
-           .removeClass('editable-unsaved'); //remove bold css     
+             .editable('option', 'pk', null) //clear pk
+             .removeClass('editable-unsaved'); //remove bold css
 
            $('#DataBaseID').editable('setValue', null) //clear values
-           .editable('option', 'pk', null) //clear pk
-           .removeClass('editable-unsaved'); //remove bold css    
+             .editable('option', 'pk', null) //clear pk
+             .removeClass('editable-unsaved'); //remove bold css
 
            $('#SQL').editable('setValue', null) //clear values
-           .editable('option', 'pk', null) //clear pk
-           .removeClass('editable-unsaved'); //remove bold css    
+             .editable('option', 'pk', null) //clear pk
+             .removeClass('editable-unsaved'); //remove bold css
            var strNote = '[功能说明]' + '<p style="text-indent:2em;">本接口主要用于 <i>XX</i> 信息的查询.</p>' + '[主要参数]';
            strNote += '<ul><li>TimeStart:开始时间；</li><li> TimeEnd:开始时间；</li><li> Cols:1/0,默认为空，设为1时返回查询语句的列用于表格初始化等操作；</li></ul>';
            $('#note').editable('setValue', strNote) //clear values
-           .editable('option', 'pk', null) //clear pk
-           .removeClass('editable-unsaved'); //remove bold css    
+             .editable('option', 'pk', null) //clear pk
+             .removeClass('editable-unsaved'); //remove bold css
          });
        }
 
@@ -571,7 +571,7 @@
 
      ReadSettings();
      dataTable.init();
-     //initColStat('#sample');       
+     //initColStat('#sample');
      FormEditable.init();
    });
    jQuery(window).resize(function() {

@@ -1,20 +1,20 @@
 define(function() {
 
     var theme = {
-        //backgroundColor:'rgba(242,242,242,0.6)', 
-        //backgroundColor:'rgb(229,239,241)', 
+        //backgroundColor:'rgba(242,242,242,0.6)',
+        //backgroundColor:'rgb(229,239,241)',
         backgroundColor: '#ffffff', //ebebeb
         // 默认色板
         color: [
             /*'#553366','#bb3355','#998899','#ff5555','#ffdd99',
         '#58423F','#888069','#C1BF95',//'#382230','#070A1E',
-        '#889999','#dd9988',//'#223333',,'#bbcccc'	'#ddeedd',	
+        '#889999','#dd9988',//'#223333',,'#bbcccc'	'#ddeedd',
 		'#aa5555','#668899','#dd8855','#443344'//,'#cccccc'*/
 
             /*'#99CC33','#FF9900','#FFCC00','#FF9933','#99CC33','#CC6699',
             '#FF9933','#FFFF00','#3366CC','#FF9933','#FFFFCC','#009966',
             '#FF6600','#FFFF66','#009966','#990033','#CCFF66','#FF9900',
-		
+
             '#99CC99','#996633','#99CC66',
             '#006600','#66CC66','#CCCC66',
             '#669933','#CCCC33','#663300','#666633','#999933','#CC9966'*/
@@ -47,7 +47,7 @@ define(function() {
 
         // 值域
         /* dataRange: {
-             color:['rgb(26,114,151)','rgb(38,185,139)','rgb(148,205,97)']//颜色 
+             color:['rgb(26,114,151)','rgb(38,185,139)','rgb(148,205,97)']//颜色
          },*/
 
         // 工具箱
@@ -80,7 +80,7 @@ define(function() {
             },
             shadowStyle : {                     // 阴影指示器样式设置
                 color: 'rgba(200,200,200,0.3)'
-            }			
+            }
         },
 		textStyle: { color: '#eee',
                      fontSize:12}
@@ -116,8 +116,8 @@ define(function() {
                 }
             },
             nameTextStyle: {
-              fontSize: 16,
-              color: '#555'
+                fontSize: 16,
+                color: '#555'
             },
             axisLabel: { // 坐标轴文本标签，详见axis.axisLabel
                 textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
@@ -147,19 +147,19 @@ define(function() {
                 }
             },
             nameTextStyle: {
-              fontSize: 16,
-              color: '#555'
+                fontSize: 16,
+                color: '#555'
             },
             splitLine: { // 分隔线
                 lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
                     color: ['#ddd'],
                     width: 1,
-                    type:'dashed'
+                    type: 'dashed'
                 },
                 show: true,
             },
             splitArea: {
-                show: true,
+                show: false,
                 areaStyle: {
                     color: ['rgba(144,238,144,0.2)', 'rgba(255,255,255,0.05)']
                 }

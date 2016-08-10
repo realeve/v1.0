@@ -3,11 +3,11 @@
        $(".mt-element-ribbon").addClass('hide');
      });
 
-    //获取各控制值
+   //获取各控制值
 
    function GetJsonUrl(iID) {
      var date = getDateRange();
-     var strUrl = getRootPath() + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&chartType=bar&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
+     var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&chartType=bar&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
      return strUrl;
    }
 
@@ -153,7 +153,7 @@
      return convert(objRes);
    };
 
-    //配置图表库
+   //配置图表库
    var mECharts = function() {
      var echarts;
      var myChart = []; //new Array(); //任意个数的图表
@@ -213,9 +213,9 @@
 
      function showChart(curTheme, url) {
 
-      if(!iChartNums){
-        return;
-      }
+       if (!iChartNums) {
+         return;
+       }
 
        if (!echarts) {
          return;

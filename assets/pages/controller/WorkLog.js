@@ -11,7 +11,7 @@ var WorkLogInit = function() {
 
   //处理用户图片
   function getUserAvatar(data) {
-    var avatarName = (data.set_avatar == '1')?$.base64.encode(data.avatarUrl):'Avatar_none';
+    var avatarName = (data.set_avatar == '1') ? $.base64.encode(data.avatarUrl) : 'Avatar_none';
     return getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg';
   }
 

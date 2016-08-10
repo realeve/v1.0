@@ -20,7 +20,7 @@ var PaperValidate = function() {
 	}
 
 	function getCurReels() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=166&M=3&tstart=" +
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=166&M=3&tstart=" +
 			$('[name="rec_date"]').val().replace(/-/g, '');
 		var Data = ReadData(str);
 		var reelCounts = Data.data[0];
@@ -32,19 +32,19 @@ var PaperValidate = function() {
 	}
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=24&M=3&t=1";
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
 		var Data = ReadData(str);
 		InitSelect("prod_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=0";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0";
 		Data = ReadData(str);
 		InitSelect("machine_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=25&M=3&t=2";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=2";
 		Data = ReadData(str);
 		InitSelect("oper_id", Data);
 		//select machine_id,machine_name from paper_machine_info where Proc_ID=1
-		str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=23&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1";
 		Data = ReadData(str);
 		InitSelect("cut_machine_id", Data);
 
@@ -82,7 +82,7 @@ var PaperValidate = function() {
 		 * 	SELECT a.id,a.reel_code, a.prod_id, a.oper_id, a.machine_id, CONVERT(VARCHAR(10),a.rec_date,120) as rec_date, a.validate_num, a.number_right, a.package_weight, a.serious_fake, a.normal_fake_h, a.normal_fake_m, a.normal_fake_l, a.reel_end, a.suspect_paper, a.well_paper, a.other, a.record_Time, a.passed, a.cut_weight  FROM dbo.Paper_Validate AS a  WHERE cast(prod_id as varchar)+ reel_code=?
 		 *  param: r
 		 */
-		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=113&M=0&r=" + reel_code;
+		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=113&M=0&r=" + reel_code;
 		var Data = ReadData(strUrl);
 		if (Data.rows === "0") {
 			return 0;
@@ -349,7 +349,7 @@ var PaperValidate = function() {
 		function loadReelByDate() {
 
 			//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed =3 order by 7
-			var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=167&M=0&tstart=" + $('[name="rec_date"]').val().replace(/-/g, '');
+			var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=167&M=0&tstart=" + $('[name="rec_date"]').val().replace(/-/g, '');
 			var Data = ReadData(strUrl);
 			var strTr = "";
 			if (Data.rows > 0) {
@@ -409,7 +409,7 @@ var PaperValidate = function() {
 
 				//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed =3 order by 7
 
-				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=114&M=0";
+				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=114&M=0";
 				var Data = ReadData(strUrl);
 				var bsConfirm = 'data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="是否放行这个轴号?" data-btn-ok-label="是" data-btn-ok-icon="fa fa-credit-card" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"';
 				var strTr = "";

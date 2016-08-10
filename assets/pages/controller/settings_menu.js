@@ -80,7 +80,7 @@ var previewSidebar = function() {
             }
 
             if (hasSubMenu === false) {
-                if (App.getViewPort().width < resBreakpointMd && $('#menuPreviewDetail .page-sidebar').hasClass("in")) { // close the menu on mobile view while laoding a page 
+                if (App.getViewPort().width < resBreakpointMd && $('#menuPreviewDetail .page-sidebar').hasClass("in")) { // close the menu on mobile view while laoding a page
                     $('.page-header .responsive-toggler').click();
                 }
                 return;
@@ -147,7 +147,7 @@ var previewSidebar = function() {
             App.scrollTop();
         });
 
-        // handle sidebar hover effect        
+        // handle sidebar hover effect
         handleFixedSidebarHoverEffect();
     };
 
@@ -204,7 +204,7 @@ var previewSidebar = function() {
             handleSidebarMenu(); // handles main menu
             handleSidebarToggler(); // handles sidebar hide/show
 
-            App.addResizeHandler(handleFixedSidebar); // reinitialize fixed sidebar on window resize 
+            App.addResizeHandler(handleFixedSidebar); // reinitialize fixed sidebar on window resize
         }
     };
 }();
@@ -275,7 +275,7 @@ var customizeMenu = function() {
                         $('#menuPreviewList_output').parents('.portlet').removeClass('hide');
                     }
 
-                    var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=45&M=0&uid=" + uid;
+                    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=45&M=0&uid=" + uid;
                     var Data = ReadData(str);
                     InitSettingSelect("menu_list", Data);
 
@@ -572,7 +572,7 @@ var customizeMenu = function() {
                 //载入所有菜单项
 
                 function loadAllMenu() {
-                    var str = getRootPath(1) + "/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=46&M=0&uid=" + uid;
+                    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=46&M=0&uid=" + uid;
                     menuDetailObj = ReadData(str);
                     var menuEditObj = $('select[name="menuDetail"]');
                     $('#menuPreviewList').append('<ol class="dd-list"></ol>');
@@ -836,7 +836,7 @@ var customizeMenu = function() {
                 function getData() {
                     return {
                         "tbl": TBL.SETTINGS_MENUDETAIL,
-                        "utf2gbk": ['name','url'],
+                        "utf2gbk": ['name', 'url'],
                         "name": $('#menuEdit [name="name"]').val(),
                         "url": $('#menuEdit [name="url"]').val().trim(),
                         "share": ($('#menuEdit [name="share"]').attr('checked') === 'checked') ? 1 : 0,

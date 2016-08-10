@@ -14,7 +14,7 @@ var MicroBlog = function() {
         //设置控件初始值
         $("#LoadingNum").val(obj.NumsID); //每次加载
         $("#RefreshTime").val(obj.RefreshTime); //轮询时间
-        if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState'); //如果需要关 
+        if (obj.AutoRefresh === 0) $("#AutoRefresh").bootstrapSwitch('toggleState'); //如果需要关
       }
     });
   }
@@ -133,16 +133,16 @@ var MicroBlog = function() {
         if (obj.rows > 0) {
           //obj = jQuery.parseJSON(data);
           var TimeHead = '<div class="timeline-item"><div class="timeline-badge">';
-          TimeHead +='<div class="timeline-badge"><img class="timeline-badge-userpic" src="' + avatarUrl + '"></div></div>';
-          TimeHead +='<div class="timeline-body"><div class="timeline-body-arrow"></div><div class="timeline-body-head"><div class="timeline-body-head-caption"><a href="#" class="timeline-body-title font-blue-madison">';
+          TimeHead += '<div class="timeline-badge"><img class="timeline-badge-userpic" src="' + avatarUrl + '"></div></div>';
+          TimeHead += '<div class="timeline-body"><div class="timeline-body-arrow"></div><div class="timeline-body-head"><div class="timeline-body-head-caption"><a href="#" class="timeline-body-title font-blue-madison">';
           var TimeTitle = '</a><span class="timeline-body-time font-grey-cascade">发表于';
           var TimeEnd = '</h4></span></div></div></div>';
           var strContent, TimeButton;
           for (var i = obj.rows - 1; i >= 0; i--) {
             TimeButton = '</small></span></div><div class="timeline-body-head-actions">';
-            TimeButton +='<a data-sn=' + obj.data[i].ID + ' class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
+            TimeButton += '<a data-sn=' + obj.data[i].ID + ' class="btn btn-circle red btn-outline btn-block del" data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="确定删除该条日志?" data-btn-ok-label="是" data-btn-ok-icon="icon-trash" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"><i class="icon-trash"></i>&nbsp;&nbsp;删除 </a>';
 
-            TimeButton +='</div></div><div class="timeline-body-content"><span class="font-grey-mint"><h4>';
+            TimeButton += '</div></div><div class="timeline-body-content"><span class="font-grey-mint"><h4>';
             strContent = GBK2UTF(obj.data[i].BlogHTML);
             if (iData.KeyWord !== '') {
               strContent = strContent.replace(new RegExp(iData.KeyWord, 'g'), '<span class="caption-subject bold font-yellow-casablanca" style="font-size: 16px; line-height: 18px;">' + GBK2UTF(iData.KeyWord) + '</span>');

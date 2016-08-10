@@ -5,7 +5,7 @@ $("#HideTips").on('click', function() {
 //初始化接口列表
 var initApiList = function() {
   var username = $('.top-menu .username').text().trim();
-  var strUrl = getRootPath(1) + '/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=0&M=3&t=' + Math.random() + '&author=' + username;
+  var strUrl = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=0&M=3&t=' + Math.random() + '&author=' + username;
   var Data = ReadData(strUrl);
   Data.data.map(function(elem, index) {
     Data.data[index][5] = $.base64.decode(elem[5]);
@@ -216,7 +216,7 @@ var initApiList = function() {
                   infoTips("数据成功删除", 1);
                   var userName = $('.top-menu .username').text().trim();
                   //更新数据添加接口状态信息
-                  var nID = ReadData(getRootPath() + '/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=29&M=3&author=' + userName);
+                  var nID = ReadData(getRootPath() + '/DataInterface/Api?Token' + config.TOKEN + '&ID=29&M=3&author=' + userName);
                   $('#ApiID').text(nID.data[0]);
                 });
               }
