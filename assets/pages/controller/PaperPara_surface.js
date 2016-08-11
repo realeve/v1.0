@@ -211,7 +211,6 @@ var PaperParam = function() {
 			//$('.portlet.light').hide();
 			handleDatePickers();
 			initDOM();
-			iChechBoxInit();
 			setRecordNum();
 			$('.modal-footer .green').on('click', function() {
 				insertData();

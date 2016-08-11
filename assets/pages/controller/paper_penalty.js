@@ -32,7 +32,7 @@ var FakePiece = function() {
 		initSelect2();
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
-		iChechBoxInit();
+		iCheckBoxInit();
 
 		//默认为临时工
 		SetiCheckChecked('user_type', 1);

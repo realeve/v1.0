@@ -18,7 +18,8 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_PRINT_FAKEPIECE	= 'FakePieceData';	 //9 印钞大张废
 	const TBL_PAPER_FALSEWASTE = "Paper_False_Waste"; //10 	钞纸损纸误废
 	const TBL_PAPER_BATCHWASTE = "Paper_Batch_Waste"; //11 	钞纸批量报废
-	const TBL_PAPER_PENALTY = "Paper_Penalty"; //12 	考核记录
+	const TBL_PAPER_PENALTY = "Paper_Penalty"; //12 	完成车间考核记录
+	const TBL_PAPER_ABNORMAL = "Paper_Para_Abnormal"; //13 	非常规指标
 
 	const TBL_USR		= 'tblUser';				 //20 用户信息
 	const TBL_DPMT		= 'tblDepartMent';			 //21 用户所在部门/分组
@@ -34,6 +35,7 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_WORK_LOG_OPR = 'tblWorklog_Operator';	 //32 机检日志人员名单
 	const TBL_SETTINGS_MENULIST ='tbl_menu_list';	 //33 菜单列表
 	const TBL_SETTINGS_MENUDETAIL='tbl_menu_detail'; //34 菜单子项
+
 	public function __construct()
 	{
 		$this->load->database();
@@ -55,6 +57,7 @@ class DataInterfaceModel extends CI_Model {
 			10=>self::TBL_PAPER_FALSEWASTE,
 			11=>self::TBL_PAPER_BATCHWASTE,
 			12=>self::TBL_PAPER_PENALTY,
+			13=>self::TBL_PAPER_ABNORMAL,
 
 			20=>self::TBL_USR,
 			21=>self::TBL_DPMT,

@@ -446,7 +446,7 @@ var PaperValidate = function() {
 
 jQuery(document).ready(function() {
 	initDom();
-	iChechBoxInit();
+	iCheckBoxInit();
 	PaperValidate.init();
 });
 jQuery(window).resize(function() {

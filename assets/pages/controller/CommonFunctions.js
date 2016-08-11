@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  var curVersion = 1.39;
+  var curVersion = 1.40;
   moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
@@ -18,7 +18,8 @@
     "PRINT_FAKEPIECE": 9, //大张废录入
     "PPR_FALSEWASTE": 10, //损纸误废
     "PPR_BATCHWASTE": 11, //批量报废
-    "PPR_PENALTY": 12, //批量报废
+    "PPR_PENALTY": 12, //完成车间质量考核
+    "PPR_ABNORMAL": 13, //非常规指标
 
     "USR": 20, //'tblUser', //20  用户信息
     "DPMT": 21, //'tblDepartMent', //21  用户所在部门/分组
@@ -800,7 +801,7 @@
   }
   //iCheck控件初始化及设置值
 
-  function iChechBoxInit() {
+  function iCheckBoxInit() {
     var obj = $('.icheck');
     obj.iCheck({
       checkboxClass: 'icheckbox_square-green', //'icheckbox_square-red'

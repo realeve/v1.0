@@ -102,7 +102,7 @@ var PaperParam = function() {
 			$('.portlet.light').hide();
 			handleDatePickers();
 			initDOM();
-			iChechBoxInit();
+			iCheckBoxInit();
 			initChecked();
 			setRecordNum();
 			$('button[type="reset"]').on('click', function() {

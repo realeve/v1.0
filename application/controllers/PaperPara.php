@@ -204,5 +204,29 @@ class PaperPara extends CI_Controller {
 			$this->load->view('login');
 		}
 	}
+	
+	//非常规指标
+	public function abnormal()
+	{
+		if ($this->session->userdata('userrole')>0)
+		{
+			if($this->session->userdata('logged_in')==true)
+			{
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
+				$this->load->view('templates/sidebar');
+				$this->load->view('paper_abnormal',$logindata);
+				$this->load->view('templates/footer/footer_paper_abnormal');
+			}
+		}
+		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
+		{
+			$this->load->view('framework/lockscreen');
+		}
+		else{
+			$this->load->view('login');
+		}
+	}
 }
 

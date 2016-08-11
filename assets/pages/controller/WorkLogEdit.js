@@ -1,7 +1,7 @@
 var worklogEdit = function() {
   function loadDefaultSettings() {
     //控件初始化
-    iChechBoxInit();
+    iCheckBoxInit();
     initSelect2();
 
 

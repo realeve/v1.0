@@ -488,7 +488,7 @@ var PaperParam = function() {
 
 jQuery(document).ready(function() {
 	initDom();
-	iChechBoxInit();
+	iCheckBoxInit();
 	$('#checkbox2').iCheck('check');
 	PaperParam.init();
 });
