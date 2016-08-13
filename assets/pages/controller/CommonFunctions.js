@@ -1,11 +1,11 @@
 ﻿  //系统当前版本
-  var curVersion = 1.40;
+  const curVersion = 1.40;
   moment.locale('zh-cn');
   /**
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
    */
   //0-10 质量中心数据库
-  var TBL = {
+  const TBL = {
     "PHYSIC": 0, //'Paper_Para_PscData', //0 物理站
     "CHEM": 1, //'Paper_Para_ChemData', //1 化验站
     "SURFACE": 2, //'Paper_Para_SurfaceData', //2 物理外观指标
@@ -38,7 +38,7 @@
   }; //表单定义
 
   //全局配置
-  var config = {
+  const config = {
     "TOKEN": '79d84495ca776ccb523114a2120e273ca80b315b'
   };
 
@@ -1030,7 +1030,10 @@
         bsTips('报表分享失败，请稍后重试', 0);
       }
     });
+  };
 
+  function isUndefined(obj) {
+    return obj === void 0;
   }
 
   var gbColors = {
