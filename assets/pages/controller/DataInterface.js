@@ -458,6 +458,9 @@ var FormEditable = function() {
   }, {
     value: 9,
     text: '钞纸在线质量检测'
+  }, {
+    value: 10,
+    text: '质量图像数据库'
   }];
   var initAjaxMock = function() {
     //ajax mocks

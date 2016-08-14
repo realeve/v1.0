@@ -324,8 +324,21 @@ class CI_DB_result {
 		return $str;
 	}
 	
-	function reConv($str,$dbID)
+	function reConv($str,$blobType,$dbID)
 	{	
+		if($blobType != '0'){
+			$type = '';
+			if ($blobType == 'png'){
+				$type = 'data:image/png;base64,';
+			}else if($blobType == 'jpg'){
+				$type = 'data:image/jpg;base64,';
+			}else if($blobType == 'bmp'){
+				$type = 'data:image/bmp;base64,';
+			}else if($blobType == 'gif'){
+				$type = 'data:image/gif;base64,';
+			}
+			return $type . base64_encode($str);			
+		}
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
 		$encode = mb_detect_encoding($str,$encode_Arr);
 		if($encode == 'UTF-8'){		
@@ -351,7 +364,7 @@ class CI_DB_result {
 	 * @return	json
 	 * Mod by 李宾@20150305
 	 */
-	public function result_json($dbID=0)
+	public function result_json($blobType=0,$dbID=0)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -386,8 +399,8 @@ class CI_DB_result {
 			for ($i=0; $i < $iCols; $i++) { 
 				//return $strFields[$i];
 				$str = $strFields[$i];
-				$iValue = trim($this->reConv($row[$str],$dbID));
-				$strName = trim($this->reConv($str,$dbID));
+				$iValue = trim($this->reConv($row[$str],$blobType,$dbID));
+				$strName = trim($this->reConv($str,$blobType,$dbID));
 				if ($i == 0 ) $strJSON .= '{';
 				$strJSON .= '"' .$strName.'":"' . $iValue . '"';
 				if ($i == $iCols-1) $strJSON .= '}';
@@ -469,7 +482,7 @@ class CI_DB_result {
 	}
 
 	//返回datatables所用数据格式
-	public function result_datatable_json($dbID=0)
+	public function result_datatable_json($blobType=0,$dbID=0)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -511,8 +524,8 @@ class CI_DB_result {
 			if ($strJSON != $strHead) {$strJSON .= ",";}	
 			for ($i=0; $i < $iCols; $i++) {
 				$str = $strFields[$i];
-				$iValue = trim($this->reConv($row[$str],$dbID));
-				$strName = trim($this->reConv($str,$dbID));
+				$iValue = trim($this->reConv($row[$str],$blobType,$dbID));
+				$strName = trim($this->reConv($str,$blobType,$dbID));
 				if ($i == 0 ) $strJSON .= '[';
 				$strJSON .= '"' . $iValue . '"';
 				if ($i == $iCols-1)

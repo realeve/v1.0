@@ -163,6 +163,7 @@ class DataInterfaceModel extends CI_Model {
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);
 		//先获取当前用户ID
 		$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
+
 		$query=$LOGINDB->query($SQLStr,array($data['Token']));
 		$strJson = $query->result_json();
 
@@ -207,10 +208,10 @@ class DataInterfaceModel extends CI_Model {
 			case '0':
 			case '2':
 			case '3':
-				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M']);//输出质量数据
+				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M'],$data);//输出质量数据
 				break;
 			case '1':
-				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M']);//输出列名
+				$strApiInfo = $this->ShowApiData($aParTemp,$ApiInfo->data[0],$data['M'],$data);//输出列名
 				return '{"rows":0,'.$strApiInfo.',"title":"'.$ApiInfo->data[0]->ApiName.'","source":"数据来源:'.$ApiInfo->data[0]->DBName.'"}';
 				break;
 		}
@@ -227,12 +228,15 @@ class DataInterfaceModel extends CI_Model {
 	}
 
 	//工序，每页多少条，处理状态，时间范围,当前ID
-	public function ShowApiData($aParams,$ApiInfo,$mode)
+	public function ShowApiData($aParams,$ApiInfo,$mode,$dataParams)
 	{
 		/*
 		使用BASE64编码,避免UTF2GBK时某些字符转换失败的问题而导致后续的  标记符?  在替换时造成的各种不兼容;
 		*/
 		$SQLStr = $this->TransToUTF(base64_decode($ApiInfo->strSQL));
+		//是否为BLOB字段
+		$isBlob = isset($dataParams['blob'])?$dataParams['blob']:0;
+
 		switch ($ApiInfo->DBID) {
 			case '0': //MSSQLSERVER
 				$LOGINDB=$this->load->database('Quality',TRUE);
@@ -264,6 +268,9 @@ class DataInterfaceModel extends CI_Model {
 			case '9'://ORCAL
 				$LOGINDB=$this->load->database('CZUSER',TRUE);
 				break;
+			case '10': //MSSQLSERVER
+				$LOGINDB=$this->load->database('IMG',TRUE);
+				break;
 		}
 
 		if ($mode == 0 ) {
@@ -274,7 +281,7 @@ class DataInterfaceModel extends CI_Model {
 			}else{
 				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			}
-			$strJson = $query->result_json($ApiInfo->DBID);
+			$strJson = $query->result_json($isBlob,$ApiInfo->DBID);
 		}
 		else if($mode == 1 ) {
 			if($ApiInfo->DBID == 0 || $ApiInfo->DBID== 5){ //MS SQL SERVER
@@ -289,7 +296,7 @@ class DataInterfaceModel extends CI_Model {
 			}else{
 				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			}
-			$strJson = $query->result_json();
+			$strJson = $query->result_json($isBlob);
 			$strFileds = $query->list_fields();
 			$strJson = $query->Array2Head($strFileds);
 		}
@@ -306,7 +313,7 @@ class DataInterfaceModel extends CI_Model {
 			}else{
 				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			}
-			$strJson = $query->result_json($ApiInfo->DBID);
+			$strJson = $query->result_json($isBlob,$ApiInfo->DBID);
 		}
 		else if ($mode == 3 ) {
 			//不使用官方替换字符串的函数(在处理ORCAL的查询语句时会报错);
@@ -318,7 +325,7 @@ class DataInterfaceModel extends CI_Model {
 				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
 			}
 
-			$strJson = $query->result_datatable_json($ApiInfo->DBID);
+			$strJson = $query->result_datatable_json($isBlob,$ApiInfo->DBID);
 		}
 		//$query->free_result(); //清理内存
 		//$LOGINDB->close();//关闭连接
