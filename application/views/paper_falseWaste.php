@@ -33,22 +33,20 @@
 					</div>
 					<div class="portlet-body form">
 						<div class="form-body row">
-							<div class="col-md-3 form-group">
-                                <label class="control-label col-md-3">录入月份</label>
-                                <div class="col-md-9">
-                                    <div class="input-group date date-picker-month">
-                                        <input type="text" class="form-control" name="rec_date" readonly>
-                                        <span class="input-group-btn">
-                                            <button class="btn default" type="button">
-                                                <i class="fa fa-calendar"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                    <!-- /input-group -->
-                                    <span class="help-block"> 选择数据录入月份 </span>
-                                </div>
-                            </div>
-							<div class="col-md-3 form-group">
+							<div class="col-md-5 form-group">
+		                                <label class="control-label col-md-3">录入月份</label>
+		                                <div class="col-md-9">
+		                                    <div class="input-group date date-picker-month">
+		                                        <input type="text" class="form-control" name="rec_date" readonly>
+		                                        <span class="input-group-btn">
+		                                            <button class="btn default" type="button">
+		                                                <i class="fa fa-calendar"></i>
+		                                            </button>
+		                                        </span>
+		                                    </div>
+		                                </div>
+		                            </div>
+							<div class="col-md-5 form-group">
 								<label class="col-md-3 control-label">备注</label>
 								<div class="col-md-9">
 									<input type="text" class="form-control" placeholder="请在此输入备注信息" name="remark">
@@ -69,7 +67,25 @@
 					</div>
 					<div class="portlet-body form">
 						<div class="form-body row formData">
-							<div class="col-md-3 form-group">
+							<div class="col-md-5 form-group">
+								<label class="col-md-3 control-label">品种</label>
+								<div class="col-md-9">
+									<select class="form-control select2" name="prod_id">
+									</select>
+									<div class="form-control-focus">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">误废率</label>
+								<div class="col-md-9">
+									<input type="text" name="wasteRatio" class="form-control" disabled placeholder="误废率" value="0">
+									<span class="help-block">  </span>
+									<div class="form-control-focus">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 form-group">
 								<label class="col-md-3 control-label" for="cartnumber">抽检张数</label>
 								<div class="col-md-9">
 									<input type="text" name="checkNum" class="form-control" placeholder="抽检张数" value="0">
@@ -78,20 +94,11 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3 form-group">
+							<div class="col-md-5 form-group">
 								<label class="col-md-3 control-label" for="cartnumber">误废张数</label>
 								<div class="col-md-9">
 									<input type="text" name="wasteNum" class="form-control" placeholder="误废张数" value="0">
 									<span class="help-block"> </span>
-									<div class="form-control-focus">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 form-group">
-								<label class="col-md-3 control-label" for="cartnumber">误废率</label>
-								<div class="col-md-9">
-									<input type="text" name="wasteRatio" class="form-control" disabled placeholder="误废率" value="0">
-									<span class="help-block">  </span>
 									<div class="form-control-focus">
 									</div>
 								</div>
@@ -118,6 +125,7 @@
 							<thead>
 								<tr>
 									<th><i class="fa fa-tag"></i> 序号 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 品种 </th>
 									<th><i class="fa fa-calendar-plus-o"></i> 月份 </th>
 									<th><i class="fa fa-align-center"></i> 抽检张数</th>
 									<th><i class="fa fa-search"></i> 误废张数</th>

@@ -68,6 +68,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     "103-G-5A": "rgb(200,200,30)",
     "9606A": "#3D7F18",
     "103-G-6A": "#3D7F18",
+    "9607A": "rgb(255,127,104)",
+    "103-G-7A": "rgb(255,127,104)",
     "9607T": "rgb(255,127,104)",
     "103-G-7T": "rgb(255,127,104)"
   };

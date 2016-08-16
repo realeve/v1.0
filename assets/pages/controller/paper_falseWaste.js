@@ -18,6 +18,11 @@ var FakePiece = function() {
 		$("input[name='rec_date']").val(today(7));
 		$("input[name='remark']").val('无');
 
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
+		var Data = ReadData(str);
+		InitSelect("prod_id", Data);
+		initSelect2();
+
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 		handleValidate();
 	}
@@ -58,35 +63,6 @@ var FakePiece = function() {
 		});
 	};
 
-	//JS端  UTF-8  需要做2GBK操作
-	//SELECT  COLLATIONPROPERTY('Chinese_PRC_Stroke_CI_AI_KS_WS', 'CodePage')
-	function getFormData() {
-		var surData = {
-			'tbl': TBL.PPR_FALSEWASTE,
-			'month': $("input[name='rec_date']").val().replace(/-/g, ''),
-			'Describe': $("input[name='remark']").val(),
-			'utf2gbk': ['Describe']
-		};
-		//surData.remark = UTF2GBK(surData.remark);
-		var keyList = [
-			'checkNum',
-			'wasteNum',
-			'wasteRatio'
-		];
-		var checkStr = JSON.stringify(surData);
-		checkStr = checkStr.replace('}', '');
-		var curVal;
-		$('.formData input').map(function(elem) {
-			curVal = $(this).val();
-			if (curVal === '') {
-				curVal = 0;
-			}
-			checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
-		});
-		checkStr += '}';
-		return $.parseJSON(checkStr);
-	}
-
 	function resetData() {
 		$('.formData input').val('0');
 		$("[name='remark']").val('无');
@@ -109,11 +85,18 @@ var FakePiece = function() {
 
 	function insertData() {
 		var strUrl = getRootPath() + "/DataInterface/insert";
+		var data = getFormData('theForm');
+
+		data.tbl = TBL.PPR_FALSEWASTE;
+		data.month = $("input[name='rec_date']").val().replace(/-/g, '');
+		data.utf2gbk = ['remark'];
+		data.rec_date = today(6);
+
 		var options = {
 			url: strUrl,
 			type: 'post',
 			resetForm: true,
-			data: getFormData(),
+			data: data,
 			success: function(data) {
 				var obj = $.parseJSON(data);
 				bsTips(obj.message, obj.type);
@@ -126,8 +109,7 @@ var FakePiece = function() {
 			}
 		};
 
-		var data = options.data;
-		if (data.checkNum >= data.wasteNum) {
+		if (Number.parseInt(data.checkNum) >= Number.parseInt(data.wasteNum)) {
 			$.ajax(options);
 		} else {
 			bsTips('数据无效，误废张数大于抽检张数，请检查后重新输入！');
@@ -144,12 +126,13 @@ var FakePiece = function() {
 		var month = $("input[name='rec_date']").val();
 		//载入历史数据
 		//损纸误废报表
-		//SELECT month as 月份,	a.checkNum as 抽检张数,	a.wasteNum as 误废张数,	a.wasteRatio as 误废率,a.[Describe] as 备注 FROM	Paper_False_Waste AS a WHERE month/100=? order by 1
+		//SELECT month as 月份,	a.checkNum as 抽检张数,	a.wasteNum as 误废张数,	a.wasteRatio as 误废率,a.[remark] as 备注 FROM	Paper_False_Waste AS a WHERE month/100=? order by 1
 
 		month = jsLeft(month, 4);
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=191&M=3&tstart=" + month;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=247&M=3&tstart=" + month;
 		var Data = ReadData(str);
-		if (Data.rows === "0") {
+		if (Data.rows === 0) {
+			objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
 			return;
 		}
 
@@ -176,7 +159,7 @@ var FakePiece = function() {
 		//SELECT month as 月份,a.wasteRatio as 误废率 FROM	Paper_False_Waste AS a WHERE month/100=2016 order by 1
 		var month = $("input[name='rec_date']").val();
 		month = jsLeft(month, 4);
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=193&M=3&tstart=" + month;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=249&M=3&tstart=" + month;
 		return str;
 	}
 

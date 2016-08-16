@@ -18,7 +18,7 @@ var FakePiece = function() {
 
 		//作废原因
 		//SELECT id,fakedesc FROM FakePieceDesc
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=189&M=3";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=245&M=3";
 		Data = ReadData(str);
 		InitSelect("ProcID", Data);
 
@@ -167,7 +167,7 @@ var FakePiece = function() {
 		//大张废原始数据查询
 		// SELECT  a.CartNumber,  a.ProductType,  a.Date,  a.FakePiece,  a.HalfPiece,  a.NoNum,  b.FakeDesc,  a.Describe  FROM  FakePieceData a INNER JOIN  FakePieceDesc b on a.ProcID = b.id  where date = ? order by a.id desc
 		date = date.replace(/-/g, '');
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=190&M=3&tstart=" + date;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=246&M=3&tstart=" + date;
 		var Data = ReadData(str);
 		if (Data.rows === 0) {
 			objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');

@@ -68,17 +68,26 @@
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">用户反馈</label>
+								<label class="col-md-3 control-label">品种</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" placeholder="请在此输入用户反馈信息" name="user_feedback">
+									<select class="form-control select2" name="prod_id">
+									</select>
 									<div class="form-control-focus">
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">车间反馈</label>
+								<label class="col-md-3 control-label">多张</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" placeholder="请在此输入车间反馈信息" name="dpt_feedback">
+									<input type="text" class="form-control" placeholder="" name="more">
+									<div class="form-control-focus">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label">少张</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control" placeholder="" name="less">
 									<div class="form-control-focus">
 									</div>
 								</div>
@@ -107,16 +116,6 @@
 								<label class="col-md-3 control-label" for="cartnumber">严重废品</label>
 								<div class="col-md-9">
 									<input type="text" name="serious_fake" class="form-control" placeholder="严重废品考核张数" value="0">
-									<span class="help-block">( 考核标准:100元/张 )</span>
-									<div class="form-control-focus">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label" for="cartnumber">一般废品</label>
-								<div class="col-md-9">
-									<input type="text" name="normal_fake" class="form-control" placeholder="一般废品考核张数" value="0">
-									<span class="help-block">( 考核标准:10元/张 )</span>
 									<div class="form-control-focus">
 									</div>
 								</div>
@@ -125,12 +124,37 @@
 								<label class="col-md-3 control-label" for="cartnumber">严重废考核金额</label>
 								<div class="col-md-9">
 									<input type="text" name="serious_fake_money" class="form-control" disabled value="0">
+									<span class="help-block">( 考核标准:500元/张 )</span>
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label" for="cartnumber">一般废考核金额</label>
+								<label class="col-md-3 control-label" for="cartnumber">大错</label>
 								<div class="col-md-9">
-									<input type="text" name="normal_fake_money" class="form-control" disabled value="0">
+									<input type="text" name="large_fake" class="form-control" placeholder="大错考核张数" value="0">
+									<div class="form-control-focus">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">大错考核金额</label>
+								<div class="col-md-9">
+									<input type="text" name="large_fake_money" class="form-control" disabled value="0">
+									<span class="help-block">( 考核标准:50元/张 )</span>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">中错</label>
+								<div class="col-md-9">
+									<input type="text" name="mid_fake" class="form-control" placeholder="中错考核张数" value="0">
+									<div class="form-control-focus">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">中错考核金额</label>
+								<div class="col-md-9">
+									<input type="text" name="mid_fake_money" class="form-control" disabled value="0">
+									<span class="help-block">( 考核标准:5元/张 )</span>
 								</div>
 							</div>
 						</div>
@@ -155,13 +179,15 @@
 							<thead>
 								<tr>
 									<th><i class="fa fa-calendar-plus-o"></i> 序号 </th>
+									<th><i class="fa fa-briefcase"></i> 品种 </th>
 									<th><i class="fa fa-briefcase"></i> 人员 </th>
 									<th><i class="fa fa-calendar-plus-o"></i> 考核日期 </th>
 									<th><i class="fa fa-user"></i> 严重废</th>
-									<th><i class="fa fa-calendar-plus-o"></i> 一般废 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 大错 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 中错 </th>
 									<th><i class="fa fa-calendar-plus-o"></i> 考核金额 </th>
-									<th><i class="fa fa-cut"></i> 用户反馈</th>
-									<th><i class="fa fa-dedent"></i> 车间考核</th>
+									<th><i class="fa fa-cut"></i> 多张</th>
+									<th><i class="fa fa-dedent"></i> 少张 </th>
 									<th><i class="fa fa-pencil"></i> 备注 </th>
 								</tr>
 							</thead>

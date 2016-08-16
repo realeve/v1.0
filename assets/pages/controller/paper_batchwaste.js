@@ -51,7 +51,7 @@ var FakePiece = function() {
 		vRules.fake_num = {
 			number: true,
 			required: true,
-			min: 0.01
+			min: 0.1
 		};
 		vRules.fake_reason = {
 			required: true
@@ -145,7 +145,7 @@ var FakePiece = function() {
 		//SELECT a.reel_code AS 轴号, convert(varchar,a.rec_date,112) AS 录入日期, b.Machine_Name AS 机台, c.ProductName AS 品种, a.fake_reason AS 报废原因, a.fake_num AS 报废数量, a.remark AS 备注 FROM dbo.Paper_Batch_Waste AS a INNER JOIN Paper_Machine_Info b ON a.machine_id = b.Machine_ID INNER JOIN Paper_ProductData c ON a.prod_id = c.ProductID where convert(varchar,a.rec_date,112) BETWEEN ? AND ? ORDER BY a.ID
 
 		date = date.replace(/-/g, '');
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=192&M=3&tstart=" + date + "&tend=" + date;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=248&M=3&tstart=" + date + "&tend=" + date;
 		var Data = ReadData(str);
 		if (Data.rows === 0) {
 			objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
@@ -174,7 +174,7 @@ var FakePiece = function() {
 		//SELECT a.fake_reason AS 报废原因, sum(a.fake_num) AS 报废数量 FROM dbo.Paper_Batch_Waste a WHERE CONVERT (VARCHAR(6), a.rec_date, 112) = left(?,6) group by a.fake_reason order by 2 desc
 		var date = $("input[name='rec_date']").val();
 		date = date.replace(/-/g, '');
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=194&M=3&tstart=" + date;
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=250&M=3&tstart=" + date;
 		return str;
 	}
 

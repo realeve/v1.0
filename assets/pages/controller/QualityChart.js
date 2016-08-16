@@ -543,7 +543,7 @@
            sourceData.push([
              Number.parseFloat(data[i]), Number.parseFloat(data[i + 1])
            ]);
-         })
+         });
          return sourceData;
        }
 
@@ -557,7 +557,7 @@
            regID = 0;
          } else {
            for (var i = 0; i < curOption.series.length; i++) {
-             if (curOption.legend.data[regID] == curOption.series[i].name) {
+             if (curOption.legend.data[regID].name == curOption.series[i].name) {
                seriesID = i;
                i = curOption.series.length;
              }
