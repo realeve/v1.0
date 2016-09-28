@@ -519,10 +519,10 @@
             });
 
             $.each(imgs, function(index, item) {
-                 item.el.width = item.width;
-                 item.el.height = item.height;
-                 item.el.style.width = item.width + 'px';
-                 item.el.style.height = item.height + 'px';
+                item.el.width = item.width;
+                item.el.height = item.height;
+                item.el.style.width = item.width + 'px';
+                item.el.style.height = item.height + 'px';
             });
 
             t.blocks.each(function(index, el) {
@@ -1940,7 +1940,7 @@ jQuery.fn.cubeportfolio.options = {
             if ($.isFunction(param)) {
                 expression = param.call(t, t.blocks);
 
-                if(expression === undefined) {
+                if (expression === undefined) {
                     throw new Error('When you call cubeportfolio API `filter` method with a param of type function you must return the blocks that will be visible.');
                 }
             } else {
@@ -3515,7 +3515,7 @@ if (typeof Object.create !== 'function') {
                 type: 'GET',
                 dataType: 'HTML'
             }).done(function(result) {
-                var items = result.replace(/(\r\n|\n|\r)/gm,"");
+                var items = result.replace(/(\r\n|\n|\r)/gm, "");
 
                 var startBlock = items.indexOf('cbp-loadMore-block' + numberOfClicks);
 
@@ -3639,7 +3639,7 @@ if (typeof Object.create !== 'function') {
                             cache: true
                         })
                         .done(function(result) {
-                            var items = result.replace(/(\r\n|\n|\r)/gm,"");
+                            var items = result.replace(/(\r\n|\n|\r)/gm, "");
 
                             var startBlock = items.indexOf('cbp-loadMore-block' + self.numberOfClicks);
 
@@ -4700,7 +4700,7 @@ if (typeof Object.create !== 'function') {
                 var media = '';
                 var firstImg = this.content.find('img')[0];
 
-                if(firstImg) {
+                if (firstImg) {
                     media = firstImg.src;
                 }
 
@@ -5151,6 +5151,7 @@ if (typeof Object.create !== 'function') {
                 padding = parseInt(img.css('margin-top'), 10) + parseInt(img.css('margin-bottom'), 10);
 
             img.css('max-height', (height - padding) + 'px');
+            img.css('min-height', 400 + 'px');
         },
 
         preloadNearbyImages: function() {
@@ -5315,7 +5316,7 @@ if (typeof Object.create !== 'function') {
                 var oldDate = $.data(this, 'cbp-locked'),
                     newDate = $.data(this, 'cbp-locked', +new Date());
 
-                if(!oldDate || ((newDate - oldDate) > 300)) {
+                if (!oldDate || ((newDate - oldDate) > 300)) {
                     p.singlePageInline.openSinglePageInline(p.blocksOn, this);
                 }
             });

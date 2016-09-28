@@ -63,7 +63,7 @@ Change Quick Sidebar Width
 }
 
 /******
-Page Footer 
+Page Footer
 *****
 .page-prefooter {
   background: #48525e;
@@ -305,3 +305,6 @@ blockquote{
 .note-editor.note-frame.fullscreen {
     top: 46px;
   }
+.portfolio-content .cbp-l-filters-button{
+  margin-bottom: 15px;
+}

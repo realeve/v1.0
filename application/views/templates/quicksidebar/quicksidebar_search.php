@@ -17,11 +17,11 @@
                   <div class="page-quick-sidebar-settings-list">
                      <h3 class="list-heading">产品设置</h3>
                      <ul class="list-items borderless">
-                        <li>
+                        <!--li>
                             产品品种
                             <select class="form-control input-inline input-sm input-small" name="prodType">
                            </select>
-                        </li>
+                        </li-->
                          <li>
                             机台
                            <select class="form-control input-inline input-sm input-small" name="machineID">
@@ -44,7 +44,7 @@
                            </select>
                         </li>
                      </ul>
-                     <h3 class="list-heading">其余设置</h3>
+                     <!--h3 class="list-heading">其余设置</h3>
                      <ul class="list-items borderless">
                         <li>
                             缺陷类型
@@ -53,7 +53,7 @@
                               <option value="1">所有图像</option>
                            </select>
                         </li>
-                     </ul>
+                     </ul-->
                      <div class="containt row">
                         <div class="inner-content col-md-4">
                            <button id="saveSettings" class="btn btn-success btn-circle green-seagreen"><i class="icon-magnifier"></i>保存设置</button>

@@ -113,6 +113,8 @@ $db['KG']['password'] ='jitai';*/
 //DBID = 5
 $db['Quality'] = $db['sqlsvr'];
 $db['Quality']['database'] = 'NotaCheck_DB';
+$db['IMG'] = $db['sqlsvr'];
+$db['IMG']['database'] = 'NotaCheck_IMGDB';
 /*
 //DBID=6
 $db['SHY'] = $db['XZHC'];
