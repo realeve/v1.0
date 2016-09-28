@@ -52,8 +52,8 @@
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn red uppercase btn red uppercase" rel="nofollow">查看详情</a>
-                                                <a href="../assets/global/img/portfolio/600x600/33.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
+                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" rel="nofollow">查看详情</a>
+                                                <a href="../assets/global/img/portfolio/600x600/33.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
                                             </div>
                                         </div>
                                     </div>
@@ -68,8 +68,8 @@
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn red uppercase btn red uppercase" rel="nofollow">查看详情</a>
-                                                <a href="../assets/global/img/portfolio/1200x900/4.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
+                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" rel="nofollow">查看详情</a>
+                                                <a href="../assets/global/img/portfolio/1200x900/4.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,8 +84,8 @@
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn red uppercase btn red uppercase" rel="nofollow">查看详情</a>
-                                                <a href="../assets/global/img/portfolio/600x600/33.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
+                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" rel="nofollow">查看详情</a>
+                                                <a href="../assets/global/img/portfolio/600x600/33.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
                                             </div>
                                         </div>
                                     </div>
@@ -100,8 +100,8 @@
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn red uppercase btn red uppercase" rel="nofollow">查看详情</a>
-                                                <a href="../assets/global/img/portfolio/1200x900/4.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
+                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" rel="nofollow">查看详情</a>
+                                                <a href="../assets/global/img/portfolio/1200x900/4.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
                                             </div>
                                         </div>
                                     </div>
@@ -116,8 +116,8 @@
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn red uppercase btn red uppercase" rel="nofollow">查看详情</a>
-                                                <a href="../assets/global/img/portfolio/600x600/33.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
+                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" rel="nofollow">查看详情</a>
+                                                <a href="../assets/global/img/portfolio/600x600/33.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
                                             </div>
                                         </div>
                                     </div>
@@ -132,8 +132,8 @@
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignCenter">
                                             <div class="cbp-l-caption-body">
-                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn red uppercase btn red uppercase" rel="nofollow">查看详情</a>
-                                                <a href="../assets/global/img/portfolio/1200x900/4.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
+                                                <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" rel="nofollow">查看详情</a>
+                                                <a href="../assets/global/img/portfolio/1200x900/4.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn red uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">查看大图</a>
                                             </div>
                                         </div>
                                     </div>
