@@ -93,5 +93,5 @@
             </div>
 		</div>
 	</div>
-	<?php include("templates/quicksidebar/quicksidebar_search.php");?>
+	<?php include("templates/quicksidebar/quicksidebar_search_feedback.php");?>
 </div>

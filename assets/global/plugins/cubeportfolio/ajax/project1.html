@@ -1,73 +1,90 @@
 <div class="portfolio-content">
-    <div class="cbp-l-project-title">Dashboard</div>
-    <div class="cbp-l-project-subtitle">by Paul Flavius Nechita</div>
-    <div class="cbp-slider">
+    <div class="cbp-l-project-title">{cartnumber}</div>
+    <div class="cbp-l-project-subtitle">{machine} 于 {date} 生产</div>
+	<div class="cbp-l-inline">
+        <div class="row">
+            <div class="col-sm-4 portfolio-tile">
+                <a href="" class="cbp-lightbox">
+                    <img src="" alt=""> </a>
+					<div class="text-center margin-top-10">{img0}</div>
+			</div>
+             <div class="col-sm-4 portfolio-tile">
+                <a href="" class="cbp-lightbox">
+                    <img src="" alt=""> </a>
+					<div class="text-center margin-top-10">{img1}</div>
+			</div>
+			 <div class="col-sm-4 portfolio-tile">
+                <a href="" class="cbp-lightbox">
+                    <img src="" alt=""> </a>
+					<div class="text-center margin-top-10">{img2}</div>
+			</div>
+        </div>
+    </div>
+	<!--div class="cbp-slider">
         <ul class="cbp-slider-wrap">
             <li class="cbp-slider-item">
-                <a href="../assets/global/img/portfolio/1200x900/06.jpg" class="cbp-lightbox">
-                    <img src="../assets/global/img/portfolio/1200x900/06.jpg" alt=""> </a>
+                <a href="" class="cbp-lightbox">
+                    <img src="" alt=""> </a>
             </li>
             <li class="cbp-slider-item">
-                <a href="../assets/global/img/portfolio/1200x900/08.jpg" class="cbp-lightbox">
-                    <img src="../assets/global/img/portfolio/1200x900/08.jpg" alt=""> </a>
+                <a href="" class="cbp-lightbox">
+                    <img src="" alt=""> </a>
             </li>
-            <li class="cbp-slider-item">
-                <a href="../assets/global/img/portfolio/1200x900/77.jpg" class="cbp-lightbox">
-                    <img src="../assets/global/img/portfolio/1200x900/77.jpg" alt=""> </a>
+			<li class="cbp-slider-item">
+                <a href="" class="cbp-lightbox">
+                    <img src="" alt=""> </a>
             </li>
         </ul>
-    </div>
+    </div-->
     <div class="cbp-l-project-container">
         <div class="cbp-l-project-desc">
-            <div class="cbp-l-project-desc-title">
-                <span>Project Description</span>
-            </div>
-            <div class="cbp-l-project-desc-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, cumque, earum blanditiis incidunt minus commodi consequatur provident quae. Nihil, alias, vel consequatur ab aliquam aspernatur optio harum facilis excepturi mollitia autem
-                voluptas cum ex veniam numquam quia repudiandae in iure. Assumenda, vel provident molestiae perferendis officia commodi asperiores earum sapiente inventore quam deleniti mollitia consequatur expedita quaerat natus praesentium beatae aut
-                ipsa non ex ullam atque suscipit ut dignissimos magnam!</div>
+			{prodInfo}
         </div>
         <div class="cbp-l-project-details">
             <div class="cbp-l-project-details-title">
-                <span>Project Details</span>
+                <span>当天质量曲线</span>
+            </div>
+            <div class="cbp-l-project-details-list" id="chart" style="min-height:220px;">
+            </div>
+        </div>
+        <div class="cbp-l-project-details">
+            <div class="cbp-l-project-details-title">
+                <span>质量详情</span>
             </div>
             <ul class="cbp-l-project-details-list">
                 <li>
-                    <strong>Client</strong>John Doe</li>
+                    <strong>好品率</strong>{goodrate}
+				</li>
                 <li>
-                    <strong>Date</strong>22 December 2013</li>
+                    <strong>机台</strong>{machine}
+				</li>
                 <li>
-                    <strong>Categories</strong>Logo, Graphic</li>
+                    <strong>生产日期</strong>{date}
+				</li>
+                <li>
+                    <strong>缺陷总数</strong>{errcount}
+				</li>
+                <li>
+                    <strong>未检数</strong>{nocheck}
+				</li>
             </ul>
-            <a href="#" target="_blank" class="cbp-l-project-details-visit btn red uppercase">visit the site</a>
+            <a href="#" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>
         </div>
     </div>
     <div class="cbp-l-project-container">
         <div class="cbp-l-project-related">
             <div class="cbp-l-project-desc-title">
-                <span>Related Projects</span>
+                <span>相关产品</span> <small>{machine} 当天生产的其它产品</small>
             </div>
-            <ul class="cbp-l-project-related-wrap">
-                <li class="cbp-l-project-related-item">
-                    <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-l-project-related-link" rel="nofollow">
-                        <img src="../assets/global/img/portfolio/600x600/1.jpg" alt="">
-                        <div class="cbp-l-project-related-title">Speed Detector</div>
-                    </a>
-                </li>
-                <li class="cbp-l-project-related-item">
-                    <a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-singlePage cbp-l-project-related-link" rel="nofollow">
-                        <img src="../assets/global/img/portfolio/600x600/5.jpg" alt="">
-                        <div class="cbp-l-project-related-title">World Clock Widget</div>
-                    </a>
-                </li>
-                <li class="cbp-l-project-related-item">
-                    <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html" class="cbp-singlePage cbp-l-project-related-link" rel="nofollow">
-                        <img src="../assets/global/img/portfolio/600x600/27.jpg" alt="">
-                        <div class="cbp-l-project-related-title">To-Do Dashboard</div>
-                    </a>
-                </li>
-            </ul>
+			<div class="cbp-l-inline">
+				<div class="row">
+					{relate}
+				</div>
+			</div>
+            
         </div>
     </div>
     <br>
     <br>
-    <br> </div>
+    <br>
+</div>

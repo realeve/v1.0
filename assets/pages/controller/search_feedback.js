@@ -64,10 +64,9 @@ var feedback = function() {
 	// where ProduceDate between 20160901 and 20160930 and GoodRate<=80
 
 	//apiID 279 limit
-	//select a.id,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3  from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID  where ProduceDate between ? and ? and GoodRate<=?
-
+	//select a.id,nocheckcount,errpiccount,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3  from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID  where ProduceDate between ? and ? and GoodRate<=?
 	//apiID 280  limit mid
-	//select a.id,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3  from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID  where ProduceDate between ? and ? and GoodRate<=? and b.MachineID = ?
+	//select a.id,nocheckcount,errpiccount,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3  from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID  where ProduceDate between ? and ? and GoodRate<=? and b.MachineID = ?
 	var getQueryUrl = function(settings) {
 		var params = '&ID=';
 		if (settings.machineID == -1) {
@@ -88,6 +87,7 @@ var feedback = function() {
 		var data = ReadData(strUrl);
 		renderImgList(data);
 	};
+
 	var renderImgList = function(fakeList) {
 		var fakeType = [{
 			class: '',
@@ -109,6 +109,8 @@ var feedback = function() {
 				var url = strUrl + data.id;
 				var obj = ReadData(url);
 				var img = obj.data[0];
+				var parseCart = JSON.stringify(data),
+					parseImg = JSON.stringify(img);
 				for (var i = 1; i <= 3; i++) {
 					var imgType = parseInt(data['ImgVerify' + i], 10);
 					imgType = imgType > 2 ? 2 : imgType;
@@ -119,7 +121,7 @@ var feedback = function() {
 						'      <div class="cbp-caption-activeWrap">' +
 						'          <div class="cbp-l-caption-alignCenter">' +
 						'              <div class="cbp-l-caption-body">' + //class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" class="cbp-caption cbp-singlePageInline"
-						'                  <a href="../assets/global/plugins/cubeportfolio/ajax/project3.html" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase"  rel="nofollow">查看详情</a>' +
+						'                  <a href="../assets/global/plugins/cubeportfolio/ajax/project1.html?cart=' + data.CartNumber + '" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase"  rel="nofollow" data-cartnumber="' + data.CartNumber + '"  data-cart=\'' + parseCart + "' data-img = '" + parseImg + "' >查看详情</a>" +
 						'                  <a href="data:image/jpg;base64,' + img[i - 1] + '" class="cbp-lightbox cbp-s-caption-buttonRight btn red uppercase" data-title="' + data.CartNumber + '<br>' + data.MachineName + '<br>好品率：' + data.GoodRate + '%">查看大图</a>' +
 						'              </div>' +
 						'          </div>' +
@@ -149,12 +151,52 @@ var feedback = function() {
 			bsTips('图像数据载入完毕,共载入数据' + fakeList.rows + '车', 1);
 
 			initImg();
+		} else {
+			$('#js-grid-juicy-projects').addClass('cbp-ready').append('<div class="cbp-search-nothing">当前时间内无 <i>' + $('[name=machineID]').find('option:selected').text() + '</i> 的信息</div>');
+			//bsTips('当前时间无数据', 1);
 		}
 
 	};
 
 	var initImg = function() {
 		// init cubeportfolio
+
+		function getOption(obj) {
+			return {
+				tooltip: {
+					trigger: 'axis',
+					formatter: '{b}<br>{c}%'
+				},
+				color: ['#e12330'],
+				xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: obj.xAxis,
+					show: false
+				},
+				grid: {
+					x: 30,
+					y: 10,
+					x2: 10,
+					y2: 20
+				},
+				yAxis: {
+					type: 'value',
+					axisTick: {
+						show: false
+					},
+					axisLine: {
+						show: false
+					},
+					min: 0,
+					max: 100
+				},
+				series: [{
+					type: 'line',
+					data: obj.yAxis
+				}]
+			};
+		}
 
 		var initCubeportfolio = function() {
 
@@ -171,13 +213,13 @@ var feedback = function() {
 				gridAdjustment: 'responsive',
 				mediaQueries: [{
 					width: 1500,
-					cols: 6
+					cols: 7
 				}, {
 					width: 1100,
-					cols: 5
+					cols: 6
 				}, {
 					width: 800,
-					cols: 4
+					cols: 5
 				}, {
 					width: 480,
 					cols: 3
@@ -204,7 +246,7 @@ var feedback = function() {
 				singlePageCallback: function(url, element) {
 					// to update singlePage content use the following method: this.updateSinglePage(yourContent)
 					var t = this;
-
+					var fakeType = ['<span class="badge">', '<span class="badge badge-info">', '<span class="badge badge-danger">'];
 					$.ajax({
 							url: url,
 							type: 'GET',
@@ -212,7 +254,91 @@ var feedback = function() {
 							timeout: 10000
 						})
 						.done(function(result) {
-							t.updateSinglePage(result);
+
+							var cart = location.href.split('?cart=')[1].substring(0, 8);
+							var link = $('[data-cartnumber="' + cart + '"]').first();
+							var data = link.data('cart');
+							var img = link.data('img');
+
+							result = result.replace('{cartnumber}', data.CartNumber);
+							result = result.replace(/{machine}/g, data.MachineName);
+							result = result.replace('{goodrate}', data.GoodRate);
+							result = result.replace(/{date}/g, data.ProduceDate);
+							result = result.replace(/{errcount}/g, data.errpiccount);
+							result = result.replace(/{nocheck}/g, data.nocheckcount);
+
+							for (var i = 0; i < 3; i++) {
+								if (img[i] != 'AA==') {
+									result = result.replace('a href=""', 'a href="data:image/jpg;base64,' + img[i] + '"');
+									result = result.replace('img src=""', 'img src="data:image/jpg;base64,' + img[i] + '"');
+									var imgType = parseInt(data['ImgVerify' + (i + 1)], 10);
+									imgType = imgType > 2 ? 2 : imgType;
+									result = result.replace('{img' + i + '}', data['FormatPos' + (i + 1)] + '开 / ' + fakeType[imgType] + data['ErrCount' + (i + 1)] + '条</span>');
+								}else{
+									result = result.replace('{img' + i + '}', '');
+								}
+							}
+
+							var chartData = {
+								xAxis: [],
+								yAxis: []
+							};
+							//mid
+							//281
+							//SELECT procName,MachineName,CaptainName,convert(varchar,StartDate,120) as startDate,WorkInfo FROM  CartInfoData where MahouID =
+							var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=281&M=3&mid=" + data.id;
+							$.ajax(url).done(function(prodInfo) {
+								prodInfo = prodInfo.replace(/\r\n/g, '<br>').replace(/\t/g, ' ');
+								var prodList = $.parseJSON(prodInfo);
+								var str = '';
+								prodList.data.map(function(elem, i) {
+									str += '<div class="cbp-l-project-desc-title">' +
+										'	<span>' + (i + 1) + '.' + elem[0] + '工序：  ' + elem[1] + '</span>' +
+										'</div>' +
+										'<div class="cbp-l-project-desc-text"><h4>' + elem[2] + ' <small>' + elem[3] + '</small></h4>' + elem[4] + '</div>';
+								});
+
+								result = result.replace('{prodInfo}', str);
+
+								//当天生产的其它产品
+								//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where id = 39555) b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
+								var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cid=" + data.id;
+								var cartList = ReadData(url);
+								var strList = '';
+								cartList.data.map(function(elem, curPos) {
+									curPos++;
+									str = '<div class="col-sm-3 portfolio-tile">' +
+										'    <a href="#" class="cbp-singlePage cbp-l-project-related-link" rel="nofollow">';
+									var imgUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&M=3&t=" + elem[0];
+									var imgData = ReadData(imgUrl);
+									var img = imgData.data[0];
+									var imgType = parseInt(elem[5], 10);
+									imgType = imgType > 2 ? 2 : imgType;
+									if(img[0]!=='AA=='){
+										str += '        <img src="data:image/jpg;base64,' + img[0] + '" alt="">' ;
+									}else{
+										str += '        <img src="../assets/global/img/none.png" alt="">' ;
+									}
+
+										str+='        <div class="text-center margin-top-10">' + elem[1] + ' / ' + elem[2] + '% <br>第' + elem[3] + '开 / ' + fakeType[imgType] + elem[4] + '条</span></div>' +
+										'    </a>' +
+										'</div>';
+									strList += str;
+									chartData.xAxis.push(elem[1]);
+									chartData.yAxis.push(elem[2]);
+								});
+
+								result = result.replace('{relate}', strList);
+								t.updateSinglePage(result);
+
+								setTimeout(function() {
+									var ec = echarts.init(document.getElementById("chart"));
+									var option = getOption(chartData);
+									//console.log(JSON.stringify(option));
+									ec.setOption(option);
+								}, 500);
+							});
+
 						})
 						.fail(function() {
 							t.updateSinglePage('AJAX Error! Please refresh the page!');

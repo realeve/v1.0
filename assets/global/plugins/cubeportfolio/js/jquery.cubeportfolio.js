@@ -4509,7 +4509,7 @@ if (typeof Object.create !== 'function') {
             var t = this;
 
             t.height = ((t.top === 0) || (t.top === t.cubeportfolio.height)) ? t.wrap.outerHeight(true) : t.wrap.outerHeight(true) - t.options.gapHorizontal;
-            t.height/=2;
+
             t.storeBlocks.each(function(index, el) {
                 if (CubePortfolio.private.modernBrowser) {
                     el.style[CubePortfolio.private.transform] = '';

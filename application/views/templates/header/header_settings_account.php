@@ -16,6 +16,10 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <meta content="" name="description"/>
 <meta content="" name="author"/>
+<script src="../assets/global/plugins/pace/pace.min.js" type="text/javascript"></script>
+<!-- END PAGE FIRST SCRIPTS -->
+<!-- BEGIN PAGE TOP STYLES -->
+<link href="../assets/global/plugins/pace/themes/pace-theme-flash.css" rel="stylesheet" type="text/css" />
 <script src="../../assets/pages/controller/livecss.min.js" type="text/javascript"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
