@@ -12,7 +12,7 @@
          token = config.TOKEN;
        }
        //缓存5分钟
-  var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + '&cache=' + config.cache; // + "&t=" + Math.random();
+       var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + '&cache=' + config.cache; // + "&t=" + Math.random();
        var paramList = location.href.split('&');
 
        for (var i = 1; i < paramList.length; i++) {
@@ -718,7 +718,7 @@
      }();
 
      jQuery(document).ready(function() {
-       //UIIdleTimeout.init();
+       UIIdleTimeout.init();
        initDashboardDaterange('YYYYMMDD');
        initDom();
        mECharts.init();

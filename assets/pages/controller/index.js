@@ -50,7 +50,7 @@ var Index = function() {
 		};
 
 		function loadHisQuaData(apiID) {
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + apiID + "&M=3";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + apiID + "&M=3&cache=" + config.cache;
 			var Data = ReadData(str);
 			var prodHtml = '';
 
@@ -60,8 +60,8 @@ var Index = function() {
 				prodHtml += '			<div class="uppercase font-hg ' + banknoteClass[prodName] + '"><span class="number" data-counter="counterup" data-value=' + data[1] + '>' + data[1];
 				prodHtml += '</span><span class="font-lg font-grey-mint">%</span>';
 				prodHtml += '			</div></div>';
-			})
-			if (Data.rows == 0) {
+			});
+			if (Data.rows === 0) {
 				prodHtml = '<h3 style="padding-left:20px;height:20px;">对应时间无质量信息</h3>';
 			}
 
@@ -87,7 +87,7 @@ var Index = function() {
 
 		var initQualityCharts = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=172&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=172&M=0&cache=" + config.cache;
 			var Data = ReadData(str);
 
 			var lineData = {
@@ -210,7 +210,7 @@ var Index = function() {
 		var olInfo;
 
 		var loadOLInfo = function() {
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=173&M=3";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=173&M=3&cache=1440";
 			var Data = ReadData(str);
 			olInfo = {
 				hardDisk: [],
@@ -265,7 +265,7 @@ var Index = function() {
 			}*/
 
 			var getQualityByMachine = function(machineName) {
-				var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=174&M=3&machine=" + machineName;
+				var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=174&M=3&machine=" + machineName + "&cache=" + config.cache;
 				var Data = ReadData(str);
 				return getFlotSeries(Data.data, 1);
 			};
@@ -567,7 +567,7 @@ var Index = function() {
 		}();
 
 
-	}
+	};
 
 	var dashboardMainChart = null;
 
@@ -622,7 +622,7 @@ var Index = function() {
 
 		var initNoteAnanyCharts = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=175&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=175&M=0&cache=" + config.cache;
 			var Data = ReadData(str);
 
 			var flotData = {
@@ -653,7 +653,7 @@ var Index = function() {
 		var isChart2Inited = false;
 		var initNoteAnanyCharts2 = function() {
 
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=175&M=0";
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=175&M=0&cache=" + config.cache;
 			var Data = ReadData(str);
 
 			var flotData = {
@@ -856,7 +856,7 @@ var mECharts = function() {
 			var b = jsRight(('0' + (date.getMonth() + 1)), 2);
 			var c = jsRight(('0' + date.getDate()), 2);
 			return a + b + c;
-		};
+		}
 
 		var date = {
 			start: jsLeft(getDate(), 6) + '01',
@@ -869,18 +869,18 @@ var mECharts = function() {
 			var b = jsRight(('0' + (date.getMonth() + 1)), 2);
 			var c = jsRight(('0' + date.getDate()), 2);
 			return a + b + c;
-		};
+		}
 
 		var lastYear = {
 			start: jsLeft(getLastYear(), 6) + '01',
 			end: jsLeft(getLastYear(), 6) + '31'
-		}
+		};
 
 
 		i = 0;
 		//SELECT  '今年' as 月份, a.ProductTypeName as 品种, avg(a.OpenNum) as 开包量 FROM dbo.ManualVerifyData AS a where a.MahouID>0 and a.OpenNum>0 and CONVERT(varchar,ProduceTime,112) between ? and ? group by a.ProductTypeName,CONVERT(varchar(6),ProduceTime,112) union ALL SELECT  '去年同期' as 月份, a.ProductTypeName as 品种, avg(a.OpenNum) as 开包量 FROM dbo.ManualVerifyData AS a where a.MahouID>0 and a.OpenNum>0 and CONVERT(varchar,ProduceTime,112) between ? and ? group by a.ProductTypeName,CONVERT(varchar(6),ProduceTime,112)
 		var objRequest = {
-			url: getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=222&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + lastYear.start + "&tend2=" + lastYear.end,
+			url: getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=222&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + lastYear.start + "&tend2=" + lastYear.end + "&cache=" + config.cache,
 			type: 'bar'
 		};
 		if (typeof curTheme.color != 'undefined') {
@@ -898,7 +898,7 @@ var mECharts = function() {
 
 		i = 1;
 		objRequest = {
-			url: getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=181&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end,
+			url: getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=181&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&cache=" + config.cache,
 			singleAxis: 'time',
 			type: 'themeriver'
 		};
@@ -936,7 +936,7 @@ var mECharts = function() {
 		init: function() {
 			launchChart();
 		},
-	}
+	};
 }();
 
 

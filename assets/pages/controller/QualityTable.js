@@ -163,29 +163,18 @@ var dataTable = function() {
 				},
 				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 			}, {
-				extend: 'pdfHtml5',
-				orientation: Data.cols > 10 ? 'landscape' : 'portrit',
-				pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
-				download: 'download',
-				title: Data.title,
-				exportOptions: {
-					columns: ':visible'
-				},
-				className: "btn dark sbold btn-outline",
-				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
-					//Token:'成都印钞有限公司 技术质量部',
-					/* customize: function ( doc ) {
-						doc.content.unshift( {
-							text: ' ©成都印钞有限公司 技术质量部',
-							style: {
-								alignment: 'left',
-								fontSize: 10
-							},
-							//margin: [ 0, 0, 0, 12 ]
-						} );
-					}*/
-			}, {
+				// 	extend: 'pdfHtml5',
+				// 	orientation: Data.cols > 10 ? 'landscape' : 'portrit',
+				// 	pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
+				// 	message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
+				// 	download: 'download',
+				// 	title: Data.title,
+				// 	exportOptions: {
+				// 		columns: ':visible'
+				// 	},
+				// 	className: "btn dark sbold btn-outline",
+				// 	filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
+				// }, {
 				extend: 'print',
 				autoPrint: true,
 				text: '打印',
@@ -410,7 +399,7 @@ var dataTable = function() {
 }();
 //记录选择状态
 jQuery(document).ready(function() {
-	RoundedTheme(0);
+	//RoundedTheme(0);
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');
 	initDom();

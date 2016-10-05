@@ -15,20 +15,7 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<link href="<?php echo base_url()?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-<!-- END GLOBAL MANDATORY STYLES -->
-<!-- BEGIN PAGE LEVEL STYLES -->
-<link href="<?php echo base_url()?>assets/pages/css/login.css" rel="stylesheet" type="text/css"/>
-<!-- END PAGE LEVEL SCRIPTS -->
-<!-- BEGIN THEME STYLES -->
-<link href="<?php echo base_url()?>assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url()?>assets/layouts/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="<?php echo base_url()?>assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/build/css/login.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME STYLES -->
 </head>
 <!-- END HEAD -->
@@ -41,7 +28,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
 	<a href="#">
-	<img src="<?php echo base_url()?>assets/layouts/layout/img/logo-large.png" alt=""/>
+	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAAARCAYAAAAxMemoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjUyQjVFNTYzQkI1QjExRTRCRDc1ODJBRkNDRkNEOUM2IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjUyQjVFNTY0QkI1QjExRTRCRDc1ODJBRkNDRkNEOUM2Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTJCNUU1NjFCQjVCMTFFNEJENzU4MkFGQ0NGQ0Q5QzYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTJCNUU1NjJCQjVCMTFFNEJENzU4MkFGQ0NGQ0Q5QzYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4yATPzAAADU0lEQVR42uxZ4XXaMBC2+/Ifd4J6A7QBYoK6E8RMUDJBnQlwJ4gzQegEERPEbGA2MBNQiX5KD1WyJAfoH+69e44tIZ1033d3UtLD4ZBECMezl9omN7m4fArok0ltpCpPvkLfpHZSi9sWXlZSD4NyMGUidQNHdWDSEt8fpVZXtZpzBQxGviib1mB2DjWFsp4BeC2+m6LbBZ7MYxEd1ybCGPfULiHasQ5SA8+kPkitLcxS7VOpc2LEpR3TABimaBsUWH5Y2jckROt10W+2dadof/VYNsfT1S81xv3XNiF4bIhjZBG1A5FL/F0SxlUWBJcGyzL8VhBdBjjnBW8LqZ/lotLj88+7yYQHbJxW2/gzYvsQO+g4SrbGN8qAZ6Nt7nDoHHZvj3Zwbl3/XUBB0HgYtifUzoFegbBDHTQjTlL9VzBujfYVNrmxOEfnwf3RrtOQ0DtsbD2s3sLemoTHxAFEEfCNhltfNBGGnW/I53UMgzIyoQ9h08hg1QFBDE5jBhMTCwMnRxYMxOtI6cm4zX+rAjzruTvTNPsRDupIQlcO2gWweR0xB3PMSUWN90vqVyB4fYa9yI28Nnwk4bwZilQhDsoCNiIW1Qyb8SXQyRnQ1kfMsTLeXdVmCcfVCD39Bx10D7UVJ7aqTjH4p1xbE1sk6EEKD7InIxyky9cFknwaEEpjxSwSmoFQVwEs5zguPAcUJxp0E+TCasxBVSDs3DtyQ0aSWj0QXjKjtNROFdi0Hv2nnpCowgGL2KjWqBKHAFAD6d8dZXds+Kbztg5gM4BoOtZBmj0q9DxhMzm0JMXBgixeG1ORvmuH4xnGLwOStGbz8oLpusRa6yuWCH+BwTkf46AWm7wBk/RVzxOQ/83Y3B4Om5C+uaUAqMGsF4yly15XpdO8s9l+XsgCcmUI8muAjl3RSeVQkZBGXJbm5NygmdN4+iaeMwEP6JOQ8Cbg/B05uzCMUxg3CVtLwjfn455jQ2ppPzgSv75x2FnC6ZKE3NnJuEKotWmbH+V7NbbM7sg9nADyC8KGlhjWBSb98OshdV7gXN9UFMgXCXEWnXsTeHfmQvRQmNs4ft9/YN76HWjqUE6q1TTy3w00pDQ4P5h3YTc5o4x1EK3WMoKO/ral55XfAgwA/m4ad+jACJAAAAAASUVORK5CYII=" alt=""/>
 	</a>
 </div>
 <!-- END LOGO -->
@@ -169,26 +156,11 @@
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
-<script src="<?php echo base_url()?>assets/global/plugins/respond.min.js"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/excanvas.min.js"></script> 
+<script src="../../assets/global/plugins/respond.min.js"></script>
+<script src="../../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
-<script src="<?php echo base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS  -->
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="<?php echo base_url()?>assets/global/scripts/app.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/pages/controller/login.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/pages/controller/CommonFunctions.min.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
-<!-- END JAVASCRIPTS -->
+
+<script src="../../assets/build/js/login.min.js"></script>
 </body>
 <!-- END BODY -->
 </html>

@@ -170,11 +170,7 @@ class DataInterfaceModel extends CI_Model {
 	//2输出质量数据;3预览模式（输出最多10行数据）;4.输出列名
 	public function Api($data)
 	{
-	  //判断用户名是否已存在		
-		//先获取当前用户ID
-		if(!isset($this->LOGINDB['sqlsvr'])){
-			$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
-		}
+	  //判断用户名是否已存在	
 		//$LOGINDB->cache_off();
 		
 		//缓存中没有则往缓存写数据
@@ -184,7 +180,10 @@ class DataInterfaceModel extends CI_Model {
 				//->memcached
 				//缓存n小时(1个月)		
 				$minutes = 24*30;
-				
+				//先获取当前用户ID
+				if(!isset($this->LOGINDB['sqlsvr'])){
+					$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
+				}
 				//处理数据
 				$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
 

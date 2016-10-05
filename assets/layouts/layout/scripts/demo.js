@@ -69,7 +69,7 @@ var Demo = function() {
             var color = Cookies.get('theme-colors');
             $('.theme-colors > ul > li.current').removeClass("current");
             $('.theme-colors > ul > li.color-' + color).addClass("current");
-            setColor(color);
+            //setColor(color);
         }
 
         function loadDefaultSettings() {
@@ -149,7 +149,11 @@ var Demo = function() {
                     file = (App.isRTL() ? file + '-rtl' : file);
                     var obj = $('#style_components');
                     //仅在修改时才加载，否则不加载
-                    if (obj.attr('href').indexOf(file + '.') == -1) {
+                    // if (typeof obj.attr('href') != 'undefined' || obj.attr('href').indexOf(file + '.') == -1) {
+                    //     obj.attr("href", App.getGlobalCssPath() + file + ".min.css");
+                    // }
+                    //默认值为圆角
+                    if (file == 'components' && typeof obj.attr('href') == 'undefined') {
                         obj.attr("href", App.getGlobalCssPath() + file + ".min.css");
                     }
                     break;

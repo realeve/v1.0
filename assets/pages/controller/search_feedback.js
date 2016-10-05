@@ -101,7 +101,8 @@ var feedback = function() {
 		}];
 		//254 缺陷图像读取
 		//	SELECT ErrImage1,ErrImage2,ErrImage3 FROM ImageData where MahouID=?
-		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&M=3&t=";
+		//	 图像缓存10天
+		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&cache=14400&M=3&t=";
 		$('#js-grid-juicy-projects').html('');
 		var strTemp = '';
 		if (fakeList.rows > 0) {
@@ -271,7 +272,8 @@ var feedback = function() {
 									var strList = '';
 									cartList.data.map(function(elem, curPos) {
 										curPos++;
-										var imgUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&M=3&t=" + elem[0];
+										//图像缓存10天
+										var imgUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&cache=14400&M=3&t=" + elem[0];
 										var imgData = ReadData(imgUrl);
 										var img = imgData.data[0];
 										var imgType = parseInt(elem[5], 10);
@@ -397,7 +399,7 @@ var feedback = function() {
 //记录选择状态
 jQuery(document).ready(function() {
 	whiteBackground();
-	RoundedTheme(0);
+	//RoundedTheme(0);
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');
 	initDom();

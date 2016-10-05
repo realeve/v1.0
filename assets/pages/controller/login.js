@@ -205,12 +205,19 @@ var Login = function() {
 
     };
 
-    var handleRegister = function() {
+    var dptInited = false;
+
+    function loadDptList() {
         //SELECT a.DptID, a.DepartMentName FROM dbo.tblDepartMent AS a
-        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=163&M=3";
+        //缓存10天
+        var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=163&M=3&cache=14400";
         var Data = ReadData(str);
         InitSelect("department", Data);
         SetSelectVal("department", 0);
+        dptInited = true;
+    }
+
+    var handleRegister = function() {
 
         $('.register-form').validate({
             errorElement: 'span', //default input error message container
@@ -315,6 +322,12 @@ var Login = function() {
         }
 
         jQuery('#register-btn').click(function() {
+
+            //注册时才加载数据
+            if (!dptInited) {
+                loadDptList();
+            }
+
             jQuery('.login-form').hide();
             jQuery('.register-form').show();
         });

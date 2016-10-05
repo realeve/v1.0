@@ -34,7 +34,7 @@ class Welcome extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username'))
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			//$logindata['type'] = 0;
@@ -56,7 +56,7 @@ class Welcome extends CI_Controller {
 			//$logindata['type'] = 6;
 			//$logindata['message'] = $this->loginMessage(6);//未激活
 			//$this->output->set_output(json_encode($logindata));
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 
 		$logindata = $this->LoginModel->logincheck($UserName,$Password);
@@ -126,7 +126,7 @@ class Welcome extends CI_Controller {
 			$this->load->view('login', $logindata);
 			return;
 		}
-		$this->load->view('framework/lockscreen');
+		$this->load->view('lockscreen-min');
 	}
 
 	public function logout()
@@ -137,34 +137,34 @@ class Welcome extends CI_Controller {
 		$this->session->unset_userdata($array_items);//清除数据
 		$this->session->sess_destroy();//注销
 		$logindata['type'] = -1;
-		$this->load->view('login', $logindata);
+		$this->load->view('login-min', $logindata);
 	}
 
 	//注销后重登录
   public function relogin(){
-	$UserName = $this->session->userdata('username');
-	$Password = md5($this->input->post('password'));
-	$logindata = $this->LoginModel->logincheck($UserName,$Password);
-	if ($logindata['logged_in'] == true) {
-		if ($logindata['userrole'] >0) {//帐号激活
-			$this->session->set_userdata($logindata);			
-			$logindata['type'] = 9;
-			$this->output->set_output(json_encode($logindata));
+		$UserName = $this->session->userdata('username');
+		$Password = md5($this->input->post('password'));
+		$logindata = $this->LoginModel->logincheck($UserName,$Password);
+		if ($logindata['logged_in'] == true) {
+			if ($logindata['userrole'] >0) {//帐号激活
+				$this->session->set_userdata($logindata);			
+				$logindata['type'] = 9;
+				$this->output->set_output(json_encode($logindata));
+			}
+			else//未激活
+			{
+				$logindata['type'] = 6;
+				$logindata['message'] = $this->loginMessage(6);//未激活
+				$this->output->set_output(json_encode($logindata));
+			}
 		}
-		else//未激活
+		else
 		{
-			$logindata['type'] = 6;
-			$logindata['message'] = $this->loginMessage(6);//未激活
+			$logindata['type'] = 2;
+			$logindata['message'] = $this->loginMessage(2);//密码错误
 			$this->output->set_output(json_encode($logindata));
+			//$this->load->view('lockscreen-min');
 		}
-	}
-	else
-	{
-		$logindata['type'] = 2;
-		$logindata['message'] = $this->loginMessage(2);//密码错误
-		$this->output->set_output(json_encode($logindata));
-		//$this->load->view('framework/lockscreen');
-	}
 
   }
 

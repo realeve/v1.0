@@ -378,7 +378,7 @@ var search = function() {
 		//SELECT ErrImage1,ErrImage2,ErrImage3 FROM ImageData where SiyinID=?
 		//t,blob
 
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&blob=1&t=" + data.cartID + "&ID=" + (data.imgType ? 254 : 289);
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&blob=1&t=" + data.cartID + "&ID=" + (data.imgType ? 254 : 289) + '&cache=14400';
 		var imgData = ReadData(url);
 
 		var imgInfo = {

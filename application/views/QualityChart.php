@@ -173,7 +173,7 @@
 							<option>图表宽高比</option>
 							<option value="2.35">2.35:1</option>
 							<option value="2">2:1</option>
-							<option value="1.78">16:9</option>
+							<option value="1.78" selected>16:9</option>
 							<option value="1.6">16:10</option>
 							<option value="1.5">3:2</option>
 							<option data-divider="true"></option>
