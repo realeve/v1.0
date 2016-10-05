@@ -58,7 +58,7 @@
 <script src="../../assets/global/plugins/echarts/js/ThemeStyle.min.js"></script>
 <script src="../../assets/global/plugins/echarts/js/echarts.common.min.js"></script>
 <script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/clipboard/clipboard.min.js" type="text/javascript"></script>
+
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/search_feedback.min.js"></script>
 <!--END MY LEVEL SCRIPT-->

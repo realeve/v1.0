@@ -16,14 +16,26 @@
 		</div>
 		<!-- END LOGO -->
 		<!-- BEGIN HEADER SEARCH BOX -->
-		<div class="search-form">
+		<div class="search-form search-form-expanded">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="搜索..." name="query">
+				<input type="text" class="form-control uppercase" autocomplete="off" placeholder="输入车号/冠字号/轴号..." name="query">
 				<span class="input-group-btn">
-				<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+					<a href="javascript:;" class="btn submit">
+						<i class="icon-magnifier"></i>
+					</a>
 				</span>
 			</div>
 		</div>
+		<!--form class="search-form search-form-expanded" action="page_general_search_2.html" method="GET">
+	        <div class="input-group">
+	            <input type="text" class="form-control" placeholder="Search..." name="query">
+	            <span class="input-group-btn">
+	                <a href="javascript:;" class="btn submit">
+	                    <i class="icon-magnifier"></i>
+	                </a>
+	            </span>
+	        </div>
+	    </form-->
 		<!-- END HEADER SEARCH BOX -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">

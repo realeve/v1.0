@@ -15,6 +15,8 @@ class MicroBlog extends CI_Controller {
 
 	public function index()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{

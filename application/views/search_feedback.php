@@ -10,6 +10,9 @@
     						<a href="<?php echo base_url()?>search">信息追溯</a>
     						<i class="fa fa-circle"></i>
     					</li>
+    					<li>
+    						<a href="#">质量信息反馈</a>
+    					</li>
     				</ul>
 
     				<div class="page-toolbar">

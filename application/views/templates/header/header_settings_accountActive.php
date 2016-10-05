@@ -31,7 +31,7 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 
-<link href="../../assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/css/components-rounded.min.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="../../assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
 
 <link href="../../assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />

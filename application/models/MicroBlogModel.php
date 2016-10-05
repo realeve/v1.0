@@ -4,6 +4,7 @@ class MicroBlogModel extends CI_Model {
 	public function __construct()
 	{
 		$this->load->database();
+		$this->load->helper('url');
 	}
 
 	public function TransToGBK($data){//SQL SERVER字符转换
@@ -36,7 +37,6 @@ class MicroBlogModel extends CI_Model {
 	//保存日志查询设置
 	public function SaveSettings($data)
 	{
-		$this->load->helper('url');
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 		//先获取当前用户ID
@@ -88,7 +88,6 @@ class MicroBlogModel extends CI_Model {
 	//读取日志查询设置
 	public function ReadSettings($data)
 	{
-		$this->load->helper('url');
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);		
 		//先获取当前用户ID

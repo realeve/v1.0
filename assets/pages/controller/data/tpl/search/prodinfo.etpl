@@ -1,0 +1,59 @@
+<div class="cbp-l-project-desc seperator" style="min-height: 220px;">
+	<!-- import: captain -->
+	<!-- for: ${data} as ${item},${index} -->
+		<!-- var: idx = ${index}+1 -->
+		<!-- import: content -->
+	<!-- /for -->
+</div>
+
+
+<!-- // 标题 -->
+<!-- target: captain -->
+	<div class="cbp-l-project-desc-title">
+	 	<span>机台作业信息 (<small>${data[0].CartNumber}</small>) </span>
+	</div>
+
+<!-- // 内容区 -->
+<!-- target: content -->
+	<div class=" margin-top-20">
+		<div class="cbp-l-project-desc-title">
+			<!-- import: head -->
+		</div>
+		<div class="cbp-l-project-desc-text">
+			<!-- import: detail -->
+		</div>
+	</div>
+
+<!-- // 文件头部及详情 -->
+
+<!-- target: head -->
+	<span>${idx}.${item.ProcName} : ${item.MachineName}</span>
+	<!-- if: ${item.WorkClassName} == '早班' -->
+		<i class="badge badge-info"> ${item.WorkClassName}&nbsp; </i>
+	<!-- else -->
+		<i class="badge badge-danger"> ${item.WorkClassName}&nbsp; </i>
+	<!-- /if -->
+	<i class="badge"> ${item.WeekDay}&nbsp; </i>
+	<h5 class="pull-right" style="margin-top:15px;">${item.StartDate | slice(0, 16)}</h5>
+
+<!-- target: detail -->
+	<ul class="cbp-l-project-details-list">
+		<li>
+			<strong>班组</strong>${item.TeamName}
+		</li>
+		<li>
+			<strong>班长</strong>${item.MonitorName}
+		</li>
+		<li>
+			<strong>产量</strong>${item.PrintNum}
+		</li>
+		<li>
+			<strong>原始记录</strong>
+			<div style="margin:-30px 0px 60px 100px;">
+				${item.WorkInfo | raw}
+				<p class="pull-right">
+					<i class="fa fa-pencil"></i> <i>${item.CaptainName}  发表于 <span name="isodate" title="${item.DateTitle}"></span> </i>
+				</p>
+			</div>
+		</li>
+	</ul>

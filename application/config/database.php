@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //$active_group = 'default';
-$active_group = 'sqlsvr';
+$active_group = 'Quality';
 $query_builder = TRUE;
 
 //DBID = 0
@@ -72,10 +72,11 @@ $db['sqlsvr'] = array(
 	'database' => 'QuaCenter',
 	'dbdriver' => 'mssql',
 	'dbprefix' => '',
-	'pconnect' => TRUE,
-	'db_debug' => TRUE,
+	'pconnect' => FALSE,
+	'db_debug' => FALSE,
+	//数据库缓存
 	'cache_on' => FALSE,
-	'cachedir' => '',
+	'cachedir' => './dbcache',
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
@@ -113,6 +114,8 @@ $db['KG']['password'] ='jitai';*/
 //DBID = 5
 $db['Quality'] = $db['sqlsvr'];
 $db['Quality']['database'] = 'NotaCheck_DB';
+$db['Quality']['pconnect'] = TRUE;
+
 $db['IMG'] = $db['sqlsvr'];
 $db['IMG']['database'] = 'NotaCheck_IMGDB';
 /*

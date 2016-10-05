@@ -15,6 +15,8 @@ class PaperPara extends CI_Controller {
 	//物理指标
 	public function index()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -40,6 +42,8 @@ class PaperPara extends CI_Controller {
 	//外观指标
 	public function surface()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -64,6 +68,8 @@ class PaperPara extends CI_Controller {
 	//化验站
 	public function chemy()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -88,6 +94,8 @@ class PaperPara extends CI_Controller {
 	//机检验证
 	public function validate()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -112,6 +120,8 @@ class PaperPara extends CI_Controller {
 	//大张废录入
 	public function fakepiece()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -136,6 +146,8 @@ class PaperPara extends CI_Controller {
 	//钞纸误废
 	public function falsewaste()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -160,6 +172,8 @@ class PaperPara extends CI_Controller {
 	//批量报废
 	public function batchwaste()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -184,6 +198,8 @@ class PaperPara extends CI_Controller {
 	//考核记录
 	public function penalty()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -208,6 +224,8 @@ class PaperPara extends CI_Controller {
 	//非常规指标
 	public function abnormal()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)

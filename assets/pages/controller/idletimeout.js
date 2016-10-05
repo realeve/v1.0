@@ -10,9 +10,9 @@ var UIIdleTimeout = function() {
 
             // start the idle timer plugin
             $.idleTimeout('#idle-timeout-dialog', '.modal-content button:last', {
-                idleAfter: 10 * 60, // 5 seconds
+                idleAfter: 3 * 60 * 60, // 10 seconds
                 timeout: 30000, //30 seconds to timeout
-                pollingInterval: 5, // 5 seconds
+                pollingInterval: 30, // 5 seconds
                 keepAliveURL: '/demo/idletimeout_keepalive.php',
                 serverResponseEquals: 'OK',
                 onTimeout: function() {

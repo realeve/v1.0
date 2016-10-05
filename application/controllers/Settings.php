@@ -15,6 +15,8 @@ class settings extends CI_Controller {
 	//概览
 	public function index()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -41,6 +43,8 @@ class settings extends CI_Controller {
 	//帐户设置
 	public function account()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -67,6 +71,8 @@ class settings extends CI_Controller {
 	//帐户设置
 	public function accountActive()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -92,6 +98,8 @@ class settings extends CI_Controller {
 	//下拉选项卡管理
 	public function select()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -118,6 +126,8 @@ class settings extends CI_Controller {
 	//个性化菜单
 	public function menu()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{

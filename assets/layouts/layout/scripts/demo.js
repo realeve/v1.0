@@ -116,7 +116,7 @@ var Demo = function() {
 
             //默认主题
             //默认方角
-            Cookies.set("layout-style-option", "rounded");//square
+            Cookies.set("layout-style-option", "rounded"); //square
             Cookies.set("layout-option", "fluid");
             Cookies.set("page-header-option", "fixed");
             Cookies.set("page-header-top-dropdown-style-option", "light");
@@ -147,7 +147,11 @@ var Demo = function() {
                 case 'layout-style-option': //  圆角/方角
                     var file = (style === 'rounded' ? 'components-rounded' : 'components');
                     file = (App.isRTL() ? file + '-rtl' : file);
-                    $('#style_components').attr("href", App.getGlobalCssPath() + file + ".min.css");
+                    var obj = $('#style_components');
+                    //仅在修改时才加载，否则不加载
+                    if (obj.attr('href').indexOf(file + '.') == -1) {
+                        obj.attr("href", App.getGlobalCssPath() + file + ".min.css");
+                    }
                     break;
 
                 case 'layout-option': //  固定/填满
@@ -179,7 +183,7 @@ var Demo = function() {
                     }
 
                     if (lastSelectedLayout != style) {
-                        //layout changed, run responsive handler: 
+                        //layout changed, run responsive handler:
                         App.runResizeHandlers();
                     }
                     lastSelectedLayout = style;
@@ -223,7 +227,7 @@ var Demo = function() {
                     break;
 
                 case 'page-footer-option':
-                    //footer 
+                    //footer
                     if (style === 'fixed') {
                         $("body").addClass("page-footer-fixed");
                     } else {
@@ -241,7 +245,7 @@ var Demo = function() {
                     break;
 
                 case 'sidebar-menu-option':
-                    //sidebar menu 
+                    //sidebar menu
                     if (style === 'hover') {
                         if (sidebarOption == 'fixed') {
                             $('.sidebar-menu-option', panel).val("accordion");
@@ -283,7 +287,7 @@ var Demo = function() {
                     }
                     break;
             }
-            Layout.fixContentHeight(); // fix content height            
+            Layout.fixContentHeight(); // fix content height
             Layout.initFixedSidebar(); // reinitialize fixed sidebar
         }
 

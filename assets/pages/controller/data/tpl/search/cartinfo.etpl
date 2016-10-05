@@ -1,0 +1,23 @@
+<div class="cbp-l-project-details-title">
+    <span>车号信息</span>
+</div>
+<div>
+	<ul class="cbp-l-project-details-list">
+		<li>
+			<strong>车号</strong>${CartNumber}
+		</li>
+		<li>
+			<strong>冠字</strong>${CarNumber}${GzNumber}
+		</li>
+		<li>
+			<strong>工艺类型</strong>${TechTypeName}
+		</li>
+		<!-- if: ${kInfo} > 0 -->
+		<li>
+			<strong>开位</strong>第 ${kInfo} 开
+		</li>
+		<!-- /if -->
+	</ul>
+	<a href="${imgUrl}" target="_blank" class="cbp-l-project-details-visit margin-top-10 btn red uppercase" name="fakeImg">实废图像</a>
+</div>
+

@@ -1,0 +1,50 @@
+<!-- target: smpTbl -->
+<!-- if: ${showHead} -->
+    <div class="cbp-l-project-details-title">
+        <span>${title}</span><small class="help">${source}</small>
+    </div>
+<!-- /if -->
+
+<!-- if: ${noScroll} -->
+    <div class="table-scrollable table-scrollable-borderless">
+        <!-- import: table -->
+    </div>
+<!-- else -->
+    <div class="scroller" style="height: 300px;">
+        <div class="table-scrollable table-scrollable-borderless">
+            <!-- import: table -->
+        </div>
+    </div>
+<!-- /if -->
+
+<!-- target: table -->
+    <table class="table table-hover table-light">
+        <thead>
+            <!-- import: thead -->
+        </thead>
+        <tbody>
+          <!-- import: tbody -->
+        </tbody>
+    </table>
+
+<!-- target: thead -->
+    <tr class="uppercase">
+        <th>序号</th>
+        <!-- for: ${header} as ${head} -->
+            <th>${head.title}</th>
+        <!-- /for -->
+    </tr>
+<!-- target: tbody -->
+    <!-- if: ${rows} == 0 -->
+    <!-- var: colspan = ${cols}+1 -->
+        <tr><td colspan=${colspan} class="text-center">未检索到 ${title} 相关数据</td></tr>
+    <!-- /if -->
+    <!-- for: ${data} as ${item},${index} -->
+        <!-- var:idx = ${index}+1 -->
+        <tr>
+            <td> ${idx} </td>
+            <!-- for: ${item} as ${td} -->
+            <td>${td}</td>
+            <!-- /for -->
+        </tr>
+    <!-- /for -->

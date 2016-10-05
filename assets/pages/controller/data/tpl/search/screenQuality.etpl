@@ -1,0 +1,13 @@
+<div class="cbp-l-project-details-title">
+    <span>${title}</span>
+</div>
+<div>
+	<ul class="cbp-l-project-details-list">
+		<!-- for: ${header} as ${head},${idx} -->
+			<li>
+				<strong>${head.title}</strong>${data | quote(${data},${idx})}
+			</li>
+		<!-- /for -->
+	</ul>
+</div>
+

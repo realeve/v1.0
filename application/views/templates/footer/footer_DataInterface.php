@@ -13,7 +13,7 @@
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="../../assets/global/plugins/respond.min.js"></script>
-<script src="../../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
@@ -63,7 +63,7 @@
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Buttons/js/buttons.colVis.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/jszip.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/pdfmake.min.js"></script>
-<script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/vfs_fonts.js"></script>
+<!--script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/vfs_fonts.js"></script-->
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
 <script type="text/javascript" src="../../assets/global/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedheader.min.js"></script>

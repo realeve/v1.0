@@ -32,7 +32,7 @@
 <!-- BEGIN THEME STYLES -->
 <link href="../../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 <link href="../../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="../../assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/css/components-rounded.min.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="../../assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
 
 <link href="../assets/global/plugins/jcrop/css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />

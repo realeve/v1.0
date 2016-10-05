@@ -35,7 +35,7 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
-<link href="../../assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/css/components-rounded.min.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="../../assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
 <link id="style_color" href="../../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css"/>

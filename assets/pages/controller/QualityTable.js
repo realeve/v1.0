@@ -16,7 +16,8 @@ function GetJsonUrl(id) {
 	if (token == null) {
 		token = config.TOKEN;
 	}
-	var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + "&t=" + Math.random();
+	//缓存5分钟
+	var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + '&cache=' + config.cache; // + " & t = " + Math.random();
 	return strUrl;
 }
 

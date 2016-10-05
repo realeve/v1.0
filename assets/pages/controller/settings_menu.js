@@ -568,7 +568,7 @@ var customizeMenu = function() {
                 //载入所有菜单项
 
                 function loadAllMenu() {
-                    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=46&M=0&uid=" + uid;
+                    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=46&M=0&uid=" + uid + '&cache=1';
                     menuDetailObj = ReadData(str);
                     var menuEditObj = $('select[name="menuDetail"]');
                     $('#menuPreviewList').append('<ol class="dd-list"></ol>');

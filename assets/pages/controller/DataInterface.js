@@ -5,7 +5,7 @@ $("#HideTips").on('click', function() {
 //初始化接口列表
 var initApiList = function() {
   var username = $('.top-menu .username').text().trim();
-  var strUrl = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=0&M=3&t=' + Math.random() + '&author=' + username;
+  var strUrl = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=0&M=3' + '&author=' + username + '&cache=1'; //+'&t=' + Math.random();
   var Data = ReadData(strUrl);
   Data.data.map(function(elem, index) {
     Data.data[index][5] = $.base64.decode(elem[5]);
@@ -126,26 +126,31 @@ var initApiList = function() {
     jqTds[3].innerHTML = '<input type="text" class="form-control" value="' + aData[3] + '">';
     jqTds[4].innerHTML = '<input type="text" class="form-control input-md" value="' + aData[4] + '">';
     jqTds[5].innerHTML = '<input type="text" class="form-control" value="' + aData[5] + '">';
-    jqTds[6].innerHTML = '<a class="edit" href="javascript:;" data-sn="' + ID + '">保存</a>';
+    jqTds[6].innerHTML = '<a class="edit" href="javascript:;" data-apiid="' + aData[0] + '" data-sn="' + ID + '">保存</a>';
     jqTds[7].innerHTML = '<a class="cancel" href="javascript:;" data-sn="' + ID + '">取消</a>';
   }
 
   function saveRow(oTable, nRow) {
     var jqInputs = $('input', nRow);
+    var apiid = $('>td', nRow)[0].innerHTML.replace(/[^0-9]/g, '');
+    var token = $('#url').attr('href').split('=')[1].split('&')[0];
+    var cacheName = 'id_' + apiid + '_token_' + token;
+
     var data = {
       "ApiName": jqInputs[0].value,
       "strSQL": $.base64.encode(jqInputs[1].value), //.replace(/\uff1f/g,'?'),
       "Params": jqInputs[2].value,
       "utf2gbk": ["ApiName", "Params"],
       "id": ID,
-      "tbl": 30
+      "tbl": TBL.API,
+      "cacheName": cacheName //缓存文件名
     };
     if ('' !== data.ApiName && '' !== data.strSQL) {
       oTable.fnUpdate(jqInputs[0].value, nRow, 3, false);
       oTable.fnUpdate(jqInputs[1].value /*.replace(/\uff1f/g,'?')*/ , nRow, 4, false);
       oTable.fnUpdate(jqInputs[2].value, nRow, 5, false);
-      oTable.fnUpdate('<a class="edit" href="javascript:;" data-sn="' + ID + '">编辑</a>', nRow, 6, false);
-      oTable.fnUpdate('<a class="delete"href="javascript:;" data-sn="' + ID + '">删除</a>', nRow, 7, false);
+      oTable.fnUpdate('<a class="edit" href="javascript:;" data-apiid="' + jqInputs[1].value + '" data-sn="' + ID + '">编辑</a>', nRow, 6, false);
+      oTable.fnUpdate('<a class="delete" href="javascript:;" data-apiid="' + jqInputs[1].value + '" data-sn="' + ID + '">删除</a>', nRow, 7, false);
       oTable.fnDraw();
 
       var url = getRootPath() + '/DataInterface/update';
@@ -161,7 +166,7 @@ var initApiList = function() {
   }
 
   function newRow(data) {
-    var aiNew = oTable.fnAddData([data.ApiID, data.AuthorName, data.DBName, data.ApiName, data.strSQL, data.params, '<a class="edit" href="javascript:;" data-sn="' + data.newID + '">编辑</a>', '<a class="delete" href="javascript:;" data-sn="' + data.newID + '">删除</a>']);
+    var aiNew = oTable.fnAddData([data.ApiID, data.AuthorName, data.DBName, data.ApiName, data.strSQL, data.params, '<a class="edit" href="javascript:;" data-apiid="' + data.ApiID + '" data-sn="' + data.newID + '">编辑</a>', '<a class="delete" href="javascript:;" data-sn="' + data.newID + '">删除</a>']);
     oTable.fnGetNodes(aiNew[0]);
   }
 
@@ -198,6 +203,10 @@ var initApiList = function() {
       table.on('click', '.delete', function(e) {
         e.preventDefault();
         var obj = $(this);
+        var apiid = $('>td', nRow)[0].innerHTML.replace(/[^0-9]/g, '');
+        var token = $('#url').attr('href').split('=')[1].split('&')[0];
+        var cacheName = 'id_' + apiid + '_token_' + token;
+
         bootbox.dialog({
           message: "确定删除这条信息?",
           title: "删除信息",
@@ -209,7 +218,8 @@ var initApiList = function() {
                 var url = getRootPath() + '/DataInterface/delete';
                 $.post(url, {
                   id: obj.data('sn'),
-                  tbl: 30
+                  tbl: TBL.API,
+                  cacheName: cacheName
                 }, function(data) {
                   var nRow = obj.parents('tr')[0];
                   oTable.fnDeleteRow(nRow);
@@ -596,7 +606,7 @@ $(this).html('<pre>' + value + '</pre>');
           if (InputToggle) {
             setTimeout(function() {
               $next.editable('show');
-            }, 300);
+            }, TBL.API0);
           } else {
             $next.focus();
           }
@@ -692,7 +702,7 @@ $(this).html('<pre>' + value + '</pre>');
 }();
 
 jQuery(document).ready(function() {
-  RoundedTheme(0);
+  //RoundedTheme(0);
   UIIdleTimeout.init();
   initDashboardDaterange('YYYYMMDD');
   $("#CreateDate").text(today(3));

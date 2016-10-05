@@ -35,10 +35,29 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_WORK_LOG_OPR = 'tblWorklog_Operator';	 //32 机检日志人员名单
 	const TBL_SETTINGS_MENULIST ='tbl_menu_list';	 //33 菜单列表
 	const TBL_SETTINGS_MENUDETAIL='tbl_menu_detail'; //34 菜单子项
-
+	
+	//全局变量
+	//质量数据库、小张核查、全幅面、机台作业、库管、质量控制中心（默认）、三合一、在线清数、办公助手、钞纸质量数据、图像数据库
+	var $DBLIST = ['Quality', 'XZHC', 'QFM', 'JTZY', 'KG', 'sqlsvr', 'SHY', 'ZXQS', 'OFFICEHELPER', 'CZUSER', 'IMG'];
+	var $LOGINDB;
+	
 	public function __construct()
-	{
-		$this->load->database();
+	{		
+		$this->load->helper('url');
+		//初始化缓存
+		//数据缓存
+		$this->load->driver('cache', 
+			array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
+		);
+			
+		//memcache(对SQL的存储采用APACHE,不采用MEMCACHE)
+		//断电后继续使用
+		$this->load->driver('cache');
+		$this->cache->memcached->is_supported();
+		
+		//连接默认数据库(pconnect 长连接，默认数据库之外需关闭)
+		//$db['Quality']['pconnect'] = TRUE;
+		$this->LOGINDB['Quality'] = $this->load->database('Quality',TRUE);
 	}
 
 	public function getDBName($id)
@@ -97,12 +116,14 @@ class DataInterfaceModel extends CI_Model {
 		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
 		return $str;
 	}
-
+	
 	public function GetNewApiID($UserName)
 	{
-		$LOGINDB=$this->load->database('sqlsvr',TRUE);
+		if(!isset($this->LOGINDB['sqlsvr'])){
+			$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
+		}
 		$StrSQL = "SELECT ISNULL(MAX(ApiID),0)+1 as NewID  FROM  tblDataInterface  where AuthorName=?";
-		$query = $LOGINDB->query($StrSQL,array($UserName));
+		$query = $this->LOGINDB['sqlsvr']->query($StrSQL,array($UserName));
 		$strJson = $query->result_json();
 		$strReturn = json_decode($strJson)->data[0]->NewID;
 		//$query->free_result(); //清理内存
@@ -112,9 +133,10 @@ class DataInterfaceModel extends CI_Model {
 
 	public function SaveAPI($data)
 	{
-		$this->load->helper('url');
 	  	//判断用户名是否已存在
-		$LOGINDB=$this->load->database('sqlsvr',TRUE);
+		if(!isset($this->LOGINDB['sqlsvr'])){
+			$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
+		}
 		//先获取当前用户ID
 		$data['ApiName'] = $this->TransToGBK($data['ApiName']);
 		//$data['AuthorName'] = sha1($data['AuthorName']);
@@ -124,20 +146,10 @@ class DataInterfaceModel extends CI_Model {
 		//$data['strSQL'] = $this->TransToGBK($data['strSQL']);
 		$data['strSQL'] = base64_encode($data['strSQL']);
 
-		//$SQLStr="SELECT top 1 ID from tblDataInterface WHERE AuthorName= '". $data['AuthorName'] ."' and ApiID = ".$data['ApiID'];
-		//$query=$LOGINDB->query($SQLStr);
-		//if($query->num_rows()>0)
-		//{
-			//更新
-		//	$LOGINDB->where('AuthorName', $data['AuthorName']);
-		//	$LOGINDB->where('ApiID', $data['ApiID']);
-		//	$LOGINDB->update('tblDataInterface', $data);
-		//}else
-		//{
-			//添加
-			$LOGINDB->insert('tblDataInterface', $data);
-		//}
-		$Logout['ID'] = $LOGINDB->insert_id();
+		$this->LOGINDB['sqlsvr']->insert('tblDataInterface', $data);
+
+		$Logout['ID'] = $this->LOGINDB['sqlsvr']->insert_id();
+		
 		if($Logout['ID'])
 		{
 			$Logout['message'] = '操作成功';//注册成功
@@ -158,15 +170,33 @@ class DataInterfaceModel extends CI_Model {
 	//2输出质量数据;3预览模式（输出最多10行数据）;4.输出列名
 	public function Api($data)
 	{
-		$this->load->helper('url');
-	  	//判断用户名是否已存在
-		$LOGINDB=$this->load->database('sqlsvr',TRUE);
+	  //判断用户名是否已存在		
 		//先获取当前用户ID
-		$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
+		if(!isset($this->LOGINDB['sqlsvr'])){
+			$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
+		}
+		//$LOGINDB->cache_off();
+		
+		//缓存中没有则往缓存写数据
+		//如果API更新，需将相应数据删除
+		$key = 'api_sql_id_'.$data['ID'].'_token_'.$data['Token'];
+		if ( ! $strJson = $this->cache->get($key)){
+				//->memcached
+				//缓存n小时(1个月)		
+				$minutes = 24*30;
+				
+				//处理数据
+				$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
 
-		$query=$LOGINDB->query($SQLStr,array($data['Token']));
-		$strJson = $query->result_json();
-
+				$query = $this->LOGINDB['sqlsvr']->query($SQLStr,array($data['Token']));
+				
+				$strJson = $query->result_json();
+				
+				// Save into the cache for 5 minutes
+				$this->cache->save($key, $strJson, $minutes*3600);
+				//->memcached
+		}	
+		
 		$ApiInfo = json_decode($strJson);
 		//$query->free_result(); //清理内存
 		//$LOGINDB->close();//关闭连接
@@ -200,7 +230,7 @@ class DataInterfaceModel extends CI_Model {
 				}
 			}
 		}
-
+		
 		switch ($data['M']) {
 			case 'edit':
 				$strApiInfo = $strJson;
@@ -224,6 +254,7 @@ class DataInterfaceModel extends CI_Model {
 
 		//方案2：字符串拼接
 		$strJson = rtrim($strApiInfo,'}').',"title":"'.$ApiInfo->data[0]->ApiName.'","source":"数据来源:'.$ApiInfo->data[0]->DBName.'"}';
+		
 		return $strJson;
 	}
 
@@ -236,50 +267,22 @@ class DataInterfaceModel extends CI_Model {
 		$SQLStr = $this->TransToUTF(base64_decode($ApiInfo->strSQL));
 		//是否为BLOB字段
 		$isBlob = isset($dataParams['blob'])?$dataParams['blob']:0;
-
-		switch ($ApiInfo->DBID) {
-			case '0': //MSSQLSERVER
-				$LOGINDB=$this->load->database('Quality',TRUE);
-				break;
-			case '1'://ORCAL
-				$LOGINDB=$this->load->database('XZHC',TRUE);
-				break;
-			case '2'://ORCAL
-				$LOGINDB=$this->load->database('QFM',TRUE);
-				break;
-			case '3'://ORCAL
-				$LOGINDB=$this->load->database('JTZY',TRUE);
-				break;
-			case '4'://ORCAL
-				$LOGINDB=$this->load->database('KG',TRUE);
-				break;
-			case '5'://MSSQLSERVER
-				$LOGINDB=$this->load->database('sqlsvr',TRUE);
-				break;
-			case '6'://ORCAL
-				$LOGINDB=$this->load->database('SHY',TRUE);
-				break;
-			case '7'://ORCAL
-				$LOGINDB=$this->load->database('ZXQS',TRUE);
-				break;
-			case '8'://ORCAL
-				$LOGINDB=$this->load->database('OFFICEHELPER',TRUE);
-				break;
-			case '9'://ORCAL
-				$LOGINDB=$this->load->database('CZUSER',TRUE);
-				break;
-			case '10': //MSSQLSERVER
-				$LOGINDB=$this->load->database('IMG',TRUE);
-				break;
+				
+		if(!isset($this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]])){
+			$this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]= $this->load->database($this->DBLIST[$ApiInfo->DBID],TRUE);
 		}
-
+		
+		//$LOGINDB = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]; 
+						
 		if ($mode == 0 ) {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
 			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
-				$query = $LOGINDB->query($SQLStr);
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($SQLStr);
 			}else{
-				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
 			$strJson = $query->result_json($isBlob,$ApiInfo->DBID);
 		}
@@ -292,9 +295,11 @@ class DataInterfaceModel extends CI_Model {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
 			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
-				$query = $LOGINDB->query($SQLStr);
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($SQLStr);
 			}else{
-				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
 			$strJson = $query->result_json($isBlob);
 			$strFileds = $query->list_fields();
@@ -309,9 +314,11 @@ class DataInterfaceModel extends CI_Model {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
 			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
-				$query = $LOGINDB->query($SQLStr);
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($SQLStr);
 			}else{
-				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
 			$strJson = $query->result_json($isBlob,$ApiInfo->DBID);
 		}
@@ -320,9 +327,11 @@ class DataInterfaceModel extends CI_Model {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
 			if($ApiInfo->DBID == 9){//钞纸机检在线质量检测系统,编码问题
-				$query = $LOGINDB->query($SQLStr);
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($SQLStr);
 			}else{
-				$query = $LOGINDB->query($this->TransToGBK($SQLStr));
+				//$LOGINDB->cache_on();
+				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
 
 			$strJson = $query->result_datatable_json($isBlob,$ApiInfo->DBID);
@@ -363,13 +372,14 @@ class DataInterfaceModel extends CI_Model {
 	//读取日志查询设置
 	public function ReadSettings($data)
 	{
-		$this->load->helper('url');
-	  	//判断用户名是否已存在
-		$LOGINDB=$this->load->database('sqlsvr',TRUE);
+	  //判断用户名是否已存在
+		if(!isset($this->LOGINDB['sqlsvr'])){
+			$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
+		}
 		//先获取当前用户ID
 		$data['UserName'] = iconv("utf-8","gbk",$data['UserName']);
 		$SQLStr = "SELECT top 1 a.* from tblQualityTable_Settings a INNER JOIN tblUser b on a.UserID = b.ID WHERE b.UserName = ?";
-		$query=$LOGINDB->query($SQLStr,array($data['UserName']));
+		$query=$this->LOGINDB['sqlsvr']->query($SQLStr,array($data['UserName']));
 		$strJson = $query->result_json();
 		//$query->free_result(); //清理内存
 		//$LOGINDB->close();//关闭连接
@@ -380,12 +390,13 @@ class DataInterfaceModel extends CI_Model {
 	//读取日志查询设置
 	public function convert2Base64()
 	{
-		$this->load->helper('url');
-	  	//判断用户名是否已存在
-		$LOGINDB=$this->load->database('sqlsvr',TRUE);
+	  //判断用户名是否已存在
+		if(!isset($this->LOGINDB['sqlsvr'])){
+			$this->LOGINDB['sqlsvr'] = $this->load->database('sqlsvr',TRUE);
+		}
 		//先获取当前用户ID
 		$SQLStr="SELECT ID,strSQL from tblDataInterface where ID=116";
-		$query=$LOGINDB->query($SQLStr);
+		$query=$this->LOGINDB['sqlsvr']->query($SQLStr);
 		foreach($query->result() as $row)
 		{
 			/*$data['strSQL'] = base64_decode($row->strSQL);
@@ -400,9 +411,9 @@ class DataInterfaceModel extends CI_Model {
 	public function insert($data)
 	{
 		if ($data['tbl'] >= 20) {
-			$LOGINDB=$this->load->database('sqlsvr',TRUE);
+			$LOGINDB = $this->load->database('sqlsvr',TRUE);
 		}else{
-			$LOGINDB=$this->load->database('Quality',TRUE);
+			$LOGINDB=$this->LOGINDB['Quality'];
 		}
 
 		foreach ($data['utf2gbk'] as $str)
@@ -419,21 +430,28 @@ class DataInterfaceModel extends CI_Model {
 	public function delete($data)
 	{
 		if ($data['tbl'] >= 20) {
-			$LOGINDB=$this->load->database('sqlsvr',TRUE);
+			$LOGINDB = $this->load->database('sqlsvr',TRUE);
 		}else{
-			$LOGINDB=$this->load->database('Quality',TRUE);
+			$LOGINDB=$this->LOGINDB['Quality'];
 		}
 		$condition['id'] = $data['id'];
 		$tblName = $this->getDBName($data['tbl']);
-        return $LOGINDB->where($condition)->delete($tblName);
+		//清理SQL缓存
+		if(isset($data['cacheName'])){
+			$this->cache->delete('sql_'.$data['cacheName']);
+			//cache->memcached
+			$this->delCacheByName($data['cacheName']);
+			//unset($data['cacheName']);
+		}		
+    return $LOGINDB->where($condition)->delete($tblName);
 	}
 
 	public function update($data)
 	{
 		if ($data['tbl'] >= 20) {
-			$LOGINDB=$this->load->database('sqlsvr',TRUE);
+			$LOGINDB = $this->load->database('sqlsvr',TRUE);
 		}else{
-			$LOGINDB=$this->load->database('Quality',TRUE);
+			$LOGINDB=$this->LOGINDB['Quality'];
 		}
 
 		if (isset($data['utf2gbk']))
@@ -449,7 +467,41 @@ class DataInterfaceModel extends CI_Model {
 		unset($data['tbl']);
 		unset($data['id']);
 		unset($data['utf2gbk']);
-        //$data['is_del'] = 1;
-        return $LOGINDB->update($tblName, $data,$where);
+		
+			
+		//清理SQL缓存
+		if(isset($data['cacheName'])){
+			$this->cache->delete('sql_'.$data['cacheName']);
+			
+			$this->delCacheByName($data['cacheName']);
+			//unset($data['cacheName']);
+		}		
+		
+    //$data['is_del'] = 1;
+    return $LOGINDB->update($tblName, $data,$where);
 	}
+	
+	public function delCacheByName($name){
+		$dir = "./application/cache/";
+		
+		$id = explode('id_',$name);
+		$id = explode('_',$id[1]);
+		
+		//$this->cache->memcached->delete('sql_'.$data['cacheName']);
+		//由于缓存清理无法使用通配符匹配，更改数据库后需全部清理缓存
+		
+		if (is_dir($dir)){			
+			if ($dh = opendir($dir)){
+				while (($file = readdir($dh)) !== false){
+					$file = strtolower($file);
+					if($file!='.' && $file!='..' && strstr($file,"api_data_") && strstr($file,"_id_".$id) ){
+						unlink($dir.$file);
+						//清除memcache数据
+						$this->cache->memcache->delete($file);
+					}
+				}
+				closedir($dh);
+			}
+		}
+	}	
 }

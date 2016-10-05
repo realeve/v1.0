@@ -37,7 +37,7 @@
 <link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"/>
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.min.css' stylesheet instead of 'components-rounded.min.css' in the below style tag -->
-<link href="../../assets/global/css/components-md.min.css" rel="stylesheet" type="text/css" id="style_components"/>
+<link href="../../assets/global/css/components-rounded.min.css" rel="stylesheet" type="text/css" id="style_components"/>
 <link href="../../assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color"/>

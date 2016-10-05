@@ -1,0 +1,50 @@
+<div class="cbp-l-project-details-title">
+    <span>当日车号列表</span>
+</div>
+<div class="table-scrollable table-scrollable-borderless">
+	<!-- import: hisTable -->
+</div>
+
+<!-- target: hisTable -->
+    <table class="table table-hover table-light">
+        <thead>
+        <!-- import: hisThead -->
+        </thead>
+        <tbody>
+		<!-- import: hisTbody -->
+        </tbody>
+    </table>
+
+<!-- target: hisThead -->
+            <tr class="uppercase">
+                <th> 序号 </th>
+                <th> 车号 </th>
+                <th> 好品率 </th>
+                <th> 开位 </th>
+                <th> 缺陷数 </th>
+            </tr>
+<!-- target: hisTbody -->
+        	<!-- for: ${data} as ${item},${index} -->
+			<!-- var: idx = ${index}+1 -->
+            <tr>
+                <td> ${idx} </td>
+                <td> <a href="#${item[1]}" name="hiscart">${item[1]}</a> </td>
+                <td> ${item[2]} % </td>
+                <td>
+					<!-- if: ${item[3]} != -1 -->
+						${item[3]}
+					<!-- /if -->
+                </td>
+                <td>
+                	<!-- if: ${item[3]} != -1 -->
+	                	<!-- if: ${item[5]} == 0 -->
+	                		<span class="label label-sm label-default"> ${item[4]}条 </span>
+	                	<!-- elif: ${item[5]} == 1 -->
+	                		<span class="label label-sm label-info"> ${item[4]}条 </span>
+	                	<!-- else -->
+							<span class="label label-sm label-danger"> ${item[4]}条 </span>
+	                	<!-- /if -->
+                	<!-- /if -->
+                </td>
+            </tr>
+            <!-- /for -->

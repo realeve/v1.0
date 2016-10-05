@@ -15,6 +15,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -45,39 +47,40 @@ class Welcome extends CI_Controller {
 
 	 //登录
   public function trylogin(){
-	$UserName = $this->input->post('username');
-	$Password = md5($this->input->post('password'));
+		
+		$UserName = $this->input->post('username');
+		$Password = md5($this->input->post('password'));
 
-	if($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true)//如果注销
-	{
-		//$logindata['type'] = 6;
-		//$logindata['message'] = $this->loginMessage(6);//未激活
-		//$this->output->set_output(json_encode($logindata));
-		$this->load->view('framework/lockscreen');
-	}
+		if($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true)//如果注销
+		{
+			//$logindata['type'] = 6;
+			//$logindata['message'] = $this->loginMessage(6);//未激活
+			//$this->output->set_output(json_encode($logindata));
+			$this->load->view('framework/lockscreen');
+		}
 
-	$logindata = $this->LoginModel->logincheck($UserName,$Password);
+		$logindata = $this->LoginModel->logincheck($UserName,$Password);
 
-	if ($logindata['logged_in'] == true) {
-		if ($logindata['userrole'] >0) {//帐号激活
-			$this->session->set_userdata($logindata);
-			$logindata['type'] = 9;
+		if ($logindata['logged_in'] == true) {
+			if ($logindata['userrole'] >0) {//帐号激活
+				$this->session->set_userdata($logindata);
+				$logindata['type'] = 9;
+				$this->output->set_output(json_encode($logindata));
+			}
+			else//未激活
+			{
+				$logindata['type'] = 6;
+				$logindata['message'] = $this->loginMessage(6);//未激活
+				$this->output->set_output(json_encode($logindata));
+			}		
+		}
+		else
+		{
+			//$this->output->set_output(json_encode($logindata));
+			$logindata['type'] = $logindata['message'];
+			$logindata['message'] = $this->loginMessage($logindata['type']);
 			$this->output->set_output(json_encode($logindata));
 		}
-		else//未激活
-		{
-			$logindata['type'] = 6;
-			$logindata['message'] = $this->loginMessage(6);//未激活
-			$this->output->set_output(json_encode($logindata));
-		}		
-	}
-	else
-	{
-		//$this->output->set_output(json_encode($logindata));
-		$logindata['type'] = $logindata['message'];
-		$logindata['message'] = $this->loginMessage($logindata['type']);
-		$this->output->set_output(json_encode($logindata));
-	}
 
   }
 
@@ -114,6 +117,8 @@ class Welcome extends CI_Controller {
 
 	public function lockscreen()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		$array_items = array('userrole' => '-1','logged_in'=>'true');
 		$this->session->set_userdata($array_items);//设置数据
 		if ($this->session->userdata('username')=='') {
@@ -126,6 +131,8 @@ class Welcome extends CI_Controller {
 
 	public function logout()
 	{
+		//开启缓存
+		$this->output->cache(60*24);
 		$array_items = array('username' => '', 'password'=>'','email' => '','userrole' => '','logged_in'=>'');
 		$this->session->unset_userdata($array_items);//清除数据
 		$this->session->sess_destroy();//注销

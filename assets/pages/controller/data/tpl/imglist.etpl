@@ -1,0 +1,29 @@
+<div class="mt-element-card mt-element-overlay">
+	<div class="row">
+		<!-- for: ${data} as ${item} -->
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="mt-card-item bg-white">
+					<div class="mt-card-avatar mt-overlay-1">
+					<!-- if: ${item.img} == 'AA==' -->
+						<img src="../../assets/global/img/none.png" alt="图像读取失败">
+					<!-- else -->
+						<img src="data:image/jpg;base64,${item.img}">
+					<!-- /if -->
+					</div>
+					<div class="mt-card-content">
+						<h3 class="mt-card-name">第${item.pos}开</h3>
+						<p class="mt-card-desc font-grey-mint">
+							<!-- if: ${item.type} == '0' -->
+		                		宏区${item.mac} / ${item.num}条
+		                	<!-- elif: ${item.type} == '1' -->
+		                		宏区${item.mac} / <span class="badge badge-info">${item.num}条</span>
+		                	<!-- else -->
+								宏区${item.mac} / <span class="badge badge-danger">${item.num}条</span>
+		                	<!-- /if -->
+						</p>
+					</div>
+				</div>
+			</div>
+		<!-- /for -->
+	</div>
+</div>

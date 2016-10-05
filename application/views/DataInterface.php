@@ -265,7 +265,7 @@
 											<span class="text-muted">
 											请在此输入SQL查询语句中的参数顺序(英文小写)
 											</br><span class="badge badge-roundless badge-danger">除非该参数值为0时能顺利执行，调用时不能为空值</span>
-											</br>其中系统保留字段为Token(所有者)/ID(接口编号)/M(数据模式)</span>
+											</br>其中系统保留字段为Token(所有者)/ID(接口编号)/M(数据模式)/cache(缓存时长：分钟数)/blob(二进制数据)/,推荐设置tstart(开始时间) tend(结束时间)</span>
 										</td>
 									</tr>											
 									<tr>

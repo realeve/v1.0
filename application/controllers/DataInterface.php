@@ -15,6 +15,10 @@ class DataInterface extends CI_Controller {
 
 	public function index()
 	{
+		
+		//开启缓存
+		$this->output->cache(60*24);
+		
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -74,7 +78,56 @@ class DataInterface extends CI_Controller {
 	public function Api()//读取接口数据
 	{
 		$APIData = $this->input->get(NULL);
-		$Data = $this->DataInterfaceModel->Api($APIData);
+
+		//数据缓存处理(根据查询参数做K-V缓存);
+		if(isset($APIData['cache'])){
+			
+			$minutes = $APIData['cache'];
+			
+			unset($APIData['cache']);
+			
+			$keyName = 'api_data';
+			
+			foreach($APIData as $key=>$value)
+			{
+				 $keyName.="_".$key."_".$value;
+			}
+			//数据缓存(APACHE存键值)
+			$this->load->driver('cache', 
+				array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
+			);
+			
+			//memcache(缓存数据)
+			$this->load->driver('cache');
+			$this->cache->memcached->is_supported();
+			
+			//echo '开始读取缓存...<br>';
+			//if ( ! $Data = $this->cache->get($keyName)){
+			if ( ! $Data = $this->cache->memcached->get($keyName)){	
+				//缓存未命中，读取原始数据
+				$Data = $this->DataInterfaceModel->Api($APIData);
+				//echo '未取得缓存...<br>';
+				//缓存数据
+				// Save into the cache for n minutes
+				//$this->cache->save($keyName, $Data, $minutes*60);
+				$this->cache->memcached->save($keyName, $Data, $minutes*60);
+				
+				$this->load->driver('cache', 
+					array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
+				);
+				
+				//apache存储键值(数据更新后不用全部清理memcache)
+				$this->cache->save($keyName, 1, $minutes*60);
+				
+			}else{
+				//echo '当前数据来于缓存...<br>';
+				$Data = str_replace('{"rows"','{"cache":'.$minutes.',"rows"',$Data);
+			}
+		}else{
+			//无需缓存
+			//echo '实时读取';
+			$Data = $this->DataInterfaceModel->Api($APIData);
+		}			
 
 		//增加跨域请求权限_2015_12_31
 		if (isset($APIData['callback'])) {
@@ -178,6 +231,15 @@ class DataInterface extends CI_Controller {
 			$targetStr .= ',"'.$key.'":"'.sha1($str).'"';
 		}
 		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
+	}
+	
+	public function test(){
+				//memcache(缓存数据)
+		$this->load->driver('cache');
+		$this->cache->memcached->is_supported();
+		$memcache = $this->cache->memcached;
+		echo $memcache->get('api_data_Token_79d84495ca776ccb523114a2120e273ca80b315b_ID_283_M_0_cart_1620A535');
+		
 	}
 }
 

@@ -82,7 +82,7 @@ var feedback = function() {
 	var getImgList = function() {
 		var date = getDateRange();
 		searchFeedBack = getSearchSettings();
-		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&M=0&tstart=" + date.start + "&tend=" + date.end + '&limit=' + searchFeedBack.limit + '&faketype=' + searchFeedBack.fakeType + "&t=" + Math.random();
+		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&M=0&tstart=" + date.start + "&tend=" + date.end + '&limit=' + searchFeedBack.limit + '&faketype=' + searchFeedBack.fakeType; // + "&t=" + Math.random();
 		strUrl += getQueryUrl(searchFeedBack);
 		var data = ReadData(strUrl);
 		renderImgList(data);
@@ -160,44 +160,6 @@ var feedback = function() {
 
 	var initImg = function() {
 		// init cubeportfolio
-
-		function getOption(obj) {
-			return {
-				tooltip: {
-					trigger: 'axis',
-					formatter: '{b}<br>{c}%'
-				},
-				color: ['#e12330'],
-				xAxis: {
-					type: 'category',
-					boundaryGap: false,
-					data: obj.xAxis,
-					show: false
-				},
-				grid: {
-					x: 30,
-					y: 10,
-					x2: 10,
-					y2: 20
-				},
-				yAxis: {
-					type: 'value',
-					axisTick: {
-						show: false
-					},
-					axisLine: {
-						show: false
-					},
-					min: 0,
-					max: 100
-				},
-				series: [{
-					type: 'line',
-					data: obj.yAxis
-				}]
-			};
-		}
-
 		var initCubeportfolio = function() {
 
 			$('#js-grid-juicy-projects').cubeportfolio({
@@ -259,7 +221,6 @@ var feedback = function() {
 								var link = $('[data-cartnumber="' + cart + '"]').first();
 								var data = link.data('cart');
 								var img = link.data('img');
-
 								result = result.replace('{cartnumber}', data.CartNumber);
 								result = result.replace(/{machine}/g, data.MachineName);
 								result = result.replace('{goodrate}', data.GoodRate);
@@ -303,8 +264,9 @@ var feedback = function() {
 									result = result.replace('{prodInfo}', str);
 
 									//当天生产的其它产品
-									//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where id = 39555) b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
-									var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cid=" + data.id;
+									//282
+									//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where CartNumber = '1620C217') b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
+									var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + data.CartNumber;
 									var cartList = ReadData(url);
 									var strList = '';
 									cartList.data.map(function(elem, curPos) {
@@ -363,6 +325,7 @@ var feedback = function() {
 										strList += str;
 										chartData.xAxis.push(elem[1]);
 										chartData.yAxis.push(elem[2]);
+										chartData.type = 'line';
 									});
 
 									result = result.replace('{relate}', strList);
@@ -370,7 +333,7 @@ var feedback = function() {
 
 									setTimeout(function() {
 										var ec = echarts.init(document.getElementById("chart"));
-										var option = getOption(chartData);
+										var option = getSimpleEChart(chartData);
 										//console.log(JSON.stringify(option));
 										ec.setOption(option);
 									}, 500);
@@ -433,7 +396,7 @@ var feedback = function() {
 }();
 //记录选择状态
 jQuery(document).ready(function() {
-	$('body').addClass('page-content-white').removeClass('page-container-bg-solid');
+	whiteBackground();
 	RoundedTheme(0);
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');

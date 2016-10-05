@@ -11,7 +11,8 @@
        if (token === null) {
          token = config.TOKEN;
        }
-       var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&t=" + Math.random();
+       //缓存5分钟
+  var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + iID + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + '&cache=' + config.cache; // + "&t=" + Math.random();
        var paramList = location.href.split('&');
 
        for (var i = 1; i < paramList.length; i++) {
@@ -419,13 +420,14 @@
          ratioSelector.find('option').data('icon', 'fa fa-down');
          //loadDefaultValue
          if (typeof localStorage.chartRatio == 'undefined') {
-           chartRatio = 1.5;
+           chartRatio = 1.78;
            localStorage.setItem("chartRatio", chartRatio);
          } else {
            chartRatio = localStorage.chartRatio;
-           ratioSelector.selectpicker('val', chartRatio);
-           changeChartRatio(chartRatio);
          }
+
+         ratioSelector.selectpicker('val', chartRatio);
+         changeChartRatio(chartRatio);
 
          //changeEvent
          if (ratioSelector) {

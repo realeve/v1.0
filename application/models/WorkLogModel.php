@@ -4,6 +4,7 @@ class WorkLogModel extends CI_Model {
 	public function __construct()
 	{
 		$this->load->database();
+		$this->load->helper('url');
 	}
 
 	public function TransToGBK($data){//SQL SERVER字符转换
@@ -22,7 +23,7 @@ class WorkLogModel extends CI_Model {
 	public function ShowWorkLog($queryData)
 	{
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);
-		$this->load->helper('url');
+		
 		//,a.ErrDescHTML
 		$SQLStr = "SELECT a.ID, a.proStatus_id, a.proc_id, b.ProcName, c.ClassName, a.machine_id, a.prod_id, f.StatusName, CONVERT ( CHAR (16), a.process_time, 120 ) AS process_time, a.oper_name, a.prod_info, a.rec_user_name, CONVERT (CHAR(16), a.rec_time, 120) AS rec_time, a.ErrDesc, h.set_avatar, CAST (h.ID AS VARCHAR) + h.UserName AS avatarUrl FROM tblWorkLog_Record a LEFT JOIN tblWorkProc b ON a.proc_id = b.ProcID LEFT JOIN tblWorkClass c ON a.class_id = c.ClassID LEFT JOIN tblWorkProStatus f ON f.StatusID = a.proStatus_id LEFT JOIN tblWorkErrDesc g ON a.sub_err = g.SubErrID LEFT JOIN tblUser h ON a.rec_user_name = h.FullName WHERE HideLog = 0 AND convert(varchar(10),a.rec_time,120) BETWEEN ? and ? AND a.ID> ? ";
 
@@ -53,7 +54,7 @@ class WorkLogModel extends CI_Model {
 	//保存日志查询设置
 	public function SaveLogQuerySettings($data)
 	{
-		$this->load->helper('url');
+		
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);
 		//先获取当前用户ID
@@ -105,7 +106,7 @@ class WorkLogModel extends CI_Model {
 	//读取日志查询设置
 	public function ReadLogQuerySettings($data)
 	{
-		$this->load->helper('url');
+		
 	  	//判断用户名是否已存在
 		$LOGINDB=$this->load->database('sqlsvr',TRUE);
 		//先获取当前用户ID

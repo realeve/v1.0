@@ -1,5 +1,8 @@
 var Login = function() {
-
+    //全局配置
+    const config = {
+        "TOKEN": '79d84495ca776ccb523114a2120e273ca80b315b'
+    };
     var handleLogin = function() {
 
         $('.login-form').validate({
