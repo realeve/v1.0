@@ -49,12 +49,10 @@ class DataInterfaceModel extends CI_Model {
 		$this->load->driver('cache', 
 			array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
 		);
-			
-		//memcache(对SQL的存储采用APACHE,不采用MEMCACHE)
+								
 		//断电后继续使用
 		$this->load->driver('cache');
 		$this->cache->memcached->is_supported();
-		
 		//连接默认数据库(pconnect 长连接，默认数据库之外需关闭)
 		//$db['Quality']['pconnect'] = TRUE;
 		$this->LOGINDB['Quality'] = $this->load->database('Quality',TRUE);
@@ -176,7 +174,7 @@ class DataInterfaceModel extends CI_Model {
 		//缓存中没有则往缓存写数据
 		//如果API更新，需将相应数据删除
 		$key = 'api_sql_id_'.$data['ID'].'_token_'.$data['Token'];
-		if ( ! $strJson = $this->cache->get($key)){
+		if (!$strJson = $this->cache->get($key)){
 				//->memcached
 				//缓存n小时(1个月)		
 				$minutes = 24*30;
@@ -438,9 +436,9 @@ class DataInterfaceModel extends CI_Model {
 		//清理SQL缓存
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
-			//cache->memcached
-			$this->delCacheByName($data['cacheName']);
-			//unset($data['cacheName']);
+			
+			$this->delMemcacheByName($data['cacheName']);
+			unset($data['cacheName']);
 		}		
     return $LOGINDB->where($condition)->delete($tblName);
 	}
@@ -472,35 +470,59 @@ class DataInterfaceModel extends CI_Model {
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
 			
-			$this->delCacheByName($data['cacheName']);
-			//unset($data['cacheName']);
+			$this->delMemcacheByName($data['cacheName']);
+			
+			unset($data['cacheName']);
 		}		
 		
     //$data['is_del'] = 1;
     return $LOGINDB->update($tblName, $data,$where);
 	}
 	
-	public function delCacheByName($name){
+	//删除APC缓存数据
+	public function delApcCacheByName($name){
 		$dir = "./application/cache/";
 		
 		$id = explode('id_',$name);
 		$id = explode('_',$id[1]);
-		
-		//$this->cache->memcached->delete('sql_'.$data['cacheName']);
-		//由于缓存清理无法使用通配符匹配，更改数据库后需全部清理缓存
-		
+
 		if (is_dir($dir)){			
 			if ($dh = opendir($dir)){
 				while (($file = readdir($dh)) !== false){
 					$file = strtolower($file);
 					if($file!='.' && $file!='..' && strstr($file,"api_data_") && strstr($file,"_id_".$id) ){
 						unlink($dir.$file);
-						//清除memcache数据
-						$this->cache->memcache->delete($file);
 					}
 				}
 				closedir($dh);
 			}
 		}
-	}	
+	}
+	
+	public function delMemcacheByName($name){
+		//删除memcache(缓存数据)
+		$this->load->driver('cache');
+		$this->cache->memcached->is_supported();
+
+		$id = explode('id_',$name);
+		$id = explode('_',$id[1])[0];
+
+		$keyList = $this->cache->memcached->get('keyList');
+		if($keyList != ''){
+			$keyList = json_decode($keyList);
+			foreach($keyList as $key=>$item){
+				if(strstr($key,"api_data_")){
+					if(strstr($key,'id_'.$id)){			
+						$this->cache->memcached->delete($key);
+						unset($keyList->$key);
+					}
+				}
+			}
+		}else{
+			$keyList = new stdClass();
+		}
+		
+		$this->cache->memcached->save('keyList',json_encode($keyList));		
+	}
+	
 }

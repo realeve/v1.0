@@ -30,42 +30,6 @@ define(function() {
         tooltip: {
             "trigger": "item"
         },
-        // 提示框
-        /*tooltip: {
-        //backgroundColor: 'rgba(61,61,61,0.8)',
-		//borderColor: 'rgb(121,183,230)',
-		backgroundColor: '#009688',
-		//borderRadius: 4,
-		//borderWidth: 0,
-		//padding: 10,
-		trigger: 'axis',
-		//showDelay : 0,
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-           // type : 'line',         // 默认为直线，可选为：'line' | 'shadow'
-			type : 'cross',
-            lineStyle : {          // 直线指示器样式设置
-                color: 'rgb(38,185,139)',
-                type: 'dashed',
-				width: 1,
-            },
-            crossStyle: {
-                color: 'rgb(38,185,139)',
-            },
-            shadowStyle : {                     // 阴影指示器样式设置
-                color: 'rgba(200,200,200,0.3)'
-            }
-        },
-		textStyle: { color: '#eee',
-                     fontSize:12}
-    },*/
-
-        // 区域缩放控制器
-        /*dataZoom: {
-            dataBackgroundColor: 'rgb(98,201,145)',            // 数据背景颜色
-            fillerColor: 'rgba(98,201,145,0.4)',   // 填充颜色
-            handleColor: 'rgb(38,185,139)'     // 手柄颜色
-        },*/
-
         grid: {
             borderWidth: 0,
             y: 80,
@@ -423,7 +387,7 @@ define(function() {
         textStyle: {
             fontFamily: '微软雅黑, Arial, Verdana, sans-serif'
         }
-    }
+    };
 
     return theme;
 });

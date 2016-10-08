@@ -4,20 +4,28 @@ var feedback = function() {
 	var isInited = false;
 	var initSelectData = function() {
 
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3";
-		var Data = ReadData(str);
-		InitSelect("prodType", Data);
-		$('[name=prodType] option').first().text('所有品种');
+		// var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3";
+		// var Data = ReadData(str);
+		// InitSelect("prodType", Data);
+		// $('[name=prodType] option').first().text('所有品种');
 
 		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=36&M=3&p=2";
-		Data = ReadData(str);
-		InitSelect("machineID", Data);
-		$('[name=machineID] option').first().text('所有机台');
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				data = handleAjaxData(data);
+				InitSelect("machineID", data);
+				$('[name=machineID] option').first().text('所有机台');
+			});
 
 		for (var i = 100; i > 0; i -= 10) {
 			$('#limit').append('<option value=' + i + '>' + i + '</option>');
 		}
-
+		var searchFeedBack = {
+			machineID: -1,
+			limit: 70
+		};
 		if (typeof localStorage.searchFeedBack != 'undefined') {
 			//保存搜索反馈设置项
 			searchFeedBack = $.parseJSON(localStorage.searchFeedBack);
@@ -27,11 +35,12 @@ var feedback = function() {
 			$('#limit').val(searchFeedBack.limit);
 			//$('#fakeType').val(searchFeedBack.fakeType);
 		} else {
+			localStorage.searchFeedBack = JSON.stringify(searchFeedBack);
 			$('#limit').val(70);
 			$('[name=machineID]').val(-1);
 		}
 
-		getImgList();
+		getImgList(searchFeedBack);
 	};
 
 	var getSearchSettings = function() {
@@ -79,10 +88,12 @@ var feedback = function() {
 		return params;
 	};
 
-	var getImgList = function() {
+	var getImgList = function(searchFeedBack) {
+
+		searchFeedBack = searchFeedBack || getSearchSettings();
+
 		var date = getDateRange();
-		searchFeedBack = getSearchSettings();
-		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&M=0&tstart=" + date.start + "&tend=" + date.end + '&limit=' + searchFeedBack.limit + '&faketype=' + searchFeedBack.fakeType; // + "&t=" + Math.random();
+		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&M=0&tstart=" + date.start + "&tend=" + date.end + '&limit=' + searchFeedBack.limit; // + '&faketype=' + searchFeedBack.fakeType; // + "&t=" + Math.random();
 		strUrl += getQueryUrl(searchFeedBack);
 		var data = ReadData(strUrl);
 		renderImgList(data);
@@ -99,65 +110,205 @@ var feedback = function() {
 			class: 'badge-danger',
 			filter: 'fake'
 		}];
+
 		//254 缺陷图像读取
 		//	SELECT ErrImage1,ErrImage2,ErrImage3 FROM ImageData where MahouID=?
 		//	 图像缓存10天
 		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&cache=14400&M=3&t=";
 		$('#js-grid-juicy-projects').html('');
 		var strTemp = '';
+
+		function listener() {
+			if (sum == fakeList.rows) {
+				bsTips('图像数据载入完毕,共载入数据' + fakeList.rows + '车', 1);
+				$('#js-grid-juicy-projects').html(strCache);
+				initImg();
+			}
+		}
+
 		if (fakeList.rows > 0) {
+			var sum = 0;
+			var strCache = '';
 			fakeList.data.map(function(data, curPos) {
 				var url = strUrl + data.id;
-				var obj = ReadData(url);
-				var img = obj.data[0];
-				var parseCart = JSON.stringify(data),
-					parseImg = JSON.stringify(img);
-				for (var i = 1; i <= 3; i++) {
-					var imgType = parseInt(data['ImgVerify' + i], 10);
-					imgType = imgType > 2 ? 2 : imgType;
-					var str = '<div class="cbp-item ' + data.ProductName + ' ' + fakeType[imgType].filter + '">' +
-						'  <div class="cbp-caption">' +
-						'      <div class="cbp-caption-defaultWrap">' +
-						'          <img src="data:image/jpg;base64,' + img[i - 1] + '" alt=""> </div>' +
-						'      <div class="cbp-caption-activeWrap">' +
-						'          <div class="cbp-l-caption-alignCenter">' +
-						'              <div class="cbp-l-caption-body">' + //class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase" class="cbp-caption cbp-singlePageInline"
-						'                  <a href="../assets/pages/controller/data/ajax/feedback.html?cart=' + data.CartNumber + '" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase"  rel="nofollow" data-cartnumber="' + data.CartNumber + '"  data-cart=\'' + parseCart + "' data-img = '" + parseImg + "' >查看详情</a>" +
-						'                  <a href="data:image/jpg;base64,' + img[i - 1] + '" class="cbp-lightbox cbp-s-caption-buttonRight btn red uppercase" data-title="' + data.CartNumber + '<br>' + data.MachineName + '<br>好品率：' + data.GoodRate + '%">查看大图</a>' +
-						'              </div>' +
-						'          </div>' +
-						'      </div>' +
-						'  </div>' +
-						'  <div class="cbp-l-grid-agency-title uppercase text-center">' + data.CartNumber + '</div>' +
-						'  <div class="cbp-l-grid-agency-desc uppercase text-center">第' + data["FormatPos" + i] + '开 / <span class="badge ' + fakeType[imgType].class + '">' + data["ErrCount" + i] + '条 </span></div>' +
-						'</div>';
-					// var str = '<div class="cbp-item ' + data.ProductName + ' ' + fakeType[imgType].filter + '">' +
-					// 	'<a href="ajax-awesome-work/project1.html" class="cbp-caption cbp-singlePage" rel="nofollow">' +
-					// 	'<div class="cbp-caption-defaultWrap">' +
-					// 	'   <img src="data:image/jpg;base64,' + img[i - 1] + '" alt="">' +
-					// 	'</div>' +
-					// 	'<div class="cbp-caption-activeWrap"></div>' +
-					// 	'</a>' +
-					// 	'<a href="../assets/global/plugins/cubeportfolio/ajax/project2.html" class="cbp-l-grid-work-title cbp-singlePage" rel="nofollow">' + data.CartNumber + '</a>' +
-					// 	'<div class="cbp-l-grid-work-desc uppercase text-center">第' + data["FormatPos" + i] + '开 / <span class="badge ' + fakeType[imgType].class + '">' + data["ErrCount" + i] + '条 </span></div>';
+				$.ajax({
+						url: url
+					})
+					.done(function(obj) {
+						obj = handleAjaxData(obj);
 
-					//去除无效图片
-					if (img[i - 1] != 'AA==') {
-						$('#js-grid-juicy-projects').append(str);
-					}
-					//strTemp += str;
-				}
+						var img = obj.data[0];
+
+						for (var i = 1; i <= 3; i++) {
+							if (img[i - 1] == 'AA==') {
+								continue;
+							}
+							var imgType = parseInt(data['ImgVerify' + i], 10);
+							imgType = imgType > 2 ? 2 : imgType;
+							var domData = {
+								ProductName: data.ProductName,
+								filter: fakeType[imgType].filter,
+								img: 'data:image/jpg;base64,' + img[i - 1],
+								CartNumber: data.CartNumber,
+								MachineName: data.MachineName,
+								GoodRate: data.GoodRate,
+								FormatPos: data["FormatPos" + i],
+								imgType: fakeType[imgType].class,
+								ErrCount: data["ErrCount" + i]
+							};
+
+							strCache += tpl.getHTML('feedback/imgitem.etpl', domData);
+						}
+						sum++;
+						listener();
+					});
 			});
 
-			bsTips('图像数据载入完毕,共载入数据' + fakeList.rows + '车', 1);
-
-			initImg();
 		} else {
-			$('#js-grid-juicy-projects').addClass('cbp-ready').append('<div class="cbp-search-nothing">当前时间内无 <i>' + $('[name=machineID]').find('option:selected').text() + '</i> 的信息</div>');
+			$('#js-grid-juicy-projects').addClass('cbp-ready').append('<div class="cbp-search-nothing">当前时间内无相关信息</div>');
 			//bsTips('当前时间无数据', 1);
 		}
 
 	};
+
+	var singlePage = (function() {
+
+
+		// function updateImgInfo(id) {
+		// 	var url = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&cache=14400&M=3&t=" + id;
+		// 	$.ajax({
+		// 			url: url
+		// 		})
+		// 		.done(function(data) {
+		// 			data = jQuery.parseJSON(data);
+		// 			data.data[0].map(function(elem, i) {
+		// 				var img = elem == ('AA==') ? '../assets/global/img/none.png' : 'data:image/jpg;base64,' + elem;
+		// 				$('.cbp-popup-wrap [name="img' + i + '"]').attr('src', img);
+		// 			});
+		// 		});
+		// }
+
+		function renderDetail(cart) {
+			//291
+			//车号详情
+			//cart
+			//SELECT a.id, nocheckcount, errpiccount, CartNumber, b.MachineName, c.ProductName, ProduceDate, GoodRate, FormatPos1, ErrCount1, ImgVerify1, FormatPos2, ErrCount2, ImgVerify2, FormatPos3, ErrCount3, ImgVerify3 FROM MaHouData a INNER JOIN MachineData b ON a.MachineID = b.MachineID INNER JOIN ProductData c ON a.ProductTypeID = c.ProductID WHERE a.CartNumber = ?
+			//
+			url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=291&M=0&cart=" + cart;
+			var data = ReadData(url);
+			var fakeType = ['', 'badge-info', 'badge-danger'];
+			var renderData = data.data[0];
+			renderData.imglist = [];
+
+			for (var i = 1; i <= 3; i++) {
+				var imgType = parseInt(renderData['ImgVerify' + i], 10);
+				imgType = imgType > 2 ? 2 : imgType;
+				renderData.imglist.push({
+					formatPos: renderData['FormatPos' + i],
+					errCount: renderData['ErrCount' + i],
+					verify: fakeType[imgType]
+				});
+			}
+
+			return {
+				id: data.data[0].id,
+				html: tpl.getHTML('feedback/detail.etpl', renderData)
+			};
+		}
+
+		function renderProdInfo(id) {
+			//mid
+			//281
+			//SELECT procName,MachineName,CaptainName,convert(varchar,StartDate,120) as startDate,WorkInfo FROM  CartInfoData where MahouID =
+			url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=281&M=3&mid=" + id;
+			$.ajax(url).done(function(data) {
+				data = handleAjaxData(data);
+				tpl.render('feedback/prodinfo.etpl', data, $('[name="prodInfo"]'));
+			});
+		}
+
+		function updateSinglePage(html, t) {
+			t.content.html(html);
+			t.content.addClass('cbp-popup-content').removeClass('cbp-popup-content-basic');
+			t.wrap.addClass('cbp-popup-ready');
+			t.wrap.removeClass('cbp-popup-loading');
+		}
+
+		function renderHisQua(cart) {
+			var chartData = {
+				xAxis: [],
+				yAxis: []
+			};
+
+			//当天生产的其它产品
+			//282
+			//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where CartNumber = '1620C217') b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
+			var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + cart;
+			$.ajax({
+					url: url
+				})
+				.done(function(data) {
+					var cartList = handleAjaxData(data);
+
+					tpl.render('feedback/hislist.etpl', cartList, $('[name="hislist"]'));
+
+					cartList.data.map(function(elem) {
+
+						renderHisImg(elem[0], elem[1] == cart);
+
+						chartData.xAxis.push(elem[1]);
+						chartData.yAxis.push(elem[2]);
+						chartData.type = 'line';
+					});
+
+					var ec = echarts.init(document.getElementById("chart"));
+					var option = getSimpleEChart(chartData);
+					ec.setOption(option);
+
+				});
+		}
+
+		function getImg(i, data) {
+			var img = data.data[0][i];
+
+			if (img == 'AA==') {
+				img = '../assets/global/img/none.png';
+			} else {
+				img = 'data:image/jpg;base64,' + img;
+			}
+			return img;
+		}
+
+		function renderHisImg(id, isCurCart) {
+			//图像缓存10天
+			var imgUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&cache=14400&M=3&t=" + id;
+			$.ajax({
+					url: imgUrl
+				})
+				.done(function(data) {
+					data = $.parseJSON(data);
+
+					var img = getImg(0, data);
+
+					$('.cbp-popup-wrap [name="hisImg' + id + '"]').attr('src', img);
+
+					if (isCurCart) {
+						$('.cbp-popup-wrap [name="img' + id + '_0"]').attr('src', img);
+						$('.cbp-popup-wrap [name="img' + id + '_1"]').attr('src', getImg(1, data));
+						$('.cbp-popup-wrap [name="img' + id + '_2"]').attr('src', getImg(2, data));
+					}
+
+				});
+		}
+
+		return {
+			//updateImgInfo: updateImgInfo,
+			renderProdInfo: renderProdInfo,
+			renderDetail: renderDetail,
+			renderHisQua: renderHisQua,
+			render: updateSinglePage
+		};
+	})();
 
 	var initImg = function() {
 		// init cubeportfolio
@@ -209,167 +360,16 @@ var feedback = function() {
 					singlePageCallback: function(url, element) {
 						// to update singlePage content use the following method: this.updateSinglePage(yourContent)
 						var t = this;
-						var fakeType = ['<span class="badge">', '<span class="badge badge-info">', '<span class="badge badge-danger">'];
-						$.ajax({
-								url: url,
-								type: 'GET',
-								dataType: 'html',
-								timeout: 10000
-							})
-							.done(function(result) {
+						var detail = singlePage.renderDetail(url);
 
-								var cart = location.href.split('?cart=')[1].substring(0, 8);
-								var link = $('[data-cartnumber="' + cart + '"]').first();
-								var data = link.data('cart');
-								var img = link.data('img');
-								result = result.replace('{cartnumber}', data.CartNumber);
-								result = result.replace(/{machine}/g, data.MachineName);
-								result = result.replace('{goodrate}', data.GoodRate);
-								result = result.replace(/{date}/g, data.ProduceDate);
-								result = result.replace(/{errcount}/g, data.errpiccount);
-								result = result.replace(/{nocheck}/g, data.nocheckcount);
+						//t.updateSinglePage(detail.html);
 
-								for (var i = 0; i < 3; i++) {
-									if (img[i] != 'AA==') {
-										result = result.replace('a href=""', 'a href="data:image/jpg;base64,' + img[i] + '"');
-										result = result.replace('img src=""', 'img src="data:image/jpg;base64,' + img[i] + '"');
-										var imgType = parseInt(data['ImgVerify' + (i + 1)], 10);
-										imgType = imgType > 2 ? 2 : imgType;
-										result = result.replace('{img' + i + '}', '第' + data['FormatPos' + (i + 1)] + '开');
-										result = result.replace('{errcount' + i + '}', fakeType[imgType] + data['ErrCount' + (i + 1)] + '条</span>');
-									} else {
-										result = result.replace('{img' + i + '}', '');
-									}
-								}
+						singlePage.render(detail.html, t);
 
-								var chartData = {
-									xAxis: [],
-									yAxis: []
-								};
-								//mid
-								//281
-								//SELECT procName,MachineName,CaptainName,convert(varchar,StartDate,120) as startDate,WorkInfo FROM  CartInfoData where MahouID =
-								var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=281&M=3&mid=" + data.id;
-								$.ajax(url).done(function(prodInfo) {
-									prodInfo = prodInfo.replace(/\r\n/g, '<br>').replace(/\t/g, ' ');
-									var prodList = $.parseJSON(prodInfo);
-									var str = '';
-									prodList.data.map(function(elem, i) {
-										str += '<div class="cbp-l-project-desc-title ' + (i > 0 ? 'margin-top-40' : '') + '">' +
-											'	<span>' + (i + 1) + '.' + elem[0] + '工序：  ' + elem[1] + '</span>' +
-											'<h5 class="pull-right" style="margin-top:15px;">' + elem[3].substring(0, 16) + '</h5>' +
-											'</div>' +
-											'<div class="cbp-l-project-desc-text"><p style="margin-bottom:5px;">' + elem[4] + '</p><h5 class="pull-right">——— <i>' + elem[2] + '</i></h5></div>';
-									});
+						singlePage.renderProdInfo(detail.id);
 
-									result = result.replace('{prodInfo}', str);
-
-									//当天生产的其它产品
-									//282
-									//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where CartNumber = '1620C217') b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
-									var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + data.CartNumber;
-									var cartList = ReadData(url);
-									var strList = '';
-									cartList.data.map(function(elem, curPos) {
-										curPos++;
-										//图像缓存10天
-										var imgUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&blob=1&ID=254&cache=14400&M=3&t=" + elem[0];
-										var imgData = ReadData(imgUrl);
-										var img = imgData.data[0];
-										var imgType = parseInt(elem[5], 10);
-										imgType = imgType > 2 ? 2 : imgType;
-
-										// str = '<div class="col-sm-3 portfolio-tile">' +
-										// 	'    <a href="#" class="cbp-singlePage cbp-l-project-related-link" rel="nofollow">';
-										// if (img[0] !== 'AA==') {
-										// 	str += '        <img src="data:image/jpg;base64,' + img[0] + '" alt="">';
-										// } else {
-										// 	str += '        <img src="../assets/global/img/none.png" alt="">';
-										// }
-										// str += '        <div class="text-center margin-top-10">' + elem[1] + ' / ' + elem[2] + '% <br>第' + elem[3] + '开 / ' + fakeType[imgType] + elem[4] + '条</span></div>' +
-										// 	'    </a>' +
-										// 	'</div>';
-
-										var imgStr;
-										if (img[0] !== 'AA==') {
-											imgStr = '        <img src="data:image/jpg;base64,' + img[0] + '" alt="">';
-										} else {
-											imgStr = '        <img src="../assets/global/img/none.png" alt="">';
-										}
-
-										str = '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">' +
-											'	<div class="portlet light portlet-fit bordered">' +
-											'		<div class="portlet-title">' +
-											'			<div class="caption">' +
-											'				<i class="icon-layers font-green"></i>' +
-											'				<span class="caption-subject font-green bold uppercase">' + elem[1] + '</span>' +
-											'				<div class="caption-desc font-grey-cascade"> 好品率 : ' + elem[2] + '%</div>' +
-											'			</div>' +
-											'		</div>' +
-											'		<div class="portlet-body">' +
-											'			<div class="mt-element-overlay">' +
-											'				<div class="row">' +
-											'					<div class="col-md-12">' +
-											'						<div class="mt-overlay-2">' + imgStr +
-											'							<div class="mt-overlay">' +
-											'								<h2>第' + elem[3] + '开 / ' + fakeType[imgType] + elem[4] + '条</span></h2>' +
-											'								<a class="mt-info btn red btn-outline" href="#">查看详情</a>' +
-											'							</div>' +
-											'						</div>' +
-											'					</div>' +
-											'				</div>' +
-											'			</div>' +
-											'		</div>' +
-											'	</div>' +
-											'</div>';
-
-
-										strList += str;
-										chartData.xAxis.push(elem[1]);
-										chartData.yAxis.push(elem[2]);
-										chartData.type = 'line';
-									});
-
-									result = result.replace('{relate}', strList);
-									t.updateSinglePage(result);
-
-									setTimeout(function() {
-										var ec = echarts.init(document.getElementById("chart"));
-										var option = getSimpleEChart(chartData);
-										//console.log(JSON.stringify(option));
-										ec.setOption(option);
-									}, 500);
-								});
-
-							})
-							.fail(function() {
-								t.updateSinglePage('AJAX Error! Please refresh the page!');
-							});
+						singlePage.renderHisQua(url);
 					}
-
-					// singlePageInline
-					// singlePageInlineDelegate: '.cbp-singlePageInline',
-					// singlePageInlinePosition: 'below',
-					// singlePageInlineInFocus: true,
-					// singlePageInlineCallback: function(url, element) {
-					// 	// to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
-					// 	var t = this;
-
-					// 	$.ajax({
-					// 			url: url,
-					// 			type: 'GET',
-					// 			dataType: 'html',
-					// 			timeout: 10000
-					// 		})
-					// 		.done(function(result) {
-
-					// 			t.updateSinglePageInline(result);
-
-					// 		})
-					// 		.fail(function() {
-					// 			t.updateSinglePageInline('AJAX Error! Please refresh the page!');
-					// 		});
-					// }
 				},
 				function() {
 					bsTips('数据渲染完毕', 1);
@@ -387,11 +387,20 @@ var feedback = function() {
 	return {
 		//main function to initiate the module
 		init: function() {
+
+			var tplList = [
+				'feedback/imgitem.etpl',
+				'feedback/detail.etpl',
+				"feedback/prodinfo.etpl",
+				"feedback/hislist.etpl"
+			];
+
+			tpl.init(tplList, initSelectData);
+
 			//$('.theme-panel').addClass('hidden');
 			$(document).on("click", ".ranges li:not(:last),button.applyBtn", function() {
 				getImgList();
 			});
-			initSelectData();
 		}
 
 	};
@@ -404,7 +413,6 @@ jQuery(document).ready(function() {
 	initDashboardDaterange('YYYYMMDD');
 	initDom();
 	feedback.init();
-	infoTips('详情页面需增加相应车号链接及实废图像链接');
 });
 jQuery(window).resize(function() {
 	HeadFix();

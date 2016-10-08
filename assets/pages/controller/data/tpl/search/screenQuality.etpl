@@ -1,13 +1,38 @@
 <div class="cbp-l-project-details-title">
-    <span>${title}</span>
+    <span>${title | raw}</span>
 </div>
-<div>
+<!-- if: ${class}=='' -->
+	<!-- import: verTable -->
+<!-- else -->
+	<div class="row">
+		<!-- if: ${data.length}>0 -->
+			<!-- import: verTable2 -->
+		<!-- else -->
+			<div class="${class}">
+				<!-- import: verTable -->
+			</div>
+		<!-- /if -->
+	</div>
+<!-- /if -->
+
+<!-- target: verTable -->
+<!-- for: ${data} as ${item},${index} -->
 	<ul class="cbp-l-project-details-list">
 		<!-- for: ${header} as ${head},${idx} -->
 			<li>
-				<strong>${head.title}</strong>${data | quote(${data},${idx})}
+				<strong>${head.title}</strong>${item | quote(${item},${idx})}
 			</li>
 		<!-- /for -->
 	</ul>
-</div>
+<!-- /for -->
 
+<!-- target: verTable2 -->
+<!-- for: ${data} as ${item},${index} -->
+	<ul class="cbp-l-project-details-list ${class}">
+		<!-- for: ${header} as ${head},${idx} -->
+			<li>
+				<strong>${head.title}</strong>${item | quote(${item},${idx})}
+			</li>
+		<!-- /for -->
+	</ul>
+<!-- /for -->

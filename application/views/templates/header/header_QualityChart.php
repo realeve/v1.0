@@ -12,7 +12,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="" name="description"/>
 <meta content="" name="author"/>
-<script src="../../assets/build/js/preload.min.js"></script>
+<script src="../../assets/global/plugins/livecss.min.js"></script>
 <link href="../../assets/build/css/chart.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" id="style_components"/>
 <link rel="stylesheet" type="text/css" id="style_color"/>

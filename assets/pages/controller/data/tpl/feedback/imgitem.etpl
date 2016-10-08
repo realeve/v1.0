@@ -1,0 +1,21 @@
+<div class="cbp-item ${ProductName} ${filter}">
+  <div class="cbp-caption">
+      <div class="cbp-caption-defaultWrap">
+          <img src="${img}" alt="">
+      </div>
+      <div class="cbp-caption-activeWrap">
+          <div class="cbp-l-caption-alignCenter">
+              <div class="cbp-l-caption-body">
+                  <a href="${CartNumber}" class="cbp-singlePage cbp-s-caption-buttonLeft btn red uppercase"  rel="nofollow" data-cartnumber="${CartNumber}">查看详情</a>"
+                  <a href="${img}" class="cbp-lightbox cbp-s-caption-buttonRight btn red uppercase" data-title="${CartNumber}<br>${MachineName}<br>好品率:${GoodRate} %">查看大图</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="cbp-l-grid-agency-title uppercase text-center">
+  	${CartNumber}
+  </div>
+  <div class="cbp-l-grid-agency-desc uppercase text-center">
+  	第 ${FormatPos} 开 / <span class="badge ${imgType}"> ${ErrCount} 条 </span>
+  </div>
+</div>

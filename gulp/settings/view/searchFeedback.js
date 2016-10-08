@@ -13,6 +13,7 @@ var index = {
 		"../assets/global/css/plugins-md.css",
 		"../assets/pages/css/portfolio.css",
 		"../assets/layouts/layout/css/layout.css",
+		"../assets/layouts/layout/css/settings.css",
 		"../assets/layouts/layout/css/themes/darkblue.css",
 		"../assets/layouts/layout/css/custom.css"
 
@@ -40,6 +41,7 @@ var index = {
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js",
 		"../assets/pages/controller/idletimeout.js",
 		"../assets/global/plugins/lodash.js",
+		"../assets/global/plugins/etpl.js",
 		"../assets/global/plugins/echarts/js/ThemeStyle.js",
 		"../assets/global/plugins/echarts/js/echarts.common.js",
 		"../assets/global/plugins/bootstrap-toastr/toastr.js"

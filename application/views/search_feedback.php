@@ -68,20 +68,6 @@
                             <div class="cbp-search-nothing">未找到 <i>{{query}}</i> 的结果</div>
                         </div>
                     </div>
-                    <!--div id="js-filters-juicy-projects" class="cbp-l-filters-work">
-                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> 所有图像
-                            <div class="cbp-filter-counter"></div>
-                        </div>
-                        <div data-filter=".notfake" class="cbp-filter-item"> 误废
-                            <div class="cbp-filter-counter"></div>
-                        </div>
-                        <div data-filter=".fake" class="cbp-filter-item"> 实废
-                            <div class="cbp-filter-counter"></div>
-                        </div>
-                        <div data-filter=".none" class="cbp-filter-item"> 未判废
-                            <div class="cbp-filter-counter"></div>
-                        </div>
-                    </div-->
                     <!-- cbp-l-grid-work-->
                     <div id="js-grid-juicy-projects" class="cbp">
                     </div>

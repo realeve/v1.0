@@ -191,69 +191,75 @@ var search = function() {
 			case config.search.CODE:
 				//印码号查询相关信息
 				break;
+			case config.search.REEL:
+				window.location.href = '/search/paper#' + queryString.cart;
+				break;
 		}
 
 		if (showPanel) {
 			$('[name="querySetting"]').click();
 		}
 
+		bsTips('数据加载完毕', 1);
 	}
 
-	var renderProdInfo = function(data) {
-		tpl.render('search/prodinfo.etpl', data, $('[name="prodInfo"]'));
-		tpl.render('search/cartinfo.etpl', data.data[0], $('[name="cartInfo"]'));
-	};
-
-	var getStorageInfo = function(mid) {
+	var getStorageInfo = function(cartNo) {
 		//缓存一天
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=285&M=3&mid=" + mid + '&cache=1440';
-		var data = ReadData(url);
-
-		//显示头部(默认不显示)
-		data.showHead = 1;
-		tpl.render('simpleTable.etpl', data, $('[name="storageInfo"]'));
+		//SELECT a.DepartmentName 部门, a.CaptainName 机台, convert(varchar,a.ProduceDate,120) 生产日期 FROM dbo.CaptainData AS a  INNER JOIN MaHouData b on a.MahouID=b.id and b.CartNumber=?
+		//cart
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=285&M=3&cart=" + cartNo + '&cache=1440';
+		$.ajax({
+				url: url
+			})
+			.done(function(data) {
+				data = handleAjaxData(data);
+				//显示头部(默认不显示)
+				data.showHead = 1;
+				tpl.render('simpleTable.etpl', data, $('[name="storageInfo"]'));
+			})
+			.fail(function(e) {
+				console.log("read data error:<br>");
+				console.log(e.responseText);
+			});
 	};
 
-	var handleQualityLine = function(cartInfo) {
-		if (cartInfo.TechTypeName !== '码后核查') {
-			$('[name=qualityLine]').hide();
-			$('[name="hisCartList"]').hide();
-			return;
-		}
-
-		$('[name=qualityLine]').show();
-		$('[name="hisCartList"]').show();
-
-		var chartData = {
-			xAxis: [],
-			yAxis: [],
-			type: 'line'
-		};
-
+	var handleQualityLine = function(cartNo) {
 		//当天生产的其它产品(按车号)
 		//282
 		//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where id = 39555) b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
 		//缓存一天  60*24=1440
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + cartInfo.CartNumber + '&cache=1440';
-		var data = ReadData(url);
-		data.data.map(function(elem) {
-			chartData.xAxis.push(elem[1]);
-			chartData.yAxis.push(elem[2]);
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + cartNo + '&cache=1440';
+		$.ajax({
+				url: url
+			})
+			.done(function(data) {
+				data = handleAjaxData(data);
+				if (data.rows === 0) {
+					$('[name=qualityLine]').hide();
+					$('[name="hisCartList"]').hide();
+					return;
 
-			//获取mahouID
-			if (elem[1] == cartInfo.CartNumber) {
-				cartInfo.MahouID = elem[0];
-				//获取库管信息
-				getStorageInfo(cartInfo.MahouID);
-			}
-		});
+				}
 
-		ec[0] = echarts.init(document.getElementById("chart"));
-		var option = getSimpleEChart(chartData);
-		ec[0].setOption(option);
+				$('[name=qualityLine]').show();
+				$('[name="hisCartList"]').show();
+				var chartData = {
+					xAxis: [],
+					yAxis: [],
+					type: 'line'
+				};
+				data.data.map(function(elem) {
+					chartData.xAxis.push(elem[1]);
+					chartData.yAxis.push(elem[2]);
+				});
 
-		//历史车号列表
-		tpl.render('search/hisCartList.etpl', data, $('[name="hisCartList"]'));
+				ec[0] = echarts.init(document.getElementById("chart"));
+				var option = getSimpleEChart(chartData);
+				ec[0].setOption(option);
+
+				//历史车号列表
+				tpl.render('search/hisCartList.etpl', data, $('[name="hisCartList"]'));
+			});
 	};
 
 	function setTipInfo() {
@@ -350,9 +356,16 @@ var search = function() {
 		//cart,prod,tstart,tend
 		//287
 		//缓存一天
-		var data = ReadData(url + strUrl + '287' + '&cache=1440');
-
-		tpl.render('simpleTable.etpl', data, $('#offset'));
+		$.ajax({
+				url: url + strUrl + '287' + '&cache=1440'
+			})
+			.done(function(data) {
+				tpl.render('simpleTable.etpl', handleAjaxData(data), $('#offset'));
+			})
+			.fail(function() {
+				console.log("read data error:<br>");
+				console.log(e.responseText);
+			});
 
 		//凹印离线
 		dtRng = getDateRangeByProdName(prodList, '凹');
@@ -363,9 +376,18 @@ var search = function() {
 		//cart,prod,tstart,tend
 		//286
 		//缓存一天
-		data = ReadData(url + strUrl + '286' + '&cache=1440');
-		tpl.render('simpleTable.etpl', data, $('#intaglio'));
-
+		//data = ReadData(url + strUrl + '286' + '&cache=1440', true, tpl.render('simpleTable.etpl', data, $('#intaglio')));
+		//异步
+		$.ajax({
+				url: url + strUrl + '286' + '&cache=1440'
+			})
+			.done(function(data) {
+				tpl.render('simpleTable.etpl', handleAjaxData(data), $('#intaglio'));
+			})
+			.fail(function() {
+				console.log("read data error:<br>");
+				console.log(e.responseText);
+			});
 	};
 	/**
 	 * [convertImgData2Tpl 接口数据转换为tpl图像模板格式数据]
@@ -379,25 +401,34 @@ var search = function() {
 		//t,blob
 
 		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&blob=1&t=" + data.cartID + "&ID=" + (data.imgType ? 254 : 289) + '&cache=14400';
-		var imgData = ReadData(url);
+		$.ajax({
+				url: url
+			})
+			.done(function(ajaxData) {
+				var imgData = handleAjaxData(ajaxData);
 
-		var imgInfo = {
-			data: []
-		};
+				var imgInfo = {
+					data: []
+				};
 
-		var offset = (data.imgType ? 4 : 3);
+				var offset = (data.imgType ? 4 : 3);
 
-		for (var i = 0; i < 3; i++) {
-			var j = data.start + i * offset;
-			imgInfo.data.push({
-				mac: data.data[j],
-				pos: data.data[j + 1],
-				num: data.data[j + 2],
-				img: imgData.data[0][i],
-				type: (data.imgType ? data.data[j + 3] : '0')
+				for (var i = 0; i < 3; i++) {
+					var j = data.start + i * offset;
+					imgInfo.data.push({
+						mac: data.data[j],
+						pos: data.data[j + 1],
+						num: data.data[j + 2],
+						img: imgData.data[0][i],
+						type: (data.imgType ? data.data[j + 3] : '0')
+					});
+				}
+				tpl.render('imglist.etpl', imgInfo, data.el);
+			})
+			.fail(function() {
+				console.log("read data error:<br>");
+				console.log(e.responseText);
 			});
-		}
-		return imgInfo;
 	}
 
 	var handleScreenInfo = function(cart) {
@@ -410,31 +441,41 @@ var search = function() {
 		//SELECT a.id, c.machineName AS [机台], a.ProduceDate AS [生产日期], round(a.GoodRate, 2) AS [好品率], a.PrintCount AS [开印总数], a.NoCheckCount AS [未检数], a.FrontCount+SWCount+HWCount+TSCount AS [缺陷图像数], a.FrontCount AS 正面缺陷数, a.SWCount AS 丝网缺陷数, a.HWCount AS 红外缺陷数, a.TSCount AS 透视缺陷数, a.Mac1 AS 宏区1, a.FormatPos1 AS 开位1, a.ErrCount1 AS 报错条数1, a.Mac2 AS 宏区2, a.FormatPos2 AS 开位2, a.ErrCount2 AS 报错条数2, a.Mac3 AS 宏区3, a.FormatPos3 AS 开位3, a.ErrCount3 AS 报错条数3 FROM dbo.SiYinData AS a INNER JOIN dbo.machineData AS c ON a.machineID = c.ID WHERE a.[CartNumber] =?
 		//cart
 		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=288&M=3&cart=" + cart;
-		var data = ReadData(url);
-		if (data.rows === 0) {
-			$('[name="screenInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
-			$('[name="siyinImg"]').html('');
-			return;
-		}
-		var qua = {
-			title: data.title,
-			rows: data.rows,
-			cols: data.cols,
-			source: data.source,
-			header: data.header.slice(1, 11),
-			data: data.data[0].slice(1, 11)
-		};
-		//qua.data.push(data.data[0].slice(1, 11));
-		tpl.render('search/screenQuality.etpl', qua, $('[name="screenInfo"]'));
+		//var data = ReadData(url);
+		$.ajax({
+				url: url
+			})
+			.done(function(data) {
+				data = handleAjaxData(data);
+				if (data.rows === 0) {
+					$('[name="screenInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
+					$('[name="siyinImg"]').html('');
+					return;
+				}
+				var qua = {
+					title: data.title,
+					rows: data.rows,
+					cols: data.cols,
+					source: data.source,
+					header: data.header.slice(1, 11),
+					data: data.data[0].slice(1, 11)
+				};
+				//qua.data.push(data.data[0].slice(1, 11));
+				tpl.render('search/screenQuality.etpl', qua, $('[name="screenInfo"]'));
 
-		var imgInfo = convertImgData2Tpl({
-			data: data.data[0],
-			start: 11, //数组第11个数据开始
-			imgType: 0, //丝印
-			cartID: data.data[0][0]
-		});
-
-		tpl.render('imglist.etpl', imgInfo, $('[name="siyinImg"]'));
+				convertImgData2Tpl({
+					data: data.data[0],
+					start: 11, //数组第11个数据开始
+					imgType: 0, //丝印
+					cartID: data.data[0][0],
+					el: $('[name="siyinImg"]')
+				});
+				//tpl.render('imglist.etpl', imgInfo, $('[name="siyinImg"]'));
+			})
+			.fail(function() {
+				console.log("read data error:<br>");
+				console.log(e.responseText);
+			});
 	};
 
 	var setMahouChart = function(data) {
@@ -466,48 +507,219 @@ var search = function() {
 		//cart
 		//290
 
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=290&M=3&cart=" + cart;
-		var data = ReadData(url);
-		if (data.rows === 0) {
-			$('[name="mahouInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
-			$('[name="mahouImg"]').html('');
-			ec[1].dispose();
-			return;
-		}
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=290&M=3&cart=" + cart + '&cache=' + config.cache;
+		$.ajax({
+				url: url
+			})
+			.done(function(data) {
+				data = handleAjaxData(data);
+				if (data.rows === 0) {
+					$('[name="mahouInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
+					$('[name="mahouImg"]').html('');
+					if (typeof ec[1] != 'undefined') {
+						ec[1].dispose();
+					}
+					return;
+				}
 
-		setMahouChart(data);
+				convertImgData2Tpl({
+					data: data.data[0],
+					start: 16, //数组第16个数据开始
+					imgType: 1, //核查
+					cartID: data.data[0][0],
+					el: $('[name="mahouImg"]')
+				});
 
-		var qua = {
-			title: data.title,
-			rows: data.rows,
-			cols: data.cols,
-			source: data.source,
-			header: data.header.slice(1, 15),
-			noScroll: 1,
-			data: [] //纵向排列 data.data[0].slice(1, 15)
-		};
+				setMahouChart(data);
+				var qua = {
+					title: data.title,
+					rows: data.rows,
+					cols: data.cols,
+					source: data.source,
+					header: data.header.slice(1, 15),
+					noScroll: 1,
+					data: [] //纵向排列 data.data[0].slice(1, 15)
+				};
 
-		qua.data.push(data.data[0].slice(1, 15));
-		//tpl.render('search/screenQuality.etpl', qua, $('[name="mahouInfo"]'));
+				qua.data.push(data.data[0].slice(1, 15));
+				//tpl.render('search/screenQuality.etpl', qua, $('[name="mahouInfo"]'));
 
-		tpl.render('simpleTable.etpl', qua, $('[name="mahouInfo"]'));
+				tpl.render('simpleTable.etpl', qua, $('[name="mahouInfo"]'));
+			})
+			.fail(function() {
+				console.log("read data error:<br>");
+				console.log(e.responseText);
+			});
+	};
 
-		var imgInfo = convertImgData2Tpl({
-			data: data.data[0],
-			start: 16, //数组第16个数据开始
-			imgType: 1, //核查
-			cartID: data.data[0][0]
-		});
+	var handleImgVerifyInfo = function(cart) {
 
-		tpl.render('imglist.etpl', imgInfo, $('[name="mahouImg"]'));
+		//图像人工判废
+		//SELECT a.[车号], a.[生产日期], a.[工艺], a.[品种], a.[机台], a.[缺陷条数], a.[缺陷开数], a.[判废量], a.[机检锁定条数], a.[实废大张数], a.[实废小开数], a.[实废条数], a.[开包量] FROM dbo.view_print_hecha_image_check AS a where a.[车号]=?
+		//cart
+		//292
+		//
+		var objDom = $('[name="imgVerifyInfo"]');
+		var id = 292;
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&cart=" + cart + '&cache=' + config.cache;
+		tpl.renderTable(objDom, url);
+	};
+
+	var handleOcrInfo = function(cart) {
+
+		//OCR信息
+		//SELECT a.[车号], a.[品种], convert(varchar,a.[采集时间],120) 采集时间, a.[小开总数], a.[已取出], a.[多取出], a.[开包量], a.[机检开包量], a.[票面开包量], a.[小开作废率] FROM dbo.VIEW_PRINT_OCR AS a where a.车号 = ?
+		//cart
+		//293
+		var objDom = $('#ocr');
+		var id = 293;
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&cart=" + cart + '&cache=' + config.cache;
+		tpl.renderTable(objDom, url);
+	};
+
+	var handleAnanysisInfo = function(cart) {
+
+		//印钞特抽信息
+		//SELECT DISTINCT B.CartNumber 车号,a.GZNum 印码号,a.Date 上传日期,a.FakeDesc 备注,a.FingerLine 手感线,a.WSignal W信号,a.SMSignal SM信号,a.YG 荧光,a.VCode 号码,a.OVMI OVMI,a.TotalScore 总分,a.OfstFSub 胶正总分,a.OfstFInk 胶正墨色,a.OfstFLineWidth 胶正线宽,a.OfstFSafeCircle 胶正安全圆,a.OfstFLineConn 胶正接线,a.OfstFMix 胶正混色,a.OfstFDuiYin 胶正对印,a.OfstBSub 胶背总分,a.OfstBInk 胶背墨色,a.OfstBLineWidth 胶背线宽,a.OfstBSafeCircle 胶背安全线,a.OfstBOIOver 胶背接线,a.OfstBMix 胶背混色,a.OfstBDuiYin 胶背对印,a.ItgFSub 凹正总分,a.ItgFInk 凹正墨色,a.ItgFOIOver 凹正套印,a.ItgFLineConn 凹正接线,a.ItgBSub 凹背总分,a.ItgBMix 凹背混色,a.ItgBOIOver 凹背套印,a.ItgBLineConn 凹背接线,a.CodeSub 印码总分,a.CodeDistance 印码规矩,a.CodeInk 印码墨色,a.CodeMixColor 印码混色,a.CodeFake 印码缺陷,a.CodeYG 印码荧光,a.CutDistance 裁切得分,a.PaperSub 纸张分数,a.PaperWarterMark 纸张水印,a.PaperSafeLine 纸张安全线,c.edge 边缘,c.squareness 方正度,c.size_length 长度,c.size_width 宽度,c.white_edge_tb 白边,c.white_edge_lr,c.score 裁切总分 FROM dbo.NoteAysData a INNER JOIN CartInfoData b on a.id=b.NoteAnayID LEFT JOIN NoteAysCutManulData c on a.id = c.note_ays_id where b.CartNumber=?
+		//cart
+		//294
+
+		var objDom = $('#ananysis');
+
+		var option = [{
+			start: 0,
+			end: 10,
+			dom: $('#ananysis1'),
+			title: '1.综述',
+			showHead: true,
+			direction: 'ver',
+			class: 'col-md-6',
+			repeat: {
+				switch: false
+			}
+		}, {
+			start: 11,
+			end: 24,
+			dom: $('#ananysis2'),
+			title: '2.胶印工序',
+			showHead: true,
+			direction: 'ver',
+			repeat: {
+				switch: true,
+				start: 0,
+				end: 2
+			},
+			class: 'col-md-6'
+		}, {
+			start: 25,
+			end: 32,
+			dom: $('#ananysis3'),
+			title: '3.凹印工序',
+			showHead: true,
+			direction: 'ver',
+			repeat: {
+				switch: true,
+				start: 0,
+				end: 2
+			},
+			class: 'col-md-6'
+		}, {
+			start: 33,
+			end: 42,
+			dom: $('#ananysis4'),
+			title: '4.其它',
+			showHead: true,
+			direction: 'ver',
+			repeat: {
+				switch: true,
+				start: 0,
+				end: 2
+			},
+			class: 'col-md-6'
+		}, {
+			start: 43,
+			end: 49,
+			dom: $('#ananysis5'),
+			title: '5.人工裁切评分',
+			showHead: true,
+			direction: 'ver',
+			repeat: {
+				switch: true,
+				start: 0,
+				end: 2
+			},
+			class: 'col-md-6'
+		}];
+
+		var id = 294;
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&cart=" + cart + '&cache=' + config.cache;
+		tpl.renderTable(objDom, url, option);
+
 
 	};
 
+	//质量信息
+	var renderQualityInfo = function(cartNo) {
+
+		// step:5 码后核查(处理时间最长，放到最前)
+		handleMahouInfo(cartNo);
+
+		//载入特征图像，载入当天质量曲线
+		//如果是本页面点击跳转的数据则不加载该部分数据
+		if (queryString.updateHisInfo) {
+			handleQualityLine(cartNo);
+		}
+
+		// step:2 印码号————大张号互查
+		if (queryString.type == config.search.CODENO) {
+			//印码号查询大张号（10张）
+
+		} else if (queryString.type == config.search.PAPERNO) {
+			//大张号查询印码号
+
+		}
+
+		//获取库管信息
+		getStorageInfo(cartNo);
+
+		// step:7 图像判废结果
+		handleImgVerifyInfo(cartNo);
+
+		// step:4 丝印（T品）
+		handleScreenInfo(cartNo);
+
+		// step:8 OCR信息
+		handleOcrInfo(cartNo);
+
+		handleAnanysisInfo(cartNo);
+
+		// step:9 实废图像信息
+
+	};
+
+	var renderProdInfo = function(data) {
+		//重置车号信息
+		cartInfo = {};
+		$('[name="cartName"]').text(data.data[0].CartNumber);
+		cartInfo = data.data[0];
+		cartInfo.imgUrl = getRootPath(1) + "/search/fakeImg/#" + cartInfo.CartNumber;
+
+		//追加星期信息
+		data.data.map(function(item, i) {
+			data.data[i].WeekDay = getWeekdayByDate(item.StartDate);
+			data.data[i].DateTitle = item.StartDate.replace(' ', 'T') + '+08';
+		});
+
+		//渲染机台作业信息
+		tpl.render('search/prodinfo.etpl', data, $('[name="prodInfo"]'));
+		tpl.render('search/cartinfo.etpl', cartInfo, $('[name="cartInfo"]'));
+
+		// step:3 胶凹离线检测信息
+		handleOfflineInfo(data.data);
+	};
 
 	//根据车号查询生产信息
 	var getCartInfo = function(obj) {
-		//重置车号信息
-		cartInfo = {};
 
 		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=";
 		var url, data;
@@ -530,6 +742,10 @@ var search = function() {
 				setEptStr();
 				return;
 			}
+
+			renderQualityInfo(cartInfo.CartNumber);
+			renderProdInfo(data); //渲染质量信息
+
 		} else {
 			//直接用车号获取生产信息
 
@@ -539,69 +755,25 @@ var search = function() {
 
 			//数据缓存一天
 			url = strUrl + 283 + '&M=0&cart=' + obj.cart + '&cache=1440';
-			data = ReadData(url);
-			$('[name=prodNum]').html(data.rows);
-			if (data.rows > 0) {
-				//仅搜索车号时，不返回开位信息
-				data.data[0].kInfo = 0;
-			} else {
-				setEptStr();
-				return;
-			}
+			$.ajax({
+					url: url
+				})
+				.done(function(data) {
+					data = handleAjaxData(data);
+					$('[name=prodNum]').html(data.rows);
+					if (data.rows > 0) {
+						//仅搜索车号时，不返回开位信息
+						data.data[0].kInfo = 0;
+					} else {
+						setEptStr();
+						return;
+					}
+					renderProdInfo(data);
+				});
+
+			//渲染质量信息
+			renderQualityInfo(obj.cart);
 		}
-
-		cartInfo = data.data[0];
-		cartInfo.imgUrl = getRootPath(1) + "/search/fakeImg/#" + cartInfo.CartNumber;
-
-		$('[name="cartName"]').text(cartInfo.CartNumber);
-
-		//追加星期信息
-		data.data.map(function(item, i) {
-			data.data[i].WeekDay = getWeekdayByDate(item.StartDate);
-			data.data[i].DateTitle = item.StartDate.replace(' ', 'T') + '+08';
-		});
-
-		//渲染机台作业信息
-		renderProdInfo(data);
-
-		if (obj.type == config.search.CODENO) {
-			//印码号查询大张号（10张）
-
-
-		} else if (obj.type == config.search.PAPERNO) {
-			//大张号查询印码号
-
-		}
-
-		// step:2 库管信息
-
-		// step:3 胶凹离线检测信息
-
-		handleOfflineInfo(data.data);
-
-		// step:4 丝印（T品）
-		handleScreenInfo(cartInfo.CartNumber);
-
-		// step:5 码后核查
-
-		handleMahouInfo(cartInfo.CartNumber);
-
-		//处理质量信息
-		//载入特征图像，载入当天质量曲线
-		//如果是本页面点击跳转的数据则不加载该部分数据
-		if (queryString.updateHisInfo) {
-			handleQualityLine(cartInfo);
-			bsTips('历史信息加载完毕');
-		}
-
-
-		// step:7 图像判废结果
-
-		// step:8 OCR信息
-
-		// step:9 实废图像信息
-
-		// infoTips('数据查询完毕');
 
 	};
 
@@ -622,27 +794,45 @@ var search = function() {
 		queryData();
 	});
 
-	$('body').on('click', '[name=hiscart]', function() {
-		var _self = $(this);
-		queryString.cart = _self.attr('href').replace('#', '');
-		var updateHisInfo = false;
-		getCartData(updateHisInfo);
-	});
-
 	function loadDefaultData() {
 		queryString.cart = window.location.hash.replace('#', '');
 		if (queryString.cart !== '') {
 			getCartData();
 		}
-
 	}
+
+	$('.search-form [name="query"]').on('blur', function() {
+		$('[name="cart"]').val($(this).val());
+	});
+
+	function searchByKeyboard(_self) {
+		queryString.cart = _self.val().toUpperCase();
+		if (queryString.cart !== '') {
+			location.hash = queryString.cart;
+		}
+	}
+
+	$('input[name="cart"]').keydown(function(event) {
+		if (event.key === 'Enter') {
+			$('[name="querySetting"]').click();
+			searchByKeyboard($(this));
+		}
+	});
+
+	//modern browsers
+	$(window).bind('hashchange', function() {
+		queryString.cart = window.location.hash.replace('#', '');
+
+		var updateHisInfo = !$('[name=hiscart][href="#' + queryString.cart + '"]').length;
+
+		getCartData(updateHisInfo);
+	});
 
 	return {
 		//main function to initiate the module
 		init: function() {
-
 			hideSidebarTool();
-			$('.theme-panel').first().remove();
+			$(".page-sidebar-wrapper").css("margin-top", "0px");
 			$('[name="qualityLine"]').hide();
 			$('[name="hisCartList"]').hide();
 
@@ -656,19 +846,15 @@ var search = function() {
 			];
 			tpl.init(tplList, loadDefaultData);
 		}
-
 	};
 }();
 //记录选择状态
 jQuery(document).ready(function() {
-	//隐藏按钮
-	//$('.icon-logout').parent().hide();
-	//$('.icon-login').hide();
-
 	//RoundedTheme(0);
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');
 	initDom();
+
 	search.init();
 	bsTips('点击本页面工序名称将自动折叠面板');
 });

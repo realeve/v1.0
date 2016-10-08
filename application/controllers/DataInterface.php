@@ -5,19 +5,17 @@ class DataInterface extends CI_Controller {
 	public function __construct()
 	{
 	  	parent::__construct();
-		$this->load->helper ( array (
-			'form',
-			'url' 
-		) );
-		$this->load->library('session');
-		$this->load->model('DataInterfaceModel');
 	}
 
 	public function index()
 	{
-		
+		$this->load->library('session');
+		$this->load->helper ( array (
+			'url' 
+		) );
+		$this->load->model('DataInterfaceModel');
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
@@ -49,12 +47,16 @@ class DataInterface extends CI_Controller {
 	//新建接口的ID编号
 	public function GetNewApiID()
 	{
+		$this->load->library('session');
+		$this->load->model('DataInterfaceModel');
 		return $this->DataInterfaceModel->GetNewApiID($this->session->userdata('username'));
 	}
 
 	//保存接口
 	public function SaveAPI()
 	{
+		$this->load->library('session');
+		$this->load->model('DataInterfaceModel');
 		$APIData = $this->input->post(NULL);
 		//转换Params
 		$string1 = "";
@@ -78,32 +80,30 @@ class DataInterface extends CI_Controller {
 	public function Api()//读取接口数据
 	{
 		$APIData = $this->input->get(NULL);
-
+		$t1 = microtime(true);
 		//数据缓存处理(根据查询参数做K-V缓存);
-		if(isset($APIData['cache'])){
-			
-			$minutes = $APIData['cache'];
-			
-			unset($APIData['cache']);
-			
-			$keyName = 'api_data';
-			
-			foreach($APIData as $key=>$value)
-			{
-				 $keyName.="_".$key."_".$value;
-			}
-			//数据缓存(APACHE存键值)
-			$this->load->driver('cache', 
-				array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
-			);
+		if(isset($APIData['cache']) && $APIData['cache']>0){
 			
 			//memcache(缓存数据)
 			$this->load->driver('cache');
 			$this->cache->memcached->is_supported();
 			
+			$keyName = 'api_data';
+			foreach($APIData as $key=>$value)
+			{
+				 $keyName.="_".$key."_".$value;
+			}		
+			
+			$keyName = strtolower($keyName);
+			
 			//echo '开始读取缓存...<br>';
 			//if ( ! $Data = $this->cache->get($keyName)){
 			if ( ! $Data = $this->cache->memcached->get($keyName)){	
+				$minutes = $APIData['cache'];			
+				unset($APIData['cache']);
+				
+				$this->load->model('DataInterfaceModel');
+				
 				//缓存未命中，读取原始数据
 				$Data = $this->DataInterfaceModel->Api($APIData);
 				//echo '未取得缓存...<br>';
@@ -112,20 +112,29 @@ class DataInterface extends CI_Controller {
 				//$this->cache->save($keyName, $Data, $minutes*60);
 				$this->cache->memcached->save($keyName, $Data, $minutes*60);
 				
-				$this->load->driver('cache', 
-					array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
-				);
+				$keyList = $this->cache->memcached->get('keyList');
+				if($keyList != ''){
+					$keyList = json_decode($keyList);
+				}else{
+					$keyList = new stdClass();
+				}
+				$keyList->$keyName = 1;
 				
-				//apache存储键值(数据更新后不用全部清理memcache)
-				$this->cache->save($keyName, 1, $minutes*60);
+				//存储1个月
+				
+				$this->cache->memcached->save('keyList', strtolower(json_encode($keyList)), 29*60*24);
 				
 			}else{
 				//echo '当前数据来于缓存...<br>';
+				$minutes = $APIData['cache'];			
+				unset($APIData['cache']);
+				
 				$Data = str_replace('{"rows"','{"cache":'.$minutes.',"rows"',$Data);
 			}
 		}else{
 			//无需缓存
 			//echo '实时读取';
+			$this->load->model('DataInterfaceModel');
 			$Data = $this->DataInterfaceModel->Api($APIData);
 		}			
 
@@ -133,12 +142,16 @@ class DataInterface extends CI_Controller {
 		if (isset($APIData['callback'])) {
 			$Data = $APIData['callback'] . "(" . $Data . ")";
 		}
+		$t2 = microtime(true);
+		$Data = str_replace('"rows"','"timing":"'.round(($t2-$t1)*1000,3).'ms","rows"',$Data);
+
 		//输出数据
 	 	$this->output->set_output($Data);
 	}
-
+	
 	public function insert()
 	{
+		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
 		if (!isset($data['tbl'])) {
         	$data['message'] = '请指定插入的表单名称';
@@ -167,6 +180,7 @@ class DataInterface extends CI_Controller {
     */
 	public function delete()//读取接口数据
 	{
+		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
 		if (!isset($data['tbl'])) {
         	$data['message'] = '请指定插入的表单名称';
@@ -186,10 +200,9 @@ class DataInterface extends CI_Controller {
 
 	public function update()//读取接口数据
 	{
+		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
-		/*if (!isset($data['utf2gbk'])) {
-        	$data['utf2gbk']=[];
-        };*/
+
 		if (!isset($data['tbl'])) {
         	$data['message'] = '请指定插入的表单名称';
             $data['type'] = 0;        
@@ -208,6 +221,7 @@ class DataInterface extends CI_Controller {
 	
 	public function convert2Base64()//读取接口数据
 	{
+		$this->load->model('DataInterfaceModel');
 		$this->DataInterfaceModel->convert2Base64();
 	}
 
@@ -232,14 +246,37 @@ class DataInterface extends CI_Controller {
 		}
 		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
 	}
-	
-	public function test(){
-				//memcache(缓存数据)
-		$this->load->driver('cache');
-		$this->cache->memcached->is_supported();
-		$memcache = $this->cache->memcached;
-		echo $memcache->get('api_data_Token_79d84495ca776ccb523114a2120e273ca80b315b_ID_283_M_0_cart_1620A535');
 		
+	public function clearCache(){
+		$memcache = new Memcache;
+		$memcache->connect('127.0.0.1',11211);
+		//清空缓存
+		$memcache->flush();
+	}
+	
+	public function deleteCache(){
+		$key = $this->input->get('key');
+		$memcache = new Memcache;
+		$memcache->connect('127.0.0.1',11211);
+		$keyList = $memcache->delete($key);
+		$keyList = $memcache->get('keyList');
+		if($keyList != ''){
+			$keyList = json_decode($keyList[0]);
+			unset($keyList->$key);
+		}	
+		$memcache->set('keyList', strtolower(json_encode($keyList)));
+	}
+	public function listCache(){
+		$memcache = new Memcache;
+		$memcache->connect('127.0.0.1',11211);
+		
+		$keyList = $memcache->get('keyList');
+		if($keyList != ''){
+			$keyList = json_decode($keyList[0]);
+			foreach($keyList as $key=>$item){
+				echo $key.'<br>';
+			}
+		}		
 	}
 }
 

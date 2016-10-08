@@ -49,6 +49,8 @@ var dataTable = function() {
 				}
 			}
 
+			config.info.qualitytable = false;
+
 			for (i = 0; i < len; i++) {
 				objRequest = {
 					"url": GetJsonUrl(objList.id[i]),
@@ -57,7 +59,6 @@ var dataTable = function() {
 				if (objRequest.fixheader == '0') {
 					$('[name="sampleTable"]:eq(' + i + ')').removeClass('table-header-fixed').addClass('dt-responsive');
 				}
-
 				RefreshTable('[name="sampleTable"]:eq(' + i + ')', objRequest.url, objRequest.fixheader);
 			}
 		}
@@ -100,6 +101,34 @@ var dataTable = function() {
 		strRow += '</tr>';
 		return strRow;
 	}
+	var getLanguage = function() {
+		return {
+			"sProcessing": "处理中...",
+			"sLengthMenu": "显示 _MENU_ 项结果",
+			"sZeroRecords": "没有匹配结果",
+			"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+			"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+			"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+			"sInfoPostFix": "",
+			"sSearch": "搜索:",
+			"sUrl": "",
+			"sEmptyTable": "表中数据为空",
+			"sLoadingRecords": "载入中...",
+			"sInfoThousands": ",",
+			"oPaginate": {
+				"sFirst": "首页",
+				"sPrevious": "上页",
+				"sNext": "下页",
+				"sLast": "末页"
+			},
+			"oAria": {
+				"sSortAscending": ": 以升序排列此列",
+				"sSortDescending": ": 以降序排列此列"
+			}
+		};
+	};
+
+	var language = getLanguage();
 
 	function initSettings(tableID, Data, bFixhead) {
 		var initData;
@@ -116,9 +145,7 @@ var dataTable = function() {
 		initData = {
 			//"bDestroy":true,
 			"bRetrieve": true,
-			"language": {
-				"url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
-			},
+			"language": language,
 			/*"order": [
 				[1, 'asc']
 			],*/
@@ -292,7 +319,7 @@ var dataTable = function() {
 
 				initSelect2();
 				//bsTips(JSON.stringify(Data), 2);
-				bsTips('数据加载完成', 2);
+				//bsTips('数据加载完成', 2);
 			}
 		};
 		if (bFixhead) {
@@ -334,17 +361,8 @@ var dataTable = function() {
 		oTable = table.dataTable(initData);
 	}
 
-	/*
-	 *刷新数据，Array,Json两种方式，取决于表格初始化方式
-	 */
-
-	function RefreshTable(tableID, strUrl, bFixhead) {
+	function renderDataTable(Data, tableID, bFixhead) {
 		var table = $(tableID);
-		if (typeof bFixhead == 'undefined') {
-			bFixhead = true;
-		}
-		//重新读取数据
-		Data = ReadData(strUrl, 1);
 		//更新表格相关信息
 		table.parents('.portlet').find('[name="TableTitle"]').text(Data.title);
 		table.parents('.portlet').find('[name="datasource"]').text('(' + Data.source + ')');
@@ -375,6 +393,28 @@ var dataTable = function() {
 		oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
 
 		oTable.fnDraw();
+	}
+
+	/*
+	 *刷新数据，Array,Json两种方式，取决于表格初始化方式
+	 */
+
+	function RefreshTable(tableID, strUrl, bFixhead) {
+		if (typeof bFixhead == 'undefined') {
+			bFixhead = true;
+		}
+		$.ajax({
+				url: strUrl
+			})
+			.done(function(data) {
+				data = $.parseJSON(data);
+				renderDataTable(data, tableID, bFixhead);
+				if (!config.info.qualitytable) {
+					config.info.qualitytable = true;
+					bsTips('数据加载完成', 1);
+				}
+			});
+
 		//bsTips(JSON.stringify(Data), 2);
 	}
 

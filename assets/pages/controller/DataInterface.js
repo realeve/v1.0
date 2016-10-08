@@ -668,6 +668,13 @@ $(this).html('<pre>' + value + '</pre>');
           .removeClass('editable-unsaved'); //remove bold css
       });
 
+      $('#clrCache').on('click', function() {
+        $.ajax({
+          url: getRootPath(1) + '/DataInterface/clearCache'
+        });
+
+      });
+
       $('a[href="#portlet_tab1"]').on('click', function() { //查看接口列表
         $('.portlet[name="api_View"]').hide();
         window.onscroll = function() {

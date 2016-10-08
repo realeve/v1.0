@@ -13,7 +13,7 @@
 						<a href="<?php echo base_url()?>DataInterface">数据接口</a>
 					</li>
 				</ul>
-				
+
 				<div class="page-toolbar">
 					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
@@ -21,7 +21,7 @@
 						<i class="fa fa-angle-down"></i>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
 			</h3>
@@ -36,7 +36,7 @@
 				</p>
 				<p>
 					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
-				</p>	
+				</p>
             </div>
 			<div class="note note-warning">
 				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
@@ -49,7 +49,7 @@
 				</p>
 				<p>
 					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
-				</p>				
+				</p>
 			</div>
 			<div class="mt-element-ribbon bg-white">
 				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
@@ -64,7 +64,7 @@
 					</p>
 					<p>
 						 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
-					</p>	
+					</p>
 				</p>
             </div-->
 			<div class="portlet mt-element-ribbon light portlet-fit bordered">
@@ -92,7 +92,7 @@
 			<!-- BEGIN PAGE CONTENT-->
 
 			<!-- BEGIN Portlet PORTLET-->
-			<div class="portlet light bordered">			
+			<div class="portlet light bordered">
 				<div class="portlet-title tabbable-line">
 					<ul class="nav nav-tabs pull-left">
 						<li class="active">
@@ -103,22 +103,22 @@
 							<a href="#portlet_tab1" data-toggle="tab">
 							<i class="icon-settings"></i>&nbsp;查看接口</a>
 						</li>
-					</ul>	
-					<div class="actions">		
+					</ul>
+					<div class="actions">
 						<!--a href="javascript:;" class="btn btn-circle btn-default">
 							<i class="fa fa-plus"></i> 新建 </a-->
 						<a href="javascript:;" class="btn btn-circle blue-hoki" id="edit">
 							<i class="fa fa-pencil"></i> 编辑/预览 </a>
 						<a href="javascript:;" class="btn btn-circle btn-success" id="saves">
-							<i class="icon-cloud-upload"></i> 提交 </a>						
+							<i class="icon-cloud-upload"></i> 提交 </a>
 						<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;">
 						</a>
-					</div>						
+					</div>
 				</div>
 
 				<div class="portlet-body form">
 					<div class="tab-content">
-						<div class="tab-pane" id="portlet_tab1">							
+						<div class="tab-pane" id="portlet_tab1">
 							<div class="portlet light bordered">
 								<div class="portlet-title">
 									<div class="caption font-green-sharp">
@@ -156,7 +156,7 @@
                             </div>
 						</div>
 						<div class="tab-pane active container-fluid" id="portlet_tab2">
-							<!-- BEGIN PAGE CONTENT-->							
+							<!-- BEGIN PAGE CONTENT-->
 							<div class="row">
 								<div class="col-md-12 form-body">
 									<table id="user" class="table table-striped table-bordered table-advance">
@@ -217,8 +217,8 @@
 											<span class="text-muted">
 											输入接口名称方便检索,默认为空值 </span>
 										</td>
-									</tr>								
-									
+									</tr>
+
 									<tr>
 										<td>
 											 所属数据库
@@ -231,7 +231,7 @@
 											<span class="text-muted">
 											选择该接口所属数据库以便系统自动连接</span>
 										</td>
-									</tr>									
+									</tr>
 									<tr>
 										<td>
 											 SQL语句
@@ -247,7 +247,7 @@
 											</br> 按<i>ctrl+enter</i>提交输入
 											</span>
 										</td>
-									</tr>									
+									</tr>
 									<tr>
 										<td>
 											 接口参数
@@ -267,7 +267,7 @@
 											</br><span class="badge badge-roundless badge-danger">除非该参数值为0时能顺利执行，调用时不能为空值</span>
 											</br>其中系统保留字段为Token(所有者)/ID(接口编号)/M(数据模式)/cache(缓存时长：分钟数)/blob(二进制数据)/,推荐设置tstart(开始时间) tend(结束时间)</span>
 										</td>
-									</tr>											
+									</tr>
 									<tr>
 										<td>
 											 接口说明
@@ -318,6 +318,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12 form-actions right">
+									<button type="button" id="clrCache" class="btn btn-circle btn-default" style="margin-right:10px;"><i class="fa fa-repeat"></i> 清空缓存</button>
 									<button type="button" id="Reset" class="btn btn-circle btn-default" style="margin-right:10px;"><i class="fa fa-repeat"></i> 重置</button>
 									<button type="button" id="SaveAPI" class="btn btn-circle green" style="margin-right:30px;"><i class="icon-cloud-upload"></i> 提交</button>
 								</div>
@@ -339,11 +340,11 @@
 								</div>
 							</div>
 						</div>
-					</div>	
+					</div>
 
 				</div>
 			</div>
-			
+
 			<div class="portlet light bordered" name="api_View">
 				<div class="portlet-title">
 					<div class="caption font-green-sharp">
@@ -353,13 +354,13 @@
 					</div>
 					<div class="tools" id="sample_tools"></div>
 				</div>
-				<div class="portlet-body form">	
+				<div class="portlet-body form">
 					<table class="table table-striped table-bordered table-hover" width="100%" id="sample">
-						<!-- BEGIN PAGE CONTENT-->						
+						<!-- BEGIN PAGE CONTENT-->
 							<!-- END PAGE CONTENT-->
 							<!--table class="table table-striped table-bordered table-advance table-hover table-striped table-condensed flip-content" id="sample" width="100%"-->
-						<thead class="hidden-sm"></thead>						
-					</table>			
+						<thead class="hidden-sm"></thead>
+					</table>
 				</div>
 			</div>
 			<!-- END Portlet PORTLET-->

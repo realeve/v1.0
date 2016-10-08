@@ -1,0 +1,18 @@
+
+<!-- for: ${data} as ${item}, ${index} -->
+    <!-- var: idx = ${index}+1 -->
+    <!-- if: ${index}>0 -->
+        <div class="cbp-l-project-desc-title margin-top-40">
+    <!-- else -->
+        <div class="cbp-l-project-desc-title">
+    <!-- /if -->
+        <span> ${idx} . ${item[0]} 工序：${item[1]} </span>
+        <h5 class="pull-right" style="margin-top:15px;"> ${item[3] | slice(0,16) } </h5>
+    </div>
+    <div class="cbp-l-project-desc-text">
+        <p style="margin-bottom:5px;"> ${item[4] | raw} </p>
+        <h5 class="pull-right">———
+            <i> ${item[2]} </i>
+        </h5>
+    </div>
+<!-- /for -->

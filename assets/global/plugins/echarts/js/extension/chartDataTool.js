@@ -294,7 +294,8 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       var iTemp, i, j;
       var NewData = [];
 
-      Data = getJsonFromUrl(objRequest.url);
+      Data = objRequest.data;
+
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
@@ -847,7 +848,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
      */
 
     function convertBoxPlotData(objRequest) {
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       var NewData = [];
       var iConvData;
       NewData['title'] = Data.title;
@@ -1103,7 +1104,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     //旭日图
     function convertSunRiseData(objRequest) {
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       var NewData = [];
       var iConvData;
       NewData['title'] = Data.title;
@@ -1251,7 +1252,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     }
 
     function convertRadiusData(objRequest) {
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       var NewData = [];
       var iConvData;
       NewData['title'] = Data.title;
@@ -1644,7 +1645,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     }
 
     function convertParallelData(objRequest) {
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       var NewData = [];
       var iConvData;
       NewData['title'] = Data.title;
@@ -1727,7 +1728,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     //树形图
     function convertTreeMapData(objRequest) {
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       if (0 === Data.rows) {
         return false;
       }
@@ -1799,7 +1800,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     //雷达图
     function convertRadarMapData(objRequest) {
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       if (0 === Data.rows || Data.cols < 3) {
         return false;
       }
@@ -1874,7 +1875,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     //散点图
     function convertScatterData(objRequest) {
 
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
 
       if (0 === Data.rows || 1 === Data.cols || (Data.cols <= 2 && isNaN(Data.data[0][0]))) {
         return false;
@@ -1988,7 +1989,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     //桑基图
     function convertWordCloudData(objRequest) {
 
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       //必须3列以上
       if (0 === Data.rows || Data.cols < 2) {
         return false;
@@ -2068,7 +2069,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     //桑基图
     function convertSankeyData(objRequest) {
 
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       //必须3列以上
       if (0 === Data.rows || Data.cols <= 2) {
         return false;
@@ -2198,7 +2199,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     //力导向布局图
     function convertForceGraphData(objRequest) {
 
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       //必须3列以上
       if (0 === Data.rows || Data.cols <= 2) {
         return false;
@@ -2217,7 +2218,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     //事件河流图
     function convertThemeRiverData(objRequest) {
 
-      var Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       //必须3列以上
       if (0 === Data.rows || Data.cols != 3) {
         return false;
@@ -2253,11 +2254,11 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     //控制图
     function convertSPCData(objRequest) {
-      var Data, arrTem;
+      var arrTem;
       var iTemp, i, j;
       var NewData = [];
 
-      Data = getJsonFromUrl(objRequest.url);
+      var Data = objRequest.data;
       NewData['title'] = Data.title;
       NewData['subTitle'] = Data.source;
       NewData['rows'] = Data.rows;
@@ -2437,6 +2438,16 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     }
 
     var returnData;
+    if (typeof objRes.data !== 'undefined') {
+      objRes.data = objRes.data;
+      //处理品种 参数 p
+      if (objRes.url.indexOf('p=') != -1) {
+        var pdtName = objRes.url.split('&p=')[1].split('&')[0];
+        objRes.data.title = pdtName.toUpperCase() + objRes.data.title;
+      }
+    } else {
+      objRes.data = getJsonFromUrl(objRes.url);
+    }
 
     switch (objRes.type) {
       case 'bar':
@@ -2715,7 +2726,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       series: Data.series
     };
 
-    //console.log(objRequest);
     if (objRequest.max != 'undefined') {
       outData.yAxis[0].max = Number.parseFloat(objRequest.max);
     }

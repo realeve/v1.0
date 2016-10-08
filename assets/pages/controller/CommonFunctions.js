@@ -54,7 +54,11 @@
     },
     TPL: getRootPath(1) + '/assets/pages/controller/data/tpl/',
     SHOWDEBUGTIME: true,
-    cache: 5 //数据缓存5分钟
+    cache: 5, //数据缓存5分钟
+    info: {
+      select2: false,
+      qualitytable: false
+    }
   };
 
   //信息提示框
@@ -265,8 +269,12 @@
     return $.parseJSON(strHead);
   }
 
-  //读取指定URL的JSON数据
+  function handleAjaxData(data) {
+    data = data.replace(/\r\n/g, '<br>').replace(/\t/g, ' ').replace(/  */g, ' ').replace(/<br><br>/g, '<br>').replace(/<br> <br>/g, '<br>');
+    return jQuery.parseJSON(data);
+  }
 
+  //读取指定URL的JSON数据
   function ReadData(strUrl, Type) {
     var tid = strUrl.split('ID=')[1].split('&')[0];
     if (config.SHOWDEBUGTIME) {
@@ -282,9 +290,7 @@
       url: strUrl,
       success: function(data, status) {
         //处理换行字符
-        data = data.replace(/\r\n/g, '<br>').replace(/\t/g, ' ').replace(/  */g, ' ').replace(/<br><br>/g, '<br>').replace(/<br> <br>/g, '<br>');
-        var obj = jQuery.parseJSON(data);
-        Data = obj;
+        Data = handleAjaxData(data);
       },
       error: function(e) {
         console.log("read data error:<br>");
@@ -882,8 +888,10 @@
         width: null,
       });
     });
-
-    infoTips('本页面下拉选择框支持中文拼音模糊过滤<br/><br/>例如在列表中有一项为 “测试数据” 的下拉项，点击下拉框后输入以下信息均可过滤出该条信息:<br/><br/>拼音首字母——cssj<br/>拼音全拼——ceshishuju<br/>部分中文——测试<br/>部分拼音——cs');
+    if (!config.info.select2) {
+      config.info.select2 = true;
+      infoTips('本页面下拉选择框支持中文拼音模糊过滤<br/><br/>例如在列表中有一项为 “测试数据” 的下拉项，点击下拉框后输入以下信息均可过滤出该条信息:<br/><br/>拼音首字母——cssj<br/>拼音全拼——ceshishuju<br/>部分中文——测试<br/>部分拼音——cs');
+    }
   }
 
   function SetSelect2Val(Name, val) {
@@ -905,7 +913,7 @@
   function judgeSearchType(str) {
     var rules = {
       cart: /^[1-9]\d{3}[A-Za-z]\d{3}$/,
-      reel: /^[1-9]\d{6}[A-Za-c]$/,
+      reel: /^[1-9]\d{6}[A-Ca-c]$|[1-9]\d{4}$|[1-9]\d{4}[A-Ca-c]$|[1-9]\d{6}$/,
       gz: /^[A-Za-z]{2}\d{4}$|[A-Za-z]\d[A-Za-z]\d{3}$|[A-Za-z]\d{2}[A-Za-z]\d{2}$/,
       code: /^[A-Za-z]{2}\d{8}$|[A-Za-z]\d[A-Za-z]\d{7}$|[A-Za-z]\d{2}[A-Za-z]\d{6}$/
     };
@@ -925,18 +933,40 @@
 
   //顶部搜索框
   var initSearchBox = function() {
+
     function queryData() {
       if ($('.search-form').hasClass('open')) {
         var str = $('[name=query]').val().toUpperCase();
         var type = judgeSearchType(str);
-        if (type > -1) {
-          var url = getRootPath(1) + '/search/#' + str;
-          $('.search-form .submit').attr('href', url);
-        } else {
-          bsTips('暂时只支持车号/轴号/冠字号查询，请确认输入格式');
+        var url;
+        var curPage = window.location.pathname;
+
+        switch (type) {
+          case config.search.CART:
+          case config.search.GZ:
+          case config.search.CODE:
+            url = getRootPath(1) + '/search/#' + str;
+            break;
+          case config.search.REEL:
+            url = getRootPath(1) + '/search/paper#' + str;
+            break;
+          default:
+            bsTips('暂时只支持车号/轴号/冠字号/轴号查询，请确认输入格式');
+            break;
+        }
+
+        if (type > config.search.ERR) {
+          if (curPage.indexOf('/search') === 0 || curPage.indexOf('/search/paper') === 0) {
+            location.hash = str;
+            $('.search-form .submit').attr('href', '#' + str);
+          } else {
+            window.location.href = url;
+            $('.search-form .submit').attr('href', url);
+          }
         }
       }
     }
+
     // handle search box expand/collapse
     $('.search-form .icon-magnifier').on('click', function() {
       queryData();
@@ -946,9 +976,9 @@
     $('.search-form').on('keydown', function(event) {
       if (event.key === 'Enter') {
         queryData();
-        $('.search-form .submit').click();
       }
     });
+
   };
 
 
@@ -1102,6 +1132,11 @@
       return tplUrl.split('.etpl')[0];
     }
 
+    function getHTML(tplUrl, data) {
+      var key = getKey(tplUrl);
+      return renderObj[key](data);
+    }
+
     /**
      * [renderDom eTpl 渲染HTML]
      * @param  {[type]} tplUrl [tpl路径]
@@ -1110,20 +1145,9 @@
      * @return {[type]}        [description]
      */
     function renderDom(tplUrl, data, objDom) {
-      var key = getKey(tplUrl);
 
-      //渲染为HTML
-      // try {
-      //   if (tpl.isInited()) {
-      //     var text = renderObj[key](data);
-      //     objDom.html(text);
-      //   }
-      // } catch (e) {
-      //   console.log(e);
-      // }
-
-      var text = renderObj[key](data);
-      objDom.html(text);
+      var html = getHTML(tplUrl, data);
+      objDom.html(html);
 
       //更新时间信息
       var obj = objDom.find("[name=isodate]");
@@ -1132,7 +1156,10 @@
           interval: 10000
         });
       }
-      App.initSlimScroll('.scroller');
+
+      if (objDom.find('.scroller').length) {
+        App.initSlimScroll('.scroller');
+      }
 
     }
 
@@ -1159,20 +1186,96 @@
      */
     function initRender(tplList, callback) {
       tplList.map(function(tplUrl, idx) {
-        $.get(config.TPL + tplUrl, function(tpl) {
-          //缓存 compile后的对象
-          var key = getKey(tplUrl);
-          renderObj[key] = etpl.compile(tpl);
+        $.ajax({
+            url: config.TPL + tplUrl,
+          })
+          .done(function(tpl) {
+            //缓存 compile后的对象
+            var key = getKey(tplUrl);
+            renderObj[key] = etpl.compile(tpl);
 
-          if (idx == tplList.length - 1) {
-            isInited = true;
-            if (typeof callback !== 'undefined') {
-              callback();
+            if (idx == tplList.length - 1) {
+              isInited = true;
+              if (typeof callback !== 'undefined') {
+                callback();
+              }
             }
+          });
+      });
+    }
+
+    function renderTable(objDom, url, option, callback) {
+
+      $.ajax({
+          url: url
+        })
+        .done(function(data) {
+          data = handleAjaxData(data);
+
+          if (data.rows === 0) {
+            objDom.html('<h4> 未搜索到相关信息 </h4>');
+            return;
           }
 
+          if (typeof callback == 'function') {
+            callback(data);
+          }
+
+          if (typeof option == 'undefined') {
+            option = [{
+              start: 1,
+              end: data.cols,
+              dom: objDom,
+              title: data.title,
+              showHead: false,
+              direction: 'hor',
+              repeat: {
+                switch: false
+              },
+              class: ''
+            }];
+          }
+
+          option.map(function(item) {
+            var qua = {
+              title: item.title,
+              rows: data.rows,
+              cols: data.cols,
+              source: data.source,
+              header: data.header.slice(item.start, item.end),
+              noScroll: 1,
+              class: (typeof item.class == 'undefined') ? '' : item.class,
+              showHead: item.showHead,
+              data: [] //纵向排列 data.data[0].slice(1, 15)
+            };
+
+
+            if (typeof item.repeat != 'undefined' && item.repeat.switch) {
+
+              qua.header = data.header.slice(item.repeat.start, item.repeat.end).concat(qua.header);
+
+              data.data.map(function(iData) {
+                qua.data.push(iData.slice(item.repeat.start, item.repeat.end).concat(iData.slice(item.start, item.end)));
+              });
+            } else {
+              data.data.map(function(iData) {
+                qua.data.push(iData.slice(item.start, item.end));
+              });
+            }
+
+            if (typeof item.dom == 'undefined') {
+              item.dom = objDom;
+            }
+
+            tpl.render(item.direction == 'hor' ? 'simpleTable.etpl' : 'search/screenQuality.etpl', qua, item.dom);
+
+          });
+
+        })
+        .fail(function() {
+          console.log("read data error:<br>");
+          console.log(e.responseText);
         });
-      });
     }
 
     return {
@@ -1183,7 +1286,9 @@
       isInited: function() {
         return isInited;
       },
-      render: renderDom
+      render: renderDom,
+      getHTML: getHTML,
+      renderTable: renderTable
     };
 
   })();
@@ -1251,51 +1356,133 @@
   ***************/
   function initPinYin() {
     var url = getRootPath(1) + "/assets/pages/controller/data/pinyin_list.min.json";
+    $.ajax({
+        url: url
+      })
+      .done(function(PinYin) {
+        function chnToPy(l1, shortMode) {
+          var l2 = l1.length;
+          var I1 = "";
+          var reg = new RegExp('[a-zA-Z0-9\- ]');
+          for (var i = 0; i < l2; i++) {
+            var val = l1.substr(i, 1);
+            var name = arraySearch(val, PinYin, shortMode);
+            if (reg.test(val)) {
+              I1 += val;
+            } else if (name !== false) {
+              I1 += name;
+            }
 
-    var PinYin = ReadJson(url);
-
-    function chnToPy(l1, shortMode) {
-      var l2 = l1.length;
-      var I1 = "";
-      var reg = new RegExp('[a-zA-Z0-9\- ]');
-      for (var i = 0; i < l2; i++) {
-        var val = l1.substr(i, 1);
-        var name = arraySearch(val, PinYin, shortMode);
-        if (reg.test(val)) {
-          I1 += val;
-        } else if (name !== false) {
-          I1 += name;
+          }
+          I1 = I1.replace(/ /g, '-');
+          while (I1.indexOf('--') > 0) {
+            I1 = I1.replace('--', '-');
+          }
+          return I1;
         }
 
-      }
-      I1 = I1.replace(/ /g, '-');
-      while (I1.indexOf('--') > 0) {
-        I1 = I1.replace('--', '-');
-      }
-      return I1;
-    }
-
-    function arraySearch(l1, l2, shortMode) {
-      for (var name in PinYin) {
-        if (PinYin[name].indexOf(l1) != -1) {
-          return ucfirst(name, shortMode);
+        function arraySearch(l1, l2, shortMode) {
+          for (var name in PinYin) {
+            if (PinYin[name].indexOf(l1) != -1) {
+              return ucfirst(name, shortMode);
+            }
+          }
+          return false;
         }
-      }
-      return false;
-    }
 
-    function ucfirst(l1, shortMode) {
-      if (l1.length > 0) {
-        var first = l1.substr(0, 1).toUpperCase();
-        var spare = shortMode ? "" : l1.substr(1, l1.length);
-        return first + spare;
-      }
-    }
+        function ucfirst(l1, shortMode) {
+          if (l1.length > 0) {
+            var first = l1.substr(0, 1).toUpperCase();
+            var spare = shortMode ? "" : l1.substr(1, l1.length);
+            return first + spare;
+          }
+        }
 
-    String.prototype.toPinYin = function() {
-      return chnToPy(this, true);
-    };
-    String.prototype.toPinYinFull = function() {
-      return chnToPy(this, false);
-    };
+        String.prototype.toPinYin = function() {
+          return chnToPy(this, true);
+        };
+        String.prototype.toPinYinFull = function() {
+          return chnToPy(this, false);
+        };
+      });
   }
+
+
+  var RGB2Lab = function(RGB) {
+
+    var gamma = function(x) {
+      return x > 0.04045 ? Math.pow((x + 0.055) / 1.055, 2.4) : x / 12.92;
+    };
+
+    var B = gamma(RGB.b / 255);
+    var G = gamma(RGB.g / 255);
+    var R = gamma(RGB.r / 255);
+
+    var X = 0.412453 * R + 0.357580 * G + 0.180423 * B;
+    var Y = 0.212671 * R + 0.715160 * G + 0.072169 * B;
+    var Z = 0.019334 * R + 0.119193 * G + 0.950227 * B;　　
+
+    X /= 0.95047;　　
+    // Y /= 1.0;　　
+    Z /= 1.08883;
+
+    var FX = X > 0.008856 ? Math.pow(X, 1 / 3) : (7.787 * X + (16 / 116));
+    var FY = Y > 0.008856 ? Math.pow(Y, 1 / 3) : (7.787 * Y + (16 / 116));
+    var FZ = Z > 0.008856 ? Math.pow(Z, 1 / 3) : (7.787 * Z + (16 / 116));
+
+    var lab = {
+      l: Y > 0.008856 ? (116.0 * FY - 16.0) : (903.3 * Y),
+      a: 500 * (FX - FY),
+      b: 200 * (FY - FZ)
+    };
+    return {
+      l: parseInt(lab.l.toFixed(0), 10),
+      a: parseInt(lab.a.toFixed(0), 10),
+      b: parseInt(lab.b.toFixed(0), 10)
+    };
+  };
+
+  var Lab2RGB = function(Lab) {
+    var L = Lab.L,
+      a = Lab.a,
+      b = Lab.b;
+
+    function getVar(x) {
+      var X3 = Math.pow(x, 3);
+      return X3 > 0.008856 ? X3 : (x - 16 / 116) / 7.787;
+    }
+
+    function getRGBVar(x) {
+      x = (x > 0.0031308) ? 1.055 * (Math.pow(x, (1 / 2.4))) - 0.055 : x = 12.92 * x;
+      return parseInt((x * 255).toFixed(0), 10);
+    }
+
+    //Lab2XYZ;
+    var var_Y = (L + 16) / 116;
+    var var_X = a / 500 + var_Y;
+    var var_Z = var_Y - b / 200;
+
+    var_X = getVar(var_X);
+    var_Y = getVar(var_Y);
+    var_Z = getVar(var_Z);
+
+    var X = 95.047 * var_X; //ref_X =  95.047     Observer= 2°, Illuminant= D65
+    //var Y = 100 * var_Y; //ref_Y = 100.000
+    var Z = 108.883 * var_Z; //ref_Z = 108.883
+
+
+    //XYZ2RGB
+    var_X = X / 100; //X from 0 to  95.047      (Observer = 2°, Illuminant = D65)
+    //var_Y = Y / 100; //Y from 0 to 100.000
+    var_Z = Z / 100; //Z from 0 to 108.883
+
+    var_R = var_X * 3.2406 - var_Y * 1.5372 - var_Z * 0.4986;
+    var_G = -var_X * 0.9689 + var_Y * 1.8758 + var_Z * 0.0415;
+    var_B = var_X * 0.0557 - var_Y * 0.2040 + var_Z * 1.0570;
+
+    return {
+      r: getRGBVar(var_R),
+      g: getRGBVar(var_G),
+      b: getRGBVar(var_B)
+    };
+  };

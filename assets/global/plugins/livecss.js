@@ -31,9 +31,7 @@ var livecss = {
       var validMediaTypes = ["screen", "handheld", "all", ""];
       for (var i = 0; i < linkElements.length; i++) {
         var media = (linkElements[i].getAttribute("media") || "").toLowerCase();
-        if (linkElements[i].getAttribute("rel") == "stylesheet"
-            && livecss.indexOf(validMediaTypes, media) >= 0
-            && this.isLocalLink(linkElements[i])) {
+        if (linkElements[i].getAttribute("rel") == "stylesheet" && livecss.indexOf(validMediaTypes, media) >= 0 && this.isLocalLink(linkElements[i])) {
           this.refreshLinkElement(linkElements[i]);
         }
       }
@@ -129,15 +127,17 @@ var livecss = {
 
   isCssElementLoaded: function(cssElement) {
     // cssElement.sheet.cssRules will throw an error in firefox when the css file is not yet loaded.
-    try { return (cssElement.sheet && cssElement.sheet.cssRules.length > 0); } catch(error) { }
+    try {
+      return (cssElement.sheet && cssElement.sheet.cssRules.length > 0);
+    } catch (error) {}
     return false;
   },
 
   /* returns true for local urls such as: '/screen.css', 'http://mydomain.com/screen.css', 'css/screen.css'
-  */
+   */
   isLocalLink: function(linkElement) {
-  	//On all tested browsers, this javascript property returns a normalized URL
-	var url = linkElement.href;
+    //On all tested browsers, this javascript property returns a normalized URL
+    var url = linkElement.href;
     var regexp = new RegExp("^\/|^" +
       document.location.protocol + "//" + document.location.host);
     return (url.search(regexp) == 0);
@@ -147,18 +147,26 @@ var livecss = {
    * Adds and removes a "cache_bust" querystring parameter to the given URLs. This is so we always bust
    * through the browser's cache when checking for updated CSS.
    */
-  addCacheBust: function(url) { return this.removeCacheBust(url) + "?cache_bust=" + (new Date()).getTime(); },
-  removeCacheBust: function(url) { return url.replace(/\?cache_bust=[^&]+/, ""); },
+  addCacheBust: function(url) {
+    return this.removeCacheBust(url) + "?cache_bust=" + (new Date()).getTime();
+  },
+  removeCacheBust: function(url) {
+    return url.replace(/\?cache_bust=[^&]+/, "");
+  },
 
   /* A utility method to bind the value of "this". Equivalent to jQuery's proxy() function. */
   proxy: function(fn) {
     var self = this;
-    return function() { return fn.apply(self, []); };
+    return function() {
+      return fn.apply(self, []);
+    };
   },
 
   /* Unfortunately IE7 doesn't have this built-in. */
   indexOf: function(array, item) {
-    for (var i = 0; i < array.length; i++) { if (array[i] == item) return i; }
+    for (var i = 0; i < array.length; i++) {
+      if (array[i] == item) return i;
+    }
     return -1;
   },
 
@@ -169,4 +177,6 @@ var livecss = {
 };
 
 if (window.location.search.toString().indexOf("startlivecss=true") >= 0)
-  livecss.addEventListener(window, "load", function() { livecss.watchAll(); });
+  livecss.addEventListener(window, "load", function() {
+    livecss.watchAll();
+  });

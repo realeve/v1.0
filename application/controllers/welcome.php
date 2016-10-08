@@ -6,22 +6,18 @@ class Welcome extends CI_Controller {
 	{
 	  	parent::__construct();
 		$this->load->helper ( array (
-			'form',
 			'url' 
 		) );
 		$this->load->library('session');
-		$this->load->model('LoginModel');
 	}
 
 	public function index()
 	{
 		//开启缓存
 		$this->output->cache(60*24);
-		//$this->output->set_output(json_encode($this->session->userdata));//调试
+		
 		if ($this->session->userdata('userrole')>0)
 		{
-			//$this->output->set_output($logindata);//调试
-			//$this->session->sess_destroy();//注销
 			if($this->session->userdata('logged_in')==true)
 			{
 				$logindata = $this->session->userdata;
@@ -37,9 +33,6 @@ class Welcome extends CI_Controller {
 			$this->load->view('lockscreen-min');
 		}
 		else{
-			//$logindata['type'] = 0;
-			//$logindata['message'] = $this->loginMessage(0);
-			//$this->output->set_output(json_encode($logindata));
 			$this->load->view('login');	
 		}
 		
@@ -48,6 +41,7 @@ class Welcome extends CI_Controller {
 	 //登录
   public function trylogin(){
 		
+		$this->load->model('LoginModel');
 		$UserName = $this->input->post('username');
 		$Password = md5($this->input->post('password'));
 
@@ -86,6 +80,7 @@ class Welcome extends CI_Controller {
 
   //注册
   public function register(){
+		$this->load->model('LoginModel');
 	 $RegisterData = array(
 		'UserName' => $this->input->post('username'),
 		'UserPassword' => md5($this->input->post('password')),
@@ -105,6 +100,7 @@ class Welcome extends CI_Controller {
 
 	public function resetpassword()
 	{
+		$this->load->model('LoginModel');
 		$ResetData = array(
 			'UserName' => $this->input->post('username'),
 			'UserPassword' => md5($this->input->post('password')),		
@@ -142,6 +138,7 @@ class Welcome extends CI_Controller {
 
 	//注销后重登录
   public function relogin(){
+		$this->load->model('LoginModel');
 		$UserName = $this->session->userdata('username');
 		$Password = md5($this->input->post('password'));
 		$logindata = $this->LoginModel->logincheck($UserName,$Password);

@@ -149,17 +149,104 @@
          });
        }
 
-       function showChart(curTheme, url) {
+       function dataDrill(i) {
+         //示例URL：SELECT a.[品种], a.[生产日期], round(avg(a.[好品率]),2) as 平均好品率 FROM dbo.view_print_hecha AS a where left(a.生产日期,6) = 201605 group by a.[品种], a.[生产日期] order by 1,2
+         //第二级：SELECT a.车号, a.[好品率] FROM dbo.view_print_hecha AS a where a.生产日期 = ? and a.品种= ?
+         myChart[i].on('click', function(params) {
 
-         if (!iChartNums) {
-           return;
+           var curChartID = $(this)[0].chartID;
+           //console.table(drillComponents);
+           if (drillComponents.curLevel[curChartID] > drillComponents.maxDrillLevel[curChartID]) {
+             //infoTips('系列名：' + params.seriesName + '\n数据名:' + params.name);
+             switch (objRequest.drillType) {
+               case 'cart':
+                 infoTips('查询车号:' + params.name);
+                 break;
+               case 'paper':
+                 infoTips('查询轴号:' + params.name);
+                 break;
+             }
+             return;
+           }
+           //清除数据
+           myChart[curChartID].clear();
+
+           var urlParam = {
+             legend: params.seriesName,
+             axis: params.name
+           };
+
+           //处理请求参数
+           objRequest.url = GetJsonUrl(drillComponents.id[curChartID][drillComponents.curLevel[curChartID] - 1], objRequest, curChartID);
+           objRequest.url += '&axis=' + urlParam.axis + "&legend=" + urlParam.legend;
+
+           if (objRequest.drillChart != 'none') {
+             drillComponents.chartType[curChartID] = objRequest.drillChart.split(';');
+             if (drillComponents.chartType[curChartID].length < drillComponents.curLevel[curChartID]) {
+               objRequest.type = drillComponents.chartType[curChartID][0];
+             } else {
+               objRequest.type = drillComponents.chartType[curChartID][drillComponents.curLevel[curChartID] - 1];
+             }
+           }
+
+           option[curChartID][drillComponents.curLevel[curChartID]] = chartDataTool.getOption(objRequest, echarts);
+           myChart[curChartID].setOption(option[curChartID][drillComponents.curLevel[curChartID]]);
+           regressionTag[i] = false;
+           //console.log(option);
+           //是否需要增加层级显示
+           if (drillComponents.nameLength[curChartID] < drillComponents.curLevel[curChartID]) {
+             drillComponents.nameLength[curChartID]++;
+             drillComponents.obj[curChartID].append('<li><a href="javascript:;" data-level="' + (drillComponents.curLevel[curChartID] + 1) + '">' + params.name + '</a><i class="fa fa-circle"></i></li>');
+           } else {
+             drillComponents.obj[curChartID].find('a:nth(' + drillComponents.curLevel[curChartID] + ')').text(params.name);
+           }
+           //数据下钻层级
+           drillComponents.curLevel[curChartID]++;
+           //drillComponents.obj[curChartID].find('a:nth('+ (drillComponents.curLevel[curChartID]-1) +')').data('option','test');
+         });
+       }
+
+       function handleDataDrill(i) {
+
+         if (objRequest.drillID != 'none') {
+           $('.eCharts-main').parents('.portlet').find('.page-bar').removeClass('hidden');
+           //默认以LEGEND和AXIS同时作为参数搜索
+           drillComponents.id[i] = objRequest.drillID.split(';');
+           drillComponents.maxDrillLevel[i] = drillComponents.id[i].length;
+           //drillComponents.param[i] = objRequest.drillParam;
+
+           //数据下钻：添加点击事件
+           drillComponents.obj[i] = $('[name="drillName"]:nth(' + i + ')');
+
+           if (isInited[i]) {
+             drillComponents.obj[i].html('<li>' + drillComponents.obj[i].find('li').html() + '</li>');
+           } else {
+             isInited[i] = true;
+           }
+
+           drillComponents.curLevel[i] = 1;
+           drillComponents.nameLength[i] = 0;
+           myChart[i].chartID = i;
+
+           dataDrill(i);
+
+           $('[name="drillName"]').on('click', 'a', function() {
+             var level = $(this).data('level');
+             var chartID = $(this).parents('.portlet').data('chartid');
+             myChart[chartID].clear();
+
+             drillComponents.curLevel[chartID] = level;
+             myChart[chartID].setOption(option[chartID][level - 1]);
+             regressionTag[i] = false;
+           });
+
+           drillComponents.obj[i].find('a').first().text(option[i][0].title[0].text);
+
          }
+       }
 
-         if (!echarts) {
-           return;
-         } //如果未加载则去掉
-         var i;
-         var objList = {
+       function getobjList() {
+         return {
            "id": getUrlParam('tid').split(','),
            "type": (getUrlParam('type') === null) ? ['line'] : getUrlParam('type').split(','),
            "smooth": (getUrlParam('smooth') === null) ? ['1'] : getUrlParam('smooth').split(','),
@@ -204,169 +291,112 @@
            //regression 数据回归
            "regression": (getUrlParam('regression') === null) ? ['none'] : getUrlParam('regression').split(','),
          };
-         for (i = 0; i < iChartNums; i++) {
-           objRequest = {
-             //"url": GetJsonUrl(objList.id[i]),
-             "type": handleParam(objList.type, i, "line"),
-             "smooth": (handleParam(objList.smooth, i, '1') === '1') ? true : false,
-             "blind": (getUrlParam('blind') === "0" || getUrlParam('blind') === null) ? false : true,
-             "toolbox": /*(objRequest.blind && i) ? false : */ true,
-             "markLine": handleParam(objList.markLine, i, "average"),
-             "markLineValue": handleParam(objList.markLineValue, i, "0"),
-             "markArea": handleParam(objList.markArea, i, ""),
-             "markAreaValue": handleParam(objList.markAreaValue, i, "0"),
-             "markPoint": (handleParam(objList.markPoint, i, '0') === '1') ? true : false,
-             "barMaxWidth": handleParam(objList.barMaxWidth, i, 100),
-             "splitArea": (handleParam(objList.splitArea, i, '0') === '1') ? true : false,
-             "dataZoom": handleParam(objList.dataZoom, i, '0'),
-             "minMax": (handleParam(objList.minMax, i, '0') === '1') ? true : false,
-             "lineAreaStyle": (handleParam(objList.lineAreaStyle, i, '0') === '1') ? true : false,
-             "lineShadow": (handleParam(objList.lineShadow, i, '1') === '1') ? true : false,
-             "reverse": (handleParam(objList.reverse, i, '0') === '1') ? true : false,
-             "circle": (handleParam(objList.circle, i, '1') === '1') ? true : false,
-             "roseType": handleParam(objList.roseType, i, '0'),
-             "dimension": Number.parseInt(handleParam(objList.dimension, i, '1'), 10) - 1,
-             "squareRatio": Number.parseFloat(handleParam(objList.squareRatio, i, '1.618')),
-             "shape": handleParam(objList.shape, i, "polygon"),
-             "scatterSize": Number.parseFloat(handleParam(objList.scatterSize, i, '20')),
-             "force": handleParam(objList.force, i, "1"),
-             "banknoteColor": handleParam(objList.banknoteColor, i, "1"),
-             "stack": (handleParam(objList.stack, i, '0') === '1') ? true : false,
-             "max": handleParam(objList.max, i, "1"),
-             "min": handleParam(objList.min, i, "1"),
-             "symbolSize": handleParam(objList.symbolSize, i, "12"),
-             "opacity": handleParam(objList.opacity, i, 0.4),
-             "leafDepth": handleParam(objList.leafDepth, i, 0),
-             "step": handleParam(objList.step, i, 0),
-             "singleAxis": handleParam(objList.singleAxis, i, "time"),
-             "background": handleParam(objList.background, i, "default"),
-             "drillID": handleParam(objList.drillID, i, "none"),
-             "drillType": handleParam(objList.drillType, i, "none"),
-             "drillChart": handleParam(objList.drillChart, i, "none"),
-             //"drillParam": handleParam(objList.drillParam, i, "legend;axis")
-             "regression": handleParam(objList.regression, i, "none"),
-           };
+       }
 
-           objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
+       function getobjRequest(objList, i) {
+         return {
+           //"url": GetJsonUrl(objList.id[i]),
+           "type": handleParam(objList.type, i, "line"),
+           "smooth": (handleParam(objList.smooth, i, '1') === '1') ? true : false,
+           "blind": (getUrlParam('blind') === "0" || getUrlParam('blind') === null) ? false : true,
+           "toolbox": /*(objRequest.blind && i) ? false : */ true,
+           "markLine": handleParam(objList.markLine, i, "average"),
+           "markLineValue": handleParam(objList.markLineValue, i, "0"),
+           "markArea": handleParam(objList.markArea, i, ""),
+           "markAreaValue": handleParam(objList.markAreaValue, i, "0"),
+           "markPoint": (handleParam(objList.markPoint, i, '0') === '1') ? true : false,
+           "barMaxWidth": handleParam(objList.barMaxWidth, i, 100),
+           "splitArea": (handleParam(objList.splitArea, i, '0') === '1') ? true : false,
+           "dataZoom": handleParam(objList.dataZoom, i, '0'),
+           "minMax": (handleParam(objList.minMax, i, '0') === '1') ? true : false,
+           "lineAreaStyle": (handleParam(objList.lineAreaStyle, i, '0') === '1') ? true : false,
+           "lineShadow": (handleParam(objList.lineShadow, i, '1') === '1') ? true : false,
+           "reverse": (handleParam(objList.reverse, i, '0') === '1') ? true : false,
+           "circle": (handleParam(objList.circle, i, '1') === '1') ? true : false,
+           "roseType": handleParam(objList.roseType, i, '0'),
+           "dimension": Number.parseInt(handleParam(objList.dimension, i, '1'), 10) - 1,
+           "squareRatio": Number.parseFloat(handleParam(objList.squareRatio, i, '1.618')),
+           "shape": handleParam(objList.shape, i, "polygon"),
+           "scatterSize": Number.parseFloat(handleParam(objList.scatterSize, i, '20')),
+           "force": handleParam(objList.force, i, "1"),
+           "banknoteColor": handleParam(objList.banknoteColor, i, "1"),
+           "stack": (handleParam(objList.stack, i, '0') === '1') ? true : false,
+           "max": handleParam(objList.max, i, "1"),
+           "min": handleParam(objList.min, i, "1"),
+           "symbolSize": handleParam(objList.symbolSize, i, "12"),
+           "opacity": handleParam(objList.opacity, i, 0.4),
+           "leafDepth": handleParam(objList.leafDepth, i, 0),
+           "step": handleParam(objList.step, i, 0),
+           "singleAxis": handleParam(objList.singleAxis, i, "time"),
+           "background": handleParam(objList.background, i, "default"),
+           "drillID": handleParam(objList.drillID, i, "none"),
+           "drillType": handleParam(objList.drillType, i, "none"),
+           "drillChart": handleParam(objList.drillChart, i, "none"),
+           //"drillParam": handleParam(objList.drillParam, i, "legend;axis")
+           "regression": handleParam(objList.regression, i, "none"),
+         };
+       }
 
-           //数据处理
-           if (typeof curTheme.valueAxis !== 'undefined') {
-             curTheme.valueAxis.splitArea.show = (objRequest.splitArea[i]) ? true : false;
-           } else {
-             curTheme.color = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
-           }
-           //必须传颜色表，旭日图等自定义颜色的图表中需要使用
-           objRequest.color = curTheme.color;
+       function handleChartData(i) {
 
-           //存储多级charts的参数
+         if (option[i][0] !== false) {
+           myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
+           myChart[i].setOption(option[i][0]);
 
-           option[i] = [];
-           option[i][0] = chartDataTool.getOption(objRequest, echarts);
+           regressionTag[i] = false;
 
-           //console.log("option = " + JSON.stringify(option[i]));
-           if (option[i][0] !== false) {
-             myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
-             myChart[i].setOption(option[i][0]);
+           handleDataDrill(i);
 
-             regressionTag[i] = false;
+         } else {
+           bsTips('第' + (i + 1) + '张图表无数据，请重新选择查询时间', 2);
+         }
+       }
 
-             if (objRequest.drillID != 'none') {
-               $('.eCharts-main').parents('.portlet').find('.page-bar').removeClass('hidden');
-               //默认以LEGEND和AXIS同时作为参数搜索
-               drillComponents.id[i] = objRequest.drillID.split(';');
-               drillComponents.maxDrillLevel[i] = drillComponents.id[i].length;
-               //drillComponents.param[i] = objRequest.drillParam;
+       function renderChart(i, objList) {
+         //存储多级charts的参数
+         option[i] = [];
 
-               //数据下钻：添加点击事件
-               drillComponents.obj[i] = $('[name="drillName"]:nth(' + i + ')');
+         objRequest = getobjRequest(objList, i);
 
-               if (isInited[i]) {
-                 drillComponents.obj[i].html('<li>' + drillComponents.obj[i].find('li').html() + '</li>');
-               } else {
-                 isInited[i] = true;
-               }
+         objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
 
-               drillComponents.curLevel[i] = 1;
-               drillComponents.nameLength[i] = 0;
-               myChart[i].chartID = i;
+         //数据处理
+         if (typeof curTheme.valueAxis !== 'undefined') {
+           curTheme.valueAxis.splitArea.show = (objRequest.splitArea[i]) ? true : false;
+         } else {
+           curTheme.color = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
+         }
+         //必须传颜色表，旭日图等自定义颜色的图表中需要使用
+         objRequest.color = curTheme.color;
 
-               //示例URL：SELECT a.[品种], a.[生产日期], round(avg(a.[好品率]),2) as 平均好品率 FROM dbo.view_print_hecha AS a where left(a.生产日期,6) = 201605 group by a.[品种], a.[生产日期] order by 1,2
-
-               //第二级：SELECT a.车号, a.[好品率] FROM dbo.view_print_hecha AS a where a.生产日期 = ? and a.品种= ?
-
-               myChart[i].on('click', function(params) {
-
-                 var curChartID = $(this)[0].chartID;
-                 //console.table(drillComponents);
-                 if (drillComponents.curLevel[curChartID] > drillComponents.maxDrillLevel[curChartID]) {
-                   //infoTips('系列名：' + params.seriesName + '\n数据名:' + params.name);
-                   switch (objRequest.drillType) {
-                     case 'cart':
-                       infoTips('查询车号:' + params.name);
-                       break;
-                     case 'paper':
-                       infoTips('查询轴号:' + params.name);
-                       break;
-                   }
-                   return;
-                 }
-                 //清除数据
-                 myChart[curChartID].clear();
-
-                 var urlParam = {
-                   legend: params.seriesName,
-                   axis: params.name
-                 };
-
-                 //处理请求参数
-                 objRequest.url = GetJsonUrl(drillComponents.id[curChartID][drillComponents.curLevel[curChartID] - 1], objRequest, curChartID);
-                 objRequest.url += '&axis=' + urlParam.axis + "&legend=" + urlParam.legend;
-
-                 if (objRequest.drillChart != 'none') {
-                   drillComponents.chartType[curChartID] = objRequest.drillChart.split(';');
-                   if (drillComponents.chartType[curChartID].length < drillComponents.curLevel[curChartID]) {
-                     objRequest.type = drillComponents.chartType[curChartID][0];
-                   } else {
-                     objRequest.type = drillComponents.chartType[curChartID][drillComponents.curLevel[curChartID] - 1];
-                   }
-                 }
-
-                 option[curChartID][drillComponents.curLevel[curChartID]] = chartDataTool.getOption(objRequest, echarts);
-                 myChart[curChartID].setOption(option[curChartID][drillComponents.curLevel[curChartID]]);
-                 regressionTag[i] = false;
-                 //console.log(option);
-                 //是否需要增加层级显示
-                 if (drillComponents.nameLength[curChartID] < drillComponents.curLevel[curChartID]) {
-                   drillComponents.nameLength[curChartID]++;
-                   drillComponents.obj[curChartID].append('<li><a href="javascript:;" data-level="' + (drillComponents.curLevel[curChartID] + 1) + '">' + params.name + '</a><i class="fa fa-circle"></i></li>');
-                 } else {
-                   drillComponents.obj[curChartID].find('a:nth(' + drillComponents.curLevel[curChartID] + ')').text(params.name);
-                 }
-                 //数据下钻层级
-                 drillComponents.curLevel[curChartID]++;
-                 //drillComponents.obj[curChartID].find('a:nth('+ (drillComponents.curLevel[curChartID]-1) +')').data('option','test');
-               });
-
-               $('[name="drillName"]').on('click', 'a', function() {
-                 var level = $(this).data('level');
-                 var chartID = $(this).parents('.portlet').data('chartid');
-                 myChart[chartID].clear();
-
-                 drillComponents.curLevel[chartID] = level;
-                 myChart[chartID].setOption(option[chartID][level - 1]);
-                 regressionTag[i] = false;
-               });
-
-               drillComponents.obj[i].find('a').first().text(option[i][0].title[0].text);
-
+         $.ajax({
+             url: objRequest.url
+           })
+           .done(function(data) {
+             objRequest.data = $.parseJSON(data);
+             if (objRequest.data.rows) {
+               option[i][0] = chartDataTool.getOption(objRequest, echarts);
+               handleChartData(i);
              }
+           });
+       }
 
-             //$('[name="chartTitle"]:nth('+ i +')').text(option.title[0].text);
-             //$('[name="chartSource"]:nth('+ i +')').text(option.title[0].subtext);
+       function showChart(curTheme, url) {
 
-           } else {
-             bsTips('第' + (i + 1) + '张图表无数据，请重新选择查询时间', 2);
-           }
+         if (!iChartNums) {
+           return;
+         }
+
+         if (!echarts) {
+           return;
+         } //如果未加载则去掉
+         var i;
+         var objList = getobjList();
+         for (i = 0; i < iChartNums; i++) {
+           //匿名闭包函数解决
+           //(function(i) {
+           renderChart(i, objList);
+           //})(i);
          }
          if (objRequest.blind) {
            blindChart();
@@ -402,7 +432,7 @@
            '<option value="logarithmic">对数回归</option>' +
            '<option value="power">幂回归</option>' +
            '<option value="polynomial">多项式回归</option>'
-         )
+         );
 
          $('.bs-select').selectpicker({
            iconBase: 'fa',

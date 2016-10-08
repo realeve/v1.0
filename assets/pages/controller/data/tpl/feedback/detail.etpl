@@ -1,0 +1,68 @@
+<div class="portfolio-content">
+    <div class="cbp-l-project-title">${CartNumber}</div>
+    <div class="cbp-l-project-subtitle">${MachineName} 于 ${ProduceDate} 生产</div>
+	<div class="mt-element-card mt-element-overlay">
+		<div class="row">
+			<!-- for: ${imglist} as ${img},${index} -->
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="mt-card-item">
+					<div class="mt-card-avatar mt-overlay-1">
+						<img name="img${id}_${index}">
+					</div>
+					<div class="mt-card-content">
+						<h3 class="mt-card-name">第${img.formatPos}开</h3>
+						<p class="mt-card-desc font-grey-mint"><span class="badge ${img.verify}">${img.errCount}条</span></p>
+					</div>
+				</div>
+			</div>
+			<!-- /for -->
+		</div>
+	</div>
+    <div class="cbp-l-project-container">
+        <div class="cbp-l-project-desc" name="prodInfo">
+        </div>
+        <div class="cbp-l-project-details">
+            <div class="cbp-l-project-details-title">
+                <span>当天好品率曲线</span>
+            </div>
+            <div class="cbp-l-project-details-list" id="chart" style="min-height:220px;">
+            </div>
+        </div>
+        <div class="cbp-l-project-details">
+            <div class="cbp-l-project-details-title">
+                <span>质量详情</span>
+            </div>
+            <ul class="cbp-l-project-details-list">
+                <li>
+                    <strong>好品率</strong>${GoodRate}
+				</li>
+                <li>
+                    <strong>机台</strong>${MachineName}
+				</li>
+                <li>
+                    <strong>生产日期</strong>${ProduceDate}
+				</li>
+                <li>
+                    <strong>缺陷总数</strong>${errpiccount}
+				</li>
+                <li>
+                    <strong>未检数</strong>${nocheckcount}
+				</li>
+            </ul>
+            <a href="../search/fake/#${CartNumber}" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>
+        </div>
+    </div>
+    <div class="cbp-l-project-container">
+        <div class="cbp-l-project-related">
+			<div class="cbp-l-project-desc-title">
+					<span>相关产品</span> <small>${MachineName} 当天生产的其它产品</small>
+			</div>
+			<div class="row" name="hislist">
+
+			</div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>

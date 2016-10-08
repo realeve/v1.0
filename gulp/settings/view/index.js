@@ -47,6 +47,7 @@ var index = {
 		"../assets/global/plugins/bootstrap-toastr/toastr.js",
 		"../assets/pages/controller/idletimeout.js",
 		"../assets/global/plugins/echarts/js/ThemeStyle.js",
+		//"../assets/global/plugins/echarts/js/echarts.min.js",
 		"../assets/global/plugins/require.min.js"
 	]
 };

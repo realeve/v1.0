@@ -12,3 +12,11 @@ jsList = $('script').map(function(i) {
 });
 
 console.log(jsList);
+var b = 0;
+var a = setInterval(function() {
+	b++;
+	console.log(b);
+	if (b == 10) {
+		clearInterval(a);
+	}
+}, 1000);
