@@ -270,7 +270,7 @@
   }
 
   function handleAjaxData(data) {
-    data = data.replace(/\r\n/g, '<br>').replace(/\t/g, ' ').replace(/  */g, ' ').replace(/<br><br>/g, '<br>').replace(/<br> <br>/g, '<br>');
+    data = data.replace(/\r\n/g, '<br>').replace(/\t/g, ' ').replace(/  */g, ' ').replace(/<br><br>/g, '<br>').replace(/<br> <br>/g, '<br>').replace(/\\/g, '、');
     return jQuery.parseJSON(data);
   }
 
@@ -974,7 +974,7 @@
 
     //回车
     $('.search-form').on('keydown', function(event) {
-      if (event.key === 'Enter') {
+      if (event.keyCode === 13) {
         queryData();
       }
     });

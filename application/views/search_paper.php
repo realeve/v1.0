@@ -85,7 +85,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4" id="psc4"></div>
-                    <div class="col-md-2 mt-element-card margin-top-40">
+                    <div class="col-md-4 mt-element-card margin-top-40">
                       <div class="mt-card-item bg-white">
                         <div class="mt-card-avatar">
                           <div id="lab"style="height:200px;width:100%;background:#fff"></div>

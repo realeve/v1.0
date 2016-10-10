@@ -159,7 +159,7 @@
 											<span class="help-block">40~70 g/m^2</span>
 										</div>
 									</div>
-									<div class="col-md-6 form-group">
+									<!--div class="col-md-6 form-group">
 										<label class="control-label col-md-3">表面强度( 纵 )正</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="sur_Strength_v_f">
@@ -172,7 +172,7 @@
 											<input type="text" class="form-control" name="sur_Strength_v_b">
 											<span class="help-block">>=2.5m/s</span>
 										</div>
-									</div>	
+									</div-->	
 									<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">表面强度( 横 )正</label>
 										<div class="col-md-9">
@@ -215,7 +215,7 @@
 											<span class="help-block">( % )</span>
 										</div>
 									</div>	
-									<div class="col-md-6 form-group">
+									<!--div class="col-md-6 form-group">
 										<label class="control-label col-md-3">粗糙度( 纵 )正</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="roughness_v_f">
@@ -312,7 +312,7 @@
 											<input type="text" class="form-control" name="pps_b">
 											<span class="help-block">( mic )</span>
 										</div>
-									</div>						
+									</div-->						
 									<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">评价总分</label>
 										<div class="col-md-9">

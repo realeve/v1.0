@@ -222,7 +222,7 @@ var search = function() {
 	});
 
 	$('input[name="reelNo"]').on('keydown', function(event) {
-		if (event.key === 'Enter') {
+		if (event.keyCode === 13) {
 			reelNo = $(this).val();
 			location.hash = reelNo;
 			$(this).val('');

@@ -290,7 +290,10 @@ var search = function() {
 
 		$('[name="mahouInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
 		$('[name="mahouImg"]').html('');
-		ec[1].dispose();
+		if (typeof ec[1] != 'undefined') {
+
+			ec[1].dispose();
+		}
 
 		$('[name="screenInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
 		$('[name="siyinImg"]').html('');

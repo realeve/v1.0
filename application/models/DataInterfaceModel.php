@@ -35,21 +35,21 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_WORK_LOG_OPR = 'tblWorklog_Operator';	 //32 机检日志人员名单
 	const TBL_SETTINGS_MENULIST ='tbl_menu_list';	 //33 菜单列表
 	const TBL_SETTINGS_MENUDETAIL='tbl_menu_detail'; //34 菜单子项
-	
+
 	//全局变量
 	//质量数据库、小张核查、全幅面、机台作业、库管、质量控制中心（默认）、三合一、在线清数、办公助手、钞纸质量数据、图像数据库
-	var $DBLIST = ['Quality', 'XZHC', 'QFM', 'JTZY', 'KG', 'sqlsvr', 'SHY', 'ZXQS', 'OFFICEHELPER', 'CZUSER', 'IMG'];
+	var $DBLIST = array(0=>'Quality', 1=>'XZHC', 2=>'QFM', 3=>'JTZY',4=> 'KG', 5=>'sqlsvr', 6=>'SHY', 7=>'ZXQS', 8=>'OFFICEHELPER', 9=>'CZUSER', 10=>'IMG');
 	var $LOGINDB;
-	
+
 	public function __construct()
-	{		
+	{
 		$this->load->helper('url');
 		//初始化缓存
 		//数据缓存
-		$this->load->driver('cache', 
+		$this->load->driver('cache',
 			array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
 		);
-								
+
 		//断电后继续使用
 		$this->load->driver('cache');
 		$this->cache->memcached->is_supported();
@@ -114,7 +114,7 @@ class DataInterfaceModel extends CI_Model {
 		$str = mb_convert_encoding($str,'GBK',$encode_Arr);
 		return $str;
 	}
-	
+
 	public function GetNewApiID($UserName)
 	{
 		if(!isset($this->LOGINDB['sqlsvr'])){
@@ -147,7 +147,7 @@ class DataInterfaceModel extends CI_Model {
 		$this->LOGINDB['sqlsvr']->insert('tblDataInterface', $data);
 
 		$Logout['ID'] = $this->LOGINDB['sqlsvr']->insert_id();
-		
+
 		if($Logout['ID'])
 		{
 			$Logout['message'] = '操作成功';//注册成功
@@ -168,15 +168,15 @@ class DataInterfaceModel extends CI_Model {
 	//2输出质量数据;3预览模式（输出最多10行数据）;4.输出列名
 	public function Api($data)
 	{
-	  //判断用户名是否已存在	
+	  //判断用户名是否已存在
 		//$LOGINDB->cache_off();
-		
+
 		//缓存中没有则往缓存写数据
 		//如果API更新，需将相应数据删除
 		$key = 'api_sql_id_'.$data['ID'].'_token_'.$data['Token'];
 		if (!$strJson = $this->cache->get($key)){
 				//->memcached
-				//缓存n小时(1个月)		
+				//缓存n小时(1个月)
 				$minutes = 24*30;
 				//先获取当前用户ID
 				if(!isset($this->LOGINDB['sqlsvr'])){
@@ -186,14 +186,14 @@ class DataInterfaceModel extends CI_Model {
 				$SQLStr = "SELECT a.ApiID,a.ApiName,a.AuthorName,a.strSQL,a.Params,a.DBID,a.URL,b.DBName from tblDataInterface a INNER JOIN tblDataBaseInfo b on a.DBID=B.DBID WHERE Token = ? and ApiID=".$data['ID'];
 
 				$query = $this->LOGINDB['sqlsvr']->query($SQLStr,array($data['Token']));
-				
+
 				$strJson = $query->result_json();
-				
+
 				// Save into the cache for 5 minutes
 				$this->cache->save($key, $strJson, $minutes*3600);
 				//->memcached
-		}	
-		
+		}
+
 		$ApiInfo = json_decode($strJson);
 		//$query->free_result(); //清理内存
 		//$LOGINDB->close();//关闭连接
@@ -227,7 +227,7 @@ class DataInterfaceModel extends CI_Model {
 				}
 			}
 		}
-		
+
 		switch ($data['M']) {
 			case 'edit':
 				$strApiInfo = $strJson;
@@ -251,7 +251,7 @@ class DataInterfaceModel extends CI_Model {
 
 		//方案2：字符串拼接
 		$strJson = rtrim($strApiInfo,'}').',"title":"'.$ApiInfo->data[0]->ApiName.'","source":"数据来源:'.$ApiInfo->data[0]->DBName.'"}';
-		
+
 		return $strJson;
 	}
 
@@ -264,13 +264,13 @@ class DataInterfaceModel extends CI_Model {
 		$SQLStr = $this->TransToUTF(base64_decode($ApiInfo->strSQL));
 		//是否为BLOB字段
 		$isBlob = isset($dataParams['blob'])?$dataParams['blob']:0;
-				
+
 		if(!isset($this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]])){
 			$this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]= $this->load->database($this->DBLIST[$ApiInfo->DBID],TRUE);
 		}
-		
-		//$LOGINDB = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]; 
-						
+
+		//$LOGINDB = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]];
+
 		if ($mode == 0 ) {
 			//$query = $LOGINDB->query($this->TransToGBK($SQLStr),$aParams);
 			$SQLStr = $this->handleStr($SQLStr,$aParams);
@@ -436,10 +436,10 @@ class DataInterfaceModel extends CI_Model {
 		//清理SQL缓存
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
-			
+
 			$this->delMemcacheByName($data['cacheName']);
 			unset($data['cacheName']);
-		}		
+		}
     return $LOGINDB->where($condition)->delete($tblName);
 	}
 
@@ -464,29 +464,29 @@ class DataInterfaceModel extends CI_Model {
 		unset($data['tbl']);
 		unset($data['id']);
 		unset($data['utf2gbk']);
-		
-			
+
+
 		//清理SQL缓存
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
-			
+
 			$this->delMemcacheByName($data['cacheName']);
-			
+
 			unset($data['cacheName']);
-		}		
-		
+		}
+
     //$data['is_del'] = 1;
     return $LOGINDB->update($tblName, $data,$where);
 	}
-	
+
 	//删除APC缓存数据
 	public function delApcCacheByName($name){
 		$dir = "./application/cache/";
-		
+
 		$id = explode('id_',$name);
 		$id = explode('_',$id[1]);
 
-		if (is_dir($dir)){			
+		if (is_dir($dir)){
 			if ($dh = opendir($dir)){
 				while (($file = readdir($dh)) !== false){
 					$file = strtolower($file);
@@ -498,21 +498,22 @@ class DataInterfaceModel extends CI_Model {
 			}
 		}
 	}
-	
+
 	public function delMemcacheByName($name){
 		//删除memcache(缓存数据)
 		$this->load->driver('cache');
 		$this->cache->memcached->is_supported();
 
-		$id = explode('id_',$name);
-		$id = explode('_',$id[1])[0];
+		$str = explode('id_',$name);
+		$str = explode('_',$str[1]);
+		$id = $str[0];
 
 		$keyList = $this->cache->memcached->get('keyList');
 		if($keyList != ''){
 			$keyList = json_decode($keyList);
 			foreach($keyList as $key=>$item){
 				if(strstr($key,"api_data_")){
-					if(strstr($key,'id_'.$id)){			
+					if(strstr($key,'id_'.$id)){
 						$this->cache->memcached->delete($key);
 						unset($keyList->$key);
 					}
@@ -521,8 +522,8 @@ class DataInterfaceModel extends CI_Model {
 		}else{
 			$keyList = new stdClass();
 		}
-		
-		$this->cache->memcached->save('keyList',json_encode($keyList));		
+
+		$this->cache->memcached->save('keyList',json_encode($keyList));
 	}
-	
+
 }
