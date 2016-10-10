@@ -9,7 +9,7 @@ var feedback = function() {
 		// InitSelect("prodType", Data);
 		// $('[name=prodType] option').first().text('所有品种');
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=36&M=3&p=2";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=36&M=3&p=2&cache=14400";
 		$.ajax({
 				url: str
 			})

@@ -54,7 +54,7 @@
     },
     TPL: getRootPath(1) + '/assets/pages/controller/data/tpl/',
     SHOWDEBUGTIME: true,
-    cache: 5, //数据缓存5分钟
+    cache: 10, //数据缓存10分钟
     info: {
       select2: false,
       qualitytable: false
