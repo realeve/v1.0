@@ -43,7 +43,7 @@
                                     <a href="" class="fullscreen"> </a>
                                 </div>
 							</div>
-							<div class="portlet-body form">							
+							<div class="portlet-body form">
 								<div class="form-body row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -90,9 +90,9 @@
 												</div>
 												<label class="hide">备注</label>
 											</div>
-										</div>	
+										</div>
 
-									</div>									
+									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="col-md-3 control-label">品种</label>
@@ -111,7 +111,7 @@
 												<div class="form-control-focus">
 												</div>
 											</div>
-										</div> 
+										</div>
 
 										<div class="form-group">
 											<label class="control-label col-md-3">班次
@@ -159,7 +159,7 @@
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<div class="form-body row normalPara">									
+								<div class="form-body row normalPara">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3">定量 g/平方米</label>
@@ -186,7 +186,7 @@
 												<label class="control-label col-md-3">拉力(纵) N</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="pull_force_ver">
-											</div>												
+											</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3">拉力(横) N</label>
@@ -334,9 +334,9 @@
 										<div class="form-group">
 											<label class="control-label col-md-3">揉后透气度(正) mN</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control" name="crumpled_porosity_front">	
-												<span class="help-block"></span>	
-											</div>		
+												<input type="text" class="form-control" name="crumpled_porosity_front">
+												<span class="help-block"></span>
+											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">揉后透气度(反) mN</label>
@@ -389,9 +389,9 @@
 											</div>
 									</div>
 								</div>
+								<div class="row hide">
 								<hr class="hidden-print">
 								<h3>非一类指标<small> 钞纸物理指标评价</small></h3>
-								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3">吸水性 </label>
@@ -414,7 +414,7 @@
 											<div class="col-md-4">
 												<div class="checkbox-list">
 													<label>
-														<input type="checkbox" id="checkbox2" class="icheck"/> 允许修改常规指标										
+														<input type="checkbox" id="checkbox2" class="icheck"/> 允许修改常规指标
 													</label>
 												</div>
 											</div>
@@ -444,16 +444,16 @@
 										</li>
 									</ul>
 								</div>
-								<div class="form-actions noborder row right">	
+								<div class="form-actions noborder row right">
 									<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
 									<a name="reset" class="btn default"> 重置 <i class="icon-refresh"></i></a>
 								</div>
 							</div>
-						</div>								
-					</div>				
+						</div>
+					</div>
 					<!-- END SAMPLE FORM PORTLET-->
 				</form>
-			</div>			
+			</div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>

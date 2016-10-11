@@ -10,22 +10,44 @@ var PaperParam = function() {
 		}
 	};
 
-	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("machine_ID", Data);
+	function getSelectInfo() {
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1&cache=14400";
 
-		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=3";
-		Data = ReadData(str);
-		InitSelect("oper_ID", Data);
-		$("input[name='rec_date']").val(today(6));
-		$("input[name='remark']").val('无');
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("machine_ID", Data);
+			});
 
-		//浆池号
-		var pulpCode = ReadData(getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=30&M=3");
-		$('input[name="pulp_code"]').val(pulpCode.data[0]);
+		//非常规指标人员信息，Proc_id=4
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=3&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("oper_ID", Data);
+			});
+
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=30&M=3&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("pulp_code", Data);
+			});
+
 		initSelect2();
+	}
+
+	function initDOM() {
+		getSelectInfo();
+		$("input[name='rec_date']").val(today(6));
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 	}
 
@@ -61,15 +83,21 @@ var PaperParam = function() {
 		var startDate = $("input[name='rec_date']").val();
 		startDate = startDate.replace(/-/g, '');
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=26&M=3&tstart=" + startDate + "&tend=" + startDate;
-		var Data = ReadData(str);
-		$('.page-toolbar button').html('当天已录入数据：' + Data.rows + '条');
-		$('.page-toolbar ul').html('');
-		for (var i = 0; i < Data.rows; i++) {
-			$('.page-toolbar ul').append('<li><a href="' + getRootPath(1) + '/PaperPara/chemy#p=' + Data.data[i][1] + '">' + Data.data[i][1] + '</a></li>');
-			if (i && i % 3 === 0) {
-				$('.page-toolbar ul').append('<li class="divider"></li>');
-			}
-		}
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				$('.page-toolbar button').html('当天已录入数据：' + Data.rows + '条');
+				$('.page-toolbar ul').html('');
+				for (var i = 0; i < Data.rows; i++) {
+					$('.page-toolbar ul').append('<li><a href="' + getRootPath(1) + '/PaperPara/chemy#p=' + Data.data[i][1] + '">' + Data.data[i][1] + '</a></li>');
+					if (i && i % 3 === 0) {
+						$('.page-toolbar ul').append('<li class="divider"></li>');
+					}
+				}
+			});
+
 	}
 
 	function loadHisData(pulpID) {

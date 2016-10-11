@@ -22,31 +22,67 @@ var PaperValidate = function() {
 	function getCurReels() {
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=166&M=3&tstart=" +
 			$('[name="rec_date"]').val().replace(/-/g, '');
-		var Data = ReadData(str);
-		var reelCounts = Data.data[0];
-		if (reelCounts > 0) {
-			bsTips('当天共有 ' + reelCounts + '条数据！', 1);
-		} else {
-			bsTips('当天无相关数据');
-		}
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				var reelCounts = Data.data[0];
+				if (reelCounts > 0) {
+					bsTips('当天共有 ' + reelCounts + '条数据！', 1);
+				} else {
+					bsTips('当天无相关数据');
+				}
+			});
+	}
+
+	function getSelectInfo() {
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("machine_ID", Data);
+			});
+
+		//非常规指标人员信息，Proc_id=4
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=2&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("oper_id", Data);
+			});
+
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("prod_id", Data);
+			});
+
+		//select machine_id,machine_name from paper_machine_info where Proc_ID=1
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("cut_machine_id", Data);
+			});
+		initSelect2();
 	}
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_id", Data);
-
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0";
-		Data = ReadData(str);
-		InitSelect("machine_id", Data);
-
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=2";
-		Data = ReadData(str);
-		InitSelect("oper_id", Data);
-		//select machine_id,machine_name from paper_machine_info where Proc_ID=1
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1";
-		Data = ReadData(str);
-		InitSelect("cut_machine_id", Data);
+		getSelectInfo();
 
 		$('[name=passed]').iCheck('check');
 
@@ -56,13 +92,13 @@ var PaperValidate = function() {
 			limitReachedClass: "label label-danger",
 			threshold: 3
 		});
+		getCurReels();
 
 		$('input[name="passed"]').on('ifChanged', function() {
 			var package_weight = (GetiCheckChecked('passed') == 1) ? $('input[name="cut_weight"]').val() : 0;
 			$('input[name="package_weight"]').val(package_weight);
 		});
 
-		initSelect2();
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
 		SetiCheckChecked('passed', 3);
@@ -410,25 +446,30 @@ var PaperValidate = function() {
 				//API:SELECT a.ID, c.ProductName, b.Machine_Name, a.reel_code, a.package_weight, a.cut_weight, convert(varchar,a.record_Time,120) as record_Time  FROM dbo.Paper_Validate AS a INNER JOIN dbo.Paper_Machine_Info AS b ON b.Machine_ID = a.machine_id INNER JOIN dbo.Paper_ProductData AS c ON c.ProductID = a.prod_id WHERE a.passed =3 order by 7
 
 				var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=114&M=0";
-				var Data = ReadData(strUrl);
-				var bsConfirm = 'data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="是否放行这个轴号?" data-btn-ok-label="是" data-btn-ok-icon="fa fa-credit-card" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"';
-				var strTr = "";
-				if (Data.rows > 0) {
-					Data.data.map(function(elem) {
-						strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + '</td><td> ' + elem.cut_machine_name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;"' + bsConfirm + ' class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
+				$.ajax({
+						url: strUrl
+					})
+					.done(function(Data) {
+						Data = handleAjaxData(Data);
+						var bsConfirm = 'data-toggle="confirmation" data-singleton="true" data-popout="true" data-placement="left" data-title="是否放行这个轴号?" data-btn-ok-label="是" data-btn-ok-icon="fa fa-credit-card" data-btn-ok-class="btn-success" data-btn-cancel-label="取消" data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger"';
+						var strTr = "";
+						if (Data.rows > 0) {
+							Data.data.map(function(elem) {
+								strTr += '<tr><td>' + elem.ProductName + '</td><td> ' + elem.Machine_Name + '</td><td> ' + elem.cut_machine_name + ' </td><td> ' + elem.reel_code + '</td><td> ' + elem.record_Time + '</td><td> ' + elem.cut_weight + '</td><td> ' + elem.package_weight + '</td><td><a href="javascript:;"' + bsConfirm + ' class="btn sbold uppercase btn-outline blue" data-id=' + elem.ID + ' data-weight=' + elem.cut_weight + '><i class="fa fa-credit-card"></i> 放行 </a></td></tr>';
+							});
+							$('table[name="unPassedList"] tbody').html(strTr);
+						} else {
+							$('table[name="unPassedList"] tbody').html('<tr><td class="text-center" colspan="7">近期所有产品均已通过检验</td></tr>');
+						}
+						//初始化
+						$('table[name="unPassedList"] tbody a').confirmation();
 					});
-					$('table[name="unPassedList"] tbody').html(strTr);
-				} else {
-					$('table[name="unPassedList"] tbody').html('<tr><td class="text-center" colspan="7">近期所有产品均已通过检验</td></tr>');
-				}
-				//初始化
-				$('table[name="unPassedList"] tbody a').confirmation();
-
 
 				//放行
 				$('body').on('confirmed.bs.confirmation', 'table[name="unPassedList"] tbody a', function() {
 					passedByReelCode($(this));
 				});
+
 			}
 		};
 	})();

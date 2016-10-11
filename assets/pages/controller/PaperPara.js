@@ -17,24 +17,49 @@ var PaperParam = function() {
 		$('form input[type="text"]').eq(0).focus();
 	}
 
+	function getSelectInfo() {
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("Prod_id", Data);
+			});
+
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("machine_id", Data);
+			});
+
+		//非常规指标人员信息，Proc_id=4
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=1&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				InitSelect("oper_id", Data);
+			});
+
+		initSelect2();
+	}
+
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("Prod_id", Data);
-
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0";
-		Data = ReadData(str);
-		InitSelect("machine_id", Data);
-
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=1";
-		Data = ReadData(str);
-		InitSelect("oper_id", Data);
+		getSelectInfo();
 		$("input[name='rec_date']").val(today(6));
 		$("input[name='Reel_Code']").maxlength({
 			limitReachedClass: "label label-danger",
 			threshold: 3
 		});
-		initSelect2();
+
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
 		focusInput();

@@ -1,4 +1,4 @@
-var FakePiece = function() {
+var FakePiece = (function() {
 	var handleDatePickers = function() {
 		if (jQuery().datepicker) {
 			$('.date-picker').datepicker({
@@ -10,20 +10,51 @@ var FakePiece = function() {
 		}
 	};
 
-	function initDOM() {
+	function initChart() {
+		var objRequest = {
+			url: getstr(),
+			type: 'pie',
+			background: 'img',
+			circle: 1
+		};
+		var charts = require(["../assets/pages/controller/singleChart.min"], function(charts) {
+			charts.init(objRequest, $('[name="singleChart"]'));
+		});
+	}
+
+	function getSelectInfo() {
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_id", Data);
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("prod_id", Data);
+			});
+
 
 		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0";
-		Data = ReadData(str);
-		InitSelect("machine_id", Data);
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("machine_id", Data);
+			});
+
+		initSelect2();
+	}
+
+	function initDOM() {
+
+		getSelectInfo();
 
 		$("input[name='rec_date']").val(today(6));
 		$("input[name='remark']").val('无');
 
-		initSelect2();
+
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
+
 
 		handleValidate();
 	}
@@ -146,27 +177,33 @@ var FakePiece = function() {
 
 		date = date.replace(/-/g, '');
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=248&M=3&tstart=" + date + "&tend=" + date;
-		var Data = ReadData(str);
-		if (Data.rows === 0) {
-			objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
-			return;
-		}
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				if (Data.rows === 0) {
+					objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
+					return;
+				}
 
-		function getTDStr(data, i) {
-			var str = '<tr>' +
-				'	<td>' + i + '</td>';
-			data.map(function(td) {
-				str += '	<td>' + td + '</td>';
+				function getTDStr(data, i) {
+					var str = '<tr>' +
+						'	<td>' + i + '</td>';
+					data.map(function(td) {
+						str += '	<td>' + td + '</td>';
+					});
+					str += '</tr>';
+					return str;
+				}
+				var tBody = '';
+				Data.data.map(function(data, i) {
+					tBody += getTDStr(data, i + 1);
+				});
+
+				objTbody.html(tBody);
 			});
-			str += '</tr>';
-			return str;
-		}
-		var tBody = '';
-		Data.data.map(function(data, i) {
-			tBody += getTDStr(data, i + 1);
-		});
 
-		objTbody.html(tBody);
 	}
 
 	function getstr() {
@@ -178,28 +215,17 @@ var FakePiece = function() {
 		return str;
 	}
 
-	function initChart() {
-		var objRequest = {
-			url: getstr(),
-			type: 'pie',
-			background: 'img',
-			circle: 1
-		};
-		var charts = require(["../assets/pages/controller/singleChart.min"], function(charts) {
-			charts.init(objRequest, $('[name="singleChart"]'));
-		});
-	}
 
 	return {
 		init: function() {
 			handleDatePickers();
 			initDOM();
-			loadHisData();
 			initChart();
+			loadHisData();
 		}
 	};
 
-}();
+})();
 
 
 jQuery(document).ready(function() {

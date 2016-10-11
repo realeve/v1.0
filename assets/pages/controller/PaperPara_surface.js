@@ -10,19 +10,36 @@ var PaperParam = function() {
 		}
 	};
 
+	function getSelectInfo() {
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("prod_ID", Data);
+			});
+
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=2&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("oper_ID", Data);
+			});
+
+		initSelect2();
+	}
+
 
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_ID", Data);
-
-		//1-物理站 2-化验站 3-外观指标
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=2";
-		Data = ReadData(str);
-		InitSelect("oper_ID", Data);
+		getSelectInfo();
 		$("input[name='rec_date']").val(today(6));
 		$("input[name='remark']").val('无');
-		initSelect2();
+
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 	}
 
@@ -104,6 +121,9 @@ var PaperParam = function() {
 		var startMonth = $("input[name='rec_date']").val();
 		startMonth = startMonth.substr(0, 4) + startMonth.substr(5, 2);
 		var prod = $('select[name="prod_ID"]').val();
+		if(prod == null){
+			prod = -1;
+		}
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=27&M=3&tmonth=" + startMonth + "&prod=" + prod;
 		var DataPsc = ReadData(str);
 		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=28&M=3&tmonth=" + startMonth + "&prod=" + prod;

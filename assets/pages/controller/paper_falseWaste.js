@@ -19,9 +19,14 @@ var FakePiece = function() {
 		$("input[name='remark']").val('无');
 
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_id", Data);
-		initSelect2();
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("prod_id", Data);
+			});
+
 
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 		handleValidate();
@@ -130,27 +135,33 @@ var FakePiece = function() {
 
 		month = jsLeft(month, 4);
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=247&M=3&tstart=" + month;
-		var Data = ReadData(str);
-		if (Data.rows === 0) {
-			objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
-			return;
-		}
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				if (Data.rows === 0) {
+					objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
+					return;
+				}
 
-		function getTDStr(data, i) {
-			var str = '<tr>' +
-				'	<td>' + i + '</td>';
-			data.map(function(td) {
-				str += '	<td>' + td + '</td>';
+				function getTDStr(data, i) {
+					var str = '<tr>' +
+						'	<td>' + i + '</td>';
+					data.map(function(td) {
+						str += '	<td>' + td + '</td>';
+					});
+					str += '</tr>';
+					return str;
+				}
+				var tBody = '';
+				Data.data.map(function(data, i) {
+					tBody += getTDStr(data, i + 1);
+				});
+
+				objTbody.html(tBody);
 			});
-			str += '</tr>';
-			return str;
-		}
-		var tBody = '';
-		Data.data.map(function(data, i) {
-			tBody += getTDStr(data, i + 1);
-		});
 
-		objTbody.html(tBody);
 	}
 
 
@@ -178,8 +189,8 @@ var FakePiece = function() {
 		init: function() {
 			handleDatePickers();
 			initDOM();
-			loadHisData();
 			initChart();
+			loadHisData();
 		}
 	};
 }();

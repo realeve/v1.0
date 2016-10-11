@@ -15,11 +15,16 @@ var FakePiece = function() {
 		//select rec_id,name from Paper_Penalty_Operator where Proc_ID = ? and bhide <> 1 order by Name
 		//参数 t
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=251&M=3&t=" + userType;
-		var Data = ReadData(str);
-		InitSelect("oper_id", Data);
-		setTimeout(function() {
-			SetSelect2Val('oper_id', -1);
-		}, 300);
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				InitSelect("oper_id", Data);
+				setTimeout(function(){
+					SetSelect2Val('oper_id', -1);
+				},0);
+			});
 	}
 
 	var userType; //用户类型
@@ -30,9 +35,14 @@ var FakePiece = function() {
 		$("input[name='more']").val('0');
 		$("input[name='less']").val('0');
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_id", Data);
-		initSelect2();
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				InitSelect("prod_id", Data);
+				initSelect2();
+			});
 
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
@@ -92,12 +102,12 @@ var FakePiece = function() {
 
 		vRules.more = {
 			required: false,
-			number:true
+			number: true
 		};
 
 		vRules.less = {
 			required: false,
-			number:true
+			number: true
 		};
 
 		$('form[name=theForm]').validate({

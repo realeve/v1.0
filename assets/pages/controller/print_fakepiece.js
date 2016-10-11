@@ -9,23 +9,79 @@ var FakePiece = function() {
 			});
 		}
 	};
+	/**
+	 * [loadHisData 载入历史数据]
+	 * @return {[type]}        [无返回值]
+	 */
+	function loadHisData() {
+
+		function getTDStr(data, i) {
+			var str = '<tr>' +
+				'	<td>' + i + '</td>';
+			data.map(function(td) {
+				str += '	<td>' + td + '</td>';
+			});
+			str += '</tr>';
+			return str;
+		}
+
+		var objTbody = $('[name="fakeList"] tbody');
+		var date = $("input[name='rec_date']").val();
+		//载入历史数据
+		//大张废原始数据查询
+		// SELECT  a.CartNumber,  a.ProductType,  a.Date,  a.FakePiece,  a.HalfPiece,  a.NoNum,  b.FakeDesc,  a.Describe  FROM  FakePieceData a INNER JOIN  FakePieceDesc b on a.ProcID = b.id  where date = ? order by a.id desc
+		date = date.replace(/-/g, '');
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=246&M=3&tstart=" + date;
+		$.ajax({
+				url: str,
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				if (Data.rows === 0) {
+					objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
+					return;
+				}
+				var tBody = '';
+				Data.data.map(function(data, i) {
+					tBody += getTDStr(data, i + 1);
+				});
+
+				objTbody.html(tBody);
+			});
+	}
+
+	function getSelectInfo() {
+		//读取印钞品种信息
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3&t=1&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("prod_ID", Data);
+			});
+
+		//非常规指标人员信息，Proc_id=4
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=245&M=3&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("ProcID", Data);
+			});
+		initSelect2();
+	}
 
 	function initDOM() {
-		//读取印钞品种信息
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_ID", Data);
-
-		//作废原因
-		//SELECT id,fakedesc FROM FakePieceDesc
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=245&M=3";
-		Data = ReadData(str);
-		InitSelect("ProcID", Data);
-
 		$("input[name='rec_date']").val(today(6));
+		loadHisData();
+		getSelectInfo();
+
 		$("input[name='remark']").val('无');
 
-		initSelect2();
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
 		handleValidate();
@@ -156,46 +212,11 @@ var FakePiece = function() {
 		$.ajax(options);
 		return false;
 	}
-	/**
-	 * [loadHisData 载入历史数据]
-	 * @return {[type]}        [无返回值]
-	 */
-	function loadHisData() {
-		var objTbody = $('[name="fakeList"] tbody');
-		var date = $("input[name='rec_date']").val();
-		//载入历史数据
-		//大张废原始数据查询
-		// SELECT  a.CartNumber,  a.ProductType,  a.Date,  a.FakePiece,  a.HalfPiece,  a.NoNum,  b.FakeDesc,  a.Describe  FROM  FakePieceData a INNER JOIN  FakePieceDesc b on a.ProcID = b.id  where date = ? order by a.id desc
-		date = date.replace(/-/g, '');
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=246&M=3&tstart=" + date;
-		var Data = ReadData(str);
-		if (Data.rows === 0) {
-			objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
-			return;
-		}
-
-		function getTDStr(data, i) {
-			var str = '<tr>' +
-				'	<td>' + i + '</td>';
-			data.map(function(td) {
-				str += '	<td>' + td + '</td>';
-			});
-			str += '</tr>';
-			return str;
-		}
-		var tBody = '';
-		Data.data.map(function(data, i) {
-			tBody += getTDStr(data, i + 1);
-		});
-
-		objTbody.html(tBody);
-	}
 
 	return {
 		init: function() {
 			handleDatePickers();
 			initDOM();
-			loadHisData();
 		}
 	};
 }();

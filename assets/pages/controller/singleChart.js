@@ -44,24 +44,33 @@ define(function() {
 			objRequest.color = curTheme.color;
 		}
 
-		option = chartDataTool.getOption(objRequest, echarts);
-		if (option !== false) {
+		$.ajax({
+				url: objRequest.url
+			})
+			.done(function(data) {
+				objRequest.data = handleAjaxData(data);
 
-			var title = option.title[0].text;
+				option = chartDataTool.getOption(objRequest, echarts);
+				if (option !== false) {
 
-			delete option.title;
-			delete option.dataZoom;
-			option.grid.bottom = '3%';
-			option.legend.y = 0;
-			option.toolbox.top = 0;
-			option.toolbox.left = 'right';
-			myChart = echarts.init(document.getElementById("chart_" + i), curTheme);
-			myChart.setOption(option);
+					var title = option.title[0].text;
 
-			$('#chart_loading_' + i).addClass('display-none');
-			$('#chart_content_' + i).removeClass('display-none');
-			$('#chart_captain_' + i).text(title);
-		}
+					delete option.title;
+					delete option.dataZoom;
+					option.grid.bottom = '3%';
+					option.legend.y = 0;
+					option.toolbox.top = 0;
+					option.toolbox.left = 'right';
+					myChart = echarts.init(document.getElementById("chart_" + i), curTheme);
+					myChart.setOption(option);
+
+					$('#chart_loading_' + i).addClass('display-none');
+					$('#chart_content_' + i).removeClass('display-none');
+					$('#chart_captain_' + i).text(title);
+				}
+			});
+
+
 	}
 
 	jQuery(window).resize(function() {

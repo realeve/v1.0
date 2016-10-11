@@ -1,5 +1,7 @@
 var PaperParamAbnormal = function() {
 
+	var iUpdate = 0;
+	var reelID;
 	var handleDatePickers = function() {
 		if (jQuery().datepicker) {
 			$('.date-picker').datepicker({
@@ -15,18 +17,44 @@ var PaperParamAbnormal = function() {
 		$('form input[type="text"]').eq(0).focus();
 	}
 
+	function getSelectInfo() {
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("prod_id", Data);
+			});
+
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("machine_id", Data);
+			});
+
+		//非常规指标人员信息，Proc_id=4
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=4&cache=14400";
+
+		$.ajax({
+				url: str
+			})
+			.done(function(data) {
+				var Data = handleAjaxData(data);
+				InitSelect("oper_id", Data);
+			});
+
+		initSelect2();
+	}
+
 	function initDOM() {
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=24&M=3&t=1";
-		var Data = ReadData(str);
-		InitSelect("prod_id", Data);
 
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=0";
-		Data = ReadData(str);
-		InitSelect("machine_id", Data);
-
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=25&M=3&t=1";
-		Data = ReadData(str);
-		InitSelect("oper_id", Data);
+		getSelectInfo();
 
 		$("input[name='rec_date']").val(today(6));
 
@@ -34,8 +62,6 @@ var PaperParamAbnormal = function() {
 			limitReachedClass: "label label-danger",
 			threshold: 3
 		});
-
-		initSelect2();
 
 		$('.page-header .dropdown-quick-sidebar-toggler').hide();
 
@@ -48,11 +74,101 @@ var PaperParamAbnormal = function() {
 		var val = $(this).val();
 		if (val.length > 1) {
 			var prodId = val.substr(1, 1);
+			if (prodId == 7) {
+				prodId = 8;
+			}
 			SetSelect2Val('prod_id', prodId);
 			var machineId = val.substr(2, 1);
 			SetSelect2Val('machine_id', machineId);
 		}
+		if (val.length == 8) {
+			loadHisData();
+		}
 	});
+
+	function loadHisData() {
+		var reelcode = $('[name="reel_code"]').val();
+		//r
+		//SELECT a.reel_code, a.prod_id, a.machine_id, convert(varchar(10),a.rec_date,120) as rec_date, a.temperature, a.oper_id, a.humidity, a.director_name, a.remark, a.sur_oil_imbibition_f, a.sur_oil_imbibition_b, a.water_imbibition_f, a.water_imbibition_b, a.sur_Strength_h_f, a.sur_Strength_h_b, a.oil_perme_f, a.oil_perme_f_lv, a.oil_perme_b, a.oil_perme_b_lv, a.score, a.rec_time, a.ID FROM dbo.Paper_Para_Abnormal AS a where reel_code = ?
+		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=302&M=0&r=" + reelcode;
+		var Data = ReadData(strUrl);
+
+		if (Data.rows == "0") {
+			return 0;
+		}
+
+		//将上次载入的轴号记录
+		$('input[name="reelcode"]').data('reelcode', reelcode);
+		Data.header.map(function(elem) {
+			var keys = elem.title;
+			$('form .form-control[name="' + keys + '"]').val(Data.data[0][keys]);
+		});
+
+		reelID = Data.data[0].ID;
+
+		SetSelect2Val('oper_id', Data.data[0].oper_id);
+
+		$('[type="submit"]').html('更新 <i class="icon-cloud-upload"></i>');
+		iUpdate = 1;
+	}
+
+	function calcScore(data) {
+
+		//得分规则
+		var scoreOrder = {
+			sur_oil_imbibition_f: {
+				max: 50,
+				min: 40,
+				score: 0.5
+			},
+			sur_oil_imbibition_b: {
+				max: 50,
+				min: 40,
+				score: 0.5
+			},
+			water_imbibition_f: {
+				max: 70,
+				min: 40,
+				score: 0.375
+			},
+			water_imbibition_b: {
+				max: 70,
+				min: 40,
+				score: 0.375
+			},
+			sur_Strength_h_f: {
+				min: 2.5,
+				score: 1
+			},
+			sur_Strength_h_b: {
+				min: 2.5,
+				score: 1
+			}
+		};
+
+		data.score = 100;
+
+		for (var key in scoreOrder) {
+
+			if (data[key] == 0 || data[key] == '') {
+				continue;
+			}
+
+			var min = scoreOrder[key].min;
+			if (data[key] < min) {
+				data.score -= scoreOrder[key].score;
+				continue;
+			} else if (typeof scoreOrder[key].max != 'undefined' && data[key] > scoreOrder[key].max) {
+				data.score -= scoreOrder[key].score;
+			}
+		}
+
+		$('[name="score"]').val(data.score);
+
+		return data;
+	}
+
+
 
 	var handleValidate = function() {
 
@@ -117,14 +233,34 @@ var PaperParamAbnormal = function() {
 			},
 			submitHandler: function(form) {
 				//form.submit(); // form validation success, call ajax form submit
-				insertData();
 			}
 		});
 
-		function insertData() {
+		$('button[type="submit"]').on('click', function() {
+			insertData(iUpdate);
+			if (iUpdate) {
+				$('[type="submit"]').html('提交 <i class="icon-cloud-upload"></i>');
+			}
+		});
+
+		$('.detail input').on('keyup', function(event) {
+			var iData = getFormData('theForm');
+			calcScore(iData);
+		});
+
+		function insertData(iUpdate) {
 			//var strUrl = getRootUrl('PaperPara') + 'insert';
 			var strUrl = getRootPath() + "/DataInterface/insert";
 			var iData = getFormData('theForm');
+
+			if (iUpdate) {
+				iData.id = reelID;
+				strUrl = getRootPath() + "/DataInterface/update";
+			}
+
+			iData.reel_code = iData.reel_code.toUpperCase();
+
+			iData = calcScore(iData);
 
 			iData.tbl = TBL.PPR_ABNORMAL;
 
@@ -200,28 +336,12 @@ jQuery(window).resize(function() {
 // a.sur_oil_imbibition_b AS [表面吸油性反],
 // a.water_imbibition_f AS [吸水性正],
 // a.water_imbibition_b AS [吸水性反],
-// a.sur_Strength_v_f AS [表面强度-纵-正],
-// a.sur_Strength_v_b AS [表面强度-纵-反],
 // a.sur_Strength_h_f AS [表面强度-横-正],
 // a.sur_Strength_h_b AS [表面强度-横-反],
 // a.oil_perme_f AS [油渗性正],
 // a.oil_perme_f_lv AS [油渗性正-等级],
 // a.oil_perme_b AS [油渗性反],
-// a.oil_perme_b_lv AS [油渗性反-等级],
-// a.roughness_v_f AS [粗糙度-纵-正],
-// a.roughness_v_b AS [粗糙度-纵-反],
-// a.roughness_h_f AS [粗糙度-横-正],
-// a.roughness_h_b AS [粗糙度-横-反],
-// a.perme_v_f AS [渗透性-纵-正],
-// a.perme_v_b AS [渗透性-纵-反],
-// a.perme_h_f AS [渗透性-横-正],
-// a.perme_h_b AS [渗透性-横-反],
-// a.burst_f AS [耐破度正],
-// a.burst_b AS [耐破度反],
-// a.evennessIdx_f AS [匀度指数正],
-// a.evennessIdx_b AS [匀度指数反],
-// a.pps_f AS [PPS正],
-// a.pps_b AS [PPS反],
+// a.oil_perme_b_lv AS [油渗性反-等级]
 // a.score AS [得分],
 // a.rec_time AS [录入时间]
 
