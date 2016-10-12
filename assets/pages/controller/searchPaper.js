@@ -87,7 +87,7 @@ var search = function() {
 		var objDom = $('#psc');
 		var id = 296;
 		//此处轴号需要去掉字母
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + encodeURI('%') + '&cache=' + config.cache;
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + '&reel2=' + reelNo.replace(/[A-Z]/g, '') + '&cache=' + config.cache;
 		tpl.renderTable(objDom, url, [{
 			dom: $('#psc1'),
 			start: 0,
@@ -123,6 +123,28 @@ var search = function() {
 	//非常规指标
 	var getAbnormalPscInfo = function() {
 
+		var objDom = $('#surface');
+		var id = 305;
+		//物理外观指标
+		//reel
+		//SELECT a.轴号, a.品种, a.机台, a.日期, a.检验员, a.室内温度, a.相对湿度, a.主管, a.备注, a.表面吸油性正, a.表面吸油性反, a.吸水性正, a.吸水性反, a.表面强度-横-正, a.表面强度-横-反, a.油渗性正, a.油渗性正-等级, a.油渗性反, a.油渗性反-等级, a.得分 FROM dbo.vier_paper_para_abnormal AS a where 轴号 <=? and SUBSTRING(a.轴号, 2, 1)=SUBSTRING(?, 2, 1) order by a.轴号 desc
+
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + '&reel2=' + reelNo.replace(/[A-Z]/g, '') + '&cache=' + config.cache;
+		tpl.renderTable(objDom, url, [{
+			dom: $('#abnormal1'),
+			start: 0,
+			end: 9,
+			title: '概述',
+			showHead: true,
+			direction: 'ver'
+		}, {
+			dom: $('#abnormal2'),
+			start: 9,
+			end: 20,
+			title: '质量详情',
+			showHead: true,
+			direction: 'ver'
+		}]);
 	};
 
 	//外观指标
@@ -134,7 +156,7 @@ var search = function() {
 		//reel
 		//SELECT top 1 a.[轴号], a.[品种], a.[得分], a.[记录人], a.[记录日期], a.[纸张匀度], a.[纸面整洁度], a.[水印位置偏差], a.[白水印位置偏差], a.[尺寸], a.[方正度], a.[水印], a.[白水印], a.[水印清晰度], a.[白水印清晰度], a.[水印一致性], a.[白水印一致性], a.[白水印偏斜], a.[开窗尺寸偏差], a.[安全线露线], a.[细线], a.[残缺], a.[防伪层脱落], a.[全埋线拉伸], a.[开窗线位置], a.[小开版式], a.[纸张完好度], a.[其它] FROM dbo.view_paper_surface AS a where 轴号 <= ? order by 轴号 desc
 		//此处轴号需要去掉字母
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + encodeURI('%') + '&cache=' + config.cache;
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + '&reel2=' + reelNo.replace(/[A-Z]/g, '') + '&cache=' + config.cache;
 		var title = '<span>外观指标</span><small class="help">打勾为扣分项</small>';
 		tpl.renderTable(objDom, url, [{
 			dom: $('#surface1'),
@@ -180,8 +202,8 @@ var search = function() {
 		//SELECT top 1 a.reel_code AS [轴号], c.ProductName AS [品种], b.Machine_Name AS [机台], a.fake_reason AS [报废原因], a.fake_num AS [报废令数], a.remark AS [备注], convert(varchar(10),a.rec_date,120) AS [记录日期] FROM [dbo].[Paper_Batch_Waste] a INNER JOIN Paper_Machine_Info b on a.machine_id=b.Machine_ID inner JOIN Paper_ProductData c on a.prod_id = c.ProductID where reel_code <=? and a.prod_id = ? ORDER BY reel_code desc
 		var objDom = $('#batchWaste');
 		var id = 299;
-		var prod = reelNo.substring(2, 1);
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + '&prod=' + prod + '&cache=' + config.cache;
+
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&reel=" + reelNo.replace(/[A-Z]/g, '') + '&reel2=' + reelNo.replace(/[A-Z]/g, '') + '&cache=' + config.cache;
 		tpl.renderTable(objDom, url, [{
 			start: 0,
 			end: 16,
@@ -199,7 +221,7 @@ var search = function() {
 		getPscStationInfo();
 
 		//非常规指标
-		//getAbnormalPscInfo();
+		getAbnormalPscInfo();
 
 		//外观指标
 		getSurfaceInfo();
@@ -263,7 +285,6 @@ jQuery(document).ready(function() {
 	initDashboardDaterange('YYYYMMDD');
 	initDom();
 	search.init();
-	bsTips('点击本页面工序名称将自动折叠面板');
 });
 
 jQuery(window).resize(function() {

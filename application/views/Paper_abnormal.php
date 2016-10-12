@@ -39,7 +39,7 @@
 										<div class="form-group">
 											<label class="col-md-3 control-label">轴号</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control uppercase" maxlength="8" placeholder="请在此输入轴号信息,如6820015A" name="reel_code">
+												<input type="text" class="form-control uppercase" maxlength="7" placeholder="请在此输入轴号信息,如6720015" name="reel_code">
 												<div class="form-control-focus">
 												</div>
 											</div>
@@ -47,7 +47,7 @@
 										<div class="form-group">
 											<label class="col-md-3 control-label">室内温度</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control" placeholder="检测要求(23±1)℃" name="temperature">
+												<input type="text" class="form-control" placeholder="检测要求(23±1)℃" name="temperature" value="23">
 												<div class="form-control-focus">
 												</div>
 											</div>
@@ -55,13 +55,13 @@
 										<div class="form-group">
 											<label class="col-md-3 control-label">相对湿度</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control" placeholder="检测要求(50±2%)RH" name="humidity">
+												<input type="text" class="form-control" placeholder="检测要求(50±2%)RH" name="humidity" value="50">
 												<div class="form-control-focus">
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">检验员</label>
+											<label class="col-md-3 control-label">记录人员</label>
 											<div class="col-md-9">
 												<select class="form-control select2" name="oper_id">
 												</select>
@@ -329,6 +329,33 @@
 					</div>
 					<!-- END SAMPLE FORM PORTLET-->
 				</form>
+			</div>
+
+			<div class="portlet light ">
+				<div class="portlet-title tabbable-line">
+					<div class="caption caption-md">
+						<i class="icon-globe theme-font hide"></i>
+						<span class="caption-subject font-blue-madison bold uppercase"><i class="fa fa-credit-card"></i> 历史数据</span>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-scrollable">
+						<table class="table table-striped table-bordered table-advance table-hover" name="hisData">
+							<thead>
+								<tr>
+									<th><i class="fa fa-tag"></i> 序号 </th>
+									<th><i class="fa fa-calculator"></i> 轴号 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 品种 </th>
+									<th><i class="fa fa-calendar-plus-o"></i> 日期 </th>
+									<th><i class="fa fa-align-center"></i> 评价总分</th>
+									<th><i class="fa fa-search"></i> 录入人员</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 			<!-- END PAGE CONTENT-->
 		</div>

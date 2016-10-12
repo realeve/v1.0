@@ -53,10 +53,10 @@ var PaperParamAbnormal = function() {
 	}
 
 	function initDOM() {
+		$("input[name='rec_date']").val(today(6));
+		loadHisList();
 
 		getSelectInfo();
-
-		$("input[name='rec_date']").val(today(6));
 
 		$("input[name='reel_code']").maxlength({
 			limitReachedClass: "label label-danger",
@@ -81,7 +81,7 @@ var PaperParamAbnormal = function() {
 			var machineId = val.substr(2, 1);
 			SetSelect2Val('machine_id', machineId);
 		}
-		if (val.length == 8) {
+		if (val.length == 7) {
 			loadHisData();
 		}
 	});
@@ -168,7 +168,45 @@ var PaperParamAbnormal = function() {
 		return data;
 	}
 
+	function loadHisList() {
+		//SELECT a.[轴号],a.[品种],a.[日期],a.[得分],a.[检验员] FROM dbo.vier_paper_para_abnormal AS a  where left(日期,6) = ?
+		//302
+		//tstart
+		//非常规指标历史记录
 
+		var objTbody = $('[name="hisData"] tbody');
+		var month = $("input[name='rec_date']").val();
+
+		function getTDStr(data, i) {
+			var str = '<tr>' +
+				'	<td>' + i + '</td>';
+			data.map(function(td) {
+				str += '	<td>' + td + '</td>';
+			});
+			str += '</tr>';
+			return str;
+		}
+
+		month = jsLeft(month, 7).replace('-', '');
+		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=303&M=3&tstart=" + month;
+		$.ajax({
+				url: str
+			})
+			.done(function(Data) {
+				Data = handleAjaxData(Data);
+				if (Data.rows === 0) {
+					objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
+					return;
+				}
+
+				var tBody = '';
+				Data.data.map(function(data, i) {
+					tBody += getTDStr(data, i + 1);
+				});
+
+				objTbody.html(tBody);
+			});
+	}
 
 	var handleValidate = function() {
 
@@ -195,9 +233,9 @@ var PaperParamAbnormal = function() {
 
 		var vRules = validateRule('theForm');
 		vRules.reel_code = {
-			minlength: 8,
-			maxlength: 8,
-			isReelCode: true,
+			minlength: 7,
+			maxlength: 7,
+			number: true,
 			required: true
 		};
 		vRules.oper_id = {
@@ -297,6 +335,8 @@ var PaperParamAbnormal = function() {
 			SetSelect2Val('machine_id', -1);
 			$('.detail input').val('0');
 			$("input[name='rec_date']").val(today(6));
+			$("input[name='temperature']").val(23);
+			$("input[name='humidity']").val(50);
 
 			$('[name="remark"]').val('无');
 			$('[name="director_name"]').val('无');

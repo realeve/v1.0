@@ -133,6 +133,16 @@ var FakePiece = function() {
 		//损纸误废报表
 		//SELECT month as 月份,	a.checkNum as 抽检张数,	a.wasteNum as 误废张数,	a.wasteRatio as 误废率,a.[remark] as 备注 FROM	Paper_False_Waste AS a WHERE month/100=? order by 1
 
+		function getTDStr(data, i) {
+			var str = '<tr>' +
+				'	<td>' + i + '</td>';
+			data.map(function(td) {
+				str += '	<td>' + td + '</td>';
+			});
+			str += '</tr>';
+			return str;
+		}
+
 		month = jsLeft(month, 4);
 		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=247&M=3&tstart=" + month;
 		$.ajax({
@@ -145,15 +155,6 @@ var FakePiece = function() {
 					return;
 				}
 
-				function getTDStr(data, i) {
-					var str = '<tr>' +
-						'	<td>' + i + '</td>';
-					data.map(function(td) {
-						str += '	<td>' + td + '</td>';
-					});
-					str += '</tr>';
-					return str;
-				}
 				var tBody = '';
 				Data.data.map(function(data, i) {
 					tBody += getTDStr(data, i + 1);

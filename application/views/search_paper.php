@@ -22,6 +22,11 @@
     <small>数据来源：质量中心数据库 </small>
 </h3>
 
+<div class="note note-success">
+  <p>温馨提示：</p>
+  <p>对于非一类指标，当指定轴号无数据时系统默认提供此前最近一次的检测信息；</p>
+</div>
+
 <div class="row">
     <div class="col-md-12">
      <!-- BEGIN Portlet PORTLET-->
@@ -108,7 +113,12 @@
                   </div>
                 </div>
                 <div class="tab-pane" id="abnormal">
-
+                  <div class="row">
+                      <div id="abnormal1" class="col-md-6">
+                      </div>
+                      <div id="abnormal2" class="col-md-6">
+                      </div>
+                  </div>
                 </div>
                 <div class="tab-pane" id="validate">
 

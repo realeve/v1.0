@@ -117,6 +117,9 @@ var FakePiece = (function() {
 		if (val.length >= 2) {
 			//取第三位信息
 			var prodID = val.substr(1, 1);
+			if(prodID == 7){
+				prodID = 8;
+			}
 			var machineID = val.substr(2, 1);
 			SetSelect2Val('prod_id', prodID);
 			SetSelect2Val('machine_id', machineID);

@@ -174,6 +174,7 @@ var search = function() {
 				if (queryString.prod === '') {
 					bsTips('冠字号查询需选择品种信息');
 					showPanel = true;
+					$('[name="cart"]').val(queryString.cart);
 				} else {
 					getCartInfo(queryString);
 				}
@@ -275,7 +276,7 @@ var search = function() {
 	}
 
 	function setEptStr() {
-
+		var str = '<h4> 该万产品未搜索到相关信息 </h4>';
 		setTipInfo();
 
 		$('[name="cartName"]').text(queryString.cart);
@@ -288,16 +289,23 @@ var search = function() {
 		$('#intaglio').html('');
 		$('#offset').html('');
 
-		$('[name="mahouInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
+		$('[name="mahouInfo"]').html(str);
 		$('[name="mahouImg"]').html('');
 		if (typeof ec[1] != 'undefined') {
 
 			ec[1].dispose();
 		}
 
-		$('[name="screenInfo"]').html('<h4> 该万产品未搜索到相关信息 </h4>');
-		$('[name="siyinImg"]').html('');
+		$('[name="screenInfo"]').html(str);
+		$('[name="siyinImg"]').html(str);
+		$('[name="imgVerifyInfo"]').html(str);
 
+		$('#ocr').html(str);
+		$('#ananysis1').html(str);
+		$('#ananysis2').html('');
+		$('#ananysis3').html('');
+		$('#ananysis4').html('');
+		$('#ananysis5').html('');
 	}
 
 	function toggleScreenPrint(cart) {
@@ -741,14 +749,15 @@ var search = function() {
 			if (data.rows > 0) {
 				//获取开位信息
 				data.data[0].kInfo = getKinfo(param.codeNum, data.data[0].GzNumber);
+
+				renderQualityInfo(data.data[0].CartNumber);
+
+				renderProdInfo(data); //渲染质量信息
+
 			} else {
 				setEptStr();
 				return;
 			}
-
-			renderQualityInfo(cartInfo.CartNumber);
-			renderProdInfo(data); //渲染质量信息
-
 		} else {
 			//直接用车号获取生产信息
 

@@ -30,7 +30,8 @@ Theme Panel
 
 .theme-panel .theme-colors > li.theme-color:hover,
 .theme-panel .theme-colors > li.theme-color.active {
-    background: #f5f7f8;
+    background: #d5d7d8;
+    border-radius: 18px;
 }
 
 .theme-panel .theme-colors > li.theme-color:hover {
