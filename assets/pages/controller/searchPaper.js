@@ -74,6 +74,7 @@ var search = function() {
 		$('#lab').css('background', hex);
 		$('#labinfo p').text(color.L.toFixed(0) + ' / ' + color.a.toFixed(0) + ' / ' + color.b.toFixed(0));
 		$('#labinfo h3').text('纸张色彩样');
+		$('.mt-element-card').show();
 		//$('#labinfo p').text('rgb(' + rgb.r + "," + rgb.g + ',' + rgb.b + ')');
 	}
 
@@ -82,7 +83,6 @@ var search = function() {
 		//296
 		//物理站信息
 		//SELECT top 1 a.[轴号], a.[机台], a.[检测日期], a.[得分], a.[合格], a.[备注], a.[检测人员], a.[品种], a.[班次], a.[温度], a.[湿度], a.[定量], a.[厚度], a.[横幅厚度差], a.[拉力纵], a.[拉力横], a.[拉力湿], a.[平均裂断长], a.[湿强度], a.[平均耐折度], a.[白度], a.[不透明度], a.[水分], a.[水分差], a.[尘埃个数], a.[平均平滑度], a.[湿变形纵], a.[湿变形横], a.[挺度纵], a.[挺度横], a.[纵向撕裂度], a.[透气度], a.[揉后透气度正], a.[揉后透气度反], a.[干耐揉], a.TZ12, a.TZ2, a.L, a.a, a.b FROM dbo.view_paper_psc AS a where 轴号 <= ? ORDER BY 轴号 desc
-
 
 		var objDom = $('#psc');
 		var id = 296;
@@ -254,6 +254,7 @@ var search = function() {
 	//modern browsers
 	$(window).bind('hashchange', function() {
 		reelNo = window.location.hash.replace('#', '');
+		$('.mt-element-card').hide();
 		queryData();
 	});
 
@@ -262,7 +263,7 @@ var search = function() {
 		init: function() {
 			//$(".page-sidebar-wrapper").css("margin-top", "0px");
 			hideSidebarTool();
-
+			$('.mt-element-card').hide();
 			var tplList = [
 				'simpleTable.etpl',
 				'search/screenQuality.etpl'

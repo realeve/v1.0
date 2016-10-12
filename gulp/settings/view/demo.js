@@ -1,5 +1,5 @@
 var index = {
-	css: ["../assets/global/plugins/pace/themes/pace-theme-flash.css",
+	css: [
 		"../assets/global/plugins/font-awesome/css/font-awesome.css",
 		"../assets/global/plugins/simple-line-icons/simple-line-icons.css",
 		"../assets/global/plugins/bootstrap/css/bootstrap.css",
@@ -15,7 +15,9 @@ var index = {
 		"../assets/layouts/layout/css/layout.css",
 		"../assets/layouts/layout/css/settings.css",
 		"../assets/layouts/layout/css/themes/darkblue.css",
-		"../assets/layouts/layout/css/custom.css"
+		"../assets/layouts/layout/css/custom.css",
+		"../assets/global/plugins/codemirror/lib/codemirror.css",
+		"../assets/global/plugins/codemirror/theme/material.css"
 	],
 	js: ["../assets/global/plugins/jquery.js",
 		"../assets/global/plugins/jquery.base64.js",
@@ -35,16 +37,18 @@ var index = {
 		"../assets/layouts/global/scripts/quick-sidebar.js",
 		"../assets/layouts/layout/scripts/demo.js",
 		"../assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.js",
+		"../assets/global/plugins/etpl.js",
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js",
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js",
-		"../assets/pages/controller/idletimeout.js",
-		"../assets/global/plugins/lodash.js",
-		"../assets/global/plugins/etpl.js",
-		"../assets/global/plugins/jquery-prettydate/jquery.prettydate.js",
-		"../assets/global/plugins/jquery-prettydate/i18n/jquery.prettydate-zh-CN.js",
-		"../assets/global/plugins/echarts/js/ThemeStyle.js",
-		"../assets/global/plugins/echarts/js/echarts.common.js",
-		"../assets/global/plugins/bootstrap-toastr/toastr.js"
+		"../assets/pages/controller/idletimeout.min.js",
+		"../assets/global/plugins/bootstrap-toastr/toastr.js",
+		"../assets/global/plugins/codemirror/lib/codemirror.js",
+		"../assets/global/plugins/codemirror/mode/javascript/javascript.js",
+		"../assets/global/plugins/codemirror/mode/htmlmixed/htmlmixed.js",
+		"../assets/global/plugins/codemirror/mode/css/css.js",
+		"../assets/pages/controller/CommonFunctions.js",
+		"../assets/pages/controller/searchPaper.js",
+		"../topic/paper/js/src/search.js"
 	]
 };
 module.exports = index;

@@ -5,9 +5,10 @@ var viewList = [
 	//'index',
 	//'login',
 	//'lockscreen',
-	'search',
+	//'search',
 	//'searchFeedback',
-	//'PaperPara'
+	//'PaperPara',
+	'demo'
 ];
 
 var taskList = {};

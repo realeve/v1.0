@@ -14,24 +14,25 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="../../assets/build/css/chart.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" id="style_components" />
-    <link rel="stylesheet" type="text/css" id="style_color" />
+    <link href="../../assets/build/css/search.min.css" rel="stylesheet" type="text/css" />
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <!--body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo"-->
 
-<body class="page-header-fixed page-content-white page-full-width bg-white">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
     <!-- BEGIN HEADER -->
     <div class="page-header navbar" style="border-radius:0;">
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner">
             <!-- BEGIN LOGO -->
-            <div class="page-logo" style="width:160px;">
-                <a href="#">
+            <div class="page-logo">
+                <a href="../../">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFYAAAAOCAYAAAC1i+ttAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA25pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpEMjkxQ0QwODU0OEMxMUUyOUI1QkMzRDU2QkZFODJDQSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxREU5NkFCODhBRkIxMUU2ODJCNUIyOUJFMDk4MzZFMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxREU5NkFCNzhBRkIxMUU2ODJCNUIyOUJFMDk4MzZFMCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3ZWNjZjY0ZS1iYzQxLWM0NDUtYWU0YS0yNjViYzcxYmVjOTIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDI5MUNEMDg1NDhDMTFFMjlCNUJDM0Q1NkJGRTgyQ0EiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4CK1LfAAACwUlEQVR42uxY623bMBC2jfy3OkG0gdUJykxQdYKoE1idwOwEVSaIMkGVCUJvIG2gTlB2ApcSPgKX65GSArVBgRxwkMzXHb97ytvL5bJhlDuuHF+TsR+OS8fN5o1m0ZYBWzi+d9wB3N5x4lg7Pjj+7LheVQOlnv2CYTPH1nELY7aYU8IJg24pdLfQW1pjcJ8iok2Ns0Jy6NOTHfcZY+ngFXlPoFSHg+lCA65wUbsAugRAtRP7hrOPiI4W+06Y88CWeOeUkrW9EFl+riGgJXCWjujl54f154CeJ+jY41770VjKeQgBd8e8ZQ+LWMEqGvNesQuzrGJjCiD8dPyEZx5QVgPUB4CUY/+WRQj1XMmDf2F9EpBD95cYK8lYy+4TklNjbJBzBwM9uxsFNiPeKZFh6yaDHFb95PgdrKwDa0t4iBSm/YLo8Mav/mE61SRqRGCpd24WjMcE5jBIhuchYIC1wBg87qvj20Ce/BtUSA65C+QriTKi/BzK4W0+FdxOnDvHcB+QbjzrgEG7iZQwh6gcI4BpgMW3MR0YEwS2YRaQgOLAphMVdgDrPXLl3QqRMAB2Q7iOpJbrSOqZQ1ROKaQni/t3kpwdC6Mzqp4SwvWE4tKzcQ68pz1plTaRwtUvyN2WdCgmkn8NDHlcUBOkMwzxTD7nC+xBMvBO8MoOodtiQ4vfHbPcI8K7hqAjO+tMPipsxDMNKWzJirlP49x1+245p38c261AH+s9IkM6yMGD530RiksB5TN4TkXeN+QMhfE0UlAGA3yHopp5sSXgJMIZbcS7CzjFiz5dBDl/Oocx2oFajDoqlfle9iqSH2tSzTW5YEpyDM89DQvxihikj7RyDcmZ96wvpTIOAlA3E+H8ECmcMZLkmEhn8ARdtfRJG6raFSqyD/H1WhmlQl9qdkEH8npkzKz/CuaExv9x4Vem3wIMAGKF5sr+lSd/AAAAAElFTkSuQmCC" alt="logo" class="logo-default" />
                 </a>
+				<div class="menu-toggler sidebar-toggler">
+					<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+				</div>
             </div>
             <!-- END LOGO -->
             <!-- BEGIN HEADER SEARCH BOX -->
@@ -60,90 +61,96 @@
     </div>
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
+    	<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar-wrapper">
+			<div class="page-sidebar navbar-collapse collapse">
+				<ul class="page-sidebar-menu font-yahei" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+
+				</ul>
+				<!-- END SIDEBAR MENU -->
+			</div>
+		</div>
+		<!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
-        <div class="page-content-wrapper" style="margin-top:-30px;">
+        <div class="page-content-wrapper">
             <div class="page-content font-yahei">
-                <div class="modal fade" stype="top:50%;" id="share" tabindex="-1" role="basic" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <!--button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button-->
-                                <h4 class="modal-title">分享图表</h4>
+                <div class="row margin-top-10">
+					<div class="col-md-12">
+                        <!-- BEGIN Portlet PORTLET-->
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-puzzle font-red"></i>
+                                    <span class="caption-subject bold font-red uppercase"> 钞纸质量信息汇总 </span>
+                                    <span class="caption-helper">质量周报</span>
+                                </div>
+                                <div class="tools hidden-print">
+                                    <a href="" class="collapse" data-original-title="" title=""> </a>
+                                    <a href="" class="fullscreen" data-original-title="" title=""> </a>
+                                </div>
                             </div>
-                            <div class="modal-body"> 图表共享成功，按Ctrl+c复制以下链接即可访问数据：
-                                <textarea style="width:100%;height:100px;margin-top:10px;" id="shareUrl"></textarea>
+                            <div class="portlet-body">
+                                <div class="row">
+									<div class="col-md-6">
+										<p id="info">截止至10月12日，本周各品种好品率如下：</p>
+										<table class="table table-hover table-light">
+                                            <thead>
+                                                <tr class="uppercase">
+                                                    <th> # </th>
+                                                    <th> 品种 </th>
+                                                    <th> 好品率 </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> 1 </td>
+                                                    <td> Mark </td>
+                                                    <td> Otto </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 2 </td>
+                                                    <td> Jacob </td>
+                                                    <td> Nilson </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+									</div>
+									<div class="col-md-6">
+										<p id="info">封包率如下：</p>
+										<table class="table table-hover table-light">
+                                            <thead>
+                                                <tr class="uppercase">
+                                                    <th> # </th>
+                                                    <th> 品种 </th>
+                                                    <th> 好品率 </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> 1 </td>
+                                                    <td> Mark </td>
+                                                    <td> Otto </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 2 </td>
+                                                    <td> Jacob </td>
+                                                    <td> Nilson </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+									</div>
+	                                <div class="col-md-12">
+		                                <hr class="hidden-print">
+		                                <a class="btn btn-lg blue hidden-print pull-right" onclick="javascript:window.print();"> 打印
+		                                    <i class="fa fa-print"></i>
+		                                </a>
+	                                </div>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn red" data-clipboard-action="copy" data-clipboard-target="#shareUrl" data-dismiss="modal"> <i class="fa fa-clipboard"></i>  点击复制 </button>
-                            </div>
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- BEGIN Portlet PORTLET-->
-                <div class="portlet light bordered" data-chartid="0">
-                    <div class="portlet-title">
-                        <div class="page-bar hidden">
-                            <ul class="page-breadcrumb" name="drillName">
-                                <li>
-                                    <i class="icon-home"></i>
-                                    <a href="javascript:;" data-level="1"></a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <a class="btn blue btn-circle" name="downloadExample" data-chartid="0"><i class="glyphicon glyphicon-download-alt"> </i> 下载图表</a>
-                            <a class="btn red btn-circle" name="shareExample" data-chartid="0"><i class="fa fa-share-alt"> </i> 分享 </a>
-                            <a class="btn btn-circle btn-default" name="showTable" data-chartid="0" target="_blank"><i class="fa fa-table"> </i> 报表 </a>
-                            <a data-toggle="modal" href="#share" id="successShare"></a>
-                        </div>
-                        <div class="actions">
-                            <select class="bs-select form-control" name="poly" data-style="" data-width="100px">
-							<option value="1">多项式顺序</option>
-							<option value="2" selected>2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-						</select>
-                            <select class="bs-select form-control" name="regression" data-style="blue" data-width="140px">
-						</select>
-                            <select class="bs-select form-control" name="ratio" data-width="125px" data-size="10">
-							<option>图表宽高比</option>
-							<option value="2.35">2.35:1</option>
-							<option value="2">2:1</option>
-							<option value="1.78" selected>16:9</option>
-							<option value="1.6">16:10</option>
-							<option value="1.5">3:2</option>
-							<option data-divider="true"></option>
-							<option value="1.4">7:5</option>
-							<option value="1.33">4:3</option>
-							<option value="1.3">13:10</option>
-							<option value="0.769">10:13</option>
-							<option value="0.75">3:4</option>
-							<option data-divider="true"></option>
-							<option value="0.714">5:7</option>
-							<option value="0.67">2:3</option>
-							<option value="0.625">10:16</option>
-							<option value="0.5625">9:16</option>
-							<option value="0.5">1:2</option>
-						</select>
-                            <select class="bs-select form-control" name="theme" data-style="blue" data-width="125px">
-						</select>
-                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portlet-body form">
-                        <div id="eChart-main0" class="eCharts-main margin-top-5"></div>
+                        <!-- END GRID PORTLET-->
                     </div>
                 </div>
-                <!-- END Portlet PORTLET-->
 
                 <!-- END PAGE CONTENT-->
             </div>
@@ -168,8 +175,8 @@
 	<script src="../../assets/global/plugins/respond.min.js"></script>
 	<script src="../../assets/global/plugins/excanvas.min.js"></script>
 	<![endif]-->
-    <script src="../../assets/build/js/chart.min.js"></script>
+    <script src="../../assets/build/js/search.min.js"></script>
     <script src="../../assets/pages/controller/CommonFunctions.min.js"></script>
-    <script src="./js/chart.min.js"></script>
+    <script src="./js/paper.min.js"></script>
 </body>
 </html>
