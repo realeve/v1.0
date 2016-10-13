@@ -46,7 +46,7 @@
 				</span>
                 </div>
             </div>
-            <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" style="margin-top:5px;" data-placement="left" data-original-title="点击修改查询时间">
+            <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" style="margin-top:5px;">
                 <i class="icon-calendar"></i>&nbsp;
                 <span class="thin uppercase">&nbsp;</span>&nbsp;
                 <i class="fa fa-angle-down"></i>
@@ -80,71 +80,39 @@
                         <div class="portlet light bordered">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="icon-puzzle font-red"></i>
-                                    <span class="caption-subject bold font-red uppercase"> 钞纸质量信息汇总 </span>
-                                    <span class="caption-helper">质量周报</span>
-                                </div>
+                                    <span class="caption-subject bold font-red uppercase"> 钞纸专业：指标完成情况及分析 </span>
+                                    <span class="caption-helper" id="date"></span>
+                                </div><!--
                                 <div class="tools hidden-print">
                                     <a href="" class="collapse" data-original-title="" title=""> </a>
                                     <a href="" class="fullscreen" data-original-title="" title=""> </a>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="portlet-body">
+                            <div class="portlet-body" style="min-height: 300px;">
                                 <div class="row">
-									<div class="col-md-6">
-										<p id="info">截止至10月12日，本周各品种好品率如下：</p>
-										<table class="table table-hover table-light">
-                                            <thead>
-                                                <tr class="uppercase">
-                                                    <th> # </th>
-                                                    <th> 品种 </th>
-                                                    <th> 好品率 </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 1 </td>
-                                                    <td> Mark </td>
-                                                    <td> Otto </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> 2 </td>
-                                                    <td> Jacob </td>
-                                                    <td> Nilson </td>
-                                                </tr>
-                                            </tbody>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <h4>机检好纸率</h4>
+                                            <table class="table table-hover table-light" id="goodrate">
+                                            </table>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h4>在线抽检情况</h4>
+                                            <table class="table table-hover table-light" id="check">
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>各品种主要返工类型</h4>
+                                        <div id="chart" style="height:400px;width:100%;"></div>
                                         </table>
-									</div>
-									<div class="col-md-6">
-										<p id="info">封包率如下：</p>
-										<table class="table table-hover table-light">
-                                            <thead>
-                                                <tr class="uppercase">
-                                                    <th> # </th>
-                                                    <th> 品种 </th>
-                                                    <th> 好品率 </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 1 </td>
-                                                    <td> Mark </td>
-                                                    <td> Otto </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> 2 </td>
-                                                    <td> Jacob </td>
-                                                    <td> Nilson </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-									</div>
-	                                <div class="col-md-12">
+                                    </div>
+	                            <!--     <div class="col-md-12">
 		                                <hr class="hidden-print">
 		                                <a class="btn btn-lg blue hidden-print pull-right" onclick="javascript:window.print();"> 打印
 		                                    <i class="fa fa-print"></i>
 		                                </a>
-	                                </div>
+	                                </div> -->
                                 </div>
                             </div>
                         </div>
@@ -175,7 +143,7 @@
 	<script src="../../assets/global/plugins/respond.min.js"></script>
 	<script src="../../assets/global/plugins/excanvas.min.js"></script>
 	<![endif]-->
-    <script src="../../assets/build/js/search.min.js"></script>
+    <script src="../../assets/build/js/index.min.js"></script>
     <script src="../../assets/pages/controller/CommonFunctions.min.js"></script>
     <script src="./js/paper.min.js"></script>
 </body>

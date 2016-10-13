@@ -773,6 +773,40 @@
     $('.page-sidebar-menu:eq(0)').html(GBK2UTF(localStorage.settings_default_menu));
   }
 
+
+  function handleTable(url, obj) {
+    $.ajax({
+        url: url
+      })
+      .done(function(data) {
+        data = handleAjaxData(data);
+        if (data.rows === 0) {
+          obj.parent().hide();
+          obj.html('');
+          return;
+        }
+        obj.parent().show();
+
+        var strHead = '<thead><tr>';
+        data.header.map(function(item) {
+          strHead += '<th>' + item.title + '</th>';
+        });
+        strHead += '</tr></thead><tobdy>';
+
+        var strTr = '';
+        data.data.map(function(row) {
+          strTr = '<tr>';
+          row.map(function(item) {
+            strTr += '<td>' + item + '</td>';
+          });
+          strTr += '</tr>';
+          strHead += strTr;
+        });
+        strHead += '</tobdy>';
+        obj.html(strHead);
+      });
+  }
+
   /**
    * [CreateTableHead 创建表格头_要求]
    * @param {[type]} Data     [表格数据/数据接口定义]
