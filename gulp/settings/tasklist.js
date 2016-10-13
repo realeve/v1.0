@@ -7,8 +7,8 @@ var viewList = [
 	//'lockscreen',
 	//'search',
 	//'searchFeedback',
-	//'PaperPara',
-	'demo'
+	'PaperPara',
+	//'demo'
 ];
 
 var taskList = {};

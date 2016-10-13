@@ -44,7 +44,7 @@ var PaperValidate = function() {
 			})
 			.done(function(data) {
 				var Data = handleAjaxData(data);
-				InitSelect("machine_ID", Data);
+				InitSelect("machine_id", Data);
 			});
 
 		//非常规指标人员信息，Proc_id=4
@@ -69,7 +69,7 @@ var PaperValidate = function() {
 			});
 
 		//select machine_id,machine_name from paper_machine_info where Proc_ID=1
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1";
+		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=23&M=3&t=1&cache=14400";
 
 		$.ajax({
 				url: str
@@ -82,11 +82,11 @@ var PaperValidate = function() {
 	}
 
 	function initDOM() {
-		getSelectInfo();
-
 		$('[name=passed]').iCheck('check');
 
 		$("input[name='rec_date']").val(today(6));
+
+		getSelectInfo();
 
 		$("input[name='reel_code']").maxlength({
 			limitReachedClass: "label label-danger",
