@@ -370,7 +370,6 @@ class CI_DB_result {
 		{
 			return $this->result_array;
 		}
-
 		// In the event that query caching is on the result_id variable
 		// will return FALSE since there isn't a valid SQL resource so
 		// we'll simply return an empty array.
@@ -399,8 +398,22 @@ class CI_DB_result {
 			for ($i=0; $i < $iCols; $i++) { 
 				//return $strFields[$i];
 				$str = $strFields[$i];
-				$iValue = trim($this->reConv($row[$str],$blobType,$dbID));
-				$strName = trim($this->reConv($str,$blobType,$dbID));
+				//blob支持;分隔多个字段
+				$flag = $blobType;
+				if($blobType!='0' && stripos($blobType,';')){
+					$flag = 0;
+					$blobList = explode(';',$blobType);
+					foreach($blobList as $item){
+						if($item == $i && $item!=''){
+							$flag = 1;
+							break;
+						}
+					}
+				}
+				
+				$iValue = trim($this->reConv($row[$str],$flag,$dbID));	
+				$strName = trim($this->reConv($str,0,$dbID));
+				
 				if ($i == 0 ) $strJSON .= '{';
 				$strJSON .= '"' .$strName.'":"' . $iValue . '"';
 				if ($i == $iCols-1) $strJSON .= '}';
@@ -524,8 +537,22 @@ class CI_DB_result {
 			if ($strJSON != $strHead) {$strJSON .= ",";}	
 			for ($i=0; $i < $iCols; $i++) {
 				$str = $strFields[$i];
-				$iValue = trim($this->reConv($row[$str],$blobType,$dbID));
-				$strName = trim($this->reConv($str,$blobType,$dbID));
+				//blob支持;分隔多个字段
+				$flag = $blobType;
+				if($blobType!='0' && stripos($blobType,';')){
+					$flag = 0;
+					$blobList = explode(';',$blobType);
+					foreach($blobList as $item){
+						if($item == $i && $item!=''){
+							$flag = 1;
+							break;
+						}
+					}
+				}
+				
+				$iValue = trim($this->reConv($row[$str],$flag,$dbID));	
+				$strName = trim($this->reConv($str,0,$dbID));
+				
 				if ($i == 0 ) $strJSON .= '[';
 				$strJSON .= '"' . $iValue . '"';
 				if ($i == $iCols-1)
