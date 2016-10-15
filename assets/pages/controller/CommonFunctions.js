@@ -990,12 +990,12 @@
         }
 
         if (type > config.search.ERR) {
-          if (curPage.indexOf('/search') === 0 || curPage.indexOf('/search/paper') === 0) {
+          if ((curPage.indexOf('/search') === 0 || curPage.indexOf('/search/paper') === 0) && curPage.indexOf('/search/feedback') !== 0) {
             location.hash = str;
             $('.search-form .submit').attr('href', '#' + str);
           } else {
             window.location.href = url;
-            $('.search-form .submit').attr('href', url);
+            //$('.search-form .submit').attr('href', url);
           }
         }
       }

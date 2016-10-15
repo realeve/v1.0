@@ -49,7 +49,7 @@
                     <strong>未检数</strong>${nocheckcount}
 				</li>
             </ul>
-            <a href="../search/fake/#${CartNumber}" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>
+            <a href="../search/image#${CartNumber}" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>
         </div>
     </div>
     <div class="cbp-l-project-container">

@@ -6,8 +6,8 @@ var viewList = [
 	//'login',
 	//'lockscreen',
 	//'search',
-	//'searchFeedback',
-	'PaperPara',
+	'searchFeedback',
+	//'PaperPara',
 	//'demo'
 ];
 

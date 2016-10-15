@@ -1,0 +1,25 @@
+<!-- for: ${data} as ${item} -->
+  <!-- if: ${item[3]} == 'AA==' -->
+    <!-- var: src = "../../assets/global/img/none.png" -->
+  <!-- else -->
+    <!-- var: src = "data:image/jpg;base64,"+${item[3]} -->
+  <!-- /if -->
+
+  <div class="cbp-item ${type}">
+    <div class="cbp-item-wrapper">
+      <a href="${src}" class="cbp-caption cbp-lightbox hoverZoomLink" data-title="印码号: ${item[2]}<br>第${item[1]} 开<br>相机: ${item[0]}">
+          <div class="cbp-caption-defaultWrap">
+                <img src="${src}">
+          </div>
+          <div class="cbp-caption-activeWrap">
+              <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                      <div class="cbp-l-caption-title">${item[2]}</div>
+                      <div class="cbp-l-caption-desc">第${item[1]}开 / 相机: ${item[0]}</div>
+                  </div>
+              </div>
+          </div>
+      </a>
+    </div>
+  </div>
+<!-- /for -->

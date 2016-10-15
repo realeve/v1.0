@@ -366,7 +366,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             //"markLine": MLnStyle_avg,
             "itemStyle": itemStyle,
             "symbolSize": objRequest.symbolSize,
-            symbol: 'circle',
             symbol: 'circle'
           };
           //是否为面积图

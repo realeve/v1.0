@@ -165,7 +165,7 @@ var feedback = function() {
 			});
 
 		} else {
-			$('#js-grid-juicy-projects').addClass('cbp-ready').append('<div class="cbp-search-nothing">当前时间内无相关信息</div>');
+			$('#js-grid-juicy-projects').addClass('cbp-ready').append('<div class="cbp-search-nothing"><h3>当前时间范围内无相关信息</h3></div>');
 			//bsTips('当前时间无数据', 1);
 		}
 

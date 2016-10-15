@@ -1,0 +1,15 @@
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=309&M=3&blob=3;&cart=1620A444
+
+
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=310&M=3&blob=3;&cart=1680A753
+
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=311&M=3&blob=3;&cart=1620A444
+
+
+//号码缺陷类型分布
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&M=3&ID=312&cart=1620A233
+
+链接
+http://10.8.2.133:70/qualitychart?tid=312&type=bar&stack=1&cart=1620A233
+
+http://10.8.2.133:70/qualitychart?tid=312&type=sankey&stack=1&cart=1620A233

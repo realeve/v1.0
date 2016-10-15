@@ -4,7 +4,7 @@
 <!-- if: ${class}=='' -->
 	<!-- import: verTable -->
 <!-- else -->
-	<div class="row">
+
 		<!-- if: ${data.length}>0 -->
 			<!-- import: verTable2 -->
 		<!-- else -->
@@ -12,7 +12,7 @@
 				<!-- import: verTable -->
 			</div>
 		<!-- /if -->
-	</div>
+
 <!-- /if -->
 
 <!-- target: verTable -->

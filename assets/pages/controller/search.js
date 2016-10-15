@@ -469,9 +469,9 @@ var search = function() {
 					cols: data.cols,
 					source: data.source,
 					header: data.header.slice(1, 11),
-					data: data.data[0].slice(1, 11)
+					data: [], //data.data[0].slice(1, 11),
 				};
-				//qua.data.push(data.data[0].slice(1, 11));
+				qua.data.push(data.data[0].slice(1, 11));
 				tpl.render('search/screenQuality.etpl', qua, $('[name="screenInfo"]'));
 
 				convertImgData2Tpl({
@@ -573,7 +573,19 @@ var search = function() {
 		var objDom = $('[name="imgVerifyInfo"]');
 		var id = 292;
 		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=" + id + "&M=3&cart=" + cart + '&cache=' + config.cache;
-		tpl.renderTable(objDom, url);
+		//tpl.renderTable(objDom, url);
+		$.ajax({
+				url: url
+			})
+			.done(function(data) {
+				data = $.parseJSON(data);
+				objDom.html(tpl.getHTML('simpleTable.etpl', data));
+				objDom.find('.scroller').attr('style', ' ').append('<a href="../search/image#' + cart + '" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>');
+
+			});
+
+
+		//$('[name="imgVerifyInfo"]').append('<a href="../search/image#' + cart + '" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>');
 	};
 
 	var handleOcrInfo = function(cart) {
@@ -672,7 +684,7 @@ var search = function() {
 	//质量信息
 	var renderQualityInfo = function(cartNo) {
 
-		// step:5 码后核查(处理时间最长，放到最前)
+		// 码后核查(处理时间最长，放到最前)
 		handleMahouInfo(cartNo);
 
 		//载入特征图像，载入当天质量曲线
@@ -681,7 +693,7 @@ var search = function() {
 			handleQualityLine(cartNo);
 		}
 
-		// step:2 印码号————大张号互查
+		// 印码号————大张号互查
 		if (queryString.type == config.search.CODENO) {
 			//印码号查询大张号（10张）
 
@@ -690,23 +702,127 @@ var search = function() {
 
 		}
 
-		//获取库管信息
+		// 获取库管信息
 		getStorageInfo(cartNo);
 
-		// step:7 图像判废结果
+		// 图像判废结果
 		handleImgVerifyInfo(cartNo);
 
-		// step:4 丝印（T品）
+		// 丝印（T品）
 		handleScreenInfo(cartNo);
 
-		// step:8 OCR信息
+		// OCR信息
 		handleOcrInfo(cartNo);
 
+		//单开分析仪
 		handleAnanysisInfo(cartNo);
 
-		// step:9 实废图像信息
+		handleCodeInfo(cartNo);
 
 	};
+
+	var getCodeTypeOption = function(data) {
+		function unique(arr) {
+			return Array.from(new Set(arr));
+		}
+		var legendArr = [],
+			xAxis = [],
+			yAxis = [];
+
+		var series = [];
+
+		data.map(function(elem) {
+			xAxis.push(elem[1]);
+			legendArr.push(elem[0]);
+		});
+
+		legendArr = unique(legendArr).reverse();
+		xAxis = unique(xAxis);
+
+		legendArr.map(function(elem) {
+			yAxis[elem] = [];
+		});
+
+		data.map(function(elem) {
+			yAxis[elem[0]][elem[1]] = elem[2];
+		});
+
+		legendArr = legendArr.map(function(elem) {
+			series.push({
+				type: 'bar',
+				stack: '合计',
+				barMaxWidth: 25,
+				name: elem,
+				data: []
+			});
+			var i = series.length - 1;
+			xAxis.map(function(item) {
+				var val = (typeof yAxis[elem][item] == 'undefined') ? 0 : yAxis[elem][item];
+				series[i].data.push(val);
+			});
+			return {
+				name: elem,
+				icon: 'circle'
+			};
+		});
+
+		var option = {
+			tooltip: {
+				trigger: 'item'
+			},
+			color: ["#61A5E8", "#7ECF51"],
+			legend: {
+				data: legendArr,
+				x: "right",
+				y: "10",
+				//orient: 'vertical'
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: true,
+				data: xAxis,
+				axisTick: {
+					show: false
+				},
+				axisLine: {
+					show: false
+				},
+				show: true
+			},
+			grid: {
+				x: 50,
+				y: 10,
+				x2: 10,
+				y2: 20
+			},
+			yAxis: {
+				type: 'value',
+				axisTick: {
+					show: false
+				},
+				axisLine: {
+					show: false
+				}
+			},
+			series: series
+		};
+
+		return option;
+	};
+
+	function handleCodeInfo(cartNo) {
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&ID=311&blob=5;&cart=" + cartNo;
+		var testUrl = '../topic/testData/codetype.json';
+		$.ajax({
+				url: testUrl
+			})
+			.done(function(data) {
+				//data = $.parseJSON(data);
+				var option = getCodeTypeOption(data.data);
+				ec[2] = echarts.init(document.getElementById("codeFakeType"));
+				ec[2].setOption(option);
+			});
+	}
 
 	var renderProdInfo = function(data) {
 		//重置车号信息
@@ -806,6 +922,23 @@ var search = function() {
 		queryData();
 	});
 
+	$('a[href="#portlet_tab2"]').parent().click(function() {
+		setTimeout(function() {
+			if (ec[2]) {
+				ec[2].resize();
+			}
+		}, 0);
+
+	});
+
+	$('a[href="#portlet_tab3"]').parent().click(function() {
+		setTimeout(function() {
+			if (ec[1]) {
+				ec[1].resize();
+			}
+		}, 0);
+	});
+
 	function loadDefaultData() {
 		queryString.cart = window.location.hash.replace('#', '');
 		if (queryString.cart !== '') {
@@ -864,14 +997,15 @@ var search = function() {
 jQuery(document).ready(function() {
 	//RoundedTheme(0);
 	UIIdleTimeout.init();
-	initDashboardDaterange('YYYYMMDD');
 	initDom();
-
 	search.init();
 	bsTips('点击本页面工序名称将自动折叠面板');
 });
 
 jQuery(window).resize(function() {
-	ec[0].resize();
-	ec[1].resize();
+	for (var i = 0; i <= 2; i++) {
+		if (ec[i]) {
+			ec[i].resize();
+		}
+	}
 });

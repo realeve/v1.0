@@ -46,7 +46,7 @@
                             </div> /
                             <div data-filter=".9607T" class="cbp-filter-item"> 9607T
                                 <div class="cbp-filter-counter"></div>
-                            </div> /
+                            </div>
                         </div>
                         <div id="js-filters-juicy-projects" class="cbp-l-filters-alignLeft cbp-l-filters-left">
                             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item uppercase"> 所有图像
@@ -63,8 +63,10 @@
                             </div>
                         </div>
                         <div class="cbp-search cbp-l-filters-right">
-                            <input id="js-search-blog-posts" type="text" placeholder="输入以过滤" data-search="*" class="cbp-search-input">
-                            <div class="cbp-search-icon"></div>
+                            <div class="input-icon right">
+                                <i class="icon-magnifier"></i>
+                                <input id="js-search-blog-posts" type="text" placeholder="输入以过滤" data-search="*" class="form-control input-circle uppercase">
+                            </div>
                             <div class="cbp-search-nothing">未找到 <i>{{query}}</i> 的结果</div>
                         </div>
                     </div>

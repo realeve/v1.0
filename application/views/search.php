@@ -16,7 +16,7 @@
     <div class="page-toolbar">
         <!-- BEGIN THEME PANEL -->
         <!-- 以下DIV加入  .open则默认打开 -->
-        <div class="btn-group btn-theme-panel margin-top-10">
+        <div class="btn-group btn-theme-panel">
             <div class="pull-right btn btn-fit-height blue dropdown-toggle" name="querySetting" data-toggle="dropdown" aria-expanded="true">
                 <i class="icon-settings"></i> 查询条件
             </div>
@@ -64,7 +64,7 @@
                                     <hr>
                                 </div>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <div class="row">
                                     <div class="col-md-4">印码号</div>
                                     <div class="col-md-8 inputs">
@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                             <li>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
@@ -209,10 +209,10 @@
                                     <li class="hidden">
                                         <a href="#portlet_tab1" data-toggle="tab" aria-expanded="false"> 丝印 </a>
                                     </li>
-                                    <li>
-                                        <a href="#portlet_tab2" data-toggle="tab" aria-expanded="false"> 号码实废 </a>
-                                    </li>
                                     <li class="active">
+                                        <a href="#portlet_tab2" data-toggle="tab" aria-expanded="false"> 号码 </a>
+                                    </li>
+                                    <li>
                                         <a href="#portlet_tab3" data-toggle="tab" aria-expanded="true"> 码后核查 </a>
                                     </li>
                                     <li>
@@ -232,12 +232,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="portlet_tab2" style="min-height: 300px;">
-                                    <div name="codeInfo">
-                                        <h4>该万产品未搜索到相关信息 </h4>
+                                <div class="tab-pane active" id="portlet_tab2" style="min-height: 300px;">
+                                    <div class="row">
+                                        <div class="col-md-6" id="codeFakeType" style="min-height:300px;">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="portlet_tab3" style="min-height: 300px;">
+                                <div class="tab-pane" id="portlet_tab3" style="min-height: 300px;">
                                     <div class="row">
                                         <div class="col-md-12" name="mahouInfo">
                                             <h4>该万产品未搜索到相关信息 </h4>
@@ -298,7 +299,6 @@
                     </div>
                     <!-- END Portlet PORTLET-->
                 </div>
-
 
             </div>
         </div>
