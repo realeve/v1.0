@@ -337,6 +337,10 @@ class CI_DB_result {
 			}else if($blobType == 'gif'){
 				$type = 'data:image/gif;base64,';
 			}
+			//oracle 二进制需特殊处理
+			if('object' == gettype($str)){
+				$str = $str->load();
+			}
 			return $type . base64_encode($str);			
 		}
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
