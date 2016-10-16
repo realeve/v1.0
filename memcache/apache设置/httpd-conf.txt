@@ -1,2 +1,0 @@
-# Server-pool management (MPM specific)
-Include conf/extra/httpd-mpm.conf

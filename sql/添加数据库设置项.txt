@@ -1,2 +1,0 @@
-$db['IMG'] = $db['sqlsvr'];
-$db['IMG']['database'] = 'NotaCheck_IMGDB';

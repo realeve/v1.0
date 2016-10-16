@@ -1,3 +1,0 @@
-图像读取时由于是二进制字段，需要设置blob参数，值为jpg bmg gif png等
-
-图像测试	SELECT ErrImage1,ErrImage2,ErrImage3 FROM ImageData where id=?	t,blob

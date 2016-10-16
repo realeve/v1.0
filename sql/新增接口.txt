@@ -1,9 +1,0 @@
-245	机检大张废原因	SELECT id,fakedesc FROM FakePieceDesc		
-246	大张废原始数据查询	SELECT a.CartNumber, a.ProductType, a.Date, a.FakePiece, a.HalfPiece, a.NoNum, b.FakeDesc, a.Describe FROM FakePieceData a INNER JOIN FakePieceDesc b on a.ProcID = b.id where date = ? order by a.id desc	tstart	
-247	损纸误废报表	SELECT month as 月份,	a.checkNum,	a.wasteNum,	a.wasteRatio,a.[Describe] FROM	Paper_False_Waste AS a WHERE month/100=? order by 1	tstart	
-248	钞纸批量报废报表	SELECT a.reel_code AS 轴号, convert(varchar,a.rec_date,112) AS 录入日期, b.Machine_Name AS 机台, c.ProductName AS 品种, a.fake_reason AS 报废原因, a.fake_num AS 报废数量, a.remark AS 备注 FROM dbo.Paper_Batch_Waste AS a INNER JOIN Paper_Machine_Info b ON a.machine_id = b.Machine_ID INNER JOIN Paper_ProductData c ON a.prod_id = c.ProductID where convert(varchar,a.rec_date,112) BETWEEN ? AND ? ORDER BY a.ID	tstart,tend	
-249	钞纸损纸误废率	SELECT month as 月份,a.wasteRatio as 误废率 FROM	Paper_False_Waste AS a WHERE month/100=? order by 1	tstart	
-250	月度批量报废原因分布	SELECT a.fake_reason AS 报废原因, sum(a.fake_num) AS 报废数量 FROM dbo.Paper_Batch_Waste a WHERE CONVERT (VARCHAR(6), a.rec_date, 112) = left(?,6) group by a.fake_reason order by 2 desc	tstart	
-251	完成车间考核记录人员名单	select rec_id,name from Paper_Penalty_Operator where Proc_ID = ? and bhide <> 1 order by Name	t	
-252	完成车间质量考核报表	SELECT b.Name as 人员, convert(varchar,a.rec_date,112) as 考核日期, a.serious_fake as 严重废, a.normal_fake as 一般废, a.serious_fake_money+a.normal_fake_money as 考核金额, a.user_feedback as 用户反馈, a.dpt_feedback as 车间考核, a.remark as 备注 FROM Paper_Penalty AS a INNER JOIN Paper_Penalty_Operator b on a.oper_id = b.rec_ID where convert(varchar(6),a.rec_date,112) = LEFT(?,6) order by 1,a.ID	tstart	
-253	月度质量考核图	SELECT b.Name as 人员, sum(a.serious_fake_money+a.normal_fake_money) as 考核金额 FROM Paper_Penalty AS a INNER JOIN Paper_Penalty_Operator b on a.oper_id = b.rec_ID where convert(varchar(6),a.rec_date,112) = LEFT(?,6) group by b.Name order by 2 desc	tstart
