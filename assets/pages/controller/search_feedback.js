@@ -343,7 +343,7 @@ var feedback = function() {
 					}],
 					caption: 'overlayBottomReveal', //'overlayBottomReveal',
 					displayType: 'sequentially',
-					displayTypeSpeed: 20,
+					displayTypeSpeed: 0,
 					//sortToPreventGaps: true,
 
 					// lightbox

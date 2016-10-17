@@ -131,7 +131,7 @@ var imageSearch = function() {
 					}],
 					caption: 'overlayBottomAlong', //'overlayBottomReveal',
 					displayType: 'bottomToTop',
-					displayTypeSpeed: 20,
+					displayTypeSpeed: 0,
 					//sortToPreventGaps: true,
 
 					// lightbox
