@@ -811,13 +811,13 @@ var search = function() {
 	};
 
 	function handleCodeInfo(cartNo) {
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&ID=311&blob=5;&cart=" + cartNo;
-		var testUrl = '../topic/testData/codetype.json';
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&ID=312&cart=" + cartNo;
+		//var testUrl = '../topic/testData/codetype.json';
 		$.ajax({
-				url: testUrl
+				url: url//testUrl
 			})
 			.done(function(data) {
-				//data = $.parseJSON(data);
+				data = $.parseJSON(data);
 				var option = getCodeTypeOption(data.data);
 				ec[2] = echarts.init(document.getElementById("codeFakeType"));
 				ec[2].setOption(option);

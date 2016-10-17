@@ -13,7 +13,7 @@ class search extends CI_Controller {
 	public function index()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -28,7 +28,7 @@ class search extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -38,7 +38,7 @@ class search extends CI_Controller {
 	public function paper()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -53,7 +53,7 @@ class search extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -63,7 +63,7 @@ class search extends CI_Controller {
 	public function feedback()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -78,7 +78,7 @@ class search extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -88,7 +88,7 @@ class search extends CI_Controller {
 	public function image()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -103,7 +103,7 @@ class search extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');

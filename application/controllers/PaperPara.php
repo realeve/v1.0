@@ -16,7 +16,7 @@ class PaperPara extends CI_Controller {
 	public function index()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -32,7 +32,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -43,7 +43,7 @@ class PaperPara extends CI_Controller {
 	public function surface()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -58,7 +58,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -69,7 +69,7 @@ class PaperPara extends CI_Controller {
 	public function chemy()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -84,7 +84,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -95,7 +95,7 @@ class PaperPara extends CI_Controller {
 	public function validate()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -110,7 +110,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -121,7 +121,7 @@ class PaperPara extends CI_Controller {
 	public function fakepiece()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -136,7 +136,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -147,7 +147,7 @@ class PaperPara extends CI_Controller {
 	public function falsewaste()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -162,7 +162,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -173,7 +173,7 @@ class PaperPara extends CI_Controller {
 	public function batchwaste()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -188,7 +188,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -199,7 +199,7 @@ class PaperPara extends CI_Controller {
 	public function penalty()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -214,7 +214,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');
@@ -225,7 +225,7 @@ class PaperPara extends CI_Controller {
 	public function abnormal()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		if ($this->session->userdata('userrole')>0)
 		{
 			if($this->session->userdata('logged_in')==true)
@@ -240,7 +240,7 @@ class PaperPara extends CI_Controller {
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
-			$this->load->view('framework/lockscreen');
+			$this->load->view('lockscreen-min');
 		}
 		else{
 			$this->load->view('login');

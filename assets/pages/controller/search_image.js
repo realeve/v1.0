@@ -57,24 +57,24 @@ var imageSearch = function() {
 	//号码接口312需调整为 相机、开位、印码号、图像
 	var setImgDom = function(id, type) {
 
-		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&blob=3;&ID=" + id + "&cart=" + cart;
+		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&blob=3;&ID=" + id + "&cache=14400&cart=" + cart;
 
-		var testUrl;
-		if (id == 309) {
-			testUrl = '../topic/testData/hecha.json';
-		} else if (id == 310) {
-			testUrl = '../topic/testData/siyin.json';
-		} else {
-			testUrl = '../topic/testData/code.json';
-		}
+		// var testUrl;
+		// if (id == 309) {
+		// 	testUrl = '../topic/testData/hecha.json';
+		// } else if (id == 310) {
+		// 	testUrl = '../topic/testData/siyin.json';
+		// } else {
+		// 	testUrl = '../topic/testData/code.json';
+		// }
 
 		var str = '';
 
 		$.ajax({
-				url: testUrl
+				url: url
 			})
 			.done(function(data) {
-				//data = $.parseJSON(data);
+				data = $.parseJSON(data);
 				loadNums.cur++;
 				if (data.rows > 0) {
 					loadNums.noData = false;

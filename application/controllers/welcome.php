@@ -14,7 +14,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -114,7 +114,7 @@ class Welcome extends CI_Controller {
 	public function lockscreen()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		$array_items = array('userrole' => '-1','logged_in'=>'true');
 		$this->session->set_userdata($array_items);//设置数据
 		if ($this->session->userdata('username')=='') {
@@ -128,7 +128,7 @@ class Welcome extends CI_Controller {
 	public function logout()
 	{
 		//开启缓存
-		$this->output->cache(60*24);
+		//$this->output->cache(60*24);
 		$array_items = array('username' => '', 'password'=>'','email' => '','userrole' => '','logged_in'=>'');
 		$this->session->unset_userdata($array_items);//清除数据
 		$this->session->sess_destroy();//注销

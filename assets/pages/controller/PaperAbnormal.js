@@ -248,6 +248,12 @@ var PaperParamAbnormal = function() {
 		vRules.director_name = {
 			number: false
 		};
+		vRules.oil_perme_f_lv = {
+			number:false
+		};
+		vRules.oil_perme_b_lv = {
+			number:false
+		};
 
 		$('form[name=theForm]').validate({
 			errorElement: 'span', //default input error message container
@@ -330,7 +336,7 @@ var PaperParamAbnormal = function() {
 
 			$('form input[type="text"]').val('');
 
-			SetSelect2Val('oper_id', -1);
+			//SetSelect2Val('oper_id', -1);
 			SetSelect2Val('prod_id', -1);
 			SetSelect2Val('machine_id', -1);
 			$('.detail input').val('0');

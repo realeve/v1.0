@@ -84,10 +84,9 @@ class DataInterface extends CI_Controller {
 		//数据缓存处理(根据查询参数做K-V缓存);
 		if(isset($APIData['cache']) && $APIData['cache']>0){
 			
-			//数据缓存
-			$this->load->driver('cache',
-				array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
-			);
+			//memcache(缓存数据)
+			$this->load->driver('cache');
+			$this->cache->memcached->is_supported();
 			
 			$keyName = 'api_data';
 			foreach($APIData as $key=>$value)
@@ -99,7 +98,7 @@ class DataInterface extends CI_Controller {
 			
 			//echo '开始读取缓存...<br>';
 			//if ( ! $Data = $this->cache->get($keyName)){
-			if ( ! $Data = $this->cache->get($keyName)){	
+			if ( ! $Data = $this->cache->memcached->get($keyName)){	
 				$minutes = $APIData['cache'];			
 				unset($APIData['cache']);
 				
@@ -110,7 +109,21 @@ class DataInterface extends CI_Controller {
 				//echo '未取得缓存...<br>';
 				//缓存数据
 				// Save into the cache for n minutes
-				$this->cache->save($keyName, $Data, $minutes*60);				
+				//$this->cache->save($keyName, $Data, $minutes*60);
+				$this->cache->memcached->save($keyName, $Data, $minutes*60);
+				
+				$keyList = $this->cache->memcached->get('keyList');
+				if($keyList != ''){
+					$keyList = json_decode($keyList);
+				}else{
+					$keyList = new stdClass();
+				}
+				$keyList->$keyName = 1;
+				
+				//存储1个月
+				
+				$this->cache->memcached->save('keyList', strtolower(json_encode($keyList)), 29*60*24);
+				
 			}else{
 				//echo '当前数据来于缓存...<br>';
 				$minutes = $APIData['cache'];			

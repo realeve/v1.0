@@ -174,14 +174,14 @@
 										</div>
 									</div-->
 									<div class="col-md-6 form-group">
-										<label class="control-label col-md-3">表面强度( 横 )正</label>
+										<label class="control-label col-md-3">表面强度正</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="sur_Strength_h_f">
 											<span class="help-block">>=2.5m/s</span>
 										</div>
 									</div>
 									<div class="col-md-6 form-group">
-										<label class="control-label col-md-3">表面强度( 横 )反</label>
+										<label class="control-label col-md-3">表面强度反</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="sur_Strength_h_b">
 											<span class="help-block">>=2.5m/s</span>
@@ -198,7 +198,7 @@
 										<label class="control-label col-md-3">油渗性正( 等级 )</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="oil_perme_f_lv">
-											<span class="help-block">( % )</span>
+											<span class="help-block">( 级 )</span>
 										</div>
 									</div>
 									<div class="col-md-6 form-group">
@@ -212,7 +212,7 @@
 										<label class="control-label col-md-3">油渗性反( 等级 )</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="oil_perme_b_lv">
-											<span class="help-block">( % )</span>
+											<span class="help-block">( 级 )</span>
 										</div>
 									</div>
 									<!--div class="col-md-6 form-group">

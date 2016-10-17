@@ -49,6 +49,10 @@ class DataInterfaceModel extends CI_Model {
 		$this->load->driver('cache',
 			array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
 		);
+
+		//断电后继续使用
+		$this->load->driver('cache');
+		$this->cache->memcached->is_supported();
 		//连接默认数据库(pconnect 长连接，默认数据库之外需关闭)
 		//$db['Quality']['pconnect'] = TRUE;
 		$this->LOGINDB['Quality'] = $this->load->database('Quality',TRUE);
@@ -433,7 +437,7 @@ class DataInterfaceModel extends CI_Model {
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
 
-			$this->delApcCacheByName($data['cacheName']);
+			$this->delMemcacheByName($data['cacheName']);
 			unset($data['cacheName']);
 		}
     return $LOGINDB->where($condition)->delete($tblName);
@@ -466,7 +470,7 @@ class DataInterfaceModel extends CI_Model {
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
 
-			$this->delApcCacheByName($data['cacheName']);
+			$this->delMemcacheByName($data['cacheName']);
 
 			unset($data['cacheName']);
 		}
