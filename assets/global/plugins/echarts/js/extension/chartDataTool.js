@@ -48,11 +48,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         console.log(e.responseText);
       }
     });
-    //处理品种 参数 p
-    if (strUrl.indexOf('p=') != -1) {
-      var pdtName = strUrl.split('&p=')[1].split('&')[0];
-      Data.title = pdtName.toUpperCase() + Data.title;
-    }
 
     return Data;
   }
@@ -2439,13 +2434,14 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     var returnData;
     if (typeof objRes.data !== 'undefined') {
       objRes.data = objRes.data;
-      //处理品种 参数 p
-      if (objRes.url.indexOf('p=') != -1) {
-        var pdtName = objRes.url.split('&p=')[1].split('&')[0];
-        objRes.data.title = pdtName.toUpperCase() + objRes.data.title;
-      }
     } else {
       objRes.data = getJsonFromUrl(objRes.url);
+    }
+
+    //处理品种 参数 p
+    if (objRes.url.indexOf('p=') != -1) {
+      var pdtName = objRes.url.split('&p=')[1].split('&')[0];
+      objRes.data.title = pdtName.toUpperCase() + objRes.data.title;
     }
 
     switch (objRes.type) {
@@ -3978,7 +3974,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return obj;
   }
 
-  function handleObjReauest(obj) {
+  function handleObjRequest(obj) {
 
     var defaultList = {
       symbolSize: 12,
@@ -4025,7 +4021,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
   var getOption = function(objRequest, echarts) {
     //处理默认数据
-    objRequest = handleObjReauest(objRequest);
+    objRequest = handleObjRequest(objRequest);
 
     Data = convertData(objRequest, echarts);
     //处理起始时间

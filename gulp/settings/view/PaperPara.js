@@ -26,6 +26,7 @@ var table = {
 		"../assets/global/plugins/jquery-validation/js/localization/messages_zh.js",
 		"../assets/global/plugins/bootstrap-toastr/toastr.js",
 		"../assets/pages/controller/idletimeout.js",
+		"../assets/global/plugins/jquery.form.js",
 		"../assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.js",
 		"../assets/global/plugins/echarts/js/ThemeStyle.js",
 		"../assets/global/plugins/require.min.js"

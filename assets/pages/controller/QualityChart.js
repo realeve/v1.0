@@ -359,7 +359,6 @@
          objRequest = getobjRequest(objList, i);
 
          objRequest.url = GetJsonUrl(objList.id[i], objRequest, i);
-
          //数据处理
          if (typeof curTheme.valueAxis !== 'undefined') {
            curTheme.valueAxis.splitArea.show = (objRequest.splitArea[i]) ? true : false;
@@ -368,12 +367,17 @@
          }
          //必须传颜色表，旭日图等自定义颜色的图表中需要使用
          objRequest.color = curTheme.color;
+         //异步调用
+         setOption(objRequest, i);
+       }
 
+       function setOption(objRequest, i) {
          $.ajax({
              url: objRequest.url
            })
            .done(function(data) {
              objRequest.data = $.parseJSON(data);
+
              if (objRequest.data.rows) {
                option[i][0] = chartDataTool.getOption(objRequest, echarts);
                handleChartData(i);
