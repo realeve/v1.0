@@ -110,11 +110,12 @@ var app = (function() {
 		startTimer();
 		if (key == 27) {
 			isFullScreen = false;
-		} else if (keyName != 'Control' &&
-			keyName != 'F12' &&
-			keyName != 'F5' &&
-			keyName != 'Alt') {
-			enterFullscreen();
+		} else if (key == 83) {
+			// } else if (keyName != 'Control' &&
+			// 	keyName != 'F12' &&
+			// 	keyName != 'F5' &&
+			// 	keyName != 'Alt') {
+			// 	enterFullscreen();
 		}
 	});
 
@@ -122,9 +123,11 @@ var app = (function() {
 	var fixImgFolder = function() {
 		//MD文件默认图片目录
 		var DEFAULT_SLIDE_IMG_CONTENT = $('section').first().attr('data-img-content') || 'markdown';
-		var obj = $('section [data-markdown-parsed="true"] img');
-		var imgSrc = obj.attr('src').replace('./', './' + DEFAULT_SLIDE_IMG_CONTENT + '/');
-		obj.attr('src', imgSrc);
+		var obj = $('section img');
+		if (obj.length) {
+			var imgSrc = obj.attr('src').replace('./', './' + DEFAULT_SLIDE_IMG_CONTENT + '/');
+			obj.attr('src', imgSrc);
+		}
 	};
 
 	var initSlide = function() {
@@ -142,7 +145,7 @@ var app = (function() {
 			control: {
 				type: 'postMessage',
 				args: {
-					isControl: false
+					isControl: true
 				}
 			},
 			tipID: 'tip'
