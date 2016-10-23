@@ -1,0 +1,12 @@
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=316&M=3&blob=25;26;27&cache=0.25
+//缓存15S
+//不能用缓存，有实时性限制
+
+
+//库管信息
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=285&M=3&cart=1620a255&cache=1440
+
+
+//当日产量
+
+http://10.8.2.133:70/DataInterface/Api?Token=79d84495ca776ccb523114a2120e273ca80b315b&ID=317&M=0&cart=1680A784&proc=%E8%83%B6%E5%8D%B0&cache=14400

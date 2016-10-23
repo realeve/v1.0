@@ -411,9 +411,6 @@ jQuery(document).ready(function() {
 	//RoundedTheme(0);
 	UIIdleTimeout.init();
 	initDashboardDaterange('YYYYMMDD');
-	initDom();
+	initDom(0);
 	feedback.init();
-});
-jQuery(window).resize(function() {
-	HeadFix();
 });

@@ -1,4 +1,4 @@
-    			<?php include("templates/themesetting.php");?>
+    			<!-- <?php include("templates/themesetting.php");?> -->
     			<!-- BEGIN PAGE HEADER 面包屑-->
     			<div class="page-bar">
     				<ul class="page-breadcrumb">
@@ -11,7 +11,7 @@
     						<i class="fa fa-circle"></i>
     					</li>
     					<li>
-    						<a href="#">质量信息反馈</a>
+    						<a href="#">质量信息反馈</a> <span class="badge badge-danger font-white"> 实废 </span> <span class="badge badge-info font-white"> 误废 </span> <span class="badge font-white"> 未判废 </span>
     					</li>
     				</ul>
 
@@ -23,12 +23,12 @@
     					</div>
     				</div>
     			</div>
-    			<h3 class="page-title"> 质量信息反馈
+    			<!-- <h3 class="page-title"> 质量信息反馈
                   <small> 数据来源：图像判废、机台作业、质量中心数据库 <span class="badge badge-danger"> 实废 </span> <span class="badge badge-info"> 误废 </span> <span class="badge"> 未判废 </span></small>
-              </h3>
+                </h3> -->
     			 <div class="portfolio-content portfolio-1">
                     <div class="clearfix">
-                        <div id="js-filters-juicy-projects2" class="cbp-l-filters-alignCenter">
+                        <div id="js-filters-juicy-projects2" class="cbp-l-filters-alignCenter margin-bottom-5">
                             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> 所有品种
                                 <div class="cbp-filter-counter"></div>
                             </div> /
@@ -48,7 +48,7 @@
                                 <div class="cbp-filter-counter"></div>
                             </div>
                         </div>
-                        <div id="js-filters-juicy-projects" class="cbp-l-filters-alignLeft cbp-l-filters-left">
+                        <div id="js-filters-juicy-projects" class="cbp-l-filters-alignLeft cbp-l-filters-left margin-bottom-5">
                             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item uppercase"> 所有图像
                                 (<div class="cbp-filter-counter"></div>)
                             </div>
@@ -62,7 +62,7 @@
                               (<div class="cbp-filter-counter"></div>)
                             </div>
                         </div>
-                        <div class="cbp-search cbp-l-filters-right">
+                        <div class="cbp-search cbp-l-filters-right margin-bottom-5">
                             <div class="input-icon right">
                                 <i class="icon-magnifier"></i>
                                 <input id="js-search-blog-posts" type="text" placeholder="输入以过滤" data-search="*" class="form-control input-circle uppercase">

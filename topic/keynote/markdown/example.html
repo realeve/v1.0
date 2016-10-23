@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example</title>
+	<style>
+		body{
+			margin:20px;
+		}
+		table {
+		    border-spacing: 0;
+		    border-collapse: collapse
+		}
+
+		td,
+		th {
+		    padding: 0
+		}
+		thead th,tr td{
+			border: 1px #777 solid;
+		}
+		.input{
+			margin-top: 20px;
+		}
+		.tips{
+			color:#777;font-size:8pt;
+		}
+		form{
+			margin-bottom: 90px;
+		}
+	</style>
+</head>
+<body>
+	<div>这是一个DIV</div>
+	<p>一段文字</p>
+	<h1 id="title">一级标题</h1>
+	<h2>二级标题</h2>
+	<h3>三级标题</h3>
+	<h4>四级标题</h4>
+	<h5>五级标题</h5>
+	<h6>六级标题</h6>
+
+	<ul>
+		<li>列表</li>
+		<li>列表</li>
+		<li>列表</li>
+		<li>列表</li>
+	</ul>
+	<ol>
+		<li>列表</li>
+		<li>列表</li>
+		<li>列表</li>
+		<li>列表</li>
+	</ol>
+	<hr>
+	<br>
+	<img src="image/2016-09-07-00-54-54.jpg" alt="文字的备注信息">
+	<p></p>
+	<a href="#title">这里一个超链接，点击会跳转到这里</a>.<strong>强调一段</strong><em>文字</em>，<span>这里不会换行</span>，而是<i>继续在本排输出</i>，除了以上之外还有<label>标签</label>。
+	<p>下面是一个表格(为了表述方便，包含了一些样式信息)</p>
+	<table>
+		<thead>
+			<th>表头1</th>
+			<th>表头2</th>
+			<th>表头3</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>内容</td>
+				<td>内容</td>
+				<td>内容</td>
+			</tr>
+			<tr>
+				<td>内容</td>
+				<td>内容</td>
+				<td>内容</td>
+			</tr>
+			<tr>
+				<td>内容</td>
+				<td>内容</td>
+				<td>内容</td>
+			</tr>
+			<tr>
+				<td>内容</td>
+				<td>内容</td>
+				<td>内容</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h2>以上就是信息显示中常用的标签了，下面的这些在表单中使用：</h2>
+
+	<form>
+		<div class="input">
+			<label for="input1">输入框：</label>
+			<input type="text" id="input1" placeholder="这里是输入框，输入文本信息">
+			<div><label class="tips">type="text"</label></div>
+		</div>
+		<div class="input">
+			<label for="input2">密码输入：</label>
+			<input type="password" id="input2" placeholder="这里是输入框，输入密码信息">
+			<div><label class="tips">type="password"</label></div>
+		</div>
+		<div class="input">
+			<label for="input3">复选框:</label>
+			<input type="checkbox" id="input3">
+			<input type="checkbox" id="input4">
+			<input type="checkbox" id="input5">
+			<div><label class="tips">type="checkbox"</label></div>
+		</div>
+		<div class="input">
+			<label for="input6">单选框:</label>
+			<input type="radio" name="input6">
+			<input type="radio" name="input6">
+			<input type="radio" name="input6">
+			<div><label class="tips">type="radio"</label></div>
+		</div>
+		<div class="input">
+			<label>选择框:</label>
+			<select name="select" id="select">
+				<option value="1">选项1</option>
+				<option value="2">选项2</option>
+				<option value="3">选项3</option>
+			</select>
+		</div>
+		<button type="submit">提交</button>
+	</form>
+
+</body>
+</html>

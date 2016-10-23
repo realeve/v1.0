@@ -1,0 +1,30 @@
+.timecount {
+     font-size: 30%;
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     border: 0;
+     z-index: 99;
+     padding: 2px;
+     background-color: #000;
+     opacity: 0.9;
+     color: #fff;
+ }
+#_slide_ {
+     font-size: 30%;
+     position: absolute;
+     bottom: 25px;
+     right: 10px;
+     border: 0;
+     z-index: 99;
+     padding: 2px;
+     background-color: #000;
+     opacity: 0.9;
+     color: #fff;
+ }
+ .fill,.fill>section,.fill>section>h1,.fill>section>h2,.fill>section>h3{
+ 	color:#E8F0F3;
+ }
+ .fill>section>h1,.fill>section>h2,.fill>section>h3{
+ 	text-shadow:none;
+ }

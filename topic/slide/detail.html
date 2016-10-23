@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>nodeppt markdown</title>
+<link rel="stylesheet" media="all" href="./css/nodeppt.css">
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="./css/phone.css">
+<link rel="stylesheet" href="./js/highlight/styles/monokai_sublime.css">
+<link rel="stylesheet" href="./css/font-awesome.css">
+<link rel="stylesheet" href="./css/theme.moon.css" id="theme">
+<link rel="stylesheet" href="./css/custom.css">
+</head>
+<body>
+	<span id="clock" class="timecount">00:00</span>
+	<slides class="slides" id="container">
+		<section data-separator="^\r\n----$" data-separator-vertical="^\r\n===$" data-separator-notes="^note:" data-img-content="markdown">
+		</section>
+	</slides>
+	<canvas id="drawBoard" class="draw-board" width="900" height="700"></canvas>
+	<div class="progress">
+		<span id="progress"></span>
+	</div>
+	<div id="_buttons">
+		<div class="_btn-box" id="_btn-box" style="display:none;">
+			<button class="fa fa-arrow-circle-left" id="_btn-prev"></button>
+			<button class="fa fa-arrow-circle-right" id="_btn-next"></button>
+			<button class="fa fa-paint-brush" id="_btn-brush"></button>
+			<button class="fa fa-compress" id="_btn-overview" data-toggle="fa fa-expand"></button>
+		</div>
+		<button class="fa fa-bars" id="_btn-bar" data-toggle="fa fa-close"></button>
+	</div>
+	<script src="./js/mixjs/lib/mix.0.3.0.min.js"></script>
+	<script>
+	var base = location.protocol + '//' + location.host;
+	var path = (location.pathname + '#').split('/').filter(function(v){
+			return !!v;
+	});
+	path.pop();
+	path = path.join('/');
+	MixJS.config({
+			baseURL: [ base, path, 'js'].join('/')+'/'
+	});
+	</script>
+	<script src="./js/mixjs/lib/event/broadcast.js"></script>
+	<script src="./js/nodeppt.js"></script>
+	<!--解析MD文件-->
+	<script src="./js/markdown/marked.js"></script>
+	<script src="./js/markdown/markdown.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/detail.js"></script>
+<!--placeholder-->
+</body>
+</html>

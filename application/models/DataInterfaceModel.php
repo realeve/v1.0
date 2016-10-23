@@ -479,14 +479,15 @@ class DataInterfaceModel extends CI_Model {
 	public function delApcCacheByName($name){
 		$dir = "./application/cache/";
 
-		$id = explode('id_',$name);
-		$id = explode('_',$id[1]);
+		$str = explode('id_',$name);
+		$str = explode('_',$str[1]);
+		$id = $str[0];
 
 		if (is_dir($dir)){
 			if ($dh = opendir($dir)){
 				while (($file = readdir($dh)) !== false){
-					$file = strtolower($file);
-					if($file!='.' && $file!='..' && strstr($file,"api_data_") && strstr($file,"_id_".$id) ){
+					$file = strtolower($file);//&& strstr($file,"api_data_")
+					if($file!='.' && $file!='..'  && strstr($file,"_id_".$id) ){
 						unlink($dir.$file);
 					}
 				}

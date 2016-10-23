@@ -814,7 +814,7 @@ var search = function() {
 		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&ID=312&cart=" + cartNo;
 		//var testUrl = '../topic/testData/codetype.json';
 		$.ajax({
-				url: url//testUrl
+				url: url //testUrl
 			})
 			.done(function(data) {
 				data = $.parseJSON(data);
@@ -829,7 +829,7 @@ var search = function() {
 		cartInfo = {};
 		$('[name="cartName"]').text(data.data[0].CartNumber);
 		cartInfo = data.data[0];
-		cartInfo.imgUrl = getRootPath(1) + "/search/fakeImg/#" + cartInfo.CartNumber;
+		cartInfo.imgUrl = getRootPath(1) + "/search/image/#" + cartInfo.CartNumber;
 
 		//追加星期信息
 		data.data.map(function(item, i) {

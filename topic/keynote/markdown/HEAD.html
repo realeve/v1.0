@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta name="renderer" content="webkit"/>
+    <title>简介</title>
+    <link rel="stylesheet" href="data:text/css;base64,CiAgICA6Oi13ZWJraXQtc2Nyb2xsYmFyIHsKICAgICAgICB3aWR0aDo4cHg7CiAgICAgICAgbWFyZ2luOjAgMXB4OwogICAgICAgIGJhY2tncm91bmQ6ICNmZGZkZmQ7CiAgICB9CiAgICA6Oi13ZWJraXQtc2Nyb2xsYmFyOmhvcml6b250YWx7CiAgICAgICAgaGVpZ2h0OiA4cHg7CiAgICB9CgogICAgOjotd2Via2l0LXNjcm9sbGJhci1idXR0b257CiAgICAgICAgaGVpZ2h0OiAwOwogICAgfQoKICAgIDo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2sgewogICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDsKICAgIH0KICAgIDo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2stcGllY2UgewogICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmZGZkZmQ7CiAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4OwogICAgfQogICAgOjotd2Via2l0LXNjcm9sbGJhci10aHVtYiB7CiAgICAgICAgd2lkdGg6OHB4OwogICAgICAgIG1hcmdpbjogMCAxcHg7CiAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4OwogICAgICAgIGJhY2tncm91bmQ6ICNjNGM0YzQ7CiAgICB9CiAgICA6Oi13ZWJraXQtc2Nyb2xsYmFyLXRodW1iOmhvdmVyIHsKICAgICAgICBiYWNrZ3JvdW5kOiAjOTA5MDkwOwogICAgfQoKCgoKICAgIGJvZHkgewogICAgICAgIGJhY2tncm91bmQ6ICNmZmZmZmY7CiAgICAgICAgZm9udC1zaXplOiAxOHB4OwogICAgICAgIGxpbmUtaGVpZ2h0OjIuMTAyNTsKICAgICAgICBmb250LWZhbWlseTog5b6u6L2v6ZuF6buROwogICAgICAgIGZvbnQtd2VpZ2h0OiBub3JtYWw7CiAgICAgICAgY29sb3I6ICMzNDQ5NWU7CiAgICAgICAgcGFkZGluZzogMCAzOHB4OwogICAgICAgIG1heC13aWR0aDogODIwcHg7CiAgICAgICAgbWFyZ2luOiAwIGF1dG87CiAgICAgICAgd29yZC13cmFwOmJyZWFrLXdvcmQ7CgogICAgICAgIG92ZXJmbG93LXg6IGhpZGRlbjsKICAgICAgICB0ZXh0LXJlbmRlcmluZzogb3B0aW1pemVMZWdpYmlsaXR5OwogICAgICAgIC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogbm9uZTsKICAgIH0KCiAgICBicnsKICAgICAgICBsaW5lLWhlaWdodDogMi4xMDI1OwogICAgfQoKCgogICAgQG1lZGlhIChtYXgtd2lkdGg6IDYwMHB4KSB7CiAgICAgICAgYm9keXsKICAgICAgICAgICAgcGFkZGluZzogMCAzMHB4OwogICAgICAgIH0KICAgIH0KCiAgICBAbWVkaWEgKG1heC13aWR0aDogNDgwcHgpIHsKICAgICAgICBib2R5ewogICAgICAgICAgICBwYWRkaW5nOiAwIDIwcHg7CiAgICAgICAgfQogICAgfQoKICAgIC5naXN0ewogICAgICAgIHdvcmQtYnJlYWs6IG5vcm1hbDsKICAgIH0KCiAgICAucG9zdHsKICAgICAgICBtYXJnaW4tdG9wOiAxMHB4OwogICAgICAgIG1hcmdpbi1ib3R0b206IDUwcHg7CiAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgfQoKCgogICAgaW1newogICAgICAgIG1heC13aWR0aDogOTglOwogICAgICAgIG1hcmdpbjogMC44ZW0gYXV0byAwLjhlbSBhdXRvOwogICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDsKICAgIH0KCiAgICBoMSBpbWcsIGgyIGltZywgaDMgaW1nLCBoNCBpbWcsIGg1IGltZywgaDYgaW1newogICAgICAgIG1hcmdpbjogYXV0bzsKICAgIH0KCiAgICAueDJfaW1hZ2V7CiAgICAgICAgem9vbTogNTAlOwogICAgfQoKICAgIC54M19pbWFnZXsKICAgICAgICB6b29tOiAzMy4zMyU7CiAgICB9CgogICAgLng0X2ltYWdlewogICAgICAgIHpvb206IDI1JTsKICAgIH0KCgogICAgcCBpbWd7CiAgICAgICAgbWFyZ2luOiAwIGF1dG87CiAgICB9CgogICAgcHsKICAgICAgICB3b3JkLXdyYXA6YnJlYWstd29yZDsKICAgICAgICBvdmVyZmxvdzpoaWRkZW47CiAgICAgICAgbWFyZ2luOiAxLjVlbSAwOwogICAgfQoKICAgIGxpIHB7CiAgICAgICAgbGluZS1oZWlnaHQ6IDEuODg1OwogICAgICAgIG1hcmdpbjogMDsKICAgIH0KCiAgICAucF9wYXJ0IHsKICAgICAgICBtYXJnaW46IDEwcHggMDsKICAgIH0KCiAgICAucF9wYXJ0IHB7CiAgICAgICAgbWFyZ2luOiAwIDAgMC42ZW0gMDsKICAgIH0KCiAgICAvKiB0ZXh0IGluZGVudCBmb3IgY2hpbmVzZSBzdGFydHMqLwogICAgLypoMiwgaDMsIGg0LCBoNSwgaDYsIC5wX3BhcnQgcCwgLnRvZG9faXRlbSwgcHsKICAgICAgICB0ZXh0LWluZGVudDogMzZweDsKICAgIH0qLwogICAgdGFibGUsIHByZSwgc3ZnLCAuY29kZWhpbGl0ZXRhYmxlewogICAgICAgIG1hcmdpbi1sZWZ0OiAzNnB4OwogICAgICAgIG1hcmdpbi1yaWdodDogMzZweDsKICAgIH0KCiAgICAuY29kZWhpbGl0ZXRhYmxlIHByZXsKICAgICAgICBtYXJnaW4tbGVmdDogMDsKICAgICAgICBtYXJnaW4tcmlnaHQ6IDA7CgogICAgfQoKICAgIC5jb2RlaGlsaXRldGFibGUgLmNvZGVoaWxpdGUgcHJlewogICAgICAgIGJvcmRlci1sZWZ0OiBub25lOwogICAgfQoKICAgIC8qIHRleHQgaW5kZW50IGZvciBjaGluZXNlIGVuZHMqLwoKCiAgICBibG9ja3F1b3RlIC5wX3BhcnQgcCwgbGkgLnBfcGFydCBwewogICAgICAgIHRleHQtaW5kZW50OiAwICFpbXBvcnRhbnQ7CiAgICB9CgoKICAgIGhyewogICAgICAgIG1hcmdpbjogMzhweCAwOwogICAgICAgIGJvcmRlcjogbm9uZTsKICAgICAgICBib3JkZXItYm90dG9tOiAxcHggZGFzaGVkICNlM2UzZTM7CiAgICAgICAgY29sb3I6ICNlM2UzZTM7CiAgICAgICAgaGVpZ2h0OiAxcHg7CiAgICAgICAgbGluZS1oZWlnaHQ6MXB4OwogICAgICAgIGZvbnQtc2l6ZToxcHg7CiAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjsKICAgIH0KCgogICAgaDF7CiAgICAgICAgY29sb3I6ICMyYzNlNTA7CiAgICAgICAgZm9udC1zaXplOiAxLjdlbTsKICAgICAgICB0ZXh0LWFsaWduOiBsZWZ0OwogICAgICAgIG1hcmdpbjogMDsKICAgICAgICBwYWRkaW5nOiAwOwogICAgICAgIGxpbmUtaGVpZ2h0OiAxLjZlbTsKICAgICAgICBtYXJnaW4tdG9wOiAwLjhlbTsKICAgICAgICBtYXJnaW4tYm90dG9tOiAwLjZlbTsKICAgIH0KCiAgICBoMSwgaDIsIGgzLCBoNHsKICAgICAgICBjb2xvcjogIzJjM2U1MDsKICAgIH0KCiAgICBoMSwgaDIsIGgzewogICAgICAgIGZvbnQtd2VpZ2h0OiBub3JtYWw7CiAgICB9CgogICAgaDIsIGgzewogICAgICAgIGxpbmUtaGVpZ2h0OiAxLjVlbTsKICAgICAgICBtYXJnaW4tdG9wOiAxLjVlbTsKICAgICAgICBtYXJnaW4tYm90dG9tOiAwLjhlbTsKICAgIH0KCiAgICBoMiB7CiAgICAgICAgZm9udC1zaXplOiAxLjQ1ZW07CiAgICB9CgogICAgaDMgewogICAgICAgIGZvbnQtc2l6ZTogMS4yNWVtCiAgICB9CgoKICAgIG9sIHsKICAgICAgICBtYXJnaW46IDA7CiAgICB9CgogICAgdWx7CiAgICAgICAgcGFkZGluZzogNXB4IDM4cHg7CiAgICAgICAgbWFyZ2luOiAwOwogICAgfQoKICAgIHVsIGxpLCBsaXsKICAgICAgICBwYWRkaW5nOiAwOwogICAgICAgIG1hcmdpbjogMDsKICAgIH0KCiAgICB1bCBwLCBvbCBwewogICAgICAgIG92ZXJmbG93OiB2aXNpYmxlOwogICAgfQoKCiAgICBibG9ja3F1b3RlIHsKICAgICAgICAtbW96LWJveC1zaXppbmc6IGJvcmRlci1ib3g7CiAgICAgICAgYm94LXNpemluZzogYm9yZGVyLWJveDsKICAgICAgICBtYXJnaW46IDEuNmVtIDA7CiAgICAgICAgcGFkZGluZzogMCAwIDAgMS4yZW07CiAgICAgICAgYm9yZGVyLWxlZnQ6IDAuNGVtIHNvbGlkICMxNmIwZmY7CiAgICAgICAgY29sb3I6ICM4ODg4ODg7CiAgICAgICAgbWluLWhlaWdodDoyMHB4OwogICAgfQoKCiAgICBibG9ja3F1b3RlIHAgewogICAgICAgIG1hcmdpbjogMC44ZW0gMDsKICAgIH0KCiAgICBibG9ja3F1b3RlIHNwYW4ubWRfbGluZSB7CiAgICAgICAgbWFyZ2luLWJvdHRvbTogMC4yNWVtOwogICAgICAgIG1hcmdpbi10b3A6IDAuMjVlbTsKICAgIH0KCiAgICBibG9ja3F1b3RlIHVsewogICAgICAgIHBhZGRpbmc6IDAgMTVweDsKICAgIH0KCiAgICBibG9ja3F1b3RlIHNtYWxsIHsKICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7CiAgICAgICAgbWFyZ2luOiAwLjhlbSAwIDAuOGVtIDEuNWVtOwogICAgICAgIGZvbnQtc2l6ZTogMC45ZW07CiAgICAgICAgY29sb3I6ICNjY2M7CiAgICB9CgoKCiAgICB0YWJsZSB7CiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7CiAgICAgICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsKICAgICAgICBib3JkZXItc3BhY2luZzogMDsKICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAjZDlkOWQ5OwogICAgICAgIGJvcmRlci1sZWZ0OiAwOwogICAgICAgIG1hcmdpbi10b3A6IDIwcHg7CiAgICAgICAgbWFyZ2luLWJvdHRvbTogMjBweDsKICAgIH0KCgogICAgdGgsIHRkIHsKICAgICAgICBib3JkZXItbGVmdDogMXB4IHNvbGlkICNkOWQ5ZDk7CiAgICAgICAgcGFkZGluZzogOHB4OwogICAgICAgIGxpbmUtaGVpZ2h0OiAyMHB4OwogICAgICAgIHRleHQtYWxpZ246IGxlZnQ7CiAgICAgICAgdmVydGljYWwtYWxpZ246IHRvcDsKICAgICAgICBib3JkZXItdG9wOiAxcHggc29saWQgI2Q5ZDlkOTsKICAgIH0KCgoKCiAgICBjb2RlewogICAgICAgIGJhY2tncm91bmQ6ICNmNWY1ZjU7CiAgICAgICAgcGFkZGluZzogMCA1cHg7CiAgICAgICAgbWFyZ2luOiAwIDJweDsKICAgIH0KCiAgICBwcmV7CiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2U2ZTZlNjsKICAgICAgICBtYXJnaW4tdG9wOiAxLjJlbTsKICAgICAgICBtYXJnaW4tYm90dG9tOiAxLjJlbTsKICAgICAgICBwYWRkaW5nOiAxNXB4IDEwcHg7CiAgICAgICAgZGlzcGxheTogYmxvY2s7CiAgICAgICAgb3ZlcmZsb3c6IGF1dG87CiAgICAgICAgYmFja2dyb3VuZDogI2Y3ZjdmNzsKICAgICAgICBmb250LXNpemU6IDkwJTsKICAgIH0KCiAgICAud2l0aF9saW5lcyBwcmV7CiAgICAgICAgYm9yZGVyOm5vbmU7CiAgICAgICAgbWFyZ2luLXRvcDogMC4yZW07CiAgICAgICAgbWFyZ2luLWJvdHRvbTogMC4yZW07CiAgICAgICAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7CiAgICB9CgogICAgLmlzX2NvZGVfZmlsZSBwcmV7CiAgICAgICAgYm9yZGVyOiBub25lOwogICAgICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC5jb2RlaGlsaXRlIHByZXsKICAgICAgICB3b3JkLXdyYXA6IG5vcm1hbDsKICAgIH0KCiAgICBwcmUgY29kZXsKICAgICAgICBib3JkZXI6bm9uZTsKICAgICAgICBiYWNrZ3JvdW5kOiBub25lOwogICAgICAgIHBhZGRpbmc6IDA7CiAgICAgICAgbWFyZ2luOiAwOwogICAgfQoKICAgIHByZSBwewogICAgICAgIG1hcmdpbjogMDsKICAgICAgICBwYWRkaW5nOiAwOwogICAgfQoKICAgIC5jb2RlaGlsaXRlIHRoLCAuY29kZWhpbGl0ZSB0ZHsKICAgICAgICBsaW5lLWhlaWdodDogMS44ZW07CiAgICB9CgoKICAgIGF7CiAgICAgICAgY29sb3I6ICMyMDhkNWY7CiAgICAgICAgdGV4dC1kZWNvcmF0aW9uOiBub25lOwogICAgICAgIC8vYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHRyYW5zcGFyZW50OwogICAgfQoKICAgIGE6aG92ZXJ7CiAgICAgICAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7CiAgICAgICAgLy9ib3JkZXItYm90dG9tOiAxcHggc29saWQgIzIwOGQ1ZjsKICAgIH0KCiAgICBzdHJvbmcgewogICAgICAgIGNvbG9yOiAjMzQ0OTVlOwogICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkOwogICAgfQoKCiAgICAvKiBmb3IgbWFya2Rvd24gKi8KCiAgICAubGluZW5vcyBwcmV7CgkJYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7CgkJYm9yZGVyOiBub25lOwoJfQoJLyoKCS5saW5lbm9zewoJICAgIHBhZGRpbmc6IDAgMCAwIDEwcHg7Cgl9CgkqLwoKICAgIC50b2N7CiAgICAgICAgYmFja2dyb3VuZDogI2ZkZmRmZDsKICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7CiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2U2ZTZlNjsKICAgICAgICBtYXJnaW46IDI3cHggMCA0N3B4IDA7CiAgICAgICAgcGFkZGluZzogMTBweCAwOwogICAgfQoKICAgIC50b2MgdWx7CiAgICAgICAgLy9wYWRkaW5nOiA1cHggNDJweDsKICAgIH0KCiAgICAudG9jIHVsIGxpewogICAgICAgIHBhZGRpbmc6IDA7CiAgICAgICAgbWFyZ2luOiAwOwogICAgfQogICAgLnRvYyBhewogICAgICAgIGNvbG9yOiAjMzQ0OTVlOwogICAgfQoKCgogICAgLnRvZG9faXRlbXsKICAgICAgICBsaXN0LXN0eWxlOiBub25lOwogICAgICAgIG1hcmdpbi1sZWZ0OiAtMS41ZW0KICAgIH0KICAgIC50b2RvX2l0ZW0gLnRvZG9faXRlbSB7CiAgICAgICAgbWFyZ2luLWxlZnQ6IGF1dG87CiAgICB9CgogICAgLnRvZG9fZG9uZV9pdGVtewogICAgICAgIGNvbG9yOiAjOTk5OTk5OwogICAgfQoKICAgIC50b2RvX3VuZG9uZV9pdGVtewogICAgICAgIGNvbG9yOiAjYzg1YTU3OwogICAgfQoKCiAgICB1bCBsaS50b2RvX2l0ZW17CglsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgdWwgbGkudG9kb19pdGVtOmJlZm9yZXsKICAgICAgICBjb250ZW50OiAnXDI3MTUnOwogICAgICAgIHBhZGRpbmctcmlnaHQ6IDAuN2VtOwogICAgICAgIGZvbnQtZmFtaWx5OiBhcmlhbDsKICAgIH0KCiAgICB1bCBsaS50b2RvX2RvbmVfaXRlbTpiZWZvcmV7CiAgICAgICAgY29udGVudDogJ1wyNzEzJzsKICAgICAgICBwYWRkaW5nLXJpZ2h0OiAwLjdlbTsKICAgICAgICBmb250LWZhbWlseTogYXJpYWw7CiAgICB9CgogICAgdWwgbGkudG9kb19pdGVtIGlucHV0ewogICAgICAgIGRpc3BsYXk6bm9uZQogICAgfQoKCiAgICAvKnB5Z21lbnRzKi8KCiAgICAuY29kZWhpbGl0ZXsKICAgICAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudCAhaW1wb3J0YW50OwogICAgfQoKICAgIHRhYmxlLmNvZGVoaWxpdGV0YWJsZXsgYm9yZGVyOm5vbmU7IH0KCgogICAgLmNvZGVoaWxpdGV0YWJsZSB0ZHsgYm9yZGVyOiBub25lOyBwYWRkaW5nOiAwO30KCiAgICAuZmxvdy1ncmFwaGlje3RleHQtYWxpZ246IGNlbnRlcn0KCgogICAgdGFibGUsIHRyLCB0ZCwgdGgsIHRib2R5LCB0aGVhZCwgdGZvb3QsIC5tZF9lY2hhcnRzLCBibG9ja3F1b3RlIC5tZF9saW5lewogICAgICAgIHBhZ2UtYnJlYWstaW5zaWRlOiBhdm9pZCAhaW1wb3J0YW50OwogICAgfQoKICAgIC5mb290bm90ZXMgLm1kX2xpbmV7CiAgICAgICAgZGlzcGxheTogaW5saW5lICFpbXBvcnRhbnQ7CiAgICB9CgoKICAgIC5pbWdfcnRfOTB7CiAgICAgICAgdHJhbnNmb3JtOnJvdGF0ZSg5MGRlZyk7CiAgICAgICAgLW1zLXRyYW5zZm9ybTpyb3RhdGUoOTBkZWcpOwogICAgICAgIC1tb3otdHJhbnNmb3JtOnJvdGF0ZSg5MGRlZyk7CiAgICAgICAgLXdlYmtpdC10cmFuc2Zvcm06cm90YXRlKDkwZGVnKTsKICAgICAgICAtby10cmFuc2Zvcm06cm90YXRlKDkwZGVnKTsKICAgIH0KICAgIC5pbWdfcnRfMTgwewogICAgICAgIHRyYW5zZm9ybTpyb3RhdGUoMTgwZGVnKTsKICAgICAgICAtbXMtdHJhbnNmb3JtOnJvdGF0ZSgxODBkZWcpOwogICAgICAgIC1tb3otdHJhbnNmb3JtOnJvdGF0ZSgxODBkZWcpOwogICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOnJvdGF0ZSgxODBkZWcpOwogICAgICAgIC1vLXRyYW5zZm9ybTpyb3RhdGUoMTgwZGVnKTsKICAgIH0KICAgIC5pbWdfcnRfMjcwewogICAgICAgIHRyYW5zZm9ybTpyb3RhdGUoMjcwZGVnKTsKICAgICAgICAtbXMtdHJhbnNmb3JtOnJvdGF0ZSgyNzBkZWcpOwogICAgICAgIC1tb3otdHJhbnNmb3JtOnJvdGF0ZSgyNzBkZWcpOwogICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOnJvdGF0ZSgyNzBkZWcpOwogICAgICAgIC1vLXRyYW5zZm9ybTpyb3RhdGUoMjcwZGVnKTsKICAgIH0KCiAgICAubWRfaGFzX2Jsb2NrX2JlbG93ewogICAgICAgIG1hcmdpbi1ib3R0b206IDAuMWVtICFpbXBvcnRhbnQ7CiAgICB9CiAgICAubWRfaGFzX2Jsb2NrX2JlbG93X2ltZ3sKICAgICAgICBtYXJnaW4tYm90dG9tOiAtMC42ZW0gIWltcG9ydGFudDsKICAgIH0KCgoKICAgICAgICBwLm1kX2Jsb2NreyB9CiAgICAgICAgc3Bhbi5tZF9saW5le3RleHQtaW5kZW50OiAzNnB4OyBkaXNwbGF5OmJsb2NrOyBtYXJnaW4tYm90dG9tOjAuNWVtOyBsaW5lLWhlaWdodDoxLjgxODY2MjU7IH0KICAgICAgICBsaSAubWRfbGluZXsKICAgICAgICAgICAgdGV4dC1pbmRlbnQ6IDA7IGRpc3BsYXk6IGlubGluZTsgcGFkZGluZzogMDsKICAgICAgICB9CiAgICAgICAgLm1kX2xpbmUgYnJ7IGRpc3BsYXk6IG5vbmU7fQogICAgICAgIC5jb2RlaGlsaXRlIC5obGwgeyBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmNjIH0KLmNvZGVoaWxpdGUgIHsgYmFja2dyb3VuZDogI2VlZWVkZDsgfQouY29kZWhpbGl0ZSAuYyB7IGNvbG9yOiAjOTk5OTk5IH0gLyogQ29tbWVudCAqLwouY29kZWhpbGl0ZSAuZXJyIHsgY29sb3I6ICNhNjE3MTc7IGJhY2tncm91bmQtY29sb3I6ICNlM2QyZDIgfSAvKiBFcnJvciAqLwouY29kZWhpbGl0ZSAuayB7IGNvbG9yOiAjOEIwMDhCOyBmb250LXdlaWdodDogYm9sZCB9IC8qIEtleXdvcmQgKi8KLmNvZGVoaWxpdGUgLm4geyBjb2xvcjogIzU1NTU1NSB9IC8qIE5hbWUgKi8KLmNvZGVoaWxpdGUgLm8geyBjb2xvcjogIzU1NTU1NSB9IC8qIE9wZXJhdG9yICovCi5jb2RlaGlsaXRlIC5wIHsgY29sb3I6ICM1NTU1NTUgfSAvKiBQdW5jdHVhdGlvbiAqLwouY29kZWhpbGl0ZSAuY2ggeyBjb2xvcjogIzk5OTk5OSB9IC8qIENvbW1lbnQuSGFzaGJhbmcgKi8KLmNvZGVoaWxpdGUgLmNtIHsgY29sb3I6ICM5OTk5OTkgfSAvKiBDb21tZW50Lk11bHRpbGluZSAqLwouY29kZWhpbGl0ZSAuY3AgeyBjb2xvcjogIzFlODg5YiB9IC8qIENvbW1lbnQuUHJlcHJvYyAqLwouY29kZWhpbGl0ZSAuY3BmIHsgY29sb3I6ICM5OTk5OTkgfSAvKiBDb21tZW50LlByZXByb2NGaWxlICovCi5jb2RlaGlsaXRlIC5jMSB7IGNvbG9yOiAjOTk5OTk5IH0gLyogQ29tbWVudC5TaW5nbGUgKi8KLmNvZGVoaWxpdGUgLmNzIHsgY29sb3I6ICM4QjAwOEI7IGZvbnQtd2VpZ2h0OiBib2xkIH0gLyogQ29tbWVudC5TcGVjaWFsICovCi5jb2RlaGlsaXRlIC5nZCB7IGNvbG9yOiAjYWEwMDAwIH0gLyogR2VuZXJpYy5EZWxldGVkICovCi5jb2RlaGlsaXRlIC5nZSB7IGZvbnQtc3R5bGU6IGl0YWxpYyB9IC8qIEdlbmVyaWMuRW1waCAqLwouY29kZWhpbGl0ZSAuZ3IgeyBjb2xvcjogI2FhMDAwMCB9IC8qIEdlbmVyaWMuRXJyb3IgKi8KLmNvZGVoaWxpdGUgLmdoIHsgY29sb3I6ICMwMDAwODA7IGZvbnQtd2VpZ2h0OiBib2xkIH0gLyogR2VuZXJpYy5IZWFkaW5nICovCi5jb2RlaGlsaXRlIC5naSB7IGNvbG9yOiAjMDBhYTAwIH0gLyogR2VuZXJpYy5JbnNlcnRlZCAqLwouY29kZWhpbGl0ZSAuZ28geyBjb2xvcjogIzg4ODg4OCB9IC8qIEdlbmVyaWMuT3V0cHV0ICovCi5jb2RlaGlsaXRlIC5ncCB7IGNvbG9yOiAjNTU1NTU1IH0gLyogR2VuZXJpYy5Qcm9tcHQgKi8KLmNvZGVoaWxpdGUgLmdzIHsgZm9udC13ZWlnaHQ6IGJvbGQgfSAvKiBHZW5lcmljLlN0cm9uZyAqLwouY29kZWhpbGl0ZSAuZ3UgeyBjb2xvcjogIzgwMDA4MDsgZm9udC13ZWlnaHQ6IGJvbGQgfSAvKiBHZW5lcmljLlN1YmhlYWRpbmcgKi8KLmNvZGVoaWxpdGUgLmd0IHsgY29sb3I6ICNhYTAwMDAgfSAvKiBHZW5lcmljLlRyYWNlYmFjayAqLwouY29kZWhpbGl0ZSAua2MgeyBjb2xvcjogIzhCMDA4QjsgZm9udC13ZWlnaHQ6IGJvbGQgfSAvKiBLZXl3b3JkLkNvbnN0YW50ICovCi5jb2RlaGlsaXRlIC5rZCB7IGNvbG9yOiAjOEIwMDhCOyBmb250LXdlaWdodDogYm9sZCB9IC8qIEtleXdvcmQuRGVjbGFyYXRpb24gKi8KLmNvZGVoaWxpdGUgLmtuIHsgY29sb3I6ICM4QjAwOEI7IGZvbnQtd2VpZ2h0OiBib2xkIH0gLyogS2V5d29yZC5OYW1lc3BhY2UgKi8KLmNvZGVoaWxpdGUgLmtwIHsgY29sb3I6ICM4QjAwOEI7IGZvbnQtd2VpZ2h0OiBib2xkIH0gLyogS2V5d29yZC5Qc2V1ZG8gKi8KLmNvZGVoaWxpdGUgLmtyIHsgY29sb3I6ICM4QjAwOEI7IGZvbnQtd2VpZ2h0OiBib2xkIH0gLyogS2V5d29yZC5SZXNlcnZlZCAqLwouY29kZWhpbGl0ZSAua3QgeyBjb2xvcjogI2E3YTdhNzsgZm9udC13ZWlnaHQ6IGJvbGQgfSAvKiBLZXl3b3JkLlR5cGUgKi8KLmNvZGVoaWxpdGUgLm0geyBjb2xvcjogI0I0NTJDRCB9IC8qIExpdGVyYWwuTnVtYmVyICovCi5jb2RlaGlsaXRlIC5zIHsgY29sb3I6ICNDRDU1NTUgfSAvKiBMaXRlcmFsLlN0cmluZyAqLwouY29kZWhpbGl0ZSAubmEgeyBjb2xvcjogIzY1OGIwMCB9IC8qIE5hbWUuQXR0cmlidXRlICovCi5jb2RlaGlsaXRlIC5uYiB7IGNvbG9yOiAjNjU4YjAwIH0gLyogTmFtZS5CdWlsdGluICovCi5jb2RlaGlsaXRlIC5uYyB7IGNvbG9yOiAjMDA4YjQ1OyBmb250LXdlaWdodDogYm9sZCB9IC8qIE5hbWUuQ2xhc3MgKi8KLmNvZGVoaWxpdGUgLm5vIHsgY29sb3I6ICMwMDY4OEIgfSAvKiBOYW1lLkNvbnN0YW50ICovCi5jb2RlaGlsaXRlIC5uZCB7IGNvbG9yOiAjNzA3YTdjIH0gLyogTmFtZS5EZWNvcmF0b3IgKi8KLmNvZGVoaWxpdGUgLm5pIHsgY29sb3I6ICM1NTU1NTUgfSAvKiBOYW1lLkVudGl0eSAqLwouY29kZWhpbGl0ZSAubmUgeyBjb2xvcjogIzAwOGI0NTsgZm9udC13ZWlnaHQ6IGJvbGQgfSAvKiBOYW1lLkV4Y2VwdGlvbiAqLwouY29kZWhpbGl0ZSAubmYgeyBjb2xvcjogIzAwOGI0NSB9IC8qIE5hbWUuRnVuY3Rpb24gKi8KLmNvZGVoaWxpdGUgLm5sIHsgY29sb3I6ICM1NTU1NTUgfSAvKiBOYW1lLkxhYmVsICovCi5jb2RlaGlsaXRlIC5ubiB7IGNvbG9yOiAjMDA4YjQ1OyB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZSB9IC8qIE5hbWUuTmFtZXNwYWNlICovCi5jb2RlaGlsaXRlIC5ueCB7IGNvbG9yOiAjNTU1NTU1IH0gLyogTmFtZS5PdGhlciAqLwouY29kZWhpbGl0ZSAucHkgeyBjb2xvcjogIzU1NTU1NSB9IC8qIE5hbWUuUHJvcGVydHkgKi8KLmNvZGVoaWxpdGUgLm50IHsgY29sb3I6ICM4QjAwOEI7IGZvbnQtd2VpZ2h0OiBib2xkIH0gLyogTmFtZS5UYWcgKi8KLmNvZGVoaWxpdGUgLm52IHsgY29sb3I6ICMwMDY4OEIgfSAvKiBOYW1lLlZhcmlhYmxlICovCi5jb2RlaGlsaXRlIC5vdyB7IGNvbG9yOiAjOEIwMDhCIH0gLyogT3BlcmF0b3IuV29yZCAqLwouY29kZWhpbGl0ZSAudyB7IGNvbG9yOiAjYmJiYmJiIH0gLyogVGV4dC5XaGl0ZXNwYWNlICovCi5jb2RlaGlsaXRlIC5tYiB7IGNvbG9yOiAjQjQ1MkNEIH0gLyogTGl0ZXJhbC5OdW1iZXIuQmluICovCi5jb2RlaGlsaXRlIC5tZiB7IGNvbG9yOiAjQjQ1MkNEIH0gLyogTGl0ZXJhbC5OdW1iZXIuRmxvYXQgKi8KLmNvZGVoaWxpdGUgLm1oIHsgY29sb3I6ICNCNDUyQ0QgfSAvKiBMaXRlcmFsLk51bWJlci5IZXggKi8KLmNvZGVoaWxpdGUgLm1pIHsgY29sb3I6ICNCNDUyQ0QgfSAvKiBMaXRlcmFsLk51bWJlci5JbnRlZ2VyICovCi5jb2RlaGlsaXRlIC5tbyB7IGNvbG9yOiAjQjQ1MkNEIH0gLyogTGl0ZXJhbC5OdW1iZXIuT2N0ICovCi5jb2RlaGlsaXRlIC5zYiB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuQmFja3RpY2sgKi8KLmNvZGVoaWxpdGUgLnNjIHsgY29sb3I6ICNDRDU1NTUgfSAvKiBMaXRlcmFsLlN0cmluZy5DaGFyICovCi5jb2RlaGlsaXRlIC5zZCB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuRG9jICovCi5jb2RlaGlsaXRlIC5zMiB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuRG91YmxlICovCi5jb2RlaGlsaXRlIC5zZSB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuRXNjYXBlICovCi5jb2RlaGlsaXRlIC5zaCB7IGNvbG9yOiAjMWM3ZTcxOyBmb250LXN0eWxlOiBpdGFsaWMgfSAvKiBMaXRlcmFsLlN0cmluZy5IZXJlZG9jICovCi5jb2RlaGlsaXRlIC5zaSB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuSW50ZXJwb2wgKi8KLmNvZGVoaWxpdGUgLnN4IHsgY29sb3I6ICNjYjZjMjAgfSAvKiBMaXRlcmFsLlN0cmluZy5PdGhlciAqLwouY29kZWhpbGl0ZSAuc3IgeyBjb2xvcjogIzFjN2U3MSB9IC8qIExpdGVyYWwuU3RyaW5nLlJlZ2V4ICovCi5jb2RlaGlsaXRlIC5zMSB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuU2luZ2xlICovCi5jb2RlaGlsaXRlIC5zcyB7IGNvbG9yOiAjQ0Q1NTU1IH0gLyogTGl0ZXJhbC5TdHJpbmcuU3ltYm9sICovCi5jb2RlaGlsaXRlIC5icCB7IGNvbG9yOiAjNjU4YjAwIH0gLyogTmFtZS5CdWlsdGluLlBzZXVkbyAqLwouY29kZWhpbGl0ZSAudmMgeyBjb2xvcjogIzAwNjg4QiB9IC8qIE5hbWUuVmFyaWFibGUuQ2xhc3MgKi8KLmNvZGVoaWxpdGUgLnZnIHsgY29sb3I6ICMwMDY4OEIgfSAvKiBOYW1lLlZhcmlhYmxlLkdsb2JhbCAqLwouY29kZWhpbGl0ZSAudmkgeyBjb2xvcjogIzAwNjg4QiB9IC8qIE5hbWUuVmFyaWFibGUuSW5zdGFuY2UgKi8KLmNvZGVoaWxpdGUgLmlsIHsgY29sb3I6ICNCNDUyQ0QgfSAvKiBMaXRlcmFsLk51bWJlci5JbnRlZ2VyLkxvbmcgKi8=">
+    <!--header_scripts-->
+</head>
+<body>
+
+
+<div class="post">
+    
+    <div class="post_body">
+        <h1 id="toc_0">简介</h1>
+
+<p class="md_block">
+    <span class="md_line">一份关于任何可以写入到你的文档中 <code>&lt;head&gt;</code> 部分的清单。</span>
+</p>
+
+
+<h2 id="toc_1">目录</h2>
+
+<p class="md_block">
+
+<div class="toc"><ul>
+<li>
+<a href="#toc_0">简介</a>
+<ul>
+<li>
+<a href="#toc_1">目录</a>
+</li>
+<li>
+<a href="#toc_2">最小推荐</a>
+</li>
+<li>
+<a href="#toc_3">网页元素</a>
+</li>
+<li>
+<a href="#toc_4">Meta 标签</a>
+<ul>
+<li>
+<a href="#toc_5">不推荐的 Meta 标签</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">链接</a>
+<ul>
+<li>
+<a href="#toc_7">不推荐的链接</a>
+</li>
+<li>
+<a href="#toc_8">网站图标</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">社交</a>
+<ul>
+<li>
+<a href="#toc_10">Facebook / Open Graph</a>
+</li>
+<li>
+<a href="#toc_11">Facebook / Instant Articles</a>
+</li>
+<li>
+<a href="#toc_12">Twitter</a>
+</li>
+<li>
+<a href="#toc_13">Google+ / Schema.org</a>
+</li>
+<li>
+<a href="#toc_14">OEmbed</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_15">浏览器 / 平台</a>
+<ul>
+<li>
+<a href="#toc_16">Apple iOS</a>
+</li>
+<li>
+<a href="#toc_17">Apple Safari</a>
+</li>
+<li>
+<a href="#toc_18">Google Android</a>
+</li>
+<li>
+<a href="#toc_19">Google Chrome</a>
+</li>
+<li>
+<a href="#toc_20">Google Chrome Mobile (只针对 Android)</a>
+</li>
+<li>
+<a href="#toc_21">Microsoft Internet Explorer</a>
+</li>
+<li>
+<a href="#toc_22">Microsoft Internet Explorer: 传统，不要使用！</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_23">应用链接</a>
+</li>
+<li>
+<a href="#toc_24">国内的浏览器</a>
+<ul>
+<li>
+<a href="#toc_25">360 浏览器</a>
+</li>
+<li>
+<a href="#toc_26">QQ 移动浏览器</a>
+</li>
+<li>
+<a href="#toc_27">UC 移动浏览器</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_28">注意</a>
+<ul>
+<li>
+<a href="#toc_29">性能</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_30">其他资源</a>
+</li>
+<li>
+<a href="#toc_31">相关项目</a>
+</li>
+<li>
+<a href="#toc_32">其他格式</a>
+</li>
+<li>
+<a href="#toc_33">翻译</a>
+</li>
+<li>
+<a href="#toc_34">贡献</a>
+<ul>
+<li>
+<a href="#toc_35">贡献者</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_36">作者</a>
+</li>
+<li>
+<a href="#toc_37">翻译者</a>
+</li>
+<li>
+<a href="#toc_38">协议</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
+
+
+<h2 id="toc_2">最小推荐</h2>
+
+<p class="md_block">
+    <span class="md_line">下面是基本的、最低限度的网站基本标签：</span>
+</p>
+
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;x-ua-compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 以上 3 个 meta 标签 *必须* 放在 head 的最前面；其他任何的 head 内容必须在这些标签的 *后面* --&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>页面标题<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h2 id="toc_3">网页元素</h2>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 文档标题 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>页面标题<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 基本 URL 作用于文档中所包含的所有相对 URL --&gt;</span>
+<span class="p">&lt;</span><span class="nt">base</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/page.html&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 外部的 CSS --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;styles.css&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 文档内的 CSS --&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="c">/* ... */</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- JavaScript --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;script.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span><span class="c">&lt;!--无 JS 时的替代--&gt;</span><span class="p">&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h2 id="toc_4">Meta 标签</h2>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 设置文档的字符编码 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;x-ua-compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 以上 3 个 meta 标签 *必须* 放在 head 的最前面；其他任何的 head 内容必须在这些标签的 *后面* --&gt;</span>
+
+<span class="c">&lt;!-- 允许控制资源的过度加载 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Content-Security-Policy&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;default-src &#39;self&#39;&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 尽早地放置在文档中 --&gt;</span>
+<span class="c">&lt;!-- 仅应用于该标签下的内容 --&gt;</span>
+
+<span class="c">&lt;!-- Web 应用的名称（仅当网站被用作为一个应用时才使用）--&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;application-name&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;应用名称&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 针对页面的简短描述（限制 150 字符）--&gt;</span>
+<span class="c">&lt;!-- 在*某些*情况下，该描述是被用作搜索结果展示片段的一部分 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;一个页面描述&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 控制搜索引擎的抓取和索引行为 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;robots&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;index,follow,noodp&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- 所有的搜索引擎 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;googlebot&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;index,follow&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- 仅对 Google 有效 --&gt;</span>
+
+<span class="c">&lt;!-- 告诉 Google 不显示网站链接的搜索框 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;google&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;nositelinkssearchbox&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 告诉 Google 不提供此页面的翻译 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;google&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;notranslate&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 验证 Google 搜索控制台的所有权 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;google-site-verification&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;verification_token&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 用来命名软件或用于构建网页（如 - WordPress、Dreamweaver）--&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;generator&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;program&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 关于你的网站主题的简短描述 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;subject&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;你的网站主题&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 非常简短（少于 10 个字）的描述。主要用于学术论文。--&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;abstract&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 完整的域名或网址 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;directory&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;submission&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 基于网站内容给出一般的年龄分级 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;rating&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;General&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 允许控制 referrer 信息如何传递 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;referrer&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;never&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 禁用自动检测和格式化可能的电话号码 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;format-detection&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;telephone=no&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 通过设置为 “off” 完全退出 DNS 预取 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;x-dns-prefetch-control&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;off&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 在客户端存储 cookie，web 浏览器的客户端识别 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;set-cookie&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;name=value; expires=date; path=url&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 指定要显示在一个特定框架中的页面 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Window-Target&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;_value&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 地理标签 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;ICBM&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;latitude, longitude&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;geo.position&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;latitude;longitude&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;geo.region&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;country[-state]&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- 国家代码 (ISO 3166-1): 强制性, 州代码 (ISO 3166-2): 可选; 如 content=&quot;US&quot; / content=&quot;US-NY&quot; --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;geo.placename&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;city/town&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- 如 content=&quot;New York City&quot; --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://support.google.com/webmasters/answer/79812?hl=zh-Hans">Google 可以识别的 Meta 标签</a></li>
+<li><a class="md_compiled" href="https://wiki.whatwg.org/wiki/MetaExtensions">WHATWG Wiki: Meta 拓展</a></li>
+<li><a class="md_compiled" href="https://en.wikipedia.org/wiki/ICBM_address#Modern_use">ICBM - 维基百科</a></li>
+<li><a class="md_compiled" href="https://en.wikipedia.org/wiki/Geotagging#HTML_pages">地理标记 - 维基百科</a></li>
+</ul>
+
+<h3 id="toc_5">不推荐的 Meta 标签</h3>
+
+<p class="md_block">
+    <span class="md_line">以下是不推荐使用的 Meta 属性，因为它们采用率低，或已弃用：</span>
+</p>
+
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 用于声明文档语言，但支持得不是很好。最好使用 &lt;html lang=&quot;&quot;&gt; --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;language&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- Google 无视 &amp; Bing 认为垃圾的指示器 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;你,关键字,在这里,不使用空格,而用逗号进行分隔&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 目前没有在任何搜索引擎中使用过的声明 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;revised&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Sunday, July 18th, 2010, 5:15 pm&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 为垃圾邮件机器人收获 email 地址提供了一种简单的方式 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reply-to&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;email@example.com&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 最好使用 &lt;link rel=&quot;author&quot;&gt; 或 humans.txt 文件 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;author&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;name, email@example.com&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;designer&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;owner&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 告诉搜索机器人一段时间后重新访问该网页。这不支持，因为大多数搜索引擎使用随机时间间隔来重新抓取网页 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;revisit-after&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;7 days&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 在一段时间后将用户重定向到新的 URL --&gt;</span>
+<span class="c">&lt;!-- W3C 建议不要使用该标签。Google 建议使用服务器端的 301 重定向。--&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;300; url=https://example.com/&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 描述网站的主题 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;topic&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 公司概要或网站目的 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;summary&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 一个已废弃的标签，和关键词 meta 标签的作用相同 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;classification&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;business&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 是否是相同的 URL，年代久远且不支持 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;identifier-URL&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 和关键词标签类似的功能 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;category&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 确保你的网站在所有国家和语言中都能显示 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;coverage&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Worldwide&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 和 coverage 标签相同 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;distribution&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Global&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 控制在互联网上哪些用户可以访问 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Pics-label&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;value&quot;</span><span class="p">&gt;</span> 
+
+<span class="c">&lt;!-- 缓存控制 --&gt;</span>
+<span class="c">&lt;!-- 最好在服务器端配置缓存控制 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Expires&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Pragma&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;no-cache&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Cache-Control&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;no-cache&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h2 id="toc_6">链接</h2>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 有助于防止出现内容重复的问题 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/2010/06/9-things-to-do-before-entering-social-media.html&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 之前用于包含 icon 链接，但已被废弃并不再使用 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;shortlink&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/?p=42&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 链接到当前文档的一个 AMP HTML 版本 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;amphtml&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/path/to/amp-version.html&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 表明一个 CSS 样式表 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/styles.css&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 链接到一个指定 Web 应用程序“安装”证书的 JSON 文件 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;manifest&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;manifest.json&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 链接到文档的作者 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;author&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;humans.txt&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 指向一个适用于链接内容的版权申明 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;copyright&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;copyright.html&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 给出可能的你的另一种语言的文档位置参考 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;alternate&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://es.example.com/&quot;</span> <span class="na">hreflang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 提供了关于作者或其他人的信息 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;me&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://google.com/profiles/thenextweb&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/html&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;me&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:name@example.com&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;me&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;sms:+15035550125&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 链接到一个文档，包含当前文档的一个归档链接 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;archives&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/2003/05/&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;May 2003&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 链接到层次结构中的顶级资源 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;index&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;DeWitt Clinton&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 给出该文档的起点 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;start&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/photos/pattern_recognition_1_about/&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Pattern Recognition 1&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 引导当前文档的前述资源序列 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;prev&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/opensearch/opensearch-and-openid-a-sure-way-to-get-my-attention/&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;OpenSearch and OpenID? A sure way to get my attention.&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 给出一个自我参考 - 当文档有多个可能的参考时非常有用 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;self&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/atom+xml&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/atomFeed.php?page=3&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 分别是在一系列文件中的第一个、下一个、上一个和最后一个 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;first&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/atomFeed.php&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;next&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/atomFeed.php?page=4&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;previous&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/atomFeed.php?page=2&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;last&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/atomFeed.php?page=147&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 当使用第三方服务来维护 blog 时使用 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;EditURI&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/xmlrpc.php?rsd&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/rsd+xml&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;RSD&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 当另一个 WordPress 博客链接到你的 WordPress 博客或文章时形成一个自动化的评论 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;pingback&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/xmlrpc.php&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 当你在自己的页面上链接到一个 url 时通知它 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;webmention&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/webmention&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 加载一个外部的 HTML 文件到当前 HTML 文件中 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;import&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;component.html&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 打开搜索 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;search&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/open-search.xml&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/opensearchdescription+xml&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Search Title&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- Feeds --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;alternate&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://feeds.feedburner.com/example&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/rss+xml&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;RSS&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;alternate&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/feed.atom&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/atom+xml&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Atom 0.3&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 预取，预载，预浏览 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;dns-prefetch&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;//example.com/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;preconnect&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.example.com/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;prefetch&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.example.com/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;prerender&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://example.com/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;preload&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;image.png&quot;</span> <span class="na">as</span><span class="o">=</span><span class="s">&quot;image&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 更多信息：https://css-tricks.com/prefetching-preloading-prebrowsing/ --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_7">不推荐的链接</h3>
+
+<p class="md_block">
+    <span class="md_line">以下是不推荐使用的链接关系：</span>
+</p>
+
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;shortcut icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/favicon.ico&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 没有用的, 专有的和错误的, 详见 https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y_2eFRh9BOs/gULYapoRBwAJ --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;subresource&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;styles.css&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_8">网站图标</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 对于 IE10 及以下 --&gt;</span>
+<span class="c">&lt;!-- 无链接，只需在根目录下放置名为 favicon.ico 的文件 --&gt;</span>
+
+<span class="c">&lt;!-- 对于 IE 11、Chrome、Firefox、Safari 和 Opera --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/favicon-16.png&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;16x16&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/favicon-32.png&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;32x32&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/favicon-48.png&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;48x48&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/favicon-62.png&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;62x62&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/favicon-192.png&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;192x192&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/png&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 更多信息: https://bitsofco.de/all-about-favicons-and-touch-icons/ --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://bitsofco.de/all-about-favicons-and-touch-icons/">所有关于网站图标（和触摸图标）的信息</a></li>
+<li><a class="md_compiled" href="https://github.com/audreyr/favicon-cheat-sheet">网站图标对照表</a></li>
+</ul>
+
+<h2 id="toc_9">社交</h2>
+
+<h3 id="toc_10">Facebook / Open Graph</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;fb:app_id&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;123456789&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/page.html&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:type&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;website&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Content Title&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:image&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/image.jpg&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Description Here&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:site_name&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Site Name&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:locale&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;en_US&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;article:author&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Facebook: https://developers.facebook.com/docs/sharing/webmasters#markup --&gt;</span>
+<span class="c">&lt;!-- Open Graph: http://ogp.me/ --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://developers.facebook.com/docs/sharing/webmasters#markup">Facebook 的 Open Graph 的标记</a></li>
+<li><a class="md_compiled" href="http://ogp.me/">Open Graph 协议</a></li>
+</ul>
+
+<h3 id="toc_11">Facebook / Instant Articles</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;op:markup_version&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;v1.0&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 你的文章的 Web 版网址 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://example.com/article.html&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 用于该文章的样式 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;fb:article_style&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;myarticlestyle&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate">Facebook Instant Articles: 创建文章</a></li>
+<li><a class="md_compiled" href="https://developers.facebook.com/docs/instant-articles/reference">Instant Articles: 格式参考</a></li>
+</ul>
+
+<h3 id="toc_12">Twitter</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;summary&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;@site_account&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;@individual_account&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/page.html&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Content Title&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Content description less than 200 characters&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:image&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/image.jpg&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 更多信息: https://dev.twitter.com/cards/getting-started --&gt;</span>
+<span class="c">&lt;!-- 验证: https://dev.twitter.com/docs/cards/validation/validator --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://dev.twitter.com/cards/getting-started">Twitter 名片：入门指南</a></li>
+<li><a class="md_compiled" href="https://dev.twitter.com/docs/cards/validation/validator">Twitter 名片验证</a></li>
+</ul>
+
+<h3 id="toc_13">Google+ / Schema.org</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://plus.google.com/+YourPage&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;publisher&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;内容标题&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;内容描述少于 200 个字符&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;image&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://example.com/image.jpg&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_14">OEmbed</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;alternate&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;application/json+oembed&quot;</span>
+  <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://example.com/services/oembed?url=http%3A%2F%2Fexample.com%2Ffoo%2F&amp;amp;format=json&quot;</span>
+  <span class="na">title</span><span class="o">=</span><span class="s">&quot;oEmbed Profile: JSON&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;alternate&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/xml+oembed&quot;</span>
+  <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://example.com/services/oembed?url=http%3A%2F%2Fexample.com%2Ffoo%2F&amp;amp;format=xml&quot;</span>
+  <span class="na">title</span><span class="o">=</span><span class="s">&quot;oEmbed Profile: XML&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="http://oembed.com/">oEmbed 格式</a></li>
+</ul>
+
+<h2 id="toc_15">浏览器 / 平台</h2>
+
+<h3 id="toc_16">Apple iOS</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 智能应用 Banner --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;app-id=APP_ID,affiliate-data=AFFILIATE_ID,app-argument=SOME_TEXT&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 禁用自动检测和格式化可能的电话号码 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;format-detection&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;telephone=no&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 添加到主屏幕 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;apple-mobile-web-app-capable&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;apple-mobile-web-app-status-bar-style&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;apple-mobile-web-app-title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;应用标题&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 触摸图标 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/apple-touch-icon.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon-precomposed&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/apple-touch-icon-precomposed.png&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- iOS 8+ 不再支持预组合，你应该只使用 apple-touch-icon。--&gt;</span>
+<span class="c">&lt;!-- 在大多数情况下，在 `&lt;head&gt;` 中，一个 180×180px 触摸图标就已经足够了 --&gt;</span>
+<span class="c">&lt;!-- 如果你想采用自适应的图标，可以设置多个尺寸的图标 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;57x57&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/path/to/icon@57.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;72x72&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/path/to/icon@72.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;114x114&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/path/to/icon@114.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;144x144&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;//path/to/icon@144.png&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 启动画面（已无效） --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-startup-image&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/startup.png&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- iOS 应用深层链接 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;app-id=APP-ID, app-argument=http/url-sample.com&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;alternate&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;ios-app://APP-ID/http/url-sample.com&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html">Apple Meta 标签</a></li>
+</ul>
+
+<h3 id="toc_17">Apple Safari</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 固定网站 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;mask-icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;path/to/icon.svg&quot;</span> <span class="na">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_18">Google Android</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;theme-color&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;#E64545&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 添加到主屏幕 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;mobile-web-app-capable&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 更多信息：https://developer.chrome.com/multidevice/android/installtohomescreen --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_19">Google Chrome</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;chrome-webstore-item&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://chrome.google.com/webstore/detail/APP_ID&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 禁用翻译提示 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;google&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;notranslate&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_20">Google Chrome Mobile (只针对 Android)</h3>
+
+<p class="md_block">
+    <span class="md_line">从 Chrome 31 开始，你可以设置你的 Web 应用为“app mode”，如 Safari。</span>
+</p>
+
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 链接到一个 manifest 并定义 manifest 的元数据。--&gt;</span>
+<span class="c">&lt;!-- manifest.json 中的例子也可以通过以下链接找到。--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;manifest&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;manifest.json&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 定义你的网页为 Web 应用 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;mobile-web-app-capable&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 第一个是官方推荐格式。--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;192x192&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;nice-highres.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;128x128&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;niceicon.png&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 所有带 apple 前缀的格式已废弃，所以不要使用它们。--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;128x128&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;niceicon.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;apple-touch-icon-precomposed&quot;</span> <span class="na">sizes</span><span class="o">=</span><span class="s">&quot;128x128&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;niceicon.png&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="https://developer.chrome.com/multidevice/android/installtohomescreen">Google 开发者</a></li>
+</ul>
+
+<h3 id="toc_21">Microsoft Internet Explorer</h3>
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;x-ua-compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;cleartype&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;on&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;skype_toolbar&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;skype_toolbar_parser_compatible&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 在 Windows Phone 中的 IE 10 上禁用链接高亮 (https://blogs.windows.com/buildingapps/2012/11/15/adapting-your-webkit-optimized-site-for-internet-explorer-10/) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-tap-highlight&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 固定网站 (https://msdn.microsoft.com/en-us/library/dn255024(v=vs.85).aspx) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;application-name&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Contoso Pinned Site Caption&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-tooltip&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Example Tooltip Text&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-starturl&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-config&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;http://example.com/browserconfig.xml&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-allowDomainApiCalls&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-allowDomainMetaTags&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-badge&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;frequency=30; polling-uri=http://example.com/id45453245/polling.xml&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-navbutton-color&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;#FF3300&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-notification&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;frequency=60;polling-uri=http://example.com/livetile&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-square150x150logo&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;path/to/logo.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-square310x310logo&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;path/to/largelogo.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-square70x70logo&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;path/to/tinylogo.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-wide310x150logo&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;path/to/widelogo.png&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-task&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;name=Check Order Status;action-uri=./orderStatus.aspx?src=IE9;icon-uri=./favicon.ico&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-task-separator&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-TileColor&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;#FF3300&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-TileImage&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;path/to/tileimage.jpg&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;msapplication-window&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=1024;height=768&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_22">Microsoft Internet Explorer: 传统，不要使用！</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 在 IE 6 中，鼠标悬停在图片上时禁用图像工具栏 (https://msdn.microsoft.com/en-us/library/ms532986(v=vs.85).aspx) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;imagetoolbar&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 禁用 Windows 主题化的输入框/按钮 (https://support.microsoft.com/en-us/kb/322240) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;MSThemeCompatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 禁用只在 IE 6 测试版中出现的一个功能 (https://stackoverflow.com/q/2167301) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;MSSmartTagsPreventParsing&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 页间切换 (https://msdn.microsoft.com/en-us/library/ms532847(v=vs.85).aspx) --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Page-Enter&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;revealtrans(duration=2,transition=2)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Page-Exit&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;revealtrans(duration=3,transition=12)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Site-Enter&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;revealtrans(duration=2,transition=2)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Site-Exit&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;revealtrans(duration=3,transition=12)&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h2 id="toc_23">应用链接</h2>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- iOS --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:ios:url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;applinks://docs&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:ios:app_store_id&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;12345&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:ios:app_name&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;App Links&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Android --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:android:url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;applinks://docs&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:android:app_name&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;App Links&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:android:package&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;org.applinks&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Web 回退 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;al:web:url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;http://applinks.org/documentation&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 更多信息：http://applinks.org/documentation/ --&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="http://applinks.org/documentation/">应用链接文档</a></li>
+</ul>
+
+<h2 id="toc_24">国内的浏览器</h2>
+
+<h3 id="toc_25">360 浏览器</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 选择渲染引擎 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;renderer&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;webkit|ie-comp|ie-stand&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_26">QQ 移动浏览器</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 在指定方向上锁定屏幕（锁定横/竖屏） --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;x5-orientation&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;landscape/portrait&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 全屏显示此页面 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;x5-fullscreen&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 页面将以“应用模式”显示（全屏等）--&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;x5-page-mode&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h3 id="toc_27">UC 移动浏览器</h3>
+<div class="codehilite  highlight"><pre><span class="c">&lt;!-- 在指定方向上锁定屏幕（锁定横/竖屏） --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;screen-orientation&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;landscape/portrait&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 全屏显示此页面 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;full-screen&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 即使在“文本模式”下，UC 浏览器也会显示图片 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;imagemode&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;force&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 页面将以“应用模式”显示（全屏、禁止手势等） --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;browsermode&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;application&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 在此页面禁用 UC 浏览器的“夜间模式” --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;nightmode&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;disable&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 简化页面，减少数据传输 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;layoutmode&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;fitscreen&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 禁用的 UC 浏览器的功能，“当此页面中有较多文本时缩放字体” --&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;wap-font-scale&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<ul>
+<li><a class="md_compiled" href="http://www.uc.cn/download/UCBrowser_U3_API.doc">UC 浏览器文档</a></li>
+</ul>
+
+<h2 id="toc_28">注意</h2>
+
+<h3 id="toc_29">性能</h3>
+
+<p class="md_block">
+    <span class="md_line">当启用 GZIP 时，移动 <code>href</code> 属性到该元素的开头以提高压缩，因为 <code>href</code> 属性被用于 <code>a</code>、<code>base</code> 和 <code>link</code> 标签。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">示例:</span>
+</p>
+
+<div class="codehilite  highlight"><pre><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Open+Sans:400,700&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+</pre></div>
+
+<!--block_code_end-->
+<h2 id="toc_30">其他资源</h2>
+
+<ul>
+<li><a class="md_compiled" href="https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/html.md">HTML5 样板文档：HTML 标签</a></li>
+<li><a class="md_compiled" href="https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/extend.md">HTML5 样板文档：扩展和定制</a></li>
+</ul>
+
+<h2 id="toc_31">相关项目</h2>
+
+<ul>
+<li><a class="md_compiled" href="https://github.com/joshbuchea/atom-html-head-snippets">Atom HTML Head 片段</a> - Atom <code>HEAD</code> 片段包</li>
+<li><a class="md_compiled" href="https://github.com/marcobiedermann/sublime-head-snippets">Sublime Text HTML Head 片段</a> - Sublime Text <code>HEAD</code> 片段包</li>
+<li><a class="md_compiled" href="https://github.com/hemanth/head-it">head-it</a> - <code>HEAD</code> 片段的 CLI 接口</li>
+<li><a class="md_compiled" href="https://github.com/ktquez/vue-head">vue-head</a> - 在 Vue.js 中操作 <code>HEAD</code> 标签的 meta 信息</li>
+</ul>
+
+<h2 id="toc_32">其他格式</h2>
+
+<ul>
+<li><a class="md_compiled" href="https://gitprint.com/joshbuchea/HEAD/blob/master/README.md">PDF</a></li>
+</ul>
+
+<h2 id="toc_33">翻译</h2>
+
+<ul>
+<li><a class="md_compiled" href="https://github.com/joshbuchea/HEAD">英语</a></li>
+<li><a class="md_compiled" href="https://github.com/Webschool-io/HEAD">巴西葡萄牙语</a></li>
+<li><a class="md_compiled" href="http://coliss.com/articles/build-websites/operation/work/collection-of-html-head-elements.html">日语</a></li>
+<li><a class="md_compiled" href="https://github.com/Konfuze/HEAD">俄罗斯语</a></li>
+</ul>
+
+<h2 id="toc_34">贡献</h2>
+
+<p class="md_block">
+    <span class="md_line">开启一个 issue 或一个 pull 请求来提出修改或补充。</span>
+</p>
+
+
+<p class="md_block md_has_block_below md_has_block_below_ul">
+    <span class="md_line">请按照下列步骤 pull 请求：</span>
+</p>
+
+
+<ul>
+<li>只修改一个标签，或一次一组相关的标签</li>
+<li>对属性使用双引号</li>
+<li>请不要在自我闭合的元素中使用斜线 —— 即便 HTML5 规范中说，他们是可选的</li>
+<li>考虑在文档中加入链接以支持你所提到的变化</li>
+</ul>
+
+<h3 id="toc_35">贡献者</h3>
+
+<p class="md_block">
+    <span class="md_line">列出所有超级棒的 <a class="md_compiled" href="https://github.com/joshbuchea/HEAD/graphs/contributors">贡献者们</a>.</span>
+</p>
+
+
+<h2 id="toc_36">作者</h2>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong><a class="md_compiled" href="http://joshbuchea.com/">Josh Buchea</a></strong></span>
+</p>
+
+
+<h2 id="toc_37">翻译者</h2>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong><a class="md_compiled" href="http://xiangfa.org/">子丶言</a></strong></span>
+</p>
+
+
+<h2 id="toc_38">协议</h2>
+
+<p class="md_block md_has_block_below md_has_block_below_img">
+    <span class="md_line md_line_dom_embed"><a class="md_compiled" href="LICENSE">CC0 协议</a></span>
+</p>
+
+<img class="" src="http://i.creativecommons.org/p/zero/1.0/88x31.png" alt="CC0" title="CC0" >
+    </div>
+</div>
+
+<!--mathjax-->
+
+</body>
+</html>

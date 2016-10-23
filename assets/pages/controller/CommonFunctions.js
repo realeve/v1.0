@@ -677,9 +677,18 @@
     $('body').addClass('page-content-white').removeClass('page-container-bg-solid');
   }
 
-  function initDom() {
+  function toggleSidebar() {
+    $('body').toggleClass('page-sidebar-closed');
+    $('.page-sidebar-menu').toggleClass('page-sidebar-menu-closed');
+  }
+
+  function initDom(fixheader) {
     //sideBarHack();
-    HeadFix();
+    fixheader = (typeof fixheader == 'undefined') ? 1 : fixheader;
+    if (fixheader) {
+      HeadFix();
+    }
+
     if ($("#today") !== 'undefined') {
       var strDate = today(0);
       if (getUrlParam('drill') !== null) {

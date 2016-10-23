@@ -168,14 +168,10 @@ var imageSearch = function() {
 	};
 }();
 //记录选择状态
-jQuery(document).ready(function() {
+$(document).ready(function() {
 	whiteBackground();
 	//RoundedTheme(0);
 	UIIdleTimeout.init();
-	initDom();
-	$(".page-sidebar-wrapper").css("margin-top", "0px");
+	initDom(0);
 	imageSearch.init();
-});
-jQuery(window).resize(function() {
-	HeadFix();
 });
