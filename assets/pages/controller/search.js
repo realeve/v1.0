@@ -580,7 +580,7 @@ var search = function() {
 			.done(function(data) {
 				data = $.parseJSON(data);
 				objDom.html(tpl.getHTML('simpleTable.etpl', data));
-				objDom.find('.scroller').attr('style', ' ').append('<a href="../search/image#' + cart + '" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>');
+				objDom.find('.scroller').append('<a href="../search/image#' + cart + '" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>');
 
 			});
 
