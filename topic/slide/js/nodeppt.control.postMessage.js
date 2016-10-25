@@ -73,7 +73,7 @@ Slide.Control.add('postMessage', function (S, broadcast) {
                         args: args
                     });
                 };
-                Slide.timerCtrl();
+                Slide.timerCtrl(true);
                 postWin = window.opener;
                 postMSG.send_default('joinClient');
                 window.addEventListener('message', this.evtHandler, true);

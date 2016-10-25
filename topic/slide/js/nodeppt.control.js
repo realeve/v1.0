@@ -99,7 +99,7 @@
 
     Slide.timerCtrl = timerCtrl;
 
-    function timerCtrl() {
+    function timerCtrl(addNote) {
         var $body = document.body;
         var ua = navigator.userAgent;
         //.test(ua)
@@ -107,10 +107,20 @@
             //太小的屏幕不要显示下一页了
             return;
         }
-        $body.classList.add('popup');
-        $body.classList.add('with-notes');
-        var $timer = document.createElement('time');
-        $timer.id = '_timer_';
+		
+		if(addNote){
+			$body.classList.add('popup');
+			$body.classList.add('with-notes');
+		}
+        
+        var $slide = document.createElement('slide');
+        $slide.id = '_slide_';
+		$slide.innerHTML = Slide.current + '/' + Slide.count;
+        $body.appendChild($slide);
+		
+		$timer = document.createElement('timer');
+		$timer.id = '_clock_';
+		$timer.className = 'timecount';
         $body.appendChild($timer);
         var hour = 0,
             sec = 0,
@@ -125,8 +135,9 @@
                 min = 0;
                 hour++;
             }
-            $timer.innerHTML = ['时间：' + time2str(hour), time2str(min), time2str(sec) + ' 幻灯片：' + Slide.current + '/' + Slide.count].join(':');
+            $timer.innerHTML = (hour>0)?[time2str(hour), time2str(min), time2str(sec)].join(':'):[time2str(min), time2str(sec)].join(':');
         }, 1000);
+		
     }
 
     function time2str(time) {

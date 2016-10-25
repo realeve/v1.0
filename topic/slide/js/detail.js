@@ -1,14 +1,13 @@
 var app = (function() {
 	var defaultTheme = 'moon';
 	var queryObj;
+	var getUrlParam = function(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = encodeURI(window.location.search).substr(1).match(reg);
+		if (r !== null) return decodeURI(r[2]);
+		return null;
+	};
 	var initDom = function() {
-		var getUrlParam = function(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-			var r = encodeURI(window.location.search).substr(1).match(reg);
-			if (r !== null) return decodeURI(r[2]);
-			return null;
-		};
-
 		const getQueryObj = () => {
 			var obj = {
 				file: getUrlParam('file'),
@@ -30,7 +29,6 @@ var app = (function() {
 		// let node = document.getElementById('stage');
 		let node = document.getElementsByTagName('section')[0];
 		queryObj = getQueryObj();
-		console.log(queryObj);
 		document.title = queryObj.title;
 		document.getElementById('theme').setAttribute('href', queryObj.theme);
 		//打印PDF
@@ -103,6 +101,25 @@ var app = (function() {
 		}
 	};
 
+	function openNotes() {
+
+		// if( !notesFilePath ) {
+		// 	var jsFileLocation = document.querySelector('script[src$="notes.js"]').src;  // this js file path
+		// 	jsFileLocation = jsFileLocation.replace(/notes\.js(\?.*)?$/, '');   // the js folder path
+		// 	notesFilePath = jsFileLocation + 'notes.html';
+		// }
+		var params = getUrlParam('_multiscreen');
+		var notesFilePath;
+		if (params === null) {
+			notesFilePath = window.location.href.replace('?', '?_multiscreen=1&');
+			window.location = notesFilePath; //(notesFilePath, 'Notes', 'width=1100,height=700');
+			//window.open(notesFilePath, 'Notes', 'width=1100,height=600');
+		} else if (params == '1') {
+			notesFilePath = window.location.href.replace('_multiscreen=1', '_multiscreen=control&');
+			window.open(notesFilePath, 'Notes', 'width=1100,height=600');
+		}
+	}
+
 	$('body').on('keydown', function(event) {
 		var keyName = event.key;
 		var key = event.keyCode;
@@ -111,6 +128,7 @@ var app = (function() {
 		if (key == 27) {
 			isFullScreen = false;
 		} else if (key == 83) {
+			openNotes();
 			// } else if (keyName != 'Control' &&
 			// 	keyName != 'F12' &&
 			// 	keyName != 'F5' &&
@@ -124,6 +142,7 @@ var app = (function() {
 		//MD文件默认图片目录
 		var DEFAULT_SLIDE_IMG_CONTENT = $('section').first().attr('data-img-content') || 'markdown';
 		var obj = $('section img');
+
 		if (obj.length) {
 			var imgSrc = obj.attr('src').replace('./', './' + DEFAULT_SLIDE_IMG_CONTENT + '/');
 			obj.attr('src', imgSrc);
@@ -151,10 +170,6 @@ var app = (function() {
 			tipID: 'tip'
 		});
 
-		MixJS.loadJS('highlight/highlight.pack.js', function() {
-			hljs.tabReplace = '  ';
-			hljs.initHighlightingOnLoad();
-		});
 	};
 
 	var init = (function() {
@@ -162,6 +177,8 @@ var app = (function() {
 			initDom();
 			RevealMarkdown.initialize();
 			console.log($('.slides').html());
+			hljs.tabReplace = '  ';
+			hljs.initHighlightingOnLoad();
 			appendThemeList();
 		}
 		initSlide();
