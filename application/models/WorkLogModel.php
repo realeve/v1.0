@@ -43,7 +43,7 @@ class WorkLogModel extends CI_Model {
 		{
 			$SQLStr.=" AND a.ErrDesc like '%" .$queryData['KeyWord']."%'";
 		}
-		$SQLStr.=" ORDER BY ID DESC";
+		$SQLStr.=" ORDER BY rec_time DESC";
 		$query = $LOGINDB->query($SQLStr,array($queryData['TimeStart'],$queryData['TimeEnd'],$queryData['icurID']));
 		$strJson = $query->result_json();
 		//$query->free_result(); //清理内存
