@@ -7,7 +7,7 @@ var viewList = [
 	//'lockscreen',
 	//'search',
 	//'searchFeedback',
-	'PaperPara',
+	//'PaperPara',
 	//'demo'
 ];
 

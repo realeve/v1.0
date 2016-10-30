@@ -21,10 +21,12 @@ var feedback = function() {
 
 		for (var i = 100; i > 0; i -= 10) {
 			$('#limit').append('<option value=' + i + '>' + i + '</option>');
+			$('#errnum').append('<option value=' + (i * 20) + '>' + (i * 20) + '</option>');
 		}
 		var searchFeedBack = {
 			machineID: -1,
-			limit: 70
+			limit: 70,
+			errnum: 1000
 		};
 		if (typeof localStorage.searchFeedBack != 'undefined') {
 			//保存搜索反馈设置项
@@ -33,10 +35,19 @@ var feedback = function() {
 			$('[name=machineID]').val(searchFeedBack.machineID);
 			//$('#dataType').val(searchFeedBack.dataType);
 			$('#limit').val(searchFeedBack.limit);
+			if (typeof searchFeedBack.errnum == 'undefined') {
+				$('#errnum').val(1000);
+				searchFeedBack.errnum = 1000;
+				saveSettings();
+			} else {
+				$('#errnum').val(searchFeedBack.errnum);
+			}
+
 			//$('#fakeType').val(searchFeedBack.fakeType);
 		} else {
 			localStorage.searchFeedBack = JSON.stringify(searchFeedBack);
 			$('#limit').val(70);
+			$('#errnum').val(1000);
 			$('[name=machineID]').val(-1);
 		}
 
@@ -49,7 +60,8 @@ var feedback = function() {
 			machineID: $('[name=machineID]').val(),
 			//dataType: $('#dataType').val(),
 			limit: $('#limit').val(),
-			//fakeType: $('#fakeType').val()
+			errnum: $('#errnum').val()
+				//fakeType: $('#fakeType').val()
 		};
 	};
 
@@ -72,10 +84,10 @@ var feedback = function() {
 	// from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID
 	// where ProduceDate between 20160901 and 20160930 and GoodRate<=80
 
-	//apiID 279 limit
-	//select a.id,nocheckcount,errpiccount,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3  from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID  where ProduceDate between ? and ? and GoodRate<=?
-	//apiID 280  limit mid
-	//select a.id,nocheckcount,errpiccount,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3  from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID  where ProduceDate between ? and ? and GoodRate<=? and b.MachineID = ?
+	//apiID 279 tstart,tend,limit,errnum1,errnum2,errnum3
+	//select a.id,nocheckcount,errpiccount,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3 from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID where ProduceDate between ? and ? and GoodRate<=? and (errcount1>=? or errcount2>=? or errcount3>=?)
+	//apiID 280  tstart,tend,limit,mid,errnum1,errnum2,errnum3
+	//select a.id,nocheckcount,errpiccount,CartNumber,b.MachineName,c.ProductName,ProduceDate,GoodRate,FormatPos1,ErrCount1,ImgVerify1,FormatPos2,ErrCount2,ImgVerify2,FormatPos3,ErrCount3,ImgVerify3 from MaHouData a INNER JOIN MachineData b on a.MachineID = b.MachineID inner join ProductData c on a.ProductTypeID = c.ProductID where ProduceDate between ? and ? and GoodRate<=? and b.MachineID = ? and (errcount1>=? or errcount2>=? or errcount3>=?)
 	var getQueryUrl = function(settings) {
 		var params = '&ID=';
 		if (settings.machineID == -1) {
@@ -88,12 +100,13 @@ var feedback = function() {
 		return params;
 	};
 
+	//增加缺陷条数限制
 	var getImgList = function(searchFeedBack) {
 
 		searchFeedBack = searchFeedBack || getSearchSettings();
 
 		var date = getDateRange();
-		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&M=0&tstart=" + date.start + "&tend=" + date.end + '&limit=' + searchFeedBack.limit; // + '&faketype=' + searchFeedBack.fakeType; // + "&t=" + Math.random();
+		var strUrl = getRootPath() + "/DataInterface/Api?Token=" + config.TOKEN + "&M=0&tstart=" + date.start + "&tend=" + date.end + '&errnum1=' + searchFeedBack.errnum + '&errnum2=' + searchFeedBack.errnum + '&errnum3=' + searchFeedBack.errnum + '&limit=' + searchFeedBack.limit; // + '&faketype=' + searchFeedBack.fakeType; // + "&t=" + Math.random();
 		strUrl += getQueryUrl(searchFeedBack);
 		var data = ReadData(strUrl);
 		renderImgList(data);
@@ -118,17 +131,29 @@ var feedback = function() {
 		$('#js-grid-juicy-projects').html('');
 		var strTemp = '';
 
+		var imgListCache = [];
+
 		function listener() {
 			if (sum == fakeList.rows) {
 				bsTips('图像数据载入完毕,共载入数据' + fakeList.rows + '车', 1);
-				$('#js-grid-juicy-projects').html(strCache);
+				var errnum = $('#errnum').val();
+				//数据排序分析，条数限制
+				imgListCache = _.sortBy(imgListCache, ['prod', function(obj) {
+					return -parseInt(obj.errnum, 10);
+				}]).map(function(item) {
+					if (parseInt(item.errnum, 10) > errnum) {
+						return item.html;
+					}
+				});
+
+				$('#js-grid-juicy-projects').html(imgListCache.join(''));
 				initImg();
 			}
 		}
 
 		if (fakeList.rows > 0) {
 			var sum = 0;
-			var strCache = '';
+
 			fakeList.data.map(function(data, curPos) {
 				var url = strUrl + data.id;
 				$.ajax({
@@ -136,7 +161,7 @@ var feedback = function() {
 					})
 					.done(function(obj) {
 						obj = handleAjaxData(obj);
-
+						var str;
 						var img = obj.data[0];
 
 						for (var i = 1; i <= 3; i++) {
@@ -157,7 +182,13 @@ var feedback = function() {
 								ErrCount: data["ErrCount" + i]
 							};
 
-							strCache += tpl.getHTML('feedback/imgitem.etpl', domData);
+							str = tpl.getHTML('feedback/imgitem.etpl', domData);
+
+							imgListCache.push({
+								html: str,
+								prod: domData.ProductName,
+								errnum: domData.ErrCount
+							});
 						}
 						sum++;
 						listener();
@@ -258,8 +289,9 @@ var feedback = function() {
 
 						chartData.xAxis.push(elem[1]);
 						chartData.yAxis.push(elem[2]);
-						chartData.type = 'line';
 					});
+
+					chartData.type = 'line';
 
 					var ec = echarts.init(document.getElementById("chart"));
 					var option = getSimpleEChart(chartData);
@@ -342,8 +374,8 @@ var feedback = function() {
 						cols: 2
 					}],
 					caption: 'overlayBottomReveal', //'overlayBottomReveal',
-					displayType: 'sequentially',
-					displayTypeSpeed: 0,
+					displayType: 'default', //'sequentially',
+					//displayTypeSpeed: 0,
 					//sortToPreventGaps: true,
 
 					// lightbox
@@ -413,4 +445,5 @@ jQuery(document).ready(function() {
 	initDashboardDaterange('YYYYMMDD');
 	initDom(0);
 	feedback.init();
+	bsTips('接口279，280需增加缺陷条数限制');
 });

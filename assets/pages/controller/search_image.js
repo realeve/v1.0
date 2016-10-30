@@ -130,8 +130,8 @@ var imageSearch = function() {
 						cols: 2
 					}],
 					caption: 'overlayBottomAlong', //'overlayBottomReveal',
-					displayType: 'bottomToTop',
-					displayTypeSpeed: 0,
+					displayType: 'default', //'bottomToTop',
+					//displayTypeSpeed: 0,
 					//sortToPreventGaps: true,
 
 					// lightbox

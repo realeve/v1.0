@@ -44,6 +44,14 @@
                            </select>
                         </li>
                      </ul>
+                     <h3 class="list-heading">缺陷条数</h3>
+                     <ul class="list-items borderless">
+                         <li>
+                            高于
+                           <select class="form-control input-inline input-sm input-small" id="errnum">
+                           </select>
+                        </li>
+                     </ul>
                      <!--h3 class="list-heading">其余设置</h3>
                      <ul class="list-items borderless">
                         <li>

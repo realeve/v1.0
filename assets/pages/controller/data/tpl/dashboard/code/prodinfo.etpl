@@ -1,0 +1,38 @@
+  <!-- import: captain -->
+
+    <!-- for: ${data} as ${item},${index} -->
+      <!-- if: ${item.ProcName | slice(0, 1)}=='胶' || ${item.ProcName | slice(0, 1)}=='凹' -->
+          <!-- var: idx = ${index}+1 -->
+            <!-- import: content -->
+      <!-- /if -->
+    <!-- /for -->
+
+<!-- // 标题 -->
+<!-- target: captain -->
+  <div class="cbp-l-project-desc-title">
+    <span>机台作业信息</span>
+  </div>
+
+<!-- // 内容区 -->
+<!-- target: content -->
+    <div class="cbp-l-project-desc-title">
+      <!-- import: head -->
+    </div>
+    <div class="cbp-l-project-desc-text">
+       ${item.WorkInfo | raw}
+        <p class="pull-right">
+          <i class="fa fa-pencil"></i> <i>${item.CaptainName}  发表于 <span name="isodate" title="${item.DateTitle}"></span> </i>
+        </p>
+    </div>
+
+<!-- // 文件头部及详情 -->
+
+<!-- target: head -->
+  <span>${idx}.${item.ProcName} : ${item.MachineName}</span>
+  <!-- if: ${item.WorkClassName} == '早班' -->
+    <i class="badge badge-info"> ${item.WorkClassName}&nbsp; </i>
+  <!-- else -->
+    <i class="badge badge-danger"> ${item.WorkClassName}&nbsp; </i>
+  <!-- /if -->
+  <i class="badge"> ${item.WeekDay}&nbsp; </i>
+  <h5 class="pull-right" style="margin-top:15px;">${item.StartDate | slice(0, 16)}</h5>

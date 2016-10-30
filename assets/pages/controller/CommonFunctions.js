@@ -70,6 +70,19 @@
    */
   window.console && window.console.info("喜欢看 质量控制中心 的代码，还是发现了什么bug？不如和我们一起为它添砖加瓦吧！\n电话:8275-6129；\n微信:宾不厌诈");
 
+  function addMask(message) {
+    var str = '<div class="cbp-popup-wrap cbp-popup-lightbox cbp-popup-ready font-grey-steel">\
+        <div class="col-md-10">' +
+      message + '</div>\
+        <div class="cbp-popup-close"></div>\
+      </div>';
+    $('body').append(str);
+
+    $('.cbp-popup-close,.cbp-popup-wrap').on('click', function() {
+      $('.cbp-popup-wrap').remove();
+    });
+  }
+
   function infoTips(strMes, Type, iContainer) {
     if (typeof iContainer === 'undefined') {
       iContainer = "";

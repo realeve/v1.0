@@ -1,0 +1,98 @@
+<!-- if: ${item[25]} == 'AA==' -->
+  <!-- var: src1 = "../../assets/global/img/none.png" -->
+<!-- else -->
+  <!-- var: src1 = "data:image/jpg;base64,"+${item[25]} -->
+<!-- /if -->
+<!-- if: ${item[26]} == 'AA==' -->
+  <!-- var: src2 = "../../assets/global/img/none.png" -->
+<!-- else -->
+  <!-- var: src2 = "data:image/jpg;base64,"+${item[26]} -->
+<!-- /if -->
+<!-- if: ${item[27]} == 'AA==' -->
+  <!-- var: src3 = "../../assets/global/img/none.png" -->
+<!-- else -->
+  <!-- var: src3 = "data:image/jpg;base64,"+${item[27]} -->
+<!-- /if -->
+<div class="cbp-l-inline">
+    <div class="col-md-4">
+        <div class="cbp-slider">
+            <ul class="cbp-slider-wrap">
+                <li class="cbp-slider-item">
+                    <a href="${src1}" class="cbp-lightbox">
+                        <img src="${src1}" alt=""> </a>
+                    <div class="text-center">第${item[18]}开 / ${item[19]}条</div>
+                </li>
+                <li class="cbp-slider-item">
+                    <a href="${src2}" class="cbp-lightbox">
+                        <img src="${src2}" alt=""> </a>
+                    <div class="text-center">第${item[20]}开 / ${item[21]}条</div>
+                </li>
+                <li class="cbp-slider-item">
+                    <a href="${src3}" class="cbp-lightbox">
+                        <img src="${src3}" alt=""> </a>
+                    <div class="text-center">第${item[22]}开 / ${item[23]}条</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <div class="cbp-l-inline-title">${item[1]} 生产质量详情</div>
+      <div class="cbp-l-inline-subtitle">${item[0]} 更新于 <span name="isodate" title="${item[24]}+08"></span></div>
+
+      <div class="cbp-l-project-container margin-top-10">
+        <div class="col-md-6">
+            <div class="cbp-l-project-desc-title">
+                <span>质量信息</span>
+            </div>
+             <ul class="cbp-l-project-details-list">
+                <li><strong>${header[11].title}</strong>${item[11]}</li>
+                <li><strong>${header[3].title}</strong>${item[3]}</li>
+                <li><strong>${header[4].title}</strong>${item[4]}</li>
+                <li><strong>${header[5].title}</strong>${item[5]}</li>
+                <li><strong>${header[6].title}</strong>${item[6]}</li>
+                <li><strong>${header[7].title}</strong>${item[7]}</li>
+                <li><strong>${header[8].title}</strong>${item[8]}</li>
+                <li><strong>${header[9].title}</strong>${item[9]}</li>
+                <li><strong>${header[10].title}</strong>${item[10]}</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="cbp-l-project-details-title">
+                <span>设备状态</span>
+            </div>
+             <ul class="cbp-l-project-details-list">
+                <li><strong>${header[12].title}</strong>${item[12]} GB</li>
+                <li><strong>${header[13].title}</strong>${item[13]} GB</li>
+                <li><strong>${header[14].title}</strong>${item[14]}</li>
+                <li><strong>${header[15].title}</strong>${item[15]}</li>
+                <li><strong>${header[16].title}</strong>${item[16]}</li>
+                <li><strong>${header[17].title}</strong>${item[17]}</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="cbp-l-project-container">
+      <div class="col-md-8" id="prodinfo">
+      </div>
+
+      <div class="col-md-4">
+          <div class="cbp-l-project-details-title">
+              <span>当天好品率曲线</span>
+          </div>
+          <div class="cbp-l-project-details-list" id="goodrateDetail" style="min-height:220px;">
+          </div>
+          <div class="cbp-l-project-details-title margin-top-20">
+              <span>近期未检情况</span>
+          </div>
+          <div class="cbp-l-project-details-list" id="nocheckDetail" style="min-height:220px;">
+          </div>
+      </div>
+
+      <div class="cbp-l-project-related">
+          <div class="cbp-l-project-desc-title">
+              <span>当天生产的其它产品</span>
+          </div>
+          <div class="row" id="hislist"></div>
+      </div>
+    </div>
+</div>

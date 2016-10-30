@@ -40,6 +40,7 @@ var chart = {
 		"../assets/global/plugins/bootstrap-select/css/bootstrap-select.css",
 		"../assets/global/plugins/bootstrap-toastr/toastr.css",
 		"../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.css",
+		"../assets/global/plugins/cubeportfolio/css/cubeportfolio.css",
 		"../assets/global/css/plugins-md.css",
 		"../assets/layouts/layout/css/layout.css",
 		"../assets/global/css/components-rounded.css",

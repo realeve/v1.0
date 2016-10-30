@@ -9,6 +9,7 @@ var index = {
 		"../assets/pages/css/tasks.css",
 		"../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.css",
 		"../assets/global/plugins/bootstrap-toastr/toastr.css",
+		"../assets/global/plugins/cubeportfolio/css/cubeportfolio.css",
 		"../assets/global/css/components-rounded.css",
 		"../assets/global/css/plugins-md.css",
 		"../assets/layouts/layout/css/layout.css",

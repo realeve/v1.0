@@ -61,6 +61,7 @@ var table = {
 		"../assets/global/plugins/bootstrap-toastr/toastr.css",
 		"../assets/global/plugins/select2/css/select2.css",
 		"../assets/global/plugins/select2/css/select2-bootstrap.min.css",
+		"../assets/global/plugins/cubeportfolio/css/cubeportfolio.css",
 		"../assets/global/css/components-rounded.css",
 		"../assets/global/css/plugins-md.css",
 		"../assets/layouts/layout/css/layout.css",

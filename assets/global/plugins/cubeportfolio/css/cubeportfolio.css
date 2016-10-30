@@ -2888,7 +2888,7 @@
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
-    z-index: 9990;
+    z-index: 9996;
     padding: 0 10px
 }
 
@@ -3024,7 +3024,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9990;
+    z-index: 9996;
     height: 104px;
     background-color: #3D4750
 }

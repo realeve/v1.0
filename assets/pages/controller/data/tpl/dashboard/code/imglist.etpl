@@ -1,0 +1,27 @@
+<!-- for: ${data} as ${item}, ${index} -->
+      <!-- if: ${item[25]} == 'AA==' -->
+        <!-- var: src = "../../assets/global/img/none.png" -->
+      <!-- else -->
+        <!-- var: src = "data:image/jpg;base64,"+${item[25]} -->
+      <!-- /if -->
+    <div class="cbp-item ${item[2]}">
+        <a href="#img${index}" class="cbp-caption cbp-singlePageInline" rel="nofollow">
+            <div class="cbp-caption-defaultWrap">
+                <img src="${src}" alt=""> </div>
+            <div class="cbp-caption-activeWrap">
+                <div class="cbp-l-caption-alignLeft">
+                    <div class="cbp-l-caption-body">
+                        <div class="cbp-l-caption-title">${item[1]}</div>
+                        <div class="cbp-l-caption-desc">车号：${item[0]}<br>好品率：
+                            <!-- if: ${item[11]}< 80 -->
+                               <span class="font-red">${item[11]} %</span>
+                            <!-- else -->
+                                <span>${item[11]} %</span>
+                            <!-- /if -->
+                        <br>印刷张数：${item[3]}大张</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+<!-- /for -->

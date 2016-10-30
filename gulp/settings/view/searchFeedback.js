@@ -40,8 +40,10 @@ var index = {
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js",
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js",
 		"../assets/pages/controller/idletimeout.js",
-		"../assets/global/plugins/lodash.js",
+		"../assets/global/plugins/lodash.min.js",
 		"../assets/global/plugins/etpl.js",
+		"../assets/global/plugins/jquery-prettydate/jquery.prettydate.js",
+		"../assets/global/plugins/jquery-prettydate/i18n/jquery.prettydate-zh-CN.js",
 		"../assets/global/plugins/echarts/js/ThemeStyle.js",
 		"../assets/global/plugins/echarts/js/echarts.common.js",
 		"../assets/global/plugins/bootstrap-toastr/toastr.js"
