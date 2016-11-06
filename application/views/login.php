@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <!--[if IE 8]> <html lang="zh" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="zh" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
+<!--[if IE]>  
+<!-->
 <html lang="zh">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
