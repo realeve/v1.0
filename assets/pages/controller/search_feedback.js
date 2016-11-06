@@ -416,6 +416,55 @@ var feedback = function() {
 		isInited = true;
 	};
 
+	function downZipFile(zipName) {
+		var zip = new JSZip();
+		zip.file("README.txt", "这是一个由质量信息系统自动生成的图像压缩包");
+
+		var notfake = zip.folder("误废");
+		var fake = zip.folder("实废");
+		var none = zip.folder("未判废");
+
+		var $imgList = $('.cbp-item');
+		$imgList.map(function(i, img) {
+			var $img = $(img);
+			var title = img.innerText.split('\n');
+			var name = [];
+			name.push(title[2]);
+			name.push(title[3].replace(/\//, '_').replace(/ /g, ''));
+			var filename = name.join('_') + '.jpg';
+			var imgData = $img.find('img').attr('src').split('data:image/jpg;base64,')[1];
+
+			if ($img.hasClass('notfake')) {
+				notfake.file(filename, imgData, {
+					base64: true
+				});
+			} else if ($img.hasClass('fake')) {
+				fake.file(filename, imgData, {
+					base64: true
+				});
+			} else {
+				none.file(filename, imgData, {
+					base64: true
+				});
+			}
+
+		});
+
+		zip.generateAsync({
+			type: "blob"
+		}).then(function(content) {
+			// see FileSaver.js
+			saveAs(content, zipName + ".zip");
+		});
+	}
+
+	$('#download').on('click', function() {
+		var zipfileNme;
+		var date = getDateRange();
+		zipfileNme = '码后核查质量反馈(' + date.start + '至' + date.end + ')';
+		downZipFile(zipfileNme);
+	});
+
 	return {
 		//main function to initiate the module
 		init: function() {

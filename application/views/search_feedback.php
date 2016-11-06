@@ -16,6 +16,9 @@
     				</ul>
 
     				<div class="page-toolbar">
+                        <div id="download" class="btn btn-fit-height btn-default">
+                            下载图像包
+                        </div>
     					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
     						<i class="icon-calendar"></i>&nbsp;
     						<span class="thin uppercase">&nbsp;</span>&nbsp;

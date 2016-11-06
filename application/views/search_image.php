@@ -13,6 +13,11 @@
     						<a href="#">实废图像</a>
     					</li>
     				</ul>
+                    <div class="page-toolbar">
+                        <div id="download" class="pull-right btn btn-fit-height btn-success">
+                            下载图像包
+                        </div>
+                    </div>
     			</div>
     			<!-- <h3 class="page-title"> 实废图像查询
                   <small> 数据来源：码后核查、小张核查、号码三合一数据库

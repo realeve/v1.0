@@ -59,13 +59,12 @@ var imageSearch = function() {
 
 		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&M=3&blob=3;&ID=" + id + "&cache=14400&cart=" + cart;
 
-		// var testUrl;
 		// if (id == 309) {
-		// 	testUrl = '../topic/testData/hecha.json';
+		// 	url = '../topic/testData/hecha.json';
 		// } else if (id == 310) {
-		// 	testUrl = '../topic/testData/siyin.json';
+		// 	url = '../topic/testData/siyin.json';
 		// } else {
-		// 	testUrl = '../topic/testData/code.json';
+		// 	url = '../topic/testData/code.json';
 		// }
 
 		var str = '';
@@ -154,6 +153,36 @@ var imageSearch = function() {
 
 		isInited = true;
 	};
+
+	function downZipFile(zipName) {
+		var zip = new JSZip();
+		zip.file("README.txt", "这是一个由质量信息系统自动生成的图像压缩包");
+		var $imgList = $('a.cbp-lightbox');
+		$imgList.map(function(i, img) {
+			var $img = $(img);
+			var title = $img.data('title').split('<br>');
+			var name = [];
+			name.push(title[1].replace(/\W/g, '') + 'K');
+			name.push(title[0].replace(/\W/g, ''));
+			name.push('cam' + title[2].replace(/\W/g, ''));
+			var filename = name.join('_') + '.jpg';
+			var imgData = $img.attr('href').split('data:image/jpg;base64,')[1];
+			zip.file(filename, imgData, {
+				base64: true
+			});
+		});
+
+		zip.generateAsync({
+			type: "blob"
+		}).then(function(content) {
+			// see FileSaver.js
+			saveAs(content, zipName + ".zip");
+		});
+	}
+
+	$('#download').on('click', function() {
+		downZipFile(cart);
+	});
 
 	return {
 		//main function to initiate the module

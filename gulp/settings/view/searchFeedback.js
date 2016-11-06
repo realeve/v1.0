@@ -42,6 +42,8 @@ var index = {
 		"../assets/pages/controller/idletimeout.js",
 		"../assets/global/plugins/lodash.min.js",
 		"../assets/global/plugins/etpl.js",
+		"../assets/global/plugins/jszip/jszip.min.js",
+		"../assets/global/plugins/jszip/FileSaver.min.js",
 		"../assets/global/plugins/jquery-prettydate/jquery.prettydate.js",
 		"../assets/global/plugins/jquery-prettydate/i18n/jquery.prettydate-zh-CN.js",
 		"../assets/global/plugins/echarts/js/ThemeStyle.js",
