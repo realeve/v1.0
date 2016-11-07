@@ -1,6 +1,3 @@
-if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('Opera') < 0)) {
-    window.location.href = "../topic/ie.html";
-}
 var Login = function() {
     //全局配置
     const config = {

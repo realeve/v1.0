@@ -18,6 +18,11 @@
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="../../assets/build/css/login.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME STYLES -->
+<script>
+if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('Opera') < 0)) {
+    window.location.href = "../topic/ie.html";
+}
+</script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
