@@ -95,7 +95,7 @@ var dashboardApp = function() {
 					}
 				},
 				function() {
-					bsTips('数据渲染完毕', 1);
+					//bsTips('数据渲染完毕', 1);
 				});
 		};
 

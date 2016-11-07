@@ -494,5 +494,5 @@ jQuery(document).ready(function() {
 	initDashboardDaterange('YYYYMMDD');
 	initDom(0);
 	feedback.init();
-	bsTips('接口279，280需增加缺陷条数限制');
+	//bsTips('接口279，280需增加缺陷条数限制');
 });
