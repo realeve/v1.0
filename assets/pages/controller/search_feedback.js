@@ -359,10 +359,10 @@ var feedback = function() {
 					gridAdjustment: 'responsive',
 					mediaQueries: [{
 						width: 1500,
-						cols: 7
+						cols: 6
 					}, {
 						width: 1100,
-						cols: 6
+						cols: 5
 					}, {
 						width: 800,
 						cols: 5

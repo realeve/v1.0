@@ -21,9 +21,9 @@ var FakePiece = function() {
 			.done(function(Data) {
 				Data = handleAjaxData(Data);
 				InitSelect("oper_id", Data);
-				setTimeout(function(){
+				setTimeout(function() {
 					SetSelect2Val('oper_id', -1);
-				},0);
+				}, 0);
 			});
 	}
 
@@ -187,12 +187,7 @@ var FakePiece = function() {
 			}
 		};
 
-		if (data.serious_fake + data.large_fake > 0) {
-			$.ajax(options);
-		} else {
-			bsTips('数据无效，严重废数量和一般废数量不能同时为0，请检查后重新输入！');
-			$('[name="serious_fake"]').focus();
-		}
+		$.ajax(options);
 
 		return false;
 	}

@@ -109,12 +109,12 @@ var dashboardApp = function() {
 
 	var refreshOlInfo = function() {
 		var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=316&M=3&blob=25;26;27&cache=0.25";
-		url = './topic/testData/online/online.json';
+		//url = './topic/testData/online/online.json';
 		$.ajax({
 				url: url
 			})
 			.done(function(data) {
-				//data = $.parseJSON(data);
+				data = $.parseJSON(data);
 				olData = {
 					rows: 0
 				};
@@ -141,7 +141,7 @@ var dashboardApp = function() {
 
 	var refreshProdInfo = function(id) {
 		var url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=283&M=0&cart=' + olData.data[id][0] + '&cache=1440';
-		url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=283&M=0&cart=1620A285&cache=1440';
+		//url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=283&M=0&cart=1620A285&cache=1440';
 		$.ajax({
 				url: url
 			})
@@ -205,8 +205,8 @@ var dashboardApp = function() {
 			//SELECT top 10 a.ProduceDate, sum(NoCheckCount) as num FROM MaHouData a INNER JOIN ( SELECT  ProduceDate,  MachineID FROM  MaHouData WHERE  CartNumber = ? ) b ON a.MachineID = b.MachineID AND a.ProduceDate <= b.ProduceDate group by a.ProduceDate ORDER BY a.ProduceDate desc
 			//近期未检情况
 			//cart
-			var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=317&M=3&cart=" + olData.data[id][0];
-			url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=317&M=3&cart=1620A285';
+			var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=318&M=3&cart=" + olData.data[id][0];
+			//url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=317&M=3&cart=1620A285';
 			var chartData = {
 				xAxis: [],
 				yAxis: []
@@ -286,7 +286,7 @@ var dashboardApp = function() {
 			//282
 			//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where CartNumber = '1620C217') b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
 			var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + olData.data[id][0];
-			url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=282&M=3&cart=1620A285';
+			//url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=282&M=3&cart=1620A285';
 			$.ajax({
 					url: url
 				})
