@@ -246,5 +246,31 @@ class PaperPara extends CI_Controller {
 			$this->load->view('login');
 		}
 	}
+	
+	//耐性指标
+	public function endurance()
+	{
+		//开启缓存
+		//$this->output->cache(60*24);
+		if ($this->session->userdata('userrole')>0)
+		{
+			if($this->session->userdata('logged_in')==true)
+			{
+				$logindata = $this->session->userdata;
+				$this->load->view('templates/header/header_paperpara', $logindata);
+				$this->load->view('templates/header/topmenu');
+				$this->load->view('templates/sidebar');
+				$this->load->view('print_endurance',$logindata);
+				$this->load->view('templates/footer/footer_print_endurance');
+			}
+		}
+		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
+		{
+			$this->load->view('lockscreen-min');
+		}
+		else{
+			$this->load->view('login');
+		}
+	}
 }
 
