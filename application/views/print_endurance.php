@@ -42,7 +42,7 @@
 								</div>
 							</div>
 							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">录入日期</label>
+								<label class="col-md-3 control-label">检测日期</label>
 								<div class="col-md-9">
 									<input class="form-control form-control-inline date-picker" type="text" v-model="basic.rec_date"/>
 									<div class="form-control-focus">
@@ -93,11 +93,38 @@
 							<div class="form-actions right">
 								<a type="submit" class="btn green-haze" @click="submit"> 提交 <i class="icon-cloud-upload"></i></a>
 								<a class="btn default" @click="reset"> 重置 <i class="icon-refresh"></i></a>
+								<a class="btn red" @click="loadHisData"> 载入列表 <i class="icon-cloud-download"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
+
+			<div id="sheet">
+				<div class="portlet light bordered" v-if="tbl.rows">
+					<div class="portlet-title">
+						<div class="caption font-green">
+							<i class="icon-pin font-green"></i>
+							<span class="caption-subject bold uppercase"> {{tbl.title}} </span>
+							<span class="caption-helper">({{tbl.source}})</span>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<table class="table table-striped table-bordered table-advance table-hover">
+							<thead>
+								<tr>
+									<th v-for="th of tbl.header">{{th.title}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="tr of tbl.data">
+									<td v-for="td of tr">{{td}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>

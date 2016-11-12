@@ -23,6 +23,7 @@
     "PPR_BATCHWASTE": 11, //批量报废
     "PPR_PENALTY": 12, //完成车间质量考核
     "PPR_ABNORMAL": 13, //非常规指标
+    "PRINT_ENDURANCE": 14, //印刷耐性指标
 
     "USR": 20, //'tblUser', //20  用户信息
     "DPMT": 21, //'tblDepartMent', //21  用户所在部门/分组
@@ -71,14 +72,17 @@
   window.console && window.console.info("喜欢看 质量控制中心 的代码，还是发现了什么bug？不如和我们一起为它添砖加瓦吧！\n电话:8275-6129；\n微信:宾不厌诈");
 
   function addMask(message) {
-    var str = '<div class="cbp-popup-wrap cbp-popup-lightbox cbp-popup-ready font-grey-steel">\
+    //var str = '<div class="cbp-popup-wrap cbp-popup-lightbox cbp-popup-singlePage cbp-popup-singlePage-open cbp-popup-ready cbp-popup-transitionend cbp-popup-singlePage-sticky" data-action style="display: block;">\
+    //
+    var str = '<div class="cbp-popup-wrap cbp-popup-lightbox cbp-popup-ready font-grey-steel" style="text-align:left;">\
         <div class="col-md-10">' +
       message + '</div>\
         <div class="cbp-popup-close"></div>\
       </div>';
     $('body').append(str);
 
-    $('.cbp-popup-close,.cbp-popup-wrap').on('click', function() {
+    //,.cbp-popup-wrap
+    $('.cbp-popup-close').on('click', function() {
       $('.cbp-popup-wrap').remove();
     });
   }
@@ -661,14 +665,17 @@
       localStorage.setItem("appVersion", curVersion);
       var url = getRootPath(1) + "/assets/pages/controller/data/update_info.json";
       json = ReadJson(url);
+      var html = '';
       json.appInfo.map(function(appInfo) {
         //比当前版本号更大
-        var info = '更新说明';
+        var info = '';
         if (appInfo.version > localVersion) {
-          info += "\n\n<hr><p>【版本号】: " + appInfo.version + "</p>\n<p>【更新日期】: " + appInfo.date + "</p>\n<p>【近期功能更新】：</p>\n" + appInfo.html;
-          infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
+          info += '<div class="col-md-6 margin-top-10"><p>【版本号】: ' + appInfo.version + "</p><p>【更新日期】: " + appInfo.date + "</p><p>【近期功能更新】：</p>" + appInfo.html;
+          //infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
+          html += (info+"</div>");
         }
       });
+      addMask(html);
     }
   }
 

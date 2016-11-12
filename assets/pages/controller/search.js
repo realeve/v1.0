@@ -147,8 +147,8 @@ var search = function() {
 	function getInputData() {
 		//get data
 		queryString.cart = $('[name="cart"]').val().trim().toUpperCase();
-		queryString.codeNo = $('[name="codeNo"]').val().trim();
-		queryString.paperNo = $('[name="paperNo"]').val().trim();
+		//queryString.codeNo = $('[name="codeNo"]').val().trim();
+		//queryString.paperNo = $('[name="paperNo"]').val().trim();
 	}
 
 	function getCartData(updateHisInfo) {

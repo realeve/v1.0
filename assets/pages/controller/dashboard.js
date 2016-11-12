@@ -341,7 +341,7 @@ $(document).ready(function() {
 
 	dashboardApp.init();
 
-	//dashboardApp.reload();
+	dashboardApp.reload();
 
 });
 

@@ -13,44 +13,21 @@
 				});
 			}
 		};
-		/**
-		 * [loadHisData 载入历史数据]
-		 * @return {[type]}        [无返回值]
-		 */
+
 		function loadHisData() {
 
-			function getTDStr(data, i) {
-				var str = '<tr>' +
-					'	<td>' + i + '</td>';
-				data.map(function(td) {
-					str += '	<td>' + td + '</td>';
-				});
-				str += '</tr>';
-				return str;
-			}
+			var date = store.state.basic.rec_date.replace(/-/g,'');
 
-			var objTbody = $('[name="fakeList"] tbody');
-			var date = $("input[name='rec_date']").val();
-			//载入历史数据
-			//大张废原始数据查询
-			// SELECT  a.CartNumber,  a.ProductType,  a.Date,  a.FakePiece,  a.HalfPiece,  a.NoNum,  b.FakeDesc,  a.Describe  FROM  FakePieceData a INNER JOIN  FakePieceDesc b on a.ProcID = b.id  where date = ? order by a.id desc
+			//耐性指标原始数据
+			//SELECT a.冠字, a.品种, a.检测日期, a.备注, a.耐干皱折正, a.耐干皱折背, a.耐干皱折OVMI, a.耐机洗正, a.耐机洗背 FROM dbo.view_print_endurance AS a where a.检测日期 BETWEEN ? and ? order by 记录时间 desc
 			date = date.replace(/-/g, '');
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=246&M=3&tstart=" + date;
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=328&M=3&tstart=" + date+'&tend='+date;
 			$.ajax({
 					url: str,
 				})
 				.done(function(Data) {
-					Data = handleAjaxData(Data);
-					if (Data.rows === 0) {
-						objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
-						return;
-					}
-					var tBody = '';
-					Data.data.map(function(data, i) {
-						tBody += getTDStr(data, i + 1);
-					});
-
-					objTbody.html(tBody);
+					var data = handleAjaxData(Data);
+					store.state.tbl = data;
 				});
 		}
 
@@ -76,6 +53,7 @@
 					$('.select2').on('select2:select', function() {
 						handleParamsByProdid($(this).val());
 					});
+
 				});
 		}
 
@@ -126,7 +104,7 @@
 						name: '耐干皱折(OVMI)',
 						data: '0',
 						key: 'anti_CreaseOVMI',
-						show: false
+						show: true
 					}, {
 						name: '机洗(正)',
 						data: '0',
@@ -147,7 +125,10 @@
 					prodList: [{
 						value: 0,
 						name: ''
-					}]
+					}],
+					tbl:{
+						rows:0
+					}
 				},
 				mutations: {
 					submit: function() {
@@ -159,13 +140,16 @@
 						$state.params.forEach(function(item) {
 							data[item.key] = item.data;
 						});
-						console.log(data);
+						insertData(data);
 					},
 					reset: function() {
 						var self = store.state.params;
 						self.forEach(function(item, i) {
 							self[i].data = '0';
 						});
+					},
+					loadHisData:function(){
+						loadHisData();
 					}
 				}
 			});
@@ -203,6 +187,9 @@
 					},
 					reset: function() {
 						store.commit('reset');
+					},
+					loadHisData:function(){
+						store.commit('loadHisData');
 					}
 				},
 				mounted: function() {
@@ -210,13 +197,16 @@
 					handleValidate();
 				}
 			});
-		}
 
-		function initDOM() {
-
-			$('.page-header .dropdown-quick-sidebar-toggler').hide();
-
-			initVue();
+			var table= new Vue({
+				el:'#sheet',
+				store:true,
+				computed:{
+					tbl:function(){
+						return store.state.tbl;
+					}
+				}
+			});
 		}
 
 		var handleValidate = function() {
@@ -272,61 +262,25 @@
 			});
 		};
 
-		//JS端  UTF-8  需要做2GBK操作
-		//SELECT  COLLATIONPROPERTY('Chinese_PRC_Stroke_CI_AI_KS_WS', 'CodePage')
-		function getFormData() {
-			var surData = {
-				'tbl': TBL.PRINT_FAKEPIECE,
-				'CartNumber': $("input[name='cart_number']").val(),
-				'ProductType': GetSelect2Text('prod_ID'),
-				'ProcID': $('select[name="ProcID"]').val(),
-				'Date': $("input[name='rec_date']").val().replace(/-/g, ''),
-				'Describe': $("input[name='remark']").val(),
-				'utf2gbk': ['Describe']
-			};
-			//surData.remark = UTF2GBK(surData.remark);
-			var keyList = [
-				'FakePiece',
-				'HalfPiece',
-				'NoNum'
-			];
-			var checkStr = JSON.stringify(surData);
-			checkStr = checkStr.replace('}', '');
-			var curVal;
-			$('.fakeNum input').map(function(elem) {
-				curVal = $(this).val();
-				if (curVal === '') {
-					curVal = 0;
-				}
-				checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
-			});
-			checkStr += '}';
-			return $.parseJSON(checkStr);
-		}
+		function insertData(data) {
 
-		function resetData() {
-			SetSelect2Val('ProcID', -1); //工序
-			$('.fakeNum input').val('0');
-			$("[name='remark']").val('无');
-			$("[name='cart_number']").focus();
-		}
-
-		$('[name="reset"]').on('click', function() {
-			resetData();
-		});
-
-		function insertData() {
 			var strUrl = getRootPath() + "/DataInterface/insert";
+
+			data.tbl = TBL.PRINT_ENDURANCE;
+			data.utf2gbk = ['remark'];
+			data.rec_time = today(1);
+
 			var options = {
 				url: strUrl,
 				type: 'post',
 				resetForm: true,
-				data: getFormData(),
+				data: data,
 				success: function(data) {
 					var obj = $.parseJSON(data);
 					bsTips(obj.message, obj.type);
-					//重置数据
-					resetData();
+
+					store.commit('reset');
+
 					loadHisData();
 				},
 				error: function(data) {
@@ -340,14 +294,17 @@
 		return {
 			init: function() {
 				handleDatePickers();
-				initDOM();
+
+				$('.page-header .dropdown-quick-sidebar-toggler').hide();
+
+				initVue();
 			}
 		};
 	}();
 
 	jQuery(document).ready(function() {
-		initDom();
 		FakePiece.init();
+		initDom();
 	});
 	jQuery(window).resize(function() {
 		HeadFix();
