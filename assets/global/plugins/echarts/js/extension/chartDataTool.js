@@ -887,7 +887,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           if (objRequest.minMax) {
             iConvData = handleBoxPlotDataMinMax(iConvData, arrTemp[elem]);
           }
-          NewData['series'][index] = {
+          NewData['series'][index * 2] = {
             "name": elem,
             "type": objRequest.type,
             "data": iConvData.boxData,
@@ -902,10 +902,17 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             }
           };
 
-          NewData['series'][index + 3] = {
+          NewData['series'][index * 2 + 1] = {
             name: elem,
             type: 'scatter',
-            data: iConvData.outliers
+            data: iConvData.outliers,
+            tooltip: {
+              formatter: function(param) {
+                var coord = param.data;
+                var str = NewData.xAxisTitle + ': ' + param.name + '<br>' + NewData.yAxisTitle + ': ' + coord[1];
+                return param.seriesName + ' 异常值<br>' + str;
+              }
+            }
           };
         });
 
@@ -957,7 +964,14 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         NewData['series'][1] = {
           "name": NewData['yAxisTitle'],
           type: 'scatter',
-          data: iConvData.outliers
+          data: iConvData.outliers,
+          tooltip: {
+            formatter: function(param) {
+              var coord = param.data;
+              var str = NewData.xAxisTitle + ': ' + param.name + '<br>' + NewData.yAxisTitle + ': ' + coord[1];
+              return param.seriesName + ' 异常值<br>' + str;
+            }
+          }
         };
 
       } else if (Data.cols == 1) {
@@ -1003,6 +1017,190 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       }
       NewData.series = handleMarkArea(objRequest, NewData.series);
       NewData.series = handleLineStepMode(objRequest, NewData.series);
+      return NewData;
+    }
+
+    function handleCandleStickData(data) {
+      var arrCandle = [];
+      var avg = [];
+      var len;
+      data.map(function(item, i) {
+        arrCandle[i] = [];
+        len = item.length;
+        arrCandle[i].push(item[0]);
+        arrCandle[i].push(item[len - 1]);
+        var min = item[0],
+          max = item[0],
+          sum = 0;
+        item.map(function(arr) {
+          min = Math.min(min, arr);
+          max = Math.max(max, arr);
+          sum += arr;
+        })
+        arrCandle[i].push(min);
+        arrCandle[i].push(max);
+        avg.push((sum / len).toFixed(3));
+      })
+      return {
+        candle: arrCandle,
+        avg: avg
+      };
+    }
+
+    function convertCandleStickData(objRequest) {
+      var Data = objRequest.data;
+      var lineStyle = {
+        normal: {
+          width: 2,
+          type: 'solid',
+          shadowColor: 'rgba(0,0,0,0)',
+          shadowBlur: 0,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0
+        }
+      };
+      var itemStyle = {
+        normal: {
+          color: '#F7715F', // 阳线
+          color0: '#85ca36', // 阴线
+          borderColor: '#F7715F', // 阳线边框
+          borderColor0: '#85ca36' // 阴线边框
+        }
+      };
+      var markPoint = {
+        label: {
+          normal: {
+            formatter: function(param) {
+              return param != null ? Math.round(param.value) : '';
+            }
+          }
+        },
+        data: [{
+          name: '最高值',
+          type: 'max',
+          valueDim: 'highest'
+        }, {
+          name: '最低值 ',
+          type: 'min',
+          valueDim: 'lowest'
+        }],
+        tooltip: {
+          formatter: function(param) {
+            var coord = param.data.coord;
+            var str = NewData.xAxisTitle + ': ' + NewData.xAxis[coord[0]] + '<br>' + NewData.yAxisTitle + ': ' + coord[1];
+            return param.name + '<br>' + str;
+          }
+        }
+      };
+      var NewData = {
+        title: Data.title,
+        subTitle: Data.source,
+        rows: Data.rows,
+        series: [],
+        legend: []
+      };
+
+      var iConvData;
+
+      if (0 === Data.rows) {
+        return NewData;
+      }
+
+      //3列格式，第一列为legend
+      if (Data.cols == 3) {
+        NewData.xAxisTitle = Data.header[1].title;
+        NewData.yAxisTitle = Data.header[2].title;
+        NewData.xAxis = getUniData(Data.data, 1);
+        NewData.legend = getUniData(Data.data, 0);
+
+        var arrTemp = [];
+        //yAxis数据清零
+        for (i = 0; i < NewData.legend.length; i++) {
+          arrTemp[NewData.legend[i]] = [];
+          for (j = 0; j < NewData.xAxis.length; j++) {
+            arrTemp[NewData.legend[i]][j] = [];
+          }
+        }
+        for (i = 0; i < Data.rows; i++) {
+          iTemp = Data.data[i][0]; //Legend
+          for (j = 0; j < NewData.xAxis.length; j++) {
+            if (Data.data[i][1] == NewData.xAxis[j]) {
+              arrTemp[iTemp][j].push(Number.parseFloat(Data.data[i][2])); //字符——————>浮点型(否则数据无法做average等比较)
+              break;
+            }
+          }
+        }
+
+        NewData['legend'].map(function(elem, index) {
+
+          iConvData = handleCandleStickData(arrTemp[elem]);
+
+          NewData['series'][2 * index] = {
+            "name": elem,
+            "type": objRequest.type,
+            "data": iConvData.candle,
+            markPoint: markPoint,
+            itemStyle: itemStyle
+          };
+
+          NewData['series'][2 * index + 1] = {
+            name: elem,
+            type: 'line',
+            data: iConvData.avg,
+            smooth: true,
+            lineStyle: lineStyle,
+            symbolSize: 2
+          };
+
+        });
+
+      } else if (Data.cols == 2) {
+        NewData.xAxisTitle = Data.header[0].title;
+        NewData.yAxisTitle = Data.header[1].title;
+        NewData.xAxis = getUniData(Data.data, 0);
+
+        NewData.yAxis = [];
+
+        //yAxis数据清零
+        for (i = 0; i < NewData.xAxis.length; i++) {
+          NewData.yAxis[i] = [];
+        }
+
+        for (i = 0; i < Data.rows; i++) {
+          iTemp = Data.data[i][0]; //Legend
+          for (j = 0; j < NewData.xAxis.length; j++) {
+            if (iTemp == NewData.xAxis[j]) {
+              NewData.yAxis[j].push(Number.parseFloat(Data.data[i][1])); //字符——————>浮点型(否则数据无法做average等比较)
+              break;
+            }
+          }
+        }
+
+        iConvData = handleCandleStickData(NewData.yAxis);
+
+        NewData.legend = ['K线', '均线'];
+        NewData.series[0] = {
+          "name": 'K线',
+          "type": objRequest.type,
+          "data": iConvData.candle,
+          markPoint: markPoint,
+          itemStyle: itemStyle
+        };
+
+        NewData.series[1] = {
+          "name": '均线',
+          type: 'line',
+          data: iConvData.avg,
+          smooth: true,
+          lineStyle: lineStyle,
+          symbolSize: 2
+        };
+
+      }
+
+      NewData.series = handleMarkArea(objRequest, NewData.series);
+      NewData.series = handleLineStepMode(objRequest, NewData.series);
+
       return NewData;
     }
 
@@ -2454,6 +2652,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         break;
       case 'boxplot':
         returnData = convertBoxPlotData(objRes);
+        break;
+      case 'candlestick':
+        returnData = convertCandleStickData(objRes);
         break;
       case 'pie':
       case 'funnel':
@@ -3944,6 +4145,31 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     return outData;
   };
 
+  function getCandleStickOption(obj) {
+
+
+    var outData = getGridAxisOption(obj);
+
+    if (outData.series.length > 2) {
+      outData.legend.selectedMode = 'single';
+    }
+    outData.tooltip.trigger = 'axis';
+
+    // outData.toolbox.feature.brush = {
+    //   type: ['lineX', 'clear']
+    // }
+    // outData.brush = {
+    //   xAxisIndex: 'all',
+    //   brushLink: 'all',
+    //   outOfBrush: {
+    //     colorAlpha: 0.1
+    //   }
+    // };
+
+    return outData;
+  }
+
+
   function handleBankNoteColors(objLegend, color) {
     var bankNoteLegend = [];
     objLegend.map(function(legend) {
@@ -4024,6 +4250,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     objRequest = handleObjRequest(objRequest);
 
     Data = convertData(objRequest, echarts);
+
     //处理起始时间
     var dateStr = objRequest.url.split('tstart=')[1];
     var pds = getUrlParam('tstart');
@@ -4045,6 +4272,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       case 'line':
       case 'boxplot':
         outData = getGridAxisOption(objRequest);
+        break;
+      case 'candlestick':
+        outData = getCandleStickOption(objRequest);
         break;
       case 'spc':
         outData = getSPCOption(objRequest);

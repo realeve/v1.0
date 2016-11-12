@@ -148,9 +148,10 @@ class DataInterfaceModel extends CI_Model {
 
 		if($Logout['ID'])
 		{
-			$Logout['message'] = '操作成功';//注册成功
+			$Logout['message'] = '操作成功';
 			$Logout['status'] = '1';
 			$Logout['NewID'] = (int)$data['ApiID']+1;
+      $this->clearApiList();
 		}
 		else
 		{
@@ -440,7 +441,12 @@ class DataInterfaceModel extends CI_Model {
 		}
     return $LOGINDB->where($condition)->delete($tblName);
 	}
-
+   
+  public function clearApiList(){
+    $this->cache->delete('sql_id_0_');
+		$this->delApcCacheByName('token_79d84495ca776ccb523114a2120e273ca80b315b_id_0');
+  }
+  
 	public function update($data)
 	{
 		if ($data['tbl'] >= 20) {
@@ -459,6 +465,14 @@ class DataInterfaceModel extends CI_Model {
 
 		$tblName = $this->getDBName($data['tbl']);
 		$where = '[id] = '.$data['id'];
+    
+    //更新接口列表时，id=0(接口列表信息)缓存需同步更新
+    if($data['tbl'] == 30){
+      //$this->cache->delete('sql_id_0_');
+			//$this->delApcCacheByName('token_79d84495ca776ccb523114a2120e273ca80b315b_id_0');
+      $this->clearApiList();
+    }
+    
 		unset($data['tbl']);
 		unset($data['id']);
 		unset($data['utf2gbk']);

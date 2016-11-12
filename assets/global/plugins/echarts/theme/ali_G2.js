@@ -260,12 +260,12 @@ define(function() {
         k: {
             itemStyle: {
                 normal: {
-                    color: 'rgb(255,107,104)', // 阳线填充颜色
-                    color0: 'rgb(38,185,139)', // 阴线填充颜色
+                    color: '#E4925D', // 阳线填充颜色
+                    color0: '#85ca36', // 阴线填充颜色
                     lineStyle: {
                         width: 1,
-                        color: 'rgb(255,107,104)', // 阳线边框颜色
-                        color0: 'rgb(38,185,139)' // 阴线边框颜色
+                        color: '#E4925D', // 阳线边框颜色
+                        color0: '#85ca36' // 阴线边框颜色
                     }
                 }
             }

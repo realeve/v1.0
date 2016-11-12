@@ -1,113 +1,55 @@
-$("#HideTips").on('click', function() {
-  $(this).parent().hide();
-});
+var DBSourse = [{
+  value: 0,
+  text: '质量综合管理系统'
+}, {
+  value: 1,
+  text: '小张核查'
+}, {
+  value: 2,
+  text: '码后核查'
+}, {
+  value: 3,
+  text: '机台作业'
+}, {
+  value: 4,
+  text: '库管系统'
+}, {
+  value: 5,
+  text: '质量控制中心'
+}, {
+  value: 6,
+  text: '号码三合一系统'
+}, {
+  value: 7,
+  text: '在线清数'
+}, {
+  value: 8,
+  text: '办公小助手'
+}, {
+  value: 9,
+  text: '钞纸在线质量检测'
+}, {
+  value: 10,
+  text: '质量图像数据库'
+}];
+
+var isInited = false;
 
 //初始化接口列表
-var initApiList = function() {
+var apiList = function() {
   var username = $('.top-menu .username').text().trim();
-  var strUrl = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=0&M=3' + '&author=' + username + '&cache=1'; //+'&t=' + Math.random();
-  var Data = ReadData(strUrl);
-  Data.data.map(function(elem, index) {
-    Data.data[index][5] = $.base64.decode(elem[5]);
-  });
-  var str = CreateTableBody(Data, true);
-  $('#apiList tbody').html(str);
+  var strUrl = getRootPath(1) + '/DataInterface/Api?ID=0' + '&author=' + username + '&cache=1440';
+  var initData;
 
-  $('#apiList_TableTitle').text(Data.title);
-  $('#apiList_datasource').text('(' + Data.source + ')');
-
-  var fixedHeaderOffset = 0;
-  if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
-    if ($('.page-header').hasClass('page-header-fixed-mobile')) {
-      fixedHeaderOffset = $('.page-header').outerHeight(true);
-    }
-  } else if ($('.page-header').hasClass('navbar-fixed-top')) {
-    fixedHeaderOffset = $('.page-header').outerHeight(true);
-  }
-  var initData = {
-    "bRetrieve": true,
-    "language": {
-      "url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
-    },
-    "order": [
-      [1, 'asc']
-    ],
-    "lengthMenu": [
-      [5, 10, 15, 20, 50, 100, -1],
-      [5, 10, 15, 20, 50, 100, "All"] // change per page values here
-    ],
-    // set the initial value
-    "pageLength": 15,
-    "dom": "<'clear'>R<'row tbTools' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
-    //"dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
-    //dom: "flBrtip",
-    buttons: [{
-      extend: 'copyHtml5',
-      exportOptions: {
-        columns: ':visible'
-      },
-      text: '复制',
-    }, {
-      extend: 'excelHtml5',
-      exportOptions: {
-        columns: ':visible'
-      }
-    }, {
-      extend: 'csvHtml5',
-      exportOptions: {
-        columns: ':visible'
-      }
-    }, {
-      extend: 'pdfHtml5',
-      orientation: Data.cols > 10 ? 'landscape' : 'portrit',
-      pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-      message: Data.source + '\n?成都印钞有限公司 技术质量部',
-      //download: 'open',
-      title: Data.title,
-      exportOptions: {
-        columns: ':visible'
-      }
-    }, {
-      extend: 'print',
-      autoPrint: false,
-      text: '打印',
-      message: Data.source + '<br>?成都印钞有限公司 技术质量部',
-      title: Data.title,
-      exportOptions: {
-        columns: ':visible'
-      }
-    }, {
-      extend: 'colvis',
-      text: '隐藏数据列<i class="fa fa-angle-down"></i>',
-      className: 'btn-fit-height green-haze dropdown-toggle'
-    }],
-    "bDeferRender": true,
-    "bProcessing": true,
-    "bStateSave": true,
-    "bserverSide": false,
-    "bInfo": true,
-    "bAutoWidth": true,
-    "bSortClasses": false,
-    //任意字段
-    "bScrollInfinite": true,
-    //"borderMulti": true,
-    searchHighlight: true, //高亮
-    /*fixedHeader: {
-      header: true,
-      footer: true,
-      headerOffset: fixedHeaderOffset
-    },*/
-    scroolY: '70v',
-    scrollCollapse: true,
-    "initComplete": function() {
-      $("#apiList_tools").append($('#apiList').parent().find('.tabletools-btn-group').clone(true));
-      $('#apiList').parent().find('.tabletools-btn-group').remove();
-    }
-  };
   var table = $('#apiList');
-  var oTable = table.dataTable(initData);
+  var oTable;
   var nEditing = null;
   var ID;
+
+  function newRow(data) {
+    var aiNew = oTable.fnAddData([data.ApiID, data.AuthorName, data.DBName, data.ApiName, data.strSQL, data.params, '<a class="edit" href="javascript:;" data-apiid="' + data.ApiID + '" data-sn="' + data.newID + '">编辑</a>', '<a class="delete" href="javascript:;" data-sn="' + data.newID + '">删除</a>']);
+    oTable.fnGetNodes(aiNew[0]);
+  }
 
   function restoreRow(oTable, nRow) {
     var aData = oTable.fnGetData(nRow);
@@ -123,6 +65,13 @@ var initApiList = function() {
   function editRow(oTable, nRow) {
     var aData = oTable.fnGetData(nRow);
     var jqTds = $('>td', nRow);
+
+    var dblistHTML = DBSourse.map(function(item) {
+      var selected = (aData[2] == item.text) ? 'selected' : '';
+      return '<option value=' + item.id + ' ' + selected + '>' + item.text + '</option>';
+    });
+
+    jqTds[2].innerHTML = '<select class="form-control input-md input-inline" name="dblist">' + dblistHTML + '</select>';
     jqTds[3].innerHTML = '<input type="text" class="form-control" value="' + aData[3] + '">';
     jqTds[4].innerHTML = '<input type="text" class="form-control input-md" value="' + aData[4] + '">';
     jqTds[5].innerHTML = '<input type="text" class="form-control" value="' + aData[5] + '">';
@@ -143,9 +92,11 @@ var initApiList = function() {
       "utf2gbk": ["ApiName", "Params"],
       "id": ID,
       "tbl": TBL.API,
+      DBID: $('[name="dblist"] :selected').val(),
       "cacheName": cacheName //缓存文件名
     };
     if ('' !== data.ApiName && '' !== data.strSQL) {
+      oTable.fnUpdate($('[name="dblist"] :selected').text(), nRow, 2, false);
       oTable.fnUpdate(jqInputs[0].value, nRow, 3, false);
       oTable.fnUpdate(jqInputs[1].value /*.replace(/\uff1f/g,'?')*/ , nRow, 4, false);
       oTable.fnUpdate(jqInputs[2].value, nRow, 5, false);
@@ -165,89 +116,151 @@ var initApiList = function() {
     //相应保存代码
   }
 
-  function newRow(data) {
-    var aiNew = oTable.fnAddData([data.ApiID, data.AuthorName, data.DBName, data.ApiName, data.strSQL, data.params, '<a class="edit" href="javascript:;" data-apiid="' + data.ApiID + '" data-sn="' + data.newID + '">编辑</a>', '<a class="delete" href="javascript:;" data-sn="' + data.newID + '">删除</a>']);
-    oTable.fnGetNodes(aiNew[0]);
-  }
+  var initEvent = function() {
 
-  return {
-    //main function to initiate the module
-    init: function() {
-      table.on('click', '.edit', function(e) {
-        ID = $(this).data('sn');
-        e.preventDefault();
-        /* Get the row as a parent of the link that was clicked on */
-        var nRow = $(this).parents('tr')[0];
+    table.on('click', '.edit', function(e) {
+      ID = $(this).data('sn');
+      e.preventDefault();
+      /* Get the row as a parent of the link that was clicked on */
+      var nRow = $(this).parents('tr')[0];
 
-        if (nEditing !== null && nEditing != nRow) {
-          /* Currently editing - but not this row - restore the old before continuing to edit mode */
-          restoreRow(oTable, nEditing);
-          editRow(oTable, nRow);
-          nEditing = nRow;
-        } else if (nEditing == nRow && this.innerHTML == "保存") {
-          /* Editing this row and want to save it */
-          saveRow(oTable, nEditing);
-          nEditing = null;
-        } else {
-          /* No edit in progress - let's start one */
-          editRow(oTable, nRow);
-          nEditing = nRow;
-          //保存-取消
-          $(this).text('保存');
-          $(this).parent().parent().find('a:eq(1)').text('取消');
-          $(this).parent().parent().find('a:eq(1)').removeClass('delete');
-          $(this).parent().parent().find('a:eq(1)').addClass('cancel');
+      if (nEditing !== null && nEditing != nRow) {
+        /* Currently editing - but not this row - restore the old before continuing to edit mode */
+        restoreRow(oTable, nEditing);
+        editRow(oTable, nRow);
+        nEditing = nRow;
+      } else if (nEditing == nRow && this.innerHTML == "保存") {
+        /* Editing this row and want to save it */
+        saveRow(oTable, nEditing);
+        nEditing = null;
+      } else {
+        /* No edit in progress - let's start one */
+        editRow(oTable, nRow);
+        nEditing = nRow;
+        //保存-取消
+        $(this).text('保存');
+        $(this).parent().parent().find('a:eq(1)').text('取消');
+        $(this).parent().parent().find('a:eq(1)').removeClass('delete');
+        $(this).parent().parent().find('a:eq(1)').addClass('cancel');
+      }
+    });
+
+    table.on('click', '.delete', function(e) {
+      e.preventDefault();
+      var obj = $(this);
+      var apiid = $('>td', nRow)[0].innerHTML.replace(/[^0-9]/g, '');
+      var token = $('#url').attr('href').split('=')[1].split('&')[0];
+      var cacheName = 'id_' + apiid + '_token_' + token;
+
+      bootbox.dialog({
+        message: "确定删除这条信息?",
+        title: "删除信息",
+        buttons: {
+          success: {
+            label: "删除",
+            className: "green",
+            callback: function() {
+              var url = getRootPath() + '/DataInterface/delete';
+              $.post(url, {
+                id: obj.data('sn'),
+                tbl: TBL.API,
+                cacheName: cacheName
+              }, function(data) {
+                var nRow = obj.parents('tr')[0];
+                oTable.fnDeleteRow(nRow);
+                infoTips("数据成功删除", 1);
+                var userName = $('.top-menu .username').text().trim();
+                //更新数据添加接口状态信息
+                var nID = ReadData(getRootPath() + '/DataInterface/Api?Token' + config.TOKEN + '&ID=29&M=3&author=' + userName);
+                $('#ApiID').text(nID.data[0]);
+              });
+            }
+          },
+          main: {
+            label: "取消",
+            className: "red",
+            callback: function() {
+              return;
+            }
+          }
         }
       });
 
-      table.on('click', '.delete', function(e) {
-        e.preventDefault();
-        var obj = $(this);
-        var apiid = $('>td', nRow)[0].innerHTML.replace(/[^0-9]/g, '');
-        var token = $('#url').attr('href').split('=')[1].split('&')[0];
-        var cacheName = 'id_' + apiid + '_token_' + token;
+    });
 
-        bootbox.dialog({
-          message: "确定删除这条信息?",
-          title: "删除信息",
-          buttons: {
-            success: {
-              label: "删除",
-              className: "green",
-              callback: function() {
-                var url = getRootPath() + '/DataInterface/delete';
-                $.post(url, {
-                  id: obj.data('sn'),
-                  tbl: TBL.API,
-                  cacheName: cacheName
-                }, function(data) {
-                  var nRow = obj.parents('tr')[0];
-                  oTable.fnDeleteRow(nRow);
-                  infoTips("数据成功删除", 1);
-                  var userName = $('.top-menu .username').text().trim();
-                  //更新数据添加接口状态信息
-                  var nID = ReadData(getRootPath() + '/DataInterface/Api?Token' + config.TOKEN + '&ID=29&M=3&author=' + userName);
-                  $('#ApiID').text(nID.data[0]);
-                });
-              }
-            },
-            main: {
-              label: "取消",
-              className: "red",
-              callback: function() {
-                return;
-              }
+    table.on('click', '.cancel', function(e) {
+      e.preventDefault();
+      restoreRow(oTable, nEditing);
+      nEditing = null;
+    });
+  };
+
+  return {
+    init: function() {
+      if (isInited) {
+        return;
+      }
+      $.ajax({
+          url: strUrl
+        })
+        .done(function(Data) {
+          isInited = true;
+          Data = $.parseJSON(Data);
+
+          Data.data.map(function(elem, index) {
+            Data.data[index][5] = $.base64.decode(elem[5]);
+          });
+          var str = CreateTableBody(Data, true);
+
+          $('#apiList tbody').html(str);
+          //$('#apiList_TableTitle').text(Data.title);
+          //$('#apiList_datasource').text('(' + Data.source + ')');
+
+          var fixedHeaderOffset = 0;
+          if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
+            if ($('.page-header').hasClass('page-header-fixed-mobile')) {
+              fixedHeaderOffset = $('.page-header').outerHeight(true);
             }
+          } else if ($('.page-header').hasClass('navbar-fixed-top')) {
+            fixedHeaderOffset = $('.page-header').outerHeight(true);
           }
+          initData = {
+            "bRetrieve": true,
+            // "language": {
+            //   "url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
+            // },
+            language: dtLanguage,
+            "order": [
+              [1, 'asc']
+            ],
+            "lengthMenu": [
+              [5, 10, 15, 20, 50, 100, -1],
+              [5, 10, 15, 20, 50, 100, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 15,
+            "dom": "<'clear'>R<'row tbTools' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+            "bDeferRender": true,
+            "bProcessing": true,
+            "bStateSave": true,
+            "bserverSide": false,
+            "bInfo": true,
+            "bAutoWidth": true,
+            "bSortClasses": false,
+            //任意字段
+            "bScrollInfinite": true,
+            //"borderMulti": true,
+            searchHighlight: true, //高亮
+            scroolY: '70v',
+            scrollCollapse: true,
+            "initComplete": function() {
+              $("#apiList_tools").append($('#apiList').parent().find('.tabletools-btn-group').clone(true));
+              $('#apiList').parent().find('.tabletools-btn-group').remove();
+            }
+          };
+          oTable = table.dataTable(initData);
+          initEvent();
         });
-
-      });
-
-      table.on('click', '.cancel', function(e) {
-        e.preventDefault();
-        restoreRow(oTable, nEditing);
-        nEditing = null;
-      });
     },
     newRow: function(data) {
       newRow(data);
@@ -264,9 +277,10 @@ var dataTable = function() {
     initData = {
       //"bDestroy":true,
       "bRetrieve": true,
-      "language": {
-        "url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
-      },
+      // "language": {
+      //   "url": getRootPath() + "/assets/pages/controller/DataTableLanguage.min.json"
+      // },
+      language: dtLanguage,
       "order": [
         [1, 'asc']
       ],
@@ -276,49 +290,8 @@ var dataTable = function() {
       ],
       // set the initial value
       "pageLength": 15,
-      //"dom": "<'clear'>R<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
       "dom": "<'row tbTools' <'col-md-6 col-sm-12 pull-right'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // datatable layout without  horizobtal scroll
-      //dom: "flBrtip",
-      buttons: [{
-        extend: 'copyHtml5',
-        exportOptions: {
-          columns: ':visible'
-        },
-        text: '复制',
-      }, {
-        extend: 'excelHtml5',
-        exportOptions: {
-          columns: ':visible'
-        }
-      }, {
-        extend: 'csvHtml5',
-        exportOptions: {
-          columns: ':visible'
-        }
-      }, {
-        extend: 'pdfHtml5',
-        orientation: Data.cols > 10 ? 'landscape' : 'portrit',
-        pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-        message: Data.source + '\n?成都印钞有限公司 技术质量部',
-        //download: 'open',
-        title: Data.title,
-        exportOptions: {
-          columns: ':visible'
-        }
-      }, {
-        extend: 'print',
-        autoPrint: false,
-        text: '打印',
-        message: Data.source + '<br>?成都印钞有限公司 技术质量部',
-        title: Data.title,
-        exportOptions: {
-          columns: ':visible'
-        }
-      }, {
-        extend: 'colvis',
-        text: '隐藏数据列<i class="fa fa-angle-down"></i>',
-        className: 'btn-fit-height green-haze dropdown-toggle'
-      }],
+      //"borderMulti": true,
       "bDeferRender": true,
       "bProcessing": true,
       "bStateSave": true,
@@ -330,11 +303,7 @@ var dataTable = function() {
       "data": Data.data,
       //任意字段
       "bScrollInfinite": true,
-      //"borderMulti": true,
       searchHighlight: true, //高亮
-      colReorder: {
-        realtime: true,
-      },
       fixedHeader: {
         header: Data.cols > 20 ? false : true,
         footer: Data.cols > 20 ? false : true,
@@ -399,7 +368,7 @@ DataType:Array/Json.
         return;
       }
     } else {
-      infoTips("该时间范围内无质量数据，请重新选择查询时间!", 1);
+      infoTips("该时间范围内无数据，请重新选择查询时间!", 1);
       return;
     }
     oTable = table.dataTable();
@@ -423,13 +392,15 @@ DataType:Array/Json.
           //Data = ReadData(strUrl);
           RefreshTable('#sample', strUrl);
         });
-      initApiList.init();
+      $('#viewAPI').on('click', function() {
+        apiList.init();
+      });
     },
     RefreshTable: function(tableID, strUrl) {
       RefreshTable(tableID, strUrl);
     },
     newRow: function(data) {
-      initApiList.newRow(data);
+      apiList.newRow(data);
     }
   };
 
@@ -438,40 +409,6 @@ DataType:Array/Json.
 var FormEditable = function() {
 
   $.mockjaxSettings.responseTime = 100;
-  var DBSourse = [{
-    value: 0,
-    text: '质量综合管理系统'
-  }, {
-    value: 1,
-    text: '小张核查'
-  }, {
-    value: 2,
-    text: '码后核查'
-  }, {
-    value: 3,
-    text: '机台作业'
-  }, {
-    value: 4,
-    text: '库管系统'
-  }, {
-    value: 5,
-    text: '质量控制中心'
-  }, {
-    value: 6,
-    text: '号码三合一系统'
-  }, {
-    value: 7,
-    text: '在线清数'
-  }, {
-    value: 8,
-    text: '办公小助手'
-  }, {
-    value: 9,
-    text: '钞纸在线质量检测'
-  }, {
-    value: 10,
-    text: '质量图像数据库'
-  }];
   var initAjaxMock = function() {
     //ajax mocks
 
@@ -505,7 +442,6 @@ var FormEditable = function() {
       validate: function(value) {
         if ($.trim(value) === '') return '该字段不能为空';
       },
-      url: '/post',
       type: 'text',
       pk: 1,
       name: 'ApiName',
@@ -521,13 +457,9 @@ var FormEditable = function() {
     $('#DataBaseID').editable({
       //prepend: "not selected",
       name: 'DBID',
-      inputclass: 'form-control',
+      inputclass: 'form-control input-md',
       source: DBSourse
     });
-
-    /*$('#DataBaseID').editable({
-showbuttons: false
-});*/
 
     $('#CreateDate').editable({
       format: 'yyyy-mm-dd hh:ii',
@@ -580,7 +512,7 @@ $(this).html('<pre>' + value + '</pre>');
     //main function to initiate the module
     init: function() {
 
-      // inii ajax simulation
+      //inii ajax simulation
       initAjaxMock();
 
       // init editable elements
@@ -640,11 +572,13 @@ $(this).html('<pre>' + value + '</pre>');
               $('#DemoUrl').text(strNewUrl);
               $('#DemoUrl').attr('href', strNewUrl);
 
-              //API列表数据更新
-              APIData.newID = obj.ID;
-              APIData.AuthorName = $('#AuthorName').text().trim();
-              APIData.DBName = DBName;
-              dataTable.newRow(APIData);
+              if (isInited) {
+                APIData.newID = obj.ID;
+                APIData.AuthorName = $('#AuthorName').text().trim();
+                APIData.DBName = DBName;
+                dataTable.newRow(APIData);
+              }
+
             }
           }
         );
@@ -654,9 +588,9 @@ $(this).html('<pre>' + value + '</pre>');
           .editable('option', 'pk', null) //clear pk
           .removeClass('editable-unsaved'); //remove bold css
 
-        $('#DataBaseID').editable('setValue', null) //clear values
-          .editable('option', 'pk', null) //clear pk
-          .removeClass('editable-unsaved'); //remove bold css
+        // $('#DataBaseID').editable('setValue', null) //clear values
+        //   .editable('option', 'pk', null) //clear pk
+        //   .removeClass('editable-unsaved'); //remove bold css
 
         $('#SQL').editable('setValue', null) //clear values
           .editable('option', 'pk', null) //clear pk
@@ -710,7 +644,8 @@ $(this).html('<pre>' + value + '</pre>');
 
 jQuery(document).ready(function() {
   //RoundedTheme(0);
-  UIIdleTimeout.init();
+  //UIIdleTimeout.init();
+
   initDashboardDaterange('YYYYMMDD');
   $("#CreateDate").text(today(3));
   initDom();

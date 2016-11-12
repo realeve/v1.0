@@ -80,7 +80,17 @@ class DataInterface extends CI_Controller {
 	public function Api()//读取接口数据
 	{
 		$APIData = $this->input->get(NULL);
+    
 		$t1 = microtime(true);
+    
+    //默认参数
+    if(!isset($APIData['Token'])){
+      $APIData['Token'] = '79d84495ca776ccb523114a2120e273ca80b315b';
+    }
+    if(!isset($APIData['M'])){
+      $APIData['M'] = 3;
+    }
+    
 		//数据缓存处理(根据查询参数做K-V缓存);
 		if(isset($APIData['cache']) && $APIData['cache']>0){
 			
@@ -233,6 +243,14 @@ class DataInterface extends CI_Controller {
 		}
 		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
 	}
+  
+  public function base64(){
+    /*转换图片为base64编码*/
+    $src = $this->input->get('src');
+    $image_info = getimagesize($src);
+    $base64_image_content = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($src)));
+    echo '{"data":"'.rtrim($base64_image_content).'"}';
+  }
 		
 	public function clearCache(){
 		$memcache = new Memcache;

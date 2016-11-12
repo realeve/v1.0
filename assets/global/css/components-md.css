@@ -1,5 +1,5 @@
 /*****************************************
- METRONIC MATERIAL DESIGN STYLE COMPONENTS 
+ METRONIC MATERIAL DESIGN STYLE COMPONENTS
 ******************************************/
 /* Cubic Bezier Transition */
 /***
@@ -15,8 +15,8 @@ body {
   font-size: 14px; }
 
 /*
- Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't 
- properly apply the media queries in Bootstrap's CSS. To address this, 
+ Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't
+ properly apply the media queries in Bootstrap's CSS. To address this,
  you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
 */
 @-webkit-viewport {
@@ -35,8 +35,8 @@ body {
   width: device-width; }
 
 /*
- Internet Explorer 10 doesn't differentiate device width from viewport width, 
- and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied 
+ Internet Explorer 10 doesn't differentiate device width from viewport width,
+ and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied
 */
 @-ms-viewport {
   width: auto !important; }
@@ -1478,7 +1478,7 @@ Simple Line Icons Demo
   .simplelineicons-demo .item-box {
     width: 33.333%; } }
 
-/*** 
+/***
 Glyphicons Demo
 ***/
 .glyphicons-demo ul {
@@ -1633,7 +1633,7 @@ Custom buttons based on bootstrap SASS
   line-height: 1.44; }
 
 /***
-Custom color buttons 
+Custom color buttons
 ***/
 .btn.white:not(.btn-outline) {
   color: #666;
@@ -5752,7 +5752,7 @@ Chats
       transition: all 0.3s; }
 
 /***
-Customized Bootstrap Close Icon 
+Customized Bootstrap Close Icon
 ***/
 .close {
   display: inline-block;
@@ -5763,7 +5763,7 @@ Customized Bootstrap Close Icon
   background-repeat: no-repeat !important;
   text-indent: -10000px;
   outline: none;
-  background-image: url("../img/remove-icon-small.png") !important; }
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAY0lEQVR42nRQQQ7AIAjrvm10+i/d u7wsYWK6BYk7kEpbGgEA7lFZROBLeerzoUxyhkQ+eyKwD3bQT/ZRlfgl+z80JrSFN4bIhIsYFxMN QjxsTx3nu8VmfaE+71B+7lRUfwQYAGEHiAycZN3BAAAAAElFTkSuQmCC") !important; }
 
 /***
 Customized Bootstrap Dropdowns
@@ -6413,7 +6413,7 @@ Forms
   color: #c5cdda; }
 
 /***
-Custom color buttons 
+Custom color buttons
 ***/
 .form-control.white {
   border-color: #ffffff; }
@@ -7503,7 +7503,7 @@ Metro icons
   background-position: -78px -28px; }
 
 /***
-Customized Bootstrap Modal 
+Customized Bootstrap Modal
 ***/
 .modal {
   z-index: 10050;
@@ -7997,15 +7997,15 @@ Portlets
     .portlet.box > .portlet-title > .caption {
       padding: 11px 0 9px 0; }
     .portlet.box > .portlet-title > .tools > a.remove {
-      background-image: url(../img/portlet-remove-icon-white.png); }
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
     .portlet.box > .portlet-title > .tools > a.config {
-      background-image: url(../img/portlet-config-icon-white.png); }
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
     .portlet.box > .portlet-title > .tools > a.reload {
-      background-image: url(../img/portlet-reload-icon-white.png); }
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
     .portlet.box > .portlet-title > .tools > a.expand {
-      background-image: url(../img/portlet-expand-icon-white.png); }
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
     .portlet.box > .portlet-title > .tools > a.collapse {
-      background-image: url(../img/portlet-collapse-icon-white.png); }
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
     .portlet.box > .portlet-title > .tools > a.fullscreen {
       color: #fdfdfd; }
     .portlet.box > .portlet-title > .actions {
@@ -8142,7 +8142,7 @@ Portlets
   box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.03); }
 
 /***
-Custom colored portlets 
+Custom colored portlets
 ***/
 .portlet > .portlet-body.white,
 .portlet.white {
@@ -8159,19 +8159,19 @@ Custom colored portlets
     color: #666; }
 
 .portlet.solid.white > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.white > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.white > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.white > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.white > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.white > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8215,19 +8215,19 @@ Custom colored portlets
     color: #666; }
 
 .portlet.solid.default > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.default > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.default > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.default > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.default > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.default > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8271,19 +8271,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.dark > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.dark > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.dark > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.dark > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.dark > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.dark > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8327,19 +8327,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8383,19 +8383,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-madison > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-madison > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-madison > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-madison > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-madison > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-madison > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8439,19 +8439,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-chambray > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-chambray > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-chambray > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-chambray > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-chambray > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-chambray > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8495,19 +8495,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-ebonyclay > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-ebonyclay > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-ebonyclay > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-ebonyclay > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-ebonyclay > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-ebonyclay > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8551,19 +8551,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-hoki > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-hoki > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-hoki > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-hoki > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-hoki > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-hoki > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8607,19 +8607,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-steel > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-steel > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-steel > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-steel > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-steel > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-steel > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8663,19 +8663,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-soft > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-soft > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-soft > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-soft > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-soft > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-soft > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8719,19 +8719,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-dark > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-dark > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-dark > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-dark > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-dark > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-dark > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8775,19 +8775,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.blue-sharp > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-sharp > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-sharp > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.blue-sharp > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.blue-sharp > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.blue-sharp > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8831,19 +8831,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8887,19 +8887,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-meadow > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-meadow > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-meadow > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-meadow > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-meadow > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-meadow > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8943,19 +8943,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-seagreen > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-seagreen > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-seagreen > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-seagreen > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-seagreen > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-seagreen > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -8999,19 +8999,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-turquoise > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-turquoise > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-turquoise > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-turquoise > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-turquoise > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-turquoise > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9055,19 +9055,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-haze > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-haze > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-haze > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-haze > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-haze > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-haze > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9111,19 +9111,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-jungle > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-jungle > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-jungle > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-jungle > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-jungle > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-jungle > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9167,19 +9167,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-soft > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-soft > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-soft > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-soft > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-soft > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-soft > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9223,19 +9223,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-dark > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-dark > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-dark > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-dark > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-dark > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-dark > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9279,19 +9279,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.green-sharp > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-sharp > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.green-sharp > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.green-sharp > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.green-sharp > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.green-sharp > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9335,19 +9335,19 @@ Custom colored portlets
     color: #333333; }
 
 .portlet.solid.grey > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9391,19 +9391,19 @@ Custom colored portlets
     color: #80898e; }
 
 .portlet.solid.grey-steel > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-steel > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-steel > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-steel > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-steel > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-steel > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9447,19 +9447,19 @@ Custom colored portlets
     color: #333333; }
 
 .portlet.solid.grey-cararra > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-cararra > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-cararra > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-cararra > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-cararra > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-cararra > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9503,19 +9503,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.grey-gallery > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-gallery > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-gallery > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-gallery > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-gallery > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-gallery > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9559,19 +9559,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.grey-cascade > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-cascade > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-cascade > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-cascade > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-cascade > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-cascade > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9615,19 +9615,19 @@ Custom colored portlets
     color: #FAFCFB; }
 
 .portlet.solid.grey-silver > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-silver > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-silver > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-silver > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-silver > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-silver > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9671,19 +9671,19 @@ Custom colored portlets
     color: #FAFCFB; }
 
 .portlet.solid.grey-salsa > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-salsa > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-salsa > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-salsa > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-salsa > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-salsa > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9727,19 +9727,19 @@ Custom colored portlets
     color: #FAFCFB; }
 
 .portlet.solid.grey-salt > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-salt > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-salt > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-salt > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-salt > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-salt > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9783,19 +9783,19 @@ Custom colored portlets
     color: #FFFFFF; }
 
 .portlet.solid.grey-mint > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-mint > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-mint > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.grey-mint > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.grey-mint > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.grey-mint > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9839,19 +9839,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9895,19 +9895,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-pink > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-pink > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-pink > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-pink > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-pink > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-pink > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -9951,19 +9951,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-sunglo > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-sunglo > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-sunglo > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-sunglo > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-sunglo > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-sunglo > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10007,19 +10007,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-intense > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-intense > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-intense > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-intense > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-intense > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-intense > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10063,19 +10063,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-thunderbird > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-thunderbird > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-thunderbird > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-thunderbird > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-thunderbird > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-thunderbird > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10119,19 +10119,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-flamingo > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-flamingo > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-flamingo > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-flamingo > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-flamingo > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-flamingo > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10175,19 +10175,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-soft > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-soft > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-soft > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-soft > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-soft > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-soft > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10231,19 +10231,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-haze > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-haze > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-haze > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-haze > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-haze > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-haze > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10287,19 +10287,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.red-mint > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-mint > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.red-mint > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.red-mint > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.red-mint > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.red-mint > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10343,19 +10343,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10399,19 +10399,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-gold > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-gold > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-gold > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-gold > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-gold > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-gold > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10455,19 +10455,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-casablanca > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-casablanca > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-casablanca > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-casablanca > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-casablanca > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-casablanca > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10511,19 +10511,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-crusta > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-crusta > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-crusta > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-crusta > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-crusta > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-crusta > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10567,19 +10567,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-lemon > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-lemon > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-lemon > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-lemon > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-lemon > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-lemon > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10623,19 +10623,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-saffron > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-saffron > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-saffron > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-saffron > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-saffron > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-saffron > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10679,19 +10679,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-soft > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-soft > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-soft > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-soft > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-soft > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-soft > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10735,19 +10735,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-haze > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-haze > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-haze > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-haze > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-haze > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-haze > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10791,19 +10791,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.yellow-mint > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-mint > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-mint > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.yellow-mint > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.yellow-mint > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.yellow-mint > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10847,19 +10847,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10903,19 +10903,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-plum > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-plum > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-plum > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-plum > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-plum > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-plum > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -10959,19 +10959,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-medium > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-medium > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-medium > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-medium > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-medium > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-medium > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -11015,19 +11015,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-studio > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-studio > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-studio > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-studio > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-studio > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-studio > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -11071,19 +11071,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-wisteria > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-wisteria > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-wisteria > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-wisteria > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-wisteria > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-wisteria > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -11127,19 +11127,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-seance > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-seance > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-seance > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-seance > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-seance > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-seance > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -11183,19 +11183,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-intense > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-intense > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-intense > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-intense > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-intense > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-intense > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -11239,19 +11239,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-sharp > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-sharp > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-sharp > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-sharp > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-sharp > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-sharp > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -11295,19 +11295,19 @@ Custom colored portlets
     color: #ffffff; }
 
 .portlet.solid.purple-soft > .portlet-title > .tools > a.remove {
-  background-image: url(../img/portlet-remove-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAApklEQVR42mL8//8/A7GAiYEEQLLi ZCCeBMRsONSwQeWTGYBungTEf4C4HuR+LLgeKj8JxOGGCoBALZrCWqg4SJ4bm0QVlF+FbgADFpO+ A/FuKI1iEzY37oGauAddDl1hDdTEvVC6BpfiGqiJIJoRjQ9XzAnEdUi+Rg+2/1B5TpDAVGg4NuAI 5wao/FSQdaAYNALiYiD+gSUGOYC4F4jPMdIs1QEEGAAAM1gsXuBaHAAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-soft > .portlet-title > .tools > a.config {
-  background-image: url(../img/portlet-config-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAQAAACIaFaMAAAAuUlEQVQY043QMUtCARSG4Zt5hyAC QYi2HHQQWi4EbU6C0ODgkj/BLbiLLqEgLS0t/QIHh36AS4tDrU266xgaSFDj4xTXrhJytu89HM73 BoLdE+wHjl2pCLfBuSdDURqc6ll5FQlkkzjn0cKzgjN99wkIPWCooIPR5qk7fHk396KRxDVTS29m BsoOf+O6iQ+xSzWl5Ktrcz9uZTYLFt2YWGo7+ts89ulby0FaSdVY18m2q7ymi/T+P3bXfNDi+Ylr 684AAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-soft > .portlet-title > .tools > a.reload {
-  background-image: url(../img/portlet-reload-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAA5klEQVR42rzSPwsBcRzH8d8dFhaD VTIbKfmzsxk8BA+AB+AJWJQ8C6XIICnPwGYgg2KRRSmT4bzvfMjglBv86lV33999uvve72s5jmN+ XbYJsMJv10nUUUFWtSVmGOIAC7HnmwroI4UeMtJTzd0rY4KcoackRqi5/fmo4+w8VsfWJ+0w9mkh gjbius/Y6mH2pe8WNljjhrwV9JeHg4RWmKKI0Jdnq3rOC11UmEvDJ/Tq3Q3tVYwigcGHQA1pHbLX z1UbWyxQ0iQYTUZFgY6mwgsdvVM25qQza34Yo+4z4C7rb1N+F2AALzhYQlFod6AAAAAASUVORK5C YII=); }
 
 .portlet.solid.purple-soft > .portlet-title > .tools > a.expand {
-  background-image: url(../img/portlet-expand-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkUlEQVR42uSSQQqAIBBFtdMEUV5E 6gTRqVtkmy5QUAs3BfaFLwRpi1ZBAw/kz/8wMyidc+JNZeJlfSvYgi7Z9ceJUIMdHHzfPLGQBisY yErtMegNC+hBTnpqOhX0I1kwgvKil9TsdezQbLjPBFRkfMXeQa8I423AgCpxLMGeoVd7YeYexUMo UNA7yx/81VOAAQD4wkiP1dkSmwAAAABJRU5ErkJggg==); }
 
 .portlet.solid.purple-soft > .portlet-title > .tools > a.collapse {
-  background-image: url(../img/portlet-collapse-icon-white.png); }
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAkklEQVR42uSSQQqAIBBFrdMEUl1E 6gQdrkO1qDZdoKAWbgrsC18QsYJ2kfAWju/LDJoYY8SblfwgKBCcQQekveQBSXe2GwU2MIDiJlTQ sa5yxRocYAJlJFTy7KAr/MMKaDCC3KvnrGk6Igy6thfOkZGONeW7sVmssIKerGHoKuja3jlTFXPu 3rEBKWg//uVOAQYAvBVdtyUNJbsAAAAASUVORK5CYII=); }
 
 .portlet.solid.purple-soft > .portlet-title > .tools > a.fullscreen {
   color: #fdfdfd; }
@@ -13302,7 +13302,7 @@ Light Table
     background: #f9fafb; }
 
 /***
-Customized Bootstrap Tabs 
+Customized Bootstrap Tabs
 ***/
 /* Tabs and pills */
 .nav-tabs,
@@ -14447,7 +14447,7 @@ AngularJS Basic Animations
     margin: 0px 0; } }
 
 /***
-Timeline 
+Timeline
 ***/
 .timeline {
   margin: 0;
@@ -14586,7 +14586,7 @@ Timeline
     top: 17px; } }
 
 /***
-Tasks Widget 
+Tasks Widget
 ***/
 .tasks-widget:after {
   clear: both; }
@@ -19117,7 +19117,7 @@ Tasks Widget
     transform: translate3d(0, 0, 0); }
 
 /***
-Custom color buttons 
+Custom color buttons
 ***/
 .bg-white {
   background: #ffffff !important; }

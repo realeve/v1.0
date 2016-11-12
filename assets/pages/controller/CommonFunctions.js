@@ -672,7 +672,7 @@
         if (appInfo.version > localVersion) {
           info += '<div class="col-md-6 margin-top-10"><p>【版本号】: ' + appInfo.version + "</p><p>【更新日期】: " + appInfo.date + "</p><p>【近期功能更新】：</p>" + appInfo.html;
           //infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
-          html += (info+"</div>");
+          html += (info + "</div>");
         }
       });
       addMask(html);
@@ -753,40 +753,44 @@
 
   //载入用户头像（临时方案)
   var initAvatarImages = (function() {
-    var avatarName = $('.username').data('avatar');
-    var refreshUserHeadInfo = function(smallAvatarName) {
-      if (typeof smallAvatarName == 'undefined') {
-        smallAvatarName = avatarName;
-      }
 
-      //缓存头像
-      var avatarUrl = getRootPath(1) + '/demo/avatar/' + smallAvatarName + '.jpg'; //?' + Date.parse(new Date());
-      //右上角图标
+    function setAvatar(avatarUrl) {
+      //右上角头像
       $('.username').parent().find('img').attr('src', avatarUrl);
       //用户信息
       $('.profile-userpic img').attr('src', avatarUrl);
-      if (typeof $('.username').data('avatar') != 'undefined') {
-        localStorage.setItem('avatarUrl', avatarUrl);
-      }
+
+      //锁屏
+      $('.lock-avatar-block img').attr('src', avatarUrl);
+    }
+
+    var refreshUserHeadInfo = function() {
+      var avatarUrl;
+      var avatarName = $('.username').data('set-avatar') == 1 ? $('.username').data('avatar') : 'Avatar_none'
 
       if (typeof localStorage.avatarUrl != 'undefined') {
-        //锁屏
-        $('.lock-avatar-block img').attr('src', localStorage.avatarUrl);
+        avatarUrl = localStorage.avatarUrl;
+      } else {
+        //缓存头像
+        // if (typeof smallAvatarName == 'undefined') {
+        //   smallAvatarName = avatarName;
+        // }
+        avatarUrl = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg';
       }
-    };
 
-    //var avatar = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg?' + Date.parse(new Date());
-    refreshUserHeadInfo($('.username').data('set-avatar') == 1 ? avatarName : 'Avatar_none');
-
-    /*$.ajax({
-      url: avatar,
-      success: function() {
-        refreshUserHeadInfo();
-      },
-      error: function() {
-        refreshUserHeadInfo("Avatar_none");
+      if (avatarUrl.indexOf('http://') != -1) {
+        $.ajax({
+            url: getRootPath(1) + '/datainterface/base64?src=' + avatarUrl,
+          })
+          .done(function(avatar) {
+            setAvatar(avatar.data);
+            localStorage.setItem('avatarUrl', avatarUrl);
+          });
+      } else {
+        setAvatar(avatarUrl);
       }
-    });*/
+    }();
+
   })();
 
   function setLocationUrl() {

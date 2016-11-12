@@ -23,50 +23,8 @@
 				</div>
 			</div>
 			<h3 class="page-title font-yahei">
-				<span class="caption-subject bold uppercase" name="TableTitle"></span>   <small id="today"></small>
+				<span class="caption-subject bold uppercase" name="TableTitle">数据接口管理</span>   <small id="today"></small>
 			</h3>
-			<!--div class="alert alert-block alert-info fade in">
-                <button type="button" class="close" data-dismiss="alert"></button>
-                   <h4 class="alert-heading"><i class="icon-info"></i> 小提示：</h4>
-				<p>
-					 <i class="icon-size-actual"></i> 本部分提供各质量数据查询接口定制功能，设置后请牢记接口链接.
-				</p>
-				<p>
-					 <i class="icon-settings"></i> 数据格式为标准Json格式，请按相关标准解析.
-				</p>
-				<p>
-					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
-				</p>
-            </div>
-			<div class="note note-warning">
-				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
-				<h4 class="block"><i class="icon-info"></i> 小提示：</h4>
-				<p>
-					 <i class="icon-size-actual"></i> 本部分提供各质量数据查询接口定制功能，设置后请牢记接口链接.
-				</p>
-				<p>
-					 <i class="icon-settings"></i> 数据格式为标准Json格式，请按相关标准解析.
-				</p>
-				<p>
-					 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
-				</p>
-			</div>
-			<div class="mt-element-ribbon bg-white">
-				<button id="HideTips" type="button" class="close" data-dismiss="alert"></button>
-                <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
-                    <div class="ribbon-sub ribbon-clip"></div> 小提示: </div>
-                <p class="ribbon-content">
-                	<p>
-					 <i class="icon-size-actual"></i> 本部分提供各质量数据查询接口定制功能，设置后请牢记接口链接.
-					</p>
-					<p>
-						 <i class="icon-settings"></i> 数据格式为标准Json格式，请按相关标准解析.
-					</p>
-					<p>
-						 <i class="icon-call-end"></i> 如有疑问，请联系技术质量部:8275-6129.<br>
-					</p>
-				</p>
-            </div-->
 			<div class="portlet mt-element-ribbon light portlet-fit bordered">
                 <div class="ribbon ribbon-right ribbon-clip ribbon-shadow ribbon-border-dash-hor ribbon-color-danger uppercase">
                     <div class="ribbon-sub ribbon-clip ribbon-right"></div> 小提示 </div>
@@ -100,7 +58,7 @@
 							<i class="icon-bar-chart"></i>&nbsp;添加接口</a>
 						</li>
 						<li>
-							<a href="#portlet_tab1" data-toggle="tab">
+							<a href="#portlet_tab1" data-toggle="tab" id="viewAPI">
 							<i class="icon-settings"></i>&nbsp;查看接口</a>
 						</li>
 					</ul>
@@ -120,22 +78,15 @@
 					<div class="tab-content">
 						<div class="tab-pane" id="portlet_tab1">
 							<div class="portlet light bordered">
-								<div class="portlet-title">
+								<!-- <div class="portlet-title">
 									<div class="caption font-green-sharp">
 										<i class="icon-speech font-green-sharp"></i>
 										<span class="caption-subject bold uppercase" id="apiList_TableTitle"> 表单名称</span>
 										<span class="caption-helper" id="sample_datasource">(数据来源:质量综合管理系统)...</span>
 									</div>
 									<div class="tools" id="apiList_tools"></div>
-								</div>
+								</div> -->
                                 <div class="portlet-body">
-                                    <div class="table-toolbar pull-right">
-		                                    <div class="btn-group">
-		                                        <button id="newAPI" class="btn green">
-		                                            添加接口 <i class="fa fa-plus"></i>
-		                                        </button>
-		                                    </div>
-                                    </div>
                                     <table class="table table-striped table-bordered table-hover table-header-fixed" id="apiList">
                                         <thead class="hidden-sm">
 	                                        <tr>
@@ -179,12 +130,12 @@
 											系统自动生成的编号 </span>
 										</td>
 									</tr>
-									<tr>
+									<tr class="hide">
 										<td>
 											 创建者
 										</td>
 										<td>
-											<a href="#" id="AuthorName" style="white-space: pre-line" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-original-title="接口建立人员">
+											<a id="AuthorName" data-type="text" data-pk="1" class="editable editable-click editable-disabled" data-original-title="接口建立人员">
 											<?php echo $username?></a>
 										</td>
 										<td>
@@ -192,7 +143,7 @@
 											接口创建者 </span>
 										</td>
 									</tr>
-									<tr>
+									<tr class="hide">
 										<td>
 											 建立日期
 										</td>
@@ -253,13 +204,7 @@
 											 接口参数
 										</td>
 										<td>
-											<!--a href="#" id="params" data-type="select2" data-pk="1" data-original-title="参数说明">
-											tstart,tend </a-->
 											<input type="text" id="params" value="tstart,tend" data-role="tagsinput">
-											 <!--select multiple id="params" data-role="tagsinput">
-                                                <option value="tstart">tstart</option>
-                                                <option value="tend">tend</option>
-                                            </select-->
 										</td>
 										<td>
 											<span class="text-muted">
@@ -274,20 +219,32 @@
 										</td>
 										<td>
 											<div id="note" data-pk="1" data-type="wysihtml5" data-toggle="manual" data-original-title="Enter notes">
-												 <p>[功能说明]</p>
-												 <p style="text-indent:2em;">本接口主要用于 <i>XX</i> 信息的查询.</p>
-												 <p>[主要参数]</p>
-												<ol>
+												<p>[保留参数]</p>
+												<ul>
 													<li>
-														 tstart:开始时间；
+														 M:</br>
+														 	[
+														 	0.默认所有数据;</br>
+														 	1.输出列名;</br>
+														 	2.预览模式;</br>
+														 	3.DataTables数据格式]
 													</li>
 													<li>
-														 tend:结束时间；
+														blob: 请求二进制字段信息专用参数，多个blob用分号分割
+													</li>
+													<li>Token: 身份校验信息</li>
+													<li>author: 接口所属用户</li>
+													<li>cache: 数据缓存时长(分钟)，默认0不缓存</li>
+												</ul>
+												 <p>[接口参数]</p>
+												<ul>
+													<li>
+														 tstart: 开始时间；
 													</li>
 													<li>
-														 M:0.默认所有数据;1.输出列名;</br>2.预览模式;3.DataTables数据格式；
+														 tend: 结束时间；
 													</li>
-												</ol>
+												</ul>
 											</div>
 										</td>
 										<td>
@@ -304,7 +261,7 @@
 											 接口地址
 										</td>
 										<td>
-											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址" href="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3" target="_blank">
+											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址" data-url="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3" href="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3" target="_blank">
 												<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3</a>
 										</td>
 										<td>

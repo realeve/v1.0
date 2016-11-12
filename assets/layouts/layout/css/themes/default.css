@@ -5,7 +5,7 @@
 /*--------------------------------------------------
     [RGBA Opacity]
 ----------------------------------------------------*/
-/*********** 
+/***********
 Page Header
 ***********/
 /* Header search bar, toggler button & top menu */
@@ -167,7 +167,7 @@ Page Header
   background: #393939;
 }
 .page-header.navbar .menu-toggler {
-  background-image: url(../../img/sidebar_toggler_icon_default.png);
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAYAAACgu+4kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAClJREFUeNpibGho+M9AAWABYkZKDGBioBBQbADIC6NhMBoGFIcBQIABAD44BaVCHh7UAAAAAElFTkSuQmCC);
 }
 
 /* Default Horizontal Menu */
@@ -612,8 +612,8 @@ Quick Sidebar Layout
   background: #393939;
 }
 
-/*** 
-Quick Sidebar Toggler 
+/***
+Quick Sidebar Toggler
 ***/
 .page-quick-sidebar-toggler {
   background: #525252;
@@ -740,7 +740,7 @@ Quick Sidebar Content
 }
 
 /******
-Page Footer 
+Page Footer
 ******/
 .page-footer .page-footer-inner {
   color: #a3a3a3;

@@ -91,7 +91,7 @@ var handleAvatar = function() {
                 tbl: TBL.USR,
                 id: $('.username').data('uid'),
                 set_avatar: 1
-            }
+            };
             $.ajax({
                 url: strUrl,
                 type: 'POST',
