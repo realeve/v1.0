@@ -44,6 +44,7 @@ var table = {
 		"../assets/global/plugins/icheck/skins/square/_all.css",
 		"../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css",
 		"../assets/global/plugins/cubeportfolio/css/cubeportfolio.css",
+		"../assets/global/plugins/animate/animate.min.css",
 		"../assets/global/css/components-rounded.css",
 		"../assets/global/css/plugins-md.css",
 		"../assets/layouts/layout/css/layout.css",

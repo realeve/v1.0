@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="portlet-body form">
-						<div class="form-body row" id="basic">
+						<div class="form-body row animated fadeIn" id="basic">
 							<div class="col-md-6 form-group">
 								<label class="col-md-3 control-label">冠字号</label>
 								<div class="col-md-9">
@@ -81,13 +81,17 @@
 						</div>
 						<div class="portlet-body form">
 							<div class="form-body row">
-								<div class="col-md-6 form-group" v-for="param of params" v-if="param.show">
-									<label class="col-md-3 control-label" for="cartnumber">{{param.name}}</label>
-									<div class="col-md-9">
-										<input type="text" class="form-control" v-bind:name="param.key" v-bind:placeholder="param.name" v-model="param.data">
-										<span class="help-block"> </span>
-										<div class="form-control-focus"></div>
-									</div>
+								<div v-for="param of params">
+									<transition name="custom-classes-transition" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+										<div class="col-md-6 form-group" v-if="param.show" v-bind:key="param">
+											<label class="col-md-3 control-label" for="cartnumber">{{param.name}}</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" v-bind:name="param.key" v-bind:placeholder="param.name" v-model="param.data">
+												<span class="help-block"> </span>
+												<div class="form-control-focus"></div>
+											</div>
+										</div>
+									</transition>
 								</div>
 							</div>
 							<div class="form-actions right">

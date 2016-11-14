@@ -16,12 +16,12 @@
 
 		function loadHisData() {
 
-			var date = store.state.basic.rec_date.replace(/-/g,'');
+			var date = store.state.basic.rec_date.replace(/-/g, '');
 
 			//耐性指标原始数据
 			//SELECT a.冠字, a.品种, a.检测日期, a.备注, a.耐干皱折正, a.耐干皱折背, a.耐干皱折OVMI, a.耐机洗正, a.耐机洗背 FROM dbo.view_print_endurance AS a where a.检测日期 BETWEEN ? and ? order by 记录时间 desc
 			date = date.replace(/-/g, '');
-			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=328&M=3&tstart=" + date+'&tend='+date;
+			var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=328&M=3&tstart=" + date + '&tend=' + date;
 			$.ajax({
 					url: str,
 				})
@@ -81,7 +81,9 @@
 					store.state.params[4].show = true;
 					break;
 				case '8':
+					store.state.params[1].show = true;
 					store.state.params[2].show = true;
+					store.state.params[4].show = true;
 					break;
 			}
 		}
@@ -126,8 +128,8 @@
 						value: 0,
 						name: ''
 					}],
-					tbl:{
-						rows:0
+					tbl: {
+						rows: 0
 					}
 				},
 				mutations: {
@@ -148,7 +150,7 @@
 							self[i].data = '0';
 						});
 					},
-					loadHisData:function(){
+					loadHisData: function() {
 						loadHisData();
 					}
 				}
@@ -188,7 +190,7 @@
 					reset: function() {
 						store.commit('reset');
 					},
-					loadHisData:function(){
+					loadHisData: function() {
 						store.commit('loadHisData');
 					}
 				},
@@ -198,11 +200,11 @@
 				}
 			});
 
-			var table= new Vue({
-				el:'#sheet',
-				store:true,
-				computed:{
-					tbl:function(){
+			var table = new Vue({
+				el: '#sheet',
+				store: true,
+				computed: {
+					tbl: function() {
 						return store.state.tbl;
 					}
 				}
