@@ -23,6 +23,34 @@
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 
+			<!-- 输入框 -->
+			<script type="text/x-template" id="my-input-template">
+				<div class="col-md-6 form-group" v-if="param.show" :key="param">
+					<label class="col-md-3 control-label" for="cartnumber">{{param.name}}</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" :name="param.key" :placeholder="param.name" v-model="param.data">
+						<span class="help-block"> </span>
+						<div class="form-control-focus"></div>
+					</div>
+				</div>
+			</script>
+
+			<!-- bootstrap样式表格 -->
+			<script type="text/x-template" id="my-table-template">
+				<table class="table table-striped table-bordered table-advance table-hover">
+					<thead>
+						<tr>
+							<th v-for="th of tbl.header">{{th.title}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="tr of tbl.data">
+							<td v-for="td of tr">{{td}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</script>
+
 			<form role="form" name="theForm" class="form-horizontal">
 				<div class="portlet box blue-hoki">
 					<div class="portlet-title">
@@ -53,7 +81,7 @@
 								<label class="col-md-3 control-label">品种</label>
 								<div class="col-md-9">
 									<select class="form-control select2" id="#prodid">
-										<option v-for="proditem of prodList" v-bind:value="proditem.value">{{proditem.name}}</option>
+										<option v-for="proditem of prodList" :value="proditem.value">{{proditem.name}}</option>
 									</select>
 									<div class="form-control-focus">
 									</div>
@@ -82,20 +110,17 @@
 						<div class="portlet-body form">
 							<div class="form-body row">
 								<div v-for="param of params">
-									<transition name="custom-classes-transition" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-										<div class="col-md-6 form-group" v-if="param.show" v-bind:key="param">
-											<label class="col-md-3 control-label" for="cartnumber">{{param.name}}</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" v-bind:name="param.key" v-bind:placeholder="param.name" v-model="param.data">
-												<span class="help-block"> </span>
-												<div class="form-control-focus"></div>
-											</div>
-										</div>
+									<transition
+									    name="custom-classes-transition"
+									    enter-active-class="animated slideInUp"
+									    leave-active-class="animated fadeOut"
+									  >
+										<my-input :param="param"></my-input>
 									</transition>
 								</div>
 							</div>
 							<div class="form-actions right">
-								<a type="submit" class="btn green-haze" @click="submit"> 提交 <i class="icon-cloud-upload"></i></a>
+								<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i></button>
 								<a class="btn default" @click="reset"> 重置 <i class="icon-refresh"></i></a>
 								<a class="btn red" @click="loadHisData"> 载入列表 <i class="icon-cloud-download"></i></a>
 							</div>
@@ -114,18 +139,7 @@
 						</div>
 					</div>
 					<div class="portlet-body">
-						<table class="table table-striped table-bordered table-advance table-hover">
-							<thead>
-								<tr>
-									<th v-for="th of tbl.header">{{th.title}}</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="tr of tbl.data">
-									<td v-for="td of tr">{{td}}</td>
-								</tr>
-							</tbody>
-						</table>
+						<my-table :tbl="tbl"></my-table>
 					</div>
 				</div>
 			</div>

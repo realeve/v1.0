@@ -783,8 +783,8 @@
             url: getRootPath(1) + '/datainterface/base64?src=' + avatarUrl,
           })
           .done(function(avatar) {
-            setAvatar(avatar.data);
-            localStorage.setItem('avatarUrl', avatarUrl);
+            setAvatar(avatar);
+            localStorage.setItem('avatarUrl', avatar);
           });
       } else {
         setAvatar(avatarUrl);

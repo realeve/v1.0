@@ -249,7 +249,8 @@ class DataInterface extends CI_Controller {
     $src = $this->input->get('src');
     $image_info = getimagesize($src);
     $base64_image_content = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($src)));
-    echo '{"data":"'.rtrim($base64_image_content).'"}';
+    //echo '{"data":"'.rtrim($base64_image_content).'"}';
+	echo rtrim($base64_image_content);
   }
 		
 	public function clearCache(){
