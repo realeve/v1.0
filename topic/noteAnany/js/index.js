@@ -9,36 +9,63 @@ var ananyList = [{
 	name: '白度',
 	id: 1
 }, {
-	name: 'Ry',
+	name: '挺度',
 	id: 2
 }, {
-	name: '挺度',
+	name: '荧光亮度',
 	id: 3
 }, {
-	name: '耐折度',
+	name: 'SM信号',
 	id: 4
 }, {
-	name: '干拉力',
+	name: 'W信号',
 	id: 5
 }, {
-	name: '耐破度',
+	name: '耐折度',
 	id: 6
 }, {
-	name: '荧光亮度',
+	name: '干拉力',
 	id: 7
 }, {
-	name: 'SM信号',
+	name: '耐破度',
 	id: 8
-}, {
-	name: 'W信号',
-	id: 9
 }];
 
 var vm = new Vue({
 	el: '#panel',
 	data: {
-		noteclass: {
-			name: '项目',
+		area: {
+			name: '地区',
+			options: [{
+				name: '成都市',
+				id: 0
+			}, {
+				name: '资阳市',
+				id: 1
+			}, {
+				name: '资阳县',
+				id: 2
+			}],
+			value: '0',
+			addAll:true
+		},
+		noteType: {
+			name: '券别',
+			options: [{
+				name: '佰圆券',
+				id: 0
+			}, {
+				name: '拾圆券',
+				id: 1
+			}, {
+				name: '壹圆券',
+				id: 2
+			}],
+			value: '0',
+			addAll:true
+		},
+		noteClass: {
+			name: '层级',
 			options: [{
 				name: 'A类',
 				id: 0,
@@ -56,28 +83,72 @@ var vm = new Vue({
 				id: 3,
 				desc: '票面脏污严重，有裂口、折痕、涂鸦文字，有补的痕迹。'
 			}],
-			value: '0'
+			value: '0',
+			addAll:true
+		},
+		year: {
+			name: '年份',
+			options: [{
+				name: '2008年',
+				id: 0
+			}, {
+				name: '2009年',
+				id: 1
+			}, {
+				name: '2010年',
+				id: 2
+			}, {
+				name: '2011年',
+				id: 3
+			}, {
+				name: '2012年',
+				id: 4
+			}, {
+				name: '2013年',
+				id: 5
+			}, {
+				name: '2014年',
+				id: 6
+			}, {
+				name: '2015年',
+				id: 7
+			}, {
+				name: '2016年',
+				id: 8
+			}],
+			value: '0',
+			addAll:true
 		},
 		xAxis: {
 			name: '自变量',
-			options: ananyList,
+			options: [{
+				name: '地区',
+				id: 0
+			}, {
+				name: '券别',
+				id: 1
+			}, {
+				name: '层级',
+				id: 2
+			}, {
+				name: '年份',
+				id: 3
+			}],
 			value: '0'
 		},
 		yAxis: {
-			name: '因变量',
+			name: '质量指标',
 			options: ananyList,
-			value: '1'
+			value: '0'
 		},
 		chartType: {
 			name: '图表类型',
 			options: [{
 				name: '散点图',
-				id: 0,
-				desc: '查看原始数据分布状况'
+				id: 0
 			}, {
 				name: '线型图',
-				id: 1,
-				desc: '查看趋势情况'
+				id: 1
 			}],
 			value: '0'
 		}

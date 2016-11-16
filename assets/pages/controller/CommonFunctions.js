@@ -24,6 +24,7 @@
     "PPR_PENALTY": 12, //完成车间质量考核
     "PPR_ABNORMAL": 13, //非常规指标
     "PRINT_ENDURANCE": 14, //印刷耐性指标
+    "PRINT_MANUALFLUORANCE": 15, //人工大张抽检荧光
 
     "USR": 20, //'tblUser', //20  用户信息
     "DPMT": 21, //'tblDepartMent', //21  用户所在部门/分组

@@ -13,23 +13,23 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="#">耐性检验</a>
+						<a href="#">人工大张抽检荧光质量情况表</a>
 					</li>
 				</ul>
 			</div>
 			<h3 class="page-title">
-			<span class="caption-subject bold uppercase" name="TableTitle">耐性检验</span>  <small id="today"></small>
+			<span class="caption-subject bold uppercase" name="TableTitle">人工大张抽检荧光质量情况表</span>  <small id="today"></small>
 			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 
 			<!-- 输入框 -->
 			<script type="text/x-template" id="my-input-template">
-				<div class="col-md-6 form-group" v-if="param.show" :key="param">
+				<div class="col-md-6 form-group" :class="{ 'has-error':param.hasError }" v-if="!param.hide">
 					<label class="col-md-3 control-label">{{param.name}}</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" :name="param.key" :placeholder="param.name" v-model="param.data">
-						<span class="help-block"> </span>
+						<input :type="param.type" :max="param.max" :min="param.min" class="form-control uppercase" :name="name" :class="param.class" :disabled="param.disabled" :placeholder="'请输入'+param.name" v-model.lazy.trim="param.data" :maxlength="param.maxlength">
+						<span class="help-block danger">{{ param.errinfo }}</span>
 						<div class="form-control-focus"></div>
 					</div>
 				</div>
@@ -61,39 +61,8 @@
 					</div>
 					<div class="portlet-body form">
 						<div class="form-body row animated fadeIn" id="basic">
-							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">冠字号</label>
-								<div class="col-md-9">
-									<input type="text" id="gznumber" name="gznumber" maxlength="4" class="form-control uppercase" v-model="basic.gznumber">
-									<div class="form-control-focus">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">检测日期</label>
-								<div class="col-md-9">
-									<input class="form-control form-control-inline date-picker" type="text" v-model="basic.rec_date"/>
-									<div class="form-control-focus">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">品种</label>
-								<div class="col-md-9">
-									<select class="form-control select2" id="#prodid">
-										<option v-for="proditem of prodList" :value="proditem.value">{{proditem.name}}</option>
-									</select>
-									<div class="form-control-focus">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 form-group">
-								<label class="col-md-3 control-label">备注</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" v-model="basic.remark">
-									<div class="form-control-focus">
-									</div>
-								</div>
+							<div v-for="(val,key) in basic">
+								<my-input :param="val" :name="key"></my-input>
 							</div>
 						</div>
 					</div>
@@ -110,17 +79,21 @@
 						<div class="portlet-body form">
 							<div class="form-body row">
 								<div v-for="param of params">
-									<transition
-									    name="custom-classes-transition"
-									    enter-active-class="animated slideInUp"
-									    leave-active-class="animated fadeOut"
-									  >
-										<my-input :param="param"></my-input>
-									</transition>
+									<my-input :param="param" :name="param.key"></my-input>
+								</div>
+								<div class="col-md-6 form-group">
+									<label class="col-md-3 control-label">检查人</label>
+									<div class="col-md-9">
+										<select class="form-control select2">
+											<option v-for="item of operatorList" :value="item.value">{{item.name}}</option>
+										</select>
+										<div class="form-control-focus">
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="form-actions right">
-								<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i></button>
+								<a class="btn green-haze" @click="submit"> 提交 <i class="icon-cloud-upload"></i></a>
 								<a class="btn default" @click="reset"> 重置 <i class="icon-refresh"></i></a>
 								<a class="btn red" @click="loadHisData"> 载入列表 <i class="icon-cloud-download"></i></a>
 							</div>

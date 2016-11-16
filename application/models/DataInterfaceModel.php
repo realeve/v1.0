@@ -21,6 +21,7 @@ class DataInterfaceModel extends CI_Model {
 	const TBL_PAPER_PENALTY = "Paper_Penalty"; //12 	完成车间考核记录
 	const TBL_PAPER_ABNORMAL = "Paper_Para_Abnormal"; //13 	非常规指标
 	const TBL_PRINT_ENDURANCE = "Print_Endurance"; //14 	非常规指标
+	const TBL_PRINT_MANUALFLUORANCE = "Print_ManualFluorance"; //14 	非常规指标
 
 	const TBL_USR		= 'tblUser';				 //20 用户信息
 	const TBL_DPMT		= 'tblDepartMent';			 //21 用户所在部门/分组
@@ -73,6 +74,7 @@ class DataInterfaceModel extends CI_Model {
 			12=>self::TBL_PAPER_PENALTY,
 			13=>self::TBL_PAPER_ABNORMAL,
 			14=>self::TBL_PRINT_ENDURANCE,
+			15=>self::TBL_PRINT_MANUALFLUORANCE,
 
 			20=>self::TBL_USR,
 			21=>self::TBL_DPMT,
