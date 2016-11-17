@@ -133,13 +133,7 @@ var dataTable = function() {
 	function initSettings(tableID, Data, bFixhead) {
 		var initData;
 		var date = getDateRange();
-		/*var idxColumn = [{
-			title: '序号'
-		}];
-		var convData = [];
-		Data.data.map(function(data) {
-			convData.push([''].concat(data));
-		});*/
+
 		var idList = getUrlParam('tid').split(',');
 
 		initData = {
@@ -291,7 +285,10 @@ var dataTable = function() {
 
 				api.columns().indexes().flatten().each(function(i) {
 					var column = api.column(i);
-					if (!isNaN(rowData[i])) {
+
+					//数据不做校验,车号，轴号不做过滤
+					var chkData = rowData[i];
+					if (!isNaN(chkData) || judgeSearchType(chkData) == config.search.CART || judgeSearchType(chkData) == config.search.REEL) {
 						return;
 					}
 					var strSelect = $(tableID).find('thead th[data-column-index="' + i + '"]').text();
@@ -305,10 +302,12 @@ var dataTable = function() {
 								.search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
 								.draw();
 						});
-
+					var str = '';
 					column.data().unique().sort().each(function(d, j) {
-						select.append('<option value="' + d + '">' + d + '</option>')
+						str += '<option value="' + d + '">' + d + '</option>';
 					});
+
+					select.append(str);
 
 					var searchStr = oSettings.columns[oSettings.ColReorder[i]].search.search;
 					if (searchStr.length) {
