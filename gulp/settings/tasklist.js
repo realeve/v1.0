@@ -1,13 +1,13 @@
 var viewList = [
 	//'chart',
 	//'preload',
-	//'table',
+	'table',
 	//'index',
 	//'login',
 	//'lockscreen',
 	//'search',
 	//'searchFeedback',
-	'PaperPara',
+	//'PaperPara',
 	//'demo',
 	//'datainterface'
 ];

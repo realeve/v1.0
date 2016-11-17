@@ -39,7 +39,8 @@ var table = {
 		"../assets/global/plugins/clipboard/clipboard.min.js",
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js",
 		"../assets/global/plugins/jquery-idle-timeout/jquery.idletimer.js",
-		"../assets/pages/controller/idletimeout.min.js"
+		"../assets/pages/controller/idletimeout.min.js",
+		"../assets/global/plugins/require.js"
 	],
 	css: ["../assets/global/plugins/pace/themes/pace-theme-flash.css",
 		"../assets/global/plugins/font-awesome/css/font-awesome.css",

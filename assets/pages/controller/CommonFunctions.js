@@ -672,11 +672,11 @@
         var info = '';
         if (appInfo.version > localVersion) {
           info += '<div class="col-md-6 margin-top-10"><p>【版本号】: ' + appInfo.version + "</p><p>【更新日期】: " + appInfo.date + "</p><p>【近期功能更新】：</p>" + appInfo.html;
-          //infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
+          infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
           html += (info + "</div>");
         }
       });
-      addMask(html);
+      //addMask(html);
     }
   }
 
@@ -956,10 +956,10 @@
         width: null,
       });
     });
-    if (!config.info.select2) {
-      config.info.select2 = true;
-      infoTips('本页面下拉选择框支持中文拼音模糊过滤<br/><br/>例如在列表中有一项为 “测试数据” 的下拉项，点击下拉框后输入以下信息均可过滤出该条信息:<br/><br/>拼音首字母——cssj<br/>拼音全拼——ceshishuju<br/>部分中文——测试<br/>部分拼音——cs');
-    }
+    // if (!config.info.select2) {
+    //   config.info.select2 = true;
+    //   infoTips('本页面下拉选择框支持中文拼音模糊过滤<br/><br/>例如在列表中有一项为 “测试数据” 的下拉项，点击下拉框后输入以下信息均可过滤出该条信息:<br/><br/>拼音首字母——cssj<br/>拼音全拼——ceshishuju<br/>部分中文——测试<br/>部分拼音——cs');
+    // }
   }
 
   function SetSelect2Val(Name, val) {
@@ -997,6 +997,11 @@
     } else {
       return config.search.ERR;
     }
+  }
+
+  function isDateTime(str) {
+    var rules = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}/;
+    return rules.test(str);
   }
 
   //顶部搜索框

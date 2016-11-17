@@ -2,6 +2,8 @@ $("#HideTips").on('click', function() {
 	$(this).parent().hide();
 });
 
+var loadPDF = getUrlParam('pdf');
+
 function GetJsonUrl(id) {
 	//获取各控制值
 	var date = getDateRange();
@@ -13,7 +15,7 @@ function GetJsonUrl(id) {
 		}
 	});
 	var token = getUrlParam('token');
-	if (token == null) {
+	if (token === null) {
 		token = config.TOKEN;
 	}
 	//缓存5分钟
@@ -130,11 +132,56 @@ var dataTable = function() {
 
 	var language = getLanguage();
 
+	var idList = getUrlParam('tid').split(',');
+
+	function updateSelect2(oTable, tableID) {
+
+		var api = oTable.api();
+		var settings = oTable.fnSettings();
+
+		var rowData = api.row(0).data();
+		var apiID = idList[settings.sInstance.replace('DataTables_Table_', '')];
+		var oSettings = $.parseJSON(localStorage.getItem('DataTables/qualitytable/' + apiID));
+
+		api.columns().indexes().flatten().each(function(i) {
+			var column = api.column(i);
+
+			//数据不做校验,车号，轴号不做过滤
+			var chkData = rowData[i];
+			if (!isNaN(chkData) || judgeSearchType(chkData) == config.search.CART || judgeSearchType(chkData) == config.search.REEL || isDateTime(chkData)) {
+				return;
+			}
+			var strSelect = $(tableID).find('thead th[data-column-index="' + i + '"]').text();
+			var select = $('<select class="select2"></select>')
+				.appendTo($(column.footer()).empty())
+				.on('change', function() {
+					var val = $.fn.dataTable.util.escapeRegex(
+						$(this).val()
+					);
+					column
+						.search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
+						.draw();
+				});
+			var str = '<option value="">所有' + strSelect + '</option>';
+			column.data().unique().sort().each(function(d, j) {
+				str += '<option value="' + d + '">' + d + '</option>';
+			});
+
+			select.append(str);
+
+			var searchStr = oSettings.columns[oSettings.ColReorder[i]].search.search;
+			if (searchStr.length) {
+				searchStr = searchStr.substring(1, searchStr.length - 1).replace('\\', '');
+				select.val(searchStr);
+			}
+		});
+
+		initSelect2();
+	}
+
 	function initSettings(tableID, Data, bFixhead) {
 		var initData;
 		var date = getDateRange();
-
-		var idList = getUrlParam('tid').split(',');
 
 		initData = {
 			//"bDestroy":true,
@@ -184,18 +231,6 @@ var dataTable = function() {
 				},
 				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
 			}, {
-				// 	extend: 'pdfHtml5',
-				// 	orientation: Data.cols > 10 ? 'landscape' : 'portrit',
-				// 	pageSize: Data.cols > 10 ? 'A3' : 'A4', //LEGEAL
-				// 	message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + '\n©成都印钞有限公司 技术质量部',
-				// 	download: 'download',
-				// 	title: Data.title,
-				// 	exportOptions: {
-				// 		columns: ':visible'
-				// 	},
-				// 	className: "btn dark sbold btn-outline",
-				// 	filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
-				// }, {
 				extend: 'print',
 				autoPrint: true,
 				text: '打印',
@@ -266,59 +301,19 @@ var dataTable = function() {
 				$(tableID).parents('.portlet').find('.tools').append($(tableID).parents('.portlet').find('.tabletools-btn-group').clone(true));
 				$(tableID).parents('.portlet').find('.tbTools').remove();
 
-				/*api.on('order.dt search.dt', function() {
-					api.column(0, {
-						"search": 'applied',
-						"order": 'applied'
-					}).nodes().each(function(cell, i) {
-						cell.innerHTML = i + 1;
-					});
-					console.log(api.column(2, {
-						"search": 'applied',
-						"order": 'applied'
-					}).nodes());
-				}).draw();*/
-
-				var rowData = api.row(0).data();
-				var apiID = idList[settings.sInstance.replace('DataTables_Table_', '')];
-				var oSettings = $.parseJSON(localStorage.getItem('DataTables/qualitytable/' + apiID));
-
-				api.columns().indexes().flatten().each(function(i) {
-					var column = api.column(i);
-
-					//数据不做校验,车号，轴号不做过滤
-					var chkData = rowData[i];
-					if (!isNaN(chkData) || judgeSearchType(chkData) == config.search.CART || judgeSearchType(chkData) == config.search.REEL) {
-						return;
-					}
-					var strSelect = $(tableID).find('thead th[data-column-index="' + i + '"]').text();
-					var select = $('<select class="select2"><option value="">所有' + strSelect + '</option></select>')
-						.appendTo($(column.footer()).empty())
-						.on('change', function() {
-							var val = $.fn.dataTable.util.escapeRegex(
-								$(this).val()
-							);
-							column
-								.search(val ? '^' + val.replace('\\', '') + '$' : '', true, false)
-								.draw();
-						});
-					var str = '';
-					column.data().unique().sort().each(function(d, j) {
-						str += '<option value="' + d + '">' + d + '</option>';
-					});
-
-					select.append(str);
-
-					var searchStr = oSettings.columns[oSettings.ColReorder[i]].search.search;
-					if (searchStr.length) {
-						searchStr = searchStr.substring(1, searchStr.length - 1).replace('\\', '');
-						select.val(searchStr);
-					}
-				});
-
-				initSelect2();
-				//bsTips(JSON.stringify(Data), 2);
-				//bsTips('数据加载完成', 2);
+				updateSelect2(this, tableID);
+				// api.on('order.dt search.dt', function() {
+				// 	api.column(0, {
+				// 		"search": 'applied',
+				// 		"order": 'applied'
+				// 	}).nodes().each(function(cell, i) {
+				// 		cell.innerHTML = i + 1;
+				// 	});
+				// 	console.log(api.column(2, {
+				// 		"search": 'applied',
+				// 		"order": 'applied'
+				// 	}).nodes());
+				// }).draw();
 			}
 		};
 		if (bFixhead) {
@@ -327,6 +322,41 @@ var dataTable = function() {
 				footer: true,
 				headerOffset: Data.fixedHeaderOffset,
 			};
+		}
+
+		//PDF处理
+		//参数pdf 加入pdf查看，download:下载模式
+		if (loadPDF) {
+
+			var orient = getUrlParam('orient');
+
+			var pdfSize = getUrlParam('pdfsize');
+
+			if (orient === null || orient == 'v') {
+				orient = 'portrit';
+			} else if (orient == 'h') {
+				orient = 'landscape';
+			}
+
+			pdfSize = (pdfSize === null) ? 'A4' : 'A3';
+
+			var option = {
+				extend: 'pdfHtml5',
+				orientation: orient,
+				pageSize: pdfSize, //LEGEAL
+				message: '统计时间:' + date.start + ' ~ ' + date.end + '\n' + Data.source + ' - 成都印钞有限公司 技术质量部',
+				title: Data.title,
+				exportOptions: {
+					columns: ':visible'
+				},
+				download: 'open',
+				className: "btn dark sbold btn-outline",
+				filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
+			};
+			if (getUrlParam('download') !== null) {
+				option.download = 'download';
+			}
+			initData.buttons.splice(4, 0, option);
 		}
 
 		return initData;
@@ -360,6 +390,13 @@ var dataTable = function() {
 		oTable = table.dataTable(initData);
 	}
 
+	function clearTableData(table) {
+		if (table.find('tbody').length > 0) {
+			var oTable = table.dataTable();
+			oTable.fnClearTable(oTable);
+		}
+	}
+
 	function renderDataTable(Data, tableID, bFixhead) {
 		var table = $(tableID);
 		//更新表格相关信息
@@ -373,6 +410,9 @@ var dataTable = function() {
 			bsTips("请确保数据列在2列以上，当前为：" + Data.cols);
 			return;
 		}
+
+		clearTableData(table);
+
 		if (Data.rows > 0) {
 			if (!table.find('tbody').length) {
 				CreateTable(tableID, Data, bFixhead);
@@ -382,13 +422,17 @@ var dataTable = function() {
 			bsTips("该时间范围内无质量数据，请重新选择查询时间!", 1);
 			return;
 		}
-		oTable = table.dataTable();
-		oTable.fnClearTable(this);
+
 		var oSettings = oTable.fnSettings();
 		//刷新列，列顺序可能被拖动
+		var tid = tableID.split(':eq(')[1].replace(')', '');
+
 		for (var i = 0; i < Data.rows; i++) {
 			oTable.oApi._fnAddData(oSettings, Data.data[i]);
 		}
+
+		updateSelect2(oTable, tableID);
+
 		oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
 
 		oTable.fnDraw();
@@ -413,8 +457,6 @@ var dataTable = function() {
 					bsTips('数据加载完成', 1);
 				}
 			});
-
-		//bsTips(JSON.stringify(Data), 2);
 	}
 
 	return {
@@ -446,7 +488,23 @@ jQuery(document).ready(function() {
 	//修复顶部style="margin-top:-43px;"
 	//系统主题设置
 	//ReadSettings();
-	dataTable.init();
+
+	//PDF载入特殊处理
+	if (loadPDF !== null) {
+		require.config({
+			baseUrl: "assets/global/plugins/datatables/media/js/",
+			paths: {
+				"pdfmake": "pdfmake.min",
+				"vfs_fonts": "vfs_fonts"
+			}
+		});
+		require(["pdfmake", "vfs_fonts"], function() {
+			dataTable.init();
+		});
+	} else {
+		dataTable.init();
+	}
+
 	//初始化表格
 	var clipboard = new Clipboard('#share button');
 	if (App.getURLParameter('debug') == 1 || App.getURLParameter('tid') === null) {
