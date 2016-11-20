@@ -1,7 +1,7 @@
 var viewList = [
 	//'chart',
 	//'preload',
-	'table',
+	//'table',
 	//'index',
 	//'login',
 	//'lockscreen',
@@ -9,7 +9,8 @@ var viewList = [
 	//'searchFeedback',
 	//'PaperPara',
 	//'demo',
-	//'datainterface'
+	//'datainterface',
+	'noteAnany'
 ];
 
 var taskList = {};

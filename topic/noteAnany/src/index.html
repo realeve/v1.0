@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>流通人民币整洁度调查</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link href="build/index.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="header" id="content">
+	  <div class="container">
+	    <div class="mask"></div>
+	    <h1 style="text-center">流通人民币整洁度调查</h1>
+	  </div>
+	</div>
+	<div class="container bs-docs-container">
+     <div class="row">
+        <div class="col-md-12">
+            <div class="bs-docs-section" style="border-bottom: #ddd solid 1px;">
+             	<h4 class="title">参数设置</h4>
+             	<form class="form-horizontal row" id="panel">
+					<div class="form-group col-md-4">
+						<label class="col-sm-4 control-label" v-text="legendList.name"></label>
+			          	<div class="col-sm-8">
+							<select class="form-control input-md input-inline" v-model="typeID">
+							  <option v-for="item of legendList.options" :value="item.id">{{item.name}}</option>
+							</select>
+			          	</div>
+					</div>
+                  	<div class="form-group col-md-4">
+						<label class="col-sm-4 control-label" v-text="xAxis.name"></label>
+			          	<div class="col-sm-8">
+							<select class="form-control input-md input-inline" v-model="xID">
+							  <option v-for="item of xAxis.options" :value="item.id">{{item.name}}</option>
+							</select>
+			          	</div>
+					</div>
+            	</form>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="bs-docs-section">
+              	<h4 class="title"></h4>
+				<div id="chart" class="chart"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+	<footer class="bs-docs-footer" role="contentinfo">
+      <div class="container">
+        <p>©成都印钞有限公司 技术质量部 2016</p>
+      </div>
+    </footer>
+	<script src="build/index.min.js"></script>
+	<script src="js/app.min.js"></script>
+</body>
+</html>
