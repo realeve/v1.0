@@ -24,6 +24,20 @@ function GetJsonUrl(id) {
 		var cart = location.hash.replace('#cart=', '');
 		strUrl += "&cart=" + cart.toUpperCase();
 	}
+
+	var multi = getUrlParam('multi');
+	if (multi !== null) {
+		var val = $('#multi input').val().trim().replace(/，/g, ',').toUpperCase();
+		if (jsRight(val, 1) == ',') {
+			val = val.substring(0, val.length - 1);
+		}
+
+		console.log(val.replace(/,/g, "','"));
+
+		strUrl += '&' + multi + '=' + val.replace(/,/g, "','");
+	}
+	console.log(strUrl);
+
 	return strUrl;
 }
 
@@ -136,7 +150,10 @@ var dataTable = function() {
 
 	var language = getLanguage();
 
-	var idList = getUrlParam('tid').split(',');
+	var idList = [];
+	if (getUrlParam('tid') !== null) {
+		idList = getUrlParam('tid').split(',');
+	}
 
 	function updateSelect2(oTable, tableID) {
 
@@ -490,7 +507,6 @@ var dataTable = function() {
 
 		var oSettings = oTable.fnSettings();
 		//刷新列，列顺序可能被拖动
-		var tid = tableID.split(':eq(')[1].replace(')', '');
 
 		for (var i = 0; i < Data.rows; i++) {
 			oTable.oApi._fnAddData(oSettings, Data.data[i]);
@@ -531,6 +547,10 @@ var dataTable = function() {
 				InitTable(0);
 			});
 
+			$('#multi').on("click", "a", function() {
+				InitTable(0);
+			});
+
 			//载入数据
 			if (getUrlParam('tid') !== null) {
 				InitTable(1);
@@ -559,7 +579,7 @@ jQuery(document).ready(function() {
 	//系统主题设置
 	//ReadSettings();
 
-	if (location.hash.indexOf('cart')) {
+	if (location.hash.indexOf('cart') == true) {
 		infoTips('请在上方搜索栏中输入车号以查询该车号相关数据');
 	}
 
@@ -581,10 +601,18 @@ jQuery(document).ready(function() {
 
 	//初始化表格
 	var clipboard = new Clipboard('#share button');
+
 	if (App.getURLParameter('debug') == 1 || App.getURLParameter('tid') === null) {
 		$('#Preview').show();
 	} else {
 		$('#Preview').hide();
+	}
+
+	//多字符字段
+	if (App.getURLParameter('multi') !== null) {
+		$('#multi').show();
+	} else {
+		$('#multi').hide();
 	}
 
 	//ChangeMainTheme(1);

@@ -66,10 +66,9 @@
             </div-->
 			<!-- END PAGE CONTENT-->
 			<!-- BEGIN PAGE CONTENT-->
-
 			<div class="row" id="Preview">
 				<div class="col-md-12">
-					<h3>预览地址:</h3>
+					<h3>数据预览:</h3>
 						<div class="input-group" style="text-align:left">
 							<input type="text" class="form-control" value="<?php echo base_url()?>DataInterface/Api?Token=<?php echo sha1('QCCenter'.$username)?>&ID=ID&M=3&tstart=参数1&tend=参数2">
 							<span class="input-group-btn">
@@ -83,6 +82,20 @@
 					<hr>
 				</div>
 			</div>
+
+			<div class="row margin-bottom-30" id="multi">
+				<div class="col-md-12">
+					<h3>批量数据查询</h3>
+					<div class="input-group" style="text-align:left;">
+						<input type="text" class="form-control uppercase" placeholder="请在此输入批量查询的信息，用半角逗号隔开,如 1620A211,1620D344,1620E233">
+						<span class="input-group-btn">
+						<a href="javascript:;" class="btn blue">
+						<i class="fa fa-search"></i> 批量查询 </a>
+						</span>
+					</div>
+				</div>
+			</div>
+
 			<a data-toggle="modal" href="#share" id="successShare"></a>
             <div class="modal fade" stype="top:50%;" id="share" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog">

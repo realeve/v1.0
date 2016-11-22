@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  const curVersion = 1.40;
+  const curVersion = 1.46;
   if (typeof moment != 'undefined') {
     moment.locale('zh-cn');
   }
@@ -671,9 +671,9 @@
         //比当前版本号更大
         var info = '';
         if (appInfo.version > localVersion) {
-          info += '<div class="col-md-6 margin-top-10"><p>【版本号】: ' + appInfo.version + "</p><p>【更新日期】: " + appInfo.date + "</p><p>【近期功能更新】：</p>" + appInfo.html;
-          infoTips(info + "\n<hr><p>本信息下次不再提示！</p>");
-          html += (info + "</div>");
+          info += '【版本号】: ' + appInfo.version + "</p><p>【更新日期】: " + appInfo.date + "</p><p>【主要内容】：</p>" + appInfo.html;
+          infoTips(info);
+          //html += (info + "</div>");
         }
       });
       //addMask(html);
