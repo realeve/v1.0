@@ -20,6 +20,10 @@ function GetJsonUrl(id) {
 	}
 	//缓存5分钟
 	var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + '&cache=' + config.cache; // + " & t = " + Math.random();
+	if (location.hash.indexOf('cart') > -1) {
+		var cart = location.hash.replace('#cart=', '');
+		strUrl += "&cart=" + cart.toUpperCase();
+	}
 	return strUrl;
 }
 
@@ -68,41 +72,41 @@ var dataTable = function() {
 	var oTable;
 	//生成表格头
 
-	function CreateTableHead(Data) {
-		var strHead = '<tr role="row">';
-		var iWidth = 100 / Data.cols;
-		var strThstart;
-		for (var i = 0; i < Data.cols; i++) {
-			if (i == 1) {
-				strThstart = '<th data-column-index="' + i + '" class="sorting_asc" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以降序排列此列" style="width: ' + iWidth + '%">';
-			} else {
-				strThstart = '<th data-column-index="' + i + '" class="sorting" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以升序排列此列" style="width: ' + iWidth + '%">';
-			}
+	// function CreateTableHead(Data) {
+	// 	var strHead = '<tr role="row">';
+	// 	var iWidth = 100 / Data.cols;
+	// 	var strThstart;
+	// 	for (var i = 0; i < Data.cols; i++) {
+	// 		if (i == 1) {
+	// 			strThstart = '<th data-column-index="' + i + '" class="sorting_asc" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以降序排列此列" style="width: ' + iWidth + '%">';
+	// 		} else {
+	// 			strThstart = '<th data-column-index="' + i + '" class="sorting" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以升序排列此列" style="width: ' + iWidth + '%">';
+	// 		}
 
-			var strTR = strThstart + Data.header[i].title + '</th>';
-			strHead += strTR;
-		}
-		strHead += '</tr>';
-		return strHead;
-	}
-	//生成表格体
+	// 		var strTR = strThstart + Data.header[i].title + '</th>';
+	// 		strHead += strTR;
+	// 	}
+	// 	strHead += '</tr>';
+	// 	return strHead;
+	// }
+	// //生成表格体
 
-	function CreateTableBody(Data) {
-		var strRow = '<tr role="row" class="odd">';
-		var strTR, i;
-		for (i = 0; i < Data.cols; i++) {
-			strTR = '<td></td>';
-			strRow += strTR;
-		}
-		strRow += '</tr>';
-		strRow += '<tr role="row" class="even">';
-		for (i = 0; i < Data.cols; i++) {
-			strTR = '<td></td>';
-			strRow += strTR;
-		}
-		strRow += '</tr>';
-		return strRow;
-	}
+	// function CreateTableBody(Data) {
+	// 	var strRow = '<tr role="row" class="odd">';
+	// 	var strTR, i;
+	// 	for (i = 0; i < Data.cols; i++) {
+	// 		strTR = '<td></td>';
+	// 		strRow += strTR;
+	// 	}
+	// 	strRow += '</tr>';
+	// 	strRow += '<tr role="row" class="even">';
+	// 	for (i = 0; i < Data.cols; i++) {
+	// 		strTR = '<td></td>';
+	// 		strRow += strTR;
+	// 	}
+	// 	strRow += '</tr>';
+	// 	return strRow;
+	// }
 	var getLanguage = function() {
 		return {
 			"sProcessing": "处理中...",
@@ -147,7 +151,7 @@ var dataTable = function() {
 			var column = api.column(i);
 
 			//数据不做校验,车号，轴号不做过滤
-			var chkData = rowData[i];
+			var chkData = rowData[i].replace(/<.*?>/ig, "");
 			if (!isNaN(chkData) || judgeSearchType(chkData) == config.search.CART || judgeSearchType(chkData) == config.search.REEL || isDateTime(chkData)) {
 				return;
 			}
@@ -164,7 +168,11 @@ var dataTable = function() {
 				});
 			var str = '<option value="">所有' + strSelect + '</option>';
 			column.data().unique().sort().each(function(d, j) {
-				str += '<option value="' + d + '">' + d + '</option>';
+				d = d.trim();
+				if (d.length > 0) {
+					str += '<option value="' + d + '">' + d + '</option>';
+				}
+
 			});
 
 			select.append(str);
@@ -296,12 +304,15 @@ var dataTable = function() {
 			"initComplete": function(settings) {
 				var api = this.api();
 				api.on("click", 'tbody td', function() {
-					api.search(this.innerText.trim()).draw();
+					if ($(this).find('a').length == 0) {
+						api.search(this.innerText.trim()).draw();
+					}
 				});
 				$(tableID).parents('.portlet').find('.tools').append($(tableID).parents('.portlet').find('.tabletools-btn-group').clone(true));
 				$(tableID).parents('.portlet').find('.tbTools').remove();
 
 				updateSelect2(this, tableID);
+
 				// api.on('order.dt search.dt', function() {
 				// 	api.column(0, {
 				// 		"search": 'applied',
@@ -316,6 +327,24 @@ var dataTable = function() {
 				// }).draw();
 			}
 		};
+
+		// if (Data.rows > 0) {
+		// 	var data = Data.data[0];
+		// 	var cartList = [];
+		// 	data.map(function(item, i) {
+		// 		if (judgeSearchType(item) == config.search.CART) {
+		// 			cartList.push(i);
+		// 		}
+		// 	});
+		// 	if (cartList.length) {
+		// 		initData.rowCallback = function(row, data, index) {
+		// 			cartList.map(function(i) {
+		// 				$(row).find('td:nth(' + i + ')').html('<a href="./search#' + data[i] + '" target="_blank" title="点击查看生产详情">' + data[i] + '</a>');
+		// 			});
+		// 		};
+		// 	}
+		// }
+
 		if (bFixhead) {
 			initData.fixedHeader = {
 				header: true,
@@ -397,6 +426,39 @@ var dataTable = function() {
 		}
 	}
 
+	function handleCartOrReelData(Data) {
+		var data = Data.data[0];
+		var cartList = [];
+		var type = 0;
+
+		var rules = {
+			cart: /^[1-9]\d{3}[A-Za-z]\d{3}$/,
+			reel: /^[1-9]\d{6}[A-Ca-c]$|^[1-9]\d{4}[A-Ca-c]$|^[1-9]\d{6}$/
+		};
+
+		data.map(function(item, i) {
+			item = '' + item;
+			if (rules.cart.test(item)) {
+				type = 0;
+				cartList.push(i);
+			} else if (rules.reel.test(item)) {
+				type = 1;
+				cartList.push(i);
+			}
+		});
+
+		if (cartList.length) {
+			Data.data = Data.data.map(function(item) {
+				cartList.map(function(i) {
+					item[i] = getCartOrReelStr(item[i], type);
+				});
+				return item;
+			});
+
+		}
+		return Data;
+	}
+
 	function renderDataTable(Data, tableID, bFixhead) {
 		var table = $(tableID);
 		//更新表格相关信息
@@ -414,6 +476,9 @@ var dataTable = function() {
 		clearTableData(table);
 
 		if (Data.rows > 0) {
+
+			Data = handleCartOrReelData(Data);
+
 			if (!table.find('tbody').length) {
 				CreateTable(tableID, Data, bFixhead);
 				return;
@@ -471,6 +536,11 @@ var dataTable = function() {
 				InitTable(1);
 			}
 
+			//modern browsers
+			$(window).bind('hashchange', function() {
+				InitTable(1);
+			});
+
 			$("#Preview .btn").on('click', function() {
 				RefreshTable('[name="sampleTable"]', $('#Preview input').val());
 			});
@@ -488,6 +558,10 @@ jQuery(document).ready(function() {
 	//修复顶部style="margin-top:-43px;"
 	//系统主题设置
 	//ReadSettings();
+
+	if (location.hash.indexOf('cart')) {
+		infoTips('请在上方搜索栏中输入车号以查询该车号相关数据');
+	}
 
 	//PDF载入特殊处理
 	if (loadPDF !== null) {

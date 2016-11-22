@@ -978,12 +978,17 @@
     return arr.substr(1);
   }
 
+  function getCartOrReelStr(str, type) {
+    type = (type == config.search.REEL || typeof type == 'undefined') ? '/paper' : '';
+    return '<a href="./search' + type + '#' + str + '" target="_blank" title="点击查看生产详情">' + str + '</a>';
+  }
+
   function judgeSearchType(str) {
     var rules = {
       cart: /^[1-9]\d{3}[A-Za-z]\d{3}$/,
-      reel: /^[1-9]\d{6}[A-Ca-c]$|[1-9]\d{4}$|[1-9]\d{4}[A-Ca-c]$|[1-9]\d{6}$/,
-      gz: /^[A-Za-z]{2}\d{4}$|[A-Za-z]\d[A-Za-z]\d{3}$|[A-Za-z]\d{2}[A-Za-z]\d{2}$/,
-      code: /^[A-Za-z]{2}\d{8}$|[A-Za-z]\d[A-Za-z]\d{7}$|[A-Za-z]\d{2}[A-Za-z]\d{6}$/
+      reel: /^[1-9]\d{6}[A-Ca-c]$|^[1-9]\d{4}$|^[1-9]\d{4}[A-Ca-c]$|^[1-9]\d{6}$/,
+      gz: /^[A-Za-z]{2}\d{4}$|^[A-Za-z]\d[A-Za-z]\d{3}$|^[A-Za-z]\d{2}[A-Za-z]\d{2}$/,
+      code: /^[A-Za-z]{2}\d{8}$|^[A-Za-z]\d[A-Za-z]\d{7}$|^[A-Za-z]\d{2}[A-Za-z]\d{6}$/
     };
 
     if (rules.cart.test(str)) {
@@ -1033,7 +1038,14 @@
             location.hash = str;
             $('.search-form .submit').attr('href', '#' + str);
           } else {
-            window.location.href = url;
+
+            //数据报表中有cart字段时，表示查询某车号信息
+            if ((curPage.indexOf('qualitytable') || curPage.indexOf('QualityTable')) && location.hash.indexOf('cart')) {
+              location.hash = "#cart=" + str.toUpperCase();
+            } else {
+              window.location.href = url;
+            }
+
             //$('.search-form .submit').attr('href', url);
           }
         }
