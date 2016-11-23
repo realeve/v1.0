@@ -56,6 +56,7 @@
     },
     TPL: getRootPath(1) + '/assets/pages/controller/data/tpl/',
     SHOWDEBUGTIME: true,
+    select2Inited:false,
     cache: 10, //数据缓存10分钟
     info: {
       select2: false,
@@ -936,7 +937,11 @@
   //select2 初始化
 
   function initSelect2() {
-    initPinYin();
+    if(!config.select2Inited){
+      initPinYin();
+      config.select2Inited = true;
+    }
+
     $.fn.select2.defaults.set("theme", "bootstrap");
     //中文简拼、中文全拼检索
     function matchStart(term, text) {

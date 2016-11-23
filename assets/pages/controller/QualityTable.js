@@ -31,12 +31,22 @@ function GetJsonUrl(id) {
 		if (jsRight(val, 1) == ',') {
 			val = val.substring(0, val.length - 1);
 		}
+		//用空格连接的情况
+		if(val.indexOf(' ')!=-1 && val.indexOf(',')==-1){
+			val = val.split(' ');
+			val = val.map(function(item){
+				if(item.length>0){
+					return item;
+				}
+			});
+			val = val.join(',');
+		}
 
-		console.log(val.replace(/,/g, "','"));
+		//console.log(val.replace(/,/g, "','"));
 
 		strUrl += '&' + multi + '=' + val.replace(/,/g, "','");
 	}
-	console.log(strUrl);
+	//console.log(strUrl);
 
 	return strUrl;
 }
@@ -83,7 +93,7 @@ var dataTable = function() {
 			}
 		}
 	}
-	var oTable;
+	var oTable = [];
 	//生成表格头
 
 	// function CreateTableHead(Data) {
@@ -408,6 +418,10 @@ var dataTable = function() {
 		return initData;
 	}
 
+  	function getIDByTblID(tableID){
+  		return tableID.split('eq(')[1].replace(')','');
+  	}
+
 	/*
 	DataType:Array/Json.
 	其中Json直接将URL传入值即可，但Model中查询代码不能为中文,视图中需要定义表头
@@ -431,9 +445,9 @@ var dataTable = function() {
 			strFoot += '<td>' /*+ footTD.title*/ + '</td>';
 		});
 		table.find('tfoot tr').html(strFoot);
-
+		var id=getIDByTblID(tableID);
 		//初始化表格
-		oTable = table.dataTable(initData);
+		oTable[id] = table.dataTable(initData);
 	}
 
 	function clearTableData(table) {
@@ -505,18 +519,19 @@ var dataTable = function() {
 			return;
 		}
 
-		var oSettings = oTable.fnSettings();
+		var id=getIDByTblID(tableID);
+		var oSettings = oTable[id].fnSettings();
 		//刷新列，列顺序可能被拖动
 
 		for (var i = 0; i < Data.rows; i++) {
-			oTable.oApi._fnAddData(oSettings, Data.data[i]);
+			oTable[id].oApi._fnAddData(oSettings, Data.data[i]);
 		}
 
-		updateSelect2(oTable, tableID);
+		updateSelect2(oTable[id], tableID);
 
 		oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
 
-		oTable.fnDraw();
+		oTable[id].fnDraw();
 	}
 
 	/*
