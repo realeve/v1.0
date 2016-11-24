@@ -87,7 +87,7 @@
 				<div class="col-md-12">
 					<h3>批量数据查询</h3>
 					<div class="input-group" style="text-align:left;">
-						<input type="text" class="form-control uppercase" placeholder="请在此输入批量查询的信息，用半角逗号隔开,如 1620A211,1620D344,1620E233">
+						<input type="text" class="form-control uppercase" placeholder="请在此输入批量查询的信息，用逗号或空格隔开,如 1620A211,1620D344,1620E233">
 						<span class="input-group-btn">
 						<a href="javascript:;" class="btn blue">
 						<i class="fa fa-search"></i> 批量查询 </a>

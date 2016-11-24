@@ -265,7 +265,8 @@ class DataInterfaceModel extends CI_Model {
 		$SQLStr = $this->TransToUTF(base64_decode($ApiInfo->strSQL));
 		//是否为BLOB字段
 		$isBlob = isset($dataParams['blob'])?$dataParams['blob']:0;
-
+		$blobTag = isset($dataParams['blobtag'])?$dataParams['blobtag']:0;
+		
 		if(!isset($this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]])){
 			$this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]= $this->load->database($this->DBLIST[$ApiInfo->DBID],TRUE);
 		}
@@ -282,7 +283,7 @@ class DataInterfaceModel extends CI_Model {
 				//$LOGINDB->cache_on();
 				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
-			$strJson = $query->result_json($isBlob,$ApiInfo->DBID);
+			$strJson = $query->result_json($isBlob,$ApiInfo->DBID,$blobTag);
 		}
 		else if($mode == 1 ) {
 			if($ApiInfo->DBID == 0 || $ApiInfo->DBID== 5){ //MS SQL SERVER
@@ -318,7 +319,7 @@ class DataInterfaceModel extends CI_Model {
 				//$LOGINDB->cache_on();
 				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
-			$strJson = $query->result_json($isBlob,$ApiInfo->DBID);
+			$strJson = $query->result_json($isBlob,$ApiInfo->DBID,$blobTag);
 		}
 		else if ($mode == 3 ) {
 			//不使用官方替换字符串的函数(在处理ORCAL的查询语句时会报错);
@@ -332,7 +333,7 @@ class DataInterfaceModel extends CI_Model {
 				$query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
 			}
 
-			$strJson = $query->result_datatable_json($isBlob,$ApiInfo->DBID);
+			$strJson = $query->result_datatable_json($isBlob,$ApiInfo->DBID,$blobTag);
 		}
 		//$query->free_result(); //清理内存
 		//$LOGINDB->close();//关闭连接

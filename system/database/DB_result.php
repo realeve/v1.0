@@ -324,7 +324,7 @@ class CI_DB_result {
 		return $str;
 	}
 	
-	function reConv($str,$blobType,$dbID)
+	function reConv($str,$blobType,$dbID,$blobTag)
 	{	
 		if($blobType != '0'){
 			$type = '';
@@ -337,11 +337,19 @@ class CI_DB_result {
 			}else if($blobType == 'gif'){
 				$type = 'data:image/gif;base64,';
 			}
-			//oracle 二进制需特殊处理
 			if('object' == gettype($str)){
 				$str = $str->load();
 			}
-			return $type . base64_encode($str);			
+			$result = $type . base64_encode($str);
+			
+			if($blobTag != '0'){
+				if($type == ''){
+					$result = '<img src=\"data:image/'.$blobTag.';base64,'.$result.'\">';
+				}else{
+					$result = '<img src="'.$result.'">';
+				}				
+			}			
+			return $result;			
 		}
 		$encode_Arr = array('ASCII','UTF-8','GBK','GB2312','EUC-CN');	
 		$encode = mb_detect_encoding($str,$encode_Arr);
@@ -368,7 +376,7 @@ class CI_DB_result {
 	 * @return	json
 	 * Mod by 李宾@20150305
 	 */
-	public function result_json($blobType=0,$dbID=0)
+	public function result_json($blobType=0,$dbID=0,$blobTag=0)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -415,8 +423,8 @@ class CI_DB_result {
 					}
 				}
 				
-				$iValue = trim($this->reConv($row[$str],$flag,$dbID));	
-				$strName = trim($this->reConv($str,0,$dbID));
+				$iValue = trim($this->reConv($row[$str],$flag,$dbID,$blobTag));	
+				$strName = trim($this->reConv($str,0,$dbID,$blobTag));
 				
 				if ($i == 0 ) $strJSON .= '{';
 				$strJSON .= '"' .$strName.'":"' . $iValue . '"';
@@ -499,7 +507,7 @@ class CI_DB_result {
 	}
 
 	//返回datatables所用数据格式
-	public function result_datatable_json($blobType=0,$dbID=0)
+	public function result_datatable_json($blobType=0,$dbID=0,$blobTag=0)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -554,8 +562,8 @@ class CI_DB_result {
 					}
 				}
 				
-				$iValue = trim($this->reConv($row[$str],$flag,$dbID));	
-				$strName = trim($this->reConv($str,0,$dbID));
+				$iValue = trim($this->reConv($row[$str],$flag,$dbID,$blobTag));	
+				$strName = trim($this->reConv($str,0,$dbID,$blobTag));
 				
 				if ($i == 0 ) $strJSON .= '[';
 				$strJSON .= '"' . $iValue . '"';

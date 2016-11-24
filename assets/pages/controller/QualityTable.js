@@ -14,6 +14,9 @@ function GetJsonUrl(id) {
 			strLimit += '&' + index;
 		}
 	});
+
+	strLimit = strLimit.split('#')[0];
+
 	var token = getUrlParam('token');
 	if (token === null) {
 		token = config.TOKEN;
@@ -22,7 +25,7 @@ function GetJsonUrl(id) {
 	var strUrl = getRootPath() + "/DataInterface/Api?Token=" + token + "&ID=" + id + "&M=3&tstart=" + date.start + "&tend=" + date.end + "&tstart2=" + date.start + "&tend2=" + date.end + "&tstart3=" + date.start + "&tend3=" + date.end + "&tstart4=" + date.start + "&tend4=" + date.end + strLimit + '&cache=' + config.cache; // + " & t = " + Math.random();
 	if (location.hash.indexOf('cart') > -1) {
 		var cart = location.hash.replace('#cart=', '');
-		strUrl += "&cart=" + cart.toUpperCase();
+		strUrl += "&cart=" + cart.toUpperCase()+"&cart2=" + cart.toUpperCase();
 	}
 
 	var multi = getUrlParam('multi');
@@ -43,8 +46,8 @@ function GetJsonUrl(id) {
 		}
 
 		//console.log(val.replace(/,/g, "','"));
-
-		strUrl += '&' + multi + '=' + val.replace(/,/g, "','");
+		val = val.replace(/,/g, "','");
+		strUrl += '&' + multi + '=' + val+'&' + multi + '2=' + val;
 	}
 	//console.log(strUrl);
 
