@@ -3,47 +3,81 @@ var myselect = {
 	props: ['info']
 };
 var axisOffset = 2;
-var ananyList = [{
-	name: '层级',
-	id: 2
-}, {
-	name: '整洁度',
-	id: 3
-}, {
-	name: '白度',
-	id: 4
-}, {
-	name: '挺度',
-	id: 5
-}, {
-	name: '撕裂度',
-	id: 6
-}, {
-	name: '耐折度',
-	id: 7
-}, {
-	name: '干拉力',
-	id: 8
-}, {
-	name: '耐破度',
-	id: 9
-}, {
-	name: '荧光亮度',
-	id: 10
-}, {
-	name: 'W信号',
-	id: 11
-}, {
-	name: 'SM信号',
-	id: 12
-}];
+var data = [dataStatic, dataFake];
+var ananyList = [
+	[{
+		name: '层级',
+		id: 2
+	}, {
+		name: '整洁度',
+		id: 3
+	}, {
+		name: '白度',
+		id: 4
+	}, {
+		name: '挺度',
+		id: 5
+	}, {
+		name: '撕裂度',
+		id: 6
+	}, {
+		name: '耐折度',
+		id: 7
+	}, {
+		name: '干拉力',
+		id: 8
+	}, {
+		name: '耐破度',
+		id: 9
+	}, {
+		name: '荧光亮度',
+		id: 10
+	}, {
+		name: 'W信号',
+		id: 11
+	}, {
+		name: 'SM信号',
+		id: 12
+	}],
+	[{
+		name: '层级',
+		id: 2
+	}, {
+		name: '流通时间',
+		id: 3
+	}, {
+		name: '荧光亮度',
+		id: 4
+	}, {
+		name: 'W信号',
+		id: 5
+	}, {
+		name: 'SM信号',
+		id: 6
+	}]
+];
 
 var vm = new Vue({
 	el: '#panel',
+	components: {
+		'my-select': myselect
+	},
 	data: {
-		xAxis: {
+		dataType: {
+			name: '数据类型',
+			options: [{
+				name: '所有数据',
+				id: 0,
+			}, {
+				name: '防伪指标',
+				id: 1
+			}],
+			value: 0
+		},
+		dataIdx: {
 			name: '观测指标',
-			options: ananyList
+			options: ananyList[0],
+			value: 3
 		},
 		legendList: {
 			name: '数据序列',
@@ -59,19 +93,22 @@ var vm = new Vue({
 			}, {
 				name: '层级',
 				id: 3
-			}]
+			}],
+			value: 3
 		},
-		legendData: ['所有数据'],
-		typeID: 3,
-		xID: 3,
-		yID: 4,
+		legendData: [],
 		chart: ''
 	},
 	watch: {
-		xID: function() {
+		"legendList.value": function(val) {
 			this.updateChart();
 		},
-		typeID: function() {
+		"dataType.value": function(val) {
+			this.dataIdx.options = ananyList[val];
+			this.dataIdx.value = 3;
+			this.updateChart();
+		},
+		"dataIdx.value": function() {
 			this.updateChart();
 		}
 	},
@@ -82,12 +119,12 @@ var vm = new Vue({
 				series = [];
 			var self = this;
 
-			if (self.typeID === 0) {
+			if (self.legendList.value === 0) {
 
 				this.legendData = [];
 
-				arr = data.map(function(item) {
-					return [item[self.xID], item[i + axisOffset]];
+				arr = data[self.dataType.value].map(function(item) {
+					return [item[self.dataIdx.value], item[i + axisOffset]];
 				});
 
 				series = [{
@@ -99,8 +136,8 @@ var vm = new Vue({
 
 			} else {
 
-				data.forEach(function(item) {
-					legend.push(item[self.typeID - 1]);
+				data[self.dataType.value].forEach(function(item) {
+					legend.push(item[self.legendList.value - 1]);
 				});
 
 				legend = _.uniq(legend);
@@ -111,8 +148,8 @@ var vm = new Vue({
 					arr[item] = [];
 				});
 
-				data.forEach(function(item) {
-					arr[item[self.typeID - 1]].push([item[self.xID], item[i + axisOffset]]);
+				data[self.dataType.value].forEach(function(item) {
+					arr[item[self.legendList.value - 1]].push([item[self.dataIdx.value], item[i + axisOffset]]);
 				});
 
 				for (var key in arr) {
@@ -159,24 +196,42 @@ var vm = new Vue({
 				xAxis = [],
 				yAxis = [];
 
-			var len = ananyList.length;
+			var len = ananyList[this.dataType.value].length;
 
 			for (var i = 0; i < len; i++) {
-				var j = i % 3,
-					k = Math.floor(i / 3);
+				var j, k, itemX, itemY;
+				if (this.dataType.value === 0) {
+					j = i % 3,
+						k = Math.floor(i / 3);
 
-				grid.push({
-					x: (j * 32 + 5) + '%',
-					y: (k * 24 + 8) + '%',
-					height: '20%',
-					width: '24%',
-					containLabel: true
-				});
-				var itemX = this.getAxisData(ananyList[this.xID - axisOffset].name, k == 2, i);
-				var itemY = this.getAxisData(ananyList[i].name, j === 0, i);
+					grid.push({
+						x: (j * 32 + 5) + '%',
+						y: (k * 24 + 8) + '%',
+						height: '20%',
+						width: '24%',
+						containLabel: true
+					});
+
+					itemX = this.getAxisData(ananyList[this.dataType.value][this.dataIdx.value - axisOffset].name, k == 2, i);
+					itemY = this.getAxisData(ananyList[this.dataType.value][i].name, j === 0, i);
+				} else {
+					j = i % 2,
+						k = Math.floor(i / 2);
+
+					grid.push({
+						x: (j * 45 + 5) + '%',
+						y: (k * 30 + 8) + '%',
+						height: '25%',
+						width: '35%',
+						containLabel: true
+					});
+
+					itemX = this.getAxisData(ananyList[this.dataType.value][this.dataIdx.value - axisOffset].name, k == 1, i);
+					itemY = this.getAxisData(ananyList[this.dataType.value][i].name, j === 0, i);
+				}
 
 				//层级
-				if (this.xID == 2) {
+				if (this.dataIdx.value == 2) {
 					itemX.type = 'category';
 					itemX.data = ['A类', 'B类', 'C类', 'D类'];
 				}
@@ -239,10 +294,10 @@ var vm = new Vue({
 					left: 'left'
 				},
 				legend: {
-					data: this.legendData,
+					data: this.legendData.sort(),
 					x2: 20,
 					y: 35,
-					//orient: 'vertical'
+					selectedMode: this.dataType.value
 				},
 				xAxis: xAxis,
 				yAxis: yAxis,
@@ -261,94 +316,3 @@ var vm = new Vue({
 window.addEventListener('resize', function() {
 	vm.chart.resize();
 }, false);
-
-
-// area: {
-// 	name: '地区',
-// 	options: [{
-// 		name: '成都市',
-// 		id: 0
-// 	}, {
-// 		name: '资阳市',
-// 		id: 1
-// 	}, {
-// 		name: '资阳县',
-// 		id: 2
-// 	}],
-// 	value: '-1',
-// 	addAll: true
-// },
-// noteType: {
-// 	name: '券别',
-// 	options: [{
-// 		name: '佰圆券',
-// 		id: 0
-// 	}, {
-// 		name: '拾圆券',
-// 		id: 1
-// 	}, {
-// 		name: '壹圆券',
-// 		id: 2
-// 	}],
-// 	value: '-1',
-// 	addAll: true
-// },
-// noteClass: {
-// 	name: '层级',
-// 	options: [{
-// 		name: 'A类',
-// 		id: 0,
-// 		desc: '票面整洁、完整、较新，无破损，无涂鸦文字。'
-// 	}, {
-// 		name: 'B类',
-// 		id: 1,
-// 		desc: '大部分较整洁，无破损，水印区有蹭脏。'
-// 	}, {
-// 		name: 'C类',
-// 		id: 2,
-// 		desc: '票面较脏，无破损，有折痕，有涂鸦文字。'
-// 	}, {
-// 		name: 'D类',
-// 		id: 3,
-// 		desc: '票面脏污严重，有裂口、折痕、涂鸦文字，有补的痕迹。'
-// 	}],
-// 	value: '-1',
-// 	addAll: true
-// },
-// year: {
-// 	name: '年份',
-// 	options: [{
-// 		name: '2008年',
-// 		id: 0
-// 	}, {
-// 		name: '2009年',
-// 		id: 1
-// 	}, {
-// 		name: '2010年',
-// 		id: 2
-// 	}, {
-// 		name: '2011年',
-// 		id: 3
-// 	}, {
-// 		name: '2012年',
-// 		id: 4
-// 	}, {
-// 		name: '2013年',
-// 		id: 5
-// 	}, {
-// 		name: '2014年',
-// 		id: 6
-// 	}, {
-// 		name: '2015年',
-// 		id: 7
-// 	}, {
-// 		name: '2016年',
-// 		id: 8
-// 	}],
-// 	value: '-1',
-// 	addAll: true
-// },
-// yAxis: {
-// 	name: '因变量',
-// 	options: ananyList
-// },
