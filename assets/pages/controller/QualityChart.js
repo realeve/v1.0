@@ -177,7 +177,7 @@
            };
 
            //处理请求参数
-           objRequest.url = GetJsonUrl(drillComponents.id[curChartID][drillComponents.curLevel[curChartID] - 1], objRequest, curChartID);
+           objRequest.url = GetJsonUrl(drillComponents.id[curChartID].split(';')[drillComponents.curLevel[curChartID] - 1], objRequest, curChartID);
            objRequest.url += '&axis=' + urlParam.axis + "&legend=" + urlParam.legend;
 
            if (objRequest.drillChart != 'none') {
@@ -188,6 +188,8 @@
                objRequest.type = drillComponents.chartType[curChartID][drillComponents.curLevel[curChartID] - 1];
              }
            }
+
+           delete objRequest.data;
 
            option[curChartID][drillComponents.curLevel[curChartID]] = chartDataTool.getOption(objRequest, echarts);
            myChart[curChartID].setOption(option[curChartID][drillComponents.curLevel[curChartID]]);
@@ -211,8 +213,8 @@
          if (objRequest.drillID != 'none') {
            $('.eCharts-main').parents('.portlet').find('.page-bar').removeClass('hidden');
            //默认以LEGEND和AXIS同时作为参数搜索
-           drillComponents.id[i] = objRequest.drillID.split(';');
-           drillComponents.maxDrillLevel[i] = drillComponents.id[i].length;
+           //drillComponents.id[i] = objRequest.drillID.split(';');
+           drillComponents.maxDrillLevel[i] = drillComponents.id[i].split(';').length;
            //drillComponents.param[i] = objRequest.drillParam;
 
            //数据下钻：添加点击事件
@@ -377,7 +379,10 @@
            })
            .done(function(data) {
              objRequest.data = $.parseJSON(data);
-
+             if (objRequest.drillID != 'none') {
+               //默认以LEGEND和AXIS同时作为参数搜索
+               drillComponents.id[i] = objRequest.drillID;
+             }
              if (objRequest.data.rows) {
                option[i][0] = chartDataTool.getOption(objRequest, echarts);
                handleChartData(i);
