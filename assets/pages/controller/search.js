@@ -219,8 +219,7 @@ var search = function() {
 				tpl.render('simpleTable.etpl', data, $('[name="storageInfo"]'));
 			})
 			.fail(function(e) {
-				console.log("read data error:<br>");
-				console.log(e.responseText);
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	};
 
@@ -260,6 +259,8 @@ var search = function() {
 
 				//历史车号列表
 				tpl.render('search/hisCartList.etpl', data, $('[name="hisCartList"]'));
+			}).fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	};
 
@@ -373,9 +374,8 @@ var search = function() {
 			.done(function(data) {
 				tpl.render('simpleTable.etpl', handleAjaxData(data), $('#offset'));
 			})
-			.fail(function() {
-				console.log("read data error:<br>");
-				console.log(e.responseText);
+			.fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 
 		//凹印离线
@@ -395,9 +395,8 @@ var search = function() {
 			.done(function(data) {
 				tpl.render('simpleTable.etpl', handleAjaxData(data), $('#intaglio'));
 			})
-			.fail(function() {
-				console.log("read data error:<br>");
-				console.log(e.responseText);
+			.fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	};
 	/**
@@ -436,9 +435,8 @@ var search = function() {
 				}
 				tpl.render('imglist.etpl', imgInfo, data.el);
 			})
-			.fail(function() {
-				console.log("read data error:<br>");
-				console.log(e.responseText);
+			.fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	}
 
@@ -483,9 +481,8 @@ var search = function() {
 				});
 				//tpl.render('imglist.etpl', imgInfo, $('[name="siyinImg"]'));
 			})
-			.fail(function() {
-				console.log("read data error:<br>");
-				console.log(e.responseText);
+			.fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	};
 
@@ -557,9 +554,8 @@ var search = function() {
 
 				tpl.render('simpleTable.etpl', qua, $('[name="mahouInfo"]'));
 			})
-			.fail(function() {
-				console.log("read data error:<br>");
-				console.log(e.responseText);
+			.fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	};
 
@@ -582,6 +578,9 @@ var search = function() {
 				objDom.html(tpl.getHTML('simpleTable.etpl', data));
 				objDom.find('.scroller').append('<a href="../search/image#' + cart + '" target="_blank" class="cbp-l-project-details-visit btn red uppercase">实废图像</a>');
 
+			})
+			.fail(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 
 
@@ -818,9 +817,14 @@ var search = function() {
 			})
 			.done(function(data) {
 				data = $.parseJSON(data);
+				if (!data.rows) {
+					return;
+				}
 				var option = getCodeTypeOption(data.data);
 				ec[2] = echarts.init(document.getElementById("codeFakeType"));
 				ec[2].setOption(option);
+			}).error(function(e) {
+				infoTips(handleError(e), 0, $('.infotips'));
 			});
 	}
 
@@ -897,6 +901,8 @@ var search = function() {
 						return;
 					}
 					renderProdInfo(data);
+				}).fail(function(e) {
+					infoTips(handleError(e), 0, $('.infotips'));
 				});
 
 			//渲染质量信息
@@ -999,6 +1005,7 @@ jQuery(document).ready(function() {
 	UIIdleTimeout.init();
 	initDom();
 	search.init();
+	$('.page-bar').after('<div class="margin-top-10 infotips"></div>');
 	bsTips('点击本页面工序名称将自动折叠面板');
 });
 

@@ -56,7 +56,7 @@
     },
     TPL: getRootPath(1) + '/assets/pages/controller/data/tpl/',
     SHOWDEBUGTIME: true,
-    select2Inited:false,
+    select2Inited: false,
     cache: 10, //数据缓存10分钟
     info: {
       select2: false,
@@ -91,7 +91,7 @@
 
   function infoTips(strMes, Type, iContainer) {
     if (typeof iContainer === 'undefined') {
-      iContainer = "";
+      iContainer = '';
     }
     if (typeof Type === 'undefined') {
       Type = 0;
@@ -320,6 +320,16 @@
       console.timeEnd(tid);
     }
     return Data;
+  }
+
+  function handleError(e) {
+    console.log(e);
+    var str = e.responseText.match(/<div[^>]*>([\s\S]+?)<\/div>/i);
+    if (str.length > 0) {
+      return str[1];
+    } else {
+      return e;
+    }
   }
 
   /**读取本地JSON**/
@@ -937,7 +947,7 @@
   //select2 初始化
 
   function initSelect2() {
-    if(!config.select2Inited){
+    if (!config.select2Inited) {
       initPinYin();
       config.select2Inited = true;
     }
@@ -1045,7 +1055,7 @@
           } else {
 
             //数据报表中有cart字段时，表示查询某车号信息
-            if ((curPage.indexOf('qualitytable') || curPage.indexOf('QualityTable')) && location.hash.indexOf('cart')) {
+            if ((curPage.indexOf('qualitytable') > 0 || curPage.indexOf('QualityTable') > 0) && location.hash.indexOf('cart') > 0) {
               location.hash = "#cart=" + str.toUpperCase();
             } else {
               window.location.href = url;
