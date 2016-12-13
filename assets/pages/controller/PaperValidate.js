@@ -120,7 +120,7 @@ var PaperValidate = function() {
 		 */
 		var strUrl = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=113&M=0&r=" + reel_code;
 		var Data = ReadData(strUrl);
-		if (Data.rows === "0") {
+		if (Data.rows == 0) {
 			return 0;
 		}
 
