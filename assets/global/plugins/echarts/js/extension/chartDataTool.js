@@ -2638,7 +2638,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
 
     //处理品种 参数 p
     if (objRes.url.indexOf('p=') != -1) {
-      var pdtName = objRes.url.split('&p=')[1].split('&')[0];
+      var pdtName = decodeURI(objRes.url.split('&p=')[1].split('&')[0]);
       objRes.data.title = pdtName.toUpperCase() + objRes.data.title;
     }
 
