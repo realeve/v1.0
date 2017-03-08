@@ -11,12 +11,12 @@ class DataInterface extends CI_Controller {
 	{
 		$this->load->library('session');
 		$this->load->helper ( array (
-			'url' 
+			'url'
 		) );
 		$this->load->model('DataInterfaceModel');
 		//开启缓存
 		//$this->output->cache(60*24);
-		
+
 		//$this->output->set_output(json_encode($this->session->userdata));//调试
 		if ($this->session->userdata('userrole')>0)
 		{
@@ -31,8 +31,8 @@ class DataInterface extends CI_Controller {
 				$this->load->view('templates/header/topmenu');
 				$this->load->view('templates/sidebar');
 				$this->load->view('DataInterface',$logindata);
-				$this->load->view('templates/footer/footer_DataInterface');				
-			}	
+				$this->load->view('templates/footer/footer_DataInterface');
+			}
 		}
 		elseif($this->session->userdata('userrole')==-1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username')!='')
 		{
@@ -41,7 +41,7 @@ class DataInterface extends CI_Controller {
 		else{
 			$this->load->view('login');
 		}
-		
+
 	}
 
 	//新建接口的ID编号
@@ -74,15 +74,15 @@ class DataInterface extends CI_Controller {
 			0.默认所有数据;
 			1.输出列名;
 			2.预览模式;
-			3.DataTables数据格式；			
+			3.DataTables数据格式；
 			'edit'.API编辑模式；
 	*/
 	public function Api()//读取接口数据
 	{
 		$APIData = $this->input->get(NULL);
-    
+
 		$t1 = microtime(true);
-    
+
     //默认参数
     if(!isset($APIData['Token'])){
       $APIData['Token'] = '79d84495ca776ccb523114a2120e273ca80b315b';
@@ -90,42 +90,42 @@ class DataInterface extends CI_Controller {
     if(!isset($APIData['M'])){
       $APIData['M'] = 3;
     }
-    
+
 		//数据缓存处理(根据查询参数做K-V缓存);
 		if(isset($APIData['cache']) && $APIData['cache']>0){
-			
+
 			//数据缓存
 			$this->load->driver('cache',
 				array('adapter' => 'apc', 'backup' => 'file')//, 'key_prefix' => 'api_'
 			);
-			
+
 			$keyName = 'api_data';
 			foreach($APIData as $key=>$value)
 			{
 				 $keyName.="_".$key."_".$value;
-			}		
-			
+			}
+
 			$keyName = strtolower($keyName);
-			
+
 			//echo '开始读取缓存...<br>';
 			//if ( ! $Data = $this->cache->get($keyName)){
-			if ( ! $Data = $this->cache->get($keyName)){	
-				$minutes = $APIData['cache'];			
+			if ( ! $Data = $this->cache->get($keyName)){
+				$minutes = $APIData['cache'];
 				unset($APIData['cache']);
-				
+
 				$this->load->model('DataInterfaceModel');
-				
+
 				//缓存未命中，读取原始数据
 				$Data = $this->DataInterfaceModel->Api($APIData);
 				//echo '未取得缓存...<br>';
 				//缓存数据
 				// Save into the cache for n minutes
-				$this->cache->save($keyName, $Data, $minutes*60);				
+				$this->cache->save($keyName, $Data, $minutes*60);
 			}else{
 				//echo '当前数据来于缓存...<br>';
-				$minutes = $APIData['cache'];			
+				$minutes = $APIData['cache'];
 				unset($APIData['cache']);
-				
+
 				$Data = str_replace('{"rows"','{"cache":'.$minutes.',"rows"',$Data);
 			}
 		}else{
@@ -133,7 +133,7 @@ class DataInterface extends CI_Controller {
 			//echo '实时读取';
 			$this->load->model('DataInterfaceModel');
 			$Data = $this->DataInterfaceModel->Api($APIData);
-		}			
+		}
 
 		//增加跨域请求权限_2015_12_31
 		if (isset($APIData['callback'])) {
@@ -145,17 +145,21 @@ class DataInterface extends CI_Controller {
 		//输出数据
 	 	$this->output->set_output($Data);
 	}
-	
+
 	public function insert()
 	{
 		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
-		if (!isset($data['tbl'])) {
-        	$data['message'] = '请指定插入的表单名称';
-            $data['type'] = 0;        
-        	$this->output->set_output(json_encode($data));  
-        	return;
-        };
+		if (!isset($data['tbl']) && !isset($data['tblname'])) {
+			$data = $this->input->get(NULL);
+		}
+
+		if (!isset($data['tbl']) && !isset($data['tblname'])) {
+	        	$data['message'] = '请指定插入的表单名称';
+	            $data['type'] = 0;
+	        	$this->output->set_output(json_encode($data));
+	        	return;
+	        };
         $insertID = $this->DataInterfaceModel->insert($data);
         $returnData['id'] = $insertID;
 		if ($insertID) {
@@ -171,7 +175,7 @@ class DataInterface extends CI_Controller {
 	}
 
 	/**删、改操作保留字段：
-		"utf2gbk": ["ApiName","strSQL","Params"],//字段以数组形式保存
+	"utf2gbk": ["ApiName","strSQL","Params"],//字段以数组形式保存
         "id": ID,//对ID操作
         "tbl":30 //表单名
     */
@@ -179,12 +183,12 @@ class DataInterface extends CI_Controller {
 	{
 		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
-		if (!isset($data['tbl'])) {
-        	$data['message'] = '请指定插入的表单名称';
-            $data['type'] = 0;        
-        	$this->output->set_output(json_encode($data));  
-        	return;
-        };
+		if (!isset($data['tbl']) && !isset($data['tblname'])) {
+	        	$data['message'] = '请指定插入的表单名称';
+	            $data['type'] = 0;
+	        	$this->output->set_output(json_encode($data));
+	        	return;
+	        };
 		if ($this->DataInterfaceModel->delete($data)) {
             $returnData['message'] = '删除数据成功';
             $returnData['type'] = 1;
@@ -200,12 +204,12 @@ class DataInterface extends CI_Controller {
 		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
 
-		if (!isset($data['tbl'])) {
-        	$data['message'] = '请指定插入的表单名称';
-            $data['type'] = 0;        
-        	$this->output->set_output(json_encode($data));  
-        	return;
-        };
+		if (!isset($data['tbl']) && !isset($data['tblname'])) {
+	        	$data['message'] = '请指定插入的表单名称';
+	            $data['type'] = 0;
+	        	$this->output->set_output(json_encode($data));
+	        	return;
+	        };
 		if ($this->DataInterfaceModel->update($data)) {
             $returnData['message'] = '更新数据成功';
             $returnData['type'] = 1;
@@ -215,7 +219,7 @@ class DataInterface extends CI_Controller {
         };
         $this->output->set_output(json_encode($returnData));
 	}
-	
+
 	public function convert2Base64()//读取接口数据
 	{
 		$this->load->model('DataInterfaceModel');
@@ -227,7 +231,7 @@ class DataInterface extends CI_Controller {
 		$sourseStr = $this->input->get(NULL);
 		$targetStr = '';
 		foreach($sourseStr as $key=>$str)
-		{	
+		{
 			$targetStr .= ',"'.$key.'":"'.md5($str).'"';
 		}
 		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
@@ -238,12 +242,12 @@ class DataInterface extends CI_Controller {
 		$sourseStr = $this->input->get(NULL);
 		$targetStr = '';
 		foreach($sourseStr as $key=>$str)
-		{	
+		{
 			$targetStr .= ',"'.$key.'":"'.sha1($str).'"';
 		}
 		echo '{'.substr($targetStr,1,strlen($targetStr)-1).'}';
 	}
-  
+
   public function base64(){
     /*转换图片为base64编码*/
     $src = $this->input->get('src');
@@ -252,14 +256,14 @@ class DataInterface extends CI_Controller {
     //echo '{"data":"'.rtrim($base64_image_content).'"}';
 	echo rtrim($base64_image_content);
   }
-		
+
 	public function clearCache(){
 		$memcache = new Memcache;
 		$memcache->connect('127.0.0.1',11211);
 		//清空缓存
 		$memcache->flush();
 	}
-	
+
 	public function deleteCache(){
 		$key = $this->input->get('key');
 		$memcache = new Memcache;
@@ -269,20 +273,20 @@ class DataInterface extends CI_Controller {
 		if($keyList != ''){
 			$keyList = json_decode($keyList[0]);
 			unset($keyList->$key);
-		}	
+		}
 		$memcache->set('keyList', strtolower(json_encode($keyList)));
 	}
 	public function listCache(){
 		$memcache = new Memcache;
 		$memcache->connect('127.0.0.1',11211);
-		
+
 		$keyList = $memcache->get('keyList');
 		if($keyList != ''){
 			$keyList = json_decode($keyList[0]);
 			foreach($keyList as $key=>$item){
 				echo $key.'<br>';
 			}
-		}		
+		}
 	}
 }
 

@@ -56,8 +56,14 @@ class DataInterfaceModel extends CI_Model {
 		$this->LOGINDB['Quality'] = $this->load->database('Quality',TRUE);
 	}
 
-	public function getDBName($id)
+	public function getDBName($data)
 	{
+		//如果设置表单名，直接返回
+		if(isset($data['tblname'])){
+			return $data['tblname'];
+		}
+		$id = $data['tbl'];
+
 		$tblName = array(
 			0 =>self::TBL_PHYSIC,
 			1 =>self::TBL_CHEM,
@@ -266,7 +272,7 @@ class DataInterfaceModel extends CI_Model {
 		//是否为BLOB字段
 		$isBlob = isset($dataParams['blob'])?$dataParams['blob']:0;
 		$blobTag = isset($dataParams['blobtag'])?$dataParams['blobtag']:0;
-		
+
 		if(!isset($this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]])){
 			$this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]= $this->load->database($this->DBLIST[$ApiInfo->DBID],TRUE);
 		}
@@ -420,8 +426,12 @@ class DataInterfaceModel extends CI_Model {
 			$data[$str] = $this->TransToGBK($data[$str]);
 		}
 		unset($data['utf2gbk']);
-		$tblName = $this->getDBName($data['tbl']);
+		$tblName = $this->getDBName($data);
 		unset($data['tbl']);
+		if(isset($data['tblname'])){
+			unset($data['tblname']);
+			unset($data['callback']);
+		}
 		$LOGINDB->insert($tblName, $data);
 		return $LOGINDB->insert_id();
 	}
@@ -434,7 +444,7 @@ class DataInterfaceModel extends CI_Model {
 			$LOGINDB=$this->LOGINDB['Quality'];
 		}
 		$condition['id'] = $data['id'];
-		$tblName = $this->getDBName($data['tbl']);
+		$tblName = $this->getDBName($data);
 		//清理SQL缓存
 		if(isset($data['cacheName'])){
 			$this->cache->delete('sql_'.$data['cacheName']);
@@ -444,12 +454,12 @@ class DataInterfaceModel extends CI_Model {
 		}
     return $LOGINDB->where($condition)->delete($tblName);
 	}
-   
+
   public function clearApiList(){
     $this->cache->delete('sql_id_0_');
 		$this->delApcCacheByName('token_79d84495ca776ccb523114a2120e273ca80b315b_id_0');
   }
-  
+
 	public function update($data)
 	{
 		if ($data['tbl'] >= 20) {
@@ -466,20 +476,23 @@ class DataInterfaceModel extends CI_Model {
 			}
 		}
 
-		$tblName = $this->getDBName($data['tbl']);
+		$tblName = $this->getDBName($data);
 		$where = '[id] = '.$data['id'];
-    
-    //更新接口列表时，id=0(接口列表信息)缓存需同步更新
-    if($data['tbl'] == 30){
-      //$this->cache->delete('sql_id_0_');
+
+	    //更新接口列表时，id=0(接口列表信息)缓存需同步更新
+	    if($data['tbl'] == 30){
+		      //$this->cache->delete('sql_id_0_');
 			//$this->delApcCacheByName('token_79d84495ca776ccb523114a2120e273ca80b315b_id_0');
-      $this->clearApiList();
-    }
-    
+		      $this->clearApiList();
+  			}
+
 		unset($data['tbl']);
 		unset($data['id']);
 		unset($data['utf2gbk']);
-
+		if(isset($data['tblname'])){
+			unset($data['tblname']);
+			unset($data['callback']);
+		}
 
 		//清理SQL缓存
 		if(isset($data['cacheName'])){
