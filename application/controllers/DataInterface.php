@@ -148,13 +148,6 @@ class DataInterface extends CI_Controller {
 
 	public function insert()
 	{
-		// 指定允许其他域名访问
-	    header('Access-Control-Allow-Origin:*');
-
-	    // 响应类型
-	    header('Access-Control-Allow-Methods:GET,POST,PUT');
-	    header('Access-Control-Allow-Headers:x-requested-with,content-type');
-
 		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
 		if (!isset($data['tbl']) && !isset($data['tblname'])) {
@@ -178,6 +171,10 @@ class DataInterface extends CI_Controller {
             $returnData['message'] = '添加数据失败';
             $returnData['type'] = 0;
         };
+
+      $this->output->set_header('Access-Control-Allow-Origin:*');
+	$this->output->set_header('Access-Control-Allow-Methods:GET,POST,PUT');
+	$this->output->set_header('Access-Control-Allow-Headers: x-requested-with,content-type');
         if (isset($data['callback'])) {
 			$returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
 			$this->output->set_output($returnData);
@@ -194,13 +191,6 @@ class DataInterface extends CI_Controller {
     */
 	public function delete()//读取接口数据
 	{
-		// 指定允许其他域名访问
-	    header('Access-Control-Allow-Origin:*');
-
-	    // 响应类型
-	    header('Access-Control-Allow-Methods:GET,POST,PUT');
-	    header('Access-Control-Allow-Headers:x-requested-with,content-type');
-
 		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
 		if (!isset($data['tbl']) && !isset($data['tblname'])) {
@@ -216,7 +206,9 @@ class DataInterface extends CI_Controller {
             $returnData['message'] = '删除数据失败';
             $returnData['type'] = 0;
         };
-
+      $this->output->set_header('Access-Control-Allow-Origin:*');
+	$this->output->set_header('Access-Control-Allow-Methods:GET,POST,PUT');
+	$this->output->set_header('Access-Control-Allow-Headers: x-requested-with,content-type');
         if (isset($data['callback'])) {
 			$returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
 			$this->output->set_output($returnData);
@@ -227,13 +219,6 @@ class DataInterface extends CI_Controller {
 
 	public function update()//读取接口数据
 	{
-		// 指定允许其他域名访问
-		    header('Access-Control-Allow-Origin:*');
-
-		    // 响应类型
-		    header('Access-Control-Allow-Methods:GET,POST,PUT');
-		    header('Access-Control-Allow-Headers:x-requested-with,content-type');
-
 		$this->load->model('DataInterfaceModel');
 		$data = $this->input->post(NULL);
 
@@ -250,6 +235,9 @@ class DataInterface extends CI_Controller {
             $returnData['message'] = '更新数据失败';
             $returnData['type'] = 0;
         };
+      $this->output->set_header('Access-Control-Allow-Origin:*');
+	$this->output->set_header('Access-Control-Allow-Methods:GET,POST,PUT');
+	$this->output->set_header('Access-Control-Allow-Headers: x-requested-with,content-type');
         if (isset($data['callback'])) {
 			$returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
 			$this->output->set_output($returnData);
