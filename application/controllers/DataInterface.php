@@ -256,56 +256,40 @@ class DataInterface extends CI_Controller
         public function insert()
         {
             $this->load->model('DataInterfaceModel');
-
-            $data = $this->input->post(null,TRUE);
-
+            $data = $this->input->post(NULL);
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
-
-                $data = $this->input->get(null,TRUE);
-
+                $data = $this->input->get(NULL);
             }
 
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
-
                 $data['message'] = '请指定插入的表单名称';
-
-                $data['type']    = 0;
-
+                $data['type'] = 0;
                 $this->output->set_output(json_encode($data));
-
                 return;
-
             };
-
             $insertID = $this->DataInterfaceModel->insert($data);
-
             $returnData['id'] = $insertID;
-
-            $returnData['data'] = $data;
-
             if ($insertID) {
                 #插入数据成功
                 $returnData['message'] = '添加数据成功';
-
-                $returnData['type']    = 1;
-            }
-            else {
+                $returnData['type'] = 1;
+            } else {
                 #插入数据失败
                 $returnData['message'] = '添加数据失败';
-
-                $returnData['type']     = 0;
+                $returnData['type'] = 0;
             };
 
+            $returnData['data'] = $data;
             if (isset($data['callback'])) {
+
                 $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
+
                 $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
                 ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
                 ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
-                ->set_content_type('application/json', 'utf-8')
                 ->set_output($returnData);
                 return;
             }
-
             $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
             ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
             ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
