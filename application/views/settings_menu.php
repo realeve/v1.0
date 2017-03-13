@@ -1,31 +1,31 @@
-			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
-			<!-- END STYLE CUSTOMIZER -->
-			<!-- BEGIN PAGE HEADER-->
-			<div class="page-bar">
-				<ul class="page-breadcrumb">
-					<li>
-						<a href="<?php echo base_url()?>">首页</a>
-						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="<?php echo base_url()?>settings">系统设置</a>
-						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="#">个性化设置</a>
+            <!-- BEGIN STYLE CUSTOMIZER -->
+            <?php include "templates/themesetting.php";?>
+            <!-- END STYLE CUSTOMIZER -->
+            <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="<?php echo base_url() ?>">首页</a>
                         <i class="fa fa-circle"></i>
-					</li>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url() ?>settings">系统设置</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="#">个性化设置</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
                     <li>
                         <a href="#">自定义菜单</a>
                     </li>
-				</ul>
-			</div>
-			<h3 class="page-title">
-			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
-			</h3>
-	        <!-- END PAGE HEADER-->
-	        <div class="row">
+                </ul>
+            </div>
+            <h3 class="page-title">
+            <span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
+            </h3>
+            <!-- END PAGE HEADER-->
+            <div class="row">
                 <div class="modal fade draggable-modal" id="newMenu" tabindex="-1" role="basic" aria-hidden="true">
                     <div class="modal-dialog modal-normal">
                         <div class="modal-content">
@@ -89,7 +89,7 @@
                                 <i class="fa fa-hourglass-1"></i> 1.开始
                             </div>
                         </div>
-                        <div class="portlet-body ">                
+                        <div class="portlet-body ">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">菜单列表：</label>
                                 <div class="col-md-6">
@@ -121,7 +121,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
                                     <div class="checkbox">
@@ -139,15 +139,15 @@
                                 <span class="caption-helper">勾选以将菜单项添加到预览列表中...<br>(如果被删除菜单中存在子菜单，子菜单项将被移至主菜单末尾)</span>
                             </div>
                         </div>
-                        <div class="portlet-body ">                            
+                        <div class="portlet-body ">
                             <div class="task-content">
                                 <div class="scroller" style="max-height: 950px;min-height:600px;" data-always-visible="1" data-rail-visible1="1">
                                     <!-- START TASK LIST -->
                                     <ul class="task-list col-md-6">
-                                        
+
                                     </ul>
                                     <ul class="task-list col-md-6">
-                                        
+
                                     </ul>
                                     <!-- END START TASK LIST -->
                                 </div>
@@ -209,7 +209,7 @@
                                         <button class="btn" name="edit"><i class="fa fa-floppy-o"></i> 修改</button>
                                         <button class="btn" name="hide"><i class="fa fa-eye-slash"></i> 隐藏</button>
                                     </div>
-                                </div>                   
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -241,647 +241,647 @@
                                                 <li>
                                                     <i class="icon-user"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-user-female"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-users"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-user-follow"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-user-following"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-user-unfollow"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-trophy"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-speedometer"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-social-youtube"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-social-twitter"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-social-tumblr"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-social-facebook"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-social-dropbox"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-social-dribbble"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-shield"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-screen-tablet"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-screen-smartphone"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-screen-desktop"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-plane"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-notebook"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-moustache"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-mouse"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-magnet"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-magic-wand"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-hourglass"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-graduation"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-ghost"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-game-controller"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-fire"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-eyeglasses"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-envelope-open"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-envelope-letter"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-energy"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-emoticon-smile"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-disc"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-cursor-move"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-crop"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-credit-card"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-chemistry"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-bell"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-badge"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-anchor"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-action-redo"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-action-undo"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-bag"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-basket"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-basket-loaded"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-book-open"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-briefcase"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-bubbles"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-calculator"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-call-end"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-call-in"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-call-out"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-compass"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-cup"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-diamond"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-direction"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-directions"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-docs"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-drawer"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-drop"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-earphones"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-earphones-alt"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-feed"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-film"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-folder-alt"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-frame"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-globe"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-globe-alt"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-handbag"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-layers"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-map"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-picture"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-pin"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-playlist"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-present"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-printer"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-puzzle"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-speech"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-vector"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-wallet"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-arrow-down"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-arrow-left"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-arrow-right"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-arrow-up"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-bar-chart"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-bulb"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-calendar"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-control-end"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-control-forward"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-control-pause"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-control-play"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-control-rewind"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-control-start"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-cursor"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-dislike"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-equalizer"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-graph"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-grid"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-home"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-like"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-list"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-login"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-logout"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-loop"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-microphone"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-music-tone"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-music-tone-alt"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-note"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-pencil"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-pie-chart"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-question"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-rocket"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-share"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-share-alt"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-shuffle"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-size-actual"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-size-fullscreen"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-support"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-tag"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-trash"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-umbrella"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-wrench"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-ban"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-bubble"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-camcorder"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-camera"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-check"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-clock"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-close"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-cloud-download"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-cloud-upload"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-doc"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-envelope"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-eye"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-flag"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-folder"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-heart"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-info"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-key"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-link"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-lock"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-lock-open"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-magnifier"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-magnifier-add"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-magnifier-remove"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-paper-clip"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-paper-plane"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-plus"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-pointer"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-power"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-refresh"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-reload"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-settings"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-star"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-symbol-female"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-symbol-male"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-target"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-volume-1"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-volume-2"></i>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <i class="icon-volume-off"></i>
                                                 </li>
@@ -1867,797 +1867,797 @@
                                             <ul class="bs-glyphicons bs-glyphicons-list">
                                                 <li>
                                                     <i class="glyphicon glyphicon-asterisk"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-plus"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-euro"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-minus"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-cloud"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-envelope"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-pencil"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-glass"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-music"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-search"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-heart"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-star"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-star-empty"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-user"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-film"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-th-large"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-th"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-th-list"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-ok"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-remove"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-zoom-in"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-zoom-out"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-off"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-signal"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-cog"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-trash"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-home"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-file"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-time"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-road"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-download-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-download"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-upload"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-inbox"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-play-circle"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-repeat"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-refresh"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-list-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-lock"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-flag"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-headphones"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-volume-off"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-volume-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-volume-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-qrcode"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-barcode"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-tag"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-tags"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-book"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-bookmark"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-print"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-camera"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-font"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-bold"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-italic"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-text-height"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-text-width"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-align-left"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-align-center"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-align-right"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-align-justify"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-list"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-indent-left"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-indent-right"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-facetime-video"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-picture"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-map-marker"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-adjust"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-tint"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-edit"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-share"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-check"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-move"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-step-backward"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-fast-backward"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-backward"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-play"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-pause"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-stop"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-forward"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-fast-forward"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-step-forward"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-eject"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-chevron-left"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-chevron-right"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-plus-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-minus-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-remove-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-ok-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-question-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-info-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-screenshot"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-remove-circle"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-ok-circle"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-ban-circle"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-arrow-left"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-arrow-right"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-arrow-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-arrow-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-share-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-resize-full"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-resize-small"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-exclamation-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-gift"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-leaf"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-fire"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-eye-open"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-eye-close"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-warning-sign"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-plane"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-calendar"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-random"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-comment"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-magnet"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-chevron-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-chevron-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-retweet"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-shopping-cart"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-folder-close"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-folder-open"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-resize-vertical"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-resize-horizontal"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-hdd"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-bullhorn"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-bell"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-certificate"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-thumbs-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-thumbs-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-hand-right"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-hand-left"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-hand-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-hand-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-circle-arrow-right"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-circle-arrow-left"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-circle-arrow-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-circle-arrow-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-globe"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-wrench"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-tasks"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-filter"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-briefcase"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-fullscreen"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-dashboard"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-paperclip"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-heart-empty"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-link"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-phone"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-pushpin"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-usd"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-gbp"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort-by-alphabet"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort-by-alphabet-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort-by-order"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort-by-order-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort-by-attributes"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sort-by-attributes-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-unchecked"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-expand"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-collapse-down"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-collapse-up"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-log-in"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-flash"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-log-out"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-new-window"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-record"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-save"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-open"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-saved"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-import"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-export"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-send"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-floppy-disk"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-floppy-saved"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-floppy-remove"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-floppy-save"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-floppy-open"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-credit-card"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-transfer"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-cutlery"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-header"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-compressed"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-earphone"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-phone-alt"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-tower"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-stats"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sd-video"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-hd-video"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-subtitles"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sound-stereo"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sound-dolby"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sound-5-1"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sound-6-1"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-sound-7-1"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-copyright-mark"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-registration-mark"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-cloud-download"> </i>
-                                                    
+
                                                 </li>
                                                 <li>
-                                                    <i class="glyphicon glyphicon-cloud-upload"> </i>                                                    
+                                                    <i class="glyphicon glyphicon-cloud-upload"> </i>
                                                 </li>
                                                 <li>
-                                                    <i class="glyphicon glyphicon-tree-conifer"> </i>                                                    
+                                                    <i class="glyphicon glyphicon-tree-conifer"> </i>
                                                 </li>
                                                 <li>
                                                     <i class="glyphicon glyphicon-tree-deciduous"> </i>
@@ -2688,11 +2688,11 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="row">                                 
+                        <div class="row">
                             <div class="dd col-md-6" id="menuPreviewList">
                                 <ol class="dd-list">
                                 </ol>
-                            </div>                             
+                            </div>
                             <div class="col-md-6">
                                 <div class="page-sidebar-wrapper">
                                     <div class="page-sidebar navbar-collapse collapse">
@@ -2714,6 +2714,6 @@
         </div>
         <!-- END CONTENT BODY -->
     </div>
-    <!-- END CONTENT -->        
+    <!-- END CONTENT -->
 </div>
 <!-- END CONTAINER -->

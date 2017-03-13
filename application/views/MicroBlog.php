@@ -1,18 +1,18 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>MicroBlog">工作笔记</a>
+						<a href="<?php echo base_url() ?>MicroBlog">工作笔记</a>
 					</li>
 				</ul>
-				
+
 				<div class="page-toolbar">
 					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
 						<i class="icon-calendar"></i>&nbsp;
@@ -20,11 +20,11 @@
 						<i class="fa fa-angle-down"></i>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<h3 class="page-title font-yahei">
 				<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
-			
+
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="chat-form" style="background-color:#f1f3fa;">
 				<div class="input-group" style="text-align:left">
@@ -39,12 +39,12 @@
 
 			<!-- END PAGE CONTENT-->
 			<!-- BEGIN PAGE CONTENT-->
-			<div class="timeline">							
+			<div class="timeline">
 			</div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_MicroBlog.php");?>
+	<?php include "templates/quicksidebar/quicksidebar_MicroBlog.php";?>
 </div>
 <!-- END CONTAINER -->

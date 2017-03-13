@@ -1,11 +1,11 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
@@ -21,7 +21,7 @@
 						<button type="button" class="btn btn-fit-height green dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
 						当天已录入数据：0条 <i class="fa fa-angle-down"></i>
 						</button>
-						<ul class="dropdown dropdown-dark dropdown-menu pull-right" role="menu">							
+						<ul class="dropdown dropdown-dark dropdown-menu pull-right" role="menu">
 						</ul>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 													<select class="form-control select2" name="machine_ID">
 													</select>
 												</div>
-											</div> 
+											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3">班次
 													<span class="required"> * </span>
@@ -196,7 +196,7 @@
 												<div class="col-md-9">
 													<input type="text" class="form-control" name="humid_weight_mil">
 												</div>
-											</div>										
+											</div>
 										</div>
 										<div class="col-md-3">
 											<h4 class="caption font-red">4.调和浆</h4>
@@ -257,7 +257,7 @@
 												<div class="col-md-9">
 													<input type="text" class="form-control" name="elec_val_web">
 												</div>
-											</div>										
+											</div>
 										</div>
 										<div class="col-md-3">
 											<h4 class="caption font-red">6.清水</h4>
@@ -276,16 +276,16 @@
 										</div>
 									</div>
 									<hr class="hidden-print">
-									<div class="form-actions noborder right">									
+									<div class="form-actions noborder right">
 										<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
 										<button type="reset" class="btn default"> 重置 <i class="icon-refresh"></i></button>
 									</div>
 							</div>
-						</div>								
-					</div>				
+						</div>
+					</div>
 					<!-- END SAMPLE FORM PORTLET-->
 				</form>
-			</div>			
+			</div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>

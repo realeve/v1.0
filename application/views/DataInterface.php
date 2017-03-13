@@ -1,8 +1,8 @@
-			<?php include("templates/themesetting.php");?><!-- BEGIN PAGE HEADER 面包屑-->
+			<?php include "templates/themesetting.php";?><!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
@@ -10,7 +10,7 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>DataInterface">数据接口</a>
+						<a href="<?php echo base_url() ?>DataInterface">数据接口</a>
 					</li>
 				</ul>
 
@@ -123,7 +123,7 @@
 										</td>
 										<td>
 											<a id="ApiID" data-type="text" data-pk="1" data-placeholder="接口编号">
-											<?php echo $CreateID?></a>
+											<?php echo $CreateID ?></a>
 										</td>
 										<td>
 											<span class="text-muted">
@@ -136,7 +136,7 @@
 										</td>
 										<td>
 											<a id="AuthorName" data-type="text" data-pk="1" class="editable editable-click editable-disabled" data-original-title="接口建立人员">
-											<?php echo $username?></a>
+											<?php echo $username ?></a>
 										</td>
 										<td>
 											<span class="text-muted">
@@ -261,8 +261,8 @@
 											 接口地址
 										</td>
 										<td>
-											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址" data-url="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3" href="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3" target="_blank">
-												<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3</a>
+											<a id="url" data-type="text" data-pk="1" data-placement="right" title="接口地址" data-url="<?php echo base_url() ?>DataInterface/Api?Token=<?php echo $token ?>&ID=<?php echo $CreateID ?>&M=3" href="<?php echo base_url() ?>DataInterface/Api?Token=<?php echo $token ?>&ID=<?php echo $CreateID ?>&M=3" target="_blank">
+												<?php echo base_url() ?>DataInterface/Api?Token=<?php echo $token ?>&ID=<?php echo $CreateID ?>&M=3</a>
 										</td>
 										<td>
 											<span class="text-muted">
@@ -284,7 +284,7 @@
 								<div class="col-md-12">
 									<h3>预览地址:</h3>
 										<div class="input-group" style="text-align:left">
-											<input type="text" class="form-control" id="PreviewUrl" value="<?php echo base_url()?>DataInterface/Api?Token=<?php echo $token?>&ID=<?php echo $CreateID?>&M=3&tstart=参数1&tend=参数2">
+											<input type="text" class="form-control" id="PreviewUrl" value="<?php echo base_url() ?>DataInterface/Api?Token=<?php echo $token ?>&ID=<?php echo $CreateID ?>&M=3&tstart=参数1&tend=参数2">
 											<span class="input-group-btn">
 											<a href="javascript:;" class="btn green" id="Preview">
 											<i class="fa fa-eye"></i> 预览接口 </a>

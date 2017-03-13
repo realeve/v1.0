@@ -1,11 +1,11 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
@@ -28,8 +28,8 @@
 			</h3>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
-			
-			<form role="form" name="theForm" class="form-horizontal">					
+
+			<form role="form" name="theForm" class="form-horizontal">
 				<div class="portlet box blue-hoki">
 					<div class="portlet-title">
 						<div class="caption">
@@ -50,7 +50,7 @@
 									<div class="form-control-focus">
 									</div>
 								</div>
-							</div>	
+							</div>
 							<div class="col-md-6 form-group">
 								<label class="col-md-3 control-label">轴号</label>
 								<div class="col-md-9">
@@ -67,7 +67,7 @@
 									<div class="form-control-focus">
 									</div>
 								</div>
-							</div>	
+							</div>
 							<div class="col-md-6 form-group">
 								<label class="col-md-3 control-label">品种</label>
 								<div class="col-md-9">
@@ -76,7 +76,7 @@
 									<div class="form-control-focus">
 									</div>
 								</div>
-							</div>									
+							</div>
 							<div class="col-md-6 form-group">
 								<label class="col-md-3 control-label">备注</label>
 								<div class="col-md-9">
@@ -94,7 +94,7 @@
 									<div class="form-control-focus">
 									</div>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -112,31 +112,31 @@
 					<div class="portlet-body form">
 						<div class="form-body row normalPara">
 							<div class="col-md-3">
-								<div class="form-group">					
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox1" class="form-control" placeholder="纸张尺寸">
 										<span class="help-block">纵/横向尺寸偏差≤±1mm </span>
 									</div>
 								</div>
-								<div class="form-group">				
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox2" class="form-control" placeholder="方正度偏差">
 										<span class="help-block">方正度偏差≤1mm </span>
 									</div>
 								</div>
-								<div class="form-group">			
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox3" class="form-control" placeholder="水印">
 										<span class="help-block">水印无残缺 </span>
 									</div>
 								</div>
-								<div class="form-group">			
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox4" class="form-control" placeholder="白水印">
 										<span class="help-block">白水印无残缺 </span>
 									</div>
 								</div>
-								<div class="form-group">				
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox5" class="form-control" placeholder="水印位置偏差">
 										<span class="help-block">水印位置偏差≤2mm </span>
@@ -144,13 +144,13 @@
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="form-group">	
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox6" class="form-control" placeholder="白水印位置偏差">
 										<span class="help-block">白水印位置偏差≤2mm </span>
 									</div>
 								</div>
-								<div class="form-group">							
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox7" class="form-control" placeholder="水印清晰度">
 										<span class="help-block">水印清晰 </span>
@@ -161,13 +161,13 @@
 										<input type="text" name="checkbox8" class="form-control" placeholder="白水印清晰度">
 										<span class="help-block">白水印清晰度好 </span>
 									</div>
-								</div><div class="form-group">								
+								</div><div class="form-group">
 										<div class="col-md-12">
 										<input type="text" name="checkbox9" class="form-control" placeholder="水印一致性">
 										<span class="help-block">水印一致性好 </span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox10" class="form-control" placeholder="白水印一致性">
 										<span class="help-block">白水印一致性好 </span>
@@ -175,31 +175,31 @@
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox11" class="form-control" placeholder="白水印偏斜">
 										<span class="help-block">白水印偏斜≤6°</span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox12" class="form-control" placeholder="纸张匀度">
 										<span class="help-block">纸张匀度不得低于精品样张 </span>
 									</div>
 								</div>
-								<div class="form-group">							
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox13" class="form-control" placeholder="纸面整洁度">
 										<span class="help-block">纸面洁净，无明显杂质和尘埃 </span>
 									</div>
 								</div>
-								<div class="form-group">							
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox14" class="form-control" placeholder="开窗尺寸偏差">
 										<span class="help-block">不得超过标准窗口尺寸的1/3 </span>
 									</div>
 								</div>
-								<div class="form-group">							
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox15" class="form-control" placeholder="安全线露线">
 										<span class="help-block">≤0.7mm2 </span>
@@ -207,53 +207,53 @@
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="form-group">							
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox16" class="form-control" placeholder="安全线细线">
 										<span class="help-block">不得低于：宽线≥1.7mm，窄线≥1.2mm </span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox17" class="form-control" placeholder="安全线断缺">
 										<span class="help-block">≤1mm </span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox18" class="form-control" placeholder="防伪层脱落">
 										<span class="help-block">≤2mm </span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox19" class="form-control" placeholder="全埋安全线拉伸">
 										<span class="help-block">拉伸≤5% </span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox20" class="form-control" placeholder="开窗安全线位置">
 										<span class="help-block">开窗安全线摆幅度在标准范围内 </span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox21" class="form-control" placeholder="小开版式">
 										<span class="help-block">小埋区大埋区符合标准要求（8、15与5、18）</span>
 									</div>
 								</div>
-								<div class="form-group">								
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox22" class="form-control" placeholder="纸张完好度">
 										<span class="help-block">纸张无破洞、破损 </span>
 									</div>
 								</div>
-								<div class="form-group">							
+								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox23" class="form-control" placeholder="其它">
 										<span class="help-block">纸无明显硌手的硬质块、浆块纸张 </span>
-									</div>									
+									</div>
 								</div>
 							</div>
 						</div>
@@ -269,7 +269,7 @@
 								<li>
 								</li>
 							</ul>
-						</div>						
+						</div>
 						<div class="form-actions noborder right">
 							<a name="submit" class="btn btn-success" data-toggle="modal">提交 <i class="icon-cloud-upload"></i> </a>
 							<button type="reset" class="btn default"> 重置 <i class="icon-refresh"></i></button>
@@ -294,9 +294,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- END SAMPLE FORM PORTLET-->					
-				</div>	
-			</form>			
+					<!-- END SAMPLE FORM PORTLET-->
+				</div>
+			</form>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>

@@ -1,11 +1,11 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>

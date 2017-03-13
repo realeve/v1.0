@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <!--[if IE 8]> <html lang="zh" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="zh" class="ie9 no-js"> <![endif]-->
-<!--[if IE]>  
+<!--[if IE]>
 <!-->
 <html lang="zh">
 <!--<![endif]-->
@@ -90,7 +90,7 @@ if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('
 		<div class="form-group">
 			<label class="control-label visible-ie8 visible-ie9">密码</label>
 			<input class="form-control placeholder-no-fix" type="password" autocomplete="off" minLength=5 maxLength=16 placeholder="密码" name="password"/>
-		</div>	
+		</div>
 		<div class="form-actions">
 			<button type="button" id="back-btn" class="btn btn-default">返回</button>
 			<button type="submit" class="btn btn-success uppercase pull-right">重置密码</button>

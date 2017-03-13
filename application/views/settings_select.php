@@ -1,22 +1,22 @@
-			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
-			<!-- END STYLE CUSTOMIZER -->
-			<!-- BEGIN PAGE HEADER-->
-			<div class="page-bar">
-				<ul class="page-breadcrumb">
-					<li>
-						<a href="<?php echo base_url()?>">首页</a>
-						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="<?php echo base_url()?>/settings">系统管理</a>
-						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="#">下拉菜单设置</a>
-					</li>
-				</ul>
-				 <div class="page-toolbar">
+            <!-- BEGIN STYLE CUSTOMIZER -->
+            <?php include "templates/themesetting.php";?>
+            <!-- END STYLE CUSTOMIZER -->
+            <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="<?php echo base_url() ?>">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url() ?>/settings">系统管理</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="#">下拉菜单设置</a>
+                    </li>
+                </ul>
+                 <div class="page-toolbar">
                     <div class="btn-group pull-right">
                         <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
                             <i class="fa fa-angle-down"></i>
@@ -42,12 +42,12 @@
                         </ul>
                     </div>
                 </div>
-			</div>
-			<h3 class="page-title">
-			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
-			</h3>
-	        <!-- END PAGE HEADER-->
-	        <div class="row">
+            </div>
+            <h3 class="page-title">
+            <span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
+            </h3>
+            <!-- END PAGE HEADER-->
+            <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN PROFILE SIDEBAR -->
                     <div class="profile-sidebar">
@@ -71,7 +71,7 @@
                                             <i class="icon-home"></i> 概览 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings/account">
+                                        <a href="<?php echo base_url() ?>Settings/account">
                                             <i class="icon-settings"></i> 帐户设置 </a>
                                     </li>
                                     <li class="active">
@@ -79,7 +79,7 @@
                                             <i class="icon-info"></i> 下拉菜单管理 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings/accountActive">
+                                        <a href="<?php echo base_url() ?>Settings/accountActive">
                                             <i class="icon-user"></i> 帐户激活 </a>
                                     </li>
                                 </ul>
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 class="profile-desc-title">关于 <?php echo $username?></h4>
+                                <h4 class="profile-desc-title">关于 <?php echo $username ?></h4>
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weixin"></i>
@@ -193,7 +193,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-md-3 control-label" for="select_cat">选择框类型</label>
                                                                 <div class="col-md-4">
-                                                                    <select name="select_cat" class="form-control select2">                                                                    
+                                                                    <select name="select_cat" class="form-control select2">
                                                                     </select>
                                                                     <div class="form-control-focus"> </div>
                                                                     <span class="help-block">所需调整的选择框所属类型...</span>
@@ -201,11 +201,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab2">
-                                                            <h3 class="block"><span name="selectName" class="bold font-green"></span> 选择框列表项调整</h3>                                                            
+                                                            <h3 class="block"><span name="selectName" class="bold font-green"></span> 选择框列表项调整</h3>
                                                             <div class="form-group">
                                                                 <label class="col-md-3 control-label" for="select_name">当前列表项</label>
                                                                 <div class="col-md-4">
-                                                                    <select name="select_name" class="form-control select2">                                                                      
+                                                                    <select name="select_name" class="form-control select2">
                                                                     </select>
                                                                     <div class="form-control-focus"> </div>
                                                                     <span class="help-block">所需调整的选择框...</span>
@@ -227,7 +227,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-3">列表框预览</label>
                                                                 <div class="col-md-4">
-                                                                    <select name="preview" class="form-control select2">                                                                      
+                                                                    <select name="preview" class="form-control select2">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -264,7 +264,7 @@
         </div>
         <!-- END CONTENT BODY -->
     </div>
-    <!-- END CONTENT -->        
-	<?php include("templates/quicksidebar/quicksidebar_QualityChart.php");?>
+    <!-- END CONTENT -->
+    <?php include "templates/quicksidebar/quicksidebar_QualityChart.php";?>
 </div>
 <!-- END CONTAINER -->

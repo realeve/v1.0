@@ -1,21 +1,21 @@
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>worklog">维护日志</a>
+						<a href="<?php echo base_url() ?>worklog">维护日志</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>worklog/editlog">填写日志</a>
+						<a href="<?php echo base_url() ?>worklog/editlog">填写日志</a>
 					</li>
 				</ul>
-				
+
 				<!--div class="page-toolbar">
 					<div class="btn-group">
 						<button type="button" class="btn btn-sm btn-circle btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -39,8 +39,8 @@
 						</ul>
 					</div>
 				</div-->
-			</div>	
-						
+			</div>
+
 			<h3 class="page-title">
 			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
 			</h3>
@@ -65,11 +65,11 @@
 					<div class="portlet-body form">
 						<div class="form-body">
 							<div class="row">
-								<div class="col-md-6">	
+								<div class="col-md-6">
 									<div class="form-group hidden">
 										<label class="col-md-3 control-label">记录人</label>
 										<div class="col-md-9">
-											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" disabled data-user ="<?php echo $FullName?>" value="<?php echo $FullName?>">
+											<input class="form-control" name="rec_user_name" placeholder="请在此输入用户名" type="text" disabled data-user ="<?php echo $FullName ?>" value="<?php echo $FullName ?>">
 										</div>
 									</div>
 									<div class="form-group">
@@ -89,10 +89,10 @@
 											<div class="form-control-focus">
 											</div>
 										</div>
-									</div>									
+									</div>
 									<div class="form-group">
 										<label for="oper_name" class="col-md-3 control-label">操作人员</label>
-										<div class="col-md-9">																				
+										<div class="col-md-9">
 											<select id="oper_name" name="oper_name" class="form-control select2-multiple" multiple>
 											</select>
 										</div>
@@ -155,7 +155,7 @@
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label">处理时间</label>
-										<div class="col-md-9 input-group date form_advance_datetime" data-date="<?php echo date('Y-m-d',time());?>">
+										<div class="col-md-9 input-group date form_advance_datetime" data-date="<?php echo date('Y-m-d', time()); ?>">
 											<input name="process_time" type="text" size="16" class="form-control">
 											<span class="input-group-btn">
 											<button class="btn default date-reset" type="button"><i class="fa fa-times"></i></button>
@@ -176,14 +176,14 @@
 										<div class="col-md-9">
 											<div class="checkbox-list">
 												<label>
-													<input type="checkbox" name="bReport" class="icheck"/> 将该条信息生成至工作报告中										
+													<input type="checkbox" name="bReport" class="icheck"/> 将该条信息生成至工作报告中
 												</label>
 											</div>
 										</div>
 									</div-->
-									
+
 								</div>
-							</div>		
+							</div>
 						</div>
 					</div>
 				</div>
@@ -192,7 +192,7 @@
 						<label class="col-md-3 control-label">一级描述</label>
 						<div class="col-md-9">
 							<select name="main_err" class="form-control select2"  data-placeholder="一级描述...">
-							</select>																		
+							</select>
 							<span class="help-block">
 								(信息的分类意义非常重要，请您勿必选择)</span>
 						</div>
@@ -202,8 +202,8 @@
 				  <div class="form-group">
 						<label class="col-md-3 control-label">二级描述</label>
 						<div class="col-md-9">
-							<select name="sub_err" class="form-control select2"  data-placeholder="二级描述...">										
-							</select>	
+							<select name="sub_err" class="form-control select2"  data-placeholder="二级描述...">
+							</select>
 							<span class="help-block">
 							(信息的分类意义非常重要，请您勿必选择)</span>
 						</div>
@@ -238,11 +238,11 @@
 						</div>
 					</div>
 				</div>
-			</form>	
+			</form>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_worklogEdit.php");?>
+	<?php include "templates/quicksidebar/quicksidebar_worklogEdit.php";?>
 </div>
 <!-- END CONTAINER -->

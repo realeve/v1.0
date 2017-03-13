@@ -1,15 +1,15 @@
             <!-- BEGIN STYLE CUSTOMIZER -->
-            <?php include("templates/themesetting.php");?>
+            <?php include "templates/themesetting.php";?>
             <!-- END STYLE CUSTOMIZER -->
             <!-- BEGIN PAGE HEADER-->
             <div class="page-bar">
                 <ul class="page-breadcrumb">
                     <li>
-                        <a href="<?php echo base_url()?>">首页</a>
+                        <a href="<?php echo base_url() ?>">首页</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>settings">系统管理</a>
+                        <a href="<?php echo base_url() ?>settings">系统管理</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -45,11 +45,11 @@
                                             <i class="icon-home"></i> 概览 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings/account">
+                                        <a href="<?php echo base_url() ?>Settings/account">
                                             <i class="icon-settings"></i> 帐户设置 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings/select">
+                                        <a href="<?php echo base_url() ?>Settings/select">
                                             <i class="icon-info"></i> 下拉菜单管理 </a>
                                     </li>
                                     <li class="active">
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 class="profile-desc-title">关于 <?php echo $username?></h4>
+                                <h4 class="profile-desc-title">关于 <?php echo $username ?></h4>
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weixin"></i>
@@ -115,7 +115,7 @@
                                                         <th><i class="fa fa-link"></i> 操作 </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>                                                  
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                         </div>

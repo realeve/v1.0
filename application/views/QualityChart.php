@@ -1,19 +1,19 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>QualityTable">印码质量报表</a>
+						<a href="<?php echo base_url() ?>QualityTable">印码质量报表</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>QualityTable">各品种质量汇总</a>
+						<a href="<?php echo base_url() ?>QualityTable">各品种质量汇总</a>
 					</li>
 				</ul>
 
@@ -109,7 +109,7 @@
 				<div class="col-md-12">
 					<h3>接口地址:</h3>
 					<div class="input-group" style="text-align:left">
-						<input type="text" class="form-control" value="<?php echo base_url()?>DataInterface/Api?Author=<?php echo sha1($username)?>&ID=ID&M=3&tstart=参数1&tend=参数2">
+						<input type="text" class="form-control" value="<?php echo base_url() ?>DataInterface/Api?Author=<?php echo sha1($username) ?>&ID=ID&M=3&tstart=参数1&tend=参数2">
 						<span class="input-group-btn">
 						<a href="javascript:;" class="btn green">
 						<i class="fa fa-eye"></i> 预览接口 </a>

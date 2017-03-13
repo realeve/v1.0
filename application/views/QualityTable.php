@@ -1,13 +1,13 @@
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- BEGIN PAGE HEADER 面包屑-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="<?php echo base_url()?>QualityTable">报表查询</a>
+						<a href="<?php echo base_url() ?>QualityTable">报表查询</a>
 						<i class="fa fa-circle"></i>
 					</li>
 				</ul>
@@ -70,7 +70,7 @@
 				<div class="col-md-12">
 					<h3>数据预览:</h3>
 						<div class="input-group" style="text-align:left">
-							<input type="text" class="form-control" value="<?php echo base_url()?>DataInterface/Api?Token=<?php echo sha1('QCCenter'.$username)?>&ID=ID&M=3&tstart=参数1&tend=参数2">
+							<input type="text" class="form-control" value="<?php echo base_url() ?>DataInterface/Api?Token=<?php echo sha1('QCCenter' . $username) ?>&ID=ID&M=3&tstart=参数1&tend=参数2">
 							<span class="input-group-btn">
 							<a href="javascript:;" class="btn green">
 							<i class="fa fa-eye"></i> 预览接口 </a>

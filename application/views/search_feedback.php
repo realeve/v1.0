@@ -1,35 +1,35 @@
-    			<!-- <?php include("templates/themesetting.php");?> -->
-    			<!-- BEGIN PAGE HEADER 面包屑-->
-    			<div class="page-bar">
-    				<ul class="page-breadcrumb">
-    					<li>
-    						<a href="<?php echo base_url()?>">首页</a>
-    						<i class="fa fa-circle"></i>
-    					</li>
-    					<li>
-    						<a href="<?php echo base_url()?>search">信息追溯</a>
-    						<i class="fa fa-circle"></i>
-    					</li>
-    					<li>
-    						<a href="#">质量信息反馈</a> <span class="badge badge-danger font-white"> 实废 </span> <span class="badge badge-info font-white"> 误废 </span> <span class="badge font-white"> 未判废 </span>
-    					</li>
-    				</ul>
+                <!-- <?php include "templates/themesetting.php";?> -->
+                <!-- BEGIN PAGE HEADER 面包屑-->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="<?php echo base_url() ?>">首页</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url() ?>search">信息追溯</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">质量信息反馈</a> <span class="badge badge-danger font-white"> 实废 </span> <span class="badge badge-info font-white"> 误废 </span> <span class="badge font-white"> 未判废 </span>
+                        </li>
+                    </ul>
 
-    				<div class="page-toolbar">
+                    <div class="page-toolbar">
                         <div id="download" class="btn btn-fit-height btn-default">
                             下载图像包
                         </div>
-    					<div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
-    						<i class="icon-calendar"></i>&nbsp;
-    						<span class="thin uppercase">&nbsp;</span>&nbsp;
-    						<i class="fa fa-angle-down"></i>
-    					</div>
-    				</div>
-    			</div>
-    			<!-- <h3 class="page-title"> 质量信息反馈
+                        <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height dark" data-placement="top" data-original-title="点击修改查询时间">
+                            <i class="icon-calendar"></i>&nbsp;
+                            <span class="thin uppercase">&nbsp;</span>&nbsp;
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- <h3 class="page-title"> 质量信息反馈
                   <small> 数据来源：图像判废、机台作业、质量中心数据库 <span class="badge badge-danger"> 实废 </span> <span class="badge badge-info"> 误废 </span> <span class="badge"> 未判废 </span></small>
                 </h3> -->
-    			 <div class="portfolio-content portfolio-1">
+                 <div class="portfolio-content portfolio-1">
                     <div class="clearfix">
                         <div id="js-filters-juicy-projects2" class="cbp-l-filters-alignCenter margin-bottom-5">
                             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> 所有品种
@@ -85,7 +85,7 @@
                     </div-->
                 </div>
             </div>
-		</div>
-	</div>
-	<?php include("templates/quicksidebar/quicksidebar_search_feedback.php");?>
+        </div>
+    </div>
+    <?php include "templates/quicksidebar/quicksidebar_search_feedback.php";?>
 </div>

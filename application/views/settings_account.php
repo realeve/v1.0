@@ -1,27 +1,27 @@
-			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
-			<!-- END STYLE CUSTOMIZER -->
-			<!-- BEGIN PAGE HEADER-->
-			<div class="page-bar">
-				<ul class="page-breadcrumb">
-					<li>
-						<a href="<?php echo base_url()?>">首页</a>
-						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="<?php echo base_url()?>settings">系统管理</a>
-						<i class="fa fa-circle"></i>
-					</li>
-					<li>
-						<a href="#">帐户设置</a>
-					</li>
-				</ul>
-			</div>
-			<h3 class="page-title">
-			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
-			</h3>
-	        <!-- END PAGE HEADER-->
-	        <div class="row">
+            <!-- BEGIN STYLE CUSTOMIZER -->
+            <?php include "templates/themesetting.php";?>
+            <!-- END STYLE CUSTOMIZER -->
+            <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="<?php echo base_url() ?>">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url() ?>settings">系统管理</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="#">帐户设置</a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="page-title">
+            <span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
+            </h3>
+            <!-- END PAGE HEADER-->
+            <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN PROFILE SIDEBAR -->
                     <div class="profile-sidebar">
@@ -49,11 +49,11 @@
                                             <i class="icon-settings"></i> 帐户设置 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings/select">
+                                        <a href="<?php echo base_url() ?>Settings/select">
                                             <i class="icon-info"></i> 下拉菜单管理 </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url()?>Settings/accountActive">
+                                        <a href="<?php echo base_url() ?>Settings/accountActive">
                                             <i class="icon-user"></i> 帐户激活 </a>
                                     </li>
                                 </ul>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 class="profile-desc-title">关于 <?php echo $username?></h4>
+                                <h4 class="profile-desc-title">关于 <?php echo $username ?></h4>
                                 <span class="profile-desc-text"> 这是开发者帐户，用于记录系统各项接口设置等信息. </span>
                                 <div class="margin-top-20 profile-desc-link">
                                     <i class="fa fa-weixin"></i>
@@ -150,56 +150,56 @@
                                             <!-- END PERSONAL INFO TAB -->
                                             <!-- CHANGE AVATAR TAB -->
                                             <div class="tab-pane" id="tab_1_2">
-                                                <p> 点击选择个人头像. </p>												
-												<form id="avatarForm">  
-													<div class="form-group">
-														<div class="fileinput fileinput-new" data-provides="fileinput">
-															<div class="fileinput-new thumbnail">
-																<img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" alt="" /> </div>
-															<div class="fileinput-preview fileinput-exists thumbnail"> </div>
-															<div>
-																<span class="btn default btn-file">
-																	<span class="fileinput-new"> 选择图像 </span>
-																	<span class="fileinput-exists"> 重新选择 </span>
-																	<input id="file-input" type="file" name="file" id="avatarFile" multiple class="file-loading" accept="image/*" name="avatarFile"/></span>
-																<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 移除 </a>
-															</div>
-															<div class="clearfix margin-top-10">
-																<span class="label label-danger">注意! </span>
-																<span>&nbsp;图像文件请不要超过1M！ </span>
-															</div>
-														</div>
-													</div>
-													<div class="margin-top-10">
-														<a value="上传" class="btn green" id="submitAvatar"> 提交 </a>
-														<a href="javascript:;" class="btn default"> 取消 </a>
-													</div>	
-												</form> 												
+                                                <p> 点击选择个人头像. </p>
+                                                <form id="avatarForm">
+                                                    <div class="form-group">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail">
+                                                                <img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" alt="" /> </div>
+                                                            <div class="fileinput-preview fileinput-exists thumbnail"> </div>
+                                                            <div>
+                                                                <span class="btn default btn-file">
+                                                                    <span class="fileinput-new"> 选择图像 </span>
+                                                                    <span class="fileinput-exists"> 重新选择 </span>
+                                                                    <input id="file-input" type="file" name="file" id="avatarFile" multiple class="file-loading" accept="image/*" name="avatarFile"/></span>
+                                                                <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                                            </div>
+                                                            <div class="clearfix margin-top-10">
+                                                                <span class="label label-danger">注意! </span>
+                                                                <span>&nbsp;图像文件请不要超过1M！ </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="margin-top-10">
+                                                        <a value="上传" class="btn green" id="submitAvatar"> 提交 </a>
+                                                        <a href="javascript:;" class="btn default"> 取消 </a>
+                                                    </div>
+                                                </form>
                                             </div>
                                             <!-- END CHANGE AVATAR TAB -->
-											
+
                                             <!-- CHANGE AVATAR TAB -->
                                             <div class="tab-pane" id="tab_1_3">
-												<div class="row">
+                                                <div class="row">
                                                     <div class="col-md-9 responsive-1024">
                                                         <!-- This is the image we're attaching Jcrop to -->
                                                         <img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" id="demo8" alt="Jcrop Example"> </div>
-														
+
                                                     <div class="col-md-12 responsive-1024 margin-top-20">
-														<!--div id="preview-pane">
+                                                        <!--div id="preview-pane">
                                                             <div class="preview-container">
-                                                                <img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" class="jcrop-preview" alt="Preview" />																
-																</div>
+                                                                <img name="hisAvatar" src="../../assets/pages/media/profile/Avatar_none.jpg" class="jcrop-preview" alt="Preview" />
+                                                                </div>
                                                         </div-->
                                                         <form id="demo8_form">
                                                             <input type="hidden" id="crop_x" name="x" />
                                                             <input type="hidden" id="crop_y" name="y" />
                                                             <input type="hidden" id="crop_w" name="w" />
                                                             <input type="hidden" id="crop_h" name="h" />
-														</form>
+                                                        </form>
                                                         <a id="saveAvatar" href="javascript:;" class="btn btn-large green"> 裁剪为头像 </a>
                                                     </div>
-                                                </div>										
+                                                </div>
                                             </div>
                                             <!-- END CHANGE AVATAR TAB -->
                                             <!-- CHANGE PASSWORD TAB -->
@@ -276,7 +276,7 @@
         </div>
         <!-- END CONTENT BODY -->
     </div>
-    <!-- END CONTENT -->        
-	<?php include("templates/quicksidebar/quicksidebar_welcome.php");?>
+    <!-- END CONTENT -->
+    <?php include "templates/quicksidebar/quicksidebar_welcome.php";?>
 </div>
 <!-- END CONTAINER -->

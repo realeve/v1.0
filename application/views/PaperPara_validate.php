@@ -1,11 +1,11 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
-						<a href="<?php echo base_url()?>">首页</a>
+						<a href="<?php echo base_url() ?>">首页</a>
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
@@ -43,7 +43,7 @@
                                     <a href="" class="fullscreen"> </a>
                                 </div>
 							</div>
-							<div class="portlet-body form">							
+							<div class="portlet-body form">
 								<div class="form-body row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -81,22 +81,22 @@
 												<div class="input-group">
 													<div class="icheck-inline">
 														<label>
-															<input type="radio" name="passed" class="icheck"> 返工 
+															<input type="radio" name="passed" class="icheck"> 返工
 														</label>
 														<label>
-															<input type="radio" name="passed" class="icheck"> 放行  
+															<input type="radio" name="passed" class="icheck"> 放行
 														</label>
 														<label>
-															<input type="radio" name="passed" class="icheck"> 不统计  
+															<input type="radio" name="passed" class="icheck"> 不统计
 														</label>
 														<label>
-															<input type="radio" name="passed" class="icheck"> 待放行  
+															<input type="radio" name="passed" class="icheck"> 待放行
 														</label>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>									
+									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="col-md-3 control-label">验证日期</label>
@@ -140,7 +140,7 @@
 												<div class="form-control-focus">
 												</div>
 											</div>
-										</div> 
+										</div>
 									</div>
 								</div>
 							</div>
@@ -161,7 +161,7 @@
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<div class="form-body row normalPara">									
+								<div class="form-body row normalPara">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3">切纸抄重</label>
@@ -208,7 +208,7 @@
 												<div class="form-control-focus">
 												</div>
 											</div>
-										</div>	
+										</div>
 										<div class="form-group">
 											<label class="col-md-3 control-label">怀疑纸</label>
 											<div class="col-md-9">
@@ -216,7 +216,7 @@
 												<div class="form-control-focus">
 												</div>
 											</div>
-										</div>	
+										</div>
 										<div class="form-group">
 											<label class="col-md-3 control-label">全好品</label>
 											<div class="col-md-9">
@@ -232,16 +232,16 @@
 												<div class="form-control-focus">
 												</div>
 											</div>
-										</div>	
+										</div>
 									</div>
 								</div>
-								<div class="form-actions noborder row right">	
+								<div class="form-actions noborder row right">
 									<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
 									<a name="loadHisData" class="btn red"> 载入数据 <i class="fa fa-cloud-download"></i> </a>
 									<a name="reset" class="btn default"> 重置 <i class="icon-refresh"></i></a>
 								</div>
 							</div>
-						</div>								
+						</div>
 					</div>
 
                     <!-- BEGIN PROFILE CONTENT -->
@@ -270,7 +270,7 @@
                                                         <th><i class="fa fa-link"></i> 操作 </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>                                                  
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -306,7 +306,7 @@
                                                         <th><i class="fa fa-link"></i> 操作 </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>                                                  
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -319,7 +319,7 @@
 
 					<!-- END SAMPLE FORM PORTLET-->
 				</form>
-			</div>			
+			</div>
 			<!-- END PAGE CONTENT-->
 		</div>
 	</div>

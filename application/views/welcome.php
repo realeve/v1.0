@@ -1,5 +1,5 @@
 			<!-- BEGIN STYLE CUSTOMIZER -->
-			<?php include("templates/themesetting.php");?>
+			<?php include "templates/themesetting.php";?>
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div class="page-bar">
@@ -241,7 +241,7 @@
                             <div class="actions">
                             	<a href="javascript:;" class="btn blue-madison btn-outline" name="curQuality">
 								<i class="fa fa-repeat"></i> 当前质量</a>
-                               
+
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -279,6 +279,6 @@
 		</div>
 	</div>
 	<!-- END CONTENT -->
-	<?php include("templates/quicksidebar/quicksidebar_welcome.php");?>
+	<?php include "templates/quicksidebar/quicksidebar_welcome.php";?>
 </div>
 <!-- END CONTAINER -->

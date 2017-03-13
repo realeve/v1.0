@@ -2,11 +2,11 @@
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="<?php echo base_url()?>">首页</a>
+            <a href="<?php echo base_url() ?>">首页</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="<?php echo base_url()?>search">信息追溯</a>
+            <a href="<?php echo base_url() ?>search">信息追溯</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
