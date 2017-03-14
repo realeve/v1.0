@@ -98,7 +98,7 @@ class DataInterface extends CI_Controller
 
         $this->load->model('DataInterfaceModel');
 
-        $APIData = $this->input->post(null,TRUE);
+        $APIData = $this->input->post(null);
 
         //转换Params
         $string1 = "";
@@ -137,7 +137,7 @@ class DataInterface extends CI_Controller
 
     {
 
-        $APIData = $this->input->get(null,TRUE);
+        $APIData = $this->input->get(null);
 
 
         $t1 = microtime(true);
@@ -256,9 +256,9 @@ class DataInterface extends CI_Controller
         public function insert()
         {
             $this->load->model('DataInterfaceModel');
-            $data = $this->input->post(NULL);
+            $data = $this->input->post(null);
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
-                $data = $this->input->get(NULL);
+                $data = $this->input->get(null);
             }
 
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
@@ -310,7 +310,7 @@ class DataInterface extends CI_Controller
 
             $this->load->model('DataInterfaceModel');
 
-            $data = $this->input->post(null,TRUE);
+            $data = $this->input->post(null);
 
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
 
@@ -367,7 +367,7 @@ class DataInterface extends CI_Controller
 
             $this->load->model('DataInterfaceModel');
 
-            $data = $this->input->post(null,TRUE);
+            $data = $this->input->post(null);
 
 
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
@@ -437,7 +437,7 @@ class DataInterface extends CI_Controller
         public function md5()
         {
 
-            $sourseStr = $this->input->get(null,TRUE);
+            $sourseStr = $this->input->get(null);
 
             $targetStr = '';
 
@@ -455,7 +455,7 @@ class DataInterface extends CI_Controller
         public function sha1()
         {
 
-            $sourseStr = $this->input->get(null,TRUE);
+            $sourseStr = $this->input->get(null);
 
             $targetStr = '';
 

@@ -411,7 +411,9 @@ $config['standardize_newlines'] = FALSE;
 |          for backwards compatibility purposes!
 |
 */
-$config['global_xss_filtering'] = TRUE;
+//设为TRUE时，富文本提交将受影响
+//$config['global_xss_filtering'] = TRUE;
+$config['global_xss_filtering'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
