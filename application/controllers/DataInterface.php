@@ -257,6 +257,7 @@ class DataInterface extends CI_Controller
         {
             $this->load->model('DataInterfaceModel');
             $data = $this->input->post(null);
+
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
                 $data = $this->input->get(null);
             }
@@ -267,8 +268,10 @@ class DataInterface extends CI_Controller
                 $this->output->set_output(json_encode($data));
                 return;
             };
+
             $insertID = $this->DataInterfaceModel->insert($data);
             $returnData['id'] = $insertID;
+
             if ($insertID) {
                 #插入数据成功
                 $returnData['message'] = '添加数据成功';
@@ -369,6 +372,9 @@ class DataInterface extends CI_Controller
 
             $data = $this->input->post(null);
 
+            if (!isset($data['tbl']) && !isset($data['tblname'])) {
+                $data = $this->input->get(null);
+            }
 
             if (!isset($data['tbl']) && !isset($data['tblname'])) {
 
