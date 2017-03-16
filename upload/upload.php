@@ -6,12 +6,17 @@
     // 响应类型
     header('Access-Control-Allow-Methods:GET,POST,PUT,OPTIONS');
     header('Access-Control-Allow-Headers:x-requested-with,content-type');   
-    header("Content-type: application/json");
+    
     
     if($requestType == "OPTIONS"){   
+      header('Access-Control-Allow-Credentials:true');
+	  header('Access-Control-Max-Age:1728000');
+      header('Content-Type:text/plain charset=UTF-8');
+	  header('Content-Length: 0',true);
       header("status: 204"); 
-      //header("HTTP/1.0 204 No Response");
-    }else if($requestType == "POST"){     
+      header("HTTP/1.0 204 No Content");
+    }else if($requestType == "POST"){  
+	  header("Content-type: application/json");
       // 100M大小限制
       if ($_FILES["file"]["size"] < 1024*1024*100){
         if ($_FILES["file"]["error"] > 0)
@@ -49,7 +54,8 @@
           echo json_encode($return);
         }
       }
-    }else if($requestType == "GET"){      
+    }else if($requestType == "GET"){     
+	  header("Content-type: application/json");
       if(isset($_GET['name'])){
         $filename = '.'.$_GET['name'];
         if(file_exists($filename)){
@@ -62,6 +68,7 @@
         echo '{"status":0,"msg":"请求参数错误"}';
       }
     }else{
+	  header("Content-type: application/json");
       echo '{"status":0,"msg":"上传文件失败"}';
     }
 ?>
