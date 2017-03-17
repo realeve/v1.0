@@ -264,14 +264,17 @@ class DataInterface extends CI_Controller
 
             if (!isset($data['tbl'])) {
                 $data['tbl'] = 99;
-            }
 
-            if (!isset($data['tblname'])) {
-                $data['message'] = '请指定插入的表单名称';
-                $data['type'] = 0;
-                $this->output->set_output(json_encode($data));
-                return;
-            };
+	            if (!isset($data['tblname'])) {
+
+	                $data['message'] = '请指定表单名称';
+
+	                $data['type']    = 0;
+
+	                $this->output->set_output(json_encode($data));
+	                return;
+	            }
+            }
 
             $insertID = $this->DataInterfaceModel->insert($data);
             $returnData['id'] = $insertID;
@@ -319,22 +322,19 @@ class DataInterface extends CI_Controller
 
             $data = $this->input->post(null);
 
-            if (!isset($data['tbl'])) {
+             if (!isset($data['tbl'])) {
                 $data['tbl'] = 99;
+
+	            if (!isset($data['tblname'])) {
+
+	                $data['message'] = '请指定表单名称';
+
+	                $data['type']    = 0;
+
+	                $this->output->set_output(json_encode($data));
+	                return;
+	            }
             }
-
-            if (!isset($data['tblname'])) {
-
-                $data['message'] = '请指定表单名称';
-
-                $data['type']    = 0;
-
-                $this->output->set_output(json_encode($data));
-
-                return;
-
-            }
-            ;
 
             if ($this->DataInterfaceModel->delete($data)) {
 
@@ -386,20 +386,18 @@ class DataInterface extends CI_Controller
 
             if (!isset($data['tbl'])) {
                 $data['tbl'] = 99;
+
+	            if (!isset($data['tblname'])) {
+
+	                $data['message'] = '请指定表单名称';
+
+	                $data['type']    = 0;
+
+	                $this->output->set_output(json_encode($data));
+	                return;
+	            }
             }
 
-            if (!isset($data['tblname'])) {
-
-                $data['message'] = '请指定插入的表单名称';
-
-                $data['type']    = 0;
-
-                $this->output->set_output(json_encode($data));
-
-                return;
-
-            }
-            ;
 
             if ($this->DataInterfaceModel->update($data)) {
 
