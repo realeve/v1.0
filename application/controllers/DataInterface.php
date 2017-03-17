@@ -262,7 +262,11 @@ class DataInterface extends CI_Controller
                 $data = $this->input->get(null);
             }
 
-            if (!isset($data['tbl']) && !isset($data['tblname'])) {
+            if (!isset($data['tbl'])) {
+                $data['tbl'] = 99;
+            }
+
+            if (!isset($data['tblname'])) {
                 $data['message'] = '请指定插入的表单名称';
                 $data['type'] = 0;
                 $this->output->set_output(json_encode($data));
@@ -315,9 +319,13 @@ class DataInterface extends CI_Controller
 
             $data = $this->input->post(null);
 
-            if (!isset($data['tbl']) && !isset($data['tblname'])) {
+            if (!isset($data['tbl'])) {
+                $data['tbl'] = 99;
+            }
 
-                $data['message'] = '请指定插入的表单名称';
+            if (!isset($data['tblname'])) {
+
+                $data['message'] = '请指定表单名称';
 
                 $data['type']    = 0;
 
@@ -376,7 +384,11 @@ class DataInterface extends CI_Controller
                 $data = $this->input->get(null);
             }
 
-            if (!isset($data['tbl']) && !isset($data['tblname'])) {
+            if (!isset($data['tbl'])) {
+                $data['tbl'] = 99;
+            }
+
+            if (!isset($data['tblname'])) {
 
                 $data['message'] = '请指定插入的表单名称';
 

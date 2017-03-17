@@ -1,4 +1,4 @@
-﻿<?php    
+<?php    
     $requestType = $_SERVER['REQUEST_METHOD'];
     
     // 指定允许其他域名访问
@@ -21,7 +21,7 @@
       if ($_FILES["file"]["size"] < 1024*1024*100){
         if ($_FILES["file"]["error"] > 0)
         {
-          echo '{"status":0,"msg":"文件类型或大小错误"}';
+          echo '{"status":"0","msg":"文件类型或大小错误"}';
         }
         else{
           $file = $_FILES["file"];
@@ -60,15 +60,25 @@
         $filename = '.'.$_GET['name'];
         if(file_exists($filename)){
           unlink($filename);
-          echo '{"status":1,"msg":"文件删除成功"}';  
+          $return['status'] = 1;
+          $return['msg'] = '文件删除成功'; 
         }else{
-          echo '{"status":0,"msg":"文件'.$filename.'不存在 "}';
+		  $return['status'] = 0;
+          $return['msg'] = '文件'.$filename.'不存在';
         }            
       }else{
-        echo '{"status":0,"msg":"请求参数错误"}';
+		  $return['status'] = 0;
+          $return['msg'] = '请求参数错误';
       }
+	  if(isset($_GET['callback'])){
+		  echo $_GET['callback'].'('.json_encode($return).')';
+	  }else{
+		  echo json_encode($return);
+	  }      
     }else{
 	  header("Content-type: application/json");
-      echo '{"status":0,"msg":"上传文件失败"}';
+	  $return['status'] = 0;
+	  $return['msg'] = '上传文件失败';
+	  echo json_encode($return);
     }
 ?>
