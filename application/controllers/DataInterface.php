@@ -138,7 +138,9 @@ class DataInterface extends CI_Controller
     {
 
         $APIData = $this->input->get(null);
-
+        if(isset($APIData['callback'])){
+            $callback = $APIData['callback'];
+        }
 
         $t1 = microtime(true);
 
@@ -167,9 +169,8 @@ class DataInterface extends CI_Controller
             array('adapter' => 'apc', 'backup' => 'file') //,'key_prefix' => 'api_'
             );
 
-
             $keyName = 'api_data';
-
+            unset($APIData['callback']);
             foreach ($APIData as $key => $value) {
 
                 $keyName .= "_" . $key . "_" . $value;
@@ -231,13 +232,13 @@ class DataInterface extends CI_Controller
 
 
             //增加跨域请求权限_2015_12_31
-            if (isset($APIData['callback'])) {
-                $Data = $APIData['callback'] . "(" . $Data . ")";
+            if (isset($callback)) {
+                $Data = $callback . "(" . $Data . ")";
             }
 
             $t2   = microtime(true);
             $Data = str_replace('"rows"', '"timing":"' . round(($t2 - $t1) * 1000, 3) . 'ms","rows"', $Data);
-            if (isset($APIData['callback'])) {
+            if (isset($callback)) {
                 $this->output->set_output($Data);
                 return;
             }
@@ -248,7 +249,7 @@ class DataInterface extends CI_Controller
             ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($Data));
-            //$this->output->set_output($Data);
+            //->set_output($Data);
 
         }
 
@@ -265,7 +266,7 @@ class DataInterface extends CI_Controller
             if (!isset($data['tbl'])) {
                 $data['tbl'] = 99;
 
-	            if (!isset($data['tblname'])) {
+	            if (!isset($data['tblname']) || $data['tblname'] == null ) {
 
 	                $data['message'] = '请指定表单名称';
 
@@ -325,7 +326,7 @@ class DataInterface extends CI_Controller
              if (!isset($data['tbl'])) {
                 $data['tbl'] = 99;
 
-	            if (!isset($data['tblname'])) {
+	            if (!isset($data['tblname']) || $data['tblname'] == null ) {
 
 	                $data['message'] = '请指定表单名称';
 
@@ -387,7 +388,7 @@ class DataInterface extends CI_Controller
             if (!isset($data['tbl'])) {
                 $data['tbl'] = 99;
 
-	            if (!isset($data['tblname'])) {
+	            if (!isset($data['tblname']) || $data['tblname'] == null ) {
 
 	                $data['message'] = '请指定表单名称';
 
