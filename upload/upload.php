@@ -43,6 +43,7 @@
           
           //base64中的'/'不能作为文件名内容
           $filename = str_replace("/",'-',$filename); 
+          $filename = str_replace("=",'-',$filename); 
           $fileType = str_replace("image/svg",'svg',$fileType);
           //图片文件处理：1.获取宽高;2.转换为webp
           if(strripos($file["type"],'image')>-1){

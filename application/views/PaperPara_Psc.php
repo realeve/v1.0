@@ -407,18 +407,6 @@
 												<span class="help-block">7~8.5</span>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3">允许修改常规指标
-												<span class="required"> * </span>
-											</label>
-											<div class="col-md-4">
-												<div class="checkbox-list">
-													<label>
-														<input type="checkbox" id="checkbox2" class="icheck"/> 允许修改常规指标
-													</label>
-												</div>
-											</div>
-										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
@@ -434,6 +422,18 @@
 												<input type="text" class="form-control" name="sur_oil_imbibition">
 												<span class="help-block">40~50%</span>
 											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">允许修改常规指标
+										<span class="required"> * </span>
+									</label>
+									<div class="col-md-4">
+										<div class="checkbox-list">
+											<label>
+												<input type="checkbox" id="checkbox2" class="icheck"/> 允许修改常规指标
+											</label>
 										</div>
 									</div>
 								</div>

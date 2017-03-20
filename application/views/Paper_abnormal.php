@@ -187,13 +187,13 @@
 											<span class="help-block">>=2.5m/s</span>
 										</div>
 									</div>
-									<div class="col-md-6 form-group">
+								<!-- 	<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">油渗性正</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="oil_perme_f">
 											<span class="help-block">( % )</span>
 										</div>
-									</div>
+									</div> -->
 									<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">油渗性正( 等级 )</label>
 										<div class="col-md-9">
@@ -201,13 +201,13 @@
 											<span class="help-block">( 级 )</span>
 										</div>
 									</div>
-									<div class="col-md-6 form-group">
+								<!-- 	<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">油渗性反</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="oil_perme_b">
 											<span class="help-block">( % )</span>
 										</div>
-									</div>
+									</div> -->
 									<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">油渗性反( 等级 )</label>
 										<div class="col-md-9">
