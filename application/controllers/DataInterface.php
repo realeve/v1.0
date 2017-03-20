@@ -459,13 +459,16 @@ class DataInterface extends CI_Controller
             $targetStr = '';
 
             foreach ($sourseStr as $key => $str) {
-
-                $targetStr .= ',"' . $key . '":"' . md5($str) . '"';
-
+                if($key!='callback'){
+                   $targetStr .= ',"' . $key . '":"' . md5($str) . '"';
+                }
             }
 
-            echo '{' . substr($targetStr, 1, strlen($targetStr) - 1) . '}';
-
+            $return = '{' . substr($targetStr, 1, strlen($targetStr) - 1) . '}';
+            if (isset($sourseStr['callback'])) {
+                $return = $sourseStr['callback'] . "(" . $return . ")";
+            }
+            echo $return;
         }
 
 
