@@ -247,9 +247,9 @@ class DataInterface extends CI_Controller
             $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
             ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
             ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
-            ->set_content_type('application/json', 'utf-8')
-            ->set_output(json_encode($Data));
-            //->set_output($Data);
+            //->set_content_type('application/json', 'utf-8')
+            //->set_output(json_encode($Data));
+            ->set_output($Data);
 
         }
 
