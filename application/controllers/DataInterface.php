@@ -571,4 +571,23 @@ class DataInterface extends CI_Controller
 
         }
 
+        public function rtxpush(){
+            $req = $this->input->get(null);
+            if(!isset($req['delaytime'])){
+                $req['delaytime'] = 0 ;
+            }
+           /*$strUrl = 'http://10.8.2.111:8012/sendnotify.cgi?delaytime='.$req['delaytime'].'&title='.$req['title'].'&msg='.$req['msg'].'&receiver='.$req['receiver'];
+
+            $ctx = stream_context_create(array(
+                'http' => array(
+                    'timeout' => 5 //设置一个超时时间，单位为秒
+                )
+            ));
+            $res = file_get_contents($strUrl, 0, $ctx);*/
+            $res = json_encode($req);
+            if (isset($req['callback'])) {
+                $res = $req['callback'] . "(" . $res . ")";
+            }
+            echo $res;
+        }
     }
