@@ -440,7 +440,11 @@ class DataInterfaceModel extends CI_Model
         } else {
             $LOGINDB = $this->LOGINDB['Quality'];
         }
-        $condition['id'] = $data['id'];
+        if(isset($data['mainid'])){
+            $condition[$data['mainid']] = $data[$data['mainid']];
+        }else{
+            $condition['id'] = $data['id'];
+        }
         $tblName         = $this->getDBName($data);
         //清理SQL缓存
         if (isset($data['cacheName'])) {
@@ -473,7 +477,13 @@ class DataInterfaceModel extends CI_Model
         }
 
         $tblName = $this->getDBName($data);
-        $where   = '[id] = ' . $data['id'];
+
+        if(isset($data['mainid'])){
+            $where   = $data['mainid'].' = ' . $data[$data['mainid']];
+        }else{
+            $where   = '[id] = ' . $data['id'];
+        }
+
 
         //更新接口列表时，id=0(接口列表信息)缓存需同步更新
         if ($data['tbl'] == 30) {
