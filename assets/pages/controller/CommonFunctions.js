@@ -636,7 +636,7 @@
     if (url == 'qualitytable' || url == 'qualitychart') {
       str = hrefTag.split('&')[0];
     } else {
-      var strTemp = window.location.href.split('?')[0].split(window.location.protocol + '//')[1].split(url)[1];
+      var strTemp = window.location.href.split('?')[0].split(location.protocol + '//')[1].split(url)[1];
       str = url + ((typeof strTemp == 'undefined') ? '' : strTemp);
     }
 
@@ -659,6 +659,7 @@
       $('.page-title [name="TableTitle"]').text(titleArr[titleArr.length - 1]);
     }
   }
+
 
   //系统新功能提示
   function appVersionTips() {
@@ -789,7 +790,7 @@
         avatarUrl = getRootPath(1) + '/demo/avatar/' + avatarName + '.jpg';
       }
 
-      if (avatarUrl.indexOf(window.location.protocol + '//') != -1) {
+      if (avatarUrl.indexOf(location.protocol + '//') != -1) {
         $.ajax({
             url: getRootPath(1) + '/datainterface/base64?src=' + avatarUrl,
           })
@@ -816,6 +817,7 @@
   function loadMenuSettings() {
     $('.page-sidebar-menu:eq(0)').html(GBK2UTF(localStorage.settings_default_menu));
   }
+
 
   function handleTable(url, obj) {
     $.ajax({
@@ -1079,6 +1081,8 @@
 
   };
 
+
+
   //侧边栏查询数据
   $('#QueryData').on('click', function() {
     $('body').toggleClass('page-quick-sidebar-open');
@@ -1166,7 +1170,8 @@
   function getDateRange() {
     var dateRange = $("#dashboard-report-range span").html();
     var date = {
-      "start": dateRange.split(' ~ ')[0],
+      "start": dateRange.split(
+        ' ~ ')[0],
       "end": dateRange.split(' ~ ')[1]
     };
     return date;
@@ -1218,6 +1223,7 @@
   function isUndefined(obj) {
     return obj === void 0;
   }
+
 
   var tpl = (function() {
 
@@ -1344,6 +1350,7 @@
               data: [] //纵向排列 data.data[0].slice(1, 15)
             };
 
+
             if (typeof item.repeat != 'undefined' && item.repeat.switch) {
 
               qua.header = data.header.slice(item.repeat.start, item.repeat.end).concat(qua.header);
@@ -1387,11 +1394,14 @@
 
   })();
 
+
+
   function getWeekdayByDate(strDate) {
     var weekDay = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     var myDate = new Date(Date.parse(strDate.replace(/-/g, "/")));
     return weekDay[myDate.getDay()];
   }
+
 
   function getSimpleEChart(obj, type) {
     type = type | 0;
@@ -1498,6 +1508,7 @@
       });
   }
 
+
   var RGB2Lab = function(RGB) {
 
     var gamma = function(x) {
@@ -1559,6 +1570,7 @@
     var X = 95.047 * var_X; //ref_X =  95.047     Observer= 2°, Illuminant= D65
     //var Y = 100 * var_Y; //ref_Y = 100.000
     var Z = 108.883 * var_Z; //ref_Z = 108.883
+
 
     //XYZ2RGB
     var_X = X / 100; //X from 0 to  95.047      (Observer = 2°, Illuminant = D65)

@@ -27,7 +27,7 @@
 <!-- // 文件头部及详情 -->
 
 <!-- target: head -->
-	<span>${idx}.${item.ProcName} : ${item.MachineName}</span>
+	<span>${idx}.${item.ProcName} : <a target="_blank" href="../qualitytable?tid=425&mid=${item.MID}&tstart=${item.datetime}">${item.MachineName}</a></span>
 	<!-- if: ${item.WorkClassName} == '早班' -->
 		<i class="badge badge-info"> ${item.WorkClassName}&nbsp; </i>
 	<!-- else -->
