@@ -202,25 +202,28 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="col-md-3 control-label">轴头轴尾</label>
+											<label class="control-label col-md-3">轴头轴尾</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control err-reason" placeholder="请在此输入备注信息" name="reel_end">
+												<select class="form-control select2" name="reel_end">
+												</select>
 												<div class="form-control-focus">
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">怀疑纸</label>
+											<label class="control-label col-md-3">怀疑纸</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control err-reason" placeholder="请在此输入备注信息" name="suspect_paper">
+												<select class="form-control select2" name="suspect_paper">
+												</select>
 												<div class="form-control-focus">
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">全好品</label>
+											<label class="control-label col-md-3">全好品</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control err-reason" placeholder="请在此输入备注信息" name="well_paper">
+												<select class="form-control select2" name="well_paper">
+												</select>
 												<div class="form-control-focus">
 												</div>
 											</div>

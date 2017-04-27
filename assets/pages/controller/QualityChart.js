@@ -37,6 +37,12 @@
          return flag;
        }
 
+       var prod = getUrlParam('prod');
+       if (prod !== null) {
+         strUrl = strUrl.replace('&prod=' + prod, '');
+         prod = GetSelect2Text('prod_ID');
+         strUrl += "&prod=" + prod;
+       }
        return strUrl;
      }
 
@@ -759,6 +765,7 @@
      jQuery(document).ready(function() {
        UIIdleTimeout.init();
        initDashboardDaterange('YYYYMMDD');
+       initProd();
        initDom();
        mECharts.init();
 

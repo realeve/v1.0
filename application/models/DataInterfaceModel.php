@@ -39,7 +39,7 @@ class DataInterfaceModel extends CI_Model
 
     //全局变量
     //质量数据库、小张核查、全幅面、机台作业、库管、质量控制中心（默认）、三合一、在线清数、办公助手、钞纸质量数据、图像数据库
-    public $DBLIST = array(0 => 'Quality', 1 => 'XZHC', 2 => 'QFM', 3 => 'JTZY', 4 => 'KG', 5 => 'sqlsvr', 6 => 'SHY', 7 => 'ZXQS', 8 => 'OFFICEHELPER', 9 => 'CZUSER', 10 => 'IMG');
+    public $DBLIST = array(0 => 'Quality', 1 => 'XZHC', 2 => 'QFM', 3 => 'JTZY', 4 => 'KG', 5 => 'sqlsvr', 6 => 'SHY', 7 => 'ZXQS', 8 => 'OFFICEHELPER', 9 => 'CZUSER', 10 => 'IMG',11=>'DATASHARE',12=>'JFZX');
     public $LOGINDB;
 
     public function __construct()

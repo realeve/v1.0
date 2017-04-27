@@ -405,6 +405,7 @@
     if (!jQuery().daterangepicker || !$('#dashboard-report-range')) {
       return;
     }
+
     var rangeArr = [
       [moment(), moment()],
       [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -714,11 +715,41 @@
     $('.page-sidebar-menu').toggleClass('page-sidebar-menu-closed');
   }
 
+  function initProd() {
+    var prod = getUrlParam('prod');
+    if (prod === null) {
+      return;
+    }
+
+    $('.page-toolbar').css('width', '360px');
+    $('#dashboard-report-range').addClass('col-md-7');
+    $('.page-toolbar').prepend('<div class="col-md-5"><select class="form-control select2" name="prod_ID"></select></div>');
+
+    // 初始化品种信息
+    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3&t=1&cache=14400";
+
+    $.ajax({
+        url: str,
+        async: false
+      })
+      .done(function(data) {
+        var Data = handleAjaxData(data);
+        InitSelect("prod_ID", Data);
+        SetSelectVal('prod_ID', prod);
+      });
+  }
+
   function initDom(fixheader) {
     //sideBarHack();
     fixheader = (typeof fixheader == 'undefined') ? 1 : fixheader;
     if (fixheader) {
       HeadFix();
+    }
+
+    //如果参数请求中有tstart
+    if (getUrlParam('tstart') != null || getUrlParam('tStart') != null) {
+      infoTips('该页面中含有查询日期响应请求，若查询其它时间段请在主菜单中进入');
+      $('#dashboard-report-range').hide();
     }
 
     if ($("#today") !== 'undefined') {
@@ -1033,7 +1064,11 @@
         var type = judgeSearchType(str);
         var url;
         var curPage = window.location.pathname;
-
+        //数据报表中有cart字段时，表示查询某车号信息
+        if ((curPage.indexOf('qualitytable') > 0 || curPage.indexOf('QualityTable') > 0) && location.hash.indexOf('cart') > 0) {
+          location.hash = "#cart=" + str.toUpperCase();
+          return;
+        }
         switch (type) {
           case config.search.CART:
           case config.search.GZ:
@@ -1055,12 +1090,13 @@
           } else {
 
             //数据报表中有cart字段时，表示查询某车号信息
-            if ((curPage.indexOf('qualitytable') > 0 || curPage.indexOf('QualityTable') > 0) && location.hash.indexOf('cart') > 0) {
-              location.hash = "#cart=" + str.toUpperCase();
-            } else {
-              window.location.href = url;
-            }
-
+            // if ((curPage.indexOf('qualitytable') > 0 || curPage.indexOf('QualityTable') > 0) && location.hash.indexOf('cart') > 0) {
+            //   location.hash = "#cart=" + str.toUpperCase();
+            //   return;
+            // } else {
+            //   window.location.href = url;
+            // }
+            window.location.href = url;
             //$('.search-form .submit').attr('href', url);
           }
         }

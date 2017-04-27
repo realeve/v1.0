@@ -39,9 +39,9 @@
 									<span class="caption-subject bold uppercase">概述</span></br>
 								</div>
 								<div class="tools">
-                                    <a href="javascript:;" class="collapse"> </a>
-                                    <a href="" class="fullscreen"> </a>
-                                </div>
+			                                    <a href="javascript:;" class="collapse"> </a>
+			                                    <a href="" class="fullscreen"> </a>
+			                              </div>
 							</div>
 							<div class="portlet-body form">
 								<div class="form-body row">
@@ -91,7 +91,18 @@
 												<label class="hide">备注</label>
 											</div>
 										</div>
-
+										<!-- <div class="form-group">
+											<label class="control-label col-md-3">小轴数据
+												<span class="required"> * </span>
+											</label>
+											<div class="col-md-4">
+												<div class="checkbox-list">
+													<label>
+														<input type="checkbox" id="checkbox" class="icheck"/> 小轴数据,不参与评分
+													</label>
+												</div>
+											</div>
+										</div> -->
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
@@ -389,42 +400,42 @@
 											</div>
 									</div>
 								</div>
-								<div class="row hide">
-								<hr class="hidden-print">
-								<h3>非一类指标<small> 钞纸物理指标评价</small></h3>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-3">吸水性 </label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" name="water_imbibition">
-												<span class="help-block">40~70 g/m^2</span>
+						<!-- 		<div class="row hide">
+
+									<h3>非一类指标<small> 钞纸物理指标评价</small></h3>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-3">吸水性 </label>
+												<div class="col-md-9">
+													<input type="text" class="form-control" name="water_imbibition">
+													<span class="help-block">40~70 g/m^2</span>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3">PH值</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control" name="PH_val">
+													<span class="help-block">7~8.5</span>
+												</div>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3">PH值</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" name="PH_val">
-												<span class="help-block">7~8.5</span>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-3">表面强度</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control" name="sur_Strength">
+													<span class="help-block">>=2.5m/s</span>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3">表面吸油性</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control" name="sur_oil_imbibition">
+													<span class="help-block">40~50%</span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-3">表面强度</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" name="sur_Strength">
-												<span class="help-block">>=2.5m/s</span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3">表面吸油性</label>
-											<div class="col-md-9">
-												<input type="text" class="form-control" name="sur_oil_imbibition">
-												<span class="help-block">40~50%</span>
-											</div>
-										</div>
-									</div>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<label class="control-label col-md-3">允许修改常规指标
 										<span class="required"> * </span>

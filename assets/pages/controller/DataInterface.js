@@ -31,6 +31,12 @@ var DBSourse = [{
 }, {
   value: 10,
   text: '质量图像数据库'
+}, {
+  value: 11,
+  text: '数据共享平台'
+}, {
+  value: 12,
+  text: '检封装箱数据库'
 }];
 
 var isInited = false;
