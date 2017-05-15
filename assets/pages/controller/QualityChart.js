@@ -54,6 +54,7 @@
        var echarts, chartDataTool, Clipboard;
        var iChartNums = (getUrlParam('tid') === null) ? 0 : getUrlParam('tid').split(',').length;
        var curTheme;
+       var renderedChart = 0;
        var drillComponents = {
          obj: [],
          curLevel: [],
@@ -350,7 +351,6 @@
          if (option[i][0] !== false) {
            myChart[i] = echarts.init(document.getElementById("eChart-main" + i), curTheme);
            myChart[i].setOption(option[i][0]);
-
            regressionTag[i] = false;
 
            handleDataDrill(i);
@@ -391,7 +391,21 @@
              }
              if (objRequest.data.rows) {
                option[i][0] = chartDataTool.getOption(objRequest, echarts);
+               // 轴样式修改
+               if (typeof option[i][0].tooltip.axisPointer != 'undefined' && option[i][0].tooltip.axisPointer.type == 'line') {
+                 option[i][0].tooltip.axisPointer.type = 'cross';
+               }
                handleChartData(i);
+             }
+             renderedChart++;
+             if (renderedChart > iChartNums) {
+               renderedChart = 1;
+             }
+             if (objRequest.blind) {
+               if (iChartNums == renderedChart) {
+                 blindChart();
+                 console.log(i);
+               }
              }
            });
        }
@@ -412,9 +426,6 @@
            //(function(i) {
            renderChart(i, objList);
            //})(i);
-         }
-         if (objRequest.blind) {
-           blindChart();
          }
        }
 
@@ -508,7 +519,6 @@
          }
          echarts.connect(arrCharList);
          //echarts.connect(myChart[0].group);
-         //console.log(arrCharList);
        }
 
        function selectChange(value) {

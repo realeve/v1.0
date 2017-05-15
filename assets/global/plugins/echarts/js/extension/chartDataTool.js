@@ -28,7 +28,7 @@
  * }
  * @输出参数：对应echarts 相关图形所需配置项
  */
-define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/statisticsTool.min', '../plugins/echarts/js/extension/echarts-wordcloud.min'], function(dataTool, statTool) {
+define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/extension/ecStat.min', '../plugins/echarts/js/extension/statisticsTool.min', '../plugins/echarts/js/extension/echarts-wordcloud.min'], function(dataTool, ecStat, statTool) {
 
   //读取指定URL的JSON数据
   function getJsonFromUrl(strUrl, Type) {
@@ -2635,7 +2635,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     } else {
       objRes.data = getJsonFromUrl(objRes.url);
     }
-
     //处理品种 参数 p
     if (objRes.url.indexOf('p=') != -1) {
       var pdtName = decodeURI(objRes.url.split('&p=')[1].split('&')[0]);
@@ -2646,6 +2645,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
       case 'bar':
       case 'line':
         returnData = convertBarData(objRes);
+        break;
+      case 'histogram':
+        returnData = objRes.data;
         break;
       case 'spc':
         returnData = convertSPCData(objRes);
@@ -4170,6 +4172,145 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
   }
 
 
+  // 直方图
+  var getHistogramOption = function(objRequest) {
+    var seriesData = Data.data.map(function(item) {
+      return item;
+    });
+    var bins = ecStat.histogram(seriesData);
+
+    var outData = {
+      title: [{
+        text: Data.title,
+        x: 'center',
+      }, {
+        text: Data.source,
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 0
+      }, {
+        text: staticDateRange.trim(),
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 5,
+        y2: 18
+      }, {
+        text: '©成都印钞有限公司 技术质量部',
+        borderColor: '#999',
+        borderWidth: 0,
+        textStyle: {
+          fontSize: 10,
+          fontWeight: 'normal'
+        },
+        x: 'right',
+        y2: 3
+      }],
+
+      grid: {
+        left: '5%',
+        right: '5%',
+        top: '8%',
+        bottom: '10%',
+        containLabel: true
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          mark: {
+            show: true
+          },
+          dataView: {
+            show: true,
+            readOnly: false
+          },
+          dataZoom: {
+            show: true,
+            //yAxisIndex: 'none'
+          },
+          restore: {
+            show: true
+          },
+          magicType: {
+            type: ['line', 'bar']
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+
+        backgroundColor: 'rgba(255,255,255,0.95)',
+        //extraCssText: 'box-shadow: 0 0 3px #e6e6e6;border-radius:4px;border:1px solid #d4d4d4;padding:10px;',
+        extraCssText: 'padding:20px;color:#999;border-radius:5px;box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);',
+        textStyle: {
+          color: '#333'
+        },
+        axisPointer: {
+          //type: 'shadow'
+          type: 'cross'
+        }
+      },
+      xAxis: [{
+        name: Data.xAxisName,
+        type: 'value',
+        axisTick: {
+          show: false,
+          alignWithLabel: true
+        },
+        boundaryGap: false,
+        scale: true,
+        axisLabel: {
+          show: true
+        },
+        axisLine: {
+          show: true
+        }
+      }],
+      yAxis: [{
+        type: 'value',
+        scale: true,
+        position: 'left',
+        axisLabel: {
+          show: true,
+          interval: 'auto',
+          margin: 8
+        },
+        axisTick: {
+          show: false
+        },
+        axisLine: {
+          show: true
+        }
+      }],
+      series: [{
+        type: 'bar',
+        barWidth: '99.3%',
+        label: {
+          normal: {
+            show: true,
+            position: 'insideTop',
+            formatter: function(params) {
+              return params.value[1];
+            }
+          }
+        },
+        data: bins.data
+      }]
+    };
+    return outData;
+  };
+
+
   function handleBankNoteColors(objLegend, color) {
     var bankNoteLegend = [];
     objLegend.map(function(legend) {
@@ -4250,7 +4391,6 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
     objRequest = handleObjRequest(objRequest);
 
     Data = convertData(objRequest, echarts);
-
     //处理起始时间
     var dateStr = objRequest.url.split('tstart=')[1];
     var pds = getUrlParam('tstart');
@@ -4278,6 +4418,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
         break;
       case 'spc':
         outData = getSPCOption(objRequest);
+        break;
+      case 'histogram':
+        outData = getHistogramOption(objRequest);
         break;
       case 'pie':
       case 'funnel':

@@ -171,6 +171,7 @@
 						</select>
 						<select class="bs-select form-control" name="ratio" data-width="125px" data-size="10">
 							<option>图表宽高比</option>
+							<option value="3">3:1</option>
 							<option value="2.35">2.35:1</option>
 							<option value="2">2:1</option>
 							<option value="1.78" selected>16:9</option>
