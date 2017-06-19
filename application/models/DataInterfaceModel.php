@@ -338,8 +338,13 @@ class DataInterfaceModel extends CI_Model
                 //$LOGINDB->cache_on();
                 $query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
             }
-
-            $strJson = $query->result_datatable_json($isBlob, $ApiInfo->DBID, $blobTag);
+			
+			// 增加直接执行insert/update等接口操作
+			if($ApiInfo->ApiID>0 && stripos($SQLStr,'update ') == 1 ){
+				$strJson = '{"rows":'.$query;
+			}else{
+				$strJson = $query->result_datatable_json($isBlob, $ApiInfo->DBID, $blobTag);
+			}            
         }
         //$query->free_result(); //清理内存
         //$LOGINDB->close();//关闭连接
