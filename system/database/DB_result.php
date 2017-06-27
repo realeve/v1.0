@@ -362,7 +362,8 @@ class CI_DB_result {
 			}
 		}elseif($encode == 'CP936'){
 			$encode = 'GBK';
-			return iconv('GBK','UTF-8',$str);
+			//return iconv('GBK','UTF-8',$str);
+			return mb_convert_encoding($str,'UTF-8','GBK');
 		}else{
 			return iconv('GBK','UTF-8',$str);
 		}

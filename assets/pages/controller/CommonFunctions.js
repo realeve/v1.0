@@ -1033,7 +1033,7 @@
     var rules = {
       cart: /^[1-9]\d{3}[A-Za-z]\d{3}$/,
       reel: /^[1-9]\d{6}[A-Ca-c]$|^[1-9]\d{4}$|^[1-9]\d{4}[A-Ca-c]$|^[1-9]\d{6}$/,
-      gz: /^[A-Za-z]{2}\d{4}$|^[A-Za-z]\d[A-Za-z]\d{3}$|^[A-Za-z]\d{2}[A-Za-z]\d{2}$/,
+      gz: /^[A-Za-z]{2}\d{4}$|^[A-Za-z]\d[A-Za-z]\d{3}$|^[A-Za-z]\d{2}[A-Za-z]\d{2}$|^[A-Za-z]\d{3}[A-Za-z]\d$|^[A-Za-z]\d{4}[A-Za-z]$/,
       code: /^[A-Za-z]{2}\d{8}$|^[A-Za-z]\d[A-Za-z]\d{7}$|^[A-Za-z]\d{2}[A-Za-z]\d{6}$/
     };
 

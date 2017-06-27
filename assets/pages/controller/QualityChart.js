@@ -788,7 +788,11 @@
          $('#Preview').hide();
        }
        hideSidebarTool();
-
+       // 用户自定义图表
+       if (App.getURLParameter('Token') != null) {
+         $('.page-title').html('<p style="padding:15px 0;"></p>');
+         document.title = '用户自定义图表';
+       }
      });
      jQuery(window).resize(function() {
        HeadFix();
