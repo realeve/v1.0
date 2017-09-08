@@ -338,13 +338,13 @@ class DataInterfaceModel extends CI_Model
                 //$LOGINDB->cache_on();
                 $query = $this->LOGINDB[$this->DBLIST[$ApiInfo->DBID]]->query($this->TransToGBK($SQLStr));
             }
-			
+
 			// 增加直接执行insert/update等接口操作
 			if($ApiInfo->ApiID>0 && stripos($SQLStr,'update ') == 1 ){
 				$strJson = '{"rows":'.$query;
 			}else{
 				$strJson = $query->result_datatable_json($isBlob, $ApiInfo->DBID, $blobTag);
-			}            
+			}
         }
         //$query->free_result(); //清理内存
         //$LOGINDB->close();//关闭连接
@@ -423,12 +423,15 @@ class DataInterfaceModel extends CI_Model
         } else {
             $LOGINDB = $this->LOGINDB['Quality'];
         }
-
-        foreach ($data['utf2gbk'] as $str) {
-            $data[$str] = $this->TransToGBK($data[$str]);
+        if(isset($data['utf2gbk'])){
+            foreach ($data['utf2gbk'] as $str) {
+                $data[$str] = $this->TransToGBK($data[$str]);
+            }
+            unset($data['utf2gbk']);
         }
-        unset($data['utf2gbk']);
+
         $tblName = $this->getDBName($data);
+
         unset($data['tbl']);
         if (isset($data['tblname'])) {
             unset($data['tblname']);

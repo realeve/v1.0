@@ -13,15 +13,9 @@
 						<i class="fa fa-circle"></i>
 					</li>
 					<li>
-						<a href="#">成品率数据采集</a>
+						<a href="#">切纸机切选损</a>
 					</li>
 				</ul>
-				<!--div class="page-toolbar">
-					<div class="btn-group pull-right">
-						<a class="btn btn-fit-height grey-cascade">
-						</a>
-					</div>
-				</div-->
 			</div>
 			<h3 class="page-title">
 			<span class="caption-subject bold uppercase" name="TableTitle"></span>  <small id="today"></small>
@@ -56,21 +50,21 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3">切纸抄重</label>
+											<label class="control-label col-md-3">切纸机废纸仓总数</label>
 											<div class="col-md-9">
-											<input type="text" class="form-control number" name="cut_weight">
+											<input type="text" class="form-control number" name="waste_num">
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6">
-										<div class="form-group">
-											<label class="col-md-3 control-label">验证日期</label>
+							<!-- 			<div class="form-group">
+											<label class="col-md-3 control-label">生产日期</label>
 											<div class="col-md-9">
 												<input class="form-control form-control-inline date-picker" name="rec_date" size="16" type="text"/>
 												<div class="form-control-focus">
 												</div>
 											</div>
-										</div>
+										</div> -->
 										<div class="form-group">
 											<label class="col-md-3 control-label">品种</label>
 											<div class="col-md-9">
@@ -116,9 +110,10 @@
                                             <table class="table table-striped table-bordered table-advance table-hover" name="reelList">
                                                 <thead>
                                                     <tr>
+                                                        <th> 编号</th>
                                                         <th><i class="fa fa-user"></i> 轴号</th>
                                                         <th><i class="fa fa-calendar-plus-o"></i> 录入时间 </th>
-                                                        <th><i class="fa fa-cut"></i> 切后好纸数</th>
+                                                        <th><i class="fa fa-cut"></i> 切纸机废纸仓总数</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
