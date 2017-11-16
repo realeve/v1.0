@@ -178,6 +178,9 @@ var cutWaste = function() {
         },
         waste_num: {
           required: "切纸机废纸仓总数不能为空."
+        },
+        before_cut: {
+          required: "切前损不能为空."
         }
       },
       highlight: function(element) { // hightlight error inputs
@@ -269,6 +272,7 @@ var cutWaste = function() {
       focusInput();
 
       $('input[name="waste_num"]').val('');
+      $('input[name="before_cut"]').val('');
     }
   }();
 
