@@ -180,7 +180,7 @@ var cutWaste = function() {
           required: "切纸机废纸仓总数不能为空."
         },
         before_cut: {
-          required: "切前损不能为空."
+          required: "纸轴抄重不能为空."
         }
       },
       highlight: function(element) { // hightlight error inputs

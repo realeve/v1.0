@@ -50,7 +50,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3">切前损纸数</label>
+											<label class="control-label col-md-3">纸轴抄重</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control number" name="before_cut">
 											</div>
@@ -119,7 +119,7 @@
                                                         <th> 编号</th>
                                                         <th><i class="fa fa-user"></i> 轴号</th>
                                                         <th><i class="fa fa-calendar-plus-o"></i> 录入时间 </th>
-                                                        <th><i class="fa fa-cut"></i> 切前损</th>
+                                                        <th><i class="fa fa-cut"></i> 纸轴抄重</th>
                                                         <th><i class="fa fa-cut"></i> 切纸机废纸仓总数</th>
                                                     </tr>
                                                 </thead>
