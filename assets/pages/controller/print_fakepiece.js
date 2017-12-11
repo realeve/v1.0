@@ -165,7 +165,7 @@ var FakePiece = function() {
       'CartNumber': $("input[name='cart_number']").val().trim().toUpperCase(),
       'ProductType': GetSelect2Text('prod_ID'),
       'ProcID': $('select[name="ProcID"]').val(),
-      'KiloID': $('select[name="KoloID"]').val(),
+      'KiloID': $('select[name="KiloID"]').val(),
       'Date': $("input[name='rec_date']").val().replace(/-/g, ''),
       'Describe': $("input[name='remark']").val(),
       'utf2gbk': ['Describe']
@@ -187,6 +187,7 @@ var FakePiece = function() {
       checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
     });
     checkStr += '}';
+    console.log(checkStr)
     return $.parseJSON(checkStr);
   }
 
