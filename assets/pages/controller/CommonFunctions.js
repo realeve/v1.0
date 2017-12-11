@@ -1,5 +1,5 @@
 ﻿  //系统当前版本
-  const curVersion = 1.46;
+  var curVersion = 1.46;
   if (typeof moment != 'undefined') {
     moment.locale('zh-cn');
   }
@@ -8,7 +8,7 @@
    * 表单名列表定义(select id,name from sysobjects where xtype = 'U')
    */
   //0-10 质量中心数据库
-  const TBL = {
+  var TBL = {
     "PHYSIC": 0, //'Paper_Para_PscData', //0 物理站
     "CHEM": 1, //'Paper_Para_ChemData', //1 化验站
     "SURFACE": 2, //'Paper_Para_SurfaceData', //2 物理外观指标
@@ -43,7 +43,7 @@
   }; //表单定义
 
   //全局配置
-  const config = {
+  var config = {
     TOKEN: '79d84495ca776ccb523114a2120e273ca80b315b',
     search: {
       ERR: -1,
@@ -695,7 +695,7 @@
   function extendValidateRule() {
     //验证是否为车号
     jQuery.validator.addMethod("isCartNumber", function(value, element) {
-      var num = /^\[1-9]d{3}[A-Za-z]\d{3}$/;
+      var num = /^[1-9]\d{3}[A-Za-z]\d{3}$/;
       return this.optional(element) || (num.test(value));
     }, "请检查车号信息是否正确，第4位应为字母");
 

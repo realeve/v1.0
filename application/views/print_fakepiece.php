@@ -95,6 +95,16 @@
 								</div>
 							</div>
 							<div class="col-md-3 form-group">
+								<label class="col-md-3 control-label" for="cartnumber">千位</label>
+								<div class="col-md-9">
+									<select class="form-control select2" name="KiloID">
+									</select>
+									<div class="form-control-focus">
+									</div>
+									<span class="help-block">  </span>
+								</div>
+							</div>
+							<div class="col-md-3 form-group">
 								<label class="col-md-3 control-label" for="cartnumber">全张废</label>
 								<div class="col-md-9">
 									<input type="text" name="FakePiece" class="form-control" placeholder="全张废" value="0">

@@ -1,230 +1,241 @@
 var FakePiece = function() {
-	var handleDatePickers = function() {
-		if (jQuery().datepicker) {
-			$('.date-picker').datepicker({
-				rtl: App.isRTL(),
-				orientation: "left",
-				autoclose: true,
-				format: 'yyyy-mm-dd'
-			});
-		}
-	};
-	/**
-	 * [loadHisData 载入历史数据]
-	 * @return {[type]}        [无返回值]
-	 */
-	function loadHisData() {
+  var handleDatePickers = function() {
+    if (jQuery().datepicker) {
+      $('.date-picker').datepicker({
+        rtl: App.isRTL(),
+        orientation: "left",
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+      });
+    }
+  };
+  /**
+   * [loadHisData 载入历史数据]
+   * @return {[type]}        [无返回值]
+   */
+  function loadHisData() {
 
-		function getTDStr(data, i) {
-			var str = '<tr>' +
-				'	<td>' + i + '</td>';
-			data.map(function(td) {
-				str += '	<td>' + td + '</td>';
-			});
-			str += '</tr>';
-			return str;
-		}
+    function getTDStr(data, i) {
+      var str = '<tr>' +
+        '	<td>' + i + '</td>';
+      data.map(function(td) {
+        str += '	<td>' + td + '</td>';
+      });
+      str += '</tr>';
+      return str;
+    }
 
-		var objTbody = $('[name="fakeList"] tbody');
-		var date = $("input[name='rec_date']").val();
-		//载入历史数据
-		//大张废原始数据查询
-		// SELECT  a.CartNumber,  a.ProductType,  a.Date,  a.FakePiece,  a.HalfPiece,  a.NoNum,  b.FakeDesc,  a.Describe  FROM  FakePieceData a INNER JOIN  FakePieceDesc b on a.ProcID = b.id  where date = ? order by a.id desc
-		date = date.replace(/-/g, '');
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=246&M=3&tstart=" + date;
-		$.ajax({
-				url: str,
-			})
-			.done(function(Data) {
-				Data = handleAjaxData(Data);
-				if (Data.rows === 0) {
-					objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
-					return;
-				}
-				var tBody = '';
-				Data.data.map(function(data, i) {
-					tBody += getTDStr(data, i + 1);
-				});
+    var objTbody = $('[name="fakeList"] tbody');
+    var date = $("input[name='rec_date']").val();
+    //载入历史数据
+    //大张废原始数据查询
+    // SELECT  a.CartNumber,  a.ProductType,  a.Date,  a.FakePiece,  a.HalfPiece,  a.NoNum,  b.FakeDesc,  a.Describe  FROM  FakePieceData a INNER JOIN  FakePieceDesc b on a.ProcID = b.id  where date = ? order by a.id desc
+    date = date.replace(/-/g, '');
+    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=246&M=3&tstart=" + date;
+    $.ajax({
+        url: str,
+      })
+      .done(function(Data) {
+        Data = handleAjaxData(Data);
+        if (Data.rows === 0) {
+          objTbody.html('<tr><td class="text-center" colspan=' + (Data.cols + 1) + '>指定时间内无数据</td></tr>');
+          return;
+        }
+        var tBody = '';
+        Data.data.map(function(data, i) {
+          tBody += getTDStr(data, i + 1);
+        });
 
-				objTbody.html(tBody);
-			});
-	}
+        objTbody.html(tBody);
+      });
+  }
 
-	function getSelectInfo() {
-		//读取印钞品种信息
-		var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3&t=1&cache=14400";
+  function getSelectInfo() {
+    //读取印钞品种信息
+    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=35&M=3&t=1&cache=14400";
 
-		$.ajax({
-				url: str
-			})
-			.done(function(data) {
-				var Data = handleAjaxData(data);
-				InitSelect("prod_ID", Data);
-			});
+    $.ajax({
+        url: str
+      })
+      .done(function(data) {
+        var Data = handleAjaxData(data);
+        InitSelect("prod_ID", Data);
+      });
 
-		//非常规指标人员信息，Proc_id=4
-		str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=245&M=3&cache=14400";
+    //非常规指标人员信息，Proc_id=4
+    str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=245&M=3&cache=14400";
 
-		$.ajax({
-				url: str
-			})
-			.done(function(data) {
-				var Data = handleAjaxData(data);
-				InitSelect("ProcID", Data);
-			});
-		initSelect2();
-	}
+    $.ajax({
+        url: str
+      })
+      .done(function(data) {
+        var Data = handleAjaxData(data);
+        InitSelect("ProcID", Data);
+      });
 
-	function initDOM() {
-		$("input[name='rec_date']").val(today(6));
-		loadHisData();
-		getSelectInfo();
+    str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=495&M=3&cache=14400";
+    $.ajax({
+      url: str
+    }).done(function(data) {
+      var Data = handleAjaxData(data);
+      InitSelect('KiloID', Data);
+    })
 
-		$("input[name='remark']").val('无');
+    initSelect2();
+  }
 
-		$('.page-header .dropdown-quick-sidebar-toggler').hide();
+  function initDOM() {
+    $("input[name='rec_date']").val(today(6));
+    loadHisData();
+    getSelectInfo();
 
-		handleValidate();
-	}
+    $("input[name='remark']").val('无');
 
-	var handleValidate = function() {
+    $('.page-header .dropdown-quick-sidebar-toggler').hide();
 
-		$("input[name='cart_number']").maxlength({
-			limitReachedClass: "label label-danger",
-			threshold: 3
-		});
+    handleValidate();
+  }
 
-		//扩充验证规则
-		extendValidateRule();
+  var handleValidate = function() {
 
-		var vRules = getValidateRule('theForm');
-		vRules.cart_number = {
-			minlength: 8,
-			maxlength: 8,
-			isCartNumber: true,
-			required: true
-		};
+    $("input[name='cart_number']").maxlength({
+      limitReachedClass: "label label-danger",
+      threshold: 3
+    });
 
-		vRules.rec_date.number = false;
+    //扩充验证规则
+    extendValidateRule();
 
-		vRules.FakePiece = {
-			digits: true,
-			required: false
-		};
-		vRules.HalfPiece = vRules.FakePiece;
-		vRules.NoNum = vRules.FakePiece;
+    var vRules = getValidateRule('theForm');
+    vRules.cart_number = {
+      minlength: 8,
+      maxlength: 8,
+      isCartNumber: true,
+      required: true
+    };
+
+    vRules.rec_date.number = false;
+
+    vRules.FakePiece = {
+      digits: true,
+      required: false
+    };
+    vRules.HalfPiece = vRules.FakePiece;
+    vRules.NoNum = vRules.FakePiece;
 
 
-		$('form[name=theForm]').validate({
-			errorElement: 'span', //default input error message container
-			errorClass: 'help-block', // default input error message class
-			focusInvalid: true, // do not focus the last invalid input
-			rules: vRules,
-			messages: {
-				cart_number: {
-					required: "车号不能为空."
-				}
-			},
-			highlight: function(element) { // hightlight error inputs
-				$(element).closest('.form-group').addClass('has-error'); // set error class to the control group
-			},
-			success: function(label) {
-				label.closest('.form-group').removeClass('has-error');
-				label.remove();
-			},
-			submitHandler: function(form) {
-				//form.submit(); // form validation success, call ajax form submit
-				insertData();
-			}
-		});
-	};
+    $('form[name=theForm]').validate({
+      errorElement: 'span', //default input error message container
+      errorClass: 'help-block', // default input error message class
+      focusInvalid: true, // do not focus the last invalid input
+      rules: vRules,
+      messages: {
+        cart_number: {
+          required: "车号不能为空."
+        }
+      },
+      highlight: function(element) { // hightlight error inputs
+        $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
+      },
+      success: function(label) {
+        label.closest('.form-group').removeClass('has-error');
+        label.remove();
+      },
+      submitHandler: function(form) {
+        //form.submit(); // form validation success, call ajax form submit
+        insertData();
+      }
+    });
+  };
 
-	$('input[name="cart_number"]').on('keyup', function() {
-		var val = $(this).val();
-		if (val.length >= 3) {
-			//取第三位信息
-			var curVal = val.substr(2, 1);
-			SetSelect2Val('prod_ID', curVal);
-		}
-	});
+  $('input[name="cart_number"]').on('keyup', function() {
+    var val = $(this).val();
+    if (val.length >= 3) {
+      //取第三位信息
+      var curVal = val.substr(2, 1);
+      SetSelect2Val('prod_ID', curVal);
+    }
+  });
 
-	//JS端  UTF-8  需要做2GBK操作
-	//SELECT  COLLATIONPROPERTY('Chinese_PRC_Stroke_CI_AI_KS_WS', 'CodePage')
-	function getFormData() {
-		var surData = {
-			'tbl': TBL.PRINT_FAKEPIECE,
-			'CartNumber': $("input[name='cart_number']").val(),
-			'ProductType': GetSelect2Text('prod_ID'),
-			'ProcID': $('select[name="ProcID"]').val(),
-			'Date': $("input[name='rec_date']").val().replace(/-/g, ''),
-			'Describe': $("input[name='remark']").val(),
-			'utf2gbk': ['Describe']
-		};
-		//surData.remark = UTF2GBK(surData.remark);
-		var keyList = [
-			'FakePiece',
-			'HalfPiece',
-			'NoNum'
-		];
-		var checkStr = JSON.stringify(surData);
-		checkStr = checkStr.replace('}', '');
-		var curVal;
-		$('.fakeNum input').map(function(elem) {
-			curVal = $(this).val();
-			if (curVal === '') {
-				curVal = 0;
-			}
-			checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
-		});
-		checkStr += '}';
-		return $.parseJSON(checkStr);
-	}
+  //JS端  UTF-8  需要做2GBK操作
+  //SELECT  COLLATIONPROPERTY('Chinese_PRC_Stroke_CI_AI_KS_WS', 'CodePage')
+  function getFormData() {
+    var surData = {
+      'tbl': TBL.PRINT_FAKEPIECE,
+      'CartNumber': $("input[name='cart_number']").val().trim().toUpperCase(),
+      'ProductType': GetSelect2Text('prod_ID'),
+      'ProcID': $('select[name="ProcID"]').val(),
+      'KiloID': $('select[name="KoloID"]').val(),
+      'Date': $("input[name='rec_date']").val().replace(/-/g, ''),
+      'Describe': $("input[name='remark']").val(),
+      'utf2gbk': ['Describe']
+    };
+    //surData.remark = UTF2GBK(surData.remark);
+    var keyList = [
+      'FakePiece',
+      'HalfPiece',
+      'NoNum'
+    ];
+    var checkStr = JSON.stringify(surData);
+    checkStr = checkStr.replace('}', '');
+    var curVal;
+    $('.fakeNum input').map(function(elem) {
+      curVal = $(this).val();
+      if (curVal === '') {
+        curVal = 0;
+      }
+      checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
+    });
+    checkStr += '}';
+    return $.parseJSON(checkStr);
+  }
 
-	function resetData() {
-		SetSelect2Val('ProcID', -1); //工序
-		$('.fakeNum input').val('0');
-		$("[name='remark']").val('无');
-		$("[name='cart_number']").focus();
-	}
+  function resetData() {
+    SetSelect2Val('ProcID', -1); //工序
+    // SetSelect2Val('KiloID', -1)
+    $('.fakeNum input').val('0');
+    $("[name='remark']").val('无');
+    $("[name='cart_number']").focus();
+  }
 
-	$('[name="reset"]').on('click', function() {
-		resetData();
-	});
+  $('[name="reset"]').on('click', function() {
+    resetData();
+  });
 
-	function insertData() {
-		var strUrl = getRootPath() + "/DataInterface/insert";
-		var options = {
-			url: strUrl,
-			type: 'post',
-			resetForm: true,
-			data: getFormData(),
-			success: function(data) {
-				var obj = $.parseJSON(data);
-				bsTips(obj.message, obj.type);
-				//重置数据
-				resetData();
-				loadHisData();
-			},
-			error: function(data) {
-				infoTips(JSON.stringify(data));
-			}
-		};
-		$.ajax(options);
-		return false;
-	}
+  function insertData() {
+    var strUrl = getRootPath() + "/DataInterface/insert";
+    var options = {
+      url: strUrl,
+      type: 'post',
+      resetForm: true,
+      data: getFormData(),
+      success: function(data) {
+        var obj = $.parseJSON(data);
+        bsTips(obj.message, obj.type);
+        //重置数据
+        resetData();
+        loadHisData();
+      },
+      error: function(data) {
+        infoTips(JSON.stringify(data));
+      }
+    };
+    $.ajax(options);
+    return false;
+  }
 
-	return {
-		init: function() {
-			handleDatePickers();
-			initDOM();
-		}
-	};
+  return {
+    init: function() {
+      handleDatePickers();
+      initDOM();
+    }
+  };
 }();
 
 jQuery(document).ready(function() {
-	initDom();
-	FakePiece.init();
+  initDom();
+  FakePiece.init();
 });
 jQuery(window).resize(function() {
-	HeadFix();
+  HeadFix();
 });
