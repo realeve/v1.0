@@ -64,7 +64,7 @@
 							<div class="col-md-6 form-group">
 								<label class="col-md-3 control-label">冠字号</label>
 								<div class="col-md-9">
-									<input type="text" id="gznumber" name="gznumber" maxlength="4" class="form-control uppercase" v-model="basic.gznumber">
+									<input type="text" id="gznumber" name="gznumber" maxlength="6" class="form-control uppercase" v-model="basic.gznumber">
 									<div class="form-control-focus">
 									</div>
 								</div>

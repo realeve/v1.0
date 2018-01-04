@@ -257,7 +257,7 @@
 
    var handleValidate = function() {
      jQuery.validator.addMethod("gznumber", function(value, element) {
-       var num = /^[A-Za-z]{2}$|^[A-Za-z]\*[A-Za-z]$|^[A-Za-z]\*\*[A-Za-z]$/;
+       var num = /^[A-Za-z]{2}$|^[A-Za-z]\*[A-Za-z]$|^[A-Za-z]\*\*[A-Za-z]$|^[A-Za-z]\*\*\*[A-Za-z]$|^[A-Za-z]\*\*\*[A-Za-z]$/;
        return this.optional(element) || (num.test(value));
      }, "请检查冠字信息是否正确");
 

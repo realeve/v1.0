@@ -279,7 +279,7 @@
 											<span class="help-block">0.1-0.7 m2 :100;0.7-1m2 :5;1m2以上 0 </span>
 											</div>
 										</div>
-										<!--div class="form-group">
+										<div class="form-group">
 											<label class="control-label col-md-3">平滑度(正) S</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="smoothness_front">
@@ -290,7 +290,7 @@
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="smoothness_back">
 										</div>
-										</div-->
+										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">平滑度(平均) S</label>
 											<div class="col-md-9">
