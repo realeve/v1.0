@@ -168,13 +168,10 @@
 												<option value="401">401</option>
 												<option value="402">402</option>
 												<option value="403">403</option>
-												<option value="404">404</option>
-												<option value="405">405</option>
-												<option value="406">406</option>
-												<option value="407">407</option>
-												<option value="408">408</option>
-												<option value="409">409</option>
-												<option value="410">410</option>
+												<option value="105">105</option>
+												<option value="206">206</option>
+												<option value="207">207</option>
+												<option value="208">208</option>
 											</select>
 											<!-- <input type="text" class="form-control uppercase" name="class_name"> -->
 											<div class="form-control-focus">
