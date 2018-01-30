@@ -1,6 +1,34 @@
 // localstorage的key键前缀
 var MAIN_KEY = "paper_cutRecord";
 
+function updateMachineInfo() {
+
+  var machine_id = $('select[name="machine_id"]').val();
+  localStorage.setItem(MAIN_KEY + "cut_machine_id", machine_id);
+
+  var machineName = GetSelect2Text("machine_id");
+  $('[name="ream_reel_head_tail"]').parents('.form-group').show();
+  $('[name="ream_package"]').parents('.form-group').show();
+  $('[name="ream_check"]').parents('.form-group').show();
+  $('[name="ream_69"]').parents('.form-group').show();
+  $('[name="ream_49"]').parents('.form-group').show();
+  switch (machineName) {
+    case '帕萨班':
+      $('[name="ream_69"]').val(0).parents('.form-group').hide();
+      $('[name="ream_49"]').val(0).parents('.form-group').hide();
+      break;
+    case '必诺':
+      $('[name="ream_69"]').val(0).parents('.form-group').hide();
+      $('[name="ream_49"]').val(0).parents('.form-group').hide();
+      $('[name="ream_package"]').val(0).parents('.form-group').hide();
+      $('[name="ream_check"]').val(0).parents('.form-group').hide();
+      $('[name="ream_reel_head_tail"]').val(0).parents('.form-group').hide();
+      break;
+    default:
+      break;
+  }
+}
+
 var cutWaste = (function() {
   var gb = {
     initLoad: true,
@@ -27,7 +55,7 @@ var cutWaste = (function() {
       getRootPath(1) +
       "/DataInterface/Api?Token=" +
       config.TOKEN +
-      "&ID=486&M=3&mid=" +
+      "&ID=486&M=3&cache=0&mid=" +
       machine_id;
     $.ajax({
       url: str
@@ -182,14 +210,9 @@ var cutWaste = (function() {
 
   function updateClassTime() {
     var classTime = Math.floor(new Date().getHours() / 8);
-    var classList = [ "夜班","白班", "中班"];
+    var classList = ["夜班", "白班", "中班"];
     $('[name="class_time"]').val(classList[classTime]);
-
-    var machineName = GetSelect2Text("machine_id");
-    if (machineName == "帕萨班") {
-      $('[name="ream_69"]').val(0);
-      $('[name="ream_49"]').val(0);
-    }
+    updateMachineInfo();
   }
 
   var handleValidate = (function() {
@@ -343,13 +366,7 @@ var cutWaste = (function() {
   });
 
   $('select[name="machine_id"]').on("change", function() {
-    var machine_id = $('select[name="machine_id"]').val();
-    localStorage.setItem(MAIN_KEY + "cut_machine_id", machine_id);
-    var machineName = GetSelect2Text("machine_id");
-    if (machineName == "帕萨班") {
-      $('[name="ream_69"]').val(0);
-      $('[name="ream_49"]').val(0);
-    }
+    updateMachineInfo();
   });
 
   return {
@@ -375,11 +392,36 @@ var Operators = (function() {
     return MAIN_KEY + "_class_name";
   };
 
+  var loadOperatorsFromDB = function() {
+    var str = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=517&M=0&cname=" + className;
+    // var str = "http://10.8.2.133/DataInterface/Api?Token=" + config.TOKEN + "&ID=517&M=0&cname=" + className;
+    $.ajax({
+      url: str
+    }).done(function(Data) {
+      Data = handleAjaxData(Data);
+      if (Data.rows == 0) {
+        infoTips(
+          "当前班组 " +
+          className +
+          " 未输入过人员信息，请手动输入所有数据，下次系统将自动载入。",
+          1
+        );
+        return;
+      }
+      var userInfo = Data.data[0];
+      Object.keys(userInfo).map(function(key) {
+        $("[name=" + key + "]").val(userInfo[key]);
+      })
+    });
+  }
+
   var loadOperators = function() {
     var key = getKey();
     if (!key) {
       return;
     }
+
+    hideBiloOperator();
 
     var classKey = getClassKey();
 
@@ -390,12 +432,7 @@ var Operators = (function() {
 
     // 没有数据时，用户自行输入信息
     if (localOperatorSettings == null) {
-      infoTips(
-        "当前班组 " +
-        className +
-        " 未输入过人员信息，请手动输入所有数据，下次系统将自动载入。",
-        1
-      );
+      loadOperatorsFromDB();
       return;
     }
 
@@ -408,6 +445,23 @@ var Operators = (function() {
       $("[name=" + item.name + "]").val(item.value);
     });
   };
+
+  var hideBiloOperator = function() {
+    var needHide = className[0] == '1';
+    [{
+      name: "operator_paper_check",
+      title: "查纸"
+    }, {
+      name: "operator_counter",
+      title: "数数"
+    }, {
+      name: "operator_package",
+      title: "封包"
+    }].forEach(function(item) {
+      var domOperator = $("[name=" + item.name + "]").parents('.form-group');
+      needHide ? domOperator.hide() : domOperator.show();
+    })
+  }
 
   var operatorSettings = [{
     name: "operator_guide_edge",
@@ -465,7 +519,7 @@ var Operators = (function() {
       </div>';
       })
       .join("");
-    console.log(html)
+    // console.log(html)
     dom.append(
       html
     );

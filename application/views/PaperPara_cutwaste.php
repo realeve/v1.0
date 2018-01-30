@@ -25,7 +25,7 @@
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">
 				<form role="form" name="theForm" class="form-horizontal"> <!--class="form-horizontal"-->
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<!-- BEGIN SAMPLE FORM PORTLET-->
 						<div class="portlet box blue-hoki">
 							<div class="portlet-title">
@@ -39,7 +39,7 @@
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<div class="form-body row">								
+								<div class="form-body row">
 									<div class="col-md-6 form-group">
 										<label class="col-md-3 control-label">轴号</label>
 										<div class="col-md-9">
@@ -48,7 +48,7 @@
 											</div>
 											<label class="hide">轴号</label>
 										</div>
-									</div>	
+									</div>
 									<div class="col-md-6 form-group">
 										<label class="col-md-3 control-label">品种</label>
 										<div class="col-md-9">
@@ -73,7 +73,7 @@
 										<input type="text" class="form-control number" name="reel_weight">
 										</div>
 									</div>
-									
+
 									<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">封包令数</label>
 										<div class="col-md-9">
@@ -126,14 +126,14 @@
 											</div>
 										</div>
 									</div> -->
-																	
+
 									<div class="col-md-6 form-group">
 										<label class="control-label col-md-3">质量情况描述</label>
 										<div class="col-md-9">
 										<textarea type="text" class="form-control" rows="4" name="remark"></textarea>
 										</div>
 									</div>
-										
+
 								</div>
 								<div class="form-actions noborder row right">
 									<button type="submit" class="btn green-haze"> 提交 <i class="icon-cloud-upload"></i> </button>
@@ -144,9 +144,9 @@
 						</div>
 						<!-- END SAMPLE FORM PORTLET-->
 					</div>
-					
-					
-					<div class="col-md-3">
+
+
+					<div class="col-md-4">
 						<!-- BEGIN SAMPLE FORM PORTLET-->
 						<div class="portlet box blue-hoki">
 							<div class="portlet-title">
@@ -178,7 +178,7 @@
 											</div>
 											<label class="hide">班别</label>
 										</div>
-									</div>								
+									</div>
 									<div class="col-md-12 form-group">
 										<label class="col-md-3 control-label">班次</label>
 										<div class="col-md-9">
@@ -200,7 +200,7 @@
 						</div>
 						<!-- END SAMPLE FORM PORTLET-->
 					</div>
-                    
+
 
                     <!-- BEGIN PROFILE CONTENT -->
                     <div class="col-md-12 profile-content">
@@ -223,22 +223,22 @@
                                                         <th><i class="fa fa-calendar-plus-o"></i> 录入时间 </th>
                                                         <th>抄重</th>
                                                         <th>机废张数</th>
-																												<th>机怀张数</th>
-																												<th>封包令数</th>
-																												<th>抽检令数</th>
-																												<th>6.9令数</th>
-																												<th>4.9令数</th>
-																												<th>轴头尾令数</th>
-																												<th>班别</th>
-																												<th>班次</th>
-																												<th>导边</th>
-																												<th>质检</th>
-																												<th>纸斗</th>
-																												<th>查纸</th>
-																												<th>数数</th>
-																												<th>封包</th>
-																												<th>机长</th>
-																												<th>备注</th>
+										<th>机怀张数</th>
+										<th>封包令数</th>
+										<th>抽检令数</th>
+										<th>6.9令数</th>
+										<th>4.9令数</th>
+										<th>轴头尾令数</th>
+										<th>班别</th>
+										<th>班次</th>
+										<th>机长</th>
+									<!-- 	<th>质检</th>
+										<th>纸斗</th>
+										<th>查纸</th>
+										<th>数数</th>
+										<th>封包</th>
+										<th>导边</th> -->
+										<th>备注</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
