@@ -21,8 +21,7 @@ function updateMachineInfo() {
       $('[name="ream_69"]').val(0).parents('.form-group').hide();
       $('[name="ream_49"]').val(0).parents('.form-group').hide();
       $('[name="ream_package"]').val(0).parents('.form-group').hide();
-      $('[name="ream_check"]').val(0).parents('.form-group').hide();
-      $('[name="ream_reel_head_tail"]').val(0).parents('.form-group').hide();
+
       break;
     default:
       break;
