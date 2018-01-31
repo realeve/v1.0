@@ -4,12 +4,11 @@
 
 }
 
-
 class DataInterface extends CI_Controller
 {
 
     const PRE_STR = 'QCCenter';
-    //字符前缀
+//字符前缀
     public function __construct()
     {
 
@@ -17,21 +16,19 @@ class DataInterface extends CI_Controller
 
     }
 
-
     public function index()
     {
 
         $this->load->library('session');
 
         $this->load->helper(array(
-        'url',
+            'url',
         ));
 
         $this->load->model('DataInterfaceModel');
 
         //开启缓存
         //$this->output->cache(60*24);
-
 
         //$this->output->set_output(json_encode($this->session->userdata));
         //调试
@@ -43,11 +40,11 @@ class DataInterface extends CI_Controller
             //注销
             if ($this->session->userdata('logged_in') == true) {
 
-                $logindata             = $this->session->userdata;
+                $logindata = $this->session->userdata;
 
                 $logindata['CreateID'] = $this->GetNewApiID();
 
-                $logindata['token']    = sha1(self::PRE_STR . $this->DataInterfaceModel->TransToGBK($logindata['username']));
+                $logindata['token'] = sha1(self::PRE_STR . $this->DataInterfaceModel->TransToGBK($logindata['username']));
 
                 $this->load->view('templates/header/header_DataInterface', $logindata);
 
@@ -61,23 +58,19 @@ class DataInterface extends CI_Controller
 
             }
 
-        }
-        elseif ($this->session->userdata('userrole') == -1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username') != '') {
+        } elseif ($this->session->userdata('userrole') == -1 && $this->session->userdata('logged_in') == true && $this->session->userdata('username') != '') {
 
             $this->load->view('lockscreen-min');
 
-        }
-        else {
+        } else {
 
             $this->load->view('login');
 
         }
 
-
     }
 
-
-    //新建接口的ID编号
+//新建接口的ID编号
     public function GetNewApiID()
     {
 
@@ -89,8 +82,7 @@ class DataInterface extends CI_Controller
 
     }
 
-
-    //保存接口
+//保存接口
     public function SaveAPI()
     {
 
@@ -109,41 +101,37 @@ class DataInterface extends CI_Controller
 
         }
 
-
-        $APIData['params']     = rtrim($string1, ",");
+        $APIData['params'] = rtrim($string1, ",");
 
         $APIData['AuthorName'] = $this->session->userdata('username');
 
-        $ReturnData            = $this->DataInterfaceModel->SaveAPI($APIData);
+        $ReturnData = $this->DataInterfaceModel->SaveAPI($APIData);
 
         $this->output->set_output(json_encode($ReturnData));
 
     }
 
-
-
-    /*Api信息读取
-    Author:所有者
-    ApiID:接口编号
-    M:
-    0.默认所有数据;
-    1.输出列名;
-    2.预览模式;
-    3.DataTables数据格式；
-    'edit'.API编辑模式；
-    */
+/*Api信息读取
+Author:所有者
+ApiID:接口编号
+M:
+0.默认所有数据;
+1.输出列名;
+2.预览模式;
+3.DataTables数据格式；
+'edit'.API编辑模式；
+ */
 
     public function Api() //读取接口数据
 
     {
 
         $APIData = $this->input->get(null);
-        if(isset($APIData['callback'])){
+        if (isset($APIData['callback'])) {
             $callback = $APIData['callback'];
         }
 
         $t1 = microtime(true);
-
 
         //默认参数
         if (!isset($APIData['Token'])) {
@@ -158,15 +146,13 @@ class DataInterface extends CI_Controller
 
         }
 
-
         //数据缓存处理(根据查询参数做K-V缓存);
 
         if (isset($APIData['cache']) && $APIData['cache'] > 0) {
 
-
             //数据缓存
             $this->load->driver('cache',
-            array('adapter' => 'apc', 'backup' => 'file') //,'key_prefix' => 'api_'
+                array('adapter' => 'apc', 'backup' => 'file') //,'key_prefix' => 'api_'
             );
 
             $keyName = 'api_data';
@@ -177,9 +163,7 @@ class DataInterface extends CI_Controller
 
             }
 
-
             $keyName = strtolower($keyName);
-
 
             //echo '开始读取缓存...<br>';
 
@@ -191,9 +175,7 @@ class DataInterface extends CI_Controller
 
                 unset($APIData['cache']);
 
-
                 $this->load->model('DataInterfaceModel');
-
 
                 //缓存未命中，读取原始数据
                 $Data = $this->DataInterfaceModel->Api($APIData);
@@ -204,8 +186,7 @@ class DataInterface extends CI_Controller
                 // Save into the cache for n minutes
                 $this->cache->save($keyName, $Data, $minutes * 60);
 
-            }
-            else {
+            } else {
 
                 //echo '当前数据来于缓存...<br>';
 
@@ -213,381 +194,429 @@ class DataInterface extends CI_Controller
 
                 unset($APIData['cache']);
 
-
                 $Data = str_replace('{"rows"', '{"cache":' . $minutes . ',"rows"', $Data);
 
-                }
-
-            }
-            else {
-
-                //无需缓存
-                //echo '实时读取';
-
-                $this->load->model('DataInterfaceModel');
-
-                $Data = $this->DataInterfaceModel->Api($APIData);
-
             }
 
+        } else {
 
-            //增加跨域请求权限_2015_12_31
-            if (isset($callback)) {
-                $Data = $callback . "(" . $Data . ")";
-            }
+            //无需缓存
+            //echo '实时读取';
 
-            $t2   = microtime(true);
-            $Data = str_replace('"rows"', '"timing":"' . round(($t2 - $t1) * 1000, 3) . 'ms","rows"', $Data);
-            if (isset($callback)) {
-                $this->output->set_output($Data);
-                return;
-            }
+            $this->load->model('DataInterfaceModel');
 
-            //输出数据 CROS
-            $this->output->set_header('Access-Control-Allow-Origin:*')
-            ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
-            ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
-            //->set_content_type('application/json', 'utf-8')
-            //->set_output(json_encode($Data));
-            ->set_output($Data);
+            $Data = $this->DataInterfaceModel->Api($APIData);
 
         }
 
+        //增加跨域请求权限_2015_12_31
+        if (isset($callback)) {
+            $Data = $callback . "(" . $Data . ")";
+        }
 
-        public function insert()
-        {
-            $this->load->model('DataInterfaceModel');
-            $data = $this->input->post(null);
+        $t2 = microtime(true);
+        $Data = str_replace('"rows"', '"timing":"' . round(($t2 - $t1) * 1000, 3) . 'ms","rows"', $Data);
+        if (isset($callback)) {
+            $this->output->set_output($Data);
+            return;
+        }
 
-            if (!isset($data['tbl']) && !isset($data['tblname'])) {
-                $data = $this->input->get(null);
+        //输出数据 CROS
+        $this->output->set_header('Access-Control-Allow-Origin:*')
+            ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
+            ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
+        // ->set_content_type('application/json', 'utf-8')
+        // ->set_output(json_encode($Data));
+            ->set_output($Data);
+
+    }
+
+    public function insert()
+    {
+        $this->load->model('DataInterfaceModel');
+        $data = $this->input->post(null);
+
+        if (!isset($data['tbl']) && !isset($data['tblname'])) {
+            $data = $this->input->get(null);
+        }
+
+        if (!isset($data['tbl'])) {
+            $data['tbl'] = 99;
+
+            if (!isset($data['tblname']) || $data['tblname'] == null) {
+
+                $data['message'] = '请指定表单名称';
+
+                $data['type'] = 0;
+
+                $this->output->set_output(json_encode($data));
+                return;
             }
+        }
 
-            if (!isset($data['tbl'])) {
-                $data['tbl'] = 99;
+        $insertID = $this->DataInterfaceModel->insert($data);
+        $returnData['id'] = $insertID;
 
-	            if (!isset($data['tblname']) || $data['tblname'] == null ) {
+        if ($insertID) {
+            #插入数据成功
+            $returnData['message'] = '添加数据成功';
+            $returnData['type'] = 1;
+        } else {
+            #插入数据失败
+            $returnData['message'] = '添加数据失败';
+            $returnData['type'] = 0;
+        };
 
-	                $data['message'] = '请指定表单名称';
+        $returnData['data'] = $data;
+        if (isset($data['callback'])) {
 
-	                $data['type']    = 0;
+            $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
 
-	                $this->output->set_output(json_encode($data));
-	                return;
-	            }
-            }
-
-            $insertID = $this->DataInterfaceModel->insert($data);
-            $returnData['id'] = $insertID;
-
-            if ($insertID) {
-                #插入数据成功
-                $returnData['message'] = '添加数据成功';
-                $returnData['type'] = 1;
-            } else {
-                #插入数据失败
-                $returnData['message'] = '添加数据失败';
-                $returnData['type'] = 0;
-            };
-
-            $returnData['data'] = $data;
-            if (isset($data['callback'])) {
-
-                $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
-
-                $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
+            $this->output->set_header('Access-Control-Allow-Origin:*')
                 ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
                 ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
                 ->set_output($returnData);
-                return;
-            }
-            $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
+            return;
+        }
+        $this->output->set_header('Access-Control-Allow-Origin:*')
             ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
             ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
             ->set_output(json_encode($returnData));
+    }
+
+    /**删、改操作保留字段：
+    "utf2gbk": ["ApiName","strSQL","Params"],//字段以数组形式保存
+    "id": ID,//对ID操作
+    "tbl":30 //表单名
+     */
+
+    public function delete() //读取接口数据
+
+    {
+
+        $this->load->model('DataInterfaceModel');
+
+        $data = $this->input->post(null);
+
+        if (!isset($data['tbl'])) {
+            $data['tbl'] = 99;
+
+            if (!isset($data['tblname']) || $data['tblname'] == null) {
+
+                $data['message'] = '请指定表单名称';
+
+                $data['type'] = 0;
+
+                $this->output->set_output(json_encode($data));
+                return;
+            }
         }
 
+        if ($this->DataInterfaceModel->delete($data)) {
 
+            $returnData['message'] = '删除数据成功';
 
-        /**删、改操作保留字段：
-        "utf2gbk": ["ApiName","strSQL","Params"],//字段以数组形式保存
-        "id": ID,//对ID操作
-        "tbl":30 //表单名
-        */
+            $returnData['type'] = 1;
+        } else {
 
-        public function delete() //读取接口数据
+            $returnData['message'] = '删除数据失败';
 
-        {
+            $returnData['type'] = 0;
+        };
 
-            $this->load->model('DataInterfaceModel');
+        if (isset($data['callback'])) {
 
-            $data = $this->input->post(null);
+            $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
 
-             if (!isset($data['tbl'])) {
-                $data['tbl'] = 99;
-
-	            if (!isset($data['tblname']) || $data['tblname'] == null ) {
-
-	                $data['message'] = '请指定表单名称';
-
-	                $data['type']    = 0;
-
-	                $this->output->set_output(json_encode($data));
-	                return;
-	            }
-            }
-
-            if ($this->DataInterfaceModel->delete($data)) {
-
-                $returnData['message'] = '删除数据成功';
-
-                $returnData['type']    = 1;
-            }
-            else {
-
-                $returnData['message'] = '删除数据失败';
-
-                $returnData['type']    = 0;
-            };
-
-            if (isset($data['callback'])) {
-
-                $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
-
-                $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
+            $this->output->set_header('Access-Control-Allow-Origin:*')
                 ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
                 ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
                 ->set_content_type('application/json', 'utf-8')
                 ->set_output($returnData);
 
-                return;
-
-            }
-
-            $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
-            ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
-            ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
-            //->set_content_type('application/json', 'utf-8')
-            ->set_output(json_encode($returnData));
+            return;
 
         }
 
+        $this->output->set_header('Access-Control-Allow-Origin:*')
+            ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
+            ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
+        //->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($returnData));
 
-        public function update() //读取接口数据
+    }
 
-        {
+    public function update() //读取接口数据
 
-            $this->load->model('DataInterfaceModel');
+    {
 
-            $data = $this->input->post(null);
+        $this->load->model('DataInterfaceModel');
 
-            if (!isset($data['tbl']) && !isset($data['tblname'])) {
-                $data = $this->input->get(null);
+        $data = $this->input->post(null);
+
+        if (!isset($data['tbl']) && !isset($data['tblname'])) {
+            $data = $this->input->get(null);
+        }
+
+        if (!isset($data['tbl'])) {
+            $data['tbl'] = 99;
+
+            if (!isset($data['tblname']) || $data['tblname'] == null) {
+
+                $data['message'] = '请指定表单名称';
+
+                $data['type'] = 0;
+
+                $this->output->set_output(json_encode($data));
+                return;
             }
+        }
 
-            if (!isset($data['tbl'])) {
-                $data['tbl'] = 99;
+        if ($this->DataInterfaceModel->update($data)) {
 
-	            if (!isset($data['tblname']) || $data['tblname'] == null ) {
+            $returnData['message'] = '更新数据成功';
 
-	                $data['message'] = '请指定表单名称';
+            $returnData['type'] = 1;
 
-	                $data['type']    = 0;
+        } else {
 
-	                $this->output->set_output(json_encode($data));
-	                return;
-	            }
-            }
+            $returnData['message'] = '更新数据失败';
 
+            $returnData['type'] = 0;
 
-            if ($this->DataInterfaceModel->update($data)) {
+        }
+        ;
 
-                $returnData['message'] = '更新数据成功';
+        if (isset($data['callback'])) {
 
-                $returnData['type']    = 1;
+            $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
 
-            }
-            else {
-
-                $returnData['message'] = '更新数据失败';
-
-                $returnData['type']    = 0;
-
-            }
-            ;
-
-
-            if (isset($data['callback'])) {
-
-                $returnData = $data['callback'] . "(" . json_encode($returnData) . ")";
-
-                $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
+            $this->output->set_header('Access-Control-Allow-Origin:*')
                 ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
                 ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
-                //->set_content_type('application/json', 'utf-8')
+            //->set_content_type('application/json', 'utf-8')
                 ->set_output($returnData);
 
-                return;
+            return;
 
-            }
+        }
 
-            $this->output->set_header('Access-Control-Allow-Origin:http://localhost:8080')
+        $this->output->set_header('Access-Control-Allow-Origin:*')
             ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
             ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
-            //->set_content_type('application/json', 'utf-8')
+        //->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($returnData));
 
-        }
-
-
-        public function convert2Base64() //读取接口数据
-
-        {
-
-            $this->load->model('DataInterfaceModel');
-
-            $this->DataInterfaceModel->convert2Base64();
-
-        }
-
-
-        public function md5()
-        {
-
-            $sourseStr = $this->input->get(null);
-
-            $targetStr = '';
-
-            foreach ($sourseStr as $key => $str) {
-                if($key!='callback'){
-                   $targetStr .= ',"' . $key . '":"' . md5($str) . '"';
-                }
-            }
-
-            $return = '{' . substr($targetStr, 1, strlen($targetStr) - 1) . '}';
-            if (isset($sourseStr['callback'])) {
-                $return = $sourseStr['callback'] . "(" . $return . ")";
-            }
-            echo $return;
-        }
-
-
-        public function sha1()
-        {
-
-            $sourseStr = $this->input->get(null);
-
-            $targetStr = '';
-
-            foreach ($sourseStr as $key => $str) {
-
-                $targetStr .= ',"' . $key . '":"' . sha1($str) . '"';
-
-            }
-
-            echo '{' . substr($targetStr, 1, strlen($targetStr) - 1) . '}';
-
-        }
-
-
-        public function base64()
-        {
-
-
-            /*转换图片为base64编码*/
-
-            $src                  = $this->input->get('src');
-
-            $image_info           = getimagesize($src);
-
-            $base64_image_content = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($src)));
-
-            //echo '{"data":"'.rtrim($base64_image_content).'"}';
-
-            echo rtrim($base64_image_content);
-
-        }
-
-
-        public function clearCache()
-        {
-
-            $memcache = new Memcache;
-
-            $memcache->connect('127.0.0.1', 11211);
-
-            //清空缓存
-            $memcache->flush();
-
-        }
-
-
-        public function deleteCache()
-        {
-
-            $key      = $this->input->get('key');
-
-            $memcache = new Memcache;
-
-            $memcache->connect('127.0.0.1', 11211);
-
-            $keyList = $memcache->delete($key);
-
-            $keyList = $memcache->get('keyList');
-
-            if ($keyList != '') {
-
-                $keyList = json_decode($keyList[0]);
-
-                unset($keyList->$key);
-
-            }
-
-            $memcache->set('keyList', strtolower(json_encode($keyList)));
-
-        }
-
-        public function listCache()
-        {
-
-            $memcache = new Memcache;
-
-            $memcache->connect('127.0.0.1', 11211);
-
-
-            $keyList = $memcache->get('keyList');
-
-            if ($keyList != '') {
-
-                $keyList = json_decode($keyList[0]);
-
-                foreach ($keyList as $key => $item) {
-
-                    echo $key . '<br>';
-
-                }
-
-            }
-
-        }
-
-        public function rtxpush(){
-            $req = $this->input->get(null);
-            if(!isset($req['delaytime'])){
-                $req['delaytime'] = 0 ;
-            }
-           /*$strUrl = 'http://10.8.2.111:8012/sendnotify.cgi?delaytime='.$req['delaytime'].'&title='.$req['title'].'&msg='.$req['msg'].'&receiver='.$req['receiver'];
-
-            $ctx = stream_context_create(array(
-                'http' => array(
-                    'timeout' => 5 //设置一个超时时间，单位为秒
-                )
-            ));
-            $res = file_get_contents($strUrl, 0, $ctx);*/
-            $res = json_encode($req);
-            if (isset($req['callback'])) {
-                $res = $req['callback'] . "(" . $res . ")";
-            }
-            echo $res;
-        }
     }
+
+    public function convert2Base64() //读取接口数据
+
+    {
+
+        $this->load->model('DataInterfaceModel');
+
+        $this->DataInterfaceModel->convert2Base64();
+
+    }
+
+    public function md5()
+    {
+
+        $sourseStr = $this->input->get(null);
+
+        $targetStr = '';
+
+        foreach ($sourseStr as $key => $str) {
+            if ($key != 'callback') {
+                $targetStr .= ',"' . $key . '":"' . md5($str) . '"';
+            }
+        }
+
+        $return = '{' . substr($targetStr, 1, strlen($targetStr) - 1) . '}';
+        if (isset($sourseStr['callback'])) {
+            $return = $sourseStr['callback'] . "(" . $return . ")";
+        }
+        echo $return;
+    }
+
+    public function sha1()
+    {
+
+        $sourseStr = $this->input->get(null);
+
+        $targetStr = '';
+
+        foreach ($sourseStr as $key => $str) {
+
+            $targetStr .= ',"' . $key . '":"' . sha1($str) . '"';
+
+        }
+
+        echo '{' . substr($targetStr, 1, strlen($targetStr) - 1) . '}';
+
+    }
+
+    public function base64()
+    {
+
+        /*转换图片为base64编码*/
+
+        $src = $this->input->get('src');
+
+        $image_info = getimagesize($src);
+
+        $base64_image_content = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($src)));
+
+        //echo '{"data":"'.rtrim($base64_image_content).'"}';
+
+        echo rtrim($base64_image_content);
+
+    }
+
+    public function clearCache()
+    {
+
+        $memcache = new Memcache;
+
+        $memcache->connect('127.0.0.1', 11211);
+
+        //清空缓存
+        $memcache->flush();
+
+    }
+
+    public function deleteCache()
+    {
+
+        $key = $this->input->get('key');
+
+        $memcache = new Memcache;
+
+        $memcache->connect('127.0.0.1', 11211);
+
+        $keyList = $memcache->delete($key);
+
+        $keyList = $memcache->get('keyList');
+
+        if ($keyList != '') {
+
+            $keyList = json_decode($keyList[0]);
+
+            unset($keyList->$key);
+
+        }
+
+        $memcache->set('keyList', strtolower(json_encode($keyList)));
+
+    }
+
+    public function listCache()
+    {
+
+        $memcache = new Memcache;
+
+        $memcache->connect('127.0.0.1', 11211);
+
+        $keyList = $memcache->get('keyList');
+
+        if ($keyList != '') {
+
+            $keyList = json_decode($keyList[0]);
+
+            foreach ($keyList as $key => $item) {
+
+                echo $key . '<br>';
+
+            }
+
+        }
+
+    }
+
+    public function isrtxonline()
+    {
+        $req = $this->input->get(null);
+        $strUrl = 'http://10.8.2.111:8012/isonline.php?rtxid=' . $req['rtxid'];
+
+        $ctx = stream_context_create(array(
+            'http' => array(
+                'timeout' => 5, //设置一个超时时间，单位为秒
+            ),
+        ));
+
+        $res = file_get_contents($strUrl, 0, $ctx);
+        if (isset($req['callback'])) {
+            $res = $req['callback'] . "(" . $res . ")";
+        }
+
+        $this->output->set_header('Access-Control-Allow-Origin:*')
+            ->set_header('Access-Control-Allow-Methods:GET,POST')
+            ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
+            ->set_output($res);
+    }
+
+    public function rtxpush()
+    {
+        $this->load->model('DataInterfaceModel');
+
+        $req = $this->input->get(null);
+        if (!isset($req['delaytime'])) {
+            $req['delaytime'] = 0;
+        }
+        //$strUrl = 'http://10.8.2.111/RootObjWebService.asmx/SendNotify?strReceiver='.$req['receiver'].'&bstrTitle='.$req['title'].'&DelayTime='.$req['delaytime'].'&bstrMsg='.$req['msg'];
+
+        $strUrl = 'http://10.8.2.111:8012/sendnotify.cgi?delaytime=' . $req['delaytime'] . '&title=' . $req['title'] . '&msg=' . $req['msg'] . '&receiver=' . $req['receiver'];
+
+        $ctx = stream_context_create(array(
+            'http' => array(
+                'timeout' => 5, //设置一个超时时间，单位为秒
+            ),
+        ));
+
+        $res = file_get_contents($strUrl, 0, $ctx);
+
+        $ip = $this->getIp();
+
+        // 记录推送日志
+        $data = array(
+            "ip" => $ip,
+            "receiver" => $req['receiver'],
+            'msg' => $req['msg'],
+            'title' => $req['title'],
+            "tbl" => 0,
+            "tblname" => "rtx_push_log",
+            "utf2gbk" => ['title', 'msg'],
+            "rec_time" => date("Y-m-d H:i:s"),
+        );
+
+        $insertID = $this->DataInterfaceModel->insert($data);
+
+        if (isset($req['callback'])) {
+            $res = $req['callback'] . "(" . $res . ")";
+        }
+
+        $this->output->set_header('Access-Control-Allow-Origin:*')
+            ->set_header('Access-Control-Allow-Methods:GET,POST,PUT')
+            ->set_header('Access-Control-Allow-Headers: x-requested-with,content-type')
+            ->set_output($res);
+    }
+
+    public function getIp()
+    {
+
+        if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+            $cip = $_SERVER["HTTP_CLIENT_IP"];
+        } else if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else if (!empty($_SERVER["REMOTE_ADDR"])) {
+            $cip = $_SERVER["REMOTE_ADDR"];
+        } else {
+            $cip = '';
+        }
+        preg_match("/[\d\.]{7,15}/", $cip, $cips);
+        $cip = isset($cips[0]) ? $cips[0] : 'unknown';
+        unset($cips);
+
+        return $cip;
+    }
+}
