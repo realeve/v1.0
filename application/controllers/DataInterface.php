@@ -565,7 +565,7 @@ M:
         }
         //$strUrl = 'http://10.8.2.111/RootObjWebService.asmx/SendNotify?strReceiver='.$req['receiver'].'&bstrTitle='.$req['title'].'&DelayTime='.$req['delaytime'].'&bstrMsg='.$req['msg'];
 
-        $strUrl = 'http://10.8.2.111:8012/sendnotify.cgi?delaytime=' . $req['delaytime'] . '&title=' . $req['title'] . '&msg=' . $req['msg'] . '&receiver=' . $req['receiver'];
+        $strUrl = 'http://10.8.2.111:8012/sendnotify.cgi?delaytime=' . $req['delaytime'] . '&title=' . urlencode($req['title']) . '&msg=' . urlencode($req['msg']) . '&receiver=' . $req['receiver'];
 
         $ctx = stream_context_create(array(
             'http' => array(
