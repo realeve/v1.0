@@ -289,8 +289,9 @@
   }
 
   function handleAjaxData(data) {
-    data = data.replace(/\r\n/g, '<br>').replace(/\t/g, ' ').replace(/  */g, ' ').replace(/<br><br>/g, '<br>').replace(/<br> <br>/g, '<br>').replace(/\\/g, '、');
-    return jQuery.parseJSON(data);
+    data = data.replace(/\n/g, '<br>').replace(/\r/g, '<br>').replace(/\t/g, ' ').replace(/  */g, ' ').replace(/<br><br>/g, '<br>').replace(/<br> <br>/g, '<br>').replace(/\\/g, '、');
+    // return jQuery.parseJSON(data);
+    return JSON.parse(data);
   }
 
   //读取指定URL的JSON数据

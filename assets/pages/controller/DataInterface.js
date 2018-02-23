@@ -36,7 +36,7 @@ var DBSourse = [{
   text: '数据共享平台'
 }, {
   value: 12,
-  text: '检封装箱数据库'
+  text: '检封装箱系统'
 }];
 
 var isInited = false;

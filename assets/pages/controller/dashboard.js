@@ -283,10 +283,10 @@ var dashboardApp = function() {
 			};
 
 			//当天生产的其它产品
-			//282
+			//319
 			//select a.id,a.CartNumber,GoodRate,FormatPos1,ErrCount1,ImgVerify1 from MaHouData a INNER JOIN (SELECT ProduceDate,MachineID FROM MaHouData where CartNumber = '1620C217') b on a.MachineID = b.MachineID and a.ProduceDate = b.ProduceDate order by a.id
-			var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=282&M=3&cart=" + olData.data[id][0];
-			//url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=282&M=3&cart=1620A285';
+			var url = getRootPath(1) + "/DataInterface/Api?Token=" + config.TOKEN + "&ID=319&M=3&cart=" + olData.data[id][0];
+			//url = getRootPath(1) + '/DataInterface/Api?Token=' + config.TOKEN + '&ID=319&M=3&cart=1620A285';
 			$.ajax({
 					url: url
 				})

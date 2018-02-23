@@ -1,440 +1,440 @@
 {
-    "normal": {
-        "basis_weight": {
-            "min": 87.5,
-            "max": 92.5,
-            "score": 0.5,
-            "w_min": 87.3,
-            "w_max": 92.7
-        },
-        "thickness": {
-            "min": 102,
-            "max": 113,
-            "score": 0.5,
-            "w_min": 102,
-            "w_max": 113
-        },
-        "horz_thickness_delta": {
-            "min": 0,
-            "max": 6,
-            "score": 0.75,
-            "w_min": 0,
-            "w_max": 6
-        },
-        "avg_break_length": {
-            "min": 6000,
-            "score": 0.75,
-            "w_min": 5500
-        },
-        "tensile_strength_wet": {
-            "min": 25,
-            "max": 45,
-            "score": 0.75,
-            "w_min": 25,
-            "w_max": 45
-        },
-        "fold_val_avg": {
-            "min": 2200,
-            "score": 1,
-            "w_min": 2000
-        },
-        "whiteness": {
-            "min": 80,
-            "max": 84,
-            "score": 0.5,
-            "w_min": 80,
-            "w_max": 84
-        },
-        "opacity": {
-            "min": 85,
-            "score": 0.5,
-            "w_min": 85
-        },
-        "moisture_content": {
-            "min": 5,
-            "max": 7,
-            "score": 0.5,
-            "w_min": 5,
-            "w_max": 7
-        },
-        "moisture_delta": {
-            "max": 1,
-            "score": 0.5,
-            "w_max": 1
-        },
-        "smoothness_avg": {
-            "min": 10,
-            "score": 0.75,
-            "w_min": 10
-        },
-        "deflection_ver": {
-            "min": 90,
-            "score": 0.5,
-            "w_min": 90
-        },
-        "deflection_horz": {
-            "min": 40,
-            "score": 0.5,
-            "w_min": 40
-        },
-        "tearing_ver": {
-            "min": 650,
-            "score": 0.5,
-            "w_min": 650
-        },
-        "porosity": {
-            "min": 0,
-            "max": 15,
-            "score": 0.75,
-            "w_max": 20
-        },
-        "anti_crumpled_dry": {
-            "min": 16,
-            "score": 2,
-            "w_min": 16
-        },
-        "fibre_tz2": {
-            "min": 40,
-            "max": 60,
-            "score": 2,
-            "w_min": 40,
-            "w_max": 60
-        },
-        "wet_deformation_horz": {
-            "min": 0,
-            "max": 3,
-            "score": 0.75,
-            "w_min": 0,
-            "w_max": 3
-        },
-        "wet_deformation_ver": {
-            "min": -0.25,
-            "max": 0.25,
-            "score": 0.75,
-            "w_min": -0.25,
-            "w_max": 0.25
-        },
-        "water_imbibition": {
-            "min": 40,
-            "max": 70,
-            "score": 0.5,
-            "w_min": 40,
-            "w_max": 70
-        },
-        "PH_val": {
-            "min": 7,
-            "max": 8.5,
-            "score": 0.5,
-            "w_min": 7,
-            "w_max": 8.5
-        },
-        "sur_Strength": {
-            "min": 2.5,
-            "score": 2,
-            "w_min": 2.5
-        },
-        "sur_oil_imbibition": {
-            "min": 40,
-            "max": 50,
-            "score": 0.75,
-            "w_min": 40,
-            "w_max": 50
-        }
+  "normal": {
+    "basis_weight": {
+      "min": 87.5,
+      "max": 92.5,
+      "score": 0.5,
+      "w_min": 87.3,
+      "w_max": 92.7
     },
-    "9602A": {
-        "basis_weight": {
-            "min": 87.5,
-            "max": 92.5,
-            "score": 0.5,
-            "w_min": 87.3,
-            "w_max": 92.7
-        },
-        "thickness": {
-            "min": 102,
-            "max": 113,
-            "score": 0.5,
-            "w_min": 102,
-            "w_max": 113
-        },
-        "horz_thickness_delta": {
-            "min": 0,
-            "max": 6,
-            "score": 0.75,
-            "w_min": 0,
-            "w_max": 6
-        },
-        "avg_break_length": {
-            "min": 6000,
-            "score": 0.75,
-            "w_min": 5500
-        },
-        "tensile_strength_wet": {
-            "min": 25,
-            "max": 45,
-            "score": 0.75,
-            "w_min": 25,
-            "w_max": 45
-        },
-        "fold_val_avg": {
-            "min": 2200,
-            "score": 1,
-            "w_min": 2000
-        },
-        "whiteness": {
-            "min": 80,
-            "max": 84,
-            "score": 0.5,
-            "w_min": 80,
-            "w_max": 84
-        },
-        "opacity": {
-            "min": 85,
-            "score": 0.5,
-            "w_min": 85
-        },
-        "moisture_content": {
-            "min": 5,
-            "max": 7,
-            "score": 0.5,
-            "w_min": 5,
-            "w_max": 7
-        },
-        "moisture_delta": {
-            "max": 1,
-            "score": 0.5,
-            "w_max": 1
-        },
-        "smoothness_avg": {
-            "min": 10,
-            "score": 0.75,
-            "w_min": 10
-        },
-        "deflection_ver": {
-            "min": 90,
-            "score": 0.5,
-            "w_min": 90
-        },
-        "deflection_horz": {
-            "min": 40,
-            "score": 0.5,
-            "w_min": 40
-        },
-        "tearing_ver": {
-            "min": 650,
-            "score": 0.5,
-            "w_min": 650
-        },
-        "porosity": {
-            "min": 0,
-            "max": 15,
-            "score": 0.75,
-            "w_max": 20
-        },
-        "fibre_tz2": {
-            "min": 40,
-            "max": 60,
-            "score": 2,
-            "w_min": 40,
-            "w_max": 60
-        },
-        "wet_deformation_horz": {
-            "min": 0,
-            "max": 3,
-            "score": 0.75,
-            "w_min": 0,
-            "w_max": 3
-        },
-        "wet_deformation_ver": {
-            "min": -0.25,
-            "max": 0.25,
-            "score": 0.75,
-            "w_min": -0.25,
-            "w_max": 0.25
-        },
-        "water_imbibition": {
-            "min": 40,
-            "max": 70,
-            "score": 0.5,
-            "w_min": 40,
-            "w_max": 70
-        },
-        "PH_val": {
-            "min": 7,
-            "max": 8.5,
-            "score": 0.5,
-            "w_min": 7,
-            "w_max": 8.5
-        },
-        "sur_Strength": {
-            "min": 2.5,
-            "score": 2,
-            "w_min": 2.5
-        },
-        "sur_oil_imbibition": {
-            "min": 40,
-            "max": 50,
-            "score": 0.75,
-            "w_min": 40,
-            "w_max": 50
-        }
+    "thickness": {
+      "min": 102,
+      "max": 113,
+      "score": 0.5,
+      "w_min": 102,
+      "w_max": 113
     },
-    "9607T": {
-        "basis_weight": {
-            "min": 92.5,
-            "max": 97.5,
-            "score": 0.5,
-            "w_min": 92.15,
-            "w_max": 97.85
-        },
-        "thickness": {
-            "min": 107,
-            "max": 118,
-            "score": 0.5,
-            "w_min": 107,
-            "w_max": 118
-        },
-        "horz_thickness_delta": {
-            "min": 0,
-            "max": 6,
-            "score": 0.75,
-            "w_min": 0,
-            "w_max": 6
-        },
-        "avg_break_length": {
-            "min": 6500,
-            "score": 0.75,
-            "w_min": 6000
-        },
-        "tensile_strength_wet": {
-            "min": 25,
-            "max": 45,
-            "score": 0.75,
-            "w_min": 25,
-            "w_max": 45
-        },
-        "fold_val_avg": {
-            "min": 2200,
-            "score": 1,
-            "w_min": 2000
-        },
-        "whiteness": {
-            "min": 81,
-            "max": 85,
-            "score": 0.5,
-            "w_min": 81,
-            "w_max": 85
-        },
-        "opacity": {
-            "min": 85,
-            "score": 0.5,
-            "w_min": 85
-        },
-        "moisture_content": {
-            "min": 5,
-            "max": 7,
-            "score": 0.5,
-            "w_min": 5,
-            "w_max": 7
-        },
-        "moisture_delta": {
-            "max": 1,
-            "score": 0.5,
-            "w_max": 1
-        },
-        "smoothness_avg": {
-            "min": 10,
-            "score": 0.75,
-            "w_min": 10
-        },
-        "deflection_ver": {
-            "min": 90,
-            "score": 0.5,
-            "w_min": 90
-        },
-        "deflection_horz": {
-            "min": 40,
-            "score": 0.5,
-            "w_min": 40
-        },
-        "tearing_ver": {
-            "min": 650,
-            "score": 0.5,
-            "w_min": 650
-        },
-        "porosity": {
-            "min": 0,
-            "max": 15,
-            "score": 0.75,
-            "w_max": 20
-        },
-        "anti_crumpled_dry": {
-            "min": 16,
-            "score": 2,
-            "w_min": 16
-        },
-        "fibre_tz12": {
-            "min": 40,
-            "max": 60,
-            "score": 2,
-            "w_min": 40,
-            "w_max": 60
-        },
-        "fibre_tz2": {
-            "min": 40,
-            "max": 60,
-            "score": 2,
-            "w_min": 40,
-            "w_max": 60
-        },
-        "wet_deformation_horz": {
-            "min": 0,
-            "max": 3,
-            "score": 0.75,
-            "w_min": 0,
-            "w_max": 3
-        },
-        "wet_deformation_ver": {
-            "min": -0.25,
-            "max": 0.25,
-            "score": 0.75,
-            "w_min": -0.25,
-            "w_max": 0.25
-        },
-        "water_imbibition": {
-            "min": 40,
-            "max": 70,
-            "score": 0.5,
-            "w_min": 40,
-            "w_max": 70
-        },
-        "PH_val": {
-            "min": 7,
-            "max": 8.5,
-            "score": 0.5,
-            "w_min": 7,
-            "w_max": 8.5
-        },
-        "sur_Strength": {
-            "min": 2.5,
-            "score": 2,
-            "w_min": 2.5
-        },
-        "sur_oil_imbibition": {
-            "min": 40,
-            "max": 50,
-            "score": 0.75,
-            "w_min": 40,
-            "w_max": 50
-        },
-        "crumpled_porosity_front": {
-            "min": 0,
-            "max": 200,
-            "score": 0.5
-        },
-        "crumpled_porosity_back": {
-            "min": 0,
-            "max": 200,
-            "score": 0.5
-        }
+    "horz_thickness_delta": {
+      "min": 0,
+      "max": 6,
+      "score": 0.75,
+      "w_min": 0,
+      "w_max": 6
+    },
+    "avg_break_length": {
+      "min": 6000,
+      "score": 0.75,
+      "w_min": 5500
+    },
+    "tensile_strength_wet": {
+      "min": 25,
+      "max": 45,
+      "score": 0.75,
+      "w_min": 25,
+      "w_max": 45
+    },
+    "fold_val_avg": {
+      "min": 2200,
+      "score": 1,
+      "w_min": 2000
+    },
+    "whiteness": {
+      "min": 80,
+      "max": 84,
+      "score": 0.5,
+      "w_min": 80,
+      "w_max": 84
+    },
+    "opacity": {
+      "min": 85,
+      "score": 0.5,
+      "w_min": 85
+    },
+    "moisture_content": {
+      "min": 5,
+      "max": 7,
+      "score": 0.5,
+      "w_min": 5,
+      "w_max": 7
+    },
+    "moisture_delta": {
+      "max": 1,
+      "score": 0.5,
+      "w_max": 1
+    },
+    "smoothness_avg": {
+      "min": 10,
+      "score": 0.75,
+      "w_min": 10
+    },
+    "deflection_ver": {
+      "min": 90,
+      "score": 0.5,
+      "w_min": 90
+    },
+    "deflection_horz": {
+      "min": 40,
+      "score": 0.5,
+      "w_min": 40
+    },
+    "tearing_ver": {
+      "min": 650,
+      "score": 0.5,
+      "w_min": 650
+    },
+    "porosity": {
+      "min": 0,
+      "max": 15,
+      "score": 0.75,
+      "w_max": 20
+    },
+    "anti_crumpled_dry": {
+      "min": 16,
+      "score": 2,
+      "w_min": 16
+    },
+    "fibre_tz2": {
+      "min": 40,
+      "max": 60,
+      "score": 2,
+      "w_min": 40,
+      "w_max": 60
+    },
+    "wet_deformation_horz": {
+      "min": 0,
+      "max": 3,
+      "score": 0.75,
+      "w_min": 0,
+      "w_max": 3
+    },
+    "wet_deformation_ver": {
+      "min": -0.25,
+      "max": 0.25,
+      "score": 0.75,
+      "w_min": -0.25,
+      "w_max": 0.25
+    },
+    "water_imbibition": {
+      "min": 40,
+      "max": 70,
+      "score": 0.5,
+      "w_min": 40,
+      "w_max": 70
+    },
+    "PH_val": {
+      "min": 7,
+      "max": 8.5,
+      "score": 0.5,
+      "w_min": 7,
+      "w_max": 8.5
+    },
+    "sur_Strength": {
+      "min": 2.5,
+      "score": 2,
+      "w_min": 2.5
+    },
+    "sur_oil_imbibition": {
+      "min": 40,
+      "max": 50,
+      "score": 0.75,
+      "w_min": 40,
+      "w_max": 50
     }
+  },
+  "9602A": {
+    "basis_weight": {
+      "min": 87.5,
+      "max": 92.5,
+      "score": 0.5,
+      "w_min": 87.3,
+      "w_max": 92.7
+    },
+    "thickness": {
+      "min": 102,
+      "max": 113,
+      "score": 0.5,
+      "w_min": 102,
+      "w_max": 113
+    },
+    "horz_thickness_delta": {
+      "min": 0,
+      "max": 6,
+      "score": 0.75,
+      "w_min": 0,
+      "w_max": 6
+    },
+    "avg_break_length": {
+      "min": 6000,
+      "score": 0.75,
+      "w_min": 5500
+    },
+    "tensile_strength_wet": {
+      "min": 25,
+      "max": 45,
+      "score": 0.75,
+      "w_min": 25,
+      "w_max": 45
+    },
+    "fold_val_avg": {
+      "min": 2200,
+      "score": 1,
+      "w_min": 2000
+    },
+    "whiteness": {
+      "min": 80,
+      "max": 84,
+      "score": 0.5,
+      "w_min": 80,
+      "w_max": 84
+    },
+    "opacity": {
+      "min": 85,
+      "score": 0.5,
+      "w_min": 85
+    },
+    "moisture_content": {
+      "min": 5,
+      "max": 7,
+      "score": 0.5,
+      "w_min": 5,
+      "w_max": 7
+    },
+    "moisture_delta": {
+      "max": 1,
+      "score": 0.5,
+      "w_max": 1
+    },
+    "smoothness_avg": {
+      "min": 10,
+      "score": 0.75,
+      "w_min": 10
+    },
+    "deflection_ver": {
+      "min": 90,
+      "score": 0.5,
+      "w_min": 90
+    },
+    "deflection_horz": {
+      "min": 40,
+      "score": 0.5,
+      "w_min": 40
+    },
+    "tearing_ver": {
+      "min": 650,
+      "score": 0.5,
+      "w_min": 650
+    },
+    "porosity": {
+      "min": 0,
+      "max": 15,
+      "score": 0.75,
+      "w_max": 20
+    },
+    "fibre_tz2": {
+      "min": 40,
+      "max": 60,
+      "score": 2,
+      "w_min": 40,
+      "w_max": 60
+    },
+    "wet_deformation_horz": {
+      "min": 0,
+      "max": 3,
+      "score": 0.75,
+      "w_min": 0,
+      "w_max": 3
+    },
+    "wet_deformation_ver": {
+      "min": -0.25,
+      "max": 0.25,
+      "score": 0.75,
+      "w_min": -0.25,
+      "w_max": 0.25
+    },
+    "water_imbibition": {
+      "min": 40,
+      "max": 70,
+      "score": 0.5,
+      "w_min": 40,
+      "w_max": 70
+    },
+    "PH_val": {
+      "min": 7,
+      "max": 8.5,
+      "score": 0.5,
+      "w_min": 7,
+      "w_max": 8.5
+    },
+    "sur_Strength": {
+      "min": 2.5,
+      "score": 2,
+      "w_min": 2.5
+    },
+    "sur_oil_imbibition": {
+      "min": 40,
+      "max": 50,
+      "score": 0.75,
+      "w_min": 40,
+      "w_max": 50
+    }
+  },
+  "9607T": {
+    "basis_weight": {
+      "min": 92.5,
+      "max": 97.5,
+      "score": 0.5,
+      "w_min": 92.15,
+      "w_max": 97.85
+    },
+    "thickness": {
+      "min": 107,
+      "max": 118,
+      "score": 0.5,
+      "w_min": 107,
+      "w_max": 118
+    },
+    "horz_thickness_delta": {
+      "min": 0,
+      "max": 6,
+      "score": 0.75,
+      "w_min": 0,
+      "w_max": 6
+    },
+    "avg_break_length": {
+      "min": 6000,
+      "score": 0.75,
+      "w_min": 5500
+    },
+    "tensile_strength_wet": {
+      "min": 25,
+      "max": 45,
+      "score": 0.75,
+      "w_min": 25,
+      "w_max": 45
+    },
+    "fold_val_avg": {
+      "min": 2200,
+      "score": 1,
+      "w_min": 2000
+    },
+    "whiteness": {
+      "min": 81,
+      "max": 85,
+      "score": 0.5,
+      "w_min": 81,
+      "w_max": 85
+    },
+    "opacity": {
+      "min": 85,
+      "score": 0.5,
+      "w_min": 85
+    },
+    "moisture_content": {
+      "min": 5,
+      "max": 7,
+      "score": 0.5,
+      "w_min": 5,
+      "w_max": 7
+    },
+    "moisture_delta": {
+      "max": 1,
+      "score": 0.5,
+      "w_max": 1
+    },
+    "smoothness_avg": {
+      "min": 10,
+      "score": 0.75,
+      "w_min": 10
+    },
+    "deflection_ver": {
+      "min": 90,
+      "score": 0.5,
+      "w_min": 90
+    },
+    "deflection_horz": {
+      "min": 40,
+      "score": 0.5,
+      "w_min": 40
+    },
+    "tearing_ver": {
+      "min": 650,
+      "score": 0.5,
+      "w_min": 650
+    },
+    "porosity": {
+      "min": 0,
+      "max": 15,
+      "score": 0.75,
+      "w_max": 20
+    },
+    "anti_crumpled_dry": {
+      "min": 16,
+      "score": 2,
+      "w_min": 16
+    },
+    "fibre_tz12": {
+      "min": 40,
+      "max": 60,
+      "score": 2,
+      "w_min": 40,
+      "w_max": 60
+    },
+    "fibre_tz2": {
+      "min": 40,
+      "max": 60,
+      "score": 2,
+      "w_min": 40,
+      "w_max": 60
+    },
+    "wet_deformation_horz": {
+      "min": 0,
+      "max": 3,
+      "score": 0.75,
+      "w_min": 0,
+      "w_max": 3
+    },
+    "wet_deformation_ver": {
+      "min": -0.25,
+      "max": 0.25,
+      "score": 0.75,
+      "w_min": -0.25,
+      "w_max": 0.25
+    },
+    "water_imbibition": {
+      "min": 40,
+      "max": 70,
+      "score": 0.5,
+      "w_min": 40,
+      "w_max": 70
+    },
+    "PH_val": {
+      "min": 7,
+      "max": 8.5,
+      "score": 0.5,
+      "w_min": 7,
+      "w_max": 8.5
+    },
+    "sur_Strength": {
+      "min": 2.5,
+      "score": 2,
+      "w_min": 2.5
+    },
+    "sur_oil_imbibition": {
+      "min": 40,
+      "max": 50,
+      "score": 0.75,
+      "w_min": 40,
+      "w_max": 50
+    },
+    "crumpled_porosity_front": {
+      "min": 0,
+      "max": 200,
+      "score": 0.5
+    },
+    "crumpled_porosity_back": {
+      "min": 0,
+      "max": 200,
+      "score": 0.5
+    }
+  }
 }

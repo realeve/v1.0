@@ -233,7 +233,7 @@ var PaperParamAbnormal = function() {
 
 		var vRules = validateRule('theForm');
 		vRules.reel_code = {
-			minlength: 7,
+			minlength: 5,
 			maxlength: 7,
 			number: true,
 			required: true

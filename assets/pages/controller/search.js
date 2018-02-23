@@ -108,7 +108,7 @@ var search = function() {
 
     var gzInfo = getCodeRange(str, strProd);
 
-    var gz = [/^[A-Za-z]{2}\d{4}$/, /^[A-Za-z]\d[A-Za-z]\d{3}$/, /^[A-Za-z]\d{2}[A-Za-z]\d{2}$/, /^[A-Za-z]\d{3}[A-Za-z]\d$/, /^[A-Za-z]\d{4}[A-Za-z]$/];
+    var gz = [/^[A-Za-z]{2}\d{4}$/, /^[A-Za-z]\d[A-Za-z]\d{3}$/, /^[A-Za-z]\d{2}[A-Za-z]\d{2}$/, /^[A-Za-z]\d{3}[A-Za-z]\d$/, /^[A-Za-z]\d{4}[A-Za-z]\$/];
 
     for (var i = 0; i < gz.length; i++) {
       if (gz[i].test(str)) {

@@ -299,7 +299,9 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           label: {
             show: true,
             position: (objRequest.reverse) ? 'insideRight' : 'insideTop', //top//'insideRight' : 'insideTop'
-            formatter: '{c}'
+            "formatter": function(param) {
+              return param.value == 0 ? '' : param.value;
+            }
           },
           barBorderRadius: (objRequest.reverse) ? [0, 2, 2, 0] : [2, 2, 0, 0],
           borderColor: "rgba(255,255,255,0.95)",
@@ -355,7 +357,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             "type": objRequest.type,
             "smooth": objRequest.smooth,
             "barMaxWidth": objRequest.barMaxWidth,
-            "barMinHeight": 15,
+            // "barMinHeight": 15,
             "data": haveLegend ? elem.slice(1, elem.length) : elem,
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
@@ -483,7 +485,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
             "type": objRequest.type,
             "smooth": objRequest.smooth,
             "barMaxWidth": objRequest.barMaxWidth,
-            "barMinHeight": 15,
+            // "barMinHeight": 15,
             "data": NewData.yAxis[NewData.legend[i]],
             //"markPoint": MPtStyle,
             //"markLine": MLnStyle_avg,
@@ -596,7 +598,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
-          "barMinHeight": 15,
+          // "barMinHeight": 15,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,
@@ -712,7 +714,7 @@ define(['../plugins/echarts/js/extension/dataTool.min', '../plugins/echarts/js/e
           "type": objRequest.type,
           "smooth": objRequest.smooth,
           "barMaxWidth": objRequest.barMaxWidth,
-          "barMinHeight": 15,
+          // "barMinHeight": 15,
           "data": NewData.yAxis,
           //"markPoint": MPtStyle,
           //"markLine": MLnStyle_avg,

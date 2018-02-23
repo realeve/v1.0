@@ -108,39 +108,39 @@ var dataTable = function() {
   //生成表格头
 
   // function CreateTableHead(Data) {
-  //  var strHead = '<tr role="row">';
-  //  var iWidth = 100 / Data.cols;
-  //  var strThstart;
-  //  for (var i = 0; i < Data.cols; i++) {
-  //    if (i == 1) {
-  //      strThstart = '<th data-column-index="' + i + '" class="sorting_asc" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以降序排列此列" style="width: ' + iWidth + '%">';
-  //    } else {
-  //      strThstart = '<th data-column-index="' + i + '" class="sorting" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以升序排列此列" style="width: ' + iWidth + '%">';
-  //    }
+  // 	var strHead = '<tr role="row">';
+  // 	var iWidth = 100 / Data.cols;
+  // 	var strThstart;
+  // 	for (var i = 0; i < Data.cols; i++) {
+  // 		if (i == 1) {
+  // 			strThstart = '<th data-column-index="' + i + '" class="sorting_asc" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以降序排列此列" style="width: ' + iWidth + '%">';
+  // 		} else {
+  // 			strThstart = '<th data-column-index="' + i + '" class="sorting" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以升序排列此列" style="width: ' + iWidth + '%">';
+  // 		}
 
-  //    var strTR = strThstart + Data.header[i].title + '</th>';
-  //    strHead += strTR;
-  //  }
-  //  strHead += '</tr>';
-  //  return strHead;
+  // 		var strTR = strThstart + Data.header[i].title + '</th>';
+  // 		strHead += strTR;
+  // 	}
+  // 	strHead += '</tr>';
+  // 	return strHead;
   // }
   // //生成表格体
 
   // function CreateTableBody(Data) {
-  //  var strRow = '<tr role="row" class="odd">';
-  //  var strTR, i;
-  //  for (i = 0; i < Data.cols; i++) {
-  //    strTR = '<td></td>';
-  //    strRow += strTR;
-  //  }
-  //  strRow += '</tr>';
-  //  strRow += '<tr role="row" class="even">';
-  //  for (i = 0; i < Data.cols; i++) {
-  //    strTR = '<td></td>';
-  //    strRow += strTR;
-  //  }
-  //  strRow += '</tr>';
-  //  return strRow;
+  // 	var strRow = '<tr role="row" class="odd">';
+  // 	var strTR, i;
+  // 	for (i = 0; i < Data.cols; i++) {
+  // 		strTR = '<td></td>';
+  // 		strRow += strTR;
+  // 	}
+  // 	strRow += '</tr>';
+  // 	strRow += '<tr role="row" class="even">';
+  // 	for (i = 0; i < Data.cols; i++) {
+  // 		strTR = '<td></td>';
+  // 		strRow += strTR;
+  // 	}
+  // 	strRow += '</tr>';
+  // 	return strRow;
   // }
   var getLanguage = function() {
     return {
@@ -229,17 +229,15 @@ var dataTable = function() {
     var initData;
     var date = getDateRange();
     var filename = Data.title + '(' + date.start + ' - ' + date.end + ')';
-
     if (location.hash.indexOf('cart') > -1) {
-      filename = ' ' + Data.title;
+      filename = '';
     }
-
     initData = {
       //"bDestroy":true,
       "bRetrieve": true,
       "language": language,
       /*"order": [
-        [1, 'asc']
+      	[1, 'asc']
       ],*/
       "lengthMenu": [
         [5, 10, 15, 20, 50, 100, -1],
@@ -278,7 +276,8 @@ var dataTable = function() {
         exportOptions: {
           columns: ':visible'
         },
-        filename: filename
+        filename: filename,
+        charset: 'ANSI'
       }, {
         extend: 'excelHtml5',
         className: "btn yellow sbold btn-outline ",
@@ -289,11 +288,11 @@ var dataTable = function() {
       }, {
         extend: 'csvHtml5',
         className: "btn purple sbold btn-outline ",
+        filedBoundary: ' ',
+        escapeChar: ' ',
         exportOptions: {
           columns: ':visible'
         },
-        fieldBoundary: '',
-        escapeChar: '',
         filename: filename
       }, {
         extend: 'print',
@@ -323,18 +322,18 @@ var dataTable = function() {
       "aoColumns": Data.header, //idxColumn.concat(Data.header),
       "data": Data.data, //convData,
       /*"columnDefs": [{
-        "searchable": false,
-        "orderable": false,
-        "targets": 0
+      	"searchable": false,
+      	"orderable": false,
+      	"targets": 0
       }],*/
       searchHighlight: true, //高亮
       colReorder: {
         realtime: true,
       },
       /*fixedHeader: {
-        header: true,
-        footer: true,
-        headerOffset: Data.fixedHeaderOffset,
+      	header: true,
+      	footer: true,
+      	headerOffset: Data.fixedHeaderOffset,
       },*/
       scroolY: '70v',
       scrollCollapse: true,
@@ -371,35 +370,35 @@ var dataTable = function() {
         updateSelect2(this, tableID);
 
         // api.on('order.dt search.dt', function() {
-        //  api.column(0, {
-        //    "search": 'applied',
-        //    "order": 'applied'
-        //  }).nodes().each(function(cell, i) {
-        //    cell.innerHTML = i + 1;
-        //  });
-        //  console.log(api.column(2, {
-        //    "search": 'applied',
-        //    "order": 'applied'
-        //  }).nodes());
+        // 	api.column(0, {
+        // 		"search": 'applied',
+        // 		"order": 'applied'
+        // 	}).nodes().each(function(cell, i) {
+        // 		cell.innerHTML = i + 1;
+        // 	});
+        // 	console.log(api.column(2, {
+        // 		"search": 'applied',
+        // 		"order": 'applied'
+        // 	}).nodes());
         // }).draw();
       }
     };
 
     // if (Data.rows > 0) {
-    //  var data = Data.data[0];
-    //  var cartList = [];
-    //  data.map(function(item, i) {
-    //    if (judgeSearchType(item) == config.search.CART) {
-    //      cartList.push(i);
-    //    }
-    //  });
-    //  if (cartList.length) {
-    //    initData.rowCallback = function(row, data, index) {
-    //      cartList.map(function(i) {
-    //        $(row).find('td:nth(' + i + ')').html('<a href="./search#' + data[i] + '" target="_blank" title="点击查看生产详情">' + data[i] + '</a>');
-    //      });
-    //    };
-    //  }
+    // 	var data = Data.data[0];
+    // 	var cartList = [];
+    // 	data.map(function(item, i) {
+    // 		if (judgeSearchType(item) == config.search.CART) {
+    // 			cartList.push(i);
+    // 		}
+    // 	});
+    // 	if (cartList.length) {
+    // 		initData.rowCallback = function(row, data, index) {
+    // 			cartList.map(function(i) {
+    // 				$(row).find('td:nth(' + i + ')').html('<a href="./search#' + data[i] + '" target="_blank" title="点击查看生产详情">' + data[i] + '</a>');
+    // 			});
+    // 		};
+    // 	}
     // }
 
     if (bFixhead) {
@@ -437,7 +436,7 @@ var dataTable = function() {
         },
         download: 'open',
         className: "btn dark sbold btn-outline",
-        filename: filename
+        filename: Data.title + '(' + date.start + ' - ' + date.end + ')'
       };
       if (getUrlParam('download') !== null) {
         option.download = 'download';
@@ -453,8 +452,8 @@ var dataTable = function() {
   }
 
   /*
-  DataType:Array/Json.
-  其中Json直接将URL传入值即可，但Model中查询代码不能为中文,视图中需要定义表头
+	DataType:Array/Json.
+	其中Json直接将URL传入值即可，但Model中查询代码不能为中文,视图中需要定义表头
 */
 
   function CreateTable(tableID, Data, bFixhead) {
@@ -524,23 +523,20 @@ var dataTable = function() {
     var table = $(tableID);
     //更新表格相关信息
     var filename = Data.title;
-
     if (location.hash.indexOf('cart') > -1) {
       var cart = location.hash.replace('#cart=', '').toUpperCase();
       filename = cart + ' ' + Data.title;
     }
-
     table.parents('.portlet').find('[name="TableTitle"]').text(filename);
     table.parents('.portlet').find('[name="datasource"]').text('(' + Data.source + ')');
 
     //$('.page-title [name="TableTitle"]').text(Data.title);
     //$('#today').text(Data.source);
 
-    // if (Data.cols < 2) {
-    //   bsTips("请确保数据列在2列以上，当前为：" + Data.cols);
-    //   return;
-    // }
-
+    /*if (Data.cols < 2) {
+      bsTips("请确保数据列在2列以上，当前为：" + Data.cols);
+      return;
+    }*/
 
     clearTableData(table);
 
@@ -584,7 +580,7 @@ var dataTable = function() {
         url: strUrl
       })
       .done(function(data) {
-        data = $.parseJSON(data);
+        data = handleAjaxData(data);
         renderDataTable(data, tableID, bFixhead);
         if (!config.info.qualitytable) {
           config.info.qualitytable = true;

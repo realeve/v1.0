@@ -187,7 +187,6 @@ var FakePiece = function() {
       checkStr = checkStr + ',"' + keyList[elem] + '":' + curVal;
     });
     checkStr += '}';
-    console.log(checkStr)
     return $.parseJSON(checkStr);
   }
 

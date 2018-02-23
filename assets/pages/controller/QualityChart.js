@@ -167,10 +167,12 @@
              //infoTips('系列名：' + params.seriesName + '\n数据名:' + params.name);
              switch (objRequest.drillType) {
                case 'cart':
-                 infoTips('查询车号:' + params.name);
+                 // infoTips('查询车号:' + params.name);
+                 window.open(getRootPath() + '/search#' + params.name);
                  break;
                case 'paper':
-                 infoTips('查询轴号:' + params.name);
+                 // infoTips('查询轴号:' + params.name);
+                 window.open(getRootPath() + '/search#' + params.name);
                  break;
              }
              return;
@@ -788,9 +790,9 @@
          $('#Preview').hide();
        }
        hideSidebarTool();
-       // 用户自定义图表
+       // 用户自定义类型
        if (App.getURLParameter('Token') != null) {
-         $('.page-title').html('<p style="padding:15px 0;"></p>');
+         $('.page-title').html('<p style="padding:15px 0;"></p>')
          document.title = '用户自定义图表';
        }
      });
