@@ -77,7 +77,7 @@ function handlePost()
                 $return['size'] = round($size / 1024, 2)+'kb';
                 $return['type'] = 'images/webp';
                 $return['url'] = '/image/' . $filename . '.webp';
-                $return['src'] = '/image/' . $filename . '.jpg';
+                // $return['src'] = '/image/' . $filename . '.jpg';
 
                 // 不删除原图片
                 if ($fileType !== '.jpg' && $fileType !== '.jpeg') {
