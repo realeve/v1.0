@@ -179,7 +179,7 @@
             }
           });
           msg = (type ? '今日' : '昨日(') + dateName + lastDay; // + theMonth;
-          msg += '[(点击此处查看详情)|http://10.8.2.133/MonthStatic.asp]';
+          msg += '[(点击此处查看详情)|http://10.8.2.133/qualitychart?tid=109&type=bar]';
         } else {
           res.status = 0;
           console.log('当前时间范围内无数据');
@@ -214,7 +214,7 @@
           for (var i = 0; i < 4; i++) {
             msg += json.data[i][0] + " : " + json.data[i][1] + " 大张/万\n";
           };
-          msg += '[(点击此处查看详情)|http://10.8.2.133/qualitydetail.asp]\n';
+          msg += '[(点击此处查看详情)|http://10.8.2.133/qualitychart?tid=137&type=bar]\n';
         } else {
           console.log("该时间内无相关数据");
           res.status = 0;

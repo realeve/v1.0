@@ -29,4 +29,35 @@ RewriteCond $1 !^(index.php|images|robots\.txt)
 
 RewriteRule ^(.*)$ /index.php/$1 [L]
 
+  # 1.不支持webp的浏览器自动由webp转到jpg
+  
+  RewriteCond %{HTTP_USER_AGENT} !.*Chrome.* [OR]
+  RewriteCond %{HTTP_USER_AGENT} .*Edge.*
+  RewriteCond %{DOCUMENT_ROOT}/$1/image/$3.jpg -f
+
+  # Serve WebP image instead
+  RewriteRule ^(.+)(/image/)(.+)\.(webp)$ /$1/image/$3.jpg [T=image/jpeg,E=accept:1]
+
+  # 2.支持webp的浏览器自动由jpg/png/bmp转到 webp
+  # Check if browser supports WebP images
+  RewriteCond %{HTTP_ACCEPT} image/webp
+
+  # Check if WebP replacement image exists
+  RewriteCond %{DOCUMENT_ROOT}/$1/image/$3.webp -f
+
+  # Serve WebP image instead
+  RewriteRule ^(.+)(/image/)(.+)\.(jpe?g|png|bmp)$ $1/image/$3.webp [T=image/webp,E=accept:1]
+
 </IfModule>
+
+<IfModule mod_headers.c>
+  Header append Vary Accept env=REDIRECT_accept
+	Header set Access-Control-Allow-Origin *
+	Header set Access-Control-Allow-Methods "GET,POST,OPTIONS,DELETE,PUT"
+    Header set Access-Control-Allow-Credentials true
+	Header set Access-Control-Allow-Headers "range,Authorization"
+	Header set Access-Control-Expose-Headers "Content-Length"
+	Header set Accept-Ranges bytes
+</IfModule>
+
+AddType image/webp .webp
