@@ -51,7 +51,7 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 </IfModule>
 
 <IfModule mod_headers.c>
-  Header append Vary Accept env=REDIRECT_accept
+	Header append Vary Accept env=REDIRECT_accept
 	Header set Access-Control-Allow-Origin *
 	Header set Access-Control-Allow-Methods "GET,POST,OPTIONS,DELETE,PUT"
     Header set Access-Control-Allow-Credentials true

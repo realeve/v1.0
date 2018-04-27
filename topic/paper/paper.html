@@ -18,7 +18,14 @@
     <style>
         tr th,tr td{
             font-size: 16px !important;
+			color:#333 !important;
         }
+		.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #e9f1f7;
+}
+		.portlet-body h4{
+		color:#333 !important;
+		font-weight:bold;}
     </style>
 </head>
 <!-- END HEAD -->
@@ -98,12 +105,12 @@
                                     <div class="col-md-7">
                                         <div class="col-md-12">
                                             <h4>机检好纸率</h4>
-                                            <table class="table table-hover table-light" id="goodrate">
+                                            <table class="table table-hover table-striped table-light" id="goodrate">
                                             </table>
                                         </div>
                                         <div class="col-md-12">
                                             <h4>在线抽检情况</h4>
-                                            <table class="table table-hover table-light" id="check">
+                                            <table class="table table-hover table-striped table-light" id="check">
                                             </table>
                                         </div>
                                     </div>
