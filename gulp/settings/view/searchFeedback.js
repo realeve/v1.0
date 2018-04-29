@@ -48,7 +48,8 @@ var index = {
 		"../assets/global/plugins/jquery-prettydate/i18n/jquery.prettydate-zh-CN.js",
 		"../assets/global/plugins/echarts/js/ThemeStyle.js",
 		"../assets/global/plugins/echarts/js/echarts.common.js",
-		"../assets/global/plugins/bootstrap-toastr/toastr.js"
+		"../assets/global/plugins/bootstrap-toastr/toastr.js",
+		"../assets/global/plugins/clipboard/clipboard.min.js"
 	]
 };
 module.exports = index;

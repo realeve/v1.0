@@ -51,7 +51,7 @@
      //配置图表库
      var mECharts = function() {
        var myChart = []; //任意个数的图表
-       var echarts, chartDataTool, Clipboard;
+       var echarts, chartDataTool, ClipboardJS;
        var iChartNums = (getUrlParam('tid') === null) ? 0 : getUrlParam('tid').split(',').length;
        var curTheme;
        var renderedChart = 0;
@@ -75,16 +75,16 @@
              "theme": "echarts/theme",
              "echarts": "echarts/js/echarts.min",
              "chartDataTool": "echarts/js/extension/chartDataTool.min",
-             "Clipboard": "clipboard/clipboard.min",
+             "ClipboardJS": "clipboard/clipboard.min",
              "regression": "echarts/js/extension/regression-js/regression.min"
            }
          });
 
-         require(["echarts", "chartDataTool", "Clipboard", "regression"], function(ec, dt, cp, regression) {
+         require(["echarts", "chartDataTool", "ClipboardJS", "regression"], function(ec, dt, cp, regression) {
            var defaultTheme;
            echarts = ec;
            chartDataTool = dt;
-           Clipboard = cp;
+           ClipboardJS = cp;
            /*if (typeof Cookies.get('eCharts_theme') == 'undefined') {
              defaultTheme = 'real2';
              Cookies.set('eCharts_theme', 'real2');
@@ -100,7 +100,7 @@
            }
 
            var handleClipboard = (function() {
-             var clipboard = new Clipboard('#share button');
+             var clipboard = new ClipboardJS('#share button');
              /*clipboard.on('success', function(e) {
                console.log(e);
              });

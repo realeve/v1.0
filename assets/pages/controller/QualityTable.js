@@ -650,7 +650,7 @@ jQuery(document).ready(function() {
   }
 
   //初始化表格
-  var clipboard = new Clipboard('#share button');
+  var clipboard = new ClipboardJS('#share button');
 
   if (App.getURLParameter('debug') == 1 || App.getURLParameter('tid') === null) {
     $('#Preview').show();

@@ -7,7 +7,7 @@
 
   <div class="cbp-item ${type}">
     <div class="cbp-item-wrapper">
-      <a href="${src}" class="cbp-caption cbp-lightbox hoverZoomLink" data-title="印码号: ${item[2]}<br>第${item[1]} 开<br>相机: ${item[0]}">
+      <a href="${src}" data-clipboard-action="copy" data-clipboard-text="${src}" class="cbp-caption cbp-lightbox hoverZoomLink" data-title="印码号: ${item[2]}<br>第${item[1]} 开<br>相机: ${item[0]}">
           <div class="cbp-caption-defaultWrap">
                 <img src="${src}">
           </div>
