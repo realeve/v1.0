@@ -44,17 +44,15 @@ function GetJsonUrl(id) {
     //用空格连接的情况
     if (val.indexOf(' ') != -1 && val.indexOf(',') == -1) {
       val = val.split(' ');
-      val = val.map(function(item) {
-        if (item.length > 0) {
-          return item;
-        }
+      val = val.filter(function(item) {
+        return item.length > 0
       });
       val = val.join(',');
     }
 
     //console.log(val.replace(/,/g, "','"));
     val = val.replace(/,/g, "','");
-    strUrl += '&' + multi + '=' + val + '&' + multi + '2=' + val;
+    strUrl += '&' + multi + '=' + val; // + '&' + multi + '2=' + val;
   }
 
   //console.log(strUrl);
