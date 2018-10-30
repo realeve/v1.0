@@ -43,10 +43,9 @@ function GetJsonUrl(id) {
     }
     //用空格连接的情况
     if (val.indexOf(' ') != -1 && val.indexOf(',') == -1) {
-      val = val.split(' ');
-      val = val.filter(function(item) {
+      val = val.trim().split(' ').filter(function(item) {
         return item.length > 0
-      });
+      })
       val = val.join(',');
     }
 
@@ -106,39 +105,39 @@ var dataTable = function() {
   //生成表格头
 
   // function CreateTableHead(Data) {
-  // 	var strHead = '<tr role="row">';
-  // 	var iWidth = 100 / Data.cols;
-  // 	var strThstart;
-  // 	for (var i = 0; i < Data.cols; i++) {
-  // 		if (i == 1) {
-  // 			strThstart = '<th data-column-index="' + i + '" class="sorting_asc" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以降序排列此列" style="width: ' + iWidth + '%">';
-  // 		} else {
-  // 			strThstart = '<th data-column-index="' + i + '" class="sorting" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以升序排列此列" style="width: ' + iWidth + '%">';
-  // 		}
+  //  var strHead = '<tr role="row">';
+  //  var iWidth = 100 / Data.cols;
+  //  var strThstart;
+  //  for (var i = 0; i < Data.cols; i++) {
+  //    if (i == 1) {
+  //      strThstart = '<th data-column-index="' + i + '" class="sorting_asc" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以降序排列此列" style="width: ' + iWidth + '%">';
+  //    } else {
+  //      strThstart = '<th data-column-index="' + i + '" class="sorting" tabindex="0" aria-controls="sample" rowspan="1" colspan="1" aria-label="' + Data.header[i].title + ': 以升序排列此列" style="width: ' + iWidth + '%">';
+  //    }
 
-  // 		var strTR = strThstart + Data.header[i].title + '</th>';
-  // 		strHead += strTR;
-  // 	}
-  // 	strHead += '</tr>';
-  // 	return strHead;
+  //    var strTR = strThstart + Data.header[i].title + '</th>';
+  //    strHead += strTR;
+  //  }
+  //  strHead += '</tr>';
+  //  return strHead;
   // }
   // //生成表格体
 
   // function CreateTableBody(Data) {
-  // 	var strRow = '<tr role="row" class="odd">';
-  // 	var strTR, i;
-  // 	for (i = 0; i < Data.cols; i++) {
-  // 		strTR = '<td></td>';
-  // 		strRow += strTR;
-  // 	}
-  // 	strRow += '</tr>';
-  // 	strRow += '<tr role="row" class="even">';
-  // 	for (i = 0; i < Data.cols; i++) {
-  // 		strTR = '<td></td>';
-  // 		strRow += strTR;
-  // 	}
-  // 	strRow += '</tr>';
-  // 	return strRow;
+  //  var strRow = '<tr role="row" class="odd">';
+  //  var strTR, i;
+  //  for (i = 0; i < Data.cols; i++) {
+  //    strTR = '<td></td>';
+  //    strRow += strTR;
+  //  }
+  //  strRow += '</tr>';
+  //  strRow += '<tr role="row" class="even">';
+  //  for (i = 0; i < Data.cols; i++) {
+  //    strTR = '<td></td>';
+  //    strRow += strTR;
+  //  }
+  //  strRow += '</tr>';
+  //  return strRow;
   // }
   var getLanguage = function() {
     return {
@@ -235,7 +234,7 @@ var dataTable = function() {
       "bRetrieve": true,
       "language": language,
       /*"order": [
-      	[1, 'asc']
+        [1, 'asc']
       ],*/
       "lengthMenu": [
         [5, 10, 15, 20, 50, 100, -1],
@@ -320,18 +319,18 @@ var dataTable = function() {
       "aoColumns": Data.header, //idxColumn.concat(Data.header),
       "data": Data.data, //convData,
       /*"columnDefs": [{
-      	"searchable": false,
-      	"orderable": false,
-      	"targets": 0
+        "searchable": false,
+        "orderable": false,
+        "targets": 0
       }],*/
       searchHighlight: true, //高亮
       colReorder: {
         realtime: true,
       },
       /*fixedHeader: {
-      	header: true,
-      	footer: true,
-      	headerOffset: Data.fixedHeaderOffset,
+        header: true,
+        footer: true,
+        headerOffset: Data.fixedHeaderOffset,
       },*/
       scroolY: '70v',
       scrollCollapse: true,
@@ -368,35 +367,35 @@ var dataTable = function() {
         updateSelect2(this, tableID);
 
         // api.on('order.dt search.dt', function() {
-        // 	api.column(0, {
-        // 		"search": 'applied',
-        // 		"order": 'applied'
-        // 	}).nodes().each(function(cell, i) {
-        // 		cell.innerHTML = i + 1;
-        // 	});
-        // 	console.log(api.column(2, {
-        // 		"search": 'applied',
-        // 		"order": 'applied'
-        // 	}).nodes());
+        //  api.column(0, {
+        //    "search": 'applied',
+        //    "order": 'applied'
+        //  }).nodes().each(function(cell, i) {
+        //    cell.innerHTML = i + 1;
+        //  });
+        //  console.log(api.column(2, {
+        //    "search": 'applied',
+        //    "order": 'applied'
+        //  }).nodes());
         // }).draw();
       }
     };
 
     // if (Data.rows > 0) {
-    // 	var data = Data.data[0];
-    // 	var cartList = [];
-    // 	data.map(function(item, i) {
-    // 		if (judgeSearchType(item) == config.search.CART) {
-    // 			cartList.push(i);
-    // 		}
-    // 	});
-    // 	if (cartList.length) {
-    // 		initData.rowCallback = function(row, data, index) {
-    // 			cartList.map(function(i) {
-    // 				$(row).find('td:nth(' + i + ')').html('<a href="./search#' + data[i] + '" target="_blank" title="点击查看生产详情">' + data[i] + '</a>');
-    // 			});
-    // 		};
-    // 	}
+    //  var data = Data.data[0];
+    //  var cartList = [];
+    //  data.map(function(item, i) {
+    //    if (judgeSearchType(item) == config.search.CART) {
+    //      cartList.push(i);
+    //    }
+    //  });
+    //  if (cartList.length) {
+    //    initData.rowCallback = function(row, data, index) {
+    //      cartList.map(function(i) {
+    //        $(row).find('td:nth(' + i + ')').html('<a href="./search#' + data[i] + '" target="_blank" title="点击查看生产详情">' + data[i] + '</a>');
+    //      });
+    //    };
+    //  }
     // }
 
     if (bFixhead) {
@@ -450,8 +449,8 @@ var dataTable = function() {
   }
 
   /*
-	DataType:Array/Json.
-	其中Json直接将URL传入值即可，但Model中查询代码不能为中文,视图中需要定义表头
+  DataType:Array/Json.
+  其中Json直接将URL传入值即可，但Model中查询代码不能为中文,视图中需要定义表头
 */
 
   function CreateTable(tableID, Data, bFixhead) {

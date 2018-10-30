@@ -12,7 +12,7 @@
 <![endif]-->
 <script src="../../assets/build/js/PaperPara.min.js"></script>
 <script type="text/javascript" src="../../assets/pages/controller/CommonFunctions.min.js"></script>
-<script type="text/javascript" src="../../assets/pages/controller/PaperPara.min.js"></script>
+<script type="text/javascript" src="../../assets/pages/controller/PaperPara.js"></script>
 <!--END MY LEVEL SCRIPT-->
 <!-- END JAVASCRIPTS -->
 </body>

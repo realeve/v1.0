@@ -194,21 +194,31 @@
 											</div>
 										</div>
 											<div class="form-group">
-												<label class="control-label col-md-3">拉力(纵) N</label>
+												<label class="control-label col-md-3">干抗张强度(KN/m)<br>拉力(纵向) N</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="pull_force_ver">
+											<span class="help-block"></span>
 											</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label col-md-3">拉力(横) N</label>
+												<label class="control-label col-md-3">干抗张强度(KN/m)<br>拉力(横向) N</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="pull_force_horz">
+											<span class="help-block"></span>
 											</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label col-md-3">拉力(湿) N</label>
+												<label class="control-label col-md-3">湿抗张强度(KN/m)<br>拉力(纵向) N</label>
 											<div class="col-md-9">
-												<input type="text" class="form-control" name="pull_force_wet">
+												<input type="text" class="form-control" name="pull_force_wet_ver">
+											<span class="help-block"></span>
+											</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3">湿抗张强度(KN/m)<br>拉力(横向) N</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" name="pull_force_wet_horz">
+											<span class="help-block"></span>
 											</div>
 											</div>
 										<div class="form-group">
@@ -259,6 +269,13 @@
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="control-label col-md-3">正背面色差(△E)</label>
+											<div class="col-md-9">
+											<input type="text" class="form-control" name="delta_e_fb">
+											<span class="help-block"></span>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-md-3">水分 %</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control"  name="moisture_content">
@@ -276,30 +293,46 @@
 											<label class="control-label col-md-3">尘埃 个/平米</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="dust">
-											<span class="help-block">0.1-0.7 m2 :100;0.7-1m2 :5;1m2以上 0 </span>
+											<span class="help-block">0.1-0.7 m2 :100;0.7 m2 以上 0 </span>
 											</div>
 										</div>
+									</div>
+									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3">平滑度(正) S</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="smoothness_front">
+											<span class="help-block"></span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">平滑度(反) S</label>
-										<div class="col-md-9">
-											<input type="text" class="form-control" name="smoothness_back">
+											<div class="col-md-9">
+												<input type="text" class="form-control" name="smoothness_back">
+											<span class="help-block"></span>
+											</div>
 										</div>
-										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label class="control-label col-md-3">平滑度(平均) S</label>
 											<div class="col-md-9">
 												<input type="text" class="form-control" name="smoothness_avg">
 												<span class="help-block">≥10</span>
 											</div>
+										</div> -->
+										<div class="form-group">
+											<label class="control-label col-md-3">粗糙度(正) (ml/min)</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" name="roughness_f">
+											<span class="help-block"></span>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3">粗糙度(反) (ml/min)</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" name="roughness_b">
+											<span class="help-block"></span>
+											</div>
+										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">湿变形(纵) %</label>
 										<div class="col-md-9">
@@ -336,6 +369,13 @@
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="control-label col-md-3">横向撕裂度 mN</label>
+											<div class="col-md-9">
+											<input type="text" class="form-control" name="tearing_hor">
+											<span class="help-block">≥750</span>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-md-3">透气度 ml/min</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="porosity">
@@ -357,7 +397,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3">干耐揉 次</label>
+											<label class="control-label col-md-3">安全线干耐揉 次</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="anti_crumpled_dry">
 											<span class="help-block">≥16</span>
@@ -436,7 +476,7 @@
 											</div>
 										</div>
 								</div> -->
-								<div class="form-group">
+								<div class="form-group hide">
 									<label class="control-label col-md-3">允许修改常规指标
 										<span class="required"> * </span>
 									</label>

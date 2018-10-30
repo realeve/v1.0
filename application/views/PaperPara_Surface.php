@@ -196,7 +196,7 @@
 								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox14" class="form-control" placeholder="开窗尺寸偏差">
-										<span class="help-block">不得超过标准窗口尺寸的1/3 </span>
+										<span class="help-block">不得超过标准窗口尺寸的±1.5mm </span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -210,13 +210,13 @@
 								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox16" class="form-control" placeholder="安全线细线">
-										<span class="help-block">不得低于：宽线≥1.7mm，窄线≥1.2mm </span>
+										<span class="help-block">超过安全线宽度偏差±0.2mm </span>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox17" class="form-control" placeholder="安全线断缺">
-										<span class="help-block">≤1mm </span>
+										<span class="help-block">≤0.5mm </span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -240,7 +240,7 @@
 								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" name="checkbox21" class="form-control" placeholder="小开版式">
-										<span class="help-block">小埋区大埋区符合标准要求（8、15与5、18）</span>
+										<span class="help-block">小埋区大埋区符合标准要求（7T：8、15与5、18，6T：17、6与14、9）</span>
 									</div>
 								</div>
 								<div class="form-group">
