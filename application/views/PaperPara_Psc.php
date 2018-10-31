@@ -289,13 +289,6 @@
 											<span class="help-block">≤1.0</span>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3">尘埃 个/平米</label>
-											<div class="col-md-9">
-											<input type="text" class="form-control" name="dust">
-											<span class="help-block">0.1-0.7 m2 :100;0.7 m2 以上 0 </span>
-											</div>
-										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
@@ -404,16 +397,23 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3">TZ1-2纤维 根/平方分米</label>
+											<label class="control-label col-md-3">尘埃 个/平米</label>
 											<div class="col-md-9">
-											<input type="text" class="form-control" name="fibre_tz12">
-											<span class="help-block">40-60</span>
+											<input type="text" class="form-control" name="dust">
+											<span class="help-block">0.1-0.7 m2 :100;0.7 m2 以上 0 </span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3">TZ2纤维 根/平方分米</label>
 											<div class="col-md-9">
 											<input type="text" class="form-control" name="fibre_tz2">
+											<span class="help-block">40-60</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3">TZ1-2纤维 根/平方分米</label>
+											<div class="col-md-9">
+											<input type="text" class="form-control" name="fibre_tz12">
 											<span class="help-block">40-60</span>
 											</div>
 										</div>
