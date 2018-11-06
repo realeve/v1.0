@@ -476,7 +476,7 @@
 											</div>
 										</div>
 								</div> -->
-								<div class="form-group hide">
+								<div class="form-group">
 									<label class="control-label col-md-3">允许修改常规指标
 										<span class="required"> * </span>
 									</label>
