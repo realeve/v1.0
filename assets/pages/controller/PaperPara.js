@@ -139,6 +139,10 @@ var PaperParam = function() {
 
       // 平均裂断长
       $('[name="avg_break_length"]').attr('disabled', false).parents('.form-group').show();
+
+      $('[name="smoothness_front"]').attr('disabled', false).parents('.form-group').show();
+      $('[name="smoothness_back"]').attr('disabled', false).parents('.form-group').show();
+      $('[name="tensile_strength_wet"]').attr('disabled', false).parents('.form-group').show();
     } else if (prodName === '103-G-6T') {
       $.get(url, function(json) {
         handleStandardText(json, 'normal');
@@ -164,7 +168,10 @@ var PaperParam = function() {
       $('[name="roughness_b"]').attr('disabled', false).parents('.form-group').show();
 
       // 平均裂断长
-      $('[name="avg_break_length"]').attr('disabled', true).val(0).parents('.form-group').hide();
+      $('[name="avg_break_length"]').attr('disabled', true).parents('.form-group').hide();
+      $('[name="smoothness_front"]').attr('disabled', true).parents('.form-group').hide();
+      $('[name="smoothness_back"]').attr('disabled', true).parents('.form-group').hide();
+      $('[name="tensile_strength_wet"]').attr('disabled', true).parents('.form-group').hide();
     } else {
       $('input[name="water_imbibition"]').parent().find('span').text('40~70 g/m^2');
       $('input[name="basis_weight"]').parent().find('span').text('90±3%');
@@ -187,11 +194,10 @@ var PaperParam = function() {
       $('[name="roughness_f"]').attr('disabled', true).val(0).parents('.form-group').hide();
       $('[name="roughness_b"]').attr('disabled', true).val(0).parents('.form-group').hide();
 
-      // 平均裂断长
-      $('[name="avg_break_length"]').attr('disabled', false).parents('.form-group').show();
-
+      $('[name="smoothness_front"]').attr('disabled', false).parents('.form-group').show();
+      $('[name="smoothness_back"]').attr('disabled', false).parents('.form-group').show();
+      $('[name="tensile_strength_wet"]').attr('disabled', false).parents('.form-group').show();
     }
-
     if (vialidate()) {
       $('.grey-cascade').html('');
       return;

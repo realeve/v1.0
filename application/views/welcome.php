@@ -82,7 +82,7 @@
 								 机检系统异常产品
 							</div>
 						</div>
-						<a class="more" href="javascript:;">
+						<a class="more" href="/qualitytable?tid=564">
 						查看详情 <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>

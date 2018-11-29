@@ -538,11 +538,6 @@
             "score": 0.5,
             "w_min": 4200
         },
-        "avg_break_length": {
-            "min": 4000,
-            "score": 0.5,
-            "w_min": 4200
-        },
         "tearing_ver": {
             "min": 750,
             "score": 0.5,
