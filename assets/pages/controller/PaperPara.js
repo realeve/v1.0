@@ -117,6 +117,15 @@ var PaperParam = function() {
     //提示信息更改
     var url = getRootPath(1) + "/assets/pages/controller/data/paper_physic.json";
     var prodName = GetSelect2Text('Prod_id');
+
+    $('[name="delta_e_fb"]').attr('disabled', true).parents('.form-group').hide();
+
+    $('[name="chroma_L"]').attr('disabled', false).parents('.form-group').show();
+    $('[name="chroma_a"]').attr('disabled', false).parents('.form-group').show();
+    $('[name="chroma_b"]').attr('disabled', false).parents('.form-group').show();
+
+    $('[name="tearing_hor"]').attr('disabled', true).parents('.form-group').hide();
+
     if (prodName === '103-G-7T') {
       $.get(url, function(json) {
         handleStandardText(json, 'normal');
@@ -149,6 +158,15 @@ var PaperParam = function() {
         handleStandardText(json, '9606T')
       });
 
+
+      $('[name="tearing_hor"]').attr('disabled', false).parents('.form-group').show();
+
+      $('[name="chroma_L"]').attr('disabled', true).parents('.form-group').hide();
+      $('[name="chroma_a"]').attr('disabled', true).parents('.form-group').hide();
+      $('[name="chroma_b"]').attr('disabled', true).parents('.form-group').hide();
+
+
+      $('[name="delta_e_fb"]').attr('disabled', false).parents('.form-group').show();
 
       // $('input[name="basis_weight"]').parent().find('span').text('94±2');
       // $('input[name="thickness"]').parent().find('span').text('107-116');
