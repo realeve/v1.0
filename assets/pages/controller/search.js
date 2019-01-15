@@ -851,6 +851,42 @@ var search = function() {
     handleOfflineInfo(data.data);
   };
 
+
+  // mes 机台作业信息查询
+  var handleProdLog = function(cart, data) {
+    var logData;
+    $.ajax({
+      async: false, //同步
+      url: 'http://10.8.1.25:100/api/333/76d8ab1aa9?cart=' + cart,
+      success: function(data, status) {
+        logData = data.data;
+      },
+      error: function(e) {
+        console.log("read data error:<br>");
+        console.log(e.responseText);
+      }
+    });
+
+    if (logData.length == 0) {
+      return data;
+    }
+
+    // 匹配作业信息
+    data.map(function(item) {
+      if (item.WorkInfo.length > 0) {
+        return item;
+      }
+
+      var mesInfo = logData.find(function(logData) {
+        return logData.captain == item.CaptainName
+      })
+
+      item.WorkInfo = mesInfo == null ? '' : mesInfo.comment_text;
+      return item;
+    })
+    return data;
+  }
+
   //根据车号查询生产信息
   var getCartInfo = function(obj) {
 
@@ -867,19 +903,52 @@ var search = function() {
       var param = convertGZInfo(obj.cart, obj.prod);
       url = strUrl + 284 + '&M=0&prod=' + obj.prod + '&alpha=' + param.alpha + '&start=' + param.start + '&end=' + param.end + '&alpha2=' + param.alpha2 + '&start2=' + param.start2 + '&end2=' + param.end2;
       data = ReadData(url);
-      $('[name=prodNum]').html(data.rows);
-      if (data.rows > 0) {
-        //获取开位信息
-        data.data[0].kInfo = getKinfo(param.codeNum, data.data[0].GzNumber);
 
-        renderQualityInfo(data.data[0].CartNumber);
+      // 20190115 MES上线
+      //
+      $.ajax('http://10.8.1.25:100/api/332/5c91838515?prod=' + obj.prod + '&start=' + obj.cart + '&end=' + obj.cart).done(function(res) {
+        var mesData = res.data;
+        // 冠字模糊匹配失败，在机台作业系统中重新搜索车号
+        if (data.rows == 0 && mesData.length > 0) {
+          var cart = mesData[mesData.length - 1].CartNumber;
+          data = ReadData(strUrl + 283 + '&M=0&cart=' + cart + '&cache=1440')
+        }
 
-        renderProdInfo(data); //渲染质量信息
+        if (mesData.length > 0) {
+          mesData = handleProdLog(mesData[mesData.length - 1].CartNumber, mesData);
+        }
 
-      } else {
-        setEptStr();
-        return;
-      }
+        data.rows = data.rows + mesData.length;
+        // 合并数据
+        data.data = data.data.concat(mesData)
+
+        // 冠字信息合并
+        var gzInfo = data.data[data.data.length - 1];
+        data.data = data.data.map(function(item) {
+          item.CarNumber = gzInfo.CarNumber;
+          item.GzNumber = gzInfo.GzNumber;
+          item.TechTypeName = gzInfo.TechTypeName;
+          return item;
+        })
+
+
+        $('[name=prodNum]').html(data.rows);
+        if (data.rows > 0) {
+          //获取开位信息
+          var idx = data.data.length - 1;
+          data.data[idx].kInfo = getKinfo(param.codeNum, data.data[idx].GzNumber);
+
+          renderQualityInfo(data.data[idx].CartNumber);
+
+          renderProdInfo(data); //渲染质量信息
+
+        } else {
+          setEptStr();
+          return;
+        }
+      })
+
+
     } else {
       //直接用车号获取生产信息
 
@@ -894,15 +963,41 @@ var search = function() {
         })
         .done(function(data) {
           data = handleAjaxData(data);
-          $('[name=prodNum]').html(data.rows);
-          if (data.rows > 0) {
-            //仅搜索车号时，不返回开位信息
-            data.data[0].kInfo = 0;
-          } else {
-            setEptStr();
-            return;
-          }
-          renderProdInfo(data);
+
+          // 20190115 MES上线，数据需做合并
+          $.ajax('http://10.8.1.25:100/api/331/8ed6e81fa3/1440.html?cart=' + obj.cart).done(function(res) {
+            var mesData = res.data;
+
+            if (mesData.length > 0) {
+              mesData = handleProdLog(obj.cart, mesData);
+            }
+
+            data.rows = data.rows + mesData.length;
+
+            // 合并数据
+            data.data = data.data.concat(mesData)
+
+            // 冠字信息合并
+            var gzInfo = data.data[data.data.length - 1];
+            data.data = data.data.map(function(item) {
+              item.CarNumber = gzInfo.CarNumber;
+              item.GzNumber = gzInfo.GzNumber;
+              item.TechTypeName = gzInfo.TechTypeName;
+              return item;
+            })
+
+            $('[name=prodNum]').html(data.rows);
+            if (data.rows > 0) {
+              //仅搜索车号时，不返回开位信息
+              data.data[0].kInfo = 0;
+            } else {
+              setEptStr();
+              return;
+            }
+            renderProdInfo(data);
+          })
+
+
         }).fail(function(e) {
           infoTips(handleError(e), 0, $('.infotips'));
         });

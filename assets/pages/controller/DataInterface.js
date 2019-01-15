@@ -37,6 +37,12 @@ var DBSourse = [{
 }, {
   value: 12,
   text: '检封装箱系统'
+}, {
+  value: 13,
+  text: '胶凹离线检测系统'
+}, {
+  value: 14,
+  text: 'MES系统'
 }];
 
 var isInited = false;
