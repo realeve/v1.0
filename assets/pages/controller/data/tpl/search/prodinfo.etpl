@@ -27,7 +27,13 @@
 <!-- // 文件头部及详情 -->
 
 <!-- target: head -->
-	<span>${idx}.${item.ProcName} : <a target="_blank" href="../qualitytable?tid=425&mid=${item.MID}&tstart=${item.datetime}">${item.MachineName}</a></span>
+	<span>${idx}.${item.ProcName} :
+		<!-- if: ${item.MID} <1000 -->
+			<a target="_blank" href="../qualitytable?tid=425&mid=${item.MID}&tstart=${item.datetime}">${item.MachineName}</a>
+		<!-- else -->
+			<a target="_blank" href="../qualitytable?tid=579&mid=${item.MID}&tstart=${item.datetime}">${item.MachineName}</a>
+		<!-- /if -->
+	</span>
 	<!-- if: ${item.WorkClassName} == '早班' -->
 		<i class="badge badge-info"> ${item.WorkClassName}&nbsp; </i>
 	<!-- else -->

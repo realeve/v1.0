@@ -42,6 +42,10 @@
                                 <span class="theme-color-name">9606A</span>
                             </li>
                             <li class="theme-color">
+                                <span class="theme-color-view" style="background:#3D7F18"></span>
+                                <span class="theme-color-name">9606T</span>
+                            </li>
+                            <li class="theme-color">
                                 <span class="theme-color-view" style="background:rgb(255,127,104)"></span>
                                 <span class="theme-color-name">9607T</span>
                             </li>

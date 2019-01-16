@@ -853,39 +853,40 @@ var search = function() {
 
 
   // mes 机台作业信息查询
-  var handleProdLog = function(cart, data) {
-    var logData;
-    $.ajax({
-      async: false, //同步
-      url: 'http://10.8.1.25:100/api/333/76d8ab1aa9?cart=' + cart,
-      success: function(data, status) {
-        logData = data.data;
-      },
-      error: function(e) {
-        console.log("read data error:<br>");
-        console.log(e.responseText);
-      }
-    });
+  // 20190106 视图层处理完毕
+  // var handleProdLog = function(cart, data) {
+  //   var logData;
+  //   $.ajax({
+  //     async: false, //同步
+  //     url: 'http://10.8.1.25:100/api/333/76d8ab1aa9?cart=' + cart,
+  //     success: function(data, status) {
+  //       logData = data.data;
+  //     },
+  //     error: function(e) {
+  //       console.log("read data error:<br>");
+  //       console.log(e.responseText);
+  //     }
+  //   });
 
-    if (logData.length == 0) {
-      return data;
-    }
+  //   if (logData.length == 0) {
+  //     return data;
+  //   }
 
-    // 匹配作业信息
-    data.map(function(item) {
-      if (item.WorkInfo.length > 0) {
-        return item;
-      }
+  //   // 匹配作业信息
+  //   data.map(function(item) {
+  //     if (item.WorkInfo.length > 0) {
+  //       return item;
+  //     }
 
-      var mesInfo = logData.find(function(logData) {
-        return logData.captain == item.CaptainName
-      })
+  //     var mesInfo = logData.find(function(logData) {
+  //       return logData.captain == item.CaptainName
+  //     })
 
-      item.WorkInfo = mesInfo == null ? '' : mesInfo.comment_text;
-      return item;
-    })
-    return data;
-  }
+  //     item.WorkInfo = mesInfo == null ? '' : mesInfo.comment_text;
+  //     return item;
+  //   })
+  //   return data;
+  // }
 
   //根据车号查询生产信息
   var getCartInfo = function(obj) {
@@ -914,9 +915,9 @@ var search = function() {
           data = ReadData(strUrl + 283 + '&M=0&cart=' + cart + '&cache=1440')
         }
 
-        if (mesData.length > 0) {
-          mesData = handleProdLog(mesData[mesData.length - 1].CartNumber, mesData);
-        }
+        // if (mesData.length > 0) {
+        //   mesData = handleProdLog(mesData[mesData.length - 1].CartNumber, mesData);
+        // }
 
         data.rows = data.rows + mesData.length;
         // 合并数据
@@ -968,13 +969,14 @@ var search = function() {
           $.ajax('http://10.8.1.25:100/api/331/8ed6e81fa3/1440.html?cart=' + obj.cart).done(function(res) {
             var mesData = res.data;
 
-            if (mesData.length > 0) {
-              mesData = handleProdLog(obj.cart, mesData);
-            }
+            // if (mesData.length > 0) {
+            //   mesData = handleProdLog(obj.cart, mesData);
+            // }
 
             data.rows = data.rows + mesData.length;
 
             // 合并数据
+            data.data = data.data || []
             data.data = data.data.concat(mesData)
 
             // 冠字信息合并
