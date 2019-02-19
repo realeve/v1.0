@@ -267,8 +267,8 @@ var search = function() {
   function setTipInfo() {
     var times = today(1).replace(' ', 'T') + '+08';
     var str = '<div class="note note-danger margin-top-30"> <h4>该万产品未搜索到相关车号信息 <p class="margin-top-10">' +
-      '			<i class="fa fa-pencil"></i> <span>质量控制中心  发表于 <span name="isodate" title="' + times + '"></span> </span>' +
-      '		</p></h4></div>';
+      '     <i class="fa fa-pencil"></i> <span>质量控制中心  发表于 <span name="isodate" title="' + times + '"></span> </span>' +
+      '   </p></h4></div>';
     $('[name="prodInfo"]').html(str);
 
     $("[name=isodate]").prettyDate({
@@ -902,15 +902,18 @@ var search = function() {
       //param:prod,alpha,start,end,alpha2,start2,end2
 
       var param = convertGZInfo(obj.cart, obj.prod);
-      url = strUrl + 284 + '&M=0&prod=' + obj.prod + '&alpha=' + param.alpha + '&start=' + param.start + '&end=' + param.end + '&alpha2=' + param.alpha2 + '&start2=' + param.start2 + '&end2=' + param.end2;
+
+      var queryStr = 'prod=' + obj.prod + '&alpha=' + param.alpha + '&start=' + param.start + '&end=' + param.end + '&alpha2=' + param.alpha2 + '&start2=' + param.start2 + '&end2=' + param.end2;
+
+      url = strUrl + 284 + '&M=0&' + queryStr;
       data = ReadData(url);
 
       // 20190115 MES上线
       //
-      $.ajax('http://10.8.1.25:100/api/332/5c91838515?prod=' + obj.prod + '&start=' + obj.cart + '&end=' + obj.cart).done(function(res) {
+      $.ajax('http://10.8.1.25:100/api/332/5c91838515?' + queryStr).done(function(res) {
         var mesData = res.data;
         // 冠字模糊匹配失败，在机台作业系统中重新搜索车号
-        if (data.rows == 0 && mesData.length > 0) {
+        if (mesData.length > 0) {
           var cart = mesData[mesData.length - 1].CartNumber;
           data = ReadData(strUrl + 283 + '&M=0&cart=' + cart + '&cache=1440')
         }
@@ -966,7 +969,7 @@ var search = function() {
           data = handleAjaxData(data);
 
           // 20190115 MES上线，数据需做合并
-          $.ajax('http://10.8.1.25:100/api/331/8ed6e81fa3/1440.html?cart=' + obj.cart).done(function(res) {
+          $.ajax('http://10.8.1.25:100/api/331/8ed6e81fa3/60.html?cart=' + obj.cart).done(function(res) {
             var mesData = res.data;
 
             // if (mesData.length > 0) {
