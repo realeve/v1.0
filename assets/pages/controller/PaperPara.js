@@ -152,10 +152,10 @@ var PaperParam = function() {
       $('[name="smoothness_front"]').attr('disabled', false).parents('.form-group').show();
       $('[name="smoothness_back"]').attr('disabled', false).parents('.form-group').show();
       $('[name="tensile_strength_wet"]').attr('disabled', false).parents('.form-group').show();
-    } else if (prodName === '103-G-6T') {
+    } else if (prodName === '103-G-6T' || prodName === '103-G-4T') {
       $.get(url, function(json) {
         handleStandardText(json, 'normal');
-        handleStandardText(json, '9606T')
+        handleStandardText(json, prodName === '103-G-6T' ? '9606T' : '9604T');
       });
 
 

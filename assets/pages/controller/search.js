@@ -916,6 +916,7 @@ var search = function() {
         if (mesData.length > 0) {
           var cart = mesData[mesData.length - 1].CartNumber;
           data = ReadData(strUrl + 283 + '&M=0&cart=' + cart + '&cache=1440')
+		  data.data = data.data || [];
         }
 
         // if (mesData.length > 0) {
